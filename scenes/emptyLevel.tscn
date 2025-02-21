@@ -1,0 +1,81 @@
+[gd_scene load_steps=7 format=3 uid="uid://dphkg4iw7vij3"]
+
+[ext_resource type="Material" uid="uid://cctvegqrour2r" path="res://assets/material.tres" id="2_6fedv"]
+[ext_resource type="PackedScene" uid="uid://dar02h15mghxd" path="res://scenes/Player.tscn" id="2_mubmx"]
+[ext_resource type="PackedScene" uid="uid://cnsd0lccm274x" path="res://scenes/dummy.tscn" id="3_351fh"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wxjfj"]
+sky_top_color = Color(0.329412, 0.411765, 0.917647, 1)
+sky_horizon_color = Color(0.62451, 0.658823, 0.785294, 1)
+ground_bottom_color = Color(0.168627, 0.223529, 0.223529, 1)
+ground_horizon_color = Color(0.62451, 0.658823, 0.785294, 1)
+
+[sub_resource type="Sky" id="Sky_jnf0c"]
+sky_material = SubResource("ProceduralSkyMaterial_wxjfj")
+
+[sub_resource type="Environment" id="Environment_yprsc"]
+background_mode = 2
+sky = SubResource("Sky_jnf0c")
+ambient_light_source = 3
+ambient_light_color = Color(0.709804, 0.858824, 0.988235, 1)
+ambient_light_energy = 2.0
+tonemap_mode = 2
+
+[node name="Node3D" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, -3.36497, 5.26746, -11.7946)
+light_color = Color(1, 0.992157, 0.662745, 1)
+light_energy = 0.5
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_yprsc")
+
+[node name="Level" type="CSGCombiner3D" parent="."]
+use_collision = true
+
+[node name="Wall" type="CSGBox3D" parent="Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.675274, -1.90735e-06, -15.0297)
+size = Vector3(38.2998, 6.36351, 64.6859)
+material = ExtResource("2_6fedv")
+
+[node name="Ground" type="CSGBox3D" parent="Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.383319, 1.59082, -14.256)
+operation = 2
+size = Vector3(31.4159, 7.58282, 56.072)
+material = ExtResource("2_6fedv")
+
+[node name="Oblique" type="CSGPolygon3D" parent="Level"]
+transform = Transform3D(1.07653, 0, 0, 0, 0.875775, 0, 0, 0, 11.285, -5.40612, -0.00843859, -22.8621)
+polygon = PackedVector2Array(-9.81276, -2.35603, -9.26582, 3.68833, 1.25266, -2.51709, 1.26371, -2.80006)
+
+[node name="Step1" type="CSGBox3D" parent="Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.09252, -3.32607, -37.3571)
+size = Vector3(4.74856, 5.4991, 1.98483)
+
+[node name="Step2" type="CSGBox3D" parent="Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.08411, -1.4541, -40.4114)
+size = Vector3(4.74856, 5.21185, 4.15085)
+
+[node name="Step3" type="CSGBox3D" parent="Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.08411, 1.73702, -42.3889)
+size = Vector3(4.74856, 2.10275, 4.15085)
+
+[node name="Platform" type="CSGBox3D" parent="Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.81612, -4.40657, -10.9071)
+size = Vector3(15.6981, 12.8736, 9.13905)
+
+[node name="Platform2" type="CSGBox3D" parent="Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.25219, 3.596, -54.7775)
+size = Vector3(7.16774, 1.26697, 6.90906)
+
+[node name="Platform3" type="CSGBox3D" parent="Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.25219, 3.596, -70.778)
+size = Vector3(7.16774, 1.26697, 6.90906)
+
+[node name="Player" parent="." instance=ExtResource("2_mubmx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.8, 0)
+
+[node name="dummy1" parent="." instance=ExtResource("3_351fh")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -0.111935, -1.0157, -7.16502)

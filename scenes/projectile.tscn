@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://ux0swcelt0ur"]
+
+[ext_resource type="Script" path="res://scripts/Projectile.gd" id="1_ykxyn"]
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_gva6y"]
+albedo_color = Color(0.117647, 0.117647, 0.117647, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_4j6d8"]
+radius = 0.0582903
+
+[node name="projectile" type="CharacterBody3D"]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_ykxyn")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
+transform = Transform3D(0.13, 0, 0, 0, 0.13, 0, 0, 0, 0.13, 0, 0, 0)
+radius = 0.461498
+material = SubResource("ORMMaterial3D_gva6y")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_4j6d8")

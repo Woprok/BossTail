@@ -1,0 +1,155 @@
+[gd_scene load_steps=14 format=3 uid="uid://cnsd0lccm274x"]
+
+[ext_resource type="PackedScene" uid="uid://diahiulty64t0" path="res://scenes/health_bar_3d.tscn" id="1_02dho"]
+[ext_resource type="Script" path="res://scripts/Dummy.gd" id="1_ogb7p"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8lrk1"]
+radius = 0.223256
+height = 0.887768
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_40yyq"]
+height = 0.330733
+radius = 0.248959
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5aeec"]
+radius = 0.0676034
+height = 0.411281
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_qef0j"]
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_2mixp"]
+albedo_color = Color(1, 1, 0.152941, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_syt08"]
+material = SubResource("ORMMaterial3D_2mixp")
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_d81j0"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_2hdje"]
+viewport_path = NodePath("health")
+
+[sub_resource type="Animation" id="Animation_trex8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_rk54u"]
+resource_name = "dead"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-1.5708, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ol0sj"]
+_data = {
+"RESET": SubResource("Animation_trex8"),
+"death": SubResource("Animation_rk54u")
+}
+
+[node name="dummy" type="CharacterBody3D" groups=["enemy"]]
+collision_layer = 2
+collision_mask = 3
+platform_wall_layers = 1
+script = ExtResource("1_ogb7p")
+
+[node name="B" type="Area3D" parent="." groups=["hp5"]]
+
+[node name="body" type="CollisionShape3D" parent="B"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0063287, -0.175988, 0.000468731)
+shape = SubResource("CapsuleShape3D_8lrk1")
+
+[node name="H" type="Area3D" parent="." groups=["hp10"]]
+
+[node name="head" type="CollisionShape3D" parent="H"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000633448, 0.445267, 0)
+shape = SubResource("CylinderShape3D_40yyq")
+
+[node name="LA" type="Area3D" parent="." groups=["hp1"]]
+
+[node name="leftArm" type="CollisionShape3D" parent="LA"]
+transform = Transform3D(0.824126, -0.566406, 0, 0.566406, 0.824126, 0, 0, 0, 1, 0.304624, -0.0265378, 0)
+shape = SubResource("CapsuleShape3D_5aeec")
+
+[node name="RA" type="Area3D" parent="." groups=["hp1"]]
+
+[node name="rightArm" type="CollisionShape3D" parent="RA"]
+transform = Transform3D(0.824126, 0.566406, 0, -0.566406, 0.824126, 0, 0, 0, 1, -0.308464, -0.00324733, 0)
+shape = SubResource("CapsuleShape3D_5aeec")
+
+[node name="Body" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.44, 0, 0, 0, 0.6, 0, 0, 0, 0.44, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_qef0j")
+
+[node name="body" type="CollisionShape3D" parent="." groups=["hp5"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0063287, -0.175988, 0.000468731)
+shape = SubResource("CapsuleShape3D_8lrk1")
+
+[node name="Head" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.483, 0, 0, 0, 0.163514, 0, 0, 0, 0.483, 0, 0.441673, 0)
+mesh = SubResource("CylinderMesh_syt08")
+
+[node name="head" type="CollisionShape3D" parent="." groups=["hp10"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000633448, 0.445267, 0)
+shape = SubResource("CylinderShape3D_40yyq")
+
+[node name="LeftArm" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.12369, -0.138722, 0, 0.0858774, 0.199804, 0, 0, 0, 0.1, 0.281421, 0.00658467, -0.0230408)
+mesh = SubResource("CapsuleMesh_d81j0")
+skeleton = NodePath("")
+
+[node name="leftArm" type="CollisionShape3D" parent="." groups=["hp1"]]
+transform = Transform3D(0.824126, -0.566406, 0, 0.566406, 0.824126, 0, 0, 0, 1, 0.304624, -0.0265378, 0)
+shape = SubResource("CapsuleShape3D_5aeec")
+
+[node name="rightArm" type="CollisionShape3D" parent="." groups=["hp1"]]
+transform = Transform3D(0.824126, 0.566406, 0, -0.566406, 0.824126, 0, 0, 0, 1, -0.308464, -0.00324733, 0)
+shape = SubResource("CapsuleShape3D_5aeec")
+
+[node name="RightArm" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.123648, 0.13882, 0, -0.0859379, 0.199736, 0, 0, 0, 0.1, -0.298983, 0.00658467, -0.033258)
+mesh = SubResource("CapsuleMesh_d81j0")
+skeleton = NodePath("")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 1.04928, 0)
+texture = SubResource("ViewportTexture_2hdje")
+
+[node name="health" type="SubViewport" parent="."]
+disable_3d = true
+transparent_bg = true
+size = Vector2i(512, 256)
+
+[node name="health_bar_3d" parent="health" instance=ExtResource("1_02dho")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ol0sj")
+}
+
+[node name="aim" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[node name="shoot" type="Timer" parent="."]
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_finished"]
+[connection signal="timeout" from="aim" to="." method="_on_aim_timeout"]
+[connection signal="timeout" from="shoot" to="." method="_on_shoot_timeout"]

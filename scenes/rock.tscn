@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://cfby3q2ua7ewi"]
+
+[ext_resource type="Script" path="res://scripts/Rock.gd" id="1_diqi0"]
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_h43qs"]
+albedo_color = Color(0.117647, 0.117647, 0.117647, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_w6b4g"]
+radius = 0.0582903
+
+[node name="rock" type="CharacterBody3D"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_diqi0")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
+transform = Transform3D(0.13, 0, 0, 0, 0.13, 0, 0, 0, 0.13, 0, 0, 0)
+radius = 0.461498
+material = SubResource("ORMMaterial3D_h43qs")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_w6b4g")
