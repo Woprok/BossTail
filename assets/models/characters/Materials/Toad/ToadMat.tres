@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dd33ik36afd7a"]
+
+[resource]
+resource_name = "ToadMat"
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.223529, 0.145098, 0.180392, 1)
