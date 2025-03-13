@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://critkw5abytca"]
+
+[resource]
+resource_name = "EyeMaterial"
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.0747015, 0.0750555, 0.085288, 1)

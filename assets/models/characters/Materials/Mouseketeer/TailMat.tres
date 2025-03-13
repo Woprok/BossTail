@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://cogrh7phrkdv8"]
+
+[ext_resource type="Texture2D" uid="uid://c62s85uii6yt1" path="res://assets/models/characters/Char_Mouseketeer_TailAlbedoTexture.png" id="1_1d53r"]
+
+[resource]
+resource_name = "TailMat"
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_1d53r")

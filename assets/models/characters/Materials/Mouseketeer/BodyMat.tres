@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://dwok0m7vs77jd"]
+
+[ext_resource type="Texture2D" uid="uid://8gejlnebr7kj" path="res://assets/models/characters/Char_Mouseketeer_BodyAlbedoTexture.png" id="1_tclny"]
+
+[resource]
+resource_name = "BodyMat"
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_tclny")
