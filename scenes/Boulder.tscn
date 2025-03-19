@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://cgydlwevhkirk"]
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_gsd8a"]
+albedo_color = Color(0.117647, 0.117647, 0.117647, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_2yc8m"]
+radius = 0.51
+
+[node name="boulder" type="RigidBody3D" groups=["boulder"]]
+collision_layer = 16
+collision_mask = 19
+mass = 0.01
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
+transform = Transform3D(0.13, 0, 0, 0, 0.13, 0, 0, 0, 0.13, 0, 0, 0)
+radius = 4.0
+radial_segments = 10
+material = SubResource("ORMMaterial3D_gsd8a")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_2yc8m")

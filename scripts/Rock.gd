@@ -1,21 +1,22 @@
 extends CharacterBody3D
 
+var time = 0
 var speed:int = 2
-var time:int = 0
-var max_time:int = 3
+var max_time:int = 30
 var gravity:int = -10
 var HEIGHT_OF_ARC:float = 2
+@onready var stone_platforms = get_parent().get_parent().get_node("stonePlatforms")
 
 func _physics_process(delta):
 	time += delta
 	if time>max_time:
-		queue_free()
+		respawn()
 	velocity.y += speed*gravity*delta
-	var colision = move_and_collide(speed*velocity*delta)
-	if colision:
-		if colision.get_collider().is_in_group("enemy") or colision.get_collider().is_in_group("player"):
-			colision.get_collider().hit(colision.get_collider_shape())
-		queue_free()	
+	var collision = move_and_collide(speed*velocity*delta)
+	if collision:
+		if collision.get_collider().is_in_group("enemy"):
+			collision.get_collider().hit(collision.get_collider_shape())
+			respawn()
 
 
 func shoot(origin, end, result):
@@ -34,3 +35,12 @@ func shoot(origin, end, result):
 		velocity = velocity.normalized()
 		velocity *= 40
 		velocity.y = height
+
+func respawn():
+	randomize()
+	var child_index = randi() % stone_platforms.get_child_count()
+	var platform = stone_platforms.get_child(child_index)
+	var x = randf() * 7 - 3.5
+	var z = randf() * 7 - 3.5
+	position = Vector3(platform.position.x+x,position.y,platform.position.z+z)
+	time = 0

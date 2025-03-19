@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://cghwxumcrmfcs"]
+
+[ext_resource type="Script" path="res://scripts/Fly.gd" id="1_xccur"]
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_0fuwa"]
+albedo_color = Color(0.117647, 0.117647, 0.117647, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_pwoqt"]
+radius = 0.1
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ooyci"]
+radius = 1.0
+
+[node name="fly" type="CharacterBody3D" groups=["fly"]]
+collision_layer = 9
+collision_mask = 3
+script = ExtResource("1_xccur")
+
+[node name="body" type="CSGSphere3D" parent="."]
+transform = Transform3D(0.13, 0, 0, 0, 0.13, 0, 0, 0, 0.13, 0, 0, 0)
+radius = 0.461498
+material = SubResource("ORMMaterial3D_0fuwa")
+
+[node name="head" type="CSGSphere3D" parent="."]
+transform = Transform3D(0.13, 0, 0, 0, 0.13, 0, 0, 0, 0.13, 0.06, 0, 0)
+radius = 0.3
+material = SubResource("ORMMaterial3D_0fuwa")
+
+[node name="Body" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.02, 0, 0)
+shape = SubResource("SphereShape3D_pwoqt")
+
+[node name="wings" type="CSGCylinder3D" parent="."]
+transform = Transform3D(0.9, 0, 0, 0, -0.09, 0, 0, 0, 4.59, 0, 0, 0)
+radius = 0.03
+height = 0.002
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_mask = 9
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_ooyci")
+
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_entered"]
+[connection signal="body_entered" from="Area3D" to="." method="_on_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_body_exited"]

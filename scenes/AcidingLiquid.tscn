@@ -1,0 +1,80 @@
+[gd_scene load_steps=8 format=3 uid="uid://dbxwk1hjg3nk1"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_c4m4i"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2br82"]
+transparency = 1
+depth_draw_mode = 1
+albedo_color = Color(1, 0, 0, 0.827451)
+normal_scale = 8.0
+normal_texture = SubResource("NoiseTexture2D_c4m4i")
+ao_light_affect = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2pabf"]
+transparency = 1
+depth_draw_mode = 1
+albedo_color = Color(1, 0, 0, 0.827451)
+normal_scale = 8.0
+normal_texture = SubResource("NoiseTexture2D_c4m4i")
+ao_light_affect = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g7mv7"]
+transparency = 1
+depth_draw_mode = 1
+albedo_color = Color(1, 0, 0, 0.827451)
+normal_scale = 8.0
+normal_texture = SubResource("NoiseTexture2D_c4m4i")
+ao_light_affect = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qhik4"]
+transparency = 1
+depth_draw_mode = 1
+albedo_color = Color(1, 0, 0, 0.827451)
+normal_scale = 8.0
+normal_texture = SubResource("NoiseTexture2D_c4m4i")
+ao_light_affect = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_to00u"]
+transparency = 1
+depth_draw_mode = 1
+albedo_color = Color(1, 0, 0, 0.827451)
+normal_scale = 8.0
+normal_texture = SubResource("NoiseTexture2D_c4m4i")
+ao_light_affect = 1.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ck5pk"]
+height = 0.1
+radius = 1.2
+
+[node name="aciding_liquid" type="Area3D" groups=["aciding_liquid"]]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.508146, 0, -0.128632)
+height = 0.001
+material = SubResource("StandardMaterial3D_2br82")
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.106408, 0, -0.52819)
+height = 0.001
+material = SubResource("StandardMaterial3D_2pabf")
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.312204, 0, 0.530655)
+height = 0.001
+material = SubResource("StandardMaterial3D_g7mv7")
+
+[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.269016, 0, 0.285568)
+height = 0.001
+material = SubResource("StandardMaterial3D_qhik4")
+
+[node name="CSGCylinder3D5" type="CSGCylinder3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.542802, 0, -0.317876)
+height = 0.001
+material = SubResource("StandardMaterial3D_to00u")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CylinderShape3D_ck5pk")

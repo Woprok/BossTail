@@ -8,9 +8,9 @@ albedo_color = Color(0.117647, 0.117647, 0.117647, 1)
 [sub_resource type="SphereShape3D" id="SphereShape3D_w6b4g"]
 radius = 0.0582903
 
-[node name="rock" type="CharacterBody3D"]
+[node name="rock" type="CharacterBody3D" groups=["pebble"]]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
-collision_layer = 4
+collision_layer = 5
 collision_mask = 3
 script = ExtResource("1_diqi0")
 
