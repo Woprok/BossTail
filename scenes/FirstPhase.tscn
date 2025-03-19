@@ -180,6 +180,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41, 0.9, -25)
 neighbors = [NodePath("../../lilyPlatforms/lily1")]
 
 [node name="flies" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 69, 0, -43)
 
 [node name="fly1" parent="flies" instance=ExtResource("6_g0io5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.7084, 2.2, 0)

@@ -7,12 +7,15 @@ var HEIGHT_OF_ARC:float = 3
 var time_of_extend = 0
 var time_bubble = 0
 var time_swipe = 0
-var EXTEND_TIME = 5
+var time_grab = 0
+var EXTEND_TIME = 3
 var SAME_PLATFORM_TIME = 2
 var DIFF_PLATFORM_TIME = 10
 var BUBBLE_TIME = 5
 var TONGUE_TIME = 10
+var GRAB_TIME = 10
 
+var grab = false
 var doing = false
 var swipe = false
 var jump = false
@@ -41,20 +44,41 @@ func _physics_process(delta):
 	if collision and jump:
 		jump = false
 		$AnimationPlayer.play("GAME_02-jump-end")
+		
 	if path != [] and path[0]==platform:
 			path = []
+			doing = false
+			
 	if path!=[] and not jump:
 		jump_direction(path[0].global_position)
 		path.pop_front()
+		if path == []:
+			doing = false
+	
+	if extended:
+		time_of_extend += delta
+		if time_of_extend >= EXTEND_TIME:
+			extended = false
+			time_of_extend = 0
+			$AnimationPlayer.play("GAME_03-tongue_grab-end")
 	if doing:
 		return
 	if stage == 1:
 		if subphase == 0:
 			time_bubble += delta
-			time_swipe+=delta
-			if health.health <= 25 and not doing and platform==player.platform:
-				pass
-			if health.health <= 25 and not doing and platform!=player.platform:
+			time_swipe += delta
+			time_grab += delta
+			if health.health <= 25 and time_grab >= GRAB_TIME and  not doing and platform==player.platform:
+				if position.distance_to(player.position)<6.3 or position.distance_to(player.position)>6.5:		#presunout ze se presune za hracem a streli po nem jazykem
+					var point = find_point_on_platform(platform.position,player.position,6.4)
+					if point!=null:
+						jump_direction(point)
+					doing = true
+					grab = true
+			if health.health <= 25 and time_grab >= GRAB_TIME and not doing and platform!=player.platform and player.platform.is_in_group("stone_platform"):
+				time_bubble = 0
+				time_swipe = 0
+				time_grab = 0
 				plan_path(player.platform)
 				if path.size()<=3:
 					doing = true
@@ -62,6 +86,7 @@ func _physics_process(delta):
 					path = []
 			if health.health <= 50 and not doing:
 				if platform == player.platform and time_swipe>SAME_PLATFORM_TIME:
+					time_bubble = 0
 					randomize()
 					SAME_PLATFORM_TIME = randi()%2+2
 					swipe = true
@@ -69,6 +94,7 @@ func _physics_process(delta):
 					$AnimationPlayer.play("GAME_03-tongue_grab-start")
 					time_swipe = 0
 				if platform!=player.platform and platform.neighbors.has(player.platform) and time_swipe>DIFF_PLATFORM_TIME:
+					time_bubble = 0
 					swipe = true
 					doing = true
 					$AnimationPlayer.play("GAME_03-tongue_grab-start")
@@ -80,7 +106,7 @@ func _physics_process(delta):
 		else:
 			#swimming a utoky z vody
 			pass
-		if not $AnimationPlayer.is_playing():
+		if not $AnimationPlayer.is_playing() and not swipe and not extended:
 			$AnimationPlayer.play("GAME_01-idle")
 	#	time_of_extend += delta
 	#	if time_of_extend >= EXTEND_TIME and extended:
@@ -116,8 +142,23 @@ func tongue_swipe():
 
 func after_swipe():
 	$AnimationPlayer.play("GAME_03-tongue_grab-end")
-	doing = false
+	swipe = false
 	time_swipe = 0
+	
+func find_point_on_platform(platform_position, player_position, distance):
+	# Definujeme hranice platformy
+	var platform_top_left = Vector3(platform_position.x - 14 / 2, platform_position.y, platform.position.z - 14 / 2)
+	var platform_bottom_right =  Vector3(platform_position.x + 14 / 2, platform_position.y, platform.position.z + 14 / 2)
+	# Projdeme všechny body platformy
+	for x in range(int(platform_top_left.x), int(platform_bottom_right.x)):
+		for z in range(int(platform_top_left.z), int(platform_bottom_right.z)):
+			var point = Vector3(x, player.position.y, z)
+			# Ověříme, zda je bod přesně ve vzdálenosti od hráče
+			if point.distance_to(player_position) >= distance-0.1 and point.distance_to(player_position)<=distance+0.1:
+				return point  # Najdeme první bod, který odpovídá požadované vzdálenosti
+	
+	# Pokud žádný bod nevyhovuje, vrátíme null
+	return null
 
 func jump_direction(target_position):
 	look_at(Vector3(target_position.x,position.y,target_position.z))	
@@ -131,12 +172,12 @@ func jump_direction(target_position):
 	jump = true
 	$AnimationPlayer.play("GAME_02-jump-start")
 
-#func extend():
-#	if extended:
-#		return
-#	$AnimationPlayer.play("GAME_03-tongue_grab-start")
-#	time_of_extend = 0
-#	return
+func extend():
+	if extended:
+		return
+	$AnimationPlayer.play("GAME_03-tongue_grab-start")
+	time_of_extend = 0
+	return
 	
 func plan_path(target):
 	if platform == target:
@@ -183,6 +224,29 @@ func _on_tongue_body_entered(body):
 		if swipe:
 			body.hit(body.get_node("CollisionShape3D"))
 			body.launch(transform.basis.z)
+		if grab:
+			body.hit(body.get_node("CollisionShape3D"))
+			var farestPlatform = []
+			var max = -INF
+			for p in get_parent().get_node("stonePlatforms").get_children():
+				var dist = p.position.distance_to(platform.position)
+				if dist>=max:
+					if dist == max:
+						farestPlatform.append(p)
+					else:
+						max = dist
+						farestPlatform = [p]
+			randomize()
+			var i = randi()%farestPlatform.size()
+			var newPlatform = farestPlatform[i]
+			var height = newPlatform.position.y - player.position.y + 10
+			height = abs(height)
+			var displacement_y = newPlatform.position.y-player.position.y
+			var displacemnt_xz = Vector3(newPlatform.position.x-player.position.x,0,newPlatform.position.z-player.position.z)
+			var velocity_y = Vector3.UP * sqrt(-2*gravity*height)
+			var velocity_xz = displacemnt_xz/(sqrt(-2*height/gravity)+sqrt(2*(displacement_y-height)/gravity))
+			player.velocity = velocity_y+velocity_xz
+			player.grabbed = true
 	if body.is_in_group("fly"):
 		body.queue_free()
 
@@ -190,6 +254,7 @@ func _on_tongue_body_entered(body):
 func _on_animation_finished(anim_name):
 	if anim_name=="GAME_03-tongue_grab-end":
 		extended = false
+		doing = false
 		$tongue/CollisionShape3D.disabled = true
 		$tongueShape.disabled = true		
 	if anim_name == "GAME_03-tongue_grab-start":
@@ -198,3 +263,11 @@ func _on_animation_finished(anim_name):
 		$tongueShape.disabled = false
 		if swipe:
 			tongue_swipe()
+	if anim_name == "GAME_02-jump-end":
+		if grab:
+			#po skoku vyplaz
+			time_bubble = 0
+			time_swipe = 0
+			time_grab = 0
+			look_at(Vector3(player.position.x,position.y,player.position.z))
+			extend()

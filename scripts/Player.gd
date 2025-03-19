@@ -36,6 +36,7 @@ var can_dash:bool = true
 var aiming:bool = false
 var last_shot:float = 0
 var aciding_liquid:int = 0
+var grabbed: bool = false
 var launched:bool = false
 var direction = Vector3.ZERO
 
@@ -48,6 +49,12 @@ func _physics_process(delta):
 	time = time+ delta
 	if position.y<-3 or (is_on_floor() and position.y<-0.6):
 		respawn()
+	
+	if grabbed:
+		velocity.y += 2.5*-9*delta
+		var collision = move_and_collide(2.5*velocity*delta)
+		return
+	
 	last_shot += delta
 	if Input.is_action_pressed("move_right"):
 		rotate_y(-0.05)
@@ -194,7 +201,7 @@ func shoot():
 		p = Fly.instantiate()
 		flies.add_child(p)
 		
-	p.position = position-transform.basis.z
+	p.global_position = position-transform.basis.z
 	p.velocity=-transform.basis.z
 	
 	var space_state = Camera.get_world_3d().direct_space_state
@@ -287,6 +294,7 @@ func _on_pickup_entered(body):
 
 func _on_standing(area):
 	launched = false
+	grabbed = false
 	if area.is_in_group("aciding_liquid"):
 		aciding_liquid += 1
 	if area.is_in_group("stone_platform") or area.is_in_group("lily_platform"):
