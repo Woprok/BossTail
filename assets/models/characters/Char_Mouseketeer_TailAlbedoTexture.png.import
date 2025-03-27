@@ -3,10 +3,9 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c62s85uii6yt1"
-path.s3tc="res://.godot/imported/Char_Mouseketeer_TailAlbedoTexture.png-a51fa2f21fd8efe1d047cd1e99b9a195.s3tc.ctex"
+path="res://.godot/imported/Char_Mouseketeer_TailAlbedoTexture.png-a51fa2f21fd8efe1d047cd1e99b9a195.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 generator_parameters={
 "md5": "8e81588fdfcd405e7193470fde9695c1"
@@ -15,11 +14,11 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/characters/Char_Mouseketeer_TailAlbedoTexture.png"
-dest_files=["res://.godot/imported/Char_Mouseketeer_TailAlbedoTexture.png-a51fa2f21fd8efe1d047cd1e99b9a195.s3tc.ctex"]
+dest_files=["res://.godot/imported/Char_Mouseketeer_TailAlbedoTexture.png-a51fa2f21fd8efe1d047cd1e99b9a195.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

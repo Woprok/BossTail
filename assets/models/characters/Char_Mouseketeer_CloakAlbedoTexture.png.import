@@ -3,10 +3,9 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://fsbgqai3y8u2"
-path.s3tc="res://.godot/imported/Char_Mouseketeer_CloakAlbedoTexture.png-c08893f8abbc35b0d116ae532bd3ec5e.s3tc.ctex"
+path="res://.godot/imported/Char_Mouseketeer_CloakAlbedoTexture.png-c08893f8abbc35b0d116ae532bd3ec5e.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 generator_parameters={
 "md5": "3bb768a911a1b71ecc5580b5dba386c7"
@@ -15,11 +14,11 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/characters/Char_Mouseketeer_CloakAlbedoTexture.png"
-dest_files=["res://.godot/imported/Char_Mouseketeer_CloakAlbedoTexture.png-c08893f8abbc35b0d116ae532bd3ec5e.s3tc.ctex"]
+dest_files=["res://.godot/imported/Char_Mouseketeer_CloakAlbedoTexture.png-c08893f8abbc35b0d116ae532bd3ec5e.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
