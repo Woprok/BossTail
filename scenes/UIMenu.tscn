@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=3 uid="uid://dd1t8e65ub5g5"]
+
+[ext_resource type="Theme" uid="uid://d2mah8qfufk0b" path="res://assets/UIMenuTheme.tres" id="1_cfngp"]
+
+[node name="UiMenu" type="Node2D"]
+
+[node name="MenuButtonVBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_right = 8.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="PlayButton" type="Button" parent="MenuButtonVBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_cfngp")
+text = "Play"
+
+[node name="SettingsButton" type="Button" parent="MenuButtonVBoxContainer"]
+layout_mode = 2
+text = "Settings"
+
+[node name="QuitButton" type="Button" parent="MenuButtonVBoxContainer"]
+layout_mode = 2
+text = "Quit"
