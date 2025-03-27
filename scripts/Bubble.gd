@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
 var gravity:int = -9
-var HEIGHT_OF_ARC:float = 1.5
+var HEIGHT_OF_ARC:float = 1
 var speed:int = 2.5
 var ACID = preload("res://scenes/AcidingLiquid.tscn")
 
@@ -14,6 +14,8 @@ func _physics_process(delta):
 			queue_free()
 			return
 		if collision.get_collider().is_in_group("lily_platform"):
+			if collision.get_collider().name=="largeLily":
+				queue_free()
 			var tween = get_tree().create_tween()
 			var platform = collision.get_collider().get_parent()
 			tween.tween_property(platform,"position",Vector3(platform.position.x,-0.9,platform.position.z),0.5)

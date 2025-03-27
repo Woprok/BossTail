@@ -23,6 +23,7 @@ var AIM_SPEED:int = 5
 var STICKY_SPEED:int = 2
 var SPEED:int = 10
 var back = -1
+var lastHit = 100
 
 var time:float = 0
 var target_velocity:Vector3 = Vector3.ZERO
@@ -47,9 +48,10 @@ func _ready():
 	
 func _physics_process(delta):
 	time = time+ delta
+	lastHit += delta
 	if position.y<-3 or (is_on_floor() and position.y<-0.6):
 		respawn()
-	
+		
 	if grabbed:
 		velocity.y += 2.5*-9*delta
 		var collision = move_and_collide(2.5*velocity*delta)
@@ -63,13 +65,13 @@ func _physics_process(delta):
 	
 	if not launched:
 		direction = Vector3.ZERO
-	if Input.is_action_pressed("move_back"):
+	if Input.is_action_pressed("move_back") and not launched:
 		direction.z += 1
-	if Input.is_action_pressed("move_forward"):
+	if Input.is_action_pressed("move_forward") and not launched:
 		direction.z -= 1
-	if Input.is_action_pressed("strafe_left"):
+	if Input.is_action_pressed("strafe_left") and not launched:
 		direction.x -= 1
-	if Input.is_action_pressed("strafe_right"):
+	if Input.is_action_pressed("strafe_right") and not launched:
 		direction.x += 1
 		
 	if Input.is_action_just_pressed("dash") and can_dash:
@@ -87,14 +89,12 @@ func _physics_process(delta):
 		speed = STICKY_SPEED
 	else:
 		speed = SPEED
-#	if direction != Vector3.ZERO:
-#		direction = direction.normalized()
 		
 	if Input.is_action_just_pressed("jump") and aciding_liquid == 0:
 		ui.change_jump_height(delta)
 		direction.y += 1
 	if Input.is_action_pressed("jump") and aciding_liquid == 0:
-		ui.change_jump_height(delta*333)		
+		ui.change_jump_height(delta*333)
 	if Input.is_action_just_released("jump"):
 		ui.change_jump_height(0)
 		target_velocity.y *= 0.1
@@ -179,6 +179,9 @@ func _unhandled_input(event):
 			Camera.rotation.x = clamp(Camera.rotation.x, deg_to_rad(-70), deg_to_rad(25))
 
 func hit(area):
+	if lastHit<1:
+		return
+	lastHit = 0
 	if area.is_in_group("hp1"):
 		ui.get_node("health_player").decHealth(1)
 	if area.is_in_group("hp5"):
@@ -225,18 +228,20 @@ func respawn():
 			if get_parent().get_node("frog").platform != i and min > i.position.distance_to(position):
 				min = i.position.distance_to(position)
 				platform = i
+		if platform == null and Global.phase>1:
+			platform = get_parent().get_node("lilyPlatforms/largeLily")
 		position = platform.position
 		position.y += 5
 	else:
 		if position.y>-3:
 			for i in platform.neighbors:
-				if i.is_in_group("stone_platform") and get_parent().get_node("frog").platform != i:
+				if i != null and i.is_in_group("stone_platform") and get_parent().get_node("frog").platform != i:
 					platform = i
 					break
-				if i.is_in_group("lily_platform") and i.sinked == false:
+				if i != null and i.is_in_group("lily_platform") and i.sinked == false:
 					platform = i
 					break
-		position = platform.position
+		position = platform.global_position
 		position.y += 5
 	
 	
@@ -293,14 +298,18 @@ func _on_pickup_entered(body):
 
 
 func _on_standing(area):
-	launched = false
-	grabbed = false
+	if area.is_in_group("spike"):
+		hit($CollisionShape3D)
 	if area.is_in_group("aciding_liquid"):
+		launched = false
+		grabbed = false
 		aciding_liquid += 1
 	if area.is_in_group("stone_platform") or area.is_in_group("lily_platform"):
 		$AnimationPlayer.play_backwards("GAME_03_jump_start")
 		platform = area
-
+		launched = false
+		grabbed = false
+		
 
 func _on_leaving(area):
 	if area.is_in_group("aciding_liquid"):

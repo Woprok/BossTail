@@ -15,6 +15,10 @@ run/main_scene="res://scenes/FirstPhase.tscn"
 config/features=PackedStringArray("4.1", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Global="*res://scripts/Global.gd"
+
 [display]
 
 window/main_scene="res://scenes/emptyLevel.tscn"
@@ -83,6 +87,7 @@ dash={
 3d_physics/layer_4="Fly"
 3d_physics/layer_5="Boulder"
 3d_physics/layer_6="Bubble"
+3d_physics/layer_7="SwimmingGround"
 
 [rendering]
 

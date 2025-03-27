@@ -4,13 +4,21 @@ var speed:int = 2
 var time:int = 0
 var gravity:int = -10
 @export var flying = false
+@export var swarm = false
 var dead = false
 var HEIGHT_OF_ARC:float = 2
 var groupSize = 1
+var angle = 0
 var platform:Node
 
 func _physics_process(delta):
-	if flying:
+	if flying and not swarm:
+		angle += delta
+		var center_position = get_parent().position
+		angle = fmod(angle,TAU)
+		var x = center_position.x + cos(angle) * 4
+		var z = center_position.z + sin(angle) * 4
+		position = Vector3(x,position.y,z) 
 		return
 	velocity.y += speed*gravity*delta
 	var collision = move_and_collide(speed*velocity*delta)

@@ -2,9 +2,12 @@ extends Node3D
 
 @export var neighbors: Array[Node] = []
 var sinked = false
+@export var radius = 7
 var objects = 0
 
 func _process(delta):
+	if is_in_group("big_lily"):
+		return
 	if position.y<-1:
 		sinked = true
 	else:
@@ -20,6 +23,9 @@ func _process(delta):
 func _on_body_entered(body):
 	if body.is_in_group("player"):
 		objects+=1
+	if body.is_in_group("boulder"):
+		sinked = true
+		position.y = -0.9
 
 
 func _on_body_exited(body):

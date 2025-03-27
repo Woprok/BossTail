@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://tu85h6deilw2"]
+
+[ext_resource type="Script" path="res://scripts/WaterBubble.gd" id="1_5t4so"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_qsonp"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_5h32t"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nfpct"]
+transparency = 1
+depth_draw_mode = 1
+albedo_color = Color(0.0862745, 0.129412, 0.596078, 0.72549)
+normal_scale = 8.0
+normal_texture = SubResource("NoiseTexture2D_5h32t")
+ao_light_affect = 1.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_2fvjp"]
+material = SubResource("StandardMaterial3D_nfpct")
+
+[node name="WaterBubble" type="CharacterBody3D"]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+collision_layer = 32
+collision_mask = 3
+script = ExtResource("1_5t4so")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_qsonp")
+
+[node name="bubble" type="Area3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="bubble"]
+mesh = SubResource("SphereMesh_2fvjp")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="bubble"]
+shape = SubResource("SphereShape3D_qsonp")

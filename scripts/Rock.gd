@@ -12,10 +12,16 @@ func _physics_process(delta):
 	if time>max_time:
 		respawn()
 	velocity.y += speed*gravity*delta
+	if position.y<-0.3:
+		respawn()
+		return
 	var collision = move_and_collide(speed*velocity*delta)
 	if collision:
 		if collision.get_collider().is_in_group("enemy"):
-			collision.get_collider().hit(collision.get_collider_shape())
+			if collision.get_collider().swimming:
+				collision.get_collider().hit(self)
+			else:
+				collision.get_collider().hit(collision.get_collider_shape())
 			respawn()
 
 
@@ -38,9 +44,15 @@ func shoot(origin, end, result):
 
 func respawn():
 	randomize()
-	var child_index = randi() % stone_platforms.get_child_count()
-	var platform = stone_platforms.get_child(child_index)
+	var platform
+	if stone_platforms.get_child_count()==0 and Global.phase>1:
+		var child_index = randi() % get_parent().get_parent().get_node("shards").get_child_count()
+		platform = get_parent().get_parent().get_node("shards").get_child(child_index)
+	else:
+		var child_index = randi() % stone_platforms.get_child_count()
+		platform = stone_platforms.get_child(child_index)
 	var x = randf() * 7 - 3.5
 	var z = randf() * 7 - 3.5
-	position = Vector3(platform.position.x+x,position.y,platform.position.z+z)
+	position = Vector3(platform.position.x+x,platform.position.y+2,platform.position.z+z)
+	velocity = Vector3(0,0,0)
 	time = 0

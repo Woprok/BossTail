@@ -1,4 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://dbxwk1hjg3nk1"]
+[gd_scene load_steps=9 format=3 uid="uid://dbxwk1hjg3nk1"]
+
+[ext_resource type="Script" path="res://scripts/AcidingLiquid.gd" id="1_a74tk"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_c4m4i"]
 
@@ -48,6 +50,7 @@ radius = 1.2
 
 [node name="aciding_liquid" type="Area3D" groups=["aciding_liquid"]]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+script = ExtResource("1_a74tk")
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
 
