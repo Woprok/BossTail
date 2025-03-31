@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://irrm5ndl584x"]
+
+[ext_resource type="Texture2D" uid="uid://1yej6rw2qt76" path="res://assets/models/environment/textures/PondEnvironment/LiliPad1_Base_Albedo.png" id="1_6vr2c"]
+
+[resource]
+resource_name = "LiliPadMaterial"
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_6vr2c")

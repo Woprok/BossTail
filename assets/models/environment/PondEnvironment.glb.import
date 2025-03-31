@@ -1,0 +1,93 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://qudrycapt23h"
+path="res://.godot/imported/PondEnvironment.glb-2fd0ce4dd07585e50227b0141468977a.scn"
+
+[deps]
+
+source_file="res://assets/models/environment/PondEnvironment.glb"
+dest_files=["res://.godot/imported/PondEnvironment.glb-2fd0ce4dd07585e50227b0141468977a.scn"]
+
+[params]
+
+nodes/root_type="Node3D"
+nodes/root_name="Scene Root"
+nodes/apply_root_scale=true
+nodes/root_scale=1.0
+meshes/ensure_tangents=true
+meshes/generate_lods=true
+meshes/create_shadow_meshes=true
+meshes/light_baking=1
+meshes/lightmap_texel_size=0.2
+skins/use_named_skins=true
+animation/import=true
+animation/fps=30
+animation/trimming=false
+animation/remove_immutable_tracks=true
+import_script/path=""
+_subresources={
+"materials": {
+"GrassBladeMat": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/models/environment/materials/PondEnvironment/GrassBladeMat.tres"
+},
+"LiliPad2Material": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/models/environment/materials/PondEnvironment/LiliPad2Material.tres"
+},
+"LiliPad2_LavaMaterial": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/models/environment/materials/PondEnvironment/LiliPad2_LavaMaterial.tres"
+},
+"LiliPadLavaMaterial": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/models/environment/materials/PondEnvironment/LiliPadLavaMaterial.tres"
+},
+"LiliPadMaterial": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/models/environment/materials/PondEnvironment/LiliPadMaterial.tres"
+},
+"ReedConeMat": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/models/environment/materials/PondEnvironment/ReedConeMat.tres"
+},
+"Rock1Material": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/models/environment/materials/PondEnvironment/Rock1Material.tres"
+},
+"Rock2Mat": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/models/environment/materials/PondEnvironment/Rock2Mat.tres"
+},
+"Rock3Material": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/models/environment/materials/PondEnvironment/Rock3Material.tres"
+}
+},
+"meshes": {
+"PondEnvironment_Cylinder_004": {
+"generate/lightmap_uv": 0,
+"generate/lods": 2,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"lods/normal_split_angle": 25.0,
+"save_to_file/enabled": false,
+"save_to_file/make_streamable": "",
+"save_to_file/path": ""
+},
+"PondEnvironment_Cylinder_005": {
+"generate/lightmap_uv": 0,
+"generate/lods": 2,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"lods/normal_split_angle": 25.0,
+"save_to_file/enabled": false,
+"save_to_file/make_streamable": "",
+"save_to_file/path": ""
+}
+}
+}
+gltf/embedded_image_handling=1

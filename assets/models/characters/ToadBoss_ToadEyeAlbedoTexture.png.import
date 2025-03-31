@@ -3,10 +3,9 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cjvrmg4ctcmd4"
-path.s3tc="res://.godot/imported/ToadBoss_ToadEyeAlbedoTexture.png-7fd4759a4dbc73eafb3f7c64129a7032.s3tc.ctex"
+path="res://.godot/imported/ToadBoss_ToadEyeAlbedoTexture.png-7fd4759a4dbc73eafb3f7c64129a7032.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 generator_parameters={
 "md5": "dcee4129be898eb15adbe0334a52f155"
@@ -15,11 +14,11 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/characters/ToadBoss_ToadEyeAlbedoTexture.png"
-dest_files=["res://.godot/imported/ToadBoss_ToadEyeAlbedoTexture.png-7fd4759a4dbc73eafb3f7c64129a7032.s3tc.ctex"]
+dest_files=["res://.godot/imported/ToadBoss_ToadEyeAlbedoTexture.png-7fd4759a4dbc73eafb3f7c64129a7032.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

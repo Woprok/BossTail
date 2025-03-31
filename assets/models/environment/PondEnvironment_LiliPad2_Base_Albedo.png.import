@@ -2,19 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://oqj4vkbba1ih"
-path="res://.godot/imported/Char_Mouseketeer_BeltMatAlbedoTexture.png-27e1671320cfee3e482186f0e9e34fde.ctex"
+uid="uid://cif1dwbhs34ve"
+path="res://.godot/imported/PondEnvironment_LiliPad2_Base_Albedo.png-2a6cc7662aa15693127a159bd4ec854f.ctex"
 metadata={
 "vram_texture": false
-}
-generator_parameters={
-"md5": "778e8d29073d925b420af12413b29b33"
 }
 
 [deps]
 
-source_file="res://assets/models/characters/Char_Mouseketeer_BeltMatAlbedoTexture.png"
-dest_files=["res://.godot/imported/Char_Mouseketeer_BeltMatAlbedoTexture.png-27e1671320cfee3e482186f0e9e34fde.ctex"]
+source_file="res://assets/models/environment/PondEnvironment_LiliPad2_Base_Albedo.png"
+dest_files=["res://.godot/imported/PondEnvironment_LiliPad2_Base_Albedo.png-2a6cc7662aa15693127a159bd4ec854f.ctex"]
 
 [params]
 
