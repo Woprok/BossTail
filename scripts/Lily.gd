@@ -1,13 +1,26 @@
 extends Node3D
 
+var Fly = preload("res://scenes/Fly.tscn")
 @export var neighbors: Array[Node] = []
 var sinked = false
 @export var radius = 7
 var objects = 0
+var time=0
+var RESPAWN_TIME = 10
 
 func _process(delta):
 	if is_in_group("big_lily"):
 		return
+	if is_in_group("flower_lily"):
+		if not get_node("Flower").has_node("fly"):
+			time+=delta
+			if time>RESPAWN_TIME:
+				var fly = Fly.instantiate()
+				fly.name = "fly"
+				fly.flying = true
+				fly.position.y = 1.3
+				fly.scale=Vector3(2,2,2)
+				get_node("Flower").add_child(fly)
 	if position.y<-1:
 		sinked = true
 	else:
