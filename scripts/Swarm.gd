@@ -19,11 +19,13 @@ func _process(delta):
 		$CollisionShape3D.disabled = true
 	else:
 		$CollisionShape3D.disabled = false
-	if player_in_area:
+	if is_player_in_area():
 		time += delta
 		if time>1:
 			time=0
 			player.hit(self)
+	else:
+		time = 0
 	if dispersed:
 		$CollisionShape3D.disabled = true
 		dispersed_time += delta
@@ -76,19 +78,18 @@ func split_off():
 					active-=1
 					return
 
+func is_player_in_area():
+	if dispersed:
+		return false
+	for fly in get_children():
+		if fly.is_in_group("fly") and fly.split_off == false and fly.player_in_area:
+			return true
+	return false
 
 func _on_body_entered(body):
-	if body.is_in_group("player"):
-		player_in_area = true
 	if body.is_in_group("pebble"):
 		dispersed = true
 		dispersed_time = 0
 		body.respawn()
 	if body.is_in_group("frog_bubble"):
 		body.queue_free()
-
-
-func _on_body_exited(body):
-	if body.is_in_group("player"):
-		player_in_area = false
-		time=0

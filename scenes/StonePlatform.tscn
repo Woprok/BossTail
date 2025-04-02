@@ -1,21 +1,34 @@
-[gd_scene load_steps=4 format=3 uid="uid://dlrq4knk1gqi7"]
+[gd_scene load_steps=6 format=3 uid="uid://dlrq4knk1gqi7"]
 
 [ext_resource type="Script" path="res://scripts/Stone_platform.gd" id="1_3gn8n"]
 [ext_resource type="PackedScene" uid="uid://cgydlwevhkirk" path="res://scenes/Boulder.tscn" id="2_2fg2o"]
+[ext_resource type="PackedScene" uid="uid://fdlmxb53kw16" path="res://scenes/environment/Rock_3.tscn" id="3_qqd3n"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_hyoy1"]
-size = Vector3(14, 1.3, 14)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dbnof"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_15m3i"]
+height = 1.4
+radius = 8.5
 
 [node name="Node3D" type="Area3D" groups=["stone_platform"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.39432, 0)
 script = ExtResource("1_3gn8n")
 
-[node name="platform" type="CSGBox3D" parent="." groups=["stone_platform"]]
-transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0)
+[node name="platform" type="CSGCylinder3D" parent="." groups=["stone_platform"]]
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 2, 0, -0.122371, 0.236742)
 use_collision = true
-size = Vector3(7, 1.3, 7)
+radius = 4.3
+height = 1.5
+material = SubResource("StandardMaterial3D_dbnof")
+
+[node name="Rock_3" parent="platform" instance=ExtResource("3_qqd3n")]
+transform = Transform3D(1, 0, 0, 0, 0.4, 0, 0, 0, 1, 0.062067, -0.0748086, -0.025271)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("BoxShape3D_hyoy1")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.224283)
+shape = SubResource("CylinderShape3D_15m3i")
 
 [node name="boulders" type="Node3D" parent="."]
 

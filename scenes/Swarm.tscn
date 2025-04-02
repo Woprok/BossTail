@@ -5,7 +5,7 @@
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_ua668"]
 height = 0.15
-radius = 0.6
+radius = 0.35
 
 [node name="swarm" type="Area3D" groups=["hp1"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.364802, 0, -0.0122417)
@@ -66,4 +66,3 @@ swarm = true
 position_in_swarm = Vector3(0.26, 0, 0.127)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="body_exited" from="." to="." method="_on_body_exited"]

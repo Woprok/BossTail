@@ -15,6 +15,7 @@ var target_position
 var split_off = false
 var split_off_time = 0
 var TIME_SPLIT_OFF = 10
+var player_in_area = false
 
 func _physics_process(delta):
 	if flying and not swarm:
@@ -91,11 +92,15 @@ func fly_around(center, radius):
 func _on_body_entered(body):
 	if body.is_in_group("fly") and self!=body:
 		groupSize += 1
+	if body.is_in_group("player"):
+		player_in_area = true
 
 
 func _on_body_exited(body):
 	if body.is_in_group("fly") and self!=body:
 		groupSize -= 1
+	if body.is_in_group("player"):
+		player_in_area = false
 
 
 func _on_area_entered(area):

@@ -29,7 +29,7 @@ func _process(delta):
 		if position.y<-3:
 			return
 		position.y-=delta*0.2
-	elif position.y<0.9:
+	elif position.y<0:
 		position.y+=delta*0.08	
 
 

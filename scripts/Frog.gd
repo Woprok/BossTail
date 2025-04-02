@@ -30,6 +30,7 @@ var doing = false
 var swipe = false
 var jump = false
 var swimming = false
+var sluggish = false
 var boulderHit = 0
 var tongue_hit = 0
 var leg_hit = 0
@@ -184,6 +185,9 @@ func _physics_process(delta):
 					look_at(Vector3(x, -1, z))
 					position = Vector3(x, -1, z)
 	elif Global.phase==2:
+		if grab == false and sluggish:
+			$AnimationPlayer.play("GAME_01-idle")
+			return
 		time_bubble += delta
 		time_swipe += delta
 		time_grab += delta
@@ -192,7 +196,6 @@ func _physics_process(delta):
 		time_eat+=delta
 		if platform!=null and platform != player.platform and platform.is_in_group("stone_platform") and platform.health>0:
 			time_slam = 0
-			
 		if path==[] and time_eat>=EAT_TIME:
 			if grab_target==null:
 				for fly in flies.get_children():
@@ -207,6 +210,7 @@ func _physics_process(delta):
 					doing = true
 					time_eat = 0
 					time_swipe = 0
+					sluggish = true
 					grab = true
 			else:
 				if platform != grab_target.platform:
@@ -251,7 +255,7 @@ func _physics_process(delta):
 		if health.health!=100 and time_bubble>BUBBLE_TIME and platform!=null and platform != player.platform and not doing:
 				doing = true
 				bubble_spit()
-	if not $AnimationPlayer.is_playing() and not swipe and not extended:
+	if not $AnimationPlayer.is_playing() and not swipe and not extended and not jump:
 		$AnimationPlayer.play("GAME_01-idle")
 	
 
@@ -372,6 +376,7 @@ func jump_to_platform():
 	doing = true
 	swimming = false
 	
+	
 func hit(area):
 	if health.health == 100:
 		time_bubble = 0
@@ -385,6 +390,7 @@ func hit(area):
 		if area.is_in_group("pebble"):
 			health.decHealth(1)
 	else:
+		sluggish = false
 		if area.is_in_group("tongue"):
 			tongue_hit += 1
 			if tongue_hit>=5:
