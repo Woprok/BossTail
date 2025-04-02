@@ -10,7 +10,7 @@ func _process(delta):
 	angle += delta
 	randomize()
 	if Global.phase == 2:
-		if last_bubble >= 2.0/100.0 * frog_health.health+0.01:
+		if last_bubble >= 4.0/100.0 * frog_health.health+0.01:
 			last_bubble = 0
 			var bubble = WaterBubble.instantiate()
 			bubble.scale*=8

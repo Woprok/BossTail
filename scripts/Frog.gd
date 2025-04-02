@@ -11,6 +11,7 @@ var time_grab = 0
 var time_swimming = 0
 var time_stop = 5
 var time_slam = 0
+var time_eat = 0
 var EXTEND_TIME = 3
 var SAME_PLATFORM_TIME = 2
 var DIFF_PLATFORM_TIME = 10
@@ -21,6 +22,7 @@ var TONGUE_TIME = 10
 var GRAB_TIME = 10
 var SWIMMING_TIME = 30
 var SLAM_TIME = 5
+var EAT_TIME = 20
 
 var grab = false
 var slam = false
@@ -28,6 +30,7 @@ var doing = false
 var swipe = false
 var jump = false
 var swimming = false
+var sluggish = false
 var boulderHit = 0
 var tongue_hit = 0
 var leg_hit = 0
@@ -38,6 +41,7 @@ var path:Array[Node]
 var subphase = 0
 var platform : Node
 var prev_platform : Node
+var grab_target = null
 
 var radius = 12.5                        
 var angle = 0.0
@@ -69,11 +73,7 @@ func _physics_process(delta):
 				triggered = false
 				doing = false
 				subphase = 1-subphase
-		
-	#if path != [] and path[0]==platform:
-	#		path = []
-	#		doing = false
-			
+				
 	if path!=[] and not jump:
 		jump_direction(path[0].global_position)
 		path.pop_front()
@@ -109,6 +109,7 @@ func _physics_process(delta):
 					if point!=null:
 						jump_direction(point)
 					doing = true
+					grab_target=player
 					grab = true
 			if health.health <= 25 and time_grab >= GRAB_TIME and not doing and platform!=player.platform and player.platform.is_in_group("stone_platform"):
 				time_bubble = 0
@@ -184,16 +185,41 @@ func _physics_process(delta):
 					look_at(Vector3(x, -1, z))
 					position = Vector3(x, -1, z)
 	elif Global.phase==2:
+		if grab == false and sluggish:
+			$AnimationPlayer.play("GAME_01-idle")
+			return
 		time_bubble += delta
 		time_swipe += delta
 		time_grab += delta
 		time_slam += delta
+		time_of_extend += delta
+		time_eat+=delta
 		if platform!=null and platform != player.platform and platform.is_in_group("stone_platform") and platform.health>0:
 			time_slam = 0
+		if path==[] and time_eat>=EAT_TIME:
+			if grab_target==null:
+				for fly in flies.get_children():
+					if fly.groupSize>=3 and ((fly.platform.is_in_group("big_lily") and fly.platform.is_in_group("lily_platform")) or (not fly.platform.is_in_group("shard")) and fly.platform.is_in_group("stone_platform")):
+						grab_target = fly
+						break
+			elif grab_target.platform==platform:
+				if position.distance_to(grab_target.position)<6.25 or position.distance_to(grab_target.position)>6.35:
+					var point = find_point_on_platform(platform.position,grab_target.position,6.3)
+					if point!=null:
+						jump_direction(point)
+					doing = true
+					time_eat = 0
+					time_swipe = 0
+					sluggish = true
+					grab = true
+			else:
+				if platform != grab_target.platform:
+					time_swipe = 0
+					plan_path(grab_target.platform)
+					
 		if time_slam>SLAM_TIME:
 			if platform.is_in_group("stone_platform") and platform.health>0:
 				if platform == player.platform:
-					time_swipe = 0
 					time_bubble = 0
 					time_slam = 0
 					randomize()
@@ -205,7 +231,6 @@ func _physics_process(delta):
 				for s in get_parent().get_node("stonePlatforms").get_children():
 					if s.health>0:
 						plan_path(s)
-						time_swipe = 0
 						time_bubble = 0
 						time_slam = 0
 						return
@@ -230,23 +255,9 @@ func _physics_process(delta):
 		if health.health!=100 and time_bubble>BUBBLE_TIME and platform!=null and platform != player.platform and not doing:
 				doing = true
 				bubble_spit()
-	if not $AnimationPlayer.is_playing() and not swipe and not extended:
+	if not $AnimationPlayer.is_playing() and not swipe and not extended and not jump:
 		$AnimationPlayer.play("GAME_01-idle")
 	
-	#	time_of_extend += delta
-	#	if time_of_extend >= EXTEND_TIME and extended:
-	#		$AnimationPlayer.play("GAME_03-tongue_grab-end")
-	#	if path==[]:
-	#		for fly in flies.get_children():
-	#			if fly.groupSize>=3:
-	#				if platform == fly.platform:
-	#					if position.distance_to(fly.position)<6:
-	#						look_at(Vector3(fly.position.x,position.y,fly.position.z))
-	#						extend()
-	#						break
-	#					continue
-	#				plan_path(fly.platform)
-	#				break
 
 func bubble_spit():
 	var bubble
@@ -277,7 +288,8 @@ func after_swipe():
 func ground_slam():
 	slam = false
 	platform.health -= 1
-	player.hit(player.get_node("CollisionShape3D"))	
+	player.hit(player.get_node("CollisionShape3D"))
+	player.get_node("CameraPivot").apply_shake()
 	doing = false
 	if platform.health == 0:
 		player.launch(platform.position-player.position+Vector3(0,1.2,0))
@@ -364,6 +376,7 @@ func jump_to_platform():
 	doing = true
 	swimming = false
 	
+	
 func hit(area):
 	if health.health == 100:
 		time_bubble = 0
@@ -377,6 +390,7 @@ func hit(area):
 		if area.is_in_group("pebble"):
 			health.decHealth(1)
 	else:
+		sluggish = false
 		if area.is_in_group("tongue"):
 			tongue_hit += 1
 			if tongue_hit>=5:
@@ -451,6 +465,8 @@ func _on_tongue_body_entered(body):
 					else:
 						max = dist
 						farestPlatform = [p]
+			if farestPlatform==[]:
+				return
 			randomize()
 			var i = randi()%farestPlatform.size()
 			var newPlatform = farestPlatform[i]
@@ -463,7 +479,6 @@ func _on_tongue_body_entered(body):
 			player.velocity = velocity_y+velocity_xz
 			player.grabbed = true
 	if body.is_in_group("spike"):
-		#critical damage
 		hit($head)
 		hit($head)
 	if body.is_in_group("fly"):
@@ -475,7 +490,8 @@ func _on_animation_finished(anim_name):
 		extended = false
 		doing = false
 		$tongue/CollisionShape3D.disabled = true
-		$tongueShape.disabled = true		
+		$tongueShape.disabled = true
+		grab = false
 	if anim_name == "GAME_03-tongue_grab-start":
 		extended = true
 		$tongue/CollisionShape3D.disabled = false
@@ -488,7 +504,8 @@ func _on_animation_finished(anim_name):
 			time_bubble = 0
 			time_swipe = 0
 			time_grab = 0
-			look_at(Vector3(player.position.x,position.y,player.position.z))
+			look_at(Vector3(grab_target.position.x,position.y,grab_target.position.z))
+			grab_target = null
 			extend()
 
 
