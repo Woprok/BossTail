@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://m3d44565ohak" path="res://scenes/characters/ToadBoss.tscn" id="2_8ot16"]
 [ext_resource type="PackedScene" uid="uid://byq2mhcwqgxom" path="res://scenes/Lily.tscn" id="3_bodam"]
 [ext_resource type="PackedScene" uid="uid://dlrq4knk1gqi7" path="res://scenes/StonePlatform.tscn" id="4_db8eq"]
-[ext_resource type="PackedScene" uid="uid://cfby3q2ua7ewi" path="res://scenes/Rock.tscn" id="6_6j266"]
+[ext_resource type="PackedScene" uid="uid://cfby3q2ua7ewi" path="res://scenes/rock.tscn" id="6_6j266"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_wjuqv"]
 
