@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://ctls0kgl64c8p"]
+
+[resource]
+resource_name = "FilamentMat"
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.843135, 0.741177, 0.32549, 1)

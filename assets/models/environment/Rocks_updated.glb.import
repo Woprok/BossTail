@@ -1,0 +1,47 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://bse0p2jkhal80"
+path="res://.godot/imported/Rocks_updated.glb-e219252e40314918398713d3911d4018.scn"
+
+[deps]
+
+source_file="res://assets/models/environment/Rocks_updated.glb"
+dest_files=["res://.godot/imported/Rocks_updated.glb-e219252e40314918398713d3911d4018.scn"]
+
+[params]
+
+nodes/root_type="Node3D"
+nodes/root_name="Scene Root"
+nodes/apply_root_scale=true
+nodes/root_scale=1.0
+meshes/ensure_tangents=true
+meshes/generate_lods=true
+meshes/create_shadow_meshes=true
+meshes/light_baking=1
+meshes/lightmap_texel_size=0.2
+skins/use_named_skins=true
+animation/import=true
+animation/fps=30
+animation/trimming=false
+animation/remove_immutable_tracks=true
+import_script/path=""
+_subresources={
+"materials": {
+"Rock1Material": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/models/environment/materials/PondEnvironment/Rock1Material.tres"
+},
+"Rock2Mat": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/models/environment/materials/PondEnvironment/Rock2Mat.tres"
+},
+"Rock3Material": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/models/environment/materials/PondEnvironment/Rock3Material.tres"
+}
+}
+}
+gltf/embedded_image_handling=1

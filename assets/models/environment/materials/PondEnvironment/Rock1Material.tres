@@ -1,9 +1,12 @@
-[gd_resource type="StandardMaterial3D" format=3 uid="uid://4vbey8uro2bq"]
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://4vbey8uro2bq"]
+
+[ext_resource type="Texture2D" uid="uid://dfhfr4n6yrgjy" path="res://assets/models/environment/Rocks_updated_Rock_1Albedo.png" id="1_cno3c"]
 
 [resource]
 resource_name = "Rock1Material"
 cull_mode = 2
+shading_mode = 0
 diffuse_mode = 3
 vertex_color_use_as_albedo = true
 albedo_color = Color(0.906332, 0.906332, 0.906332, 1)
-roughness = 0.5
+albedo_texture = ExtResource("1_cno3c")
