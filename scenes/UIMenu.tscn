@@ -1,31 +1,121 @@
-[gd_scene load_steps=2 format=3 uid="uid://dd1t8e65ub5g5"]
+[gd_scene load_steps=3 format=3 uid="uid://dd1t8e65ub5g5"]
 
 [ext_resource type="Theme" uid="uid://d2mah8qfufk0b" path="res://assets/UIMenuTheme.tres" id="1_cfngp"]
+[ext_resource type="Script" path="res://scripts/UIMenu.gd" id="1_k7gab"]
 
 [node name="UiMenu" type="Node2D"]
+script = ExtResource("1_k7gab")
 
-[node name="MenuButtonVBoxContainer" type="VBoxContainer" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_right = 8.0
-offset_bottom = 32.0
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="PlayButton" type="Button" parent="MenuButtonVBoxContainer"]
+[node name="CENTER_UI" type="VBoxContainer" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -372.0
+offset_right = 372.0
+offset_bottom = 374.0
+grow_horizontal = 2
+
+[node name="TitleLabel" type="Label" parent="CanvasLayer/Control/CENTER_UI"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
 theme = ExtResource("1_cfngp")
-text = "Play"
+text = "Tales of Mouseketeer"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="SettingsButton" type="Button" parent="MenuButtonVBoxContainer"]
+[node name="MENU_ACTIONS" type="VBoxContainer" parent="CanvasLayer/Control/CENTER_UI"]
+unique_name_in_owner = true
 layout_mode = 2
-text = "Settings"
+size_flags_horizontal = 4
+size_flags_vertical = 3
 
-[node name="QuitButton" type="Button" parent="MenuButtonVBoxContainer"]
+[node name="PlayButton" type="Button" parent="CanvasLayer/Control/CENTER_UI/MENU_ACTIONS"]
 layout_mode = 2
-text = "Quit"
+theme = ExtResource("1_cfngp")
+text = "PLAY"
+
+[node name="SettingsButton" type="Button" parent="CanvasLayer/Control/CENTER_UI/MENU_ACTIONS"]
+layout_mode = 2
+theme = ExtResource("1_cfngp")
+text = "SETTINGS"
+
+[node name="QuitButton" type="Button" parent="CanvasLayer/Control/CENTER_UI/MENU_ACTIONS"]
+layout_mode = 2
+theme = ExtResource("1_cfngp")
+text = "QUIT"
+
+[node name="PAUSE_ACTIONS" type="VBoxContainer" parent="CanvasLayer/Control/CENTER_UI"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+
+[node name="ResumeButton" type="Button" parent="CanvasLayer/Control/CENTER_UI/PAUSE_ACTIONS"]
+layout_mode = 2
+theme = ExtResource("1_cfngp")
+text = "RESUME"
+
+[node name="MenuButton" type="Button" parent="CanvasLayer/Control/CENTER_UI/PAUSE_ACTIONS"]
+layout_mode = 2
+theme = ExtResource("1_cfngp")
+text = "MENU"
+
+[node name="LEVEL_ACTIONS" type="VBoxContainer" parent="CanvasLayer/Control/CENTER_UI"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+
+[node name="Level1Button" type="Button" parent="CanvasLayer/Control/CENTER_UI/LEVEL_ACTIONS"]
+layout_mode = 2
+theme = ExtResource("1_cfngp")
+text = "LEVEL 1"
+
+[node name="Level2Button" type="Button" parent="CanvasLayer/Control/CENTER_UI/LEVEL_ACTIONS"]
+layout_mode = 2
+theme = ExtResource("1_cfngp")
+text = "LEVEL 2"
+
+[node name="BackButton" type="Button" parent="CanvasLayer/Control/CENTER_UI/LEVEL_ACTIONS"]
+layout_mode = 2
+theme = ExtResource("1_cfngp")
+text = "BACK"
+
+[node name="SETTINGS_ACTIONS" type="VBoxContainer" parent="CanvasLayer/Control/CENTER_UI"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+
+[node name="BackButton" type="Button" parent="CanvasLayer/Control/CENTER_UI/SETTINGS_ACTIONS"]
+layout_mode = 2
+theme = ExtResource("1_cfngp")
+text = "BACK"
+
+[connection signal="pressed" from="CanvasLayer/Control/CENTER_UI/MENU_ACTIONS/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/CENTER_UI/MENU_ACTIONS/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/CENTER_UI/MENU_ACTIONS/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/CENTER_UI/PAUSE_ACTIONS/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/CENTER_UI/PAUSE_ACTIONS/MenuButton" to="." method="_on_menu_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/CENTER_UI/LEVEL_ACTIONS/Level1Button" to="." method="_on_level_1_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/CENTER_UI/LEVEL_ACTIONS/Level2Button" to="." method="_on_level_2_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/CENTER_UI/LEVEL_ACTIONS/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/CENTER_UI/SETTINGS_ACTIONS/BackButton" to="." method="_on_back_button_pressed"]
