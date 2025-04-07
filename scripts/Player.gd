@@ -178,16 +178,11 @@ func _unhandled_input(event):
 			Camera.rotation.x -= event.relative.y * mouse_sensitivity
 			Camera.rotation.x = clamp(Camera.rotation.x, deg_to_rad(-70), deg_to_rad(25))
 
-func hit(area):
+func hit(health):
 	if lastHit<1:
 		return
 	lastHit = 0
-	if area.is_in_group("hp1"):
-		ui.get_node("health_player").decHealth(1)
-	if area.is_in_group("hp5"):
-		ui.get_node("health_player").decHealth(5)
-	if area.is_in_group("hp10"):
-		ui.get_node("health_player").decHealth(10)
+	ui.get_node("health_player").decHealth(health)
 	if ui.get_node("health_player").health<=0:
 		#death
 		pass
@@ -299,7 +294,7 @@ func _on_pickup_entered(body):
 
 func _on_standing(area):
 	if area.is_in_group("spike"):
-		hit($CollisionShape3D)
+		hit(5)
 	if area.is_in_group("aciding_liquid"):
 		launched = false
 		grabbed = false

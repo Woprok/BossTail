@@ -23,7 +23,7 @@ func _process(delta):
 		time += delta
 		if time>1:
 			time=0
-			player.hit(self)
+			player.hit(1)
 	else:
 		time = 0
 	if dispersed:

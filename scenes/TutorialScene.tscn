@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dlgjnby6p27p1"]
+[gd_scene load_steps=18 format=3 uid="uid://dlgjnby6p27p1"]
 
 [ext_resource type="PackedScene" uid="uid://cs51pokcyuwhd" path="res://scenes/characters/Mouseketeer.tscn" id="1_atg64"]
 [ext_resource type="Script" path="res://scripts/TutorialScene.gd" id="1_ch07a"]
@@ -6,6 +6,7 @@
 [ext_resource type="Material" uid="uid://cctvegqrour2r" path="res://assets/material.tres" id="3_jfofl"]
 [ext_resource type="PackedScene" uid="uid://cexu8vsrt1jho" path="res://scenes/TutorialDummy.tscn" id="4_gsy1u"]
 [ext_resource type="PackedScene" uid="uid://cwiap64eupo14" path="res://scenes/Spike.tscn" id="6_ljx6i"]
+[ext_resource type="PackedScene" uid="uid://8533bk0osnnf" path="res://scenes/TutorialBoulder.tscn" id="7_m2fwn"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_stgmv"]
 sky_top_color = Color(0.329412, 0.411765, 0.917647, 1)
@@ -77,6 +78,8 @@ _data = {
 
 [node name="TutorialScene" type="Node3D"]
 script = ExtResource("1_ch07a")
+positions_for_crates = Array[Vector3]([Vector3(36, 10, 2.5), Vector3(36, 10, 7.5), Vector3(36, 10, 12.5), Vector3(36, 10, 17.5), Vector3(36, 10, 22.5), Vector3(36, 10, 27.5), Vector3(41, 10, 2.5), Vector3(41, 10, 7.5), Vector3(41, 10, 12.5), Vector3(41, 10, 17.5), Vector3(41, 10, 22.5), Vector3(46, 10, 2.5), Vector3(46, 10, 7.5), Vector3(46, 10, 12.5), Vector3(46, 10, 17.5), Vector3(51, 10, 2.5), Vector3(51, 10, 7.5), Vector3(51, 10, 12.5), Vector3(56, 10, 2.5), Vector3(56, 10, 7.5)])
+num_of_crates = Array[int]([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_3n6gn")
@@ -112,7 +115,6 @@ material = ExtResource("3_jfofl")
 
 [node name="walls" type="CSGCombiner3D" parent="."]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 100, 0)
-visible = false
 use_collision = true
 
 [node name="wall1" type="CSGBox3D" parent="walls"]
@@ -136,7 +138,6 @@ size = Vector3(25, 18, 1)
 material = ExtResource("3_jfofl")
 
 [node name="obstacles" type="Node3D" parent="."]
-visible = false
 
 [node name="jumpOn" type="CSGBox3D" parent="obstacles"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.0339, -4.55011, 18.3463)
@@ -1431,478 +1432,486 @@ use_collision = true
 size = Vector3(10, 6, 36)
 
 [node name="dangerPlatform" type="CSGBox3D" parent="obstacles"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64.7347, -4.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64.7347, -2.86531, 0)
 use_collision = true
-size = Vector3(10, 5, 20)
+size = Vector3(10, 6, 20)
 material = SubResource("StandardMaterial3D_nodcr")
 
 [node name="Spike1" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -1.4921, 2.98125, 5.05111)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -1.4921, 3.40704, 5.05111)
 
 [node name="Spike2" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -4.4781, 2.98125, 5.05111)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -4.4781, 3.40704, 5.05111)
 
 [node name="Spike3" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -3.5011, 2.98125, 5.05111)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -3.5011, 3.40704, 5.05111)
 
 [node name="Spike4" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -2.4901, 2.98125, 5.05111)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -2.4901, 3.40704, 5.05111)
 
 [node name="Spike5" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -0.477028, 2.98125, 5.05111)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -0.477028, 3.40704, 5.05111)
 
 [node name="Spike6" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0.512329, 2.98125, 5.05111)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0.512329, 3.40704, 5.05111)
 
 [node name="Spike7" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -1.4921, 2.98125, 4.01339)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -1.4921, 3.40704, 4.01339)
 
 [node name="Spike8" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -4.4781, 2.98125, 4.01339)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -4.4781, 3.40704, 4.01339)
 
 [node name="Spike9" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -3.5011, 2.98125, 4.01339)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -3.5011, 3.40704, 4.01339)
 
 [node name="Spike10" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999998, 0, 0, 0, 1, 0, 0, 0, 0.999998, -2.4901, 2.98125, 4.01339)
+transform = Transform3D(0.999998, 0, 0, 0, 1, 0, 0, 0, 0.999998, -2.4901, 3.40704, 4.01339)
 
 [node name="Spike11" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -0.477028, 2.98125, 4.01339)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -0.477028, 3.40704, 4.01339)
 
 [node name="Spike12" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0.512329, 2.98125, 4.01339)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0.512329, 3.40704, 4.01339)
 
 [node name="Spike13" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -1.4921, 2.98125, 2.97313)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -1.4921, 3.40704, 2.97313)
 
 [node name="Spike14" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -4.4781, 2.98125, 2.97313)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -4.4781, 3.40704, 2.97313)
 
 [node name="Spike15" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -3.5011, 2.98125, 2.97313)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -3.5011, 3.40704, 2.97313)
 
 [node name="Spike16" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999998, 0, 0, 0, 1, 0, 0, 0, 0.999998, -2.4901, 2.98125, 2.97313)
+transform = Transform3D(0.999998, 0, 0, 0, 1, 0, 0, 0, 0.999998, -2.4901, 3.40704, 2.97313)
 
 [node name="Spike17" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -0.477028, 2.98125, 2.97313)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -0.477028, 3.40704, 2.97313)
 
 [node name="Spike18" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0.512329, 2.98125, 2.97313)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0.512329, 3.40704, 2.97313)
 
 [node name="Spike19" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999998, 0, 0, 0, 1, 0, 0, 0, 0.999998, -1.4921, 2.98125, 1.91847)
+transform = Transform3D(0.999998, 0, 0, 0, 1, 0, 0, 0, 0.999998, -1.4921, 3.40704, 1.91847)
 
 [node name="Spike20" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -4.4781, 2.98125, 1.91847)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -4.4781, 3.40704, 1.91847)
 
 [node name="Spike21" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -3.5011, 2.98125, 1.91846)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -3.5011, 3.40704, 1.91846)
 
 [node name="Spike22" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999998, 0, 0, 0, 1, 0, 0, 0, 0.999998, -2.4901, 2.98125, 1.91847)
+transform = Transform3D(0.999998, 0, 0, 0, 1, 0, 0, 0, 0.999998, -2.4901, 3.40704, 1.91847)
 
 [node name="Spike23" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -0.477028, 2.98125, 1.91846)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -0.477028, 3.40704, 1.91846)
 
 [node name="Spike24" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0.512329, 2.98125, 1.91846)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0.512329, 3.40704, 1.91846)
 
 [node name="Spike25" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -1.4921, 2.98125, 0.902362)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -1.4921, 3.40704, 0.902362)
 
 [node name="Spike26" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -4.4781, 2.98125, 0.902366)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -4.4781, 3.40704, 0.902366)
 
 [node name="Spike27" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -3.5011, 2.98125, 0.902362)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -3.5011, 3.40704, 0.902362)
 
 [node name="Spike28" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -2.4901, 2.98125, 0.902366)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -2.4901, 3.40704, 0.902366)
 
 [node name="Spike29" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -0.477028, 2.98125, 0.902362)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -0.477028, 3.40704, 0.902362)
 
 [node name="Spike30" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0.512329, 2.98125, 0.902362)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0.512329, 3.40704, 0.902362)
 
 [node name="Spike31" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999998, 0, 0, 0, 1, 0, 0, 0, 0.999998, -1.4921, 2.98125, -0.135358)
+transform = Transform3D(0.999998, 0, 0, 0, 1, 0, 0, 0, 0.999998, -1.4921, 3.40704, -0.135358)
 
 [node name="Spike32" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -4.4781, 2.98125, -0.135358)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -4.4781, 3.40704, -0.135358)
 
 [node name="Spike33" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -3.5011, 2.98125, -0.135358)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -3.5011, 3.40704, -0.135358)
 
 [node name="Spike34" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999998, 0, 0, 0, 1, 0, 0, 0, 0.999998, -2.4901, 2.98125, -0.135358)
+transform = Transform3D(0.999998, 0, 0, 0, 1, 0, 0, 0, 0.999998, -2.4901, 3.40704, -0.135358)
 
 [node name="Spike35" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -0.477028, 2.98125, -0.135358)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -0.477028, 3.40704, -0.135358)
 
 [node name="Spike36" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0.512329, 2.98125, -0.135358)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0.512329, 3.40704, -0.135358)
 
 [node name="Spike37" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999998, 0, 0, 0, 1, 0, 0, 0, 0.999998, -1.4921, 2.98125, -1.17562)
+transform = Transform3D(0.999998, 0, 0, 0, 1, 0, 0, 0, 0.999998, -1.4921, 3.40704, -1.17562)
 
 [node name="Spike38" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -4.4781, 2.98125, -1.17562)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -4.4781, 3.40704, -1.17562)
 
 [node name="Spike39" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -3.5011, 2.98125, -1.17562)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -3.5011, 3.40704, -1.17562)
 
 [node name="Spike40" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999998, 0, 0, 0, 1, 0, 0, 0, 0.999998, -2.4901, 2.98125, -1.17562)
+transform = Transform3D(0.999998, 0, 0, 0, 1, 0, 0, 0, 0.999998, -2.4901, 3.40704, -1.17562)
 
 [node name="Spike41" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -0.477028, 2.98125, -1.17562)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -0.477028, 3.40704, -1.17562)
 
 [node name="Spike42" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0.512329, 2.98125, -1.17562)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0.512329, 3.40704, -1.17562)
 
 [node name="Spike43" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999998, 0, 0, 0, 1, 0, 0, 0, 0.999998, -1.4921, 2.98125, -2.23028)
+transform = Transform3D(0.999998, 0, 0, 0, 1, 0, 0, 0, 0.999998, -1.4921, 3.40704, -2.23028)
 
 [node name="Spike44" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -4.4781, 2.98125, -2.23028)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -4.4781, 3.40704, -2.23028)
 
 [node name="Spike45" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -3.5011, 2.98125, -2.23029)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -3.5011, 3.40704, -2.23029)
 
 [node name="Spike46" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999998, 0, 0, 0, 1, 0, 0, 0, 0.999998, -2.4901, 2.98125, -2.23028)
+transform = Transform3D(0.999998, 0, 0, 0, 1, 0, 0, 0, 0.999998, -2.4901, 3.40704, -2.23028)
 
 [node name="Spike47" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -0.477028, 2.98125, -2.23029)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -0.477028, 3.40704, -2.23029)
 
 [node name="Spike48" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0.512329, 2.98125, -2.23029)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0.512329, 3.40704, -2.23029)
 
 [node name="Spike49" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999998, 0, 0, 0, 1, 0, 0, 0, 0.999998, -1.4921, 2.98125, -3.27138)
+transform = Transform3D(0.999998, 0, 0, 0, 1, 0, 0, 0, 0.999998, -1.4921, 3.40704, -3.27138)
 
 [node name="Spike50" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -4.4781, 2.98125, -3.27137)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -4.4781, 3.40704, -3.27137)
 
 [node name="Spike51" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -3.5011, 2.98125, -3.27138)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -3.5011, 3.40704, -3.27138)
 
 [node name="Spike52" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999998, 0, 0, 0, 1, 0, 0, 0, 0.999998, -2.4901, 2.98125, -3.27137)
+transform = Transform3D(0.999998, 0, 0, 0, 1, 0, 0, 0, 0.999998, -2.4901, 3.40704, -3.27137)
 
 [node name="Spike53" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -0.477028, 2.98125, -3.27138)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -0.477028, 3.40704, -3.27138)
 
 [node name="Spike54" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0.512329, 2.98125, -3.27138)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0.512329, 3.40704, -3.27138)
 
 [node name="Spike55" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999998, 0, 0, 0, 1, 0, 0, 0, 0.999998, -1.4921, 2.98125, -4.3091)
+transform = Transform3D(0.999998, 0, 0, 0, 1, 0, 0, 0, 0.999998, -1.4921, 3.40704, -4.3091)
 
 [node name="Spike56" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -4.4781, 2.98125, -4.3091)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -4.4781, 3.40704, -4.3091)
 
 [node name="Spike57" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999998, 0, 0, 0, 1, 0, 0, 0, 0.999998, -3.5011, 2.98125, -4.3091)
+transform = Transform3D(0.999998, 0, 0, 0, 1, 0, 0, 0, 0.999998, -3.5011, 3.40704, -4.3091)
 
 [node name="Spike58" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999998, 0, 0, 0, 1, 0, 0, 0, 0.999998, -2.4901, 2.98125, -4.3091)
+transform = Transform3D(0.999998, 0, 0, 0, 1, 0, 0, 0, 0.999998, -2.4901, 3.40704, -4.3091)
 
 [node name="Spike59" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -0.477028, 2.98125, -4.3091)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -0.477028, 3.40704, -4.3091)
 
 [node name="Spike60" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0.512329, 2.98125, -4.3091)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0.512329, 3.40704, -4.3091)
 
 [node name="Spike61" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999998, 0, 0, 0, 1, 0, 0, 0, 0.999998, -1.4921, 2.98125, -5.34936)
+transform = Transform3D(0.999998, 0, 0, 0, 1, 0, 0, 0, 0.999998, -1.4921, 3.40704, -5.34936)
 
 [node name="Spike62" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -4.4781, 2.98125, -5.34936)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -4.4781, 3.40704, -5.34936)
 
 [node name="Spike63" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999998, 0, 0, 0, 1, 0, 0, 0, 0.999998, -3.5011, 2.98125, -5.34936)
+transform = Transform3D(0.999998, 0, 0, 0, 1, 0, 0, 0, 0.999998, -3.5011, 3.40704, -5.34936)
 
 [node name="Spike64" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999998, 0, 0, 0, 1, 0, 0, 0, 0.999998, -2.4901, 2.98125, -5.34936)
+transform = Transform3D(0.999998, 0, 0, 0, 1, 0, 0, 0, 0.999998, -2.4901, 3.40704, -5.34936)
 
 [node name="Spike65" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -0.477028, 2.98125, -5.34936)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -0.477028, 3.40704, -5.34936)
 
 [node name="Spike66" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0.512329, 2.98125, -5.34936)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0.512329, 3.40704, -5.34936)
 
 [node name="Spike67" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999998, 0, 0, 0, 1, 0, 0, 0, 0.999998, -1.4921, 2.98125, -6.40402)
+transform = Transform3D(0.999998, 0, 0, 0, 1, 0, 0, 0, 0.999998, -1.4921, 3.40704, -6.40402)
 
 [node name="Spike68" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -4.4781, 2.98125, -6.40402)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -4.4781, 3.40704, -6.40402)
 
 [node name="Spike69" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999998, 0, 0, 0, 1, 0, 0, 0, 0.999998, -3.5011, 2.98125, -6.40403)
+transform = Transform3D(0.999998, 0, 0, 0, 1, 0, 0, 0, 0.999998, -3.5011, 3.40704, -6.40403)
 
 [node name="Spike70" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999998, 0, 0, 0, 1, 0, 0, 0, 0.999998, -2.4901, 2.98125, -6.40402)
+transform = Transform3D(0.999998, 0, 0, 0, 1, 0, 0, 0, 0.999998, -2.4901, 3.40704, -6.40402)
 
 [node name="Spike71" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -0.477028, 2.98125, -6.40403)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -0.477028, 3.40704, -6.40403)
 
 [node name="Spike72" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0.512329, 2.98125, -6.40403)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0.512329, 3.40704, -6.40403)
 
 [node name="Spike73" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999998, 0, 0, 0, 1, 0, 0, 0, 0.999998, -1.4921, 2.98125, -7.41953)
+transform = Transform3D(0.999998, 0, 0, 0, 1, 0, 0, 0, 0.999998, -1.4921, 3.40704, -7.41953)
 
 [node name="Spike74" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -4.4781, 2.98125, -7.41953)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -4.4781, 3.40704, -7.41953)
 
 [node name="Spike75" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -3.5011, 2.98125, -7.41953)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -3.5011, 3.40704, -7.41953)
 
 [node name="Spike76" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999998, 0, 0, 0, 1, 0, 0, 0, 0.999998, -2.4901, 2.98125, -7.41953)
+transform = Transform3D(0.999998, 0, 0, 0, 1, 0, 0, 0, 0.999998, -2.4901, 3.40704, -7.41953)
 
 [node name="Spike77" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -0.477028, 2.98125, -7.41953)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -0.477028, 3.40704, -7.41953)
 
 [node name="Spike78" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0.512329, 2.98125, -7.41953)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0.512329, 3.40704, -7.41953)
 
 [node name="Spike79" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999998, 0, 0, 0, 1, 0, 0, 0, 0.999998, -1.4921, 2.98125, -8.45725)
+transform = Transform3D(0.999998, 0, 0, 0, 1, 0, 0, 0, 0.999998, -1.4921, 3.40704, -8.45725)
 
 [node name="Spike80" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -4.4781, 2.98125, -8.45725)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -4.4781, 3.40704, -8.45725)
 
 [node name="Spike81" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -3.5011, 2.98125, -8.45725)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -3.5011, 3.40704, -8.45725)
 
 [node name="Spike82" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999998, 0, 0, 0, 1, 0, 0, 0, 0.999998, -2.4901, 2.98125, -8.45725)
+transform = Transform3D(0.999998, 0, 0, 0, 1, 0, 0, 0, 0.999998, -2.4901, 3.40704, -8.45725)
 
 [node name="Spike83" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -0.477028, 2.98125, -8.45725)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -0.477028, 3.40704, -8.45725)
 
 [node name="Spike84" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0.512329, 2.98125, -8.45725)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0.512329, 3.40704, -8.45725)
 
 [node name="Spike85" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999998, 0, 0, 0, 1, 0, 0, 0, 0.999998, -1.4921, 2.98125, -9.49751)
+transform = Transform3D(0.999998, 0, 0, 0, 1, 0, 0, 0, 0.999998, -1.4921, 3.40704, -9.49751)
 
 [node name="Spike86" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -4.4781, 2.98125, -9.49751)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -4.4781, 3.40704, -9.49751)
 
 [node name="Spike87" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -3.5011, 2.98125, -9.49751)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -3.5011, 3.40704, -9.49751)
 
 [node name="Spike88" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999998, 0, 0, 0, 1, 0, 0, 0, 0.999998, -2.4901, 2.98125, -9.49751)
+transform = Transform3D(0.999998, 0, 0, 0, 1, 0, 0, 0, 0.999998, -2.4901, 3.40704, -9.49751)
 
 [node name="Spike89" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -0.477028, 2.98125, -9.49751)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -0.477028, 3.40704, -9.49751)
 
 [node name="Spike90" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0.512329, 2.98125, -9.49751)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0.512329, 3.40704, -9.49751)
 
 [node name="Spike91" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -1.47913, 2.98125, 10.2184)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -1.47913, 3.40704, 10.2184)
 
 [node name="Spike92" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -4.46513, 2.98125, 10.2184)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -4.46513, 3.40704, 10.2184)
 
 [node name="Spike93" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -3.48813, 2.98125, 10.2184)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -3.48813, 3.40704, 10.2184)
 
 [node name="Spike94" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -2.47713, 2.98125, 10.2184)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -2.47713, 3.40704, 10.2184)
 
 [node name="Spike95" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -0.464058, 2.98125, 10.2184)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -0.464058, 3.40704, 10.2184)
 
 [node name="Spike96" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0.525299, 2.98125, 10.2184)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0.525299, 3.40704, 10.2184)
 
 [node name="Spike97" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -1.47913, 2.98125, 9.18065)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -1.47913, 3.40704, 9.18065)
 
 [node name="Spike98" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -4.46513, 2.98125, 9.18065)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -4.46513, 3.40704, 9.18065)
 
 [node name="Spike99" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -3.48813, 2.98125, 9.18065)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -3.48813, 3.40704, 9.18065)
 
 [node name="Spike100" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999998, 0, 0, 0, 1, 0, 0, 0, 0.999998, -2.47713, 2.98125, 9.18065)
+transform = Transform3D(0.999998, 0, 0, 0, 1, 0, 0, 0, 0.999998, -2.47713, 3.40704, 9.18065)
 
 [node name="Spike101" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -0.464058, 2.98125, 9.18065)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -0.464058, 3.40704, 9.18065)
 
 [node name="Spike102" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0.525299, 2.98125, 9.18065)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0.525299, 3.40704, 9.18065)
 
 [node name="Spike103" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -1.47913, 2.98125, 8.14039)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -1.47913, 3.40704, 8.14039)
 
 [node name="Spike104" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -4.46513, 2.98125, 8.14039)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -4.46513, 3.40704, 8.14039)
 
 [node name="Spike105" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -3.48813, 2.98125, 8.14039)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -3.48813, 3.40704, 8.14039)
 
 [node name="Spike106" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999998, 0, 0, 0, 1, 0, 0, 0, 0.999998, -2.47713, 2.98125, 8.14039)
+transform = Transform3D(0.999998, 0, 0, 0, 1, 0, 0, 0, 0.999998, -2.47713, 3.40704, 8.14039)
 
 [node name="Spike107" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -0.464058, 2.98125, 8.14039)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -0.464058, 3.40704, 8.14039)
 
 [node name="Spike108" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0.525299, 2.98125, 8.14039)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0.525299, 3.40704, 8.14039)
 
 [node name="Spike109" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999998, 0, 0, 0, 1, 0, 0, 0, 0.999998, -1.47913, 2.98125, 7.08573)
+transform = Transform3D(0.999998, 0, 0, 0, 1, 0, 0, 0, 0.999998, -1.47913, 3.40704, 7.08573)
 
 [node name="Spike110" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -4.46513, 2.98125, 7.08573)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -4.46513, 3.40704, 7.08573)
 
 [node name="Spike111" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -3.48813, 2.98125, 7.08572)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -3.48813, 3.40704, 7.08572)
 
 [node name="Spike112" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999998, 0, 0, 0, 1, 0, 0, 0, 0.999998, -2.47713, 2.98125, 7.08573)
+transform = Transform3D(0.999998, 0, 0, 0, 1, 0, 0, 0, 0.999998, -2.47713, 3.40704, 7.08573)
 
 [node name="Spike113" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -0.464058, 2.98125, 7.08572)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -0.464058, 3.40704, 7.08572)
 
 [node name="Spike114" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0.525299, 2.98125, 7.08572)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0.525299, 3.40704, 7.08572)
 
 [node name="Spike115" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -1.47913, 2.98125, 6.06962)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -1.47913, 3.40704, 6.06962)
 
 [node name="Spike116" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -4.46513, 2.98125, 6.06962)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -4.46513, 3.40704, 6.06962)
 
 [node name="Spike117" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -3.48813, 2.98125, 6.06962)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -3.48813, 3.40704, 6.06962)
 
 [node name="Spike118" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -2.47713, 2.98125, 6.06962)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -2.47713, 3.40704, 6.06962)
 
 [node name="Spike119" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -0.464058, 2.98125, 6.06962)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -0.464058, 3.40704, 6.06962)
 
 [node name="Spike120" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0.525299, 2.98125, 6.06962)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0.525299, 3.40704, 6.06962)
 
 [node name="Spike121" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 4.53201, 2.98125, 2.95005)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 4.53201, 3.40704, 2.95005)
 
 [node name="Spike122" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 1.54602, 2.98125, 2.95005)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 1.54602, 3.40704, 2.95005)
 
 [node name="Spike123" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 2.52301, 2.98125, 2.95005)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 2.52301, 3.40704, 2.95005)
 
 [node name="Spike124" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 3.53401, 2.98125, 2.95005)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 3.53401, 3.40704, 2.95005)
 
 [node name="Spike125" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 5.54709, 2.98125, 2.95005)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 5.54709, 3.40704, 2.95005)
 
 [node name="Spike126" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 6.53644, 2.98125, 2.95005)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 6.53644, 3.40704, 2.95005)
 
 [node name="Spike127" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 4.53201, 2.98125, 1.91233)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 4.53201, 3.40704, 1.91233)
 
 [node name="Spike128" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 1.54602, 2.98125, 1.91233)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 1.54602, 3.40704, 1.91233)
 
 [node name="Spike129" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 2.52301, 2.98125, 1.91233)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 2.52301, 3.40704, 1.91233)
 
 [node name="Spike130" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999998, 0, 0, 0, 1, 0, 0, 0, 0.999998, 3.53401, 2.98125, 1.91233)
+transform = Transform3D(0.999998, 0, 0, 0, 1, 0, 0, 0, 0.999998, 3.53401, 3.40704, 1.91233)
 
 [node name="Spike131" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 5.54709, 2.98125, 1.91233)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 5.54709, 3.40704, 1.91233)
 
 [node name="Spike132" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 6.53644, 2.98125, 1.91233)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 6.53644, 3.40704, 1.91233)
 
 [node name="Spike133" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 4.53201, 2.98125, 0.872068)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 4.53201, 3.40704, 0.872068)
 
 [node name="Spike134" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 1.54602, 2.98125, 0.872068)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 1.54602, 3.40704, 0.872068)
 
 [node name="Spike135" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 2.52301, 2.98125, 0.872065)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 2.52301, 3.40704, 0.872065)
 
 [node name="Spike136" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999998, 0, 0, 0, 1, 0, 0, 0, 0.999998, 3.53401, 2.98125, 0.872068)
+transform = Transform3D(0.999998, 0, 0, 0, 1, 0, 0, 0, 0.999998, 3.53401, 3.40704, 0.872068)
 
 [node name="Spike137" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 5.54709, 2.98125, 0.872065)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 5.54709, 3.40704, 0.872065)
 
 [node name="Spike138" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 6.53644, 2.98125, 0.872065)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 6.53644, 3.40704, 0.872065)
 
 [node name="Spike139" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999998, 0, 0, 0, 1, 0, 0, 0, 0.999998, 4.53201, 2.98125, -0.182596)
+transform = Transform3D(0.999998, 0, 0, 0, 1, 0, 0, 0, 0.999998, 4.53201, 3.40704, -0.182596)
 
 [node name="Spike140" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 1.54602, 2.98125, -0.182596)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 1.54602, 3.40704, -0.182596)
 
 [node name="Spike141" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 2.52301, 2.98125, -0.1826)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 2.52301, 3.40704, -0.1826)
 
 [node name="Spike142" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999998, 0, 0, 0, 1, 0, 0, 0, 0.999998, 3.53401, 2.98125, -0.182596)
+transform = Transform3D(0.999998, 0, 0, 0, 1, 0, 0, 0, 0.999998, 3.53401, 3.40704, -0.182596)
 
 [node name="Spike143" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 5.54709, 2.98125, -0.1826)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 5.54709, 3.40704, -0.1826)
 
 [node name="Spike144" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 6.53644, 2.98125, -0.1826)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 6.53644, 3.40704, -0.1826)
 
 [node name="Spike145" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 4.53201, 2.98125, -1.1987)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 4.53201, 3.40704, -1.1987)
 
 [node name="Spike146" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 1.54602, 2.98125, -1.1987)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 1.54602, 3.40704, -1.1987)
 
 [node name="Spike147" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 2.52301, 2.98125, -1.1987)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 2.52301, 3.40704, -1.1987)
 
 [node name="Spike148" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 3.53401, 2.98125, -1.1987)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 3.53401, 3.40704, -1.1987)
 
 [node name="Spike149" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 5.54709, 2.98125, -1.1987)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 5.54709, 3.40704, -1.1987)
 
 [node name="Spike150" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 6.53644, 2.98125, -1.1987)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 6.53644, 3.40704, -1.1987)
 
 [node name="Spike151" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(-4.37113e-08, 0, -0.999999, 0, 1, 0, 0.999999, 0, -4.37113e-08, 1.56351, 2.98125, -3.23068)
+transform = Transform3D(-4.37113e-08, 0, -0.999999, 0, 1, 0, 0.999999, 0, -4.37113e-08, 1.56351, 3.40704, -3.23068)
 
 [node name="Spike152" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(-4.37114e-08, 0, -0.999999, 0, 1, 0, 0.999999, 0, -4.37114e-08, 1.54388, 2.98125, -2.24153)
+transform = Transform3D(-4.37114e-08, 0, -0.999999, 0, 1, 0, 0.999999, 0, -4.37114e-08, 1.54388, 3.40704, -2.24153)
 
 [node name="Spike153" parent="obstacles/dangerPlatform" instance=ExtResource("6_ljx6i")]
-transform = Transform3D(-4.37113e-08, 0, -0.999999, 0, 1, 0, 0.999999, 0, -4.37113e-08, 2.5814, 2.98125, -2.22093)
+transform = Transform3D(-4.37113e-08, 0, -0.999999, 0, 1, 0, 0.999999, 0, -4.37113e-08, 2.5814, 3.40704, -2.22093)
 
 [node name="safePlatform" type="CSGBox3D" parent="obstacles/dangerPlatform"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5108, 3.10718, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5108, 3.53297, 0)
 size = Vector3(3, 1, 4)
 
 [node name="obliquePlatform" type="CSGMesh3D" parent="obstacles"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.68719, 0.96521, -15.4661)
 use_collision = true
 mesh = SubResource("PrismMesh_pkxwg")
+
+[node name="under" type="CSGBox3D" parent="obstacles/obliquePlatform"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.9573, 0)
+size = Vector3(60, 8, 30)
+
+[node name="TutorialBoulder" parent="obstacles/obliquePlatform" instance=ExtResource("7_m2fwn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.059, 3.97295, 0)
+linear_velocity = Vector3(20, 0, 0)
 
 [node name="phase2Platform1" type="CSGBox3D" parent="obstacles"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 56.9366, -3.97375, -10.1103)
@@ -2238,6 +2247,8 @@ transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -0.492245, 2.44
 
 [node name="Spike108" parent="obstacles/phase2Platform2" instance=ExtResource("6_ljx6i")]
 transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -1.48269, 2.4406, -9.50435)
+
+[node name="crates" type="Node3D" parent="obstacles"]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

@@ -10,7 +10,7 @@ func _physics_process(delta):
 	var collision = move_and_collide(speed*velocity*delta)
 	if collision:
 		if collision.get_collider().is_in_group("player"):
-			collision.get_collider().hit(collision.get_collider_shape())
+			collision.get_collider().hit(5)
 			queue_free()
 			return
 		if collision.get_collider().is_in_group("lily_platform"):

@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://8533bk0osnnf"]
+
+[ext_resource type="Script" path="res://scripts/TutorialBoulder.gd" id="1_od42d"]
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_yibxn"]
+albedo_color = Color(0.117647, 0.117647, 0.117647, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_54ri4"]
+radius = 3.0
+
+[node name="TutorialBoulder" type="RigidBody3D"]
+script = ExtResource("1_od42d")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
+radius = 3.0
+radial_segments = 10
+material = SubResource("ORMMaterial3D_yibxn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_54ri4")

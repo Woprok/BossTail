@@ -288,7 +288,7 @@ func after_swipe():
 func ground_slam():
 	slam = false
 	platform.health -= 1
-	player.hit(player.get_node("CollisionShape3D"))
+	player.hit(5)
 	player.get_node("CameraPivot").apply_shake()
 	doing = false
 	if platform.health == 0:
@@ -451,10 +451,10 @@ func _on_ground_entered(area):
 func _on_tongue_body_entered(body):
 	if body.is_in_group("player"):
 		if swipe:
-			body.hit(body.get_node("CollisionShape3D"))
+			body.hit(5)
 			body.launch(transform.basis.z)
 		if grab:
-			body.hit(body.get_node("CollisionShape3D"))
+			body.hit(5)
 			var farestPlatform = []
 			var max = -INF
 			for p in get_parent().get_node("stonePlatforms").get_children():
