@@ -9,6 +9,7 @@ extends Node2D
 @export var menu_scene: String = "res://scenes/MenuScene.tscn"
 @export var level1_scene: String = "res://scenes/TutorialScene.tscn"
 @export var level2_scene: String = "res://scenes/FirstPhase.tscn"
+@export var level2b_scene: String = "res://scenes/SecondPhase.tscn"
 
 enum UIMode {
 	MENU,
@@ -101,3 +102,9 @@ func _on_level_2_button_pressed() -> void:
 	# Level transition should move player to new level and set UI as HUD
 	switch_UI(UIMode.HUD)
 	get_tree().change_scene_to_file(level2_scene)
+
+
+func _on_level_2b_button_pressed() -> void:
+	# Level transition should move player to new level and set UI as HUD
+	switch_UI(UIMode.HUD)
+	get_tree().change_scene_to_file(level2b_scene)

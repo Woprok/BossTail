@@ -93,6 +93,11 @@ layout_mode = 2
 theme = ExtResource("1_cfngp")
 text = "LEVEL 2"
 
+[node name="Level2BButton" type="Button" parent="CanvasLayer/Control/CENTER_UI/LEVEL_ACTIONS"]
+layout_mode = 2
+theme = ExtResource("1_cfngp")
+text = "LEVEL 2B"
+
 [node name="BackButton" type="Button" parent="CanvasLayer/Control/CENTER_UI/LEVEL_ACTIONS"]
 layout_mode = 2
 theme = ExtResource("1_cfngp")
@@ -117,5 +122,6 @@ text = "BACK"
 [connection signal="pressed" from="CanvasLayer/Control/CENTER_UI/PAUSE_ACTIONS/MenuButton" to="." method="_on_menu_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/CENTER_UI/LEVEL_ACTIONS/Level1Button" to="." method="_on_level_1_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/CENTER_UI/LEVEL_ACTIONS/Level2Button" to="." method="_on_level_2_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/CENTER_UI/LEVEL_ACTIONS/Level2BButton" to="." method="_on_level_2b_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/CENTER_UI/LEVEL_ACTIONS/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/CENTER_UI/SETTINGS_ACTIONS/BackButton" to="." method="_on_back_button_pressed"]
