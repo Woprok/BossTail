@@ -27,7 +27,7 @@ material = SubResource("StandardMaterial3D_dbnof")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.062067, -1.35702, -0.025271)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.224283)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0383453, 0.207271, 0.2288)
 shape = SubResource("CylinderShape3D_15m3i")
 
 [node name="boulders" type="Node3D" parent="."]
