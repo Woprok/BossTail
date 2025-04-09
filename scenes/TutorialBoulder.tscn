@@ -9,6 +9,9 @@ albedo_color = Color(0.117647, 0.117647, 0.117647, 1)
 radius = 3.0
 
 [node name="TutorialBoulder" type="RigidBody3D"]
+collision_mask = 3
+max_contacts_reported = 5
+contact_monitor = true
 script = ExtResource("1_od42d")
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="."]
@@ -18,3 +21,5 @@ material = SubResource("ORMMaterial3D_yibxn")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_54ri4")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

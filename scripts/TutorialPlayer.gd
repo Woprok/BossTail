@@ -241,6 +241,8 @@ func _on_standing(area):
 	if area.is_in_group("spike"):
 		hit(20)
 		get_parent().respawn_player()
+	if area.is_in_group("part2"):
+		part = 3
 		
 func _on_leaving(area):
 	pass

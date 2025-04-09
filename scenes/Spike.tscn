@@ -1,4 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://cwiap64eupo14"]
+[gd_scene load_steps=8 format=3 uid="uid://cwiap64eupo14"]
+
+[ext_resource type="PackedScene" uid="uid://bjo5n1gleds5x" path="res://scenes/environment/Thorn.tscn" id="1_54pep"]
 
 [sub_resource type="PrismMesh" id="PrismMesh_hs6gr"]
 
@@ -19,7 +21,11 @@ radius = 0.3
 
 [node name="Spike" type="StaticBody3D" groups=["spike"]]
 
+[node name="Thorn" parent="." instance=ExtResource("1_54pep")]
+transform = Transform3D(2, 0, 0, 0, 1.5, 0, 0, 0, 2, 0, -0.6, 0)
+
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+visible = false
 use_collision = true
 collision_mask = 2
 
