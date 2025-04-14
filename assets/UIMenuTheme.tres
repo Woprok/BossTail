@@ -1,0 +1,17 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://d2mah8qfufk0b"]
+
+[ext_resource type="StyleBox" uid="uid://dm2dywvpwanff" path="res://assets/UIMenuThemeBorder.tres" id="1_yenvq"]
+
+[resource]
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/colors/font_outline_color = Color(0.454902, 0.454902, 0.454902, 1)
+Button/constants/outline_size = 4
+Button/font_sizes/font_size = 32
+Button/styles/disabled = ExtResource("1_yenvq")
+Button/styles/focus = ExtResource("1_yenvq")
+Button/styles/hover = ExtResource("1_yenvq")
+Button/styles/normal = ExtResource("1_yenvq")
+Button/styles/pressed = ExtResource("1_yenvq")
+Label/colors/font_color = Color(0.466667, 0.764706, 0.423529, 1)
+Label/constants/outline_size = 4
+Label/font_sizes/font_size = 72
