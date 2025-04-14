@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://byq2mhcwqgxom"]
 
-[ext_resource type="Script" path="res://scripts/Lily.gd" id="1_rxmmy"]
+[ext_resource type="Script" uid="uid://l1ynqgi7adjp" path="res://scripts/Lily.gd" id="1_rxmmy"]
 [ext_resource type="PackedScene" uid="uid://c23kxwv7pji57" path="res://scenes/environment/LiliPad_1.tscn" id="2_dvjc6"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j2kw2"]

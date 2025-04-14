@@ -1,8 +1,8 @@
 [gd_scene load_steps=19 format=3 uid="uid://dlgjnby6p27p1"]
 
 [ext_resource type="PackedScene" uid="uid://cs51pokcyuwhd" path="res://scenes/characters/Mouseketeer.tscn" id="1_atg64"]
-[ext_resource type="Script" path="res://scripts/TutorialScene.gd" id="1_ch07a"]
-[ext_resource type="Script" path="res://scripts/TutorialPlayer.gd" id="2_u64d8"]
+[ext_resource type="Script" uid="uid://7rix2olo4q8k" path="res://scripts/TutorialScene.gd" id="1_ch07a"]
+[ext_resource type="Script" uid="uid://p31wdkr7obsk" path="res://scripts/TutorialPlayer.gd" id="2_u64d8"]
 [ext_resource type="Material" uid="uid://cctvegqrour2r" path="res://assets/material.tres" id="3_jfofl"]
 [ext_resource type="PackedScene" uid="uid://cexu8vsrt1jho" path="res://scenes/TutorialDummy.tscn" id="4_gsy1u"]
 [ext_resource type="PackedScene" uid="uid://cwiap64eupo14" path="res://scenes/Spike.tscn" id="6_ljx6i"]
@@ -75,8 +75,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pfun0"]
 _data = {
-"RESET": SubResource("Animation_aagmp"),
-"walls": SubResource("Animation_lap5x")
+&"RESET": SubResource("Animation_aagmp"),
+&"walls": SubResource("Animation_lap5x")
 }
 
 [node name="TutorialScene" type="Node3D"]

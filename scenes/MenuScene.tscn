@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dlrq4knk1gqi7" path="res://scenes/StonePlatform.tscn" id="1_dx7ke"]
 [ext_resource type="PackedScene" uid="uid://dd1t8e65ub5g5" path="res://scenes/UIMenu.tscn" id="2_r1rkc"]
-[ext_resource type="Shader" path="res://scenes/MenuSceneSkyShader.gdshader" id="3_ts21g"]
+[ext_resource type="Shader" uid="uid://ckk3b6a4w762f" path="res://scenes/MenuSceneSkyShader.gdshader" id="3_ts21g"]
 [ext_resource type="PackedScene" uid="uid://dp3ikh08njxoy" path="res://scenes/characters/MouseketeerStaticModel.tscn" id="4_kek1a"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_44y4w"]

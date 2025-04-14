@@ -1,17 +1,18 @@
-[gd_scene load_steps=52 format=3 uid="uid://dumrn66mky8hf"]
+[gd_scene load_steps=52 format=4 uid="uid://dumrn66mky8hf"]
 
 [ext_resource type="Material" uid="uid://vn3ajen13fnj" path="res://assets/models/environment/materials/PondEnvironment/GrassBladeMat.tres" id="1_50wr4"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_73pk6"]
 _surfaces = [{
 "aabb": AABB(-0.687615, -0.0469515, -0.523499, 0.775783, 3.64893, 0.523508),
-"format": 4097,
+"format": 34359742465,
 "index_count": 42,
-"index_data": PackedByteArray(4, 0, 3, 0, 7, 0, 4, 0, 2, 0, 3, 0, 0, 0, 6, 0, 1, 0, 0, 0, 5, 0, 6, 0, 5, 0, 7, 0, 6, 0, 5, 0, 4, 0, 7, 0, 2, 0, 9, 0, 3, 0, 2, 0, 8, 0, 9, 0, 8, 0, 11, 0, 9, 0, 8, 0, 10, 0, 11, 0, 10, 0, 13, 0, 11, 0, 10, 0, 12, 0, 13, 0, 12, 0, 15, 0, 13, 0, 12, 0, 14, 0, 15, 0),
+"index_data": PackedByteArray("BAADAAcABAACAAMAAAAGAAEAAAAFAAYABQAHAAYABQAEAAcAAgAJAAMAAgAIAAkACAALAAkACAAKAAsACgANAAsACgAMAA0ADAAPAA0ADAAOAA8A"),
 "name": "GrassBladeMat",
 "primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 16,
-"vertex_data": PackedByteArray(8, 145, 180, 189, 64, 80, 64, 189, 132, 198, 112, 179, 8, 145, 180, 61, 64, 80, 64, 189, 132, 198, 112, 179, 8, 62, 195, 189, 84, 232, 249, 63, 94, 91, 31, 188, 96, 137, 224, 60, 72, 57, 250, 63, 94, 103, 0, 188, 208, 183, 142, 189, 40, 168, 164, 63, 230, 71, 40, 180, 64, 137, 170, 189, 164, 165, 30, 63, 134, 121, 228, 179, 64, 137, 170, 61, 164, 165, 30, 63, 134, 121, 228, 179, 208, 183, 142, 61, 40, 168, 164, 63, 230, 71, 40, 180, 80, 148, 53, 190, 230, 158, 33, 64, 115, 28, 120, 189, 80, 179, 180, 189, 227, 228, 35, 64, 108, 88, 92, 189, 185, 254, 185, 190, 182, 142, 69, 64, 228, 124, 60, 190, 71, 90, 163, 190, 250, 52, 71, 64, 88, 174, 48, 190, 24, 196, 9, 191, 246, 94, 89, 64, 224, 110, 172, 190, 85, 40, 3, 191, 66, 20, 91, 64, 255, 192, 166, 190, 145, 7, 48, 191, 209, 162, 101, 64, 0, 4, 6, 191, 33, 182, 44, 191, 227, 134, 102, 64, 124, 32, 4, 191)
+"vertex_data": PackedByteArray("CJG0vUBQQL2ExnCzCJG0PUBQQL2ExnCzCD7DvVTo+T9eWx+8YIngPEg5+j9eZwC80LeOvSiopD/mRyi0QImqvaSlHj+GeeSzQImqPaSlHj+GeeSz0LeOPSiopD/mRyi0UJQ1vuaeIUBzHHi9ULO0vePkI0BsWFy9uf65vraORUDkfDy+R1qjvvo0R0BYrjC+GMQJv/ZeWUDgbqy+VSgDv0IUW0D/wKa+kQcwv9GiZUAABAa/IbYsv+OGZkB8IAS/")
 }]
 blend_shape_mode = 0
 
@@ -19,15 +20,16 @@ blend_shape_mode = 0
 resource_name = "PondEnvironment_Plane_031"
 _surfaces = [{
 "aabb": AABB(-0.687615, -0.0469515, -0.523499, 0.775783, 3.64893, 0.523508),
-"attribute_data": PackedByteArray(0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 172, 170, 170, 62, 0, 0, 0, 0, 172, 170, 170, 62, 0, 0, 0, 0, 171, 170, 42, 63, 0, 0, 128, 63, 170, 170, 42, 63, 0, 0, 128, 63, 170, 170, 170, 62, 0, 0, 128, 63, 170, 170, 170, 62, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0),
-"format": 4119,
+"attribute_data": PackedByteArray("AAAAAAAAgD8AAIA/AACAPwAAAAAAAAAAAAAAAAAAAAAAAIA/AAAAAAAAgD8AAAAAAAAAAKyqqj4AAAAArKqqPgAAAACrqio/AACAP6qqKj8AAIA/qqqqPgAAgD+qqqo+AAAAAAAAAAAAAAAAAAAAAAAAgD8AAAAAAACAPwAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAAAAAAIA/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAIA/AAAAAAAAgD8AAAAAAAAAAAAAAAAAAIA/AAAAAA=="),
+"format": 34359742487,
 "index_count": 42,
-"index_data": PackedByteArray(7, 0, 4, 0, 11, 0, 7, 0, 2, 0, 4, 0, 0, 0, 9, 0, 1, 0, 0, 0, 8, 0, 9, 0, 8, 0, 10, 0, 9, 0, 8, 0, 6, 0, 10, 0, 3, 0, 14, 0, 5, 0, 3, 0, 12, 0, 14, 0, 13, 0, 18, 0, 15, 0, 13, 0, 16, 0, 18, 0, 17, 0, 22, 0, 19, 0, 17, 0, 20, 0, 22, 0, 21, 0, 25, 0, 23, 0, 21, 0, 24, 0, 25, 0),
+"index_data": PackedByteArray("BwAEAAsABwACAAQAAAAJAAEAAAAIAAkACAAKAAkACAAGAAoAAwAOAAUAAwAMAA4ADQASAA8ADQAQABIAEQAWABMAEQAUABYAFQAZABcAFQAYABkA"),
 "material": ExtResource("1_50wr4"),
 "name": "GrassBladeMat",
 "primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 26,
-"vertex_data": PackedByteArray(8, 145, 180, 189, 64, 80, 64, 189, 132, 198, 112, 179, 255, 127, 255, 127, 254, 255, 255, 191, 8, 145, 180, 61, 64, 80, 64, 189, 132, 198, 112, 179, 255, 127, 255, 127, 255, 255, 255, 191, 8, 62, 195, 189, 84, 232, 249, 63, 94, 91, 31, 188, 20, 127, 154, 129, 159, 252, 62, 193, 8, 62, 195, 189, 84, 232, 249, 63, 94, 91, 31, 188, 220, 121, 76, 136, 255, 255, 255, 63, 96, 137, 224, 60, 72, 57, 250, 63, 94, 103, 0, 188, 20, 127, 154, 129, 238, 252, 22, 193, 96, 137, 224, 60, 72, 57, 250, 63, 94, 103, 0, 188, 220, 121, 76, 136, 255, 255, 255, 63, 208, 183, 142, 189, 40, 168, 164, 63, 230, 71, 40, 180, 255, 127, 255, 127, 254, 255, 255, 191, 208, 183, 142, 189, 40, 168, 164, 63, 230, 71, 40, 180, 20, 127, 154, 129, 198, 254, 37, 192, 64, 137, 170, 189, 164, 165, 30, 63, 134, 121, 228, 179, 255, 127, 255, 127, 254, 255, 255, 191, 64, 137, 170, 61, 164, 165, 30, 63, 134, 121, 228, 179, 255, 127, 255, 127, 254, 255, 255, 191, 208, 183, 142, 61, 40, 168, 164, 63, 230, 71, 40, 180, 255, 127, 255, 127, 254, 255, 255, 191, 208, 183, 142, 61, 40, 168, 164, 63, 230, 71, 40, 180, 20, 127, 154, 129, 14, 255, 0, 192, 80, 148, 53, 190, 230, 158, 33, 64, 115, 28, 120, 189, 220, 121, 76, 136, 255, 255, 255, 63, 80, 148, 53, 190, 230, 158, 33, 64, 115, 28, 120, 189, 183, 108, 126, 141, 255, 255, 255, 63, 80, 179, 180, 189, 227, 228, 35, 64, 108, 88, 92, 189, 220, 121, 76, 136, 255, 255, 255, 63, 80, 179, 180, 189, 227, 228, 35, 64, 108, 88, 92, 189, 183, 108, 126, 141, 255, 255, 255, 63, 185, 254, 185, 190, 182, 142, 69, 64, 228, 124, 60, 190, 183, 108, 126, 141, 255, 255, 255, 63, 185, 254, 185, 190, 182, 142, 69, 64, 228, 124, 60, 190, 166, 91, 209, 143, 255, 255, 255, 63, 71, 90, 163, 190, 250, 52, 71, 64, 88, 174, 48, 190, 183, 108, 126, 141, 255, 255, 255, 63, 71, 90, 163, 190, 250, 52, 71, 64, 88, 174, 48, 190, 166, 91, 209, 143, 255, 255, 255, 63, 24, 196, 9, 191, 246, 94, 89, 64, 224, 110, 172, 190, 166, 91, 209, 143, 255, 255, 255, 63, 24, 196, 9, 191, 246, 94, 89, 64, 224, 110, 172, 190, 36, 79, 140, 147, 255, 255, 255, 63, 85, 40, 3, 191, 66, 20, 91, 64, 255, 192, 166, 190, 166, 91, 209, 143, 255, 255, 255, 63, 85, 40, 3, 191, 66, 20, 91, 64, 255, 192, 166, 190, 36, 79, 140, 147, 255, 255, 255, 63, 145, 7, 48, 191, 209, 162, 101, 64, 0, 4, 6, 191, 36, 79, 140, 147, 255, 255, 255, 63, 33, 182, 44, 191, 227, 134, 102, 64, 124, 32, 4, 191, 36, 79, 140, 147, 255, 255, 255, 63)
+"vertex_data": PackedByteArray("CJG0vUBQQL2ExnCzCJG0PUBQQL2ExnCzCD7DvVTo+T9eWx+8CD7DvVTo+T9eWx+8YIngPEg5+j9eZwC8YIngPEg5+j9eZwC80LeOvSiopD/mRyi00LeOvSiopD/mRyi0QImqvaSlHj+GeeSzQImqPaSlHj+GeeSz0LeOPSiopD/mRyi00LeOPSiopD/mRyi0UJQ1vuaeIUBzHHi9UJQ1vuaeIUBzHHi9ULO0vePkI0BsWFy9ULO0vePkI0BsWFy9uf65vraORUDkfDy+uf65vraORUDkfDy+R1qjvvo0R0BYrjC+R1qjvvo0R0BYrjC+GMQJv/ZeWUDgbqy+GMQJv/ZeWUDgbqy+VSgDv0IUW0D/wKa+VSgDv0IUW0D/wKa+kQcwv9GiZUAABAa/IbYsv+OGZkB8IAS//3//f/7//7//f/9/////vxR/moGf/D7B3HlMiP///z8Uf5qB7vwWwdx5TIj///8//3//f/7//78Uf5qBxv4lwP9//3/+//+//3//f/7//7//f/9//v//vxR/moEO/wDA3HlMiP///z+3bH6N////P9x5TIj///8/t2x+jf///z+3bH6N////P6Zb0Y////8/t2x+jf///z+mW9GP////P6Zb0Y////8/JE+Mk////z+mW9GP////PyRPjJP///8/JE+Mk////z8kT4yT////Pw==")
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_73pk6")
@@ -35,13 +37,14 @@ shadow_mesh = SubResource("ArrayMesh_73pk6")
 [sub_resource type="ArrayMesh" id="ArrayMesh_sfa26"]
 _surfaces = [{
 "aabb": AABB(-0.711778, -0.0469515, -0.00396922, 0.799856, 3.51825, 0.874837),
-"format": 4097,
+"format": 34359742465,
 "index_count": 42,
-"index_data": PackedByteArray(4, 0, 3, 0, 7, 0, 4, 0, 2, 0, 3, 0, 0, 0, 6, 0, 1, 0, 0, 0, 5, 0, 6, 0, 5, 0, 7, 0, 6, 0, 5, 0, 4, 0, 7, 0, 2, 0, 9, 0, 3, 0, 2, 0, 8, 0, 9, 0, 8, 0, 11, 0, 9, 0, 8, 0, 10, 0, 11, 0, 10, 0, 13, 0, 11, 0, 10, 0, 12, 0, 13, 0, 12, 0, 15, 0, 13, 0, 12, 0, 14, 0, 15, 0),
+"index_data": PackedByteArray("BAADAAcABAACAAMAAAAGAAEAAAAFAAYABQAHAAYABQAEAAcAAgAJAAMAAgAIAAkACAALAAkACAAKAAsACgANAAsACgAMAA0ADAAPAA0ADAAOAA8A"),
 "name": "GrassBladeMat",
 "primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 16,
-"vertex_data": PackedByteArray(40, 98, 180, 189, 64, 80, 64, 189, 62, 16, 130, 187, 40, 98, 180, 61, 64, 80, 64, 189, 54, 15, 130, 59, 218, 250, 192, 189, 98, 217, 249, 63, 50, 94, 155, 60, 72, 243, 230, 60, 96, 41, 250, 63, 99, 148, 175, 60, 197, 146, 142, 189, 40, 168, 164, 63, 75, 153, 77, 187, 251, 92, 170, 189, 164, 165, 30, 63, 224, 172, 117, 187, 251, 92, 170, 61, 164, 165, 30, 63, 200, 171, 117, 59, 195, 146, 142, 61, 40, 168, 164, 63, 45, 153, 77, 59, 62, 133, 38, 190, 15, 92, 33, 64, 245, 181, 32, 62, 26, 107, 149, 189, 95, 146, 35, 64, 64, 48, 37, 62, 84, 243, 169, 190, 98, 12, 69, 64, 100, 48, 216, 62, 21, 79, 146, 190, 169, 157, 70, 64, 247, 148, 215, 62, 98, 131, 5, 191, 197, 133, 88, 64, 253, 83, 38, 63, 80, 23, 252, 190, 116, 43, 90, 64, 186, 60, 38, 63, 24, 55, 54, 191, 133, 84, 93, 64, 70, 185, 94, 63, 10, 51, 50, 191, 195, 41, 94, 64, 47, 241, 94, 63)
+"vertex_data": PackedByteArray("KGK0vUBQQL0+EIK7KGK0PUBQQL02D4I72vrAvWLZ+T8yXps8SPPmPGAp+j9jlK88xZKOvSiopD9LmU27+1yqvaSlHj/grHW7+1yqPaSlHj/Iq3U7w5KOPSiopD8tmU07PoUmvg9cIUD1tSA+GmuVvV+SI0BAMCU+VPOpvmIMRUBkMNg+FU+SvqmdRkD3lNc+YoMFv8WFWED9UyY/UBf8vnQrWkC6PCY/GDc2v4VUXUBGuV4/CjMyv8MpXkAv8V4/")
 }]
 blend_shape_mode = 0
 
@@ -49,15 +52,16 @@ blend_shape_mode = 0
 resource_name = "PondEnvironment_Plane_032"
 _surfaces = [{
 "aabb": AABB(-0.711778, -0.0469515, -0.00396922, 0.799856, 3.51825, 0.874837),
-"attribute_data": PackedByteArray(0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 172, 170, 170, 62, 0, 0, 0, 0, 172, 170, 170, 62, 0, 0, 0, 0, 171, 170, 42, 63, 0, 0, 128, 63, 170, 170, 42, 63, 0, 0, 128, 63, 170, 170, 170, 62, 0, 0, 128, 63, 170, 170, 170, 62, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0),
-"format": 4119,
+"attribute_data": PackedByteArray("AAAAAAAAgD8AAIA/AACAPwAAAAAAAAAAAAAAAAAAAAAAAIA/AAAAAAAAgD8AAAAAAAAAAKyqqj4AAAAArKqqPgAAAACrqio/AACAP6qqKj8AAIA/qqqqPgAAgD+qqqo+AAAAAAAAAAAAAAAAAAAAAAAAgD8AAAAAAACAPwAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAAAAAAIA/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAIA/AAAAAAAAgD8AAAAAAAAAAAAAAAAAAIA/AAAAAA=="),
+"format": 34359742487,
 "index_count": 42,
-"index_data": PackedByteArray(6, 0, 5, 0, 10, 0, 6, 0, 3, 0, 5, 0, 0, 0, 9, 0, 1, 0, 0, 0, 8, 0, 9, 0, 8, 0, 11, 0, 9, 0, 8, 0, 7, 0, 11, 0, 2, 0, 14, 0, 4, 0, 2, 0, 12, 0, 14, 0, 13, 0, 18, 0, 15, 0, 13, 0, 16, 0, 18, 0, 17, 0, 22, 0, 19, 0, 17, 0, 20, 0, 22, 0, 21, 0, 25, 0, 23, 0, 21, 0, 24, 0, 25, 0),
+"index_data": PackedByteArray("BgAFAAoABgADAAUAAAAJAAEAAAAIAAkACAALAAkACAAHAAsAAgAOAAQAAgAMAA4ADQASAA8ADQAQABIAEQAWABMAEQAUABYAFQAZABcAFQAYABkA"),
 "material": ExtResource("1_50wr4"),
 "name": "GrassBladeMat",
 "primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 26,
-"vertex_data": PackedByteArray(40, 98, 180, 189, 64, 80, 64, 189, 62, 16, 130, 187, 123, 122, 255, 127, 122, 250, 255, 191, 40, 98, 180, 61, 64, 80, 64, 189, 54, 15, 130, 59, 123, 122, 255, 127, 122, 250, 255, 191, 218, 250, 192, 189, 98, 217, 249, 63, 50, 94, 155, 60, 234, 128, 187, 103, 255, 255, 255, 63, 218, 250, 192, 189, 98, 217, 249, 63, 50, 94, 155, 60, 4, 124, 41, 124, 133, 249, 46, 193, 72, 243, 230, 60, 96, 41, 250, 63, 99, 148, 175, 60, 234, 128, 187, 103, 255, 255, 255, 63, 72, 243, 230, 60, 96, 41, 250, 63, 99, 148, 175, 60, 4, 124, 41, 124, 208, 249, 9, 193, 197, 146, 142, 189, 40, 168, 164, 63, 75, 153, 77, 187, 4, 124, 41, 124, 147, 251, 39, 192, 197, 146, 142, 189, 40, 168, 164, 63, 75, 153, 77, 187, 123, 122, 255, 127, 122, 250, 255, 191, 251, 92, 170, 189, 164, 165, 30, 63, 224, 172, 117, 187, 123, 122, 255, 127, 122, 250, 255, 191, 251, 92, 170, 61, 164, 165, 30, 63, 200, 171, 117, 59, 123, 122, 255, 127, 122, 250, 255, 191, 195, 146, 142, 61, 40, 168, 164, 63, 45, 153, 77, 59, 4, 124, 41, 124, 216, 251, 5, 192, 195, 146, 142, 61, 40, 168, 164, 63, 45, 153, 77, 59, 123, 122, 255, 127, 122, 250, 255, 191, 62, 133, 38, 190, 15, 92, 33, 64, 245, 181, 32, 62, 234, 128, 187, 103, 255, 255, 255, 63, 62, 133, 38, 190, 15, 92, 33, 64, 245, 181, 32, 62, 230, 140, 243, 93, 255, 255, 255, 63, 26, 107, 149, 189, 95, 146, 35, 64, 64, 48, 37, 62, 234, 128, 187, 103, 255, 255, 255, 63, 26, 107, 149, 189, 95, 146, 35, 64, 64, 48, 37, 62, 230, 140, 243, 93, 255, 255, 255, 63, 84, 243, 169, 190, 98, 12, 69, 64, 100, 48, 216, 62, 230, 140, 243, 93, 255, 255, 255, 63, 84, 243, 169, 190, 98, 12, 69, 64, 100, 48, 216, 62, 182, 152, 3, 93, 255, 255, 255, 63, 21, 79, 146, 190, 169, 157, 70, 64, 247, 148, 215, 62, 230, 140, 243, 93, 255, 255, 255, 63, 21, 79, 146, 190, 169, 157, 70, 64, 247, 148, 215, 62, 182, 152, 3, 93, 255, 255, 255, 63, 98, 131, 5, 191, 197, 133, 88, 64, 253, 83, 38, 63, 182, 152, 3, 93, 255, 255, 255, 63, 98, 131, 5, 191, 197, 133, 88, 64, 253, 83, 38, 63, 78, 165, 53, 84, 255, 255, 255, 63, 80, 23, 252, 190, 116, 43, 90, 64, 186, 60, 38, 63, 182, 152, 3, 93, 255, 255, 255, 63, 80, 23, 252, 190, 116, 43, 90, 64, 186, 60, 38, 63, 78, 165, 53, 84, 255, 255, 255, 63, 24, 55, 54, 191, 133, 84, 93, 64, 70, 185, 94, 63, 78, 165, 53, 84, 255, 255, 255, 63, 10, 51, 50, 191, 195, 41, 94, 64, 47, 241, 94, 63, 78, 165, 53, 84, 255, 255, 255, 63)
+"vertex_data": PackedByteArray("KGK0vUBQQL0+EIK7KGK0PUBQQL02D4I72vrAvWLZ+T8yXps82vrAvWLZ+T8yXps8SPPmPGAp+j9jlK88SPPmPGAp+j9jlK88xZKOvSiopD9LmU27xZKOvSiopD9LmU27+1yqvaSlHj/grHW7+1yqPaSlHj/Iq3U7w5KOPSiopD8tmU07w5KOPSiopD8tmU07PoUmvg9cIUD1tSA+PoUmvg9cIUD1tSA+GmuVvV+SI0BAMCU+GmuVvV+SI0BAMCU+VPOpvmIMRUBkMNg+VPOpvmIMRUBkMNg+FU+SvqmdRkD3lNc+FU+SvqmdRkD3lNc+YoMFv8WFWED9UyY/YoMFv8WFWED9UyY/UBf8vnQrWkC6PCY/UBf8vnQrWkC6PCY/GDc2v4VUXUBGuV4/CjMyv8MpXkAv8V4/e3r/f3r6/797ev9/evr/v+qAu2f///8/BHwpfIX5LsHqgLtn////PwR8KXzQ+QnBBHwpfJP7J8B7ev9/evr/v3t6/396+v+/e3r/f3r6/78EfCl82PsFwHt6/396+v+/6oC7Z////z/mjPNd////P+qAu2f///8/5ozzXf///z/mjPNd////P7aYA13///8/5ozzXf///z+2mANd////P7aYA13///8/TqU1VP///z+2mANd////P06lNVT///8/TqU1VP///z9OpTVU////Pw==")
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_sfa26")
@@ -65,13 +69,14 @@ shadow_mesh = SubResource("ArrayMesh_sfa26")
 [sub_resource type="ArrayMesh" id="ArrayMesh_qm3oy"]
 _surfaces = [{
 "aabb": AABB(-0.00493651, -0.049985, -0.0937337, 0.599987, 3.88469, 0.795451),
-"format": 4097,
+"format": 34359742465,
 "index_count": 42,
-"index_data": PackedByteArray(4, 0, 3, 0, 7, 0, 4, 0, 2, 0, 3, 0, 0, 0, 6, 0, 1, 0, 0, 0, 5, 0, 6, 0, 5, 0, 7, 0, 6, 0, 5, 0, 4, 0, 7, 0, 2, 0, 9, 0, 3, 0, 2, 0, 8, 0, 9, 0, 8, 0, 11, 0, 9, 0, 8, 0, 10, 0, 11, 0, 10, 0, 13, 0, 11, 0, 10, 0, 12, 0, 13, 0, 12, 0, 15, 0, 13, 0, 12, 0, 14, 0, 15, 0),
+"index_data": PackedByteArray("BAADAAcABAACAAMAAAAGAAEAAAAFAAYABQAHAAYABQAEAAcAAgAJAAMAAgAIAAkACAALAAkACAAKAAsACgANAAsACgAMAA0ADAAPAA0ADAAOAA8A"),
 "name": "GrassBladeMat",
 "primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 16,
-"vertex_data": PackedByteArray(104, 195, 161, 59, 21, 189, 76, 189, 119, 247, 191, 61, 122, 194, 161, 187, 21, 189, 76, 189, 119, 247, 191, 189, 12, 112, 128, 60, 225, 6, 5, 64, 36, 116, 206, 61, 52, 189, 222, 59, 248, 49, 5, 64, 188, 78, 242, 188, 105, 186, 127, 59, 141, 75, 175, 63, 130, 186, 151, 61, 3, 200, 152, 59, 163, 229, 40, 63, 144, 77, 181, 61, 37, 197, 152, 187, 163, 229, 40, 63, 144, 77, 181, 189, 205, 176, 127, 187, 141, 75, 175, 63, 132, 186, 151, 189, 209, 56, 152, 61, 20, 16, 44, 64, 7, 146, 61, 62, 62, 126, 126, 61, 171, 123, 46, 64, 186, 240, 185, 61, 106, 55, 93, 62, 71, 82, 82, 64, 7, 118, 192, 62, 241, 32, 78, 62, 211, 19, 84, 64, 62, 184, 168, 62, 71, 191, 198, 62, 61, 106, 103, 64, 244, 162, 13, 63, 41, 248, 191, 62, 202, 59, 105, 64, 23, 197, 6, 63, 56, 85, 24, 63, 245, 120, 116, 64, 188, 163, 51, 63, 158, 35, 22, 63, 195, 107, 117, 64, 189, 55, 48, 63)
+"vertex_data": PackedByteArray("aMOhOxW9TL139789esKhuxW9TL1397+9DHCAPOEGBUAkdM49NL3eO/gxBUC8TvK8abp/O41Lrz+Cupc9A8iYO6PlKD+QTbU9JcWYu6PlKD+QTbW9zbB/u41Lrz+Eupe90TiYPRQQLEAHkj0+Pn5+Pat7LkC68Lk9ajddPkdSUkAHdsA+8SBOPtMTVEA+uKg+R7/GPj1qZ0D0og0/Kfi/Pso7aUAXxQY/OFUYP/V4dEC8ozM/niMWP8NrdUC9NzA/")
 }]
 blend_shape_mode = 0
 
@@ -79,15 +84,16 @@ blend_shape_mode = 0
 resource_name = "PondEnvironment_Plane_033"
 _surfaces = [{
 "aabb": AABB(-0.00493651, -0.049985, -0.0937337, 0.599987, 3.88469, 0.795451),
-"attribute_data": PackedByteArray(0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 172, 170, 170, 62, 0, 0, 0, 0, 172, 170, 170, 62, 0, 0, 0, 0, 171, 170, 42, 63, 0, 0, 128, 63, 170, 170, 42, 63, 0, 0, 128, 63, 170, 170, 170, 62, 0, 0, 128, 63, 170, 170, 170, 62, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0),
-"format": 4119,
+"attribute_data": PackedByteArray("AAAAAAAAgD8AAIA/AACAPwAAAAAAAAAAAAAAAAAAAAAAAIA/AAAAAAAAgD8AAAAAAAAAAKyqqj4AAAAArKqqPgAAAACrqio/AACAP6qqKj8AAIA/qqqqPgAAgD+qqqo+AAAAAAAAAAAAAAAAAAAAAAAAgD8AAAAAAACAPwAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAAAAAAIA/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAIA/AAAAAAAAgD8AAAAAAAAAAAAAAAAAAIA/AAAAAA=="),
+"format": 34359742487,
 "index_count": 42,
-"index_data": PackedByteArray(6, 0, 5, 0, 10, 0, 6, 0, 3, 0, 5, 0, 0, 0, 9, 0, 1, 0, 0, 0, 8, 0, 9, 0, 8, 0, 11, 0, 9, 0, 8, 0, 7, 0, 11, 0, 2, 0, 15, 0, 4, 0, 2, 0, 13, 0, 15, 0, 12, 0, 19, 0, 14, 0, 12, 0, 17, 0, 19, 0, 16, 0, 23, 0, 18, 0, 16, 0, 21, 0, 23, 0, 20, 0, 25, 0, 22, 0, 20, 0, 24, 0, 25, 0),
+"index_data": PackedByteArray("BgAFAAoABgADAAUAAAAJAAEAAAAIAAkACAALAAkACAAHAAsAAgAPAAQAAgANAA8ADAATAA4ADAARABMAEAAXABIAEAAVABcAFAAZABYAFAAYABkA"),
 "material": ExtResource("1_50wr4"),
 "name": "GrassBladeMat",
 "primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 26,
-"vertex_data": PackedByteArray(104, 195, 161, 59, 21, 189, 76, 189, 119, 247, 191, 61, 255, 255, 103, 134, 0, 0, 51, 131, 122, 194, 161, 187, 21, 189, 76, 189, 119, 247, 191, 189, 255, 255, 103, 134, 0, 0, 203, 252, 12, 112, 128, 60, 225, 6, 5, 64, 36, 116, 206, 61, 9, 248, 111, 108, 255, 255, 255, 191, 12, 112, 128, 60, 225, 6, 5, 64, 36, 116, 206, 61, 119, 254, 78, 119, 96, 2, 116, 252, 52, 189, 222, 59, 248, 49, 5, 64, 188, 78, 242, 188, 9, 248, 111, 108, 255, 255, 255, 191, 52, 189, 222, 59, 248, 49, 5, 64, 188, 78, 242, 188, 119, 254, 78, 119, 19, 2, 113, 252, 105, 186, 127, 59, 141, 75, 175, 63, 130, 186, 151, 61, 119, 254, 78, 119, 72, 0, 97, 252, 105, 186, 127, 59, 141, 75, 175, 63, 130, 186, 151, 61, 255, 255, 103, 134, 0, 0, 51, 131, 3, 200, 152, 59, 163, 229, 40, 63, 144, 77, 181, 61, 255, 255, 103, 134, 0, 0, 51, 131, 37, 197, 152, 187, 163, 229, 40, 63, 144, 77, 181, 189, 255, 255, 103, 134, 0, 0, 51, 131, 205, 176, 127, 187, 141, 75, 175, 63, 132, 186, 151, 189, 119, 254, 78, 119, 2, 0, 95, 252, 205, 176, 127, 187, 141, 75, 175, 63, 132, 186, 151, 189, 255, 255, 103, 134, 0, 0, 51, 131, 209, 56, 152, 61, 20, 16, 44, 64, 7, 146, 61, 62, 228, 242, 85, 91, 255, 255, 255, 191, 209, 56, 152, 61, 20, 16, 44, 64, 7, 146, 61, 62, 9, 248, 111, 108, 255, 255, 255, 191, 62, 126, 126, 61, 171, 123, 46, 64, 186, 240, 185, 61, 228, 242, 85, 91, 255, 255, 255, 191, 62, 126, 126, 61, 171, 123, 46, 64, 186, 240, 185, 61, 9, 248, 111, 108, 255, 255, 255, 191, 106, 55, 93, 62, 71, 82, 82, 64, 7, 118, 192, 62, 104, 240, 184, 72, 255, 255, 255, 191, 106, 55, 93, 62, 71, 82, 82, 64, 7, 118, 192, 62, 228, 242, 85, 91, 255, 255, 255, 191, 241, 32, 78, 62, 211, 19, 84, 64, 62, 184, 168, 62, 104, 240, 184, 72, 255, 255, 255, 191, 241, 32, 78, 62, 211, 19, 84, 64, 62, 184, 168, 62, 228, 242, 85, 91, 255, 255, 255, 191, 71, 191, 198, 62, 61, 106, 103, 64, 244, 162, 13, 63, 130, 236, 193, 56, 255, 255, 255, 191, 71, 191, 198, 62, 61, 106, 103, 64, 244, 162, 13, 63, 104, 240, 184, 72, 255, 255, 255, 191, 41, 248, 191, 62, 202, 59, 105, 64, 23, 197, 6, 63, 130, 236, 193, 56, 255, 255, 255, 191, 41, 248, 191, 62, 202, 59, 105, 64, 23, 197, 6, 63, 104, 240, 184, 72, 255, 255, 255, 191, 56, 85, 24, 63, 245, 120, 116, 64, 188, 163, 51, 63, 130, 236, 193, 56, 255, 255, 255, 191, 158, 35, 22, 63, 195, 107, 117, 64, 189, 55, 48, 63, 130, 236, 193, 56, 255, 255, 255, 191)
+"vertex_data": PackedByteArray("aMOhOxW9TL139789esKhuxW9TL1397+9DHCAPOEGBUAkdM49DHCAPOEGBUAkdM49NL3eO/gxBUC8TvK8NL3eO/gxBUC8TvK8abp/O41Lrz+Cupc9abp/O41Lrz+Cupc9A8iYO6PlKD+QTbU9JcWYu6PlKD+QTbW9zbB/u41Lrz+Eupe9zbB/u41Lrz+Eupe90TiYPRQQLEAHkj0+0TiYPRQQLEAHkj0+Pn5+Pat7LkC68Lk9Pn5+Pat7LkC68Lk9ajddPkdSUkAHdsA+ajddPkdSUkAHdsA+8SBOPtMTVEA+uKg+8SBOPtMTVEA+uKg+R7/GPj1qZ0D0og0/R7/GPj1qZ0D0og0/Kfi/Pso7aUAXxQY/Kfi/Pso7aUAXxQY/OFUYP/V4dEC8ozM/niMWP8NrdUC9NzA///9nhgAAM4P//2eGAADL/An4b2z///+/d/5Od2ACdPwJ+G9s////v3f+TncTAnH8d/5Od0gAYfz//2eGAAAzg///Z4YAADOD//9nhgAAM4N3/k53AgBf/P//Z4YAADOD5PJVW////78J+G9s////v+TyVVv///+/CfhvbP///79o8LhI////v+TyVVv///+/aPC4SP///7/k8lVb////v4LswTj///+/aPC4SP///7+C7ME4////v2jwuEj///+/guzBOP///7+C7ME4////vw==")
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_qm3oy")
@@ -95,13 +101,14 @@ shadow_mesh = SubResource("ArrayMesh_qm3oy")
 [sub_resource type="ArrayMesh" id="ArrayMesh_b5nfg"]
 _surfaces = [{
 "aabb": AABB(-0.0816431, -0.0455459, -0.644967, 0.964287, 3.41292, 0.67046),
-"format": 4097,
+"format": 34359742465,
 "index_count": 42,
-"index_data": PackedByteArray(4, 0, 3, 0, 7, 0, 4, 0, 2, 0, 3, 0, 0, 0, 6, 0, 1, 0, 0, 0, 5, 0, 6, 0, 5, 0, 7, 0, 6, 0, 5, 0, 4, 0, 7, 0, 2, 0, 9, 0, 3, 0, 2, 0, 8, 0, 9, 0, 8, 0, 11, 0, 9, 0, 8, 0, 10, 0, 11, 0, 10, 0, 13, 0, 11, 0, 10, 0, 12, 0, 13, 0, 12, 0, 15, 0, 13, 0, 12, 0, 14, 0, 15, 0),
+"index_data": PackedByteArray("BAADAAcABAACAAMAAAAGAAEAAAAFAAYABQAHAAYABQAEAAcAAgAJAAMAAgAIAAkACAALAAkACAAKAAsACgANAAsACgAMAA0ADAAPAA0ADAAOAA8A"),
 "name": "GrassBladeMat",
 "primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 16,
-"vertex_data": PackedByteArray(124, 52, 167, 61, 97, 142, 58, 189, 206, 194, 208, 60, 128, 52, 167, 189, 97, 142, 58, 189, 144, 194, 208, 188, 52, 160, 190, 61, 145, 94, 242, 63, 188, 214, 179, 59, 116, 69, 173, 188, 42, 172, 242, 63, 185, 195, 221, 188, 62, 40, 132, 61, 62, 186, 159, 63, 147, 0, 165, 60, 182, 234, 157, 61, 201, 229, 25, 63, 6, 42, 197, 60, 186, 234, 157, 189, 201, 229, 25, 63, 232, 41, 197, 188, 66, 40, 132, 189, 62, 186, 159, 63, 147, 0, 165, 188, 200, 233, 67, 62, 106, 135, 28, 64, 0, 61, 219, 189, 121, 201, 221, 61, 198, 172, 30, 64, 133, 128, 8, 190, 72, 214, 212, 62, 58, 38, 63, 64, 134, 208, 160, 190, 108, 130, 190, 62, 125, 171, 64, 64, 247, 21, 166, 190, 116, 86, 38, 63, 93, 10, 82, 64, 34, 22, 246, 190, 92, 79, 31, 63, 108, 163, 83, 64, 22, 155, 249, 190, 235, 244, 97, 63, 69, 180, 86, 64, 32, 234, 35, 191, 86, 62, 94, 63, 32, 131, 87, 64, 142, 28, 37, 191)
+"vertex_data": PackedByteArray("fDSnPWGOOr3OwtA8gDSnvWGOOr2QwtC8NKC+PZFe8j+81rM7dEWtvCqs8j+5w928PiiEPT66nz+TAKU8tuqdPcnlGT8GKsU8uuqdvcnlGT/oKcW8QiiEvT66nz+TAKW8yOlDPmqHHEAAPdu9ecndPcasHkCFgAi+SNbUPjomP0CG0KC+bIK+Pn2rQED3Faa+dFYmP10KUkAiFva+XE8fP2yjU0AWm/m+6/RhP0W0VkAg6iO/Vj5ePyCDV0COHCW/")
 }]
 blend_shape_mode = 0
 
@@ -109,15 +116,16 @@ blend_shape_mode = 0
 resource_name = "PondEnvironment_Plane_034"
 _surfaces = [{
 "aabb": AABB(-0.0816431, -0.0455459, -0.644967, 0.964287, 3.41292, 0.67046),
-"attribute_data": PackedByteArray(0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 172, 170, 170, 62, 0, 0, 0, 0, 172, 170, 170, 62, 0, 0, 0, 0, 171, 170, 42, 63, 0, 0, 128, 63, 170, 170, 42, 63, 0, 0, 128, 63, 170, 170, 170, 62, 0, 0, 128, 63, 170, 170, 170, 62, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0),
-"format": 4119,
+"attribute_data": PackedByteArray("AAAAAAAAgD8AAIA/AACAPwAAAAAAAAAAAAAAAAAAAAAAAIA/AAAAAAAAgD8AAAAAAAAAAKyqqj4AAAAArKqqPgAAAACrqio/AACAP6qqKj8AAIA/qqqqPgAAgD+qqqo+AAAAAAAAAAAAAAAAAAAAAAAAgD8AAAAAAACAPwAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAAAAAAIA/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAIA/AAAAAAAAgD8AAAAAAAAAAAAAAAAAAIA/AAAAAA=="),
+"format": 34359742487,
 "index_count": 42,
-"index_data": PackedByteArray(6, 0, 5, 0, 10, 0, 6, 0, 3, 0, 5, 0, 0, 0, 9, 0, 1, 0, 0, 0, 8, 0, 9, 0, 8, 0, 11, 0, 9, 0, 8, 0, 7, 0, 11, 0, 2, 0, 15, 0, 4, 0, 2, 0, 13, 0, 15, 0, 12, 0, 18, 0, 14, 0, 12, 0, 16, 0, 18, 0, 17, 0, 22, 0, 19, 0, 17, 0, 20, 0, 22, 0, 21, 0, 25, 0, 23, 0, 21, 0, 24, 0, 25, 0),
+"index_data": PackedByteArray("BgAFAAoABgADAAUAAAAJAAEAAAAIAAkACAALAAkACAAHAAsAAgAPAAQAAgANAA8ADAASAA4ADAAQABIAEQAWABMAEQAUABYAFQAZABcAFQAYABkA"),
 "material": ExtResource("1_50wr4"),
 "name": "GrassBladeMat",
 "primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 26,
-"vertex_data": PackedByteArray(124, 52, 167, 61, 97, 142, 58, 189, 206, 194, 208, 60, 255, 255, 139, 225, 0, 0, 197, 176, 128, 52, 167, 189, 97, 142, 58, 189, 144, 194, 208, 188, 255, 255, 139, 225, 0, 0, 57, 207, 52, 160, 190, 61, 145, 94, 242, 63, 188, 214, 179, 59, 45, 235, 178, 21, 255, 255, 255, 191, 52, 160, 190, 61, 145, 94, 242, 63, 188, 214, 179, 59, 203, 252, 187, 28, 249, 1, 132, 207, 116, 69, 173, 188, 42, 172, 242, 63, 185, 195, 221, 188, 45, 235, 178, 21, 255, 255, 255, 191, 116, 69, 173, 188, 42, 172, 242, 63, 185, 195, 221, 188, 203, 252, 187, 28, 186, 1, 107, 207, 62, 40, 132, 61, 62, 186, 159, 63, 147, 0, 165, 60, 203, 252, 187, 28, 66, 0, 213, 206, 62, 40, 132, 61, 62, 186, 159, 63, 147, 0, 165, 60, 255, 255, 139, 225, 0, 0, 197, 176, 182, 234, 157, 61, 201, 229, 25, 63, 6, 42, 197, 60, 255, 255, 139, 225, 0, 0, 197, 176, 186, 234, 157, 189, 201, 229, 25, 63, 232, 41, 197, 188, 255, 255, 139, 225, 0, 0, 197, 176, 66, 40, 132, 189, 62, 186, 159, 63, 147, 0, 165, 188, 203, 252, 187, 28, 9, 0, 191, 206, 66, 40, 132, 189, 62, 186, 159, 63, 147, 0, 165, 188, 255, 255, 139, 225, 0, 0, 197, 176, 200, 233, 67, 62, 106, 135, 28, 64, 0, 61, 219, 189, 208, 220, 111, 8, 255, 255, 255, 191, 200, 233, 67, 62, 106, 135, 28, 64, 0, 61, 219, 189, 45, 235, 178, 21, 255, 255, 255, 191, 121, 201, 221, 61, 198, 172, 30, 64, 133, 128, 8, 190, 208, 220, 111, 8, 255, 255, 255, 191, 121, 201, 221, 61, 198, 172, 30, 64, 133, 128, 8, 190, 45, 235, 178, 21, 255, 255, 255, 191, 72, 214, 212, 62, 58, 38, 63, 64, 134, 208, 160, 190, 208, 220, 111, 8, 255, 255, 255, 191, 72, 214, 212, 62, 58, 38, 63, 64, 134, 208, 160, 190, 86, 39, 82, 7, 255, 255, 255, 191, 108, 130, 190, 62, 125, 171, 64, 64, 247, 21, 166, 190, 208, 220, 111, 8, 255, 255, 255, 191, 108, 130, 190, 62, 125, 171, 64, 64, 247, 21, 166, 190, 86, 39, 82, 7, 255, 255, 255, 191, 116, 86, 38, 63, 93, 10, 82, 64, 34, 22, 246, 190, 86, 39, 82, 7, 255, 255, 255, 191, 116, 86, 38, 63, 93, 10, 82, 64, 34, 22, 246, 190, 166, 45, 41, 25, 255, 255, 255, 191, 92, 79, 31, 63, 108, 163, 83, 64, 22, 155, 249, 190, 86, 39, 82, 7, 255, 255, 255, 191, 92, 79, 31, 63, 108, 163, 83, 64, 22, 155, 249, 190, 166, 45, 41, 25, 255, 255, 255, 191, 235, 244, 97, 63, 69, 180, 86, 64, 32, 234, 35, 191, 166, 45, 41, 25, 255, 255, 255, 191, 86, 62, 94, 63, 32, 131, 87, 64, 142, 28, 37, 191, 166, 45, 41, 25, 255, 255, 255, 191)
+"vertex_data": PackedByteArray("fDSnPWGOOr3OwtA8gDSnvWGOOr2QwtC8NKC+PZFe8j+81rM7NKC+PZFe8j+81rM7dEWtvCqs8j+5w928dEWtvCqs8j+5w928PiiEPT66nz+TAKU8PiiEPT66nz+TAKU8tuqdPcnlGT8GKsU8uuqdvcnlGT/oKcW8QiiEvT66nz+TAKW8QiiEvT66nz+TAKW8yOlDPmqHHEAAPdu9yOlDPmqHHEAAPdu9ecndPcasHkCFgAi+ecndPcasHkCFgAi+SNbUPjomP0CG0KC+SNbUPjomP0CG0KC+bIK+Pn2rQED3Faa+bIK+Pn2rQED3Faa+dFYmP10KUkAiFva+dFYmP10KUkAiFva+XE8fP2yjU0AWm/m+XE8fP2yjU0AWm/m+6/RhP0W0VkAg6iO/Vj5ePyCDV0COHCW///+L4QAAxbD//4vhAAA5zy3rshX///+/y/y7HPkBhM8t67IV////v8v8uxy6AWvPy/y7HEIA1c7//4vhAADFsP//i+EAAMWw//+L4QAAxbDL/LscCQC/zv//i+EAAMWw0NxvCP///78t67IV////v9Dcbwj///+/LeuyFf///7/Q3G8I////v1YnUgf///+/0NxvCP///79WJ1IH////v1YnUgf///+/pi0pGf///79WJ1IH////v6YtKRn///+/pi0pGf///7+mLSkZ////vw==")
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_b5nfg")
@@ -125,13 +133,14 @@ shadow_mesh = SubResource("ArrayMesh_b5nfg")
 [sub_resource type="ArrayMesh" id="ArrayMesh_fwvtp"]
 _surfaces = [{
 "aabb": AABB(-0.133903, -0.0469515, -0.0582868, 0.205728, 3.64631, 0.863888),
-"format": 4097,
+"format": 34359742465,
 "index_count": 42,
-"index_data": PackedByteArray(4, 0, 3, 0, 7, 0, 4, 0, 2, 0, 3, 0, 0, 0, 6, 0, 1, 0, 0, 0, 5, 0, 6, 0, 5, 0, 7, 0, 6, 0, 5, 0, 4, 0, 7, 0, 2, 0, 9, 0, 3, 0, 2, 0, 8, 0, 9, 0, 8, 0, 11, 0, 9, 0, 8, 0, 10, 0, 11, 0, 10, 0, 13, 0, 11, 0, 10, 0, 12, 0, 13, 0, 12, 0, 15, 0, 13, 0, 12, 0, 14, 0, 15, 0),
+"index_data": PackedByteArray("BAADAAcABAACAAMAAAAGAAEAAAAFAAYABQAHAAYABQAEAAcAAgAJAAMAAgAIAAkACAALAAkACAAKAAsACgANAAsACgAMAA0ADAAPAA0ADAAOAA8A"),
 "name": "GrassBladeMat",
 "primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 16,
-"vertex_data": PackedByteArray(36, 162, 138, 189, 65, 80, 64, 189, 62, 99, 103, 189, 46, 162, 138, 61, 63, 80, 64, 189, 40, 99, 103, 61, 105, 113, 254, 189, 138, 81, 252, 63, 90, 178, 149, 61, 248, 173, 250, 188, 114, 74, 252, 63, 76, 23, 26, 62, 232, 168, 195, 189, 61, 231, 164, 63, 141, 114, 233, 188, 90, 239, 101, 189, 102, 159, 30, 63, 48, 190, 110, 189, 218, 24, 147, 61, 113, 178, 30, 63, 6, 223, 69, 61, 64, 240, 65, 60, 106, 92, 166, 63, 20, 71, 116, 61, 234, 29, 9, 190, 146, 209, 37, 64, 80, 46, 130, 62, 145, 201, 130, 189, 234, 204, 36, 64, 135, 242, 159, 62, 126, 110, 241, 189, 177, 85, 74, 64, 156, 174, 249, 62, 102, 217, 156, 189, 167, 42, 74, 64, 178, 62, 6, 63, 132, 38, 225, 189, 5, 196, 90, 64, 86, 108, 37, 63, 212, 132, 167, 189, 64, 175, 89, 64, 182, 20, 44, 63, 228, 38, 247, 189, 228, 91, 102, 64, 87, 232, 74, 63, 204, 236, 219, 189, 190, 212, 101, 64, 224, 59, 78, 63)
+"vertex_data": PackedByteArray("JKKKvUFQQL0+Y2e9LqKKPT9QQL0oY2c9aXH+vYpR/D9aspU9+K36vHJK/D9MFxo+6KjDvT3npD+Ncum8Wu9lvWafHj8wvm692hiTPXGyHj8G30U9QPBBPGpcpj8UR3Q96h0JvpLRJUBQLoI+kcmCverMJECH8p8+fm7xvbFVSkCcrvk+ZtmcvacqSkCyPgY/hCbhvQXEWkBWbCU/1ISnvUCvWUC2FCw/5Cb3veRbZkBX6Eo/zOzbvb7UZUDgO04/")
 }]
 blend_shape_mode = 0
 
@@ -139,15 +148,16 @@ blend_shape_mode = 0
 resource_name = "PondEnvironment_Plane_035"
 _surfaces = [{
 "aabb": AABB(-0.133903, -0.0469515, -0.0582868, 0.205728, 3.64631, 0.863888),
-"attribute_data": PackedByteArray(0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 172, 170, 170, 62, 0, 0, 0, 0, 172, 170, 170, 62, 0, 0, 0, 0, 171, 170, 42, 63, 0, 0, 0, 0, 171, 170, 42, 63, 0, 0, 128, 63, 170, 170, 42, 63, 0, 0, 128, 63, 170, 170, 42, 63, 0, 0, 128, 63, 170, 170, 170, 62, 0, 0, 128, 63, 170, 170, 170, 62, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0),
-"format": 4119,
+"attribute_data": PackedByteArray("AAAAAAAAgD8AAIA/AACAPwAAAAAAAAAAAAAAAAAAAAAAAIA/AAAAAAAAgD8AAAAAAAAAAKyqqj4AAAAArKqqPgAAAACrqio/AAAAAKuqKj8AAIA/qqoqPwAAgD+qqio/AACAP6qqqj4AAIA/qqqqPgAAAAAAAAAAAAAAAAAAAAAAAIA/AAAAAAAAgD8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAgD8AAAAAAACAPwAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAAAAAAIA/AAAAAAAAAAAAAAAAAACAPwAAAAA="),
+"format": 34359742487,
 "index_count": 42,
-"index_data": PackedByteArray(6, 0, 4, 0, 12, 0, 6, 0, 2, 0, 4, 0, 0, 0, 11, 0, 1, 0, 0, 0, 9, 0, 11, 0, 8, 0, 13, 0, 10, 0, 8, 0, 7, 0, 13, 0, 3, 0, 16, 0, 5, 0, 3, 0, 14, 0, 16, 0, 15, 0, 20, 0, 17, 0, 15, 0, 18, 0, 20, 0, 19, 0, 24, 0, 21, 0, 19, 0, 22, 0, 24, 0, 23, 0, 27, 0, 25, 0, 23, 0, 26, 0, 27, 0),
+"index_data": PackedByteArray("BgAEAAwABgACAAQAAAALAAEAAAAJAAsACAANAAoACAAHAA0AAwAQAAUAAwAOABAADwAUABEADwASABQAEwAYABUAEwAWABgAFwAbABkAFwAaABsA"),
 "material": ExtResource("1_50wr4"),
 "name": "GrassBladeMat",
 "primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 28,
-"vertex_data": PackedByteArray(36, 162, 138, 189, 65, 80, 64, 189, 62, 99, 103, 189, 88, 70, 50, 129, 201, 197, 2, 192, 46, 162, 138, 61, 63, 80, 64, 189, 40, 99, 103, 61, 88, 70, 50, 129, 204, 197, 255, 191, 105, 113, 254, 189, 138, 81, 252, 63, 90, 178, 149, 61, 231, 75, 41, 116, 145, 198, 247, 191, 105, 113, 254, 189, 138, 81, 252, 63, 90, 178, 149, 61, 84, 77, 173, 109, 255, 255, 255, 63, 248, 173, 250, 188, 114, 74, 252, 63, 76, 23, 26, 62, 231, 75, 41, 116, 3, 198, 112, 192, 248, 173, 250, 188, 114, 74, 252, 63, 76, 23, 26, 62, 84, 77, 173, 109, 255, 255, 255, 63, 232, 168, 195, 189, 61, 231, 164, 63, 141, 114, 233, 188, 231, 75, 41, 116, 146, 194, 18, 195, 232, 168, 195, 189, 61, 231, 164, 63, 141, 114, 233, 188, 246, 72, 231, 121, 5, 194, 127, 195, 90, 239, 101, 189, 102, 159, 30, 63, 48, 190, 110, 189, 246, 72, 231, 121, 140, 197, 140, 192, 90, 239, 101, 189, 102, 159, 30, 63, 48, 190, 110, 189, 88, 70, 50, 129, 183, 197, 19, 192, 218, 24, 147, 61, 113, 178, 30, 63, 6, 223, 69, 61, 246, 72, 231, 121, 23, 198, 24, 192, 218, 24, 147, 61, 113, 178, 30, 63, 6, 223, 69, 61, 88, 70, 50, 129, 186, 197, 16, 192, 64, 240, 65, 60, 106, 92, 166, 63, 20, 71, 116, 61, 231, 75, 41, 116, 11, 194, 122, 195, 64, 240, 65, 60, 106, 92, 166, 63, 20, 71, 116, 61, 246, 72, 231, 121, 161, 194, 252, 194, 234, 29, 9, 190, 146, 209, 37, 64, 80, 46, 130, 62, 84, 77, 173, 109, 255, 255, 255, 63, 234, 29, 9, 190, 146, 209, 37, 64, 80, 46, 130, 62, 1, 77, 170, 106, 255, 255, 255, 63, 145, 201, 130, 189, 234, 204, 36, 64, 135, 242, 159, 62, 84, 77, 173, 109, 255, 255, 255, 63, 145, 201, 130, 189, 234, 204, 36, 64, 135, 242, 159, 62, 1, 77, 170, 106, 255, 255, 255, 63, 126, 110, 241, 189, 177, 85, 74, 64, 156, 174, 249, 62, 1, 77, 170, 106, 255, 255, 255, 63, 126, 110, 241, 189, 177, 85, 74, 64, 156, 174, 249, 62, 186, 76, 254, 98, 255, 255, 255, 63, 102, 217, 156, 189, 167, 42, 74, 64, 178, 62, 6, 63, 1, 77, 170, 106, 255, 255, 255, 63, 102, 217, 156, 189, 167, 42, 74, 64, 178, 62, 6, 63, 186, 76, 254, 98, 255, 255, 255, 63, 132, 38, 225, 189, 5, 196, 90, 64, 86, 108, 37, 63, 186, 76, 254, 98, 255, 255, 255, 63, 132, 38, 225, 189, 5, 196, 90, 64, 86, 108, 37, 63, 204, 71, 252, 93, 255, 255, 255, 63, 212, 132, 167, 189, 64, 175, 89, 64, 182, 20, 44, 63, 186, 76, 254, 98, 255, 255, 255, 63, 212, 132, 167, 189, 64, 175, 89, 64, 182, 20, 44, 63, 204, 71, 252, 93, 255, 255, 255, 63, 228, 38, 247, 189, 228, 91, 102, 64, 87, 232, 74, 63, 204, 71, 252, 93, 255, 255, 255, 63, 204, 236, 219, 189, 190, 212, 101, 64, 224, 59, 78, 63, 204, 71, 252, 93, 255, 255, 255, 63)
+"vertex_data": PackedByteArray("JKKKvUFQQL0+Y2e9LqKKPT9QQL0oY2c9aXH+vYpR/D9aspU9aXH+vYpR/D9aspU9+K36vHJK/D9MFxo++K36vHJK/D9MFxo+6KjDvT3npD+Ncum86KjDvT3npD+Ncum8Wu9lvWafHj8wvm69Wu9lvWafHj8wvm692hiTPXGyHj8G30U92hiTPXGyHj8G30U9QPBBPGpcpj8UR3Q9QPBBPGpcpj8UR3Q96h0JvpLRJUBQLoI+6h0JvpLRJUBQLoI+kcmCverMJECH8p8+kcmCverMJECH8p8+fm7xvbFVSkCcrvk+fm7xvbFVSkCcrvk+ZtmcvacqSkCyPgY/ZtmcvacqSkCyPgY/hCbhvQXEWkBWbCU/hCbhvQXEWkBWbCU/1ISnvUCvWUC2FCw/1ISnvUCvWUC2FCw/5Cb3veRbZkBX6Eo/zOzbvb7UZUDgO04/WEYygcnFAsBYRjKBzMX/v+dLKXSRxve/VE2tbf///z/nSyl0A8ZwwFRNrW3///8/50spdJLCEsP2SOd5BcJ/w/ZI53mMxYzAWEYygbfFE8D2SOd5F8YYwFhGMoG6xRDA50spdAvCesP2SOd5ocL8wlRNrW3///8/AU2qav///z9UTa1t////PwFNqmr///8/AU2qav///z+6TP5i////PwFNqmr///8/ukz+Yv///z+6TP5i////P8xH/F3///8/ukz+Yv///z/MR/xd////P8xH/F3///8/zEf8Xf///z8=")
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_fwvtp")
@@ -155,13 +165,14 @@ shadow_mesh = SubResource("ArrayMesh_fwvtp")
 [sub_resource type="ArrayMesh" id="ArrayMesh_n1tpi"]
 _surfaces = [{
 "aabb": AABB(-0.114172, -0.0520375, -0.308136, 0.21189, 4.19476, 0.308113),
-"format": 4097,
+"format": 34359742465,
 "index_count": 42,
-"index_data": PackedByteArray(4, 0, 3, 0, 7, 0, 4, 0, 2, 0, 3, 0, 0, 0, 6, 0, 1, 0, 0, 0, 5, 0, 6, 0, 5, 0, 7, 0, 6, 0, 5, 0, 4, 0, 7, 0, 2, 0, 9, 0, 3, 0, 2, 0, 8, 0, 9, 0, 8, 0, 11, 0, 9, 0, 8, 0, 10, 0, 11, 0, 10, 0, 13, 0, 11, 0, 10, 0, 12, 0, 13, 0, 12, 0, 15, 0, 13, 0, 12, 0, 14, 0, 15, 0),
+"index_data": PackedByteArray("BAADAAcABAACAAMAAAAGAAEAAAAFAAYABQAHAAYABQAEAAcAAgAJAAMAAgAIAAkACAALAAkACAAKAAsACgANAAsACgAMAA0ADAAPAA0ADAAOAA8A"),
 "name": "GrassBladeMat",
 "primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 16,
-"vertex_data": PackedByteArray(78, 32, 200, 189, 70, 37, 85, 189, 168, 57, 10, 184, 78, 32, 200, 61, 70, 37, 85, 189, 168, 57, 10, 184, 218, 163, 195, 189, 171, 21, 9, 64, 156, 59, 153, 190, 243, 205, 30, 61, 242, 1, 9, 64, 146, 172, 151, 190, 191, 198, 158, 189, 11, 119, 182, 63, 245, 206, 115, 190, 98, 2, 189, 189, 17, 213, 47, 63, 199, 132, 1, 190, 98, 2, 189, 61, 17, 213, 47, 63, 185, 132, 1, 190, 80, 148, 157, 61, 183, 118, 182, 63, 96, 210, 115, 190, 32, 211, 233, 189, 149, 23, 49, 64, 6, 196, 157, 190, 218, 244, 20, 188, 65, 221, 48, 64, 50, 151, 153, 190, 185, 161, 186, 189, 49, 216, 95, 64, 57, 139, 100, 190, 37, 29, 209, 188, 239, 113, 95, 64, 152, 205, 88, 190, 5, 85, 88, 189, 10, 220, 119, 64, 30, 54, 37, 190, 115, 160, 8, 188, 104, 113, 119, 64, 128, 115, 26, 190, 194, 51, 47, 188, 41, 145, 132, 64, 194, 144, 129, 189, 194, 51, 47, 60, 209, 110, 132, 64, 210, 104, 107, 189)
+"vertex_data": PackedByteArray("TiDIvUYlVb2oOQq4TiDIPUYlVb2oOQq42qPDvasVCUCcO5m+880ePfIBCUCSrJe+v8aevQt3tj/1znO+YgK9vRHVLz/HhAG+YgK9PRHVLz+5hAG+UJSdPbd2tj9g0nO+INPpvZUXMUAGxJ2+2vQUvEHdMEAyl5m+uaG6vTHYX0A5i2S+JR3RvO9xX0CYzVi+BVVYvQrcd0AeNiW+c6AIvGhxd0CAcxq+wjMvvCmRhEDCkIG9wjMvPNFuhEDSaGu9")
 }]
 blend_shape_mode = 0
 
@@ -169,15 +180,16 @@ blend_shape_mode = 0
 resource_name = "PondEnvironment_Plane_036"
 _surfaces = [{
 "aabb": AABB(-0.114172, -0.0520375, -0.308136, 0.21189, 4.19476, 0.308113),
-"attribute_data": PackedByteArray(0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 172, 170, 170, 62, 0, 0, 0, 0, 172, 170, 170, 62, 0, 0, 0, 0, 171, 170, 42, 63, 0, 0, 0, 0, 171, 170, 42, 63, 0, 0, 128, 63, 170, 170, 42, 63, 0, 0, 128, 63, 170, 170, 42, 63, 0, 0, 128, 63, 170, 170, 170, 62, 0, 0, 128, 63, 170, 170, 170, 62, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0),
-"format": 4119,
+"attribute_data": PackedByteArray("AAAAAAAAgD8AAIA/AACAPwAAAAAAAAAAAAAAAAAAAAAAAIA/AAAAAAAAgD8AAAAAAAAAAKyqqj4AAAAArKqqPgAAAACrqio/AAAAAKuqKj8AAIA/qqoqPwAAgD+qqio/AACAP6qqqj4AAIA/qqqqPgAAAAAAAAAAAAAAAAAAAAAAAIA/AAAAAAAAgD8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAgD8AAAAAAACAPwAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAAAAAAIA/AAAAAAAAAAAAAAAAAACAPwAAAAA="),
+"format": 34359742487,
 "index_count": 42,
-"index_data": PackedByteArray(7, 0, 4, 0, 13, 0, 7, 0, 2, 0, 4, 0, 0, 0, 11, 0, 1, 0, 0, 0, 9, 0, 11, 0, 8, 0, 12, 0, 10, 0, 8, 0, 6, 0, 12, 0, 3, 0, 16, 0, 5, 0, 3, 0, 14, 0, 16, 0, 15, 0, 20, 0, 17, 0, 15, 0, 18, 0, 20, 0, 19, 0, 24, 0, 21, 0, 19, 0, 22, 0, 24, 0, 23, 0, 27, 0, 25, 0, 23, 0, 26, 0, 27, 0),
+"index_data": PackedByteArray("BwAEAA0ABwACAAQAAAALAAEAAAAJAAsACAAMAAoACAAGAAwAAwAQAAUAAwAOABAADwAUABEADwASABQAEwAYABUAEwAWABgAFwAbABkAFwAaABsA"),
 "material": ExtResource("1_50wr4"),
 "name": "GrassBladeMat",
 "primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 28,
-"vertex_data": PackedByteArray(78, 32, 200, 189, 70, 37, 85, 189, 168, 57, 10, 184, 255, 127, 180, 146, 254, 255, 255, 191, 78, 32, 200, 61, 70, 37, 85, 189, 168, 57, 10, 184, 255, 127, 180, 146, 255, 255, 255, 191, 218, 163, 195, 189, 171, 21, 9, 64, 156, 59, 153, 190, 207, 126, 183, 137, 96, 253, 95, 191, 218, 163, 195, 189, 171, 21, 9, 64, 156, 59, 153, 190, 85, 122, 235, 128, 255, 255, 255, 63, 243, 205, 30, 61, 242, 1, 9, 64, 146, 172, 151, 190, 207, 126, 183, 137, 144, 253, 118, 191, 243, 205, 30, 61, 242, 1, 9, 64, 146, 172, 151, 190, 85, 122, 235, 128, 255, 255, 255, 63, 191, 198, 158, 189, 11, 119, 182, 63, 245, 206, 115, 190, 255, 127, 204, 144, 253, 255, 254, 191, 191, 198, 158, 189, 11, 119, 182, 63, 245, 206, 115, 190, 207, 126, 183, 137, 165, 254, 247, 191, 98, 2, 189, 189, 17, 213, 47, 63, 199, 132, 1, 190, 255, 127, 204, 144, 254, 255, 255, 191, 98, 2, 189, 189, 17, 213, 47, 63, 199, 132, 1, 190, 255, 127, 180, 146, 254, 255, 255, 191, 98, 2, 189, 61, 17, 213, 47, 63, 185, 132, 1, 190, 255, 127, 204, 144, 254, 255, 255, 191, 98, 2, 189, 61, 17, 213, 47, 63, 185, 132, 1, 190, 255, 127, 180, 146, 254, 255, 255, 191, 80, 148, 157, 61, 183, 118, 182, 63, 96, 210, 115, 190, 255, 127, 204, 144, 253, 255, 254, 191, 80, 148, 157, 61, 183, 118, 182, 63, 96, 210, 115, 190, 207, 126, 183, 137, 159, 254, 11, 192, 32, 211, 233, 189, 149, 23, 49, 64, 6, 196, 157, 190, 85, 122, 235, 128, 255, 255, 255, 63, 32, 211, 233, 189, 149, 23, 49, 64, 6, 196, 157, 190, 111, 115, 202, 115, 255, 255, 255, 63, 218, 244, 20, 188, 65, 221, 48, 64, 50, 151, 153, 190, 85, 122, 235, 128, 255, 255, 255, 63, 218, 244, 20, 188, 65, 221, 48, 64, 50, 151, 153, 190, 111, 115, 202, 115, 255, 255, 255, 63, 185, 161, 186, 189, 49, 216, 95, 64, 57, 139, 100, 190, 111, 115, 202, 115, 255, 255, 255, 63, 185, 161, 186, 189, 49, 216, 95, 64, 57, 139, 100, 190, 170, 107, 40, 114, 255, 255, 255, 63, 37, 29, 209, 188, 239, 113, 95, 64, 152, 205, 88, 190, 111, 115, 202, 115, 255, 255, 255, 63, 37, 29, 209, 188, 239, 113, 95, 64, 152, 205, 88, 190, 170, 107, 40, 114, 255, 255, 255, 63, 5, 85, 88, 189, 10, 220, 119, 64, 30, 54, 37, 190, 170, 107, 40, 114, 255, 255, 255, 63, 5, 85, 88, 189, 10, 220, 119, 64, 30, 54, 37, 190, 84, 104, 191, 102, 255, 255, 255, 63, 115, 160, 8, 188, 104, 113, 119, 64, 128, 115, 26, 190, 170, 107, 40, 114, 255, 255, 255, 63, 115, 160, 8, 188, 104, 113, 119, 64, 128, 115, 26, 190, 84, 104, 191, 102, 255, 255, 255, 63, 194, 51, 47, 188, 41, 145, 132, 64, 194, 144, 129, 189, 84, 104, 191, 102, 255, 255, 255, 63, 194, 51, 47, 60, 209, 110, 132, 64, 210, 104, 107, 189, 84, 104, 191, 102, 255, 255, 255, 63)
+"vertex_data": PackedByteArray("TiDIvUYlVb2oOQq4TiDIPUYlVb2oOQq42qPDvasVCUCcO5m+2qPDvasVCUCcO5m+880ePfIBCUCSrJe+880ePfIBCUCSrJe+v8aevQt3tj/1znO+v8aevQt3tj/1znO+YgK9vRHVLz/HhAG+YgK9vRHVLz/HhAG+YgK9PRHVLz+5hAG+YgK9PRHVLz+5hAG+UJSdPbd2tj9g0nO+UJSdPbd2tj9g0nO+INPpvZUXMUAGxJ2+INPpvZUXMUAGxJ2+2vQUvEHdMEAyl5m+2vQUvEHdMEAyl5m+uaG6vTHYX0A5i2S+uaG6vTHYX0A5i2S+JR3RvO9xX0CYzVi+JR3RvO9xX0CYzVi+BVVYvQrcd0AeNiW+BVVYvQrcd0AeNiW+c6AIvGhxd0CAcxq+c6AIvGhxd0CAcxq+wjMvvCmRhEDCkIG9wjMvPNFuhEDSaGu9/3+0kv7//7//f7SS////v89+t4lg/V+/VXrrgP///z/PfreJkP12v1V664D///8//3/MkP3//r/PfreJpf73v/9/zJD+//+//3+0kv7//7//f8yQ/v//v/9/tJL+//+//3/MkP3//r/PfreJn/4LwFV664D///8/b3PKc////z9VeuuA////P29zynP///8/b3PKc////z+qayhy////P29zynP///8/qmsocv///z+qayhy////P1Rov2b///8/qmsocv///z9UaL9m////P1Rov2b///8/VGi/Zv///z8=")
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_n1tpi")
@@ -185,13 +197,14 @@ shadow_mesh = SubResource("ArrayMesh_n1tpi")
 [sub_resource type="ArrayMesh" id="ArrayMesh_m2nyv"]
 _surfaces = [{
 "aabb": AABB(-0.167069, -0.0524881, -0.117916, 0.287573, 4.23185, 0.161906),
-"format": 4097,
+"format": 34359742465,
 "index_count": 42,
-"index_data": PackedByteArray(4, 0, 3, 0, 7, 0, 4, 0, 2, 0, 3, 0, 0, 0, 6, 0, 1, 0, 0, 0, 5, 0, 6, 0, 5, 0, 7, 0, 6, 0, 5, 0, 4, 0, 7, 0, 2, 0, 9, 0, 3, 0, 2, 0, 8, 0, 9, 0, 8, 0, 11, 0, 9, 0, 8, 0, 10, 0, 11, 0, 10, 0, 13, 0, 11, 0, 10, 0, 12, 0, 13, 0, 12, 0, 15, 0, 13, 0, 12, 0, 14, 0, 15, 0),
+"index_data": PackedByteArray("BAADAAcABAACAAMAAAAGAAEAAAAFAAYABQAHAAYABQAEAAcAAgAJAAMAAgAIAAkACAALAAkACAAKAAsACgANAAsACgAMAA0ADAAPAA0ADAAOAA8A"),
 "name": "GrassBladeMat",
 "primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 16,
-"vertex_data": PackedByteArray(154, 189, 201, 189, 199, 253, 86, 189, 123, 107, 7, 187, 136, 255, 201, 61, 213, 244, 86, 189, 68, 39, 4, 187, 82, 245, 122, 188, 254, 86, 11, 64, 133, 215, 189, 189, 5, 203, 246, 61, 185, 89, 11, 64, 240, 184, 187, 189, 91, 38, 86, 189, 100, 145, 185, 63, 174, 244, 20, 188, 38, 116, 177, 189, 147, 166, 50, 63, 125, 151, 46, 61, 42, 216, 203, 61, 25, 192, 50, 63, 176, 47, 52, 61, 41, 162, 206, 61, 249, 152, 182, 63, 62, 246, 150, 187, 164, 203, 117, 189, 59, 207, 51, 64, 27, 218, 238, 189, 155, 57, 67, 61, 69, 156, 51, 64, 26, 252, 236, 189, 180, 159, 27, 190, 62, 204, 96, 64, 178, 125, 241, 189, 241, 128, 172, 189, 29, 81, 96, 64, 49, 60, 238, 189, 20, 20, 43, 190, 108, 227, 120, 64, 152, 26, 133, 189, 229, 39, 248, 189, 253, 93, 120, 64, 131, 239, 129, 189, 43, 201, 23, 190, 84, 189, 133, 64, 41, 44, 161, 60, 250, 44, 1, 190, 148, 145, 133, 64, 178, 42, 168, 60)
+"vertex_data": PackedByteArray("mr3Jvcf9Vr17awe7iP/JPdX0Vr1EJwS7UvV6vP5WC0CF1729Bcv2PblZC0DwuLu9WyZWvWSRuT+u9BS8JnSxvZOmMj99ly49KtjLPRnAMj+wLzQ9KaLOPfmYtj8+9pa7pMt1vTvPM0Ab2u69mzlDPUWcM0Aa/Oy9tJ8bvj7MYECyffG98YCsvR1RYEAxPO69FBQrvmzjeECYGoW95Sf4vf1deECD74G9K8kXvlS9hUApLKE8+iwBvpSRhUCyKqg8")
 }]
 blend_shape_mode = 0
 
@@ -199,15 +212,16 @@ blend_shape_mode = 0
 resource_name = "PondEnvironment_Plane_037"
 _surfaces = [{
 "aabb": AABB(-0.167069, -0.0524881, -0.117916, 0.287573, 4.23185, 0.161906),
-"attribute_data": PackedByteArray(0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 172, 170, 170, 62, 0, 0, 0, 0, 172, 170, 170, 62, 0, 0, 0, 0, 171, 170, 42, 63, 0, 0, 0, 0, 171, 170, 42, 63, 0, 0, 128, 63, 170, 170, 42, 63, 0, 0, 128, 63, 170, 170, 42, 63, 0, 0, 128, 63, 170, 170, 170, 62, 0, 0, 128, 63, 170, 170, 170, 62, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0),
-"format": 4119,
+"attribute_data": PackedByteArray("AAAAAAAAgD8AAIA/AACAPwAAAAAAAAAAAAAAAAAAAAAAAIA/AAAAAAAAgD8AAAAAAAAAAKyqqj4AAAAArKqqPgAAAACrqio/AAAAAKuqKj8AAIA/qqoqPwAAgD+qqio/AACAP6qqqj4AAIA/qqqqPgAAAAAAAAAAAAAAAAAAAAAAAIA/AAAAAAAAgD8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAgD8AAAAAAACAPwAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAAAAAAIA/AAAAAAAAAAAAAAAAAACAPwAAAAA="),
+"format": 34359742487,
 "index_count": 42,
-"index_data": PackedByteArray(6, 0, 5, 0, 12, 0, 6, 0, 3, 0, 5, 0, 0, 0, 10, 0, 1, 0, 0, 0, 8, 0, 10, 0, 9, 0, 13, 0, 11, 0, 9, 0, 7, 0, 13, 0, 2, 0, 16, 0, 4, 0, 2, 0, 14, 0, 16, 0, 15, 0, 20, 0, 17, 0, 15, 0, 18, 0, 20, 0, 19, 0, 24, 0, 21, 0, 19, 0, 22, 0, 24, 0, 23, 0, 27, 0, 25, 0, 23, 0, 26, 0, 27, 0),
+"index_data": PackedByteArray("BgAFAAwABgADAAUAAAAKAAEAAAAIAAoACQANAAsACQAHAA0AAgAQAAQAAgAOABAADwAUABEADwASABQAEwAYABUAEwAWABgAFwAbABkAFwAaABsA"),
 "material": ExtResource("1_50wr4"),
 "name": "GrassBladeMat",
 "primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 28,
-"vertex_data": PackedByteArray(154, 189, 201, 189, 199, 253, 86, 189, 123, 107, 7, 187, 144, 127, 187, 120, 129, 255, 2, 192, 136, 255, 201, 61, 213, 244, 86, 189, 68, 39, 4, 187, 144, 127, 187, 120, 132, 255, 252, 191, 82, 245, 122, 188, 254, 86, 11, 64, 133, 215, 189, 189, 20, 127, 146, 132, 255, 255, 255, 63, 82, 245, 122, 188, 254, 86, 11, 64, 133, 215, 189, 189, 224, 126, 44, 141, 149, 254, 23, 192, 5, 203, 246, 61, 185, 89, 11, 64, 240, 184, 187, 189, 20, 127, 146, 132, 255, 255, 255, 63, 5, 203, 246, 61, 185, 89, 11, 64, 240, 184, 187, 189, 224, 126, 44, 141, 44, 252, 213, 190, 91, 38, 86, 189, 100, 145, 185, 63, 174, 244, 20, 188, 224, 126, 44, 141, 76, 238, 142, 184, 91, 38, 86, 189, 100, 145, 185, 63, 174, 244, 20, 188, 128, 126, 15, 136, 241, 236, 184, 183, 38, 116, 177, 189, 147, 166, 50, 63, 125, 151, 46, 61, 144, 127, 187, 120, 57, 255, 36, 192, 38, 116, 177, 189, 147, 166, 50, 63, 125, 151, 46, 61, 128, 126, 15, 136, 4, 252, 222, 190, 42, 216, 203, 61, 25, 192, 50, 63, 176, 47, 52, 61, 144, 127, 187, 120, 71, 255, 30, 192, 42, 216, 203, 61, 25, 192, 50, 63, 176, 47, 52, 61, 128, 126, 15, 136, 29, 254, 38, 192, 41, 162, 206, 61, 249, 152, 182, 63, 62, 246, 150, 187, 224, 126, 44, 141, 140, 236, 195, 183, 41, 162, 206, 61, 249, 152, 182, 63, 62, 246, 150, 187, 128, 126, 15, 136, 58, 239, 206, 184, 164, 203, 117, 189, 59, 207, 51, 64, 27, 218, 238, 189, 20, 127, 146, 132, 255, 255, 255, 63, 164, 203, 117, 189, 59, 207, 51, 64, 27, 218, 238, 189, 49, 126, 226, 127, 255, 255, 255, 63, 155, 57, 67, 61, 69, 156, 51, 64, 26, 252, 236, 189, 20, 127, 146, 132, 255, 255, 255, 63, 155, 57, 67, 61, 69, 156, 51, 64, 26, 252, 236, 189, 49, 126, 226, 127, 255, 255, 255, 63, 180, 159, 27, 190, 62, 204, 96, 64, 178, 125, 241, 189, 49, 126, 226, 127, 255, 255, 255, 63, 180, 159, 27, 190, 62, 204, 96, 64, 178, 125, 241, 189, 230, 122, 136, 112, 255, 255, 255, 63, 241, 128, 172, 189, 29, 81, 96, 64, 49, 60, 238, 189, 49, 126, 226, 127, 255, 255, 255, 63, 241, 128, 172, 189, 29, 81, 96, 64, 49, 60, 238, 189, 230, 122, 136, 112, 255, 255, 255, 63, 20, 20, 43, 190, 108, 227, 120, 64, 152, 26, 133, 189, 230, 122, 136, 112, 255, 255, 255, 63, 20, 20, 43, 190, 108, 227, 120, 64, 152, 26, 133, 189, 112, 119, 98, 101, 255, 255, 255, 63, 229, 39, 248, 189, 253, 93, 120, 64, 131, 239, 129, 189, 230, 122, 136, 112, 255, 255, 255, 63, 229, 39, 248, 189, 253, 93, 120, 64, 131, 239, 129, 189, 112, 119, 98, 101, 255, 255, 255, 63, 43, 201, 23, 190, 84, 189, 133, 64, 41, 44, 161, 60, 112, 119, 98, 101, 255, 255, 255, 63, 250, 44, 1, 190, 148, 145, 133, 64, 178, 42, 168, 60, 112, 119, 98, 101, 255, 255, 255, 63)
+"vertex_data": PackedByteArray("mr3Jvcf9Vr17awe7iP/JPdX0Vr1EJwS7UvV6vP5WC0CF1729UvV6vP5WC0CF1729Bcv2PblZC0DwuLu9Bcv2PblZC0DwuLu9WyZWvWSRuT+u9BS8WyZWvWSRuT+u9BS8JnSxvZOmMj99ly49JnSxvZOmMj99ly49KtjLPRnAMj+wLzQ9KtjLPRnAMj+wLzQ9KaLOPfmYtj8+9pa7KaLOPfmYtj8+9pa7pMt1vTvPM0Ab2u69pMt1vTvPM0Ab2u69mzlDPUWcM0Aa/Oy9mzlDPUWcM0Aa/Oy9tJ8bvj7MYECyffG9tJ8bvj7MYECyffG98YCsvR1RYEAxPO698YCsvR1RYEAxPO69FBQrvmzjeECYGoW9FBQrvmzjeECYGoW95Sf4vf1deECD74G95Sf4vf1deECD74G9K8kXvlS9hUApLKE8+iwBvpSRhUCyKqg8kH+7eIH/AsCQf7t4hP/8vxR/koT///8/4H4sjZX+F8AUf5KE////P+B+LI0s/NW+4H4sjUzujriAfg+I8ey4t5B/u3g5/yTAgH4PiAT83r6Qf7t4R/8ewIB+D4gd/ibA4H4sjYzsw7eAfg+IOu/OuBR/koT///8/MX7if////z8Uf5KE////PzF+4n////8/MX7if////z/meohw////PzF+4n////8/5nqIcP///z/meohw////P3B3YmX///8/5nqIcP///z9wd2Jl////P3B3YmX///8/cHdiZf///z8=")
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_m2nyv")
@@ -215,13 +229,14 @@ shadow_mesh = SubResource("ArrayMesh_m2nyv")
 [sub_resource type="ArrayMesh" id="ArrayMesh_cdtm4"]
 _surfaces = [{
 "aabb": AABB(-0.0649323, -0.0515337, -0.22538, 0.36702, 4.15415, 0.2971),
-"format": 4097,
+"format": 34359742465,
 "index_count": 42,
-"index_data": PackedByteArray(4, 0, 3, 0, 7, 0, 4, 0, 2, 0, 3, 0, 0, 0, 6, 0, 1, 0, 0, 0, 5, 0, 6, 0, 5, 0, 7, 0, 6, 0, 5, 0, 4, 0, 7, 0, 2, 0, 9, 0, 3, 0, 2, 0, 8, 0, 9, 0, 8, 0, 11, 0, 9, 0, 8, 0, 10, 0, 11, 0, 10, 0, 13, 0, 11, 0, 10, 0, 12, 0, 13, 0, 12, 0, 15, 0, 13, 0, 12, 0, 14, 0, 15, 0),
+"index_data": PackedByteArray("BAADAAcABAACAAMAAAAGAAEAAAAFAAYABQAHAAYABQAEAAcAAgAJAAMAAgAIAAkACAALAAkACAAKAAsACgANAAsACgAMAA0ADAAPAA0ADAAOAA8A"),
 "name": "GrassBladeMat",
 "primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 16,
-"vertex_data": PackedByteArray(148, 20, 133, 61, 0, 21, 83, 189, 152, 220, 146, 61, 54, 251, 132, 189, 0, 21, 83, 189, 146, 243, 146, 189, 233, 254, 144, 62, 233, 193, 7, 64, 98, 233, 3, 190, 184, 73, 68, 62, 96, 174, 7, 64, 25, 202, 102, 190, 147, 190, 103, 62, 207, 178, 180, 63, 58, 149, 207, 189, 112, 229, 29, 62, 69, 33, 46, 63, 196, 199, 133, 188, 38, 5, 1, 61, 69, 33, 46, 63, 234, 119, 27, 190, 64, 55, 253, 61, 124, 178, 180, 63, 246, 233, 91, 190, 58, 171, 154, 62, 170, 96, 47, 64, 126, 216, 247, 189, 80, 174, 103, 62, 230, 38, 47, 64, 39, 92, 69, 190, 29, 204, 101, 62, 102, 173, 93, 64, 92, 215, 166, 189, 48, 134, 48, 62, 34, 72, 93, 64, 96, 219, 249, 189, 59, 58, 29, 62, 186, 117, 117, 64, 239, 61, 140, 189, 182, 27, 238, 61, 33, 12, 117, 64, 32, 205, 192, 189, 228, 85, 91, 61, 152, 72, 131, 64, 175, 25, 12, 189, 216, 176, 15, 61, 150, 38, 131, 64, 28, 163, 60, 189)
+"vertex_data": PackedByteArray("lBSFPQAVU72Y3JI9NvuEvQAVU72S85K96f6QPunBB0Bi6QO+uElEPmCuB0AZyma+k75nPs+ytD86lc+9cOUdPkUhLj/Ex4W8JgUBPUUhLj/qdxu+QDf9PXyytD/26Vu+OquaPqpgL0B+2Pe9UK5nPuYmL0AnXEW+HcxlPmatXUBc16a9MIYwPiJIXUBg2/m9OzodPrp1dUDvPYy9thvuPSEMdUAgzcC95FVbPZhIg0CvGQy92LAPPZYmg0Acozy9")
 }]
 blend_shape_mode = 0
 
@@ -229,15 +244,16 @@ blend_shape_mode = 0
 resource_name = "PondEnvironment_Plane_038"
 _surfaces = [{
 "aabb": AABB(-0.0649323, -0.0515337, -0.22538, 0.36702, 4.15415, 0.2971),
-"attribute_data": PackedByteArray(0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 172, 170, 170, 62, 0, 0, 0, 0, 172, 170, 170, 62, 0, 0, 0, 0, 171, 170, 42, 63, 0, 0, 0, 0, 171, 170, 42, 63, 0, 0, 128, 63, 170, 170, 42, 63, 0, 0, 128, 63, 170, 170, 42, 63, 0, 0, 128, 63, 170, 170, 170, 62, 0, 0, 128, 63, 170, 170, 170, 62, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0),
-"format": 4119,
+"attribute_data": PackedByteArray("AAAAAAAAgD8AAIA/AACAPwAAAAAAAAAAAAAAAAAAAAAAAIA/AAAAAAAAgD8AAAAAAAAAAKyqqj4AAAAArKqqPgAAAACrqio/AAAAAKuqKj8AAIA/qqoqPwAAgD+qqio/AACAP6qqqj4AAIA/qqqqPgAAAAAAAAAAAAAAAAAAAAAAAIA/AAAAAAAAgD8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAgD8AAAAAAACAPwAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAAAAAAIA/AAAAAAAAAAAAAAAAAACAPwAAAAA="),
+"format": 34359742487,
 "index_count": 42,
-"index_data": PackedByteArray(6, 0, 5, 0, 12, 0, 6, 0, 3, 0, 5, 0, 0, 0, 10, 0, 1, 0, 0, 0, 8, 0, 10, 0, 9, 0, 13, 0, 11, 0, 9, 0, 7, 0, 13, 0, 2, 0, 17, 0, 4, 0, 2, 0, 15, 0, 17, 0, 14, 0, 21, 0, 16, 0, 14, 0, 19, 0, 21, 0, 18, 0, 25, 0, 20, 0, 18, 0, 23, 0, 25, 0, 22, 0, 27, 0, 24, 0, 22, 0, 26, 0, 27, 0),
+"index_data": PackedByteArray("BgAFAAwABgADAAUAAAAKAAEAAAAIAAoACQANAAsACQAHAA0AAgARAAQAAgAPABEADgAVABAADgATABUAEgAZABQAEgAXABkAFgAbABgAFgAaABsA"),
 "material": ExtResource("1_50wr4"),
 "name": "GrassBladeMat",
 "primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 28,
-"vertex_data": PackedByteArray(148, 20, 133, 61, 0, 21, 83, 189, 152, 220, 146, 61, 41, 242, 233, 59, 0, 0, 149, 225, 54, 251, 132, 189, 0, 21, 83, 189, 146, 243, 146, 189, 41, 242, 233, 59, 0, 0, 149, 225, 233, 254, 144, 62, 233, 193, 7, 64, 98, 233, 3, 190, 79, 255, 216, 63, 255, 255, 255, 191, 233, 254, 144, 62, 233, 193, 7, 64, 98, 233, 3, 190, 229, 248, 212, 62, 228, 0, 140, 158, 184, 73, 68, 62, 96, 174, 7, 64, 25, 202, 102, 190, 79, 255, 216, 63, 255, 255, 255, 191, 184, 73, 68, 62, 96, 174, 7, 64, 25, 202, 102, 190, 229, 248, 212, 62, 196, 0, 147, 158, 147, 190, 103, 62, 207, 178, 180, 63, 58, 149, 207, 189, 229, 248, 212, 62, 10, 0, 186, 158, 147, 190, 103, 62, 207, 178, 180, 63, 58, 149, 207, 189, 160, 243, 174, 60, 1, 0, 104, 158, 112, 229, 29, 62, 69, 33, 46, 63, 196, 199, 133, 188, 41, 242, 233, 59, 0, 0, 105, 158, 112, 229, 29, 62, 69, 33, 46, 63, 196, 199, 133, 188, 160, 243, 174, 60, 0, 0, 104, 158, 38, 5, 1, 61, 69, 33, 46, 63, 234, 119, 27, 190, 41, 242, 233, 59, 0, 0, 149, 225, 38, 5, 1, 61, 69, 33, 46, 63, 234, 119, 27, 190, 160, 243, 174, 60, 0, 0, 104, 158, 64, 55, 253, 61, 124, 178, 180, 63, 246, 233, 91, 190, 229, 248, 212, 62, 18, 0, 70, 225, 64, 55, 253, 61, 124, 178, 180, 63, 246, 233, 91, 190, 160, 243, 174, 60, 1, 0, 104, 158, 58, 171, 154, 62, 170, 96, 47, 64, 126, 216, 247, 189, 41, 246, 39, 201, 255, 255, 255, 191, 58, 171, 154, 62, 170, 96, 47, 64, 126, 216, 247, 189, 79, 255, 216, 63, 255, 255, 255, 191, 80, 174, 103, 62, 230, 38, 47, 64, 39, 92, 69, 190, 41, 246, 39, 201, 255, 255, 255, 191, 80, 174, 103, 62, 230, 38, 47, 64, 39, 92, 69, 190, 79, 255, 216, 63, 255, 255, 255, 191, 29, 204, 101, 62, 102, 173, 93, 64, 92, 215, 166, 189, 0, 244, 150, 207, 255, 255, 255, 191, 29, 204, 101, 62, 102, 173, 93, 64, 92, 215, 166, 189, 41, 246, 39, 201, 255, 255, 255, 191, 48, 134, 48, 62, 34, 72, 93, 64, 96, 219, 249, 189, 0, 244, 150, 207, 255, 255, 255, 191, 48, 134, 48, 62, 34, 72, 93, 64, 96, 219, 249, 189, 41, 246, 39, 201, 255, 255, 255, 191, 59, 58, 29, 62, 186, 117, 117, 64, 239, 61, 140, 189, 173, 232, 137, 216, 255, 255, 255, 191, 59, 58, 29, 62, 186, 117, 117, 64, 239, 61, 140, 189, 0, 244, 150, 207, 255, 255, 255, 191, 182, 27, 238, 61, 33, 12, 117, 64, 32, 205, 192, 189, 173, 232, 137, 216, 255, 255, 255, 191, 182, 27, 238, 61, 33, 12, 117, 64, 32, 205, 192, 189, 0, 244, 150, 207, 255, 255, 255, 191, 228, 85, 91, 61, 152, 72, 131, 64, 175, 25, 12, 189, 173, 232, 137, 216, 255, 255, 255, 191, 216, 176, 15, 61, 150, 38, 131, 64, 28, 163, 60, 189, 173, 232, 137, 216, 255, 255, 255, 191)
+"vertex_data": PackedByteArray("lBSFPQAVU72Y3JI9NvuEvQAVU72S85K96f6QPunBB0Bi6QO+6f6QPunBB0Bi6QO+uElEPmCuB0AZyma+uElEPmCuB0AZyma+k75nPs+ytD86lc+9k75nPs+ytD86lc+9cOUdPkUhLj/Ex4W8cOUdPkUhLj/Ex4W8JgUBPUUhLj/qdxu+JgUBPUUhLj/qdxu+QDf9PXyytD/26Vu+QDf9PXyytD/26Vu+OquaPqpgL0B+2Pe9OquaPqpgL0B+2Pe9UK5nPuYmL0AnXEW+UK5nPuYmL0AnXEW+HcxlPmatXUBc16a9HcxlPmatXUBc16a9MIYwPiJIXUBg2/m9MIYwPiJIXUBg2/m9OzodPrp1dUDvPYy9OzodPrp1dUDvPYy9thvuPSEMdUAgzcC9thvuPSEMdUAgzcC95FVbPZhIg0CvGQy92LAPPZYmg0Acozy9KfLpOwAAleEp8uk7AACV4U//2D////+/5fjUPuQAjJ5P/9g/////v+X41D7EAJOe5fjUPgoAup6g8648AQBoniny6TsAAGmeoPOuPAAAaJ4p8uk7AACV4aDzrjwAAGie5fjUPhIARuGg8648AQBonin2J8n///+/T//YP////78p9ifJ////v0//2D////+/APSWz////78p9ifJ////vwD0ls////+/KfYnyf///7+t6InY////vwD0ls////+/reiJ2P///78A9JbP////v63oidj///+/reiJ2P///78=")
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_cdtm4")
@@ -245,13 +261,14 @@ shadow_mesh = SubResource("ArrayMesh_cdtm4")
 [sub_resource type="ArrayMesh" id="ArrayMesh_t7hsm"]
 _surfaces = [{
 "aabb": AABB(-0.0797545, -0.0505066, -0.0581996, 0.403278, 3.93088, 0.739539),
-"format": 4097,
+"format": 34359742465,
 "index_count": 42,
-"index_data": PackedByteArray(4, 0, 3, 0, 7, 0, 4, 0, 2, 0, 3, 0, 0, 0, 6, 0, 1, 0, 0, 0, 5, 0, 6, 0, 5, 0, 7, 0, 6, 0, 5, 0, 4, 0, 7, 0, 2, 0, 9, 0, 3, 0, 2, 0, 8, 0, 9, 0, 8, 0, 11, 0, 9, 0, 8, 0, 10, 0, 11, 0, 10, 0, 13, 0, 11, 0, 10, 0, 12, 0, 13, 0, 12, 0, 15, 0, 13, 0, 12, 0, 14, 0, 15, 0),
+"index_data": PackedByteArray("BAADAAcABAACAAMAAAAGAAEAAAAFAAYABQAHAAYABQAEAAcAAgAJAAMAAgAIAAkACAALAAkACAAKAAsACgANAAsACgAMAA0ADAAPAA0ADAAOAA8A"),
 "name": "GrassBladeMat",
 "primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 16,
-"vertex_data": PackedByteArray(86, 86, 163, 189, 3, 224, 78, 189, 228, 59, 82, 61, 76, 86, 163, 61, 1, 224, 78, 189, 2, 60, 82, 189, 227, 59, 11, 61, 22, 72, 7, 64, 20, 99, 27, 62, 144, 132, 18, 62, 80, 203, 7, 64, 174, 118, 165, 61, 98, 71, 229, 188, 16, 31, 178, 63, 74, 240, 139, 61, 33, 127, 159, 189, 32, 162, 42, 63, 171, 69, 31, 61, 212, 218, 148, 61, 149, 182, 42, 63, 187, 98, 110, 189, 214, 121, 199, 61, 178, 133, 178, 63, 108, 71, 98, 188, 233, 62, 244, 61, 133, 155, 49, 64, 23, 193, 144, 62, 101, 23, 82, 62, 215, 14, 50, 64, 68, 148, 104, 62, 104, 139, 77, 62, 6, 9, 89, 64, 218, 142, 228, 62, 5, 247, 130, 62, 190, 130, 89, 64, 5, 142, 211, 62, 74, 234, 125, 62, 146, 22, 106, 64, 191, 175, 16, 63, 54, 128, 146, 62, 83, 171, 106, 64, 60, 8, 11, 63, 110, 246, 155, 62, 91, 23, 120, 64, 65, 108, 46, 63, 222, 164, 165, 62, 21, 88, 120, 64, 247, 200, 43, 63)
+"vertex_data": PackedByteArray("VlajvQPgTr3kO1I9TFajPQHgTr0CPFK94zsLPRZIB0AUYxs+kIQSPlDLB0CudqU9YkflvBAfsj9K8Is9IX+fvSCiKj+rRR891NqUPZW2Kj+7Ym691nnHPbKFsj9sR2K86T70PYWbMUAXwZA+ZRdSPtcOMkBElGg+aItNPgYJWUDajuQ+BfeCPr6CWUAFjtM+Sup9PpIWakC/rxA/NoCSPlOrakA8CAs/bvabPlsXeEBBbC4/3qSlPhVYeED3yCs/")
 }]
 blend_shape_mode = 0
 
@@ -259,15 +276,16 @@ blend_shape_mode = 0
 resource_name = "PondEnvironment_Plane_039"
 _surfaces = [{
 "aabb": AABB(-0.0797545, -0.0505066, -0.0581996, 0.403278, 3.93088, 0.739539),
-"attribute_data": PackedByteArray(0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 172, 170, 170, 62, 0, 0, 0, 0, 172, 170, 170, 62, 0, 0, 0, 0, 171, 170, 42, 63, 0, 0, 0, 0, 171, 170, 42, 63, 0, 0, 128, 63, 170, 170, 42, 63, 0, 0, 128, 63, 170, 170, 42, 63, 0, 0, 128, 63, 170, 170, 170, 62, 0, 0, 128, 63, 170, 170, 170, 62, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0),
-"format": 4119,
+"attribute_data": PackedByteArray("AAAAAAAAgD8AAIA/AACAPwAAAAAAAAAAAAAAAAAAAAAAAIA/AAAAAAAAgD8AAAAAAAAAAKyqqj4AAAAArKqqPgAAAACrqio/AAAAAKuqKj8AAIA/qqoqPwAAgD+qqio/AACAP6qqqj4AAIA/qqqqPgAAAAAAAAAAAAAAAAAAAAAAAIA/AAAAAAAAgD8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAgD8AAAAAAACAPwAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAAAAAAIA/AAAAAAAAAAAAAAAAAACAPwAAAAA="),
+"format": 34359742487,
 "index_count": 42,
-"index_data": PackedByteArray(7, 0, 5, 0, 13, 0, 7, 0, 3, 0, 5, 0, 0, 0, 10, 0, 1, 0, 0, 0, 8, 0, 10, 0, 9, 0, 12, 0, 11, 0, 9, 0, 6, 0, 12, 0, 2, 0, 17, 0, 4, 0, 2, 0, 15, 0, 17, 0, 14, 0, 21, 0, 16, 0, 14, 0, 19, 0, 21, 0, 18, 0, 25, 0, 20, 0, 18, 0, 23, 0, 25, 0, 22, 0, 27, 0, 24, 0, 22, 0, 26, 0, 27, 0),
+"index_data": PackedByteArray("BwAFAA0ABwADAAUAAAAKAAEAAAAIAAoACQAMAAsACQAGAAwAAgARAAQAAgAPABEADgAVABAADgATABUAEgAZABQAEgAXABkAFgAbABgAFgAaABsA"),
 "material": ExtResource("1_50wr4"),
 "name": "GrassBladeMat",
 "primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 28,
-"vertex_data": PackedByteArray(86, 86, 163, 189, 3, 224, 78, 189, 228, 59, 82, 61, 171, 177, 55, 129, 248, 255, 20, 217, 76, 86, 163, 61, 1, 224, 78, 189, 2, 60, 82, 189, 171, 177, 55, 129, 254, 255, 236, 166, 227, 59, 11, 61, 22, 72, 7, 64, 20, 99, 27, 62, 234, 171, 94, 109, 255, 255, 255, 63, 227, 59, 11, 61, 22, 72, 7, 64, 20, 99, 27, 62, 41, 174, 253, 115, 143, 250, 210, 218, 144, 132, 18, 62, 80, 203, 7, 64, 174, 118, 165, 61, 234, 171, 94, 109, 255, 255, 255, 63, 144, 132, 18, 62, 80, 203, 7, 64, 174, 118, 165, 61, 41, 174, 253, 115, 3, 251, 182, 218, 98, 71, 229, 188, 16, 31, 178, 63, 74, 240, 139, 61, 254, 175, 201, 121, 30, 254, 189, 217, 98, 71, 229, 188, 16, 31, 178, 63, 74, 240, 139, 61, 41, 174, 253, 115, 171, 253, 12, 218, 33, 127, 159, 189, 32, 162, 42, 63, 171, 69, 31, 61, 171, 177, 55, 129, 213, 255, 31, 217, 33, 127, 159, 189, 32, 162, 42, 63, 171, 69, 31, 61, 254, 175, 201, 121, 150, 255, 85, 217, 212, 218, 148, 61, 149, 182, 42, 63, 187, 98, 110, 189, 171, 177, 55, 129, 220, 255, 28, 217, 212, 218, 148, 61, 149, 182, 42, 63, 187, 98, 110, 189, 254, 175, 201, 121, 207, 255, 69, 217, 214, 121, 199, 61, 178, 133, 178, 63, 108, 71, 98, 188, 254, 175, 201, 121, 97, 254, 170, 217, 214, 121, 199, 61, 178, 133, 178, 63, 108, 71, 98, 188, 41, 174, 253, 115, 20, 254, 242, 217, 233, 62, 244, 61, 133, 155, 49, 64, 23, 193, 144, 62, 49, 170, 131, 105, 255, 255, 255, 63, 233, 62, 244, 61, 133, 155, 49, 64, 23, 193, 144, 62, 234, 171, 94, 109, 255, 255, 255, 63, 101, 23, 82, 62, 215, 14, 50, 64, 68, 148, 104, 62, 49, 170, 131, 105, 255, 255, 255, 63, 101, 23, 82, 62, 215, 14, 50, 64, 68, 148, 104, 62, 234, 171, 94, 109, 255, 255, 255, 63, 104, 139, 77, 62, 6, 9, 89, 64, 218, 142, 228, 62, 70, 167, 239, 95, 255, 255, 255, 63, 104, 139, 77, 62, 6, 9, 89, 64, 218, 142, 228, 62, 49, 170, 131, 105, 255, 255, 255, 63, 5, 247, 130, 62, 190, 130, 89, 64, 5, 142, 211, 62, 70, 167, 239, 95, 255, 255, 255, 63, 5, 247, 130, 62, 190, 130, 89, 64, 5, 142, 211, 62, 49, 170, 131, 105, 255, 255, 255, 63, 74, 234, 125, 62, 146, 22, 106, 64, 191, 175, 16, 63, 45, 166, 72, 90, 255, 255, 255, 63, 74, 234, 125, 62, 146, 22, 106, 64, 191, 175, 16, 63, 70, 167, 239, 95, 255, 255, 255, 63, 54, 128, 146, 62, 83, 171, 106, 64, 60, 8, 11, 63, 45, 166, 72, 90, 255, 255, 255, 63, 54, 128, 146, 62, 83, 171, 106, 64, 60, 8, 11, 63, 70, 167, 239, 95, 255, 255, 255, 63, 110, 246, 155, 62, 91, 23, 120, 64, 65, 108, 46, 63, 45, 166, 72, 90, 255, 255, 255, 63, 222, 164, 165, 62, 21, 88, 120, 64, 247, 200, 43, 63, 45, 166, 72, 90, 255, 255, 255, 63)
+"vertex_data": PackedByteArray("VlajvQPgTr3kO1I9TFajPQHgTr0CPFK94zsLPRZIB0AUYxs+4zsLPRZIB0AUYxs+kIQSPlDLB0CudqU9kIQSPlDLB0CudqU9YkflvBAfsj9K8Is9YkflvBAfsj9K8Is9IX+fvSCiKj+rRR89IX+fvSCiKj+rRR891NqUPZW2Kj+7Ym691NqUPZW2Kj+7Ym691nnHPbKFsj9sR2K81nnHPbKFsj9sR2K86T70PYWbMUAXwZA+6T70PYWbMUAXwZA+ZRdSPtcOMkBElGg+ZRdSPtcOMkBElGg+aItNPgYJWUDajuQ+aItNPgYJWUDajuQ+BfeCPr6CWUAFjtM+BfeCPr6CWUAFjtM+Sup9PpIWakC/rxA/Sup9PpIWakC/rxA/NoCSPlOrakA8CAs/NoCSPlOrakA8CAs/bvabPlsXeEBBbC4/3qSlPhVYeED3yCs/q7E3gfj/FNmrsTeB/v/spuqrXm3///8/Ka79c4/60trqq15t////Pymu/XMD+7ba/q/JeR7+vdkprv1zq/0M2quxN4HV/x/Z/q/JeZb/VdmrsTeB3P8c2f6vyXnP/0XZ/q/JeWH+qtkprv1zFP7y2TGqg2n///8/6qtebf///z8xqoNp////P+qrXm3///8/RqfvX////z8xqoNp////P0an71////8/MaqDaf///z8tpkha////P0an71////8/LaZIWv///z9Gp+9f////Py2mSFr///8/LaZIWv///z8=")
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_t7hsm")
@@ -275,13 +293,14 @@ shadow_mesh = SubResource("ArrayMesh_t7hsm")
 [sub_resource type="ArrayMesh" id="ArrayMesh_304e4"]
 _surfaces = [{
 "aabb": AABB(-0.0985566, -0.0524905, -0.00152662, 0.208789, 4.23127, 0.314128),
-"format": 4097,
+"format": 34359742465,
 "index_count": 42,
-"index_data": PackedByteArray(4, 0, 3, 0, 7, 0, 4, 0, 2, 0, 3, 0, 0, 0, 6, 0, 1, 0, 0, 0, 5, 0, 6, 0, 5, 0, 7, 0, 6, 0, 5, 0, 4, 0, 7, 0, 2, 0, 9, 0, 3, 0, 2, 0, 8, 0, 9, 0, 8, 0, 11, 0, 9, 0, 8, 0, 10, 0, 11, 0, 10, 0, 13, 0, 11, 0, 10, 0, 12, 0, 13, 0, 12, 0, 15, 0, 13, 0, 12, 0, 14, 0, 15, 0),
+"index_data": PackedByteArray("BAADAAcABAACAAMAAAAGAAEAAAAFAAYABQAHAAYABQAEAAcAAgAJAAMAAgAIAAkACAALAAkACAAKAAsACgANAAsACgAMAA0ADAAPAA0ADAAOAA8A"),
 "name": "GrassBladeMat",
 "primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 16,
-"vertex_data": PackedByteArray(129, 215, 201, 61, 58, 0, 87, 189, 6, 208, 208, 58, 15, 216, 201, 189, 58, 0, 87, 189, 6, 25, 200, 186, 184, 136, 187, 61, 34, 71, 10, 64, 242, 83, 155, 62, 62, 137, 51, 189, 61, 51, 10, 64, 126, 168, 152, 62, 196, 90, 152, 61, 161, 13, 184, 63, 190, 42, 119, 62, 226, 126, 186, 61, 223, 92, 49, 63, 96, 35, 4, 62, 1, 196, 194, 189, 223, 92, 49, 63, 238, 30, 1, 62, 31, 183, 166, 189, 76, 13, 184, 63, 202, 167, 116, 62, 192, 193, 225, 61, 50, 162, 50, 64, 81, 13, 160, 62, 63, 142, 143, 59, 92, 103, 50, 64, 119, 251, 154, 62, 171, 239, 180, 61, 251, 202, 97, 64, 86, 254, 103, 62, 154, 56, 183, 60, 214, 99, 97, 64, 102, 20, 91, 62, 136, 163, 79, 61, 88, 4, 122, 64, 208, 125, 39, 62, 162, 179, 196, 59, 200, 152, 121, 64, 114, 233, 27, 62, 194, 40, 32, 60, 142, 184, 133, 64, 132, 6, 131, 61, 127, 188, 63, 188, 235, 149, 133, 64, 68, 186, 108, 61)
+"vertex_data": PackedByteArray("gdfJPToAV70G0NA6D9jJvToAV70GGci6uIi7PSJHCkDyU5s+PokzvT0zCkB+qJg+xFqYPaENuD++Knc+4n66Pd9cMT9gIwQ+AcTCvd9cMT/uHgE+H7emvUwNuD/Kp3Q+wMHhPTKiMkBRDaA+P46PO1xnMkB3+5o+q++0PfvKYUBW/mc+mji3PNZjYUBmFFs+iKNPPVgEekDQfSc+orPEO8iYeUBy6Rs+wiggPI64hUCEBoM9f7w/vOuVhUBEumw9")
 }]
 blend_shape_mode = 0
 
@@ -289,15 +308,16 @@ blend_shape_mode = 0
 resource_name = "PondEnvironment_Plane_040"
 _surfaces = [{
 "aabb": AABB(-0.0985566, -0.0524905, -0.00152662, 0.208789, 4.23127, 0.314128),
-"attribute_data": PackedByteArray(0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 172, 170, 170, 62, 0, 0, 0, 0, 172, 170, 170, 62, 0, 0, 0, 0, 171, 170, 42, 63, 0, 0, 0, 0, 171, 170, 42, 63, 0, 0, 128, 63, 170, 170, 42, 63, 0, 0, 128, 63, 170, 170, 42, 63, 0, 0, 128, 63, 170, 170, 170, 62, 0, 0, 128, 63, 170, 170, 170, 62, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0),
-"format": 4119,
+"attribute_data": PackedByteArray("AAAAAAAAgD8AAIA/AACAPwAAAAAAAAAAAAAAAAAAAAAAAIA/AAAAAAAAgD8AAAAAAAAAAKyqqj4AAAAArKqqPgAAAACrqio/AAAAAKuqKj8AAIA/qqoqPwAAgD+qqio/AACAP6qqqj4AAIA/qqqqPgAAAAAAAAAAAAAAAAAAAAAAAIA/AAAAAAAAgD8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAgD8AAAAAAACAPwAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAAAAAAIA/AAAAAAAAAAAAAAAAAACAPwAAAAA="),
+"format": 34359742487,
 "index_count": 42,
-"index_data": PackedByteArray(7, 0, 4, 0, 13, 0, 7, 0, 2, 0, 4, 0, 0, 0, 11, 0, 1, 0, 0, 0, 9, 0, 11, 0, 8, 0, 12, 0, 10, 0, 8, 0, 6, 0, 12, 0, 3, 0, 16, 0, 5, 0, 3, 0, 14, 0, 16, 0, 15, 0, 20, 0, 17, 0, 15, 0, 18, 0, 20, 0, 19, 0, 24, 0, 21, 0, 19, 0, 22, 0, 24, 0, 23, 0, 27, 0, 25, 0, 23, 0, 26, 0, 27, 0),
+"index_data": PackedByteArray("BwAEAA0ABwACAAQAAAALAAEAAAAJAAsACAAMAAoACAAGAAwAAwAQAAUAAwAOABAADwAUABEADwASABQAEwAYABUAEwAWABgAFwAbABkAFwAaABsA"),
 "material": ExtResource("1_50wr4"),
 "name": "GrassBladeMat",
 "primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 28,
-"vertex_data": PackedByteArray(129, 215, 201, 61, 58, 0, 87, 189, 6, 208, 208, 58, 137, 237, 74, 254, 0, 0, 254, 192, 15, 216, 201, 189, 58, 0, 87, 189, 6, 25, 200, 186, 137, 237, 74, 254, 0, 0, 254, 192, 184, 136, 187, 61, 34, 71, 10, 64, 242, 83, 155, 62, 106, 246, 254, 252, 57, 1, 186, 189, 184, 136, 187, 61, 34, 71, 10, 64, 242, 83, 155, 62, 21, 255, 132, 248, 255, 255, 255, 191, 62, 137, 51, 189, 61, 51, 10, 64, 126, 168, 152, 62, 106, 246, 254, 252, 14, 1, 209, 189, 62, 137, 51, 189, 61, 51, 10, 64, 126, 168, 152, 62, 21, 255, 132, 248, 255, 255, 255, 191, 196, 90, 152, 61, 161, 13, 184, 63, 190, 42, 119, 62, 107, 239, 67, 254, 1, 0, 255, 190, 196, 90, 152, 61, 161, 13, 184, 63, 190, 42, 119, 62, 106, 246, 254, 252, 14, 0, 88, 190, 226, 126, 186, 61, 223, 92, 49, 63, 96, 35, 4, 62, 107, 239, 67, 254, 0, 0, 0, 191, 226, 126, 186, 61, 223, 92, 49, 63, 96, 35, 4, 62, 137, 237, 74, 254, 0, 0, 255, 190, 1, 196, 194, 189, 223, 92, 49, 63, 238, 30, 1, 62, 107, 239, 67, 254, 0, 0, 0, 191, 1, 196, 194, 189, 223, 92, 49, 63, 238, 30, 1, 62, 137, 237, 74, 254, 0, 0, 255, 190, 31, 183, 166, 189, 76, 13, 184, 63, 202, 167, 116, 62, 107, 239, 67, 254, 1, 0, 255, 190, 31, 183, 166, 189, 76, 13, 184, 63, 202, 167, 116, 62, 106, 246, 254, 252, 24, 0, 169, 193, 192, 193, 225, 61, 50, 162, 50, 64, 81, 13, 160, 62, 21, 255, 132, 248, 255, 255, 255, 191, 192, 193, 225, 61, 50, 162, 50, 64, 81, 13, 160, 62, 236, 243, 10, 14, 255, 255, 255, 191, 63, 142, 143, 59, 92, 103, 50, 64, 119, 251, 154, 62, 21, 255, 132, 248, 255, 255, 255, 191, 63, 142, 143, 59, 92, 103, 50, 64, 119, 251, 154, 62, 236, 243, 10, 14, 255, 255, 255, 191, 171, 239, 180, 61, 251, 202, 97, 64, 86, 254, 103, 62, 236, 243, 10, 14, 255, 255, 255, 191, 171, 239, 180, 61, 251, 202, 97, 64, 86, 254, 103, 62, 69, 242, 158, 21, 255, 255, 255, 191, 154, 56, 183, 60, 214, 99, 97, 64, 102, 20, 91, 62, 236, 243, 10, 14, 255, 255, 255, 191, 154, 56, 183, 60, 214, 99, 97, 64, 102, 20, 91, 62, 69, 242, 158, 21, 255, 255, 255, 191, 136, 163, 79, 61, 88, 4, 122, 64, 208, 125, 39, 62, 69, 242, 158, 21, 255, 255, 255, 191, 136, 163, 79, 61, 88, 4, 122, 64, 208, 125, 39, 62, 234, 230, 193, 24, 255, 255, 255, 191, 162, 179, 196, 59, 200, 152, 121, 64, 114, 233, 27, 62, 69, 242, 158, 21, 255, 255, 255, 191, 162, 179, 196, 59, 200, 152, 121, 64, 114, 233, 27, 62, 234, 230, 193, 24, 255, 255, 255, 191, 194, 40, 32, 60, 142, 184, 133, 64, 132, 6, 131, 61, 234, 230, 193, 24, 255, 255, 255, 191, 127, 188, 63, 188, 235, 149, 133, 64, 68, 186, 108, 61, 234, 230, 193, 24, 255, 255, 255, 191)
+"vertex_data": PackedByteArray("gdfJPToAV70G0NA6D9jJvToAV70GGci6uIi7PSJHCkDyU5s+uIi7PSJHCkDyU5s+PokzvT0zCkB+qJg+PokzvT0zCkB+qJg+xFqYPaENuD++Knc+xFqYPaENuD++Knc+4n66Pd9cMT9gIwQ+4n66Pd9cMT9gIwQ+AcTCvd9cMT/uHgE+AcTCvd9cMT/uHgE+H7emvUwNuD/Kp3Q+H7emvUwNuD/Kp3Q+wMHhPTKiMkBRDaA+wMHhPTKiMkBRDaA+P46PO1xnMkB3+5o+P46PO1xnMkB3+5o+q++0PfvKYUBW/mc+q++0PfvKYUBW/mc+mji3PNZjYUBmFFs+mji3PNZjYUBmFFs+iKNPPVgEekDQfSc+iKNPPVgEekDQfSc+orPEO8iYeUBy6Rs+orPEO8iYeUBy6Rs+wiggPI64hUCEBoM9f7w/vOuVhUBEumw9ie1K/gAA/sCJ7Ur+AAD+wGr2/vw5Abq9Ff+E+P///79q9v78DgHRvRX/hPj///+/a+9D/gEA/75q9v78DgBYvmvvQ/4AAAC/ie1K/gAA/75r70P+AAAAv4ntSv4AAP++a+9D/gEA/75q9v78GACpwRX/hPj///+/7PMKDv///78V/4T4////v+zzCg7///+/7PMKDv///79F8p4V////v+zzCg7///+/RfKeFf///79F8p4V////v+rmwRj///+/RfKeFf///7/q5sEY////v+rmwRj///+/6ubBGP///78=")
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_304e4")
@@ -305,13 +325,14 @@ shadow_mesh = SubResource("ArrayMesh_304e4")
 [sub_resource type="ArrayMesh" id="ArrayMesh_j63y2"]
 _surfaces = [{
 "aabb": AABB(-0.323675, -0.0513467, -0.141057, 0.351726, 4.13907, 0.233299),
-"format": 4097,
+"format": 34359742465,
 "index_count": 42,
-"index_data": PackedByteArray(4, 0, 3, 0, 7, 0, 4, 0, 2, 0, 3, 0, 0, 0, 6, 0, 1, 0, 0, 0, 5, 0, 6, 0, 5, 0, 7, 0, 6, 0, 5, 0, 4, 0, 7, 0, 2, 0, 9, 0, 3, 0, 2, 0, 8, 0, 9, 0, 8, 0, 11, 0, 9, 0, 8, 0, 10, 0, 11, 0, 10, 0, 13, 0, 11, 0, 10, 0, 12, 0, 13, 0, 12, 0, 15, 0, 13, 0, 12, 0, 14, 0, 15, 0),
+"index_data": PackedByteArray("BAADAAcABAACAAMAAAAGAAEAAAAFAAYABQAHAAYABQAEAAcAAgAJAAMAAgAIAAkACAALAAkACAAKAAsACgANAAsACgAMAA0ADAAPAA0ADAAOAA8A"),
 "name": "GrassBladeMat",
 "primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 16,
-"vertex_data": PackedByteArray(169, 77, 230, 188, 244, 80, 82, 189, 191, 227, 188, 61, 39, 203, 229, 60, 248, 80, 82, 189, 173, 237, 188, 189, 29, 179, 158, 190, 211, 67, 7, 64, 80, 124, 136, 59, 202, 119, 137, 190, 93, 48, 7, 64, 204, 77, 249, 189, 10, 245, 124, 190, 253, 10, 180, 63, 144, 238, 155, 59, 236, 106, 21, 190, 140, 127, 45, 63, 76, 242, 79, 61, 66, 51, 190, 189, 140, 127, 45, 63, 110, 219, 252, 189, 68, 131, 79, 190, 170, 10, 180, 63, 96, 113, 16, 190, 199, 184, 165, 190, 201, 189, 46, 64, 208, 116, 157, 60, 191, 81, 146, 190, 59, 132, 46, 64, 183, 250, 158, 189, 232, 140, 114, 190, 132, 223, 92, 64, 160, 64, 179, 60, 159, 41, 84, 190, 158, 122, 92, 64, 230, 133, 22, 189, 55, 126, 43, 190, 194, 145, 116, 64, 96, 174, 100, 59, 95, 63, 20, 190, 139, 40, 116, 64, 130, 77, 17, 189, 134, 152, 128, 189, 171, 206, 130, 64, 23, 127, 4, 188, 254, 159, 81, 189, 200, 172, 130, 64, 2, 255, 217, 188)
+"vertex_data": PackedByteArray("qU3mvPRQUr2/47w9J8vlPPhQUr2t7by9HbOevtNDB0BQfIg7yneJvl0wB0DMTfm9CvV8vv0KtD+Q7ps77GoVvox/LT9M8k89QjO+vYx/LT9u2/y9RINPvqoKtD9gcRC+x7ilvsm9LkDQdJ08v1GSvjuELkC3+p696IxyvoTfXECgQLM8nylUvp56XEDmhRa9N34rvsKRdEBgrmQ7Xz8UvosodECCTRG9hpiAvavOgkAXfwS8/p9RvcisgkAC/9m8")
 }]
 blend_shape_mode = 0
 
@@ -319,15 +340,16 @@ blend_shape_mode = 0
 resource_name = "PondEnvironment_Plane_041"
 _surfaces = [{
 "aabb": AABB(-0.323675, -0.0513467, -0.141057, 0.351726, 4.13907, 0.233299),
-"attribute_data": PackedByteArray(0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 172, 170, 170, 62, 0, 0, 0, 0, 172, 170, 170, 62, 0, 0, 0, 0, 171, 170, 42, 63, 0, 0, 0, 0, 171, 170, 42, 63, 0, 0, 128, 63, 170, 170, 42, 63, 0, 0, 128, 63, 170, 170, 42, 63, 0, 0, 128, 63, 170, 170, 170, 62, 0, 0, 128, 63, 170, 170, 170, 62, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0),
-"format": 4119,
+"attribute_data": PackedByteArray("AAAAAAAAgD8AAIA/AACAPwAAAAAAAAAAAAAAAAAAAAAAAIA/AAAAAAAAgD8AAAAAAAAAAKyqqj4AAAAArKqqPgAAAACrqio/AAAAAKuqKj8AAIA/qqoqPwAAgD+qqio/AACAP6qqqj4AAIA/qqqqPgAAAAAAAAAAAAAAAAAAAAAAAIA/AAAAAAAAgD8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAgD8AAAAAAACAPwAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAAAAAAIA/AAAAAAAAAAAAAAAAAACAPwAAAAA="),
+"format": 34359742487,
 "index_count": 42,
-"index_data": PackedByteArray(7, 0, 5, 0, 13, 0, 7, 0, 3, 0, 5, 0, 0, 0, 10, 0, 1, 0, 0, 0, 8, 0, 10, 0, 9, 0, 12, 0, 11, 0, 9, 0, 6, 0, 12, 0, 2, 0, 17, 0, 4, 0, 2, 0, 15, 0, 17, 0, 14, 0, 21, 0, 16, 0, 14, 0, 19, 0, 21, 0, 18, 0, 25, 0, 20, 0, 18, 0, 23, 0, 25, 0, 22, 0, 27, 0, 24, 0, 22, 0, 26, 0, 27, 0),
+"index_data": PackedByteArray("BwAFAA0ABwADAAUAAAAKAAEAAAAIAAoACQAMAAsACQAGAAwAAgARAAQAAgAPABEADgAVABAADgATABUAEgAZABQAEgAXABkAFgAbABgAFgAaABsA"),
 "material": ExtResource("1_50wr4"),
 "name": "GrassBladeMat",
 "primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 28,
-"vertex_data": PackedByteArray(169, 77, 230, 188, 244, 80, 82, 189, 191, 227, 188, 61, 72, 214, 111, 143, 254, 255, 14, 241, 39, 203, 229, 60, 248, 80, 82, 189, 173, 237, 188, 189, 72, 214, 111, 143, 254, 255, 14, 241, 29, 179, 158, 190, 211, 67, 7, 64, 80, 124, 136, 59, 210, 221, 193, 128, 255, 255, 255, 63, 29, 179, 158, 190, 211, 67, 7, 64, 80, 124, 136, 59, 66, 219, 240, 135, 253, 254, 67, 143, 202, 119, 137, 190, 93, 48, 7, 64, 204, 77, 249, 189, 210, 221, 193, 128, 255, 255, 255, 63, 202, 119, 137, 190, 93, 48, 7, 64, 204, 77, 249, 189, 66, 219, 240, 135, 33, 255, 70, 143, 10, 245, 124, 190, 253, 10, 180, 63, 144, 238, 155, 59, 135, 215, 210, 141, 253, 255, 238, 142, 10, 245, 124, 190, 253, 10, 180, 63, 144, 238, 155, 59, 66, 219, 240, 135, 242, 255, 88, 143, 236, 106, 21, 190, 140, 127, 45, 63, 76, 242, 79, 61, 72, 214, 111, 143, 254, 255, 14, 241, 236, 106, 21, 190, 140, 127, 45, 63, 76, 242, 79, 61, 135, 215, 210, 141, 254, 255, 238, 142, 66, 51, 190, 189, 140, 127, 45, 63, 110, 219, 252, 189, 72, 214, 111, 143, 254, 255, 14, 241, 66, 51, 190, 189, 140, 127, 45, 63, 110, 219, 252, 189, 135, 215, 210, 141, 254, 255, 238, 142, 68, 131, 79, 190, 170, 10, 180, 63, 96, 113, 16, 190, 135, 215, 210, 141, 253, 255, 238, 142, 68, 131, 79, 190, 170, 10, 180, 63, 96, 113, 16, 190, 66, 219, 240, 135, 234, 255, 168, 240, 199, 184, 165, 190, 201, 189, 46, 64, 208, 116, 157, 60, 120, 209, 137, 117, 255, 255, 255, 63, 199, 184, 165, 190, 201, 189, 46, 64, 208, 116, 157, 60, 210, 221, 193, 128, 255, 255, 255, 63, 191, 81, 146, 190, 59, 132, 46, 64, 183, 250, 158, 189, 120, 209, 137, 117, 255, 255, 255, 63, 191, 81, 146, 190, 59, 132, 46, 64, 183, 250, 158, 189, 210, 221, 193, 128, 255, 255, 255, 63, 232, 140, 114, 190, 132, 223, 92, 64, 160, 64, 179, 60, 70, 202, 185, 115, 255, 255, 255, 63, 232, 140, 114, 190, 132, 223, 92, 64, 160, 64, 179, 60, 120, 209, 137, 117, 255, 255, 255, 63, 159, 41, 84, 190, 158, 122, 92, 64, 230, 133, 22, 189, 70, 202, 185, 115, 255, 255, 255, 63, 159, 41, 84, 190, 158, 122, 92, 64, 230, 133, 22, 189, 120, 209, 137, 117, 255, 255, 255, 63, 55, 126, 43, 190, 194, 145, 116, 64, 96, 174, 100, 59, 0, 191, 220, 104, 255, 255, 255, 63, 55, 126, 43, 190, 194, 145, 116, 64, 96, 174, 100, 59, 70, 202, 185, 115, 255, 255, 255, 63, 95, 63, 20, 190, 139, 40, 116, 64, 130, 77, 17, 189, 0, 191, 220, 104, 255, 255, 255, 63, 95, 63, 20, 190, 139, 40, 116, 64, 130, 77, 17, 189, 70, 202, 185, 115, 255, 255, 255, 63, 134, 152, 128, 189, 171, 206, 130, 64, 23, 127, 4, 188, 0, 191, 220, 104, 255, 255, 255, 63, 254, 159, 81, 189, 200, 172, 130, 64, 2, 255, 217, 188, 0, 191, 220, 104, 255, 255, 255, 63)
+"vertex_data": PackedByteArray("qU3mvPRQUr2/47w9J8vlPPhQUr2t7by9HbOevtNDB0BQfIg7HbOevtNDB0BQfIg7yneJvl0wB0DMTfm9yneJvl0wB0DMTfm9CvV8vv0KtD+Q7ps7CvV8vv0KtD+Q7ps77GoVvox/LT9M8k897GoVvox/LT9M8k89QjO+vYx/LT9u2/y9QjO+vYx/LT9u2/y9RINPvqoKtD9gcRC+RINPvqoKtD9gcRC+x7ilvsm9LkDQdJ08x7ilvsm9LkDQdJ08v1GSvjuELkC3+p69v1GSvjuELkC3+p696IxyvoTfXECgQLM86IxyvoTfXECgQLM8nylUvp56XEDmhRa9nylUvp56XEDmhRa9N34rvsKRdEBgrmQ7N34rvsKRdEBgrmQ7Xz8UvosodECCTRG9Xz8UvosodECCTRG9hpiAvavOgkAXfwS8/p9RvcisgkAC/9m8SNZvj/7/DvFI1m+P/v8O8dLdwYD///8/Qtvwh/3+Q4/S3cGA////P0Lb8Ich/0aPh9fSjf3/7o5C2/CH8v9Yj0jWb4/+/w7xh9fSjf7/7o5I1m+P/v8O8YfX0o3+/+6Oh9fSjf3/7o5C2/CH6v+o8HjRiXX///8/0t3BgP///z940Yl1////P9LdwYD///8/Rsq5c////z940Yl1////P0bKuXP///8/eNGJdf///z8Av9xo////P0bKuXP///8/AL/caP///z9Gyrlz////PwC/3Gj///8/AL/caP///z8=")
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_j63y2")
@@ -335,13 +357,14 @@ shadow_mesh = SubResource("ArrayMesh_j63y2")
 [sub_resource type="ArrayMesh" id="ArrayMesh_pyi5i"]
 _surfaces = [{
 "aabb": AABB(-0.811236, -0.0445689, -0.0600365, 0.869547, 3.46377, 0.203745),
-"format": 4097,
+"format": 34359742465,
 "index_count": 42,
-"index_data": PackedByteArray(4, 0, 3, 0, 7, 0, 4, 0, 2, 0, 3, 0, 0, 0, 6, 0, 1, 0, 0, 0, 5, 0, 6, 0, 5, 0, 7, 0, 6, 0, 5, 0, 4, 0, 7, 0, 2, 0, 9, 0, 3, 0, 2, 0, 8, 0, 9, 0, 8, 0, 11, 0, 9, 0, 8, 0, 10, 0, 11, 0, 10, 0, 13, 0, 11, 0, 10, 0, 12, 0, 13, 0, 12, 0, 15, 0, 13, 0, 12, 0, 14, 0, 15, 0),
+"index_data": PackedByteArray("BAADAAcABAACAAMAAAAGAAEAAAAFAAYABQAHAAYABQAEAAcAAgAJAAMAAgAIAAkACAALAAkACAAKAAsACgANAAsACgAMAA0ADAAPAA0ADAAOAA8A"),
 "name": "GrassBladeMat",
 "primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 16,
-"vertex_data": PackedByteArray(121, 215, 110, 189, 231, 141, 54, 189, 189, 232, 117, 61, 97, 215, 110, 61, 235, 141, 54, 189, 211, 232, 117, 189, 186, 176, 142, 189, 202, 57, 237, 63, 58, 140, 111, 61, 73, 146, 81, 60, 162, 134, 237, 63, 46, 91, 195, 188, 25, 199, 60, 189, 27, 77, 156, 63, 48, 93, 66, 61, 237, 146, 97, 189, 170, 152, 22, 63, 185, 63, 104, 61, 241, 146, 97, 61, 170, 152, 22, 63, 215, 63, 104, 189, 59, 199, 60, 61, 27, 77, 156, 63, 86, 93, 66, 189, 205, 83, 34, 190, 74, 107, 25, 64, 21, 62, 165, 61, 136, 135, 194, 189, 190, 147, 27, 64, 188, 185, 200, 60, 96, 47, 187, 190, 64, 136, 59, 64, 134, 164, 0, 62, 182, 48, 168, 190, 22, 25, 61, 64, 249, 58, 211, 61, 105, 210, 21, 191, 26, 87, 78, 64, 78, 40, 19, 62, 137, 132, 15, 191, 53, 246, 79, 64, 119, 171, 8, 62, 40, 173, 79, 191, 159, 251, 89, 64, 168, 218, 249, 61, 31, 50, 76, 191, 31, 212, 90, 64, 152, 197, 241, 61)
+"vertex_data": PackedByteArray("edduveeNNr296HU9YdduPeuNNr3T6HW9urCOvco57T86jG89SZJRPKKG7T8uW8O8Gcc8vRtNnD8wXUI97ZJhvaqYFj+5P2g98ZJhPaqYFj/XP2i9O8c8PRtNnD9WXUK9zVMivkprGUAVPqU9iIfCvb6TG0C8ucg8YC+7vkCIO0CGpAA+tjCovhYZPUD5OtM9adIVvxpXTkBOKBM+iYQPvzX2T0B3qwg+KK1Pv5/7WUCo2vk9HzJMvx/UWkCYxfE9")
 }]
 blend_shape_mode = 0
 
@@ -349,15 +372,16 @@ blend_shape_mode = 0
 resource_name = "PondEnvironment_Plane_042"
 _surfaces = [{
 "aabb": AABB(-0.811236, -0.0445689, -0.0600365, 0.869547, 3.46377, 0.203745),
-"attribute_data": PackedByteArray(0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 172, 170, 170, 62, 0, 0, 0, 0, 172, 170, 170, 62, 0, 0, 0, 0, 171, 170, 42, 63, 0, 0, 128, 63, 170, 170, 42, 63, 0, 0, 128, 63, 170, 170, 170, 62, 0, 0, 128, 63, 170, 170, 170, 62, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0),
-"format": 4119,
+"attribute_data": PackedByteArray("AAAAAAAAgD8AAIA/AACAPwAAAAAAAAAAAAAAAAAAAAAAAIA/AAAAAAAAgD8AAAAAAAAAAKyqqj4AAAAArKqqPgAAAACrqio/AACAP6qqKj8AAIA/qqqqPgAAgD+qqqo+AAAAAAAAAAAAAAAAAAAAAAAAgD8AAAAAAACAPwAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAAAAAAIA/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAIA/AAAAAAAAgD8AAAAAAAAAAAAAAAAAAIA/AAAAAA=="),
+"format": 34359742487,
 "index_count": 42,
-"index_data": PackedByteArray(6, 0, 5, 0, 10, 0, 6, 0, 3, 0, 5, 0, 0, 0, 9, 0, 1, 0, 0, 0, 8, 0, 9, 0, 8, 0, 11, 0, 9, 0, 8, 0, 7, 0, 11, 0, 2, 0, 15, 0, 4, 0, 2, 0, 13, 0, 15, 0, 12, 0, 19, 0, 14, 0, 12, 0, 17, 0, 19, 0, 16, 0, 23, 0, 18, 0, 16, 0, 21, 0, 23, 0, 20, 0, 25, 0, 22, 0, 20, 0, 24, 0, 25, 0),
+"index_data": PackedByteArray("BgAFAAoABgADAAUAAAAJAAEAAAAIAAkACAALAAkACAAHAAsAAgAPAAQAAgANAA8ADAATAA4ADAARABMAEAAXABIAEAAVABcAFAAZABYAFAAYABkA"),
 "material": ExtResource("1_50wr4"),
 "name": "GrassBladeMat",
 "primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 26,
-"vertex_data": PackedByteArray(121, 215, 110, 189, 231, 141, 54, 189, 189, 232, 117, 61, 237, 192, 255, 127, 254, 255, 136, 159, 97, 215, 110, 61, 235, 141, 54, 189, 211, 232, 117, 189, 237, 192, 255, 127, 255, 255, 136, 159, 186, 176, 142, 189, 202, 57, 237, 63, 58, 140, 111, 61, 115, 186, 72, 134, 255, 255, 255, 63, 186, 176, 142, 189, 202, 57, 237, 63, 58, 140, 111, 61, 226, 191, 37, 129, 53, 254, 174, 224, 73, 146, 81, 60, 162, 134, 237, 63, 46, 91, 195, 188, 115, 186, 72, 134, 255, 255, 255, 63, 73, 146, 81, 60, 162, 134, 237, 63, 46, 91, 195, 188, 226, 191, 37, 129, 111, 254, 159, 224, 25, 199, 60, 189, 27, 77, 156, 63, 48, 93, 66, 61, 226, 191, 37, 129, 200, 255, 72, 224, 25, 199, 60, 189, 27, 77, 156, 63, 48, 93, 66, 61, 237, 192, 255, 127, 254, 255, 136, 159, 237, 146, 97, 189, 170, 152, 22, 63, 185, 63, 104, 61, 237, 192, 255, 127, 254, 255, 136, 159, 241, 146, 97, 61, 170, 152, 22, 63, 215, 63, 104, 189, 237, 192, 255, 127, 254, 255, 136, 159, 59, 199, 60, 61, 27, 77, 156, 63, 86, 93, 66, 189, 226, 191, 37, 129, 252, 255, 59, 224, 59, 199, 60, 61, 27, 77, 156, 63, 86, 93, 66, 189, 237, 192, 255, 127, 254, 255, 136, 159, 205, 83, 34, 190, 74, 107, 25, 64, 21, 62, 165, 61, 71, 175, 160, 139, 255, 255, 255, 63, 205, 83, 34, 190, 74, 107, 25, 64, 21, 62, 165, 61, 115, 186, 72, 134, 255, 255, 255, 63, 136, 135, 194, 189, 190, 147, 27, 64, 188, 185, 200, 60, 71, 175, 160, 139, 255, 255, 255, 63, 136, 135, 194, 189, 190, 147, 27, 64, 188, 185, 200, 60, 115, 186, 72, 134, 255, 255, 255, 63, 96, 47, 187, 190, 64, 136, 59, 64, 134, 164, 0, 62, 14, 158, 90, 144, 255, 255, 255, 63, 96, 47, 187, 190, 64, 136, 59, 64, 134, 164, 0, 62, 71, 175, 160, 139, 255, 255, 255, 63, 182, 48, 168, 190, 22, 25, 61, 64, 249, 58, 211, 61, 14, 158, 90, 144, 255, 255, 255, 63, 182, 48, 168, 190, 22, 25, 61, 64, 249, 58, 211, 61, 71, 175, 160, 139, 255, 255, 255, 63, 105, 210, 21, 191, 26, 87, 78, 64, 78, 40, 19, 62, 160, 138, 222, 151, 255, 255, 255, 63, 105, 210, 21, 191, 26, 87, 78, 64, 78, 40, 19, 62, 14, 158, 90, 144, 255, 255, 255, 63, 137, 132, 15, 191, 53, 246, 79, 64, 119, 171, 8, 62, 160, 138, 222, 151, 255, 255, 255, 63, 137, 132, 15, 191, 53, 246, 79, 64, 119, 171, 8, 62, 14, 158, 90, 144, 255, 255, 255, 63, 40, 173, 79, 191, 159, 251, 89, 64, 168, 218, 249, 61, 160, 138, 222, 151, 255, 255, 255, 63, 31, 50, 76, 191, 31, 212, 90, 64, 152, 197, 241, 61, 160, 138, 222, 151, 255, 255, 255, 63)
+"vertex_data": PackedByteArray("edduveeNNr296HU9YdduPeuNNr3T6HW9urCOvco57T86jG89urCOvco57T86jG89SZJRPKKG7T8uW8O8SZJRPKKG7T8uW8O8Gcc8vRtNnD8wXUI9Gcc8vRtNnD8wXUI97ZJhvaqYFj+5P2g98ZJhPaqYFj/XP2i9O8c8PRtNnD9WXUK9O8c8PRtNnD9WXUK9zVMivkprGUAVPqU9zVMivkprGUAVPqU9iIfCvb6TG0C8ucg8iIfCvb6TG0C8ucg8YC+7vkCIO0CGpAA+YC+7vkCIO0CGpAA+tjCovhYZPUD5OtM9tjCovhYZPUD5OtM9adIVvxpXTkBOKBM+adIVvxpXTkBOKBM+iYQPvzX2T0B3qwg+iYQPvzX2T0B3qwg+KK1Pv5/7WUCo2vk9HzJMvx/UWkCYxfE97cD/f/7/iJ/twP9///+In3O6SIb///8/4r8lgTX+ruBzukiG////P+K/JYFv/p/g4r8lgcj/SODtwP9//v+In+3A/3/+/4if7cD/f/7/iJ/ivyWB/P874O3A/3/+/4ifR6+gi////z9zukiG////P0evoIv///8/c7pIhv///z8OnlqQ////P0evoIv///8/Dp5akP///z9Hr6CL////P6CK3pf///8/Dp5akP///z+git6X////Pw6eWpD///8/oIrel////z+git6X////Pw==")
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_pyi5i")
@@ -365,13 +389,14 @@ shadow_mesh = SubResource("ArrayMesh_pyi5i")
 [sub_resource type="ArrayMesh" id="ArrayMesh_i1eo8"]
 _surfaces = [{
 "aabb": AABB(-0.0873779, -0.0427685, -0.0174028, 0.398239, 3.32145, 0.689294),
-"format": 4097,
+"format": 34359742465,
 "index_count": 42,
-"index_data": PackedByteArray(4, 0, 3, 0, 7, 0, 4, 0, 2, 0, 3, 0, 0, 0, 6, 0, 1, 0, 0, 0, 5, 0, 6, 0, 5, 0, 7, 0, 6, 0, 5, 0, 4, 0, 7, 0, 2, 0, 9, 0, 3, 0, 2, 0, 8, 0, 9, 0, 8, 0, 11, 0, 9, 0, 8, 0, 10, 0, 11, 0, 10, 0, 13, 0, 11, 0, 10, 0, 12, 0, 13, 0, 12, 0, 15, 0, 13, 0, 12, 0, 14, 0, 15, 0),
+"index_data": PackedByteArray("BAADAAcABAACAAMAAAAGAAEAAAAFAAYABQAHAAYABQAEAAcAAgAJAAMAAgAIAAkACAALAAkACAAKAAsACgANAAsACgAMAA0ADAAPAA0ADAAOAA8A"),
 "name": "GrassBladeMat",
 "primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 16,
-"vertex_data": PackedByteArray(171, 25, 163, 189, 10, 46, 47, 189, 239, 10, 42, 188, 173, 25, 163, 61, 10, 46, 47, 189, 131, 10, 42, 60, 126, 20, 117, 189, 193, 214, 229, 63, 73, 94, 239, 61, 72, 163, 76, 61, 75, 208, 229, 63, 158, 201, 5, 62, 52, 243, 178, 189, 48, 54, 150, 63, 12, 183, 202, 60, 242, 178, 146, 189, 152, 125, 16, 63, 70, 144, 142, 188, 140, 108, 161, 61, 241, 142, 16, 63, 216, 141, 7, 59, 83, 148, 28, 61, 30, 138, 151, 63, 28, 39, 36, 61, 6, 196, 173, 60, 164, 11, 23, 64, 213, 148, 133, 62, 172, 227, 211, 61, 53, 30, 22, 64, 175, 244, 138, 62, 200, 13, 23, 62, 235, 78, 56, 64, 198, 118, 221, 62, 101, 241, 73, 62, 183, 39, 56, 64, 74, 153, 225, 62, 10, 151, 108, 62, 127, 70, 71, 64, 86, 241, 12, 63, 96, 224, 135, 62, 98, 74, 70, 64, 54, 139, 14, 63, 162, 173, 150, 62, 244, 213, 81, 64, 200, 27, 43, 63, 60, 41, 159, 62, 216, 90, 81, 64, 12, 1, 44, 63)
+"vertex_data": PackedByteArray("qxmjvQouL73vCiq8rRmjPQouL72DCio8fhR1vcHW5T9JXu89SKNMPUvQ5T+eyQU+NPOyvTA2lj8Mt8o88rKSvZh9ED9GkI68jGyhPfGOED/YjQc7U5QcPR6Klz8cJyQ9BsStPKQLF0DVlIU+rOPTPTUeFkCv9Io+yA0XPutOOEDGdt0+ZfFJPrcnOEBKmeE+CpdsPn9GR0BW8Qw/YOCHPmJKRkA2iw4/oq2WPvTVUUDIGys/PCmfPthaUUAMASw/")
 }]
 blend_shape_mode = 0
 
@@ -379,15 +404,16 @@ blend_shape_mode = 0
 resource_name = "PondEnvironment_Plane_043"
 _surfaces = [{
 "aabb": AABB(-0.0873779, -0.0427685, -0.0174028, 0.398239, 3.32145, 0.689294),
-"attribute_data": PackedByteArray(0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 172, 170, 170, 62, 0, 0, 0, 0, 172, 170, 170, 62, 0, 0, 0, 0, 171, 170, 42, 63, 0, 0, 0, 0, 171, 170, 42, 63, 0, 0, 128, 63, 170, 170, 42, 63, 0, 0, 128, 63, 170, 170, 42, 63, 0, 0, 128, 63, 170, 170, 170, 62, 0, 0, 128, 63, 170, 170, 170, 62, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0),
-"format": 4119,
+"attribute_data": PackedByteArray("AAAAAAAAgD8AAIA/AACAPwAAAAAAAAAAAAAAAAAAAAAAAIA/AAAAAAAAgD8AAAAAAAAAAKyqqj4AAAAArKqqPgAAAACrqio/AAAAAKuqKj8AAIA/qqoqPwAAgD+qqio/AACAP6qqqj4AAIA/qqqqPgAAAAAAAAAAAAAAAAAAAAAAAIA/AAAAAAAAgD8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAgD8AAAAAAACAPwAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAAAAAAIA/AAAAAAAAAAAAAAAAAACAPwAAAAA="),
+"format": 34359742487,
 "index_count": 42,
-"index_data": PackedByteArray(6, 0, 4, 0, 12, 0, 6, 0, 2, 0, 4, 0, 0, 0, 11, 0, 1, 0, 0, 0, 9, 0, 11, 0, 8, 0, 13, 0, 10, 0, 8, 0, 7, 0, 13, 0, 3, 0, 16, 0, 5, 0, 3, 0, 14, 0, 16, 0, 15, 0, 20, 0, 17, 0, 15, 0, 18, 0, 20, 0, 19, 0, 24, 0, 21, 0, 19, 0, 22, 0, 24, 0, 23, 0, 27, 0, 25, 0, 23, 0, 26, 0, 27, 0),
+"index_data": PackedByteArray("BgAEAAwABgACAAQAAAALAAEAAAAJAAsACAANAAoACAAHAA0AAwAQAAUAAwAOABAADwAUABEADwASABQAEwAYABUAEwAWABgAFwAbABkAFwAaABsA"),
 "material": ExtResource("1_50wr4"),
 "name": "GrassBladeMat",
 "primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 28,
-"vertex_data": PackedByteArray(171, 25, 163, 189, 10, 46, 47, 189, 239, 10, 42, 188, 116, 113, 127, 129, 65, 241, 3, 192, 173, 25, 163, 61, 10, 46, 47, 189, 131, 10, 42, 60, 116, 113, 127, 129, 71, 241, 255, 191, 126, 20, 117, 189, 193, 214, 229, 63, 73, 94, 239, 61, 22, 116, 90, 113, 126, 242, 245, 191, 126, 20, 117, 189, 193, 214, 229, 63, 73, 94, 239, 61, 156, 114, 246, 105, 255, 255, 255, 63, 72, 163, 76, 61, 75, 208, 229, 63, 158, 201, 5, 62, 22, 116, 90, 113, 103, 241, 142, 192, 72, 163, 76, 61, 75, 208, 229, 63, 158, 201, 5, 62, 156, 114, 246, 105, 255, 255, 255, 63, 52, 243, 178, 189, 48, 54, 150, 63, 12, 183, 202, 60, 22, 116, 90, 113, 182, 234, 210, 195, 52, 243, 178, 189, 48, 54, 150, 63, 12, 183, 202, 60, 199, 114, 101, 120, 170, 233, 86, 196, 242, 178, 146, 189, 152, 125, 16, 63, 70, 144, 142, 188, 199, 114, 101, 120, 158, 240, 176, 192, 242, 178, 146, 189, 152, 125, 16, 63, 70, 144, 142, 188, 116, 113, 127, 129, 27, 241, 24, 192, 140, 108, 161, 61, 241, 142, 16, 63, 216, 141, 7, 59, 199, 114, 101, 120, 181, 241, 30, 192, 140, 108, 161, 61, 241, 142, 16, 63, 216, 141, 7, 59, 116, 113, 127, 129, 34, 241, 20, 192, 83, 148, 28, 61, 30, 138, 151, 63, 28, 39, 36, 61, 22, 116, 90, 113, 181, 233, 80, 196, 83, 148, 28, 61, 30, 138, 151, 63, 28, 39, 36, 61, 199, 114, 101, 120, 218, 234, 183, 195, 6, 196, 173, 60, 164, 11, 23, 64, 213, 148, 133, 62, 156, 114, 246, 105, 255, 255, 255, 63, 6, 196, 173, 60, 164, 11, 23, 64, 213, 148, 133, 62, 123, 112, 234, 102, 255, 255, 255, 63, 172, 227, 211, 61, 53, 30, 22, 64, 175, 244, 138, 62, 156, 114, 246, 105, 255, 255, 255, 63, 172, 227, 211, 61, 53, 30, 22, 64, 175, 244, 138, 62, 123, 112, 234, 102, 255, 255, 255, 63, 200, 13, 23, 62, 235, 78, 56, 64, 198, 118, 221, 62, 123, 112, 234, 102, 255, 255, 255, 63, 200, 13, 23, 62, 235, 78, 56, 64, 198, 118, 221, 62, 54, 108, 144, 95, 255, 255, 255, 63, 101, 241, 73, 62, 183, 39, 56, 64, 74, 153, 225, 62, 123, 112, 234, 102, 255, 255, 255, 63, 101, 241, 73, 62, 183, 39, 56, 64, 74, 153, 225, 62, 54, 108, 144, 95, 255, 255, 255, 63, 10, 151, 108, 62, 127, 70, 71, 64, 86, 241, 12, 63, 54, 108, 144, 95, 255, 255, 255, 63, 10, 151, 108, 62, 127, 70, 71, 64, 86, 241, 12, 63, 194, 99, 171, 92, 255, 255, 255, 63, 96, 224, 135, 62, 98, 74, 70, 64, 54, 139, 14, 63, 54, 108, 144, 95, 255, 255, 255, 63, 96, 224, 135, 62, 98, 74, 70, 64, 54, 139, 14, 63, 194, 99, 171, 92, 255, 255, 255, 63, 162, 173, 150, 62, 244, 213, 81, 64, 200, 27, 43, 63, 194, 99, 171, 92, 255, 255, 255, 63, 60, 41, 159, 62, 216, 90, 81, 64, 12, 1, 44, 63, 194, 99, 171, 92, 255, 255, 255, 63)
+"vertex_data": PackedByteArray("qxmjvQouL73vCiq8rRmjPQouL72DCio8fhR1vcHW5T9JXu89fhR1vcHW5T9JXu89SKNMPUvQ5T+eyQU+SKNMPUvQ5T+eyQU+NPOyvTA2lj8Mt8o8NPOyvTA2lj8Mt8o88rKSvZh9ED9GkI688rKSvZh9ED9GkI68jGyhPfGOED/YjQc7jGyhPfGOED/YjQc7U5QcPR6Klz8cJyQ9U5QcPR6Klz8cJyQ9BsStPKQLF0DVlIU+BsStPKQLF0DVlIU+rOPTPTUeFkCv9Io+rOPTPTUeFkCv9Io+yA0XPutOOEDGdt0+yA0XPutOOEDGdt0+ZfFJPrcnOEBKmeE+ZfFJPrcnOEBKmeE+CpdsPn9GR0BW8Qw/CpdsPn9GR0BW8Qw/YOCHPmJKRkA2iw4/YOCHPmJKRkA2iw4/oq2WPvTVUUDIGys/PCmfPthaUUAMASw/dHF/gUHxA8B0cX+BR/H/vxZ0WnF+8vW/nHL2af///z8WdFpxZ/GOwJxy9mn///8/FnRacbbq0sPHcmV4qulWxMdyZXie8LDAdHF/gRvxGMDHcmV4tfEewHRxf4Ei8RTAFnRacbXpUMTHcmV42uq3w5xy9mn///8/e3DqZv///z+ccvZp////P3tw6mb///8/e3DqZv///z82bJBf////P3tw6mb///8/NmyQX////z82bJBf////P8Jjq1z///8/NmyQX////z/CY6tc////P8Jjq1z///8/wmOrXP///z8=")
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_i1eo8")
@@ -395,13 +421,14 @@ shadow_mesh = SubResource("ArrayMesh_i1eo8")
 [sub_resource type="ArrayMesh" id="ArrayMesh_gut47"]
 _surfaces = [{
 "aabb": AABB(-0.040706, -0.0393191, -0.0658217, 0.721062, 3.05357, 0.158795),
-"format": 4097,
+"format": 34359742465,
 "index_count": 42,
-"index_data": PackedByteArray(4, 0, 3, 0, 7, 0, 4, 0, 2, 0, 3, 0, 0, 0, 6, 0, 1, 0, 0, 0, 5, 0, 6, 0, 5, 0, 7, 0, 6, 0, 5, 0, 4, 0, 7, 0, 2, 0, 9, 0, 3, 0, 2, 0, 8, 0, 9, 0, 8, 0, 11, 0, 9, 0, 8, 0, 10, 0, 11, 0, 10, 0, 13, 0, 11, 0, 10, 0, 12, 0, 13, 0, 12, 0, 15, 0, 13, 0, 12, 0, 14, 0, 15, 0),
+"index_data": PackedByteArray("BAADAAcABAACAAMAAAAGAAEAAAAFAAYABQAHAAYABQAEAAcAAgAJAAMAAgAIAAkACAALAAkACAAKAAsACgANAAsACgAMAA0ADAAPAA0ADAAOAA8A"),
 "name": "GrassBladeMat",
 "primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 16,
-"vertex_data": PackedByteArray(113, 87, 26, 189, 11, 13, 33, 189, 18, 10, 130, 61, 87, 87, 26, 61, 13, 13, 33, 189, 24, 10, 130, 189, 184, 174, 157, 61, 52, 77, 211, 63, 148, 104, 190, 61, 235, 146, 3, 62, 67, 71, 211, 63, 240, 177, 171, 59, 116, 89, 49, 188, 185, 24, 138, 63, 68, 139, 169, 61, 88, 187, 38, 189, 65, 214, 4, 63, 85, 237, 93, 61, 20, 192, 248, 60, 51, 230, 4, 63, 136, 205, 134, 189, 48, 127, 67, 61, 60, 81, 139, 63, 24, 76, 145, 188, 48, 137, 105, 62, 246, 220, 10, 64, 159, 79, 157, 61, 226, 152, 136, 62, 173, 2, 10, 64, 96, 190, 54, 60, 77, 121, 214, 62, 115, 113, 41, 64, 60, 241, 4, 61, 92, 52, 227, 62, 104, 77, 41, 64, 224, 202, 215, 187, 116, 132, 12, 63, 255, 51, 55, 64, 0, 183, 155, 59, 185, 15, 17, 63, 56, 76, 54, 64, 216, 15, 180, 188, 236, 223, 43, 63, 105, 233, 64, 64, 192, 215, 192, 187, 203, 43, 46, 63, 59, 120, 64, 64, 208, 112, 152, 188)
+"vertex_data": PackedByteArray("cVcavQsNIb0SCoI9V1caPQ0NIb0YCoK9uK6dPTRN0z+UaL4965IDPkNH0z/wsas7dFkxvLkYij9Ei6k9WLsmvUHWBD9V7V09FMD4PDPmBD+IzYa9MH9DPTxRiz8YTJG8MIlpPvbcCkCfT5094piIPq0CCkBgvjY8TXnWPnNxKUA88QQ9XDTjPmhNKUDgyte7dIQMP/8zN0AAt5s7uQ8RPzhMNkDYD7S87N8rP2npQEDA18C7yysuPzt4QEDQcJi8")
 }]
 blend_shape_mode = 0
 
@@ -409,15 +436,16 @@ blend_shape_mode = 0
 resource_name = "PondEnvironment_Plane_044"
 _surfaces = [{
 "aabb": AABB(-0.040706, -0.0393191, -0.0658217, 0.721062, 3.05357, 0.158795),
-"attribute_data": PackedByteArray(0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 172, 170, 170, 62, 0, 0, 0, 0, 172, 170, 170, 62, 0, 0, 0, 0, 171, 170, 42, 63, 0, 0, 0, 0, 171, 170, 42, 63, 0, 0, 128, 63, 170, 170, 42, 63, 0, 0, 128, 63, 170, 170, 42, 63, 0, 0, 128, 63, 170, 170, 170, 62, 0, 0, 128, 63, 170, 170, 170, 62, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0),
-"format": 4119,
+"attribute_data": PackedByteArray("AAAAAAAAgD8AAIA/AACAPwAAAAAAAAAAAAAAAAAAAAAAAIA/AAAAAAAAgD8AAAAAAAAAAKyqqj4AAAAArKqqPgAAAACrqio/AAAAAKuqKj8AAIA/qqoqPwAAgD+qqio/AACAP6qqqj4AAIA/qqqqPgAAAAAAAAAAAAAAAAAAAAAAAIA/AAAAAAAAgD8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAgD8AAAAAAACAPwAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAAAAAAIA/AAAAAAAAAAAAAAAAAACAPwAAAAA="),
+"format": 34359742487,
 "index_count": 42,
-"index_data": PackedByteArray(6, 0, 5, 0, 12, 0, 6, 0, 3, 0, 5, 0, 0, 0, 10, 0, 1, 0, 0, 0, 8, 0, 10, 0, 9, 0, 13, 0, 11, 0, 9, 0, 7, 0, 13, 0, 2, 0, 17, 0, 4, 0, 2, 0, 15, 0, 17, 0, 14, 0, 21, 0, 16, 0, 14, 0, 19, 0, 21, 0, 18, 0, 25, 0, 20, 0, 18, 0, 23, 0, 25, 0, 22, 0, 27, 0, 24, 0, 22, 0, 26, 0, 27, 0),
+"index_data": PackedByteArray("BgAFAAwABgADAAUAAAAKAAEAAAAIAAoACQANAAsACQAHAA0AAgARAAQAAgAPABEADgAVABAADgATABUAEgAZABQAEgAXABkAFgAbABgAFgAaABsA"),
 "material": ExtResource("1_50wr4"),
 "name": "GrassBladeMat",
 "primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 28,
-"vertex_data": PackedByteArray(113, 87, 26, 189, 11, 13, 33, 189, 18, 10, 130, 61, 149, 207, 58, 129, 248, 255, 46, 232, 87, 87, 26, 61, 13, 13, 33, 189, 24, 10, 130, 189, 149, 207, 58, 129, 254, 255, 209, 151, 184, 174, 157, 61, 52, 77, 211, 63, 148, 104, 190, 61, 195, 195, 70, 109, 255, 255, 255, 63, 184, 174, 157, 61, 52, 77, 211, 63, 148, 104, 190, 61, 123, 201, 214, 115, 239, 255, 98, 151, 235, 146, 3, 62, 67, 71, 211, 63, 240, 177, 171, 59, 195, 195, 70, 109, 255, 255, 255, 63, 235, 146, 3, 62, 67, 71, 211, 63, 240, 177, 171, 59, 123, 201, 214, 115, 22, 255, 182, 232, 116, 89, 49, 188, 185, 24, 138, 63, 68, 139, 169, 61, 123, 201, 214, 115, 173, 249, 107, 233, 116, 89, 49, 188, 185, 24, 138, 63, 68, 139, 169, 61, 214, 204, 188, 121, 207, 248, 136, 233, 88, 187, 38, 189, 65, 214, 4, 63, 85, 237, 93, 61, 149, 207, 58, 129, 213, 255, 53, 232, 88, 187, 38, 189, 65, 214, 4, 63, 85, 237, 93, 61, 214, 204, 188, 121, 220, 254, 147, 232, 20, 192, 248, 60, 51, 230, 4, 63, 136, 205, 134, 189, 149, 207, 58, 129, 220, 255, 51, 232, 20, 192, 248, 60, 51, 230, 4, 63, 136, 205, 134, 189, 214, 204, 188, 121, 203, 255, 109, 232, 48, 127, 67, 61, 60, 81, 139, 63, 24, 76, 145, 188, 123, 201, 214, 115, 218, 248, 134, 233, 48, 127, 67, 61, 60, 81, 139, 63, 24, 76, 145, 188, 214, 204, 188, 121, 218, 249, 94, 233, 48, 137, 105, 62, 246, 220, 10, 64, 159, 79, 157, 61, 34, 192, 79, 106, 255, 255, 255, 63, 48, 137, 105, 62, 246, 220, 10, 64, 159, 79, 157, 61, 195, 195, 70, 109, 255, 255, 255, 63, 226, 152, 136, 62, 173, 2, 10, 64, 96, 190, 54, 60, 34, 192, 79, 106, 255, 255, 255, 63, 226, 152, 136, 62, 173, 2, 10, 64, 96, 190, 54, 60, 195, 195, 70, 109, 255, 255, 255, 63, 77, 121, 214, 62, 115, 113, 41, 64, 60, 241, 4, 61, 146, 183, 213, 98, 255, 255, 255, 63, 77, 121, 214, 62, 115, 113, 41, 64, 60, 241, 4, 61, 34, 192, 79, 106, 255, 255, 255, 63, 92, 52, 227, 62, 104, 77, 41, 64, 224, 202, 215, 187, 146, 183, 213, 98, 255, 255, 255, 63, 92, 52, 227, 62, 104, 77, 41, 64, 224, 202, 215, 187, 34, 192, 79, 106, 255, 255, 255, 63, 116, 132, 12, 63, 255, 51, 55, 64, 0, 183, 155, 59, 161, 173, 113, 94, 255, 255, 255, 63, 116, 132, 12, 63, 255, 51, 55, 64, 0, 183, 155, 59, 146, 183, 213, 98, 255, 255, 255, 63, 185, 15, 17, 63, 56, 76, 54, 64, 216, 15, 180, 188, 161, 173, 113, 94, 255, 255, 255, 63, 185, 15, 17, 63, 56, 76, 54, 64, 216, 15, 180, 188, 146, 183, 213, 98, 255, 255, 255, 63, 236, 223, 43, 63, 105, 233, 64, 64, 192, 215, 192, 187, 161, 173, 113, 94, 255, 255, 255, 63, 203, 43, 46, 63, 59, 120, 64, 64, 208, 112, 152, 188, 161, 173, 113, 94, 255, 255, 255, 63)
+"vertex_data": PackedByteArray("cVcavQsNIb0SCoI9V1caPQ0NIb0YCoK9uK6dPTRN0z+UaL49uK6dPTRN0z+UaL4965IDPkNH0z/wsas765IDPkNH0z/wsas7dFkxvLkYij9Ei6k9dFkxvLkYij9Ei6k9WLsmvUHWBD9V7V09WLsmvUHWBD9V7V09FMD4PDPmBD+IzYa9FMD4PDPmBD+IzYa9MH9DPTxRiz8YTJG8MH9DPTxRiz8YTJG8MIlpPvbcCkCfT509MIlpPvbcCkCfT5094piIPq0CCkBgvjY84piIPq0CCkBgvjY8TXnWPnNxKUA88QQ9TXnWPnNxKUA88QQ9XDTjPmhNKUDgyte7XDTjPmhNKUDgyte7dIQMP/8zN0AAt5s7dIQMP/8zN0AAt5s7uQ8RPzhMNkDYD7S8uQ8RPzhMNkDYD7S87N8rP2npQEDA18C7yysuPzt4QEDQcJi8lc86gfj/LuiVzzqB/v/Rl8PDRm3///8/e8nWc+//YpfDw0Zt////P3vJ1nMW/7boe8nWc635a+nWzLx5z/iI6ZXPOoHV/zXo1sy8edz+k+iVzzqB3P8z6NbMvHnL/23oe8nWc9r4hunWzLx52vle6SLAT2r///8/w8NGbf///z8iwE9q////P8PDRm3///8/krfVYv///z8iwE9q////P5K31WL///8/IsBPav///z+hrXFe////P5K31WL///8/oa1xXv///z+St9Vi////P6GtcV7///8/oa1xXv///z8=")
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_gut47")
@@ -425,13 +453,14 @@ shadow_mesh = SubResource("ArrayMesh_gut47")
 [sub_resource type="ArrayMesh" id="ArrayMesh_4iche"]
 _surfaces = [{
 "aabb": AABB(-0.0522304, -0.0442107, -0.240146, 0.268541, 3.56383, 0.304642),
-"format": 4097,
+"format": 34359742465,
 "index_count": 42,
-"index_data": PackedByteArray(4, 0, 3, 0, 7, 0, 4, 0, 2, 0, 3, 0, 0, 0, 6, 0, 1, 0, 0, 0, 5, 0, 6, 0, 5, 0, 7, 0, 6, 0, 5, 0, 4, 0, 7, 0, 2, 0, 9, 0, 3, 0, 2, 0, 8, 0, 9, 0, 8, 0, 11, 0, 9, 0, 8, 0, 10, 0, 11, 0, 10, 0, 13, 0, 11, 0, 10, 0, 12, 0, 13, 0, 12, 0, 15, 0, 13, 0, 12, 0, 14, 0, 15, 0),
+"index_data": PackedByteArray("BAADAAcABAACAAMAAAAGAAEAAAAFAAYABQAHAAYABQAEAAcAAgAJAAMAAgAIAAkACAALAAkACAAKAAsACgANAAsACgAMAA0ADAAPAA0ADAAOAA8A"),
 "name": "GrassBladeMat",
 "primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 16,
-"vertex_data": PackedByteArray(133, 239, 85, 189, 58, 22, 53, 189, 74, 41, 132, 189, 39, 29, 86, 61, 56, 22, 53, 189, 208, 22, 132, 61, 88, 6, 22, 62, 154, 238, 232, 63, 220, 116, 100, 190, 162, 128, 93, 62, 22, 205, 232, 63, 40, 255, 7, 190, 18, 7, 237, 61, 85, 5, 155, 63, 128, 200, 54, 190, 229, 230, 11, 61, 190, 98, 21, 63, 82, 166, 3, 190, 19, 11, 8, 62, 190, 98, 21, 63, 144, 164, 219, 187, 172, 26, 75, 62, 13, 5, 155, 63, 58, 184, 156, 189, 7, 205, 17, 62, 192, 116, 22, 64, 186, 232, 117, 190, 100, 211, 69, 62, 50, 67, 22, 64, 96, 103, 42, 190, 24, 250, 201, 61, 47, 45, 62, 64, 236, 208, 55, 190, 121, 40, 1, 62, 79, 214, 61, 64, 248, 47, 5, 190, 31, 79, 160, 61, 89, 148, 82, 64, 252, 24, 248, 189, 209, 206, 194, 61, 193, 57, 82, 64, 255, 115, 176, 189, 190, 168, 19, 61, 123, 65, 97, 64, 74, 123, 39, 189, 39, 215, 50, 61, 33, 7, 97, 64, 149, 236, 193, 188)
+"vertex_data": PackedByteArray("he9VvToWNb1KKYS9Jx1WPTgWNb3QFoQ9WAYWPpru6D/cdGS+ooBdPhbN6D8o/we+EgftPVUFmz+AyDa+5eYLPb5iFT9SpgO+EwsIPr5iFT+QpNu7rBpLPg0Fmz86uJy9B80RPsB0FkC66HW+ZNNFPjJDFkBgZyq+GPrJPS8tPkDs0De+eSgBPk/WPUD4LwW+H0+gPVmUUkD8GPi90c7CPcE5UkD/c7C9vqgTPXtBYUBKeye9J9cyPSEHYUCV7MG8")
 }]
 blend_shape_mode = 0
 
@@ -439,15 +468,16 @@ blend_shape_mode = 0
 resource_name = "PondEnvironment_Plane_045"
 _surfaces = [{
 "aabb": AABB(-0.0522304, -0.0442107, -0.240146, 0.268541, 3.56383, 0.304642),
-"attribute_data": PackedByteArray(0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 172, 170, 170, 62, 0, 0, 0, 0, 172, 170, 170, 62, 0, 0, 0, 0, 171, 170, 42, 63, 0, 0, 0, 0, 171, 170, 42, 63, 0, 0, 128, 63, 170, 170, 42, 63, 0, 0, 128, 63, 170, 170, 42, 63, 0, 0, 128, 63, 170, 170, 170, 62, 0, 0, 128, 63, 170, 170, 170, 62, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0),
-"format": 4119,
+"attribute_data": PackedByteArray("AAAAAAAAgD8AAIA/AACAPwAAAAAAAAAAAAAAAAAAAAAAAIA/AAAAAAAAgD8AAAAAAAAAAKyqqj4AAAAArKqqPgAAAACrqio/AAAAAKuqKj8AAIA/qqoqPwAAgD+qqio/AACAP6qqqj4AAIA/qqqqPgAAAAAAAAAAAAAAAAAAAAAAAIA/AAAAAAAAgD8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAgD8AAAAAAACAPwAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAAAAAAIA/AAAAAAAAAAAAAAAAAACAPwAAAAA="),
+"format": 34359742487,
 "index_count": 42,
-"index_data": PackedByteArray(7, 0, 4, 0, 13, 0, 7, 0, 2, 0, 4, 0, 0, 0, 10, 0, 1, 0, 0, 0, 8, 0, 10, 0, 9, 0, 12, 0, 11, 0, 9, 0, 6, 0, 12, 0, 3, 0, 16, 0, 5, 0, 3, 0, 14, 0, 16, 0, 15, 0, 20, 0, 17, 0, 15, 0, 18, 0, 20, 0, 19, 0, 24, 0, 21, 0, 19, 0, 22, 0, 24, 0, 23, 0, 27, 0, 25, 0, 23, 0, 26, 0, 27, 0),
+"index_data": PackedByteArray("BwAEAA0ABwACAAQAAAAKAAEAAAAIAAoACQAMAAsACQAGAAwAAwAQAAUAAwAOABAADwAUABEADwASABQAEwAYABUAEwAWABgAFwAbABkAFwAaABsA"),
 "material": ExtResource("1_50wr4"),
 "name": "GrassBladeMat",
 "primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 28,
-"vertex_data": PackedByteArray(133, 239, 85, 189, 58, 22, 53, 189, 74, 41, 132, 189, 243, 64, 226, 141, 70, 185, 255, 191, 39, 29, 86, 61, 56, 22, 53, 189, 208, 22, 132, 61, 243, 64, 226, 141, 70, 185, 255, 191, 88, 6, 22, 62, 154, 238, 232, 63, 220, 116, 100, 190, 153, 60, 35, 135, 42, 184, 140, 191, 88, 6, 22, 62, 154, 238, 232, 63, 220, 116, 100, 190, 165, 54, 176, 128, 255, 255, 255, 63, 162, 128, 93, 62, 22, 205, 232, 63, 40, 255, 7, 190, 153, 60, 35, 135, 58, 184, 156, 191, 162, 128, 93, 62, 22, 205, 232, 63, 40, 255, 7, 190, 165, 54, 176, 128, 255, 255, 255, 63, 18, 7, 237, 61, 85, 5, 155, 63, 128, 200, 54, 190, 36, 64, 106, 140, 71, 185, 254, 191, 18, 7, 237, 61, 85, 5, 155, 63, 128, 200, 54, 190, 153, 60, 35, 135, 151, 184, 249, 191, 229, 230, 11, 61, 190, 98, 21, 63, 82, 166, 3, 190, 243, 64, 226, 141, 70, 185, 255, 191, 229, 230, 11, 61, 190, 98, 21, 63, 82, 166, 3, 190, 36, 64, 106, 140, 72, 185, 254, 191, 19, 11, 8, 62, 190, 98, 21, 63, 144, 164, 219, 187, 243, 64, 226, 141, 70, 185, 255, 191, 19, 11, 8, 62, 190, 98, 21, 63, 144, 164, 219, 187, 36, 64, 106, 140, 72, 185, 255, 191, 172, 26, 75, 62, 13, 5, 155, 63, 58, 184, 156, 189, 36, 64, 106, 140, 71, 185, 254, 191, 172, 26, 75, 62, 13, 5, 155, 63, 58, 184, 156, 189, 153, 60, 35, 135, 150, 184, 8, 192, 7, 205, 17, 62, 192, 116, 22, 64, 186, 232, 117, 190, 165, 54, 176, 128, 255, 255, 255, 63, 7, 205, 17, 62, 192, 116, 22, 64, 186, 232, 117, 190, 121, 55, 243, 117, 255, 255, 255, 63, 100, 211, 69, 62, 50, 67, 22, 64, 96, 103, 42, 190, 165, 54, 176, 128, 255, 255, 255, 63, 100, 211, 69, 62, 50, 67, 22, 64, 96, 103, 42, 190, 121, 55, 243, 117, 255, 255, 255, 63, 24, 250, 201, 61, 47, 45, 62, 64, 236, 208, 55, 190, 121, 55, 243, 117, 255, 255, 255, 63, 24, 250, 201, 61, 47, 45, 62, 64, 236, 208, 55, 190, 46, 51, 149, 115, 255, 255, 255, 63, 121, 40, 1, 62, 79, 214, 61, 64, 248, 47, 5, 190, 121, 55, 243, 117, 255, 255, 255, 63, 121, 40, 1, 62, 79, 214, 61, 64, 248, 47, 5, 190, 46, 51, 149, 115, 255, 255, 255, 63, 31, 79, 160, 61, 89, 148, 82, 64, 252, 24, 248, 189, 46, 51, 149, 115, 255, 255, 255, 63, 31, 79, 160, 61, 89, 148, 82, 64, 252, 24, 248, 189, 129, 54, 177, 103, 255, 255, 255, 63, 209, 206, 194, 61, 193, 57, 82, 64, 255, 115, 176, 189, 46, 51, 149, 115, 255, 255, 255, 63, 209, 206, 194, 61, 193, 57, 82, 64, 255, 115, 176, 189, 129, 54, 177, 103, 255, 255, 255, 63, 190, 168, 19, 61, 123, 65, 97, 64, 74, 123, 39, 189, 129, 54, 177, 103, 255, 255, 255, 63, 39, 215, 50, 61, 33, 7, 97, 64, 149, 236, 193, 188, 129, 54, 177, 103, 255, 255, 255, 63)
+"vertex_data": PackedByteArray("he9VvToWNb1KKYS9Jx1WPTgWNb3QFoQ9WAYWPpru6D/cdGS+WAYWPpru6D/cdGS+ooBdPhbN6D8o/we+ooBdPhbN6D8o/we+EgftPVUFmz+AyDa+EgftPVUFmz+AyDa+5eYLPb5iFT9SpgO+5eYLPb5iFT9SpgO+EwsIPr5iFT+QpNu7EwsIPr5iFT+QpNu7rBpLPg0Fmz86uJy9rBpLPg0Fmz86uJy9B80RPsB0FkC66HW+B80RPsB0FkC66HW+ZNNFPjJDFkBgZyq+ZNNFPjJDFkBgZyq+GPrJPS8tPkDs0De+GPrJPS8tPkDs0De+eSgBPk/WPUD4LwW+eSgBPk/WPUD4LwW+H0+gPVmUUkD8GPi9H0+gPVmUUkD8GPi90c7CPcE5UkD/c7C90c7CPcE5UkD/c7C9vqgTPXtBYUBKeye9J9cyPSEHYUCV7MG880DijUa5/7/zQOKNRrn/v5k8I4cquIy/pTawgP///z+ZPCOHOricv6U2sID///8/JEBqjEe5/r+ZPCOHl7j5v/NA4o1Guf+/JEBqjEi5/r/zQOKNRrn/vyRAaoxIuf+/JEBqjEe5/r+ZPCOHlrgIwKU2sID///8/eTfzdf///z+lNrCA////P3k383X///8/eTfzdf///z8uM5Vz////P3k383X///8/LjOVc////z8uM5Vz////P4E2sWf///8/LjOVc////z+BNrFn////P4E2sWf///8/gTaxZ////z8=")
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_4iche")
@@ -455,13 +485,14 @@ shadow_mesh = SubResource("ArrayMesh_4iche")
 [sub_resource type="ArrayMesh" id="ArrayMesh_7l5fm"]
 _surfaces = [{
 "aabb": AABB(-0.0233929, -0.0381153, -0.388653, 0.607471, 2.96221, 0.456296),
-"format": 4097,
+"format": 34359742465,
 "index_count": 42,
-"index_data": PackedByteArray(4, 0, 3, 0, 7, 0, 4, 0, 2, 0, 3, 0, 0, 0, 6, 0, 1, 0, 0, 0, 5, 0, 6, 0, 5, 0, 7, 0, 6, 0, 5, 0, 4, 0, 7, 0, 2, 0, 9, 0, 3, 0, 2, 0, 8, 0, 9, 0, 8, 0, 11, 0, 9, 0, 8, 0, 10, 0, 11, 0, 10, 0, 13, 0, 11, 0, 10, 0, 12, 0, 13, 0, 12, 0, 15, 0, 13, 0, 12, 0, 14, 0, 15, 0),
+"index_data": PackedByteArray("BAADAAcABAACAAMAAAAGAAEAAAAFAAYABQAHAAYABQAEAAcAAgAJAAMAAgAIAAkACAALAAkACAAKAAsACgANAAsACgAMAA0ADAAPAA0ADAAOAA8A"),
 "name": "GrassBladeMat",
 "primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 16,
-"vertex_data": PackedByteArray(190, 162, 191, 60, 191, 30, 28, 189, 162, 136, 138, 189, 136, 162, 191, 188, 195, 30, 28, 189, 166, 136, 138, 61, 114, 43, 6, 61, 0, 224, 202, 63, 3, 130, 144, 189, 48, 32, 165, 186, 183, 33, 203, 63, 190, 77, 189, 60, 99, 119, 151, 60, 33, 171, 133, 63, 177, 253, 90, 189, 119, 253, 180, 60, 42, 202, 0, 63, 144, 214, 130, 189, 113, 253, 180, 188, 42, 202, 0, 63, 162, 214, 130, 61, 139, 119, 151, 188, 33, 171, 133, 63, 239, 253, 90, 61, 52, 136, 191, 61, 39, 52, 3, 64, 206, 180, 245, 189, 89, 120, 132, 61, 156, 12, 5, 64, 42, 207, 90, 189, 28, 79, 115, 62, 144, 96, 32, 64, 236, 98, 107, 190, 70, 60, 94, 62, 92, 183, 33, 64, 160, 198, 75, 190, 35, 102, 205, 62, 55, 118, 48, 64, 88, 164, 165, 190, 247, 136, 197, 62, 55, 217, 49, 64, 52, 2, 157, 190, 40, 134, 21, 63, 39, 107, 58, 64, 134, 253, 198, 190, 209, 49, 19, 63, 77, 36, 59, 64, 177, 230, 194, 190)
+"vertex_data": PackedByteArray("vqK/PL8eHL2iiIq9iKK/vMMeHL2miIo9cisGPQDgyj8DgpC9MCClurchyz++Tb08Y3eXPCGrhT+x/Vq9d/20PCrKAD+Q1oK9cf20vCrKAD+i1oI9i3eXvCGrhT/v/Vo9NIi/PSc0A0DOtPW9WXiEPZwMBUAqz1q9HE9zPpBgIEDsYmu+RjxePly3IUCgxku+I2bNPjd2MEBYpKW+94jFPjfZMUA0Ap2+KIYVPydrOkCG/ca+0TETP00kO0Cx5sK+")
 }]
 blend_shape_mode = 0
 
@@ -469,15 +500,16 @@ blend_shape_mode = 0
 resource_name = "PondEnvironment_Plane_046"
 _surfaces = [{
 "aabb": AABB(-0.0233929, -0.0381153, -0.388653, 0.607471, 2.96221, 0.456296),
-"attribute_data": PackedByteArray(0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 172, 170, 170, 62, 0, 0, 0, 0, 172, 170, 170, 62, 0, 0, 0, 0, 171, 170, 42, 63, 0, 0, 128, 63, 170, 170, 42, 63, 0, 0, 128, 63, 170, 170, 170, 62, 0, 0, 128, 63, 170, 170, 170, 62, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0),
-"format": 4119,
+"attribute_data": PackedByteArray("AAAAAAAAgD8AAIA/AACAPwAAAAAAAAAAAAAAAAAAAAAAAIA/AAAAAAAAgD8AAAAAAAAAAKyqqj4AAAAArKqqPgAAAACrqio/AACAP6qqKj8AAIA/qqqqPgAAgD+qqqo+AAAAAAAAAAAAAAAAAAAAAAAAgD8AAAAAAACAPwAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAAAAAAIA/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAIA/AAAAAAAAgD8AAAAAAAAAAAAAAAAAAIA/AAAAAA=="),
+"format": 34359742487,
 "index_count": 42,
-"index_data": PackedByteArray(6, 0, 5, 0, 10, 0, 6, 0, 3, 0, 5, 0, 0, 0, 9, 0, 1, 0, 0, 0, 8, 0, 9, 0, 8, 0, 11, 0, 9, 0, 8, 0, 7, 0, 11, 0, 2, 0, 15, 0, 4, 0, 2, 0, 13, 0, 15, 0, 12, 0, 19, 0, 14, 0, 12, 0, 17, 0, 19, 0, 16, 0, 23, 0, 18, 0, 16, 0, 21, 0, 23, 0, 20, 0, 25, 0, 22, 0, 20, 0, 24, 0, 25, 0),
+"index_data": PackedByteArray("BgAFAAoABgADAAUAAAAJAAEAAAAIAAkACAALAAkACAAHAAsAAgAPAAQAAgANAA8ADAATAA4ADAARABMAEAAXABIAEAAVABcAFAAZABYAFAAYABkA"),
 "material": ExtResource("1_50wr4"),
 "name": "GrassBladeMat",
 "primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 26,
-"vertex_data": PackedByteArray(190, 162, 191, 60, 191, 30, 28, 189, 162, 136, 138, 189, 0, 0, 226, 160, 28, 95, 255, 191, 136, 162, 191, 188, 195, 30, 28, 189, 166, 136, 138, 61, 0, 0, 226, 160, 28, 95, 255, 191, 114, 43, 6, 61, 0, 224, 202, 63, 3, 130, 144, 189, 201, 6, 223, 169, 255, 255, 255, 191, 114, 43, 6, 61, 0, 224, 202, 63, 3, 130, 144, 189, 69, 1, 103, 162, 17, 95, 252, 192, 48, 32, 165, 186, 183, 33, 203, 63, 190, 77, 189, 60, 201, 6, 223, 169, 255, 255, 255, 191, 48, 32, 165, 186, 183, 33, 203, 63, 190, 77, 189, 60, 69, 1, 103, 162, 0, 95, 220, 192, 99, 119, 151, 60, 33, 171, 133, 63, 177, 253, 90, 189, 69, 1, 103, 162, 152, 94, 29, 192, 99, 119, 151, 60, 33, 171, 133, 63, 177, 253, 90, 189, 0, 0, 226, 160, 28, 95, 255, 191, 119, 253, 180, 60, 42, 202, 0, 63, 144, 214, 130, 189, 0, 0, 226, 160, 28, 95, 255, 191, 113, 253, 180, 188, 42, 202, 0, 63, 162, 214, 130, 61, 0, 0, 226, 160, 28, 95, 255, 191, 139, 119, 151, 188, 33, 171, 133, 63, 239, 253, 90, 61, 69, 1, 103, 162, 136, 94, 0, 192, 139, 119, 151, 188, 33, 171, 133, 63, 239, 253, 90, 61, 0, 0, 226, 160, 28, 95, 255, 191, 52, 136, 191, 61, 39, 52, 3, 64, 206, 180, 245, 189, 202, 11, 228, 182, 255, 255, 255, 191, 52, 136, 191, 61, 39, 52, 3, 64, 206, 180, 245, 189, 201, 6, 223, 169, 255, 255, 255, 191, 89, 120, 132, 61, 156, 12, 5, 64, 42, 207, 90, 189, 202, 11, 228, 182, 255, 255, 255, 191, 89, 120, 132, 61, 156, 12, 5, 64, 42, 207, 90, 189, 201, 6, 223, 169, 255, 255, 255, 191, 28, 79, 115, 62, 144, 96, 32, 64, 236, 98, 107, 190, 7, 15, 51, 199, 255, 255, 255, 191, 28, 79, 115, 62, 144, 96, 32, 64, 236, 98, 107, 190, 202, 11, 228, 182, 255, 255, 255, 191, 70, 60, 94, 62, 92, 183, 33, 64, 160, 198, 75, 190, 7, 15, 51, 199, 255, 255, 255, 191, 70, 60, 94, 62, 92, 183, 33, 64, 160, 198, 75, 190, 202, 11, 228, 182, 255, 255, 255, 191, 35, 102, 205, 62, 55, 118, 48, 64, 88, 164, 165, 190, 237, 19, 219, 214, 255, 255, 255, 191, 35, 102, 205, 62, 55, 118, 48, 64, 88, 164, 165, 190, 7, 15, 51, 199, 255, 255, 255, 191, 247, 136, 197, 62, 55, 217, 49, 64, 52, 2, 157, 190, 237, 19, 219, 214, 255, 255, 255, 191, 247, 136, 197, 62, 55, 217, 49, 64, 52, 2, 157, 190, 7, 15, 51, 199, 255, 255, 255, 191, 40, 134, 21, 63, 39, 107, 58, 64, 134, 253, 198, 190, 237, 19, 219, 214, 255, 255, 255, 191, 209, 49, 19, 63, 77, 36, 59, 64, 177, 230, 194, 190, 237, 19, 219, 214, 255, 255, 255, 191)
+"vertex_data": PackedByteArray("vqK/PL8eHL2iiIq9iKK/vMMeHL2miIo9cisGPQDgyj8DgpC9cisGPQDgyj8DgpC9MCClurchyz++Tb08MCClurchyz++Tb08Y3eXPCGrhT+x/Vq9Y3eXPCGrhT+x/Vq9d/20PCrKAD+Q1oK9cf20vCrKAD+i1oI9i3eXvCGrhT/v/Vo9i3eXvCGrhT/v/Vo9NIi/PSc0A0DOtPW9NIi/PSc0A0DOtPW9WXiEPZwMBUAqz1q9WXiEPZwMBUAqz1q9HE9zPpBgIEDsYmu+HE9zPpBgIEDsYmu+RjxePly3IUCgxku+RjxePly3IUCgxku+I2bNPjd2MEBYpKW+I2bNPjd2MEBYpKW+94jFPjfZMUA0Ap2+94jFPjfZMUA0Ap2+KIYVPydrOkCG/ca+0TETP00kO0Cx5sK+AADioBxf/78AAOKgHF//v8kG36n///+/RQFnohFf/MDJBt+p////v0UBZ6IAX9zARQFnopheHcAAAOKgHF//vwAA4qAcX/+/AADioBxf/79FAWeiiF4AwAAA4qAcX/+/ygvktv///7/JBt+p////v8oL5Lb///+/yQbfqf///78HDzPH////v8oL5Lb///+/Bw8zx////7/KC+S2////v+0T29b///+/Bw8zx////7/tE9vW////vwcPM8f///+/7RPb1v///7/tE9vW////vw==")
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_7l5fm")
@@ -485,13 +517,14 @@ shadow_mesh = SubResource("ArrayMesh_7l5fm")
 [sub_resource type="ArrayMesh" id="ArrayMesh_7gqbf"]
 _surfaces = [{
 "aabb": AABB(-0.0569471, -0.0291865, -0.00555136, 0.326563, 2.26666, 0.432811),
-"format": 4097,
+"format": 34359742465,
 "index_count": 42,
-"index_data": PackedByteArray(4, 0, 3, 0, 7, 0, 4, 0, 2, 0, 3, 0, 0, 0, 6, 0, 1, 0, 0, 0, 5, 0, 6, 0, 5, 0, 7, 0, 6, 0, 5, 0, 4, 0, 7, 0, 2, 0, 9, 0, 3, 0, 2, 0, 8, 0, 9, 0, 8, 0, 11, 0, 9, 0, 8, 0, 10, 0, 11, 0, 10, 0, 13, 0, 11, 0, 10, 0, 12, 0, 13, 0, 12, 0, 15, 0, 13, 0, 12, 0, 14, 0, 15, 0),
+"index_data": PackedByteArray("BAADAAcABAACAAMAAAAGAAEAAAAFAAYABQAHAAYABQAEAAcAAgAJAAMAAgAIAAkACAALAAkACAAKAAsACgANAAsACgAMAA0ADAAPAA0ADAAOAA8A"),
 "name": "GrassBladeMat",
 "primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 16,
-"vertex_data": PackedByteArray(220, 125, 96, 189, 160, 24, 239, 188, 111, 172, 21, 179, 220, 125, 96, 61, 160, 24, 239, 188, 111, 172, 21, 179, 206, 65, 247, 188, 95, 217, 156, 63, 10, 202, 172, 61, 165, 172, 57, 61, 246, 212, 156, 63, 8, 12, 172, 61, 95, 65, 105, 189, 162, 4, 77, 63, 240, 77, 200, 60, 198, 212, 76, 189, 171, 53, 197, 62, 160, 230, 178, 187, 158, 56, 91, 61, 88, 77, 197, 62, 52, 232, 181, 187, 191, 222, 240, 60, 151, 212, 78, 63, 210, 140, 194, 60, 145, 9, 25, 61, 248, 39, 206, 63, 52, 224, 50, 62, 152, 103, 192, 61, 232, 227, 204, 63, 214, 184, 50, 62, 217, 71, 13, 62, 36, 142, 251, 63, 183, 52, 143, 62, 113, 114, 48, 62, 162, 88, 251, 63, 148, 194, 143, 62, 24, 210, 81, 62, 219, 253, 7, 64, 110, 82, 180, 62, 56, 46, 106, 62, 207, 81, 7, 64, 60, 240, 180, 62, 26, 37, 132, 62, 199, 50, 15, 64, 5, 75, 218, 62, 21, 11, 138, 62, 196, 222, 14, 64, 206, 193, 218, 62)
+"vertex_data": PackedByteArray("3H1gvaAY77xvrBWz3H1gPaAY77xvrBWzzkH3vF/ZnD8Kyqw9paw5PfbUnD8IDKw9X0FpvaIETT/wTcg8xtRMvas1xT6g5rK7njhbPVhNxT406LW7v97wPJfUTj/SjMI8kQkZPfgnzj804DI+mGfAPejjzD/WuDI+2UcNPiSO+z+3NI8+cXIwPqJY+z+Uwo8+GNJRPtv9B0BuUrQ+OC5qPs9RB0A88LQ+GiWEPscyD0AFS9o+FQuKPsTeDkDOwdo+")
 }]
 blend_shape_mode = 0
 
@@ -499,15 +532,16 @@ blend_shape_mode = 0
 resource_name = "PondEnvironment_Plane_047"
 _surfaces = [{
 "aabb": AABB(-0.0569471, -0.0291865, -0.00555136, 0.326563, 2.26666, 0.432811),
-"attribute_data": PackedByteArray(0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 172, 170, 170, 62, 0, 0, 0, 0, 172, 170, 170, 62, 0, 0, 0, 0, 171, 170, 42, 63, 0, 0, 0, 0, 171, 170, 42, 63, 0, 0, 128, 63, 170, 170, 42, 63, 0, 0, 128, 63, 170, 170, 42, 63, 0, 0, 128, 63, 170, 170, 170, 62, 0, 0, 128, 63, 170, 170, 170, 62, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0),
-"format": 4119,
+"attribute_data": PackedByteArray("AAAAAAAAgD8AAIA/AACAPwAAAAAAAAAAAAAAAAAAAAAAAIA/AAAAAAAAgD8AAAAAAAAAAKyqqj4AAAAArKqqPgAAAACrqio/AAAAAKuqKj8AAIA/qqoqPwAAgD+qqio/AACAP6qqqj4AAIA/qqqqPgAAAAAAAAAAAAAAAAAAAAAAAIA/AAAAAAAAgD8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAgD8AAAAAAACAPwAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAAAAAAIA/AAAAAAAAAAAAAAAAAACAPwAAAAA="),
+"format": 34359742487,
 "index_count": 42,
-"index_data": PackedByteArray(7, 0, 4, 0, 13, 0, 7, 0, 2, 0, 4, 0, 0, 0, 10, 0, 1, 0, 0, 0, 8, 0, 10, 0, 9, 0, 12, 0, 11, 0, 9, 0, 6, 0, 12, 0, 3, 0, 16, 0, 5, 0, 3, 0, 14, 0, 16, 0, 15, 0, 20, 0, 17, 0, 15, 0, 18, 0, 20, 0, 19, 0, 24, 0, 21, 0, 19, 0, 22, 0, 24, 0, 23, 0, 27, 0, 25, 0, 23, 0, 26, 0, 27, 0),
+"index_data": PackedByteArray("BwAEAA0ABwACAAQAAAAKAAEAAAAIAAoACQAMAAsACQAGAAwAAwAQAAUAAwAOABAADwAUABEADwASABQAEwAYABUAEwAWABgAFwAbABkAFwAaABsA"),
 "material": ExtResource("1_50wr4"),
 "name": "GrassBladeMat",
 "primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 28,
-"vertex_data": PackedByteArray(220, 125, 96, 189, 160, 24, 239, 188, 111, 172, 21, 179, 12, 128, 173, 129, 246, 255, 10, 192, 220, 125, 96, 61, 160, 24, 239, 188, 111, 172, 21, 179, 12, 128, 173, 129, 254, 255, 248, 191, 206, 65, 247, 188, 95, 217, 156, 63, 10, 202, 172, 61, 104, 129, 32, 112, 234, 255, 37, 191, 206, 65, 247, 188, 95, 217, 156, 63, 10, 202, 172, 61, 145, 126, 221, 103, 255, 255, 255, 63, 165, 172, 57, 61, 246, 212, 156, 63, 8, 12, 172, 61, 104, 129, 32, 112, 197, 254, 81, 193, 165, 172, 57, 61, 246, 212, 156, 63, 8, 12, 172, 61, 145, 126, 221, 103, 255, 255, 255, 63, 95, 65, 105, 189, 162, 4, 77, 63, 240, 77, 200, 60, 209, 128, 162, 119, 92, 246, 226, 196, 95, 65, 105, 189, 162, 4, 77, 63, 240, 77, 200, 60, 104, 129, 32, 112, 132, 247, 99, 196, 198, 212, 76, 189, 171, 53, 197, 62, 160, 230, 178, 187, 12, 128, 173, 129, 197, 255, 34, 192, 198, 212, 76, 189, 171, 53, 197, 62, 160, 230, 178, 187, 209, 128, 162, 119, 117, 254, 37, 193, 158, 56, 91, 61, 88, 77, 197, 62, 52, 232, 181, 187, 12, 128, 173, 129, 207, 255, 30, 192, 158, 56, 91, 61, 88, 77, 197, 62, 52, 232, 181, 187, 209, 128, 162, 119, 184, 255, 144, 192, 191, 222, 240, 60, 151, 212, 78, 63, 210, 140, 194, 60, 209, 128, 162, 119, 190, 247, 62, 196, 191, 222, 240, 60, 151, 212, 78, 63, 210, 140, 194, 60, 104, 129, 32, 112, 107, 246, 218, 196, 145, 9, 25, 61, 248, 39, 206, 63, 52, 224, 50, 62, 145, 126, 221, 103, 255, 255, 255, 63, 145, 9, 25, 61, 248, 39, 206, 63, 52, 224, 50, 62, 143, 123, 193, 100, 255, 255, 255, 63, 152, 103, 192, 61, 232, 227, 204, 63, 214, 184, 50, 62, 145, 126, 221, 103, 255, 255, 255, 63, 152, 103, 192, 61, 232, 227, 204, 63, 214, 184, 50, 62, 143, 123, 193, 100, 255, 255, 255, 63, 217, 71, 13, 62, 36, 142, 251, 63, 183, 52, 143, 62, 143, 123, 193, 100, 255, 255, 255, 63, 217, 71, 13, 62, 36, 142, 251, 63, 183, 52, 143, 62, 131, 117, 100, 93, 255, 255, 255, 63, 113, 114, 48, 62, 162, 88, 251, 63, 148, 194, 143, 62, 143, 123, 193, 100, 255, 255, 255, 63, 113, 114, 48, 62, 162, 88, 251, 63, 148, 194, 143, 62, 131, 117, 100, 93, 255, 255, 255, 63, 24, 210, 81, 62, 219, 253, 7, 64, 110, 82, 180, 62, 131, 117, 100, 93, 255, 255, 255, 63, 24, 210, 81, 62, 219, 253, 7, 64, 110, 82, 180, 62, 115, 107, 24, 91, 255, 255, 255, 63, 56, 46, 106, 62, 207, 81, 7, 64, 60, 240, 180, 62, 131, 117, 100, 93, 255, 255, 255, 63, 56, 46, 106, 62, 207, 81, 7, 64, 60, 240, 180, 62, 115, 107, 24, 91, 255, 255, 255, 63, 26, 37, 132, 62, 199, 50, 15, 64, 5, 75, 218, 62, 115, 107, 24, 91, 255, 255, 255, 63, 21, 11, 138, 62, 196, 222, 14, 64, 206, 193, 218, 62, 115, 107, 24, 91, 255, 255, 255, 63)
+"vertex_data": PackedByteArray("3H1gvaAY77xvrBWz3H1gPaAY77xvrBWzzkH3vF/ZnD8Kyqw9zkH3vF/ZnD8Kyqw9paw5PfbUnD8IDKw9paw5PfbUnD8IDKw9X0FpvaIETT/wTcg8X0FpvaIETT/wTcg8xtRMvas1xT6g5rK7xtRMvas1xT6g5rK7njhbPVhNxT406LW7njhbPVhNxT406LW7v97wPJfUTj/SjMI8v97wPJfUTj/SjMI8kQkZPfgnzj804DI+kQkZPfgnzj804DI+mGfAPejjzD/WuDI+mGfAPejjzD/WuDI+2UcNPiSO+z+3NI8+2UcNPiSO+z+3NI8+cXIwPqJY+z+Uwo8+cXIwPqJY+z+Uwo8+GNJRPtv9B0BuUrQ+GNJRPtv9B0BuUrQ+OC5qPs9RB0A88LQ+OC5qPs9RB0A88LQ+GiWEPscyD0AFS9o+FQuKPsTeDkDOwdo+DICtgfb/CsAMgK2B/v/4v2iBIHDq/yW/kX7dZ////z9ogSBwxf5RwZF+3Wf///8/0YCid1z24sRogSBwhPdjxAyArYHF/yLA0YCid3X+JcEMgK2Bz/8ewNGAone4/5DA0YCid773PsRogSBwa/baxJF+3Wf///8/j3vBZP///z+Rft1n////P497wWT///8/j3vBZP///z+DdWRd////P497wWT///8/g3VkXf///z+DdWRd////P3NrGFv///8/g3VkXf///z9zaxhb////P3NrGFv///8/c2sYW////z8=")
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_7gqbf")
@@ -515,13 +549,14 @@ shadow_mesh = SubResource("ArrayMesh_7gqbf")
 [sub_resource type="ArrayMesh" id="ArrayMesh_48d0m"]
 _surfaces = [{
 "aabb": AABB(-0.038203, -0.0322952, -0.0470996, 0.235372, 2.42, 0.796508),
-"format": 4097,
+"format": 34359742465,
 "index_count": 42,
-"index_data": PackedByteArray(4, 0, 3, 0, 7, 0, 4, 0, 2, 0, 3, 0, 0, 0, 6, 0, 1, 0, 0, 0, 5, 0, 6, 0, 5, 0, 7, 0, 6, 0, 5, 0, 4, 0, 7, 0, 2, 0, 9, 0, 3, 0, 2, 0, 8, 0, 9, 0, 8, 0, 11, 0, 9, 0, 8, 0, 10, 0, 11, 0, 10, 0, 13, 0, 11, 0, 10, 0, 12, 0, 13, 0, 12, 0, 15, 0, 13, 0, 12, 0, 14, 0, 15, 0),
+"index_data": PackedByteArray("BAADAAcABAACAAMAAAAGAAEAAAAFAAYABQAHAAYABQAEAAcAAgAJAAMAAgAIAAkACAALAAkACAAKAAsACgANAAsACgAMAA0ADAAPAA0ADAAOAA8A"),
 "name": "GrassBladeMat",
 "primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 16,
-"vertex_data": PackedByteArray(182, 122, 28, 189, 255, 71, 4, 189, 104, 235, 64, 61, 164, 122, 28, 61, 255, 71, 4, 189, 118, 235, 64, 189, 0, 160, 229, 188, 79, 219, 171, 63, 153, 66, 117, 61, 130, 138, 191, 60, 84, 18, 172, 63, 138, 231, 223, 187, 249, 91, 247, 188, 6, 132, 98, 63, 87, 123, 24, 61, 116, 201, 19, 189, 131, 63, 218, 62, 248, 51, 54, 61, 106, 201, 19, 61, 131, 63, 218, 62, 0, 52, 54, 189, 249, 91, 247, 60, 6, 132, 98, 63, 89, 123, 24, 189, 168, 153, 166, 60, 208, 250, 221, 63, 160, 208, 29, 62, 156, 87, 115, 61, 225, 5, 225, 63, 85, 183, 217, 61, 122, 114, 200, 61, 192, 137, 7, 64, 126, 100, 182, 62, 129, 195, 237, 61, 196, 157, 8, 64, 5, 17, 169, 62, 95, 180, 21, 62, 232, 238, 20, 64, 74, 218, 13, 63, 11, 183, 33, 62, 246, 16, 22, 64, 68, 175, 9, 63, 188, 217, 66, 62, 120, 61, 24, 64, 54, 217, 63, 63, 148, 230, 73, 62, 37, 208, 24, 64, 97, 183, 61, 63)
+"vertex_data": PackedByteArray("tnocvf9HBL1o60A9pHocPf9HBL1260C9AKDlvE/bqz+ZQnU9goq/PFQSrD+K59+7+Vv3vAaEYj9Xexg9dMkTvYM/2j74MzY9askTPYM/2j4ANDa9+Vv3PAaEYj9Zexi9qJmmPND63T+g0B0+nFdzPeEF4T9Vt9k9enLIPcCJB0B+ZLY+gcPtPcSdCEAFEak+X7QVPujuFEBK2g0/C7chPvYQFkBErwk/vNlCPng9GEA22T8/lOZJPiXQGEBhtz0/")
 }]
 blend_shape_mode = 0
 
@@ -529,15 +564,16 @@ blend_shape_mode = 0
 resource_name = "PondEnvironment_Plane_048"
 _surfaces = [{
 "aabb": AABB(-0.038203, -0.0322952, -0.0470996, 0.235372, 2.42, 0.796508),
-"attribute_data": PackedByteArray(0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 172, 170, 170, 62, 0, 0, 0, 0, 172, 170, 170, 62, 0, 0, 0, 0, 171, 170, 42, 63, 0, 0, 128, 63, 170, 170, 42, 63, 0, 0, 128, 63, 170, 170, 170, 62, 0, 0, 128, 63, 170, 170, 170, 62, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0),
-"format": 4119,
+"attribute_data": PackedByteArray("AAAAAAAAgD8AAIA/AACAPwAAAAAAAAAAAAAAAAAAAAAAAIA/AAAAAAAAgD8AAAAAAAAAAKyqqj4AAAAArKqqPgAAAACrqio/AACAP6qqKj8AAIA/qqqqPgAAgD+qqqo+AAAAAAAAAAAAAAAAAAAAAAAAgD8AAAAAAACAPwAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAAAAAAIA/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAIA/AAAAAAAAgD8AAAAAAAAAAAAAAAAAAIA/AAAAAA=="),
+"format": 34359742487,
 "index_count": 42,
-"index_data": PackedByteArray(7, 0, 4, 0, 11, 0, 7, 0, 2, 0, 4, 0, 0, 0, 9, 0, 1, 0, 0, 0, 8, 0, 9, 0, 8, 0, 10, 0, 9, 0, 8, 0, 6, 0, 10, 0, 3, 0, 14, 0, 5, 0, 3, 0, 12, 0, 14, 0, 13, 0, 18, 0, 15, 0, 13, 0, 16, 0, 18, 0, 17, 0, 23, 0, 19, 0, 17, 0, 21, 0, 23, 0, 20, 0, 25, 0, 22, 0, 20, 0, 24, 0, 25, 0),
+"index_data": PackedByteArray("BwAEAAsABwACAAQAAAAJAAEAAAAIAAkACAAKAAkACAAGAAoAAwAOAAUAAwAMAA4ADQASAA8ADQAQABIAEQAXABMAEQAVABcAFAAZABYAFAAYABkA"),
 "material": ExtResource("1_50wr4"),
 "name": "GrassBladeMat",
 "primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 26,
-"vertex_data": PackedByteArray(182, 122, 28, 189, 255, 71, 4, 189, 104, 235, 64, 61, 172, 198, 255, 127, 255, 255, 168, 156, 164, 122, 28, 61, 255, 71, 4, 189, 118, 235, 64, 189, 172, 198, 255, 127, 255, 255, 85, 227, 0, 160, 229, 188, 79, 219, 171, 63, 153, 66, 117, 61, 219, 197, 39, 125, 62, 254, 22, 228, 0, 160, 229, 188, 79, 219, 171, 63, 153, 66, 117, 61, 118, 191, 126, 109, 255, 255, 255, 63, 130, 138, 191, 60, 84, 18, 172, 63, 138, 231, 223, 187, 219, 197, 39, 125, 118, 254, 10, 228, 130, 138, 191, 60, 84, 18, 172, 63, 138, 231, 223, 187, 118, 191, 126, 109, 255, 255, 255, 63, 249, 91, 247, 188, 6, 132, 98, 63, 87, 123, 24, 61, 172, 198, 255, 127, 254, 255, 168, 156, 249, 91, 247, 188, 6, 132, 98, 63, 87, 123, 24, 61, 219, 197, 39, 125, 195, 255, 196, 227, 116, 201, 19, 189, 131, 63, 218, 62, 248, 51, 54, 61, 172, 198, 255, 127, 254, 255, 168, 156, 106, 201, 19, 61, 131, 63, 218, 62, 0, 52, 54, 189, 172, 198, 255, 127, 254, 255, 168, 156, 249, 91, 247, 60, 6, 132, 98, 63, 89, 123, 24, 189, 172, 198, 255, 127, 254, 255, 168, 156, 249, 91, 247, 60, 6, 132, 98, 63, 89, 123, 24, 189, 219, 197, 39, 125, 246, 255, 186, 227, 168, 153, 166, 60, 208, 250, 221, 63, 160, 208, 29, 62, 118, 191, 126, 109, 255, 255, 255, 63, 168, 153, 166, 60, 208, 250, 221, 63, 160, 208, 29, 62, 112, 192, 225, 97, 255, 255, 255, 63, 156, 87, 115, 61, 225, 5, 225, 63, 85, 183, 217, 61, 118, 191, 126, 109, 255, 255, 255, 63, 156, 87, 115, 61, 225, 5, 225, 63, 85, 183, 217, 61, 112, 192, 225, 97, 255, 255, 255, 63, 122, 114, 200, 61, 192, 137, 7, 64, 126, 100, 182, 62, 112, 192, 225, 97, 255, 255, 255, 63, 122, 114, 200, 61, 192, 137, 7, 64, 126, 100, 182, 62, 26, 199, 66, 92, 255, 255, 255, 63, 129, 195, 237, 61, 196, 157, 8, 64, 5, 17, 169, 62, 112, 192, 225, 97, 255, 255, 255, 63, 129, 195, 237, 61, 196, 157, 8, 64, 5, 17, 169, 62, 26, 199, 66, 92, 255, 255, 255, 63, 95, 180, 21, 62, 232, 238, 20, 64, 74, 218, 13, 63, 5, 203, 114, 72, 255, 255, 255, 191, 95, 180, 21, 62, 232, 238, 20, 64, 74, 218, 13, 63, 26, 199, 66, 92, 255, 255, 255, 63, 11, 183, 33, 62, 246, 16, 22, 64, 68, 175, 9, 63, 5, 203, 114, 72, 255, 255, 255, 191, 11, 183, 33, 62, 246, 16, 22, 64, 68, 175, 9, 63, 26, 199, 66, 92, 255, 255, 255, 63, 188, 217, 66, 62, 120, 61, 24, 64, 54, 217, 63, 63, 5, 203, 114, 72, 255, 255, 255, 191, 148, 230, 73, 62, 37, 208, 24, 64, 97, 183, 61, 63, 5, 203, 114, 72, 255, 255, 255, 191)
+"vertex_data": PackedByteArray("tnocvf9HBL1o60A9pHocPf9HBL1260C9AKDlvE/bqz+ZQnU9AKDlvE/bqz+ZQnU9goq/PFQSrD+K59+7goq/PFQSrD+K59+7+Vv3vAaEYj9Xexg9+Vv3vAaEYj9Xexg9dMkTvYM/2j74MzY9askTPYM/2j4ANDa9+Vv3PAaEYj9Zexi9+Vv3PAaEYj9Zexi9qJmmPND63T+g0B0+qJmmPND63T+g0B0+nFdzPeEF4T9Vt9k9nFdzPeEF4T9Vt9k9enLIPcCJB0B+ZLY+enLIPcCJB0B+ZLY+gcPtPcSdCEAFEak+gcPtPcSdCEAFEak+X7QVPujuFEBK2g0/X7QVPujuFEBK2g0/C7chPvYQFkBErwk/C7chPvYQFkBErwk/vNlCPng9GEA22T8/lOZJPiXQGEBhtz0/rMb/f///qJysxv9///9V49vFJ30+/hbkdr9+bf///z/bxSd9dv4K5Ha/fm3///8/rMb/f/7/qJzbxSd9w//E46zG/3/+/6icrMb/f/7/qJysxv9//v+onNvFJ332/7rjdr9+bf///z9wwOFh////P3a/fm3///8/cMDhYf///z9wwOFh////PxrHQlz///8/cMDhYf///z8ax0Jc////PwXLckj///+/GsdCXP///z8Fy3JI////vxrHQlz///8/BctySP///78Fy3JI////vw==")
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_48d0m")
@@ -545,13 +581,14 @@ shadow_mesh = SubResource("ArrayMesh_48d0m")
 [sub_resource type="ArrayMesh" id="ArrayMesh_2qfng"]
 _surfaces = [{
 "aabb": AABB(-0.328166, -0.0316662, -0.0365809, 0.378756, 2.46455, 0.378831),
-"format": 4097,
+"format": 34359742465,
 "index_count": 42,
-"index_data": PackedByteArray(4, 0, 3, 0, 7, 0, 4, 0, 2, 0, 3, 0, 0, 0, 6, 0, 1, 0, 0, 0, 5, 0, 6, 0, 5, 0, 7, 0, 6, 0, 5, 0, 4, 0, 7, 0, 2, 0, 9, 0, 3, 0, 2, 0, 8, 0, 9, 0, 8, 0, 11, 0, 9, 0, 8, 0, 10, 0, 11, 0, 10, 0, 13, 0, 11, 0, 10, 0, 12, 0, 13, 0, 12, 0, 15, 0, 13, 0, 12, 0, 14, 0, 15, 0),
+"index_data": PackedByteArray("BAADAAcABAACAAMAAAAGAAEAAAAFAAYABQAHAAYABQAEAAcAAgAJAAMAAgAIAAkACAALAAkACAAKAAsACgANAAsACgAMAA0ADAAPAA0ADAAOAA8A"),
 "name": "GrassBladeMat",
 "primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 16,
-"vertex_data": PackedByteArray(76, 103, 69, 189, 114, 180, 1, 189, 49, 172, 14, 189, 88, 103, 69, 61, 114, 180, 1, 189, 31, 172, 14, 61, 38, 135, 165, 189, 180, 162, 169, 63, 150, 88, 95, 61, 140, 6, 109, 188, 65, 71, 170, 63, 123, 230, 208, 61, 22, 154, 61, 189, 174, 90, 95, 63, 128, 160, 61, 186, 20, 229, 37, 189, 243, 246, 213, 62, 227, 213, 21, 189, 36, 56, 79, 61, 153, 16, 214, 62, 225, 167, 238, 60, 8, 107, 248, 60, 96, 219, 95, 63, 168, 253, 91, 61, 177, 28, 13, 190, 187, 181, 222, 63, 156, 119, 9, 62, 252, 137, 175, 189, 86, 70, 223, 63, 128, 208, 47, 62, 104, 230, 91, 190, 54, 19, 8, 64, 132, 122, 96, 62, 177, 40, 59, 190, 134, 95, 8, 64, 46, 160, 121, 62, 144, 237, 139, 190, 73, 196, 18, 64, 71, 66, 140, 62, 229, 219, 128, 190, 141, 33, 19, 64, 141, 21, 149, 62, 80, 5, 168, 190, 217, 139, 27, 64, 30, 201, 170, 62, 89, 186, 162, 190, 110, 180, 27, 64, 108, 59, 175, 62)
+"vertex_data": PackedByteArray("TGdFvXK0Ab0xrA69WGdFPXK0Ab0frA49JoelvbSiqT+WWF89jAZtvEFHqj975tA9Fpo9va5aXz+AoD26FOUlvfP21T7j1RW9JDhPPZkQ1j7hp+48CGv4PGDbXz+o/Vs9sRwNvru13j+cdwk+/ImvvVZG3z+A0C8+aOZbvjYTCECEemA+sSg7voZfCEAuoHk+kO2LvknEEkBHQow+5duAvo0hE0CNFZU+UAWovtmLG0Aeyao+Wbqivm60G0BsO68+")
 }]
 blend_shape_mode = 0
 
@@ -559,15 +596,16 @@ blend_shape_mode = 0
 resource_name = "PondEnvironment_Plane_049"
 _surfaces = [{
 "aabb": AABB(-0.328166, -0.0316662, -0.0365809, 0.378756, 2.46455, 0.378831),
-"attribute_data": PackedByteArray(0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 172, 170, 170, 62, 0, 0, 0, 0, 172, 170, 170, 62, 0, 0, 0, 0, 171, 170, 42, 63, 0, 0, 0, 0, 171, 170, 42, 63, 0, 0, 128, 63, 170, 170, 42, 63, 0, 0, 128, 63, 170, 170, 42, 63, 0, 0, 128, 63, 170, 170, 170, 62, 0, 0, 128, 63, 170, 170, 170, 62, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0),
-"format": 4119,
+"attribute_data": PackedByteArray("AAAAAAAAgD8AAIA/AACAPwAAAAAAAAAAAAAAAAAAAAAAAIA/AAAAAAAAgD8AAAAAAAAAAKyqqj4AAAAArKqqPgAAAACrqio/AAAAAKuqKj8AAIA/qqoqPwAAgD+qqio/AACAP6qqqj4AAIA/qqqqPgAAAAAAAAAAAAAAAAAAAAAAAIA/AAAAAAAAgD8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAgD8AAAAAAACAPwAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAAAAAAIA/AAAAAAAAAAAAAAAAAACAPwAAAAA="),
+"format": 34359742487,
 "index_count": 42,
-"index_data": PackedByteArray(6, 0, 5, 0, 12, 0, 6, 0, 3, 0, 5, 0, 0, 0, 11, 0, 1, 0, 0, 0, 9, 0, 11, 0, 8, 0, 13, 0, 10, 0, 8, 0, 7, 0, 13, 0, 2, 0, 17, 0, 4, 0, 2, 0, 15, 0, 17, 0, 14, 0, 21, 0, 16, 0, 14, 0, 19, 0, 21, 0, 18, 0, 25, 0, 20, 0, 18, 0, 23, 0, 25, 0, 22, 0, 27, 0, 24, 0, 22, 0, 26, 0, 27, 0),
+"index_data": PackedByteArray("BgAFAAwABgADAAUAAAALAAEAAAAJAAsACAANAAoACAAHAA0AAgARAAQAAgAPABEADgAVABAADgATABUAEgAZABQAEgAXABkAFgAbABgAFgAaABsA"),
 "material": ExtResource("1_50wr4"),
 "name": "GrassBladeMat",
 "primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 28,
-"vertex_data": PackedByteArray(76, 103, 69, 189, 114, 180, 1, 189, 49, 172, 14, 189, 213, 74, 52, 129, 79, 202, 2, 192, 88, 103, 69, 61, 114, 180, 1, 189, 31, 172, 14, 61, 213, 74, 52, 129, 83, 202, 255, 191, 38, 135, 165, 189, 180, 162, 169, 63, 150, 88, 95, 61, 43, 83, 106, 109, 255, 255, 255, 63, 38, 135, 165, 189, 180, 162, 169, 63, 150, 88, 95, 61, 11, 80, 12, 116, 99, 199, 177, 194, 140, 6, 109, 188, 65, 71, 170, 63, 123, 230, 208, 61, 43, 83, 106, 109, 255, 255, 255, 63, 140, 6, 109, 188, 65, 71, 170, 63, 123, 230, 208, 61, 11, 80, 12, 116, 178, 199, 119, 194, 22, 154, 61, 189, 174, 90, 95, 63, 128, 160, 61, 186, 11, 80, 12, 116, 131, 201, 38, 193, 22, 154, 61, 189, 174, 90, 95, 63, 128, 160, 61, 186, 49, 77, 213, 121, 113, 201, 237, 192, 20, 229, 37, 189, 243, 246, 213, 62, 227, 213, 21, 189, 49, 77, 213, 121, 92, 202, 51, 192, 20, 229, 37, 189, 243, 246, 213, 62, 227, 213, 21, 189, 213, 74, 52, 129, 59, 202, 19, 192, 36, 56, 79, 61, 153, 16, 214, 62, 225, 167, 238, 60, 49, 77, 213, 121, 128, 202, 22, 192, 36, 56, 79, 61, 153, 16, 214, 62, 225, 167, 238, 60, 213, 74, 52, 129, 63, 202, 16, 192, 8, 107, 248, 60, 96, 219, 95, 63, 168, 253, 91, 61, 11, 80, 12, 116, 202, 201, 243, 192, 8, 107, 248, 60, 96, 219, 95, 63, 168, 253, 91, 61, 49, 77, 213, 121, 154, 201, 204, 192, 177, 28, 13, 190, 187, 181, 222, 63, 156, 119, 9, 62, 145, 84, 150, 105, 255, 255, 255, 63, 177, 28, 13, 190, 187, 181, 222, 63, 156, 119, 9, 62, 43, 83, 106, 109, 255, 255, 255, 63, 252, 137, 175, 189, 86, 70, 223, 63, 128, 208, 47, 62, 145, 84, 150, 105, 255, 255, 255, 63, 252, 137, 175, 189, 86, 70, 223, 63, 128, 208, 47, 62, 43, 83, 106, 109, 255, 255, 255, 63, 104, 230, 91, 190, 54, 19, 8, 64, 132, 122, 96, 62, 122, 89, 222, 95, 255, 255, 255, 63, 104, 230, 91, 190, 54, 19, 8, 64, 132, 122, 96, 62, 145, 84, 150, 105, 255, 255, 255, 63, 177, 40, 59, 190, 134, 95, 8, 64, 46, 160, 121, 62, 122, 89, 222, 95, 255, 255, 255, 63, 177, 40, 59, 190, 134, 95, 8, 64, 46, 160, 121, 62, 145, 84, 150, 105, 255, 255, 255, 63, 144, 237, 139, 190, 73, 196, 18, 64, 71, 66, 140, 62, 21, 93, 242, 89, 255, 255, 255, 63, 144, 237, 139, 190, 73, 196, 18, 64, 71, 66, 140, 62, 122, 89, 222, 95, 255, 255, 255, 63, 229, 219, 128, 190, 141, 33, 19, 64, 141, 21, 149, 62, 21, 93, 242, 89, 255, 255, 255, 63, 229, 219, 128, 190, 141, 33, 19, 64, 141, 21, 149, 62, 122, 89, 222, 95, 255, 255, 255, 63, 80, 5, 168, 190, 217, 139, 27, 64, 30, 201, 170, 62, 21, 93, 242, 89, 255, 255, 255, 63, 89, 186, 162, 190, 110, 180, 27, 64, 108, 59, 175, 62, 21, 93, 242, 89, 255, 255, 255, 63)
+"vertex_data": PackedByteArray("TGdFvXK0Ab0xrA69WGdFPXK0Ab0frA49JoelvbSiqT+WWF89JoelvbSiqT+WWF89jAZtvEFHqj975tA9jAZtvEFHqj975tA9Fpo9va5aXz+AoD26Fpo9va5aXz+AoD26FOUlvfP21T7j1RW9FOUlvfP21T7j1RW9JDhPPZkQ1j7hp+48JDhPPZkQ1j7hp+48CGv4PGDbXz+o/Vs9CGv4PGDbXz+o/Vs9sRwNvru13j+cdwk+sRwNvru13j+cdwk+/ImvvVZG3z+A0C8+/ImvvVZG3z+A0C8+aOZbvjYTCECEemA+aOZbvjYTCECEemA+sSg7voZfCEAuoHk+sSg7voZfCEAuoHk+kO2LvknEEkBHQow+kO2LvknEEkBHQow+5duAvo0hE0CNFZU+5duAvo0hE0CNFZU+UAWovtmLG0Aeyao+Wbqivm60G0BsO68+1Uo0gU/KAsDVSjSBU8r/vytTam3///8/C1AMdGPHscIrU2pt////PwtQDHSyx3fCC1AMdIPJJsExTdV5ccntwDFN1XlcyjPA1Uo0gTvKE8AxTdV5gMoWwNVKNIE/yhDAC1AMdMrJ88AxTdV5msnMwJFUlmn///8/K1Nqbf///z+RVJZp////PytTam3///8/elneX////z+RVJZp////P3pZ3l////8/kVSWaf///z8VXfJZ////P3pZ3l////8/FV3yWf///z96Wd5f////PxVd8ln///8/FV3yWf///z8=")
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_2qfng")
@@ -575,13 +613,14 @@ shadow_mesh = SubResource("ArrayMesh_2qfng")
 [sub_resource type="ArrayMesh" id="ArrayMesh_iecmn"]
 _surfaces = [{
 "aabb": AABB(-0.582233, -0.0330524, -0.176435, 0.640398, 2.56873, 0.198104),
-"format": 4097,
+"format": 34359742465,
 "index_count": 42,
-"index_data": PackedByteArray(4, 0, 3, 0, 7, 0, 4, 0, 2, 0, 3, 0, 0, 0, 6, 0, 1, 0, 0, 0, 5, 0, 6, 0, 5, 0, 7, 0, 6, 0, 5, 0, 4, 0, 7, 0, 2, 0, 9, 0, 3, 0, 2, 0, 8, 0, 9, 0, 8, 0, 11, 0, 9, 0, 8, 0, 10, 0, 11, 0, 10, 0, 13, 0, 11, 0, 10, 0, 12, 0, 13, 0, 12, 0, 15, 0, 13, 0, 12, 0, 14, 0, 15, 0),
+"index_data": PackedByteArray("BAADAAcABAACAAMAAAAGAAEAAAAFAAYABQAHAAYABQAEAAcAAgAJAAMAAgAIAAkACAALAAkACAAKAAsACgANAAsACgAMAA0ADAAPAA0ADAAOAA8A"),
 "name": "GrassBladeMat",
 "primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 16,
-"vertex_data": PackedByteArray(96, 62, 110, 189, 234, 97, 7, 189, 112, 111, 177, 60, 88, 62, 110, 61, 234, 97, 7, 189, 152, 111, 177, 188, 116, 178, 133, 189, 69, 237, 175, 63, 198, 74, 139, 60, 124, 91, 132, 60, 66, 38, 176, 63, 254, 7, 67, 188, 54, 78, 60, 189, 131, 211, 103, 63, 20, 62, 140, 60, 100, 2, 97, 189, 98, 93, 223, 62, 27, 148, 167, 60, 90, 2, 97, 61, 98, 93, 223, 62, 105, 148, 167, 188, 40, 78, 60, 61, 131, 211, 103, 63, 136, 62, 140, 188, 44, 7, 7, 190, 47, 141, 227, 63, 80, 252, 107, 59, 147, 70, 146, 189, 150, 192, 230, 63, 192, 82, 98, 188, 0, 219, 145, 190, 246, 18, 11, 64, 184, 217, 3, 189, 192, 119, 129, 190, 57, 60, 12, 64, 140, 49, 17, 189, 228, 33, 224, 190, 170, 5, 25, 64, 26, 69, 184, 189, 146, 4, 214, 190, 129, 57, 26, 64, 102, 69, 182, 189, 58, 13, 21, 191, 5, 168, 33, 64, 82, 171, 52, 190, 15, 102, 18, 191, 147, 72, 34, 64, 27, 242, 50, 190)
+"vertex_data": PackedByteArray("YD5uvephB71wb7E8WD5uPephB72Yb7G8dLKFvUXtrz/GSos8fFuEPEImsD/+B0O8Nk48vYPTZz8UPow8ZAJhvWJd3z4blKc8WgJhPWJd3z5plKe8KE48PYPTZz+IPoy8LAcHvi+N4z9Q/Gs7k0aSvZbA5j/AUmK8ANuRvvYSC0C42QO9wHeBvjk8DECMMRG95CHgvqoFGUAaRbi9kgTWvoE5GkBmRba9Og0VvwWoIUBSqzS+D2YSv5NIIkAb8jK+")
 }]
 blend_shape_mode = 0
 
@@ -589,15 +628,16 @@ blend_shape_mode = 0
 resource_name = "PondEnvironment_Plane_050"
 _surfaces = [{
 "aabb": AABB(-0.582233, -0.0330524, -0.176435, 0.640398, 2.56873, 0.198104),
-"attribute_data": PackedByteArray(0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 172, 170, 170, 62, 0, 0, 0, 0, 172, 170, 170, 62, 0, 0, 0, 0, 171, 170, 42, 63, 0, 0, 128, 63, 170, 170, 42, 63, 0, 0, 128, 63, 170, 170, 170, 62, 0, 0, 128, 63, 170, 170, 170, 62, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0),
-"format": 4119,
+"attribute_data": PackedByteArray("AAAAAAAAgD8AAIA/AACAPwAAAAAAAAAAAAAAAAAAAAAAAIA/AAAAAAAAgD8AAAAAAAAAAKyqqj4AAAAArKqqPgAAAACrqio/AACAP6qqKj8AAIA/qqqqPgAAgD+qqqo+AAAAAAAAAAAAAAAAAAAAAAAAgD8AAAAAAACAPwAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAAAAAAIA/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAIA/AAAAAAAAgD8AAAAAAAAAAAAAAAAAAIA/AAAAAA=="),
+"format": 34359742487,
 "index_count": 42,
-"index_data": PackedByteArray(6, 0, 5, 0, 10, 0, 6, 0, 3, 0, 5, 0, 0, 0, 9, 0, 1, 0, 0, 0, 8, 0, 9, 0, 8, 0, 11, 0, 9, 0, 8, 0, 7, 0, 11, 0, 2, 0, 15, 0, 4, 0, 2, 0, 13, 0, 15, 0, 12, 0, 18, 0, 14, 0, 12, 0, 16, 0, 18, 0, 17, 0, 22, 0, 19, 0, 17, 0, 20, 0, 22, 0, 21, 0, 25, 0, 23, 0, 21, 0, 24, 0, 25, 0),
+"index_data": PackedByteArray("BgAFAAoABgADAAUAAAAJAAEAAAAIAAkACAALAAkACAAHAAsAAgAPAAQAAgANAA8ADAASAA4ADAAQABIAEQAWABMAEQAUABYAFQAZABcAFQAYABkA"),
 "material": ExtResource("1_50wr4"),
 "name": "GrassBladeMat",
 "primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 26,
-"vertex_data": PackedByteArray(96, 62, 110, 189, 234, 97, 7, 189, 112, 111, 177, 60, 187, 162, 255, 127, 254, 255, 161, 174, 88, 62, 110, 61, 234, 97, 7, 189, 152, 111, 177, 188, 187, 162, 255, 127, 255, 255, 93, 209, 116, 178, 133, 189, 69, 237, 175, 63, 198, 74, 139, 60, 195, 156, 11, 135, 255, 255, 255, 63, 116, 178, 133, 189, 69, 237, 175, 63, 198, 74, 139, 60, 211, 161, 67, 129, 7, 254, 207, 209, 124, 91, 132, 60, 66, 38, 176, 63, 254, 7, 67, 188, 195, 156, 11, 135, 255, 255, 255, 63, 124, 91, 132, 60, 66, 38, 176, 63, 254, 7, 67, 188, 211, 161, 67, 129, 70, 254, 183, 209, 54, 78, 60, 189, 131, 211, 103, 63, 20, 62, 140, 60, 211, 161, 67, 129, 194, 255, 42, 209, 54, 78, 60, 189, 131, 211, 103, 63, 20, 62, 140, 60, 187, 162, 255, 127, 254, 255, 161, 174, 100, 2, 97, 189, 98, 93, 223, 62, 27, 148, 167, 60, 187, 162, 255, 127, 254, 255, 161, 174, 90, 2, 97, 61, 98, 93, 223, 62, 105, 148, 167, 188, 187, 162, 255, 127, 254, 255, 161, 174, 40, 78, 60, 61, 131, 211, 103, 63, 136, 62, 140, 188, 211, 161, 67, 129, 252, 255, 21, 209, 40, 78, 60, 61, 131, 211, 103, 63, 136, 62, 140, 188, 187, 162, 255, 127, 254, 255, 161, 174, 44, 7, 7, 190, 47, 141, 227, 63, 80, 252, 107, 59, 144, 143, 220, 141, 255, 255, 255, 63, 44, 7, 7, 190, 47, 141, 227, 63, 80, 252, 107, 59, 195, 156, 11, 135, 255, 255, 255, 63, 147, 70, 146, 189, 150, 192, 230, 63, 192, 82, 98, 188, 144, 143, 220, 141, 255, 255, 255, 63, 147, 70, 146, 189, 150, 192, 230, 63, 192, 82, 98, 188, 195, 156, 11, 135, 255, 255, 255, 63, 0, 219, 145, 190, 246, 18, 11, 64, 184, 217, 3, 189, 144, 143, 220, 141, 255, 255, 255, 63, 0, 219, 145, 190, 246, 18, 11, 64, 184, 217, 3, 189, 236, 118, 229, 146, 255, 255, 255, 63, 192, 119, 129, 190, 57, 60, 12, 64, 140, 49, 17, 189, 144, 143, 220, 141, 255, 255, 255, 63, 192, 119, 129, 190, 57, 60, 12, 64, 140, 49, 17, 189, 236, 118, 229, 146, 255, 255, 255, 63, 228, 33, 224, 190, 170, 5, 25, 64, 26, 69, 184, 189, 236, 118, 229, 146, 255, 255, 255, 63, 228, 33, 224, 190, 170, 5, 25, 64, 26, 69, 184, 189, 195, 100, 78, 149, 255, 255, 255, 63, 146, 4, 214, 190, 129, 57, 26, 64, 102, 69, 182, 189, 236, 118, 229, 146, 255, 255, 255, 63, 146, 4, 214, 190, 129, 57, 26, 64, 102, 69, 182, 189, 195, 100, 78, 149, 255, 255, 255, 63, 58, 13, 21, 191, 5, 168, 33, 64, 82, 171, 52, 190, 195, 100, 78, 149, 255, 255, 255, 63, 15, 102, 18, 191, 147, 72, 34, 64, 27, 242, 50, 190, 195, 100, 78, 149, 255, 255, 255, 63)
+"vertex_data": PackedByteArray("YD5uvephB71wb7E8WD5uPephB72Yb7G8dLKFvUXtrz/GSos8dLKFvUXtrz/GSos8fFuEPEImsD/+B0O8fFuEPEImsD/+B0O8Nk48vYPTZz8UPow8Nk48vYPTZz8UPow8ZAJhvWJd3z4blKc8WgJhPWJd3z5plKe8KE48PYPTZz+IPoy8KE48PYPTZz+IPoy8LAcHvi+N4z9Q/Gs7LAcHvi+N4z9Q/Gs7k0aSvZbA5j/AUmK8k0aSvZbA5j/AUmK8ANuRvvYSC0C42QO9ANuRvvYSC0C42QO9wHeBvjk8DECMMRG9wHeBvjk8DECMMRG95CHgvqoFGUAaRbi95CHgvqoFGUAaRbi9kgTWvoE5GkBmRba9kgTWvoE5GkBmRba9Og0VvwWoIUBSqzS+D2YSv5NIIkAb8jK+u6L/f/7/oa67ov9///9d0cOcC4f///8/06FDgQf+z9HDnAuH////P9OhQ4FG/rfR06FDgcL/KtG7ov9//v+hrrui/3/+/6Guu6L/f/7/oa7ToUOB/P8V0bui/3/+/6GukI/cjf///z/DnAuH////P5CP3I3///8/w5wLh////z+Qj9yN////P+x25ZL///8/kI/cjf///z/sduWS////P+x25ZL///8/w2ROlf///z/sduWS////P8NkTpX///8/w2ROlf///z/DZE6V////Pw==")
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_iecmn")
@@ -605,13 +645,14 @@ shadow_mesh = SubResource("ArrayMesh_iecmn")
 [sub_resource type="ArrayMesh" id="ArrayMesh_qtxyx"]
 _surfaces = [{
 "aabb": AABB(-0.0949752, -0.0301978, -0.173261, 0.150894, 2.43426, 0.182651),
-"format": 4097,
+"format": 34359742465,
 "index_count": 42,
-"index_data": PackedByteArray(4, 0, 3, 0, 7, 0, 4, 0, 2, 0, 3, 0, 0, 0, 6, 0, 1, 0, 0, 0, 5, 0, 6, 0, 5, 0, 7, 0, 6, 0, 5, 0, 4, 0, 7, 0, 2, 0, 9, 0, 3, 0, 2, 0, 8, 0, 9, 0, 8, 0, 11, 0, 9, 0, 8, 0, 10, 0, 11, 0, 10, 0, 13, 0, 11, 0, 10, 0, 12, 0, 13, 0, 12, 0, 15, 0, 13, 0, 12, 0, 14, 0, 15, 0),
+"index_data": PackedByteArray("BAADAAcABAACAAMAAAAGAAEAAAAFAAYABQAHAAYABQAEAAcAAgAJAAMAAgAIAAkACAALAAkACAAKAAsACgANAAsACgAMAA0ADAAPAA0ADAAOAA8A"),
 "name": "GrassBladeMat",
 "primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 16,
-"vertex_data": PackedByteArray(23, 18, 101, 189, 112, 97, 247, 188, 223, 172, 25, 60, 113, 11, 101, 61, 112, 97, 247, 188, 27, 75, 26, 188, 180, 233, 170, 189, 87, 26, 159, 63, 10, 250, 37, 190, 20, 148, 206, 187, 115, 3, 159, 63, 90, 107, 49, 190, 133, 195, 137, 189, 172, 197, 83, 63, 80, 228, 3, 190, 182, 20, 133, 189, 248, 18, 204, 62, 84, 16, 130, 189, 112, 129, 38, 61, 248, 18, 204, 62, 211, 107, 166, 189, 103, 29, 173, 60, 75, 197, 83, 63, 234, 28, 19, 190, 90, 130, 194, 189, 74, 137, 205, 63, 28, 84, 41, 190, 71, 125, 11, 189, 151, 69, 205, 63, 39, 230, 46, 190, 194, 196, 150, 189, 35, 230, 1, 64, 9, 162, 243, 189, 124, 62, 15, 189, 203, 170, 1, 64, 238, 29, 243, 189, 227, 92, 59, 189, 202, 213, 15, 64, 5, 177, 178, 189, 62, 239, 157, 188, 232, 151, 15, 64, 239, 34, 175, 189, 243, 244, 71, 188, 19, 220, 25, 64, 24, 21, 16, 189, 48, 50, 27, 58, 56, 180, 25, 64, 179, 238, 10, 189)
+"vertex_data": PackedByteArray("FxJlvXBh97zfrBk8cQtlPXBh97wbSxq8tOmqvVcanz8K+iW+FJTOu3MDnz9aazG+hcOJvazFUz9Q5AO+thSFvfgSzD5UEIK9cIEmPfgSzD7Ta6a9Zx2tPEvFUz/qHBO+WoLCvUqJzT8cVCm+R30LvZdFzT8n5i6+wsSWvSPmAUAJovO9fD4PvcuqAUDuHfO941w7vcrVD0AFsbK9Pu+dvOiXD0DvIq+98/RHvBPcGUAYFRC9MDIbOji0GUCz7gq9")
 }]
 blend_shape_mode = 0
 
@@ -619,15 +660,16 @@ blend_shape_mode = 0
 resource_name = "PondEnvironment_Plane_051"
 _surfaces = [{
 "aabb": AABB(-0.0949752, -0.0301978, -0.173261, 0.150894, 2.43426, 0.182651),
-"attribute_data": PackedByteArray(0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 172, 170, 170, 62, 0, 0, 0, 0, 172, 170, 170, 62, 0, 0, 0, 0, 171, 170, 42, 63, 0, 0, 0, 0, 171, 170, 42, 63, 0, 0, 128, 63, 170, 170, 42, 63, 0, 0, 128, 63, 170, 170, 42, 63, 0, 0, 128, 63, 170, 170, 170, 62, 0, 0, 128, 63, 170, 170, 170, 62, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0),
-"format": 4119,
+"attribute_data": PackedByteArray("AAAAAAAAgD8AAIA/AACAPwAAAAAAAAAAAAAAAAAAAAAAAIA/AAAAAAAAgD8AAAAAAAAAAKyqqj4AAAAArKqqPgAAAACrqio/AAAAAKuqKj8AAIA/qqoqPwAAgD+qqio/AACAP6qqqj4AAIA/qqqqPgAAAAAAAAAAAAAAAAAAAAAAAIA/AAAAAAAAgD8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAgD8AAAAAAACAPwAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAAAAAAIA/AAAAAAAAAAAAAAAAAACAPwAAAAA="),
+"format": 34359742487,
 "index_count": 42,
-"index_data": PackedByteArray(6, 0, 5, 0, 12, 0, 6, 0, 3, 0, 5, 0, 0, 0, 10, 0, 1, 0, 0, 0, 8, 0, 10, 0, 9, 0, 13, 0, 11, 0, 9, 0, 7, 0, 13, 0, 2, 0, 17, 0, 4, 0, 2, 0, 15, 0, 17, 0, 14, 0, 20, 0, 16, 0, 14, 0, 18, 0, 20, 0, 19, 0, 24, 0, 21, 0, 19, 0, 22, 0, 24, 0, 23, 0, 27, 0, 25, 0, 23, 0, 26, 0, 27, 0),
+"index_data": PackedByteArray("BgAFAAwABgADAAUAAAAKAAEAAAAIAAoACQANAAsACQAHAA0AAgARAAQAAgAPABEADgAUABAADgASABQAEwAYABUAEwAWABgAFwAbABkAFwAaABsA"),
 "material": ExtResource("1_50wr4"),
 "name": "GrassBladeMat",
 "primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 28,
-"vertex_data": PackedByteArray(23, 18, 101, 189, 112, 97, 247, 188, 223, 172, 25, 60, 9, 144, 142, 144, 254, 255, 201, 182, 113, 11, 101, 61, 112, 97, 247, 188, 27, 75, 26, 188, 9, 144, 142, 144, 254, 255, 201, 182, 180, 233, 170, 189, 87, 26, 159, 63, 10, 250, 37, 190, 170, 141, 221, 128, 255, 255, 255, 63, 180, 233, 170, 189, 87, 26, 159, 63, 10, 250, 37, 190, 64, 144, 168, 136, 228, 254, 216, 182, 20, 148, 206, 187, 115, 3, 159, 63, 90, 107, 49, 190, 170, 141, 221, 128, 255, 255, 255, 63, 20, 148, 206, 187, 115, 3, 159, 63, 90, 107, 49, 190, 64, 144, 168, 136, 12, 255, 231, 182, 133, 195, 137, 189, 172, 197, 83, 63, 80, 228, 3, 190, 64, 144, 168, 136, 241, 255, 66, 183, 133, 195, 137, 189, 172, 197, 83, 63, 80, 228, 3, 190, 71, 144, 215, 142, 253, 255, 201, 182, 182, 20, 133, 189, 248, 18, 204, 62, 84, 16, 130, 189, 9, 144, 142, 144, 254, 255, 201, 182, 182, 20, 133, 189, 248, 18, 204, 62, 84, 16, 130, 189, 71, 144, 215, 142, 254, 255, 201, 182, 112, 129, 38, 61, 248, 18, 204, 62, 211, 107, 166, 189, 9, 144, 142, 144, 254, 255, 201, 182, 112, 129, 38, 61, 248, 18, 204, 62, 211, 107, 166, 189, 71, 144, 215, 142, 254, 255, 201, 182, 103, 29, 173, 60, 75, 197, 83, 63, 234, 28, 19, 190, 64, 144, 168, 136, 232, 255, 192, 200, 103, 29, 173, 60, 75, 197, 83, 63, 234, 28, 19, 190, 71, 144, 215, 142, 253, 255, 201, 182, 90, 130, 194, 189, 74, 137, 205, 63, 28, 84, 41, 190, 253, 132, 16, 115, 255, 255, 255, 63, 90, 130, 194, 189, 74, 137, 205, 63, 28, 84, 41, 190, 170, 141, 221, 128, 255, 255, 255, 63, 71, 125, 11, 189, 151, 69, 205, 63, 39, 230, 46, 190, 253, 132, 16, 115, 255, 255, 255, 63, 71, 125, 11, 189, 151, 69, 205, 63, 39, 230, 46, 190, 170, 141, 221, 128, 255, 255, 255, 63, 194, 196, 150, 189, 35, 230, 1, 64, 9, 162, 243, 189, 253, 132, 16, 115, 255, 255, 255, 63, 194, 196, 150, 189, 35, 230, 1, 64, 9, 162, 243, 189, 244, 122, 125, 112, 255, 255, 255, 63, 124, 62, 15, 189, 203, 170, 1, 64, 238, 29, 243, 189, 253, 132, 16, 115, 255, 255, 255, 63, 124, 62, 15, 189, 203, 170, 1, 64, 238, 29, 243, 189, 244, 122, 125, 112, 255, 255, 255, 63, 227, 92, 59, 189, 202, 213, 15, 64, 5, 177, 178, 189, 244, 122, 125, 112, 255, 255, 255, 63, 227, 92, 59, 189, 202, 213, 15, 64, 5, 177, 178, 189, 213, 116, 120, 100, 255, 255, 255, 63, 62, 239, 157, 188, 232, 151, 15, 64, 239, 34, 175, 189, 244, 122, 125, 112, 255, 255, 255, 63, 62, 239, 157, 188, 232, 151, 15, 64, 239, 34, 175, 189, 213, 116, 120, 100, 255, 255, 255, 63, 243, 244, 71, 188, 19, 220, 25, 64, 24, 21, 16, 189, 213, 116, 120, 100, 255, 255, 255, 63, 48, 50, 27, 58, 56, 180, 25, 64, 179, 238, 10, 189, 213, 116, 120, 100, 255, 255, 255, 63)
+"vertex_data": PackedByteArray("FxJlvXBh97zfrBk8cQtlPXBh97wbSxq8tOmqvVcanz8K+iW+tOmqvVcanz8K+iW+FJTOu3MDnz9aazG+FJTOu3MDnz9aazG+hcOJvazFUz9Q5AO+hcOJvazFUz9Q5AO+thSFvfgSzD5UEIK9thSFvfgSzD5UEIK9cIEmPfgSzD7Ta6a9cIEmPfgSzD7Ta6a9Zx2tPEvFUz/qHBO+Zx2tPEvFUz/qHBO+WoLCvUqJzT8cVCm+WoLCvUqJzT8cVCm+R30LvZdFzT8n5i6+R30LvZdFzT8n5i6+wsSWvSPmAUAJovO9wsSWvSPmAUAJovO9fD4PvcuqAUDuHfO9fD4PvcuqAUDuHfO941w7vcrVD0AFsbK941w7vcrVD0AFsbK9Pu+dvOiXD0DvIq+9Pu+dvOiXD0DvIq+98/RHvBPcGUAYFRC9MDIbOji0GUCz7gq9CZCOkP7/ybYJkI6Q/v/JtqqN3YD///8/QJCoiOT+2Laqjd2A////P0CQqIgM/+e2QJCoiPH/QrdHkNeO/f/JtgmQjpD+/8m2R5DXjv7/ybYJkI6Q/v/JtkeQ147+/8m2QJCoiOj/wMhHkNeO/f/Jtv2EEHP///8/qo3dgP///z/9hBBz////P6qN3YD///8//YQQc////z/0en1w////P/2EEHP///8/9Hp9cP///z/0en1w////P9V0eGT///8/9Hp9cP///z/VdHhk////P9V0eGT///8/1XR4ZP///z8=")
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_qtxyx")
@@ -635,13 +677,14 @@ shadow_mesh = SubResource("ArrayMesh_qtxyx")
 [sub_resource type="ArrayMesh" id="ArrayMesh_duku4"]
 _surfaces = [{
 "aabb": AABB(-0.0774182, -0.0312441, -0.515419, 0.155291, 2.14469, 0.548094),
-"format": 4097,
+"format": 34359742465,
 "index_count": 42,
-"index_data": PackedByteArray(4, 0, 3, 0, 7, 0, 4, 0, 2, 0, 3, 0, 0, 0, 6, 0, 1, 0, 0, 0, 5, 0, 6, 0, 5, 0, 7, 0, 6, 0, 5, 0, 4, 0, 7, 0, 2, 0, 9, 0, 3, 0, 2, 0, 8, 0, 9, 0, 8, 0, 11, 0, 9, 0, 8, 0, 10, 0, 11, 0, 10, 0, 13, 0, 11, 0, 10, 0, 12, 0, 13, 0, 12, 0, 15, 0, 13, 0, 12, 0, 14, 0, 15, 0),
+"index_data": PackedByteArray("BAADAAcABAACAAMAAAAGAAEAAAAFAAYABQAHAAYABQAEAAcAAgAJAAMAAgAIAAkACAALAAkACAAKAAsACgANAAsACgAMAA0ADAAPAA0ADAAOAA8A"),
 "name": "GrassBladeMat",
 "primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 16,
-"vertex_data": PackedByteArray(128, 21, 57, 61, 140, 243, 255, 188, 59, 74, 156, 188, 198, 241, 47, 189, 12, 114, 177, 188, 65, 214, 5, 61, 235, 123, 159, 61, 110, 125, 143, 63, 21, 174, 50, 190, 228, 69, 135, 60, 237, 52, 144, 63, 248, 116, 15, 190, 110, 108, 140, 61, 154, 9, 64, 63, 6, 196, 210, 189, 124, 188, 121, 61, 149, 106, 184, 62, 236, 192, 113, 189, 146, 121, 182, 188, 231, 12, 189, 62, 172, 48, 38, 188, 64, 183, 143, 186, 198, 249, 65, 63, 80, 244, 125, 189, 196, 87, 154, 61, 71, 49, 184, 63, 176, 159, 131, 190, 144, 211, 211, 60, 9, 126, 184, 63, 11, 232, 109, 190, 32, 31, 218, 60, 217, 138, 230, 63, 154, 40, 196, 190, 64, 134, 193, 187, 51, 94, 230, 63, 246, 101, 189, 190, 212, 171, 121, 188, 30, 59, 254, 63, 28, 197, 229, 190, 60, 145, 27, 189, 237, 235, 253, 63, 166, 164, 225, 190, 248, 203, 135, 189, 168, 66, 7, 64, 130, 242, 3, 191, 112, 141, 158, 189, 71, 37, 7, 64, 116, 0, 3, 191)
+"vertex_data": PackedByteArray("gBU5PYzz/7w7Spy8xvEvvQxysbxB1gU963ufPW59jz8VrjK+5EWHPO00kD/4dA++bmyMPZoJQD8GxNK9fLx5PZVquD7swHG9knm2vOcMvT6sMCa8QLePusb5QT9Q9H29xFeaPUcxuD+wn4O+kNPTPAl+uD8L6G2+IB/aPNmK5j+aKMS+QIbBuzNe5j/2Zb2+1Kt5vB47/j8cxeW+PJEbve3r/T+mpOG++MuHvahCB0CC8gO/cI2evUclB0B0AAO/")
 }]
 blend_shape_mode = 0
 
@@ -649,15 +692,16 @@ blend_shape_mode = 0
 resource_name = "PondEnvironment_Plane_052"
 _surfaces = [{
 "aabb": AABB(-0.0774182, -0.0312441, -0.515419, 0.155291, 2.14469, 0.548094),
-"attribute_data": PackedByteArray(0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 172, 170, 170, 62, 0, 0, 0, 0, 172, 170, 170, 62, 0, 0, 0, 0, 171, 170, 42, 63, 0, 0, 0, 0, 171, 170, 42, 63, 0, 0, 128, 63, 170, 170, 42, 63, 0, 0, 128, 63, 170, 170, 42, 63, 0, 0, 128, 63, 170, 170, 170, 62, 0, 0, 128, 63, 170, 170, 170, 62, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0),
-"format": 4119,
+"attribute_data": PackedByteArray("AAAAAAAAgD8AAIA/AACAPwAAAAAAAAAAAAAAAAAAAAAAAIA/AAAAAAAAgD8AAAAAAAAAAKyqqj4AAAAArKqqPgAAAACrqio/AAAAAKuqKj8AAIA/qqoqPwAAgD+qqio/AACAP6qqqj4AAIA/qqqqPgAAAAAAAAAAAAAAAAAAAAAAAIA/AAAAAAAAgD8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAgD8AAAAAAACAPwAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAAAAAAIA/AAAAAAAAAAAAAAAAAACAPwAAAAA="),
+"format": 34359742487,
 "index_count": 42,
-"index_data": PackedByteArray(6, 0, 5, 0, 12, 0, 6, 0, 3, 0, 5, 0, 0, 0, 10, 0, 1, 0, 0, 0, 8, 0, 10, 0, 9, 0, 13, 0, 11, 0, 9, 0, 7, 0, 13, 0, 2, 0, 17, 0, 4, 0, 2, 0, 15, 0, 17, 0, 14, 0, 21, 0, 16, 0, 14, 0, 19, 0, 21, 0, 18, 0, 25, 0, 20, 0, 18, 0, 23, 0, 25, 0, 22, 0, 27, 0, 24, 0, 22, 0, 26, 0, 27, 0),
+"index_data": PackedByteArray("BgAFAAwABgADAAUAAAAKAAEAAAAIAAoACQANAAsACQAHAA0AAgARAAQAAgAPABEADgAVABAADgATABUAEgAZABQAEgAXABkAFgAbABgAFgAaABsA"),
 "material": ExtResource("1_50wr4"),
 "name": "GrassBladeMat",
 "primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 28,
-"vertex_data": PackedByteArray(128, 21, 57, 61, 140, 243, 255, 188, 59, 74, 156, 188, 247, 5, 141, 45, 133, 52, 25, 196, 198, 241, 47, 189, 12, 114, 177, 188, 65, 214, 5, 61, 247, 5, 141, 45, 133, 52, 25, 196, 235, 123, 159, 61, 110, 125, 143, 63, 21, 174, 50, 190, 250, 18, 207, 38, 255, 255, 255, 191, 235, 123, 159, 61, 110, 125, 143, 63, 21, 174, 50, 190, 10, 13, 203, 42, 90, 51, 153, 195, 228, 69, 135, 60, 237, 52, 144, 63, 248, 116, 15, 190, 250, 18, 207, 38, 255, 255, 255, 191, 228, 69, 135, 60, 237, 52, 144, 63, 248, 116, 15, 190, 10, 13, 203, 42, 105, 51, 168, 195, 110, 108, 140, 61, 154, 9, 64, 63, 6, 196, 210, 189, 10, 13, 203, 42, 193, 51, 254, 195, 110, 108, 140, 61, 154, 9, 64, 63, 6, 196, 210, 189, 154, 7, 15, 45, 133, 52, 25, 196, 124, 188, 121, 61, 149, 106, 184, 62, 236, 192, 113, 189, 247, 5, 141, 45, 133, 52, 25, 196, 124, 188, 121, 61, 149, 106, 184, 62, 236, 192, 113, 189, 154, 7, 15, 45, 133, 52, 25, 196, 146, 121, 182, 188, 231, 12, 189, 62, 172, 48, 38, 188, 247, 5, 141, 45, 133, 52, 25, 196, 146, 121, 182, 188, 231, 12, 189, 62, 172, 48, 38, 188, 154, 7, 15, 45, 133, 52, 25, 196, 64, 183, 143, 186, 198, 249, 65, 63, 80, 244, 125, 189, 10, 13, 203, 42, 207, 51, 11, 196, 64, 183, 143, 186, 198, 249, 65, 63, 80, 244, 125, 189, 154, 7, 15, 45, 133, 52, 25, 196, 196, 87, 154, 61, 71, 49, 184, 63, 176, 159, 131, 190, 97, 28, 189, 31, 255, 255, 255, 191, 196, 87, 154, 61, 71, 49, 184, 63, 176, 159, 131, 190, 250, 18, 207, 38, 255, 255, 255, 191, 144, 211, 211, 60, 9, 126, 184, 63, 11, 232, 109, 190, 97, 28, 189, 31, 255, 255, 255, 191, 144, 211, 211, 60, 9, 126, 184, 63, 11, 232, 109, 190, 250, 18, 207, 38, 255, 255, 255, 191, 32, 31, 218, 60, 217, 138, 230, 63, 154, 40, 196, 190, 108, 31, 71, 25, 255, 255, 255, 191, 32, 31, 218, 60, 217, 138, 230, 63, 154, 40, 196, 190, 97, 28, 189, 31, 255, 255, 255, 191, 64, 134, 193, 187, 51, 94, 230, 63, 246, 101, 189, 190, 108, 31, 71, 25, 255, 255, 255, 191, 64, 134, 193, 187, 51, 94, 230, 63, 246, 101, 189, 190, 97, 28, 189, 31, 255, 255, 255, 191, 212, 171, 121, 188, 30, 59, 254, 63, 28, 197, 229, 190, 176, 42, 11, 18, 255, 255, 255, 191, 212, 171, 121, 188, 30, 59, 254, 63, 28, 197, 229, 190, 108, 31, 71, 25, 255, 255, 255, 191, 60, 145, 27, 189, 237, 235, 253, 63, 166, 164, 225, 190, 176, 42, 11, 18, 255, 255, 255, 191, 60, 145, 27, 189, 237, 235, 253, 63, 166, 164, 225, 190, 108, 31, 71, 25, 255, 255, 255, 191, 248, 203, 135, 189, 168, 66, 7, 64, 130, 242, 3, 191, 176, 42, 11, 18, 255, 255, 255, 191, 112, 141, 158, 189, 71, 37, 7, 64, 116, 0, 3, 191, 176, 42, 11, 18, 255, 255, 255, 191)
+"vertex_data": PackedByteArray("gBU5PYzz/7w7Spy8xvEvvQxysbxB1gU963ufPW59jz8VrjK+63ufPW59jz8VrjK+5EWHPO00kD/4dA++5EWHPO00kD/4dA++bmyMPZoJQD8GxNK9bmyMPZoJQD8GxNK9fLx5PZVquD7swHG9fLx5PZVquD7swHG9knm2vOcMvT6sMCa8knm2vOcMvT6sMCa8QLePusb5QT9Q9H29QLePusb5QT9Q9H29xFeaPUcxuD+wn4O+xFeaPUcxuD+wn4O+kNPTPAl+uD8L6G2+kNPTPAl+uD8L6G2+IB/aPNmK5j+aKMS+IB/aPNmK5j+aKMS+QIbBuzNe5j/2Zb2+QIbBuzNe5j/2Zb2+1Kt5vB47/j8cxeW+1Kt5vB47/j8cxeW+PJEbve3r/T+mpOG+PJEbve3r/T+mpOG++MuHvahCB0CC8gO/cI2evUclB0B0AAO/9wWNLYU0GcT3BY0thTQZxPoSzyb///+/Cg3LKlozmcP6Es8m////vwoNyyppM6jDCg3LKsEz/sOaBw8thTQZxPcFjS2FNBnEmgcPLYU0GcT3BY0thTQZxJoHDy2FNBnECg3LKs8zC8SaBw8thTQZxGEcvR////+/+hLPJv///79hHL0f////v/oSzyb///+/bB9HGf///79hHL0f////v2wfRxn///+/YRy9H////7+wKgsS////v2wfRxn///+/sCoLEv///79sH0cZ////v7AqCxL///+/sCoLEv///78=")
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_duku4")
@@ -665,13 +709,14 @@ shadow_mesh = SubResource("ArrayMesh_duku4")
 [sub_resource type="ArrayMesh" id="ArrayMesh_c53ks"]
 _surfaces = [{
 "aabb": AABB(-0.299703, -0.0311611, -0.0582179, 0.305607, 2.42175, 0.547255),
-"format": 4097,
+"format": 34359742465,
 "index_count": 42,
-"index_data": PackedByteArray(4, 0, 3, 0, 7, 0, 4, 0, 2, 0, 3, 0, 0, 0, 6, 0, 1, 0, 0, 0, 5, 0, 6, 0, 5, 0, 7, 0, 6, 0, 5, 0, 4, 0, 7, 0, 2, 0, 9, 0, 3, 0, 2, 0, 8, 0, 9, 0, 8, 0, 11, 0, 9, 0, 8, 0, 10, 0, 11, 0, 10, 0, 13, 0, 11, 0, 10, 0, 12, 0, 13, 0, 12, 0, 15, 0, 13, 0, 12, 0, 14, 0, 15, 0),
+"index_data": PackedByteArray("BAADAAcABAACAAMAAAAGAAEAAAAFAAYABQAHAAYABQAEAAcAAgAJAAMAAgAIAAkACAALAAkACAAKAAsACgANAAsACgAMAA0ADAAPAA0ADAAOAA8A"),
 "name": "GrassBladeMat",
 "primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 16,
-"vertex_data": PackedByteArray(185, 35, 193, 59, 158, 69, 255, 188, 224, 117, 110, 61, 103, 36, 193, 187, 166, 69, 255, 188, 220, 117, 110, 189, 0, 188, 77, 184, 70, 220, 165, 63, 140, 64, 130, 61, 155, 156, 229, 187, 0, 18, 166, 63, 52, 249, 143, 188, 1, 168, 152, 59, 178, 143, 90, 63, 245, 121, 60, 61, 62, 105, 182, 59, 130, 149, 210, 62, 191, 54, 97, 61, 176, 105, 182, 187, 130, 149, 210, 62, 215, 54, 97, 189, 53, 168, 152, 187, 178, 143, 90, 63, 41, 122, 60, 189, 62, 140, 230, 188, 252, 135, 214, 63, 73, 23, 248, 61, 186, 171, 242, 188, 128, 140, 217, 63, 245, 93, 125, 61, 39, 47, 199, 189, 202, 29, 3, 64, 113, 29, 129, 62, 136, 165, 189, 189, 11, 54, 4, 64, 229, 137, 99, 62, 8, 225, 62, 190, 45, 68, 16, 64, 230, 118, 193, 62, 101, 37, 57, 190, 104, 102, 17, 64, 134, 91, 184, 62, 180, 114, 153, 190, 15, 104, 24, 64, 29, 99, 250, 62, 188, 101, 151, 190, 109, 255, 24, 64, 173, 192, 245, 62)
+"vertex_data": PackedByteArray("uSPBO55F/7zgdW49ZyTBu6ZF/7zcdW69ALxNuEbcpT+MQII9m5zluwASpj80+Y+8AaiYO7KPWj/1eTw9Pmm2O4KV0j6/NmE9sGm2u4KV0j7XNmG9NaiYu7KPWj8pejy9PozmvPyH1j9JF/g9uqvyvICM2T/1XX09Jy/HvcodA0BxHYE+iKW9vQs2BEDliWM+COE+vi1EEEDmdsE+ZSU5vmhmEUCGW7g+tHKZvg9oGEAdY/o+vGWXvm3/GECtwPU+")
 }]
 blend_shape_mode = 0
 
@@ -679,15 +724,16 @@ blend_shape_mode = 0
 resource_name = "PondEnvironment_Plane_053"
 _surfaces = [{
 "aabb": AABB(-0.299703, -0.0311611, -0.0582179, 0.305607, 2.42175, 0.547255),
-"attribute_data": PackedByteArray(0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 172, 170, 170, 62, 0, 0, 0, 0, 172, 170, 170, 62, 0, 0, 0, 0, 171, 170, 42, 63, 0, 0, 128, 63, 170, 170, 42, 63, 0, 0, 128, 63, 170, 170, 170, 62, 0, 0, 128, 63, 170, 170, 170, 62, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0),
-"format": 4119,
+"attribute_data": PackedByteArray("AAAAAAAAgD8AAIA/AACAPwAAAAAAAAAAAAAAAAAAAAAAAIA/AAAAAAAAgD8AAAAAAAAAAKyqqj4AAAAArKqqPgAAAACrqio/AACAP6qqKj8AAIA/qqqqPgAAgD+qqqo+AAAAAAAAAAAAAAAAAAAAAAAAgD8AAAAAAACAPwAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAAAAAAIA/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAIA/AAAAAAAAgD8AAAAAAAAAAAAAAAAAAIA/AAAAAA=="),
+"format": 34359742487,
 "index_count": 42,
-"index_data": PackedByteArray(7, 0, 4, 0, 11, 0, 7, 0, 2, 0, 4, 0, 0, 0, 9, 0, 1, 0, 0, 0, 8, 0, 9, 0, 8, 0, 10, 0, 9, 0, 8, 0, 6, 0, 10, 0, 3, 0, 15, 0, 5, 0, 3, 0, 13, 0, 15, 0, 12, 0, 19, 0, 14, 0, 12, 0, 17, 0, 19, 0, 16, 0, 23, 0, 18, 0, 16, 0, 21, 0, 23, 0, 20, 0, 25, 0, 22, 0, 20, 0, 24, 0, 25, 0),
+"index_data": PackedByteArray("BwAEAAsABwACAAQAAAAJAAEAAAAIAAkACAAKAAkACAAGAAoAAwAPAAUAAwANAA8ADAATAA4ADAARABMAEAAXABIAEAAVABcAFAAZABYAFAAYABkA"),
 "material": ExtResource("1_50wr4"),
 "name": "GrassBladeMat",
 "primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 26,
-"vertex_data": PackedByteArray(185, 35, 193, 59, 158, 69, 255, 188, 224, 117, 110, 61, 255, 255, 195, 139, 0, 0, 225, 133, 103, 36, 193, 187, 166, 69, 255, 188, 220, 117, 110, 189, 255, 255, 195, 139, 0, 0, 225, 133, 0, 188, 77, 184, 70, 220, 165, 63, 140, 64, 130, 61, 130, 254, 86, 140, 79, 2, 151, 250, 0, 188, 77, 184, 70, 220, 165, 63, 140, 64, 130, 61, 165, 247, 183, 141, 255, 255, 255, 191, 155, 156, 229, 187, 0, 18, 166, 63, 52, 249, 143, 188, 130, 254, 86, 140, 4, 2, 148, 250, 155, 156, 229, 187, 0, 18, 166, 63, 52, 249, 143, 188, 165, 247, 183, 141, 255, 255, 255, 191, 1, 168, 152, 59, 178, 143, 90, 63, 245, 121, 60, 61, 255, 255, 195, 139, 0, 0, 225, 133, 1, 168, 152, 59, 178, 143, 90, 63, 245, 121, 60, 61, 130, 254, 86, 140, 70, 0, 132, 250, 62, 105, 182, 59, 130, 149, 210, 62, 191, 54, 97, 61, 255, 255, 195, 139, 0, 0, 225, 133, 176, 105, 182, 187, 130, 149, 210, 62, 215, 54, 97, 189, 255, 255, 195, 139, 0, 0, 225, 133, 53, 168, 152, 187, 178, 143, 90, 63, 41, 122, 60, 189, 255, 255, 195, 139, 0, 0, 225, 133, 53, 168, 152, 187, 178, 143, 90, 63, 41, 122, 60, 189, 130, 254, 86, 140, 2, 0, 129, 250, 62, 140, 230, 188, 252, 135, 214, 63, 73, 23, 248, 61, 81, 231, 108, 142, 255, 255, 255, 63, 62, 140, 230, 188, 252, 135, 214, 63, 73, 23, 248, 61, 165, 247, 183, 141, 255, 255, 255, 191, 186, 171, 242, 188, 128, 140, 217, 63, 245, 93, 125, 61, 81, 231, 108, 142, 255, 255, 255, 63, 186, 171, 242, 188, 128, 140, 217, 63, 245, 93, 125, 61, 165, 247, 183, 141, 255, 255, 255, 191, 39, 47, 199, 189, 202, 29, 3, 64, 113, 29, 129, 62, 5, 210, 103, 144, 255, 255, 255, 63, 39, 47, 199, 189, 202, 29, 3, 64, 113, 29, 129, 62, 81, 231, 108, 142, 255, 255, 255, 63, 136, 165, 189, 189, 11, 54, 4, 64, 229, 137, 99, 62, 5, 210, 103, 144, 255, 255, 255, 63, 136, 165, 189, 189, 11, 54, 4, 64, 229, 137, 99, 62, 81, 231, 108, 142, 255, 255, 255, 63, 8, 225, 62, 190, 45, 68, 16, 64, 230, 118, 193, 62, 10, 193, 204, 147, 255, 255, 255, 63, 8, 225, 62, 190, 45, 68, 16, 64, 230, 118, 193, 62, 5, 210, 103, 144, 255, 255, 255, 63, 101, 37, 57, 190, 104, 102, 17, 64, 134, 91, 184, 62, 10, 193, 204, 147, 255, 255, 255, 63, 101, 37, 57, 190, 104, 102, 17, 64, 134, 91, 184, 62, 5, 210, 103, 144, 255, 255, 255, 63, 180, 114, 153, 190, 15, 104, 24, 64, 29, 99, 250, 62, 10, 193, 204, 147, 255, 255, 255, 63, 188, 101, 151, 190, 109, 255, 24, 64, 173, 192, 245, 62, 10, 193, 204, 147, 255, 255, 255, 63)
+"vertex_data": PackedByteArray("uSPBO55F/7zgdW49ZyTBu6ZF/7zcdW69ALxNuEbcpT+MQII9ALxNuEbcpT+MQII9m5zluwASpj80+Y+8m5zluwASpj80+Y+8AaiYO7KPWj/1eTw9AaiYO7KPWj/1eTw9Pmm2O4KV0j6/NmE9sGm2u4KV0j7XNmG9NaiYu7KPWj8pejy9NaiYu7KPWj8pejy9PozmvPyH1j9JF/g9PozmvPyH1j9JF/g9uqvyvICM2T/1XX09uqvyvICM2T/1XX09Jy/HvcodA0BxHYE+Jy/HvcodA0BxHYE+iKW9vQs2BEDliWM+iKW9vQs2BEDliWM+COE+vi1EEEDmdsE+COE+vi1EEEDmdsE+ZSU5vmhmEUCGW7g+ZSU5vmhmEUCGW7g+tHKZvg9oGEAdY/o+vGWXvm3/GECtwPU+///DiwAA4YX//8OLAADhhYL+VoxPApf6pfe3jf///7+C/laMBAKU+qX3t43///+////DiwAA4YWC/laMRgCE+v//w4sAAOGF///DiwAA4YX//8OLAADhhYL+VowCAIH6Uedsjv///z+l97eN////v1HnbI7///8/pfe3jf///78F0meQ////P1HnbI7///8/BdJnkP///z9R52yO////PwrBzJP///8/BdJnkP///z8KwcyT////PwXSZ5D///8/CsHMk////z8KwcyT////Pw==")
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_c53ks")
@@ -695,13 +741,14 @@ shadow_mesh = SubResource("ArrayMesh_c53ks")
 [sub_resource type="ArrayMesh" id="ArrayMesh_sxs0y"]
 _surfaces = [{
 "aabb": AABB(-0.0409371, -0.0266521, -0.270491, 0.334408, 2.07431, 0.303381),
-"format": 4097,
+"format": 34359742465,
 "index_count": 42,
-"index_data": PackedByteArray(4, 0, 3, 0, 7, 0, 4, 0, 2, 0, 3, 0, 0, 0, 6, 0, 1, 0, 0, 0, 5, 0, 6, 0, 5, 0, 7, 0, 6, 0, 5, 0, 4, 0, 7, 0, 2, 0, 9, 0, 3, 0, 2, 0, 8, 0, 9, 0, 8, 0, 11, 0, 9, 0, 8, 0, 10, 0, 11, 0, 10, 0, 13, 0, 11, 0, 10, 0, 12, 0, 13, 0, 12, 0, 15, 0, 13, 0, 12, 0, 14, 0, 15, 0),
+"index_data": PackedByteArray("BAADAAcABAACAAMAAAAGAAEAAAAFAAYABQAHAAYABQAEAAcAAgAJAAMAAgAIAAkACAALAAkACAAKAAsACgANAAsACgAMAA0ADAAPAA0ADAAOAA8A"),
 "name": "GrassBladeMat",
 "primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 16,
-"vertex_data": PackedByteArray(161, 47, 30, 61, 120, 85, 218, 188, 108, 99, 2, 61, 173, 47, 30, 189, 118, 85, 218, 188, 96, 99, 2, 189, 22, 1, 145, 61, 92, 198, 142, 63, 169, 232, 41, 189, 85, 51, 144, 60, 218, 80, 143, 63, 67, 226, 173, 189, 94, 25, 31, 61, 204, 252, 59, 63, 216, 241, 73, 59, 86, 86, 3, 61, 174, 21, 180, 62, 162, 184, 6, 61, 182, 173, 39, 189, 69, 43, 180, 62, 194, 155, 222, 188, 231, 37, 185, 188, 29, 105, 60, 63, 168, 107, 63, 189, 187, 191, 251, 61, 247, 113, 187, 63, 198, 217, 215, 189, 142, 60, 166, 61, 173, 235, 187, 63, 112, 252, 14, 190, 246, 179, 68, 62, 140, 14, 229, 63, 250, 204, 48, 190, 181, 139, 42, 62, 3, 143, 229, 63, 68, 172, 71, 190, 231, 14, 122, 62, 231, 13, 247, 63, 201, 170, 92, 190, 13, 104, 104, 62, 229, 170, 247, 63, 11, 173, 108, 190, 216, 65, 150, 62, 160, 234, 2, 64, 49, 121, 134, 190, 144, 12, 146, 62, 200, 12, 3, 64, 188, 125, 138, 190)
+"vertex_data": PackedByteArray("oS8ePXhV2rxsYwI9rS8evXZV2rxgYwK9FgGRPVzGjj+p6Cm9VTOQPNpQjz9D4q29XhkfPcz8Oz/Y8Uk7VlYDPa4VtD6iuAY9tq0nvUUrtD7Cm9685yW5vB1pPD+oaz+9u7/7Pfdxuz/G2de9jjymPa3ruz9w/A6+9rNEPowO5T/6zDC+tYsqPgOP5T9ErEe+5w56PucN9z/Jqly+DWhoPuWq9z8LrWy+2EGWPqDqAkAxeYa+kAySPsgMA0C8fYq+")
 }]
 blend_shape_mode = 0
 
@@ -709,15 +756,16 @@ blend_shape_mode = 0
 resource_name = "PondEnvironment_Plane_054"
 _surfaces = [{
 "aabb": AABB(-0.0409371, -0.0266521, -0.270491, 0.334408, 2.07431, 0.303381),
-"attribute_data": PackedByteArray(0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 172, 170, 170, 62, 0, 0, 0, 0, 172, 170, 170, 62, 0, 0, 0, 0, 171, 170, 42, 63, 0, 0, 0, 0, 171, 170, 42, 63, 0, 0, 128, 63, 170, 170, 42, 63, 0, 0, 128, 63, 170, 170, 42, 63, 0, 0, 128, 63, 170, 170, 170, 62, 0, 0, 128, 63, 170, 170, 170, 62, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0),
-"format": 4119,
+"attribute_data": PackedByteArray("AAAAAAAAgD8AAIA/AACAPwAAAAAAAAAAAAAAAAAAAAAAAIA/AAAAAAAAgD8AAAAAAAAAAKyqqj4AAAAArKqqPgAAAACrqio/AAAAAKuqKj8AAIA/qqoqPwAAgD+qqio/AACAP6qqqj4AAIA/qqqqPgAAAAAAAAAAAAAAAAAAAAAAAIA/AAAAAAAAgD8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAgD8AAAAAAACAPwAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAAAAAAIA/AAAAAAAAAAAAAAAAAACAPwAAAAA="),
+"format": 34359742487,
 "index_count": 42,
-"index_data": PackedByteArray(6, 0, 5, 0, 12, 0, 6, 0, 3, 0, 5, 0, 0, 0, 11, 0, 1, 0, 0, 0, 9, 0, 11, 0, 8, 0, 13, 0, 10, 0, 8, 0, 7, 0, 13, 0, 2, 0, 17, 0, 4, 0, 2, 0, 15, 0, 17, 0, 14, 0, 21, 0, 16, 0, 14, 0, 19, 0, 21, 0, 18, 0, 25, 0, 20, 0, 18, 0, 23, 0, 25, 0, 22, 0, 27, 0, 24, 0, 22, 0, 26, 0, 27, 0),
+"index_data": PackedByteArray("BgAFAAwABgADAAUAAAALAAEAAAAJAAsACAANAAoACAAHAA0AAgARAAQAAgAPABEADgAVABAADgATABUAEgAZABQAEgAXABkAFgAbABgAFgAaABsA"),
 "material": ExtResource("1_50wr4"),
 "name": "GrassBladeMat",
 "primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 28,
-"vertex_data": PackedByteArray(161, 47, 30, 61, 120, 85, 218, 188, 108, 99, 2, 61, 204, 254, 186, 198, 6, 0, 232, 220, 173, 47, 30, 189, 118, 85, 218, 188, 96, 99, 2, 189, 204, 254, 186, 198, 0, 0, 23, 163, 22, 1, 145, 61, 92, 198, 142, 63, 169, 232, 41, 189, 144, 237, 113, 48, 255, 255, 255, 191, 22, 1, 145, 61, 92, 198, 142, 63, 169, 232, 41, 189, 37, 244, 194, 51, 88, 5, 69, 222, 85, 51, 144, 60, 218, 80, 143, 63, 67, 226, 173, 189, 144, 237, 113, 48, 255, 255, 255, 191, 85, 51, 144, 60, 218, 80, 143, 63, 67, 226, 173, 189, 37, 244, 194, 51, 230, 4, 32, 222, 94, 25, 31, 61, 204, 252, 59, 63, 216, 241, 73, 59, 37, 244, 194, 51, 73, 2, 68, 221, 94, 25, 31, 61, 204, 252, 59, 63, 216, 241, 73, 59, 225, 249, 197, 54, 215, 1, 79, 221, 86, 86, 3, 61, 174, 21, 180, 62, 162, 184, 6, 61, 225, 249, 197, 54, 103, 0, 224, 220, 86, 86, 3, 61, 174, 21, 180, 62, 162, 184, 6, 61, 204, 254, 186, 198, 40, 0, 241, 220, 182, 173, 39, 189, 69, 43, 180, 62, 194, 155, 222, 188, 225, 249, 197, 54, 46, 0, 207, 220, 182, 173, 39, 189, 69, 43, 180, 62, 194, 155, 222, 188, 204, 254, 186, 198, 33, 0, 240, 220, 231, 37, 185, 188, 29, 105, 60, 63, 168, 107, 63, 189, 37, 244, 194, 51, 227, 1, 35, 221, 231, 37, 185, 188, 29, 105, 60, 63, 168, 107, 63, 189, 225, 249, 197, 54, 150, 1, 59, 221, 187, 191, 251, 61, 247, 113, 187, 63, 198, 217, 215, 189, 194, 233, 238, 46, 255, 255, 255, 191, 187, 191, 251, 61, 247, 113, 187, 63, 198, 217, 215, 189, 144, 237, 113, 48, 255, 255, 255, 191, 142, 60, 166, 61, 173, 235, 187, 63, 112, 252, 14, 190, 194, 233, 238, 46, 255, 255, 255, 191, 142, 60, 166, 61, 173, 235, 187, 63, 112, 252, 14, 190, 144, 237, 113, 48, 255, 255, 255, 191, 246, 179, 68, 62, 140, 14, 229, 63, 250, 204, 48, 190, 31, 224, 194, 41, 255, 255, 255, 191, 246, 179, 68, 62, 140, 14, 229, 63, 250, 204, 48, 190, 194, 233, 238, 46, 255, 255, 255, 191, 181, 139, 42, 62, 3, 143, 229, 63, 68, 172, 71, 190, 31, 224, 194, 41, 255, 255, 255, 191, 181, 139, 42, 62, 3, 143, 229, 63, 68, 172, 71, 190, 194, 233, 238, 46, 255, 255, 255, 191, 231, 14, 122, 62, 231, 13, 247, 63, 201, 170, 92, 190, 68, 218, 3, 38, 255, 255, 255, 191, 231, 14, 122, 62, 231, 13, 247, 63, 201, 170, 92, 190, 31, 224, 194, 41, 255, 255, 255, 191, 13, 104, 104, 62, 229, 170, 247, 63, 11, 173, 108, 190, 68, 218, 3, 38, 255, 255, 255, 191, 13, 104, 104, 62, 229, 170, 247, 63, 11, 173, 108, 190, 31, 224, 194, 41, 255, 255, 255, 191, 216, 65, 150, 62, 160, 234, 2, 64, 49, 121, 134, 190, 68, 218, 3, 38, 255, 255, 255, 191, 144, 12, 146, 62, 200, 12, 3, 64, 188, 125, 138, 190, 68, 218, 3, 38, 255, 255, 255, 191)
+"vertex_data": PackedByteArray("oS8ePXhV2rxsYwI9rS8evXZV2rxgYwK9FgGRPVzGjj+p6Cm9FgGRPVzGjj+p6Cm9VTOQPNpQjz9D4q29VTOQPNpQjz9D4q29XhkfPcz8Oz/Y8Uk7XhkfPcz8Oz/Y8Uk7VlYDPa4VtD6iuAY9VlYDPa4VtD6iuAY9tq0nvUUrtD7Cm968tq0nvUUrtD7Cm9685yW5vB1pPD+oaz+95yW5vB1pPD+oaz+9u7/7Pfdxuz/G2de9u7/7Pfdxuz/G2de9jjymPa3ruz9w/A6+jjymPa3ruz9w/A6+9rNEPowO5T/6zDC+9rNEPowO5T/6zDC+tYsqPgOP5T9ErEe+tYsqPgOP5T9ErEe+5w56PucN9z/Jqly+5w56PucN9z/Jqly+DWhoPuWq9z8LrWy+DWhoPuWq9z8LrWy+2EGWPqDqAkAxeYa+kAySPsgMA0C8fYq+zP66xgYA6NzM/rrGAAAXo5DtcTD///+/JfTCM1gFRd6Q7XEw////vyX0wjPmBCDeJfTCM0kCRN3h+cU21wFP3eH5xTZnAODczP66xigA8dzh+cU2LgDP3Mz+usYhAPDcJfTCM+MBI93h+cU2lgE73cLp7i7///+/kO1xMP///7/C6e4u////v5DtcTD///+/H+DCKf///7/C6e4u////vx/gwin///+/wunuLv///79E2gMm////vx/gwin///+/RNoDJv///78f4MIp////v0TaAyb///+/RNoDJv///78=")
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_sxs0y")
@@ -725,13 +773,14 @@ shadow_mesh = SubResource("ArrayMesh_sxs0y")
 [sub_resource type="ArrayMesh" id="ArrayMesh_bljpt"]
 _surfaces = [{
 "aabb": AABB(-0.0475372, -0.0254144, -0.51804, 0.366677, 1.9044, 0.52226),
-"format": 4097,
+"format": 34359742465,
 "index_count": 42,
-"index_data": PackedByteArray(4, 0, 3, 0, 7, 0, 4, 0, 2, 0, 3, 0, 0, 0, 6, 0, 1, 0, 0, 0, 5, 0, 6, 0, 5, 0, 7, 0, 6, 0, 5, 0, 4, 0, 7, 0, 2, 0, 9, 0, 3, 0, 2, 0, 8, 0, 9, 0, 8, 0, 11, 0, 9, 0, 8, 0, 10, 0, 11, 0, 10, 0, 13, 0, 11, 0, 10, 0, 12, 0, 13, 0, 12, 0, 15, 0, 13, 0, 12, 0, 14, 0, 15, 0),
+"index_data": PackedByteArray("BAADAAcABAACAAMAAAAGAAEAAAAFAAYABQAHAAYABQAEAAcAAgAJAAMAAgAIAAkACAALAAkACAAKAAsACgANAAsACgAMAA0ADAAPAA0ADAAOAA8A"),
 "name": "GrassBladeMat",
 "primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 16,
-"vertex_data": PackedByteArray(109, 182, 66, 61, 237, 49, 208, 188, 28, 64, 138, 187, 107, 182, 66, 189, 237, 49, 208, 188, 170, 64, 138, 59, 238, 116, 73, 61, 181, 61, 135, 63, 9, 253, 138, 188, 173, 141, 136, 188, 1, 105, 135, 63, 10, 24, 27, 188, 32, 230, 25, 61, 37, 65, 50, 63, 144, 139, 90, 187, 123, 229, 55, 61, 148, 191, 171, 62, 53, 146, 130, 187, 121, 229, 55, 189, 148, 191, 171, 62, 129, 146, 130, 59, 32, 230, 25, 189, 37, 65, 50, 63, 160, 139, 90, 59, 213, 127, 155, 61, 87, 175, 174, 63, 30, 112, 196, 189, 18, 98, 225, 60, 108, 20, 177, 63, 216, 1, 188, 189, 158, 46, 23, 62, 40, 82, 213, 63, 137, 58, 128, 190, 164, 206, 251, 61, 146, 4, 215, 63, 218, 101, 124, 190, 173, 140, 110, 62, 63, 103, 234, 63, 244, 180, 197, 190, 10, 141, 94, 62, 192, 47, 236, 63, 103, 136, 196, 190, 63, 102, 163, 62, 162, 155, 239, 63, 76, 158, 4, 191, 37, 15, 159, 62, 124, 130, 240, 63, 49, 114, 4, 191)
+"vertex_data": PackedByteArray("bbZCPe0x0LwcQIq7a7ZCve0x0LyqQIo77nRJPbU9hz8J/Yq8rY2IvAFphz8KGBu8IOYZPSVBMj+Qi1q7e+U3PZS/qz41koK7eeU3vZS/qz6BkoI7IOYZvSVBMj+gi1o71X+bPVevrj8ecMS9EmLhPGwUsT/YAby9ni4XPihS1T+JOoC+pM77PZIE1z/aZXy+rYxuPj9n6j/0tMW+Co1ePsAv7D9niMS+P2ajPqKb7z9MngS/JQ+fPnyC8D8xcgS/")
 }]
 blend_shape_mode = 0
 
@@ -739,15 +788,16 @@ blend_shape_mode = 0
 resource_name = "PondEnvironment_Plane_055"
 _surfaces = [{
 "aabb": AABB(-0.0475372, -0.0254144, -0.51804, 0.366677, 1.9044, 0.52226),
-"attribute_data": PackedByteArray(0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 172, 170, 170, 62, 0, 0, 0, 0, 172, 170, 170, 62, 0, 0, 0, 0, 171, 170, 42, 63, 0, 0, 128, 63, 170, 170, 42, 63, 0, 0, 128, 63, 170, 170, 170, 62, 0, 0, 128, 63, 170, 170, 170, 62, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0),
-"format": 4119,
+"attribute_data": PackedByteArray("AAAAAAAAgD8AAIA/AACAPwAAAAAAAAAAAAAAAAAAAAAAAIA/AAAAAAAAgD8AAAAAAAAAAKyqqj4AAAAArKqqPgAAAACrqio/AACAP6qqKj8AAIA/qqqqPgAAgD+qqqo+AAAAAAAAAAAAAAAAAAAAAAAAgD8AAAAAAACAPwAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAAAAAAIA/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAIA/AAAAAAAAgD8AAAAAAAAAAAAAAAAAAIA/AAAAAA=="),
+"format": 34359742487,
 "index_count": 42,
-"index_data": PackedByteArray(7, 0, 4, 0, 11, 0, 7, 0, 2, 0, 4, 0, 0, 0, 9, 0, 1, 0, 0, 0, 8, 0, 9, 0, 8, 0, 10, 0, 9, 0, 8, 0, 6, 0, 10, 0, 3, 0, 14, 0, 5, 0, 3, 0, 12, 0, 14, 0, 13, 0, 18, 0, 15, 0, 13, 0, 16, 0, 18, 0, 17, 0, 22, 0, 19, 0, 17, 0, 20, 0, 22, 0, 21, 0, 25, 0, 23, 0, 21, 0, 24, 0, 25, 0),
+"index_data": PackedByteArray("BwAEAAsABwACAAQAAAAJAAEAAAAIAAkACAAKAAkACAAGAAoAAwAOAAUAAwAMAA4ADQASAA8ADQAQABIAEQAWABMAEQAUABYAFQAZABcAFQAYABkA"),
 "material": ExtResource("1_50wr4"),
 "name": "GrassBladeMat",
 "primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 26,
-"vertex_data": PackedByteArray(109, 182, 66, 61, 237, 49, 208, 188, 28, 64, 138, 187, 0, 0, 144, 245, 110, 10, 255, 191, 107, 182, 66, 189, 237, 49, 208, 188, 170, 64, 138, 59, 0, 0, 144, 245, 110, 10, 255, 191, 238, 116, 73, 61, 181, 61, 135, 63, 9, 253, 138, 188, 159, 3, 98, 11, 175, 13, 30, 193, 238, 116, 73, 61, 181, 61, 135, 63, 9, 253, 138, 188, 21, 22, 73, 13, 255, 255, 255, 191, 173, 141, 136, 188, 1, 105, 135, 63, 10, 24, 27, 188, 159, 3, 98, 11, 112, 13, 250, 192, 173, 141, 136, 188, 1, 105, 135, 63, 10, 24, 27, 188, 21, 22, 73, 13, 255, 255, 255, 191, 32, 230, 25, 61, 37, 65, 50, 63, 144, 139, 90, 187, 0, 0, 144, 245, 110, 10, 255, 191, 32, 230, 25, 61, 37, 65, 50, 63, 144, 139, 90, 187, 159, 3, 98, 11, 250, 11, 37, 192, 123, 229, 55, 61, 148, 191, 171, 62, 53, 146, 130, 187, 0, 0, 144, 245, 110, 10, 255, 191, 121, 229, 55, 189, 148, 191, 171, 62, 129, 146, 130, 59, 0, 0, 144, 245, 110, 10, 255, 191, 32, 230, 25, 189, 37, 65, 50, 63, 160, 139, 90, 59, 0, 0, 144, 245, 110, 10, 255, 191, 32, 230, 25, 189, 37, 65, 50, 63, 160, 139, 90, 59, 159, 3, 98, 11, 193, 11, 4, 192, 213, 127, 155, 61, 87, 175, 174, 63, 30, 112, 196, 189, 21, 22, 73, 13, 255, 255, 255, 191, 213, 127, 155, 61, 87, 175, 174, 63, 30, 112, 196, 189, 253, 31, 39, 22, 255, 255, 255, 191, 18, 98, 225, 60, 108, 20, 177, 63, 216, 1, 188, 189, 21, 22, 73, 13, 255, 255, 255, 191, 18, 98, 225, 60, 108, 20, 177, 63, 216, 1, 188, 189, 253, 31, 39, 22, 255, 255, 255, 191, 158, 46, 23, 62, 40, 82, 213, 63, 137, 58, 128, 190, 253, 31, 39, 22, 255, 255, 255, 191, 158, 46, 23, 62, 40, 82, 213, 63, 137, 58, 128, 190, 173, 33, 85, 32, 255, 255, 255, 191, 164, 206, 251, 61, 146, 4, 215, 63, 218, 101, 124, 190, 253, 31, 39, 22, 255, 255, 255, 191, 164, 206, 251, 61, 146, 4, 215, 63, 218, 101, 124, 190, 173, 33, 85, 32, 255, 255, 255, 191, 173, 140, 110, 62, 63, 103, 234, 63, 244, 180, 197, 190, 173, 33, 85, 32, 255, 255, 255, 191, 173, 140, 110, 62, 63, 103, 234, 63, 244, 180, 197, 190, 156, 43, 11, 43, 255, 255, 255, 191, 10, 141, 94, 62, 192, 47, 236, 63, 103, 136, 196, 190, 173, 33, 85, 32, 255, 255, 255, 191, 10, 141, 94, 62, 192, 47, 236, 63, 103, 136, 196, 190, 156, 43, 11, 43, 255, 255, 255, 191, 63, 102, 163, 62, 162, 155, 239, 63, 76, 158, 4, 191, 156, 43, 11, 43, 255, 255, 255, 191, 37, 15, 159, 62, 124, 130, 240, 63, 49, 114, 4, 191, 156, 43, 11, 43, 255, 255, 255, 191)
+"vertex_data": PackedByteArray("bbZCPe0x0LwcQIq7a7ZCve0x0LyqQIo77nRJPbU9hz8J/Yq87nRJPbU9hz8J/Yq8rY2IvAFphz8KGBu8rY2IvAFphz8KGBu8IOYZPSVBMj+Qi1q7IOYZPSVBMj+Qi1q7e+U3PZS/qz41koK7eeU3vZS/qz6BkoI7IOYZvSVBMj+gi1o7IOYZvSVBMj+gi1o71X+bPVevrj8ecMS91X+bPVevrj8ecMS9EmLhPGwUsT/YAby9EmLhPGwUsT/YAby9ni4XPihS1T+JOoC+ni4XPihS1T+JOoC+pM77PZIE1z/aZXy+pM77PZIE1z/aZXy+rYxuPj9n6j/0tMW+rYxuPj9n6j/0tMW+Co1ePsAv7D9niMS+Co1ePsAv7D9niMS+P2ajPqKb7z9MngS/JQ+fPnyC8D8xcgS/AACQ9W4K/78AAJD1bgr/v58DYguvDR7BFRZJDf///7+fA2ILcA36wBUWSQ3///+/AACQ9W4K/7+fA2IL+gslwAAAkPVuCv+/AACQ9W4K/78AAJD1bgr/v58DYgvBCwTAFRZJDf///7/9HycW////vxUWSQ3///+//R8nFv///7/9HycW////v60hVSD///+//R8nFv///7+tIVUg////v60hVSD///+/nCsLK////7+tIVUg////v5wrCyv///+/nCsLK////7+cKwsr////vw==")
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_bljpt")

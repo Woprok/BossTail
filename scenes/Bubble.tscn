@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://c8rgya1tfw6ms"]
 
-[ext_resource type="Script" path="res://scripts/Bubble.gd" id="1_oyjx4"]
+[ext_resource type="Script" uid="uid://bd1q2ghsor57s" path="res://scripts/Bubble.gd" id="1_oyjx4"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_c4m4i"]
 

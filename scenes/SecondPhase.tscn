@@ -1,6 +1,6 @@
 [gd_scene load_steps=21 format=3 uid="uid://b7qeqaium4nae"]
 
-[ext_resource type="Script" path="res://scripts/SecondPhase.gd" id="1_1oiri"]
+[ext_resource type="Script" uid="uid://c6w76j6lo6sqh" path="res://scripts/SecondPhase.gd" id="1_1oiri"]
 [ext_resource type="PackedScene" uid="uid://cs51pokcyuwhd" path="res://scenes/characters/Mouseketeer.tscn" id="2_k20qr"]
 [ext_resource type="PackedScene" uid="uid://m3d44565ohak" path="res://scenes/characters/ToadBoss.tscn" id="3_8kwl6"]
 [ext_resource type="PackedScene" uid="uid://byq2mhcwqgxom" path="res://scenes/Lily.tscn" id="4_hj8bh"]

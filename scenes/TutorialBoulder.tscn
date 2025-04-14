@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://8533bk0osnnf"]
 
-[ext_resource type="Script" path="res://scripts/TutorialBoulder.gd" id="1_od42d"]
+[ext_resource type="Script" uid="uid://hj4o7sc0k1rv" path="res://scripts/TutorialBoulder.gd" id="1_od42d"]
 
 [sub_resource type="ORMMaterial3D" id="ORMMaterial3D_yibxn"]
 albedo_color = Color(0.117647, 0.117647, 0.117647, 1)

@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://tu85h6deilw2"]
 
-[ext_resource type="Script" path="res://scripts/WaterBubble.gd" id="1_5t4so"]
+[ext_resource type="Script" uid="uid://bs324qhc7ebhb" path="res://scripts/WaterBubble.gd" id="1_5t4so"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_qsonp"]
 
