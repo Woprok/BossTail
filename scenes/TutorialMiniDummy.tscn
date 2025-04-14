@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://cyj1ihlntja1j"]
+
+[ext_resource type="Script" uid="uid://cwfemfcaoblm4" path="res://scripts/TutorialMiniDummy.gd" id="1_66vw7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_akp84"]
+albedo_color = Color(0, 1, 1, 1)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_jkcqp"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_eejci"]
+height = 6.0
+radius = 6.0
+
+[node name="TutorialMiniDummy" type="RigidBody3D" groups=["enemy"]]
+collision_mask = 5
+script = ExtResource("1_66vw7")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+material = SubResource("StandardMaterial3D_akp84")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.789368, 0.249268)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CylinderShape3D_jkcqp")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.98205, 0)
+shape = SubResource("CylinderShape3D_eejci")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_body_entered"]

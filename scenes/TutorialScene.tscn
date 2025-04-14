@@ -1,12 +1,14 @@
-[gd_scene load_steps=19 format=3 uid="uid://dlgjnby6p27p1"]
+[gd_scene load_steps=21 format=3 uid="uid://dlgjnby6p27p1"]
 
 [ext_resource type="PackedScene" uid="uid://cs51pokcyuwhd" path="res://scenes/characters/Mouseketeer.tscn" id="1_atg64"]
-[ext_resource type="Script" uid="uid://7rix2olo4q8k" path="res://scripts/TutorialScene.gd" id="1_ch07a"]
-[ext_resource type="Script" uid="uid://p31wdkr7obsk" path="res://scripts/TutorialPlayer.gd" id="2_u64d8"]
+[ext_resource type="Script" uid="uid://dw74qj554c1ac" path="res://scripts/TutorialScene.gd" id="1_ch07a"]
+[ext_resource type="Script" uid="uid://vwfgr43qq50f" path="res://scripts/TutorialPlayer.gd" id="2_u64d8"]
 [ext_resource type="Material" uid="uid://cctvegqrour2r" path="res://assets/material.tres" id="3_jfofl"]
 [ext_resource type="PackedScene" uid="uid://cexu8vsrt1jho" path="res://scenes/TutorialDummy.tscn" id="4_gsy1u"]
+[ext_resource type="PackedScene" uid="uid://cyj1ihlntja1j" path="res://scenes/TutorialMiniDummy.tscn" id="5_ctt0m"]
 [ext_resource type="PackedScene" uid="uid://cwiap64eupo14" path="res://scenes/Spike.tscn" id="6_ljx6i"]
 [ext_resource type="PackedScene" uid="uid://8533bk0osnnf" path="res://scenes/TutorialBoulder.tscn" id="7_m2fwn"]
+[ext_resource type="PackedScene" uid="uid://c7rer8lovnu7h" path="res://scenes/TutorialRock.tscn" id="8_rtu3h"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_stgmv"]
 sky_top_color = Color(0.329412, 0.411765, 0.917647, 1)
@@ -94,13 +96,14 @@ light_energy = 0.5
 shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("1_atg64")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.82322, -5.17407, 61.39)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.16838, -5.17407, 65.01)
 script = ExtResource("2_u64d8")
 
 [node name="Enemy" parent="." instance=ExtResource("4_gsy1u")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -0.0778503, -3.69177, -62.3515)
 
-[node name="pebbles" type="Node3D" parent="."]
+[node name="MiniDummy" parent="." instance=ExtResource("5_ctt0m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.7, -4.70081, -26.6)
 
 [node name="arena" type="CSGCombiner3D" parent="."]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 2, 0)
@@ -118,6 +121,7 @@ material = ExtResource("3_jfofl")
 
 [node name="walls" type="CSGCombiner3D" parent="."]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 100, 0)
+visible = false
 use_collision = true
 
 [node name="wall1" type="CSGBox3D" parent="walls"]
@@ -141,6 +145,7 @@ size = Vector3(25, 18, 1)
 material = ExtResource("3_jfofl")
 
 [node name="obstacles" type="Node3D" parent="."]
+visible = false
 
 [node name="jumpOn" type="CSGBox3D" parent="obstacles"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.0339, -4.55011, 18.3463)
@@ -3071,9 +3076,39 @@ transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 2.46295, 2.4406
 
 [node name="crates" type="Node3D" parent="obstacles"]
 
+[node name="pebbles" type="Node3D" parent="obstacles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -59.602, 3.25916, -4.21918)
+
+[node name="TutorialRock" parent="obstacles/pebbles" instance=ExtResource("8_rtu3h")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 1, 0, 1)
+
+[node name="TutorialRock2" parent="obstacles/pebbles" instance=ExtResource("8_rtu3h")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0.576653, 0, 0.89389)
+
+[node name="TutorialRock3" parent="obstacles/pebbles" instance=ExtResource("8_rtu3h")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0.520489, 0, 0.455284)
+
+[node name="TutorialRock4" parent="obstacles/pebbles" instance=ExtResource("8_rtu3h")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0.97979, 0, 0.536194)
+
+[node name="TutorialRock5" parent="obstacles/pebbles" instance=ExtResource("8_rtu3h")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0.748161, 0, 0.0540695)
+
+[node name="TutorialRock6" parent="obstacles/pebbles" instance=ExtResource("8_rtu3h")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0.284073, 0, 0.0731888)
+
+[node name="TutorialRock7" parent="obstacles/pebbles" instance=ExtResource("8_rtu3h")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -0.010685, 0, 0.424767)
+
+[node name="TutorialRock8" parent="obstacles/pebbles" instance=ExtResource("8_rtu3h")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0.0460052, 0, 0.932816)
+
+[node name="TutorialRock9" parent="obstacles/pebbles" instance=ExtResource("8_rtu3h")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 1.27402, 0, 0.115181)
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_pfun0")
+&"": SubResource("AnimationLibrary_pfun0")
 }
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_finished"]

@@ -1,15 +1,118 @@
-[gd_scene load_steps=3 format=3 uid="uid://cexu8vsrt1jho"]
+[gd_scene load_steps=9 format=3 uid="uid://cexu8vsrt1jho"]
+
+[ext_resource type="Script" uid="uid://c3hv7v2dtx7h0" path="res://scripts/TutorialDummy.gd" id="1_lu3ac"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rfu1p"]
 albedo_color = Color(0.439216, 0.239216, 0, 1)
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_7ou3l"]
 
-[node name="TutorialDummy" type="CharacterBody3D"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_dwgjd"]
+radius = 0.7
 
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_y8dm5"]
+radius = 6.0
+
+[sub_resource type="Animation" id="Animation_cuxop"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CSGSphere3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, -1.53842)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CSGSphere3D/Area3D/CollisionShape3D2:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_ht2tr"]
+resource_name = "slash"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CSGSphere3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, -1.53842), Vector3(0, 0, 1.0472), Vector3(0, 0, -1.53589)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CSGSphere3D/Area3D/CollisionShape3D2:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.4, 0.7, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, true, false, false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rujn5"]
+_data = {
+&"RESET": SubResource("Animation_cuxop"),
+&"slash": SubResource("Animation_ht2tr")
+}
+
+[node name="TutorialDummy" type="CharacterBody3D" groups=["enemy"]]
+script = ExtResource("1_lu3ac")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="." groups=["enemy"]]
 sides = 6
 material = SubResource("StandardMaterial3D_rfu1p")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.00436592)
 shape = SubResource("CylinderShape3D_7ou3l")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="." groups=["enemy"]]
+transform = Transform3D(0.00534118, 0.164914, 0, -0.164914, 0.00534118, 0, 0, 0, 1.279, 0.398056, 0, 0.400024)
+radius = 0.387232
+
+[node name="Area3D" type="Area3D" parent="CSGSphere3D"]
+transform = Transform3D(1, 5.96046e-08, 0, -5.96046e-08, 1, 0, 0, 0, 1, -2.05883, 1.61955, 0.341346)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="CSGSphere3D/Area3D"]
+transform = Transform3D(4.76342, 3.7471, 0, -3.7471, 4.76342, 0, 0, 0, 0.781861, 0.123318, -0.0970071, 0.388163)
+shape = SubResource("SphereShape3D_dwgjd")
+disabled = true
+
+[node name="CSGSphere3D2" type="CSGSphere3D" parent="CSGSphere3D" groups=["enemy"]]
+transform = Transform3D(0.349121, 0.0502736, -5.40085, 0.0346924, 0.487975, 1.63523, 0.045971, -0.012478, 0.68559, -1.92256, 0.58247, 0.508016)
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("CylinderShape3D_y8dm5")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_rujn5")
+}
+
+[connection signal="body_entered" from="CSGSphere3D/Area3D" to="." method="_on_slash_entered"]
+[connection signal="body_entered" from="Area3D" to="." method="_on_body_entered"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_finished"]

@@ -1,10 +1,10 @@
 extends CharacterBody3D
 
-var Rock = preload("res://scenes/Rock.tscn")
+var Rock = preload("res://scenes/TutorialRock.tscn")
 
 @onready var Camera = $CameraPivot/SpringArm3D/Camera3D
 @onready var ui = $health/ui
-@onready var pebbles = get_parent().get_node("pebbles")
+@onready var pebbles = get_parent().get_node("obstacles/pebbles") #opravit
 
 var weapon_type:int = -1
 
@@ -26,6 +26,8 @@ var mouse_sensitivity:float = 0.008
 var melee:bool = false
 var fighting:bool = false
 var jump:bool = false
+var pushed = false
+var time_of_push = 0
 var double_jump:bool = false
 var dashing:bool = false
 var can_dash:bool = true
@@ -50,15 +52,24 @@ func _physics_process(delta):
 	if Input.is_action_pressed("move_left"):
 		rotate_y(0.05)
 	
-	direction = Vector3.ZERO
-	if Input.is_action_pressed("move_back"):
-		direction.z += 1
-	if Input.is_action_pressed("move_forward"):
-		direction.z -= 1
-	if Input.is_action_pressed("strafe_left"):
-		direction.x -= 1
-	if Input.is_action_pressed("strafe_right"):
-		direction.x += 1
+	if pushed:
+		time_of_push += delta
+		if time_of_push >= 1:
+			time_of_push = 0
+			pushed = false
+		else:
+			move_and_slide()
+			return
+	else:
+		direction = Vector3.ZERO
+		if Input.is_action_pressed("move_back"):
+			direction.z += 1
+		if Input.is_action_pressed("move_forward"):
+			direction.z -= 1
+		if Input.is_action_pressed("strafe_left"):
+			direction.x -= 1
+		if Input.is_action_pressed("strafe_right"):
+			direction.x += 1
 		
 	if Input.is_action_just_pressed("dash") and can_dash:
 		dashing = true

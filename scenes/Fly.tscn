@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cghwxumcrmfcs"]
 
-[ext_resource type="Script" uid="uid://b7wnkd0cke6or" path="res://scripts/Fly.gd" id="1_xccur"]
+[ext_resource type="Script" uid="uid://bg5rh3uti6uuc" path="res://scripts/Fly.gd" id="1_xccur"]
 
 [sub_resource type="ORMMaterial3D" id="ORMMaterial3D_0fuwa"]
 albedo_color = Color(0.117647, 0.117647, 0.117647, 1)

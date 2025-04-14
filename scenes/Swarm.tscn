@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://drg5tjf7wiuib"]
 
-[ext_resource type="Script" uid="uid://b6c7fa6vl6m1b" path="res://scripts/Swarm.gd" id="1_f2jtm"]
+[ext_resource type="Script" uid="uid://b4icei2cjegta" path="res://scripts/Swarm.gd" id="1_f2jtm"]
 [ext_resource type="PackedScene" uid="uid://cghwxumcrmfcs" path="res://scenes/Fly.tscn" id="1_pbxlf"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_ua668"]

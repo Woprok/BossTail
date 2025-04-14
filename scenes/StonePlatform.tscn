@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://dlrq4knk1gqi7"]
 
-[ext_resource type="Script" uid="uid://2f07pg4sxdxi" path="res://scripts/Stone_platform.gd" id="1_3gn8n"]
+[ext_resource type="Script" uid="uid://cd2ycapel0nho" path="res://scripts/Stone_platform.gd" id="1_3gn8n"]
 [ext_resource type="PackedScene" uid="uid://cgydlwevhkirk" path="res://scenes/Boulder.tscn" id="2_2fg2o"]
 [ext_resource type="PackedScene" uid="uid://fdlmxb53kw16" path="res://scenes/environment/Rock_3.tscn" id="3_qqd3n"]
 

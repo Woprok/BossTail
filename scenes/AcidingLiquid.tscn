@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://dbxwk1hjg3nk1"]
 
-[ext_resource type="Script" uid="uid://o7s6ru75nmtm" path="res://scripts/AcidingLiquid.gd" id="1_a74tk"]
+[ext_resource type="Script" uid="uid://os4xvpl5cmxy" path="res://scripts/AcidingLiquid.gd" id="1_a74tk"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_c4m4i"]
 

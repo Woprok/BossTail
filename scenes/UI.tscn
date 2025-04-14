@@ -1,13 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://c4mr4as12l5gs"]
+[gd_scene load_steps=8 format=3 uid="uid://c4mr4as12l5gs"]
 
-[ext_resource type="Script" uid="uid://b7atec6l0jw7l" path="res://scripts/UI.gd" id="1_ln78h"]
+[ext_resource type="Script" uid="uid://bgf8desk0ji1d" path="res://scripts/UI.gd" id="1_ln78h"]
 [ext_resource type="Texture2D" uid="uid://dga2xtu45ddyx" path="res://assets/indicator.png" id="2_5rtjh"]
 [ext_resource type="PackedScene" uid="uid://jawnubttpduo" path="res://scenes/ProgressBar3D.tscn" id="2_bidsa"]
-[ext_resource type="PackedScene" uid="uid://ckokq01phsthv" path="res://assets/ui/ActionButton.tscn" id="4_a8uwt"]
-[ext_resource type="Texture2D" uid="uid://clnlkd2icy745" path="res://assets/temp/dash.png" id="5_f3lqj"]
-[ext_resource type="Texture2D" uid="uid://cexod28282fod" path="res://assets/temp/slash.png" id="5_vfa14"]
-[ext_resource type="Texture2D" uid="uid://bmsgwqc5wo8d4" path="res://assets/temp/throw.png" id="6_7p4qb"]
-[ext_resource type="Texture2D" uid="uid://w2kbc6fwsil2" path="res://assets/temp/jump.png" id="8_jtw8c"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_qxom7"]
 
@@ -57,72 +52,49 @@ position = Vector2(1660.84, 109)
 scale = Vector2(0.22, 0.22)
 texture = ExtResource("2_5rtjh")
 
-[node name="health_boss" parent="." instance=ExtResource("2_bidsa")]
-position = Vector2(745, -840)
-
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -77.5
-offset_right = 524.0
-offset_bottom = 77.5
-grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
-layout_mode = 2
-
-[node name="MeleeAttack" parent="HBoxContainer/VBoxContainer" instance=ExtResource("4_a8uwt")]
-layout_mode = 2
-texture = ExtResource("5_vfa14")
-
-[node name="melee_label" type="Label" parent="HBoxContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-text = "MELEE"
-horizontal_alignment = 1
-metadata/_edit_use_anchors_ = true
-
-[node name="VBoxContainer4" type="VBoxContainer" parent="HBoxContainer"]
-layout_mode = 2
-
-[node name="RangeAttack" parent="HBoxContainer/VBoxContainer4" instance=ExtResource("4_a8uwt")]
-layout_mode = 2
-texture = ExtResource("6_7p4qb")
-
-[node name="ranged_label" type="Label" parent="HBoxContainer/VBoxContainer4"]
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-text = "RANGED"
-horizontal_alignment = 1
-metadata/_edit_use_anchors_ = true
-
-[node name="VBoxContainer3" type="VBoxContainer" parent="HBoxContainer"]
-layout_mode = 2
-
-[node name="Dash" parent="HBoxContainer/VBoxContainer3" instance=ExtResource("4_a8uwt")]
-layout_mode = 2
-texture = ExtResource("5_f3lqj")
-
-[node name="dash_label" type="Label" parent="HBoxContainer/VBoxContainer3"]
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-text = "DASH"
-horizontal_alignment = 1
-metadata/_edit_use_anchors_ = true
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer"]
-layout_mode = 2
-
-[node name="Jump" parent="HBoxContainer/VBoxContainer2" instance=ExtResource("4_a8uwt")]
-layout_mode = 2
-texture = ExtResource("8_jtw8c")
-
-[node name="jump_label" type="Label" parent="HBoxContainer/VBoxContainer2"]
-layout_mode = 2
+[node name="jump_label" type="Label" parent="."]
+offset_left = 1725.84
+offset_top = 147.0
+offset_right = 1767.84
+offset_bottom = 173.0
+scale = Vector2(1.4, 1.48)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "JUMP"
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="melee_label" type="Label" parent="."]
+offset_left = 1417.84
+offset_top = 147.0
+offset_right = 1468.84
+offset_bottom = 173.0
+scale = Vector2(1.4, 1.48)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "MELEE"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="ranged_label" type="Label" parent="."]
+offset_left = 1509.84
+offset_top = 147.0
+offset_right = 1575.84
+offset_bottom = 173.0
+scale = Vector2(1.4, 1.48)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "RANGED"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="dash_label" type="Label" parent="."]
+offset_left = 1615.84
+offset_top = 147.0
+offset_right = 1681.84
+offset_bottom = 173.0
+scale = Vector2(1.4, 1.48)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "DASH"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="health_boss" parent="." instance=ExtResource("2_bidsa")]
+position = Vector2(745, -840)
