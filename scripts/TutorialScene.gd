@@ -16,8 +16,10 @@ var reset_position_part3 = Vector3(47, -1.2, -16.6)
 
 
 func _process(delta):
-	if not walls_down and $Player.position.distance_to($Enemy.position)<=125:
+	if not walls_down and $Player.position.distance_to($Enemy.position)<=115:
 		$walls.show()
+		$walls2.show()
+		$arena/spikes.show()
 		$AnimationPlayer.play("walls",2)
 		$Player.part=2
 		walls_down=true
@@ -61,3 +63,10 @@ func respawn_player():
 func _on_animation_finished(anim_name):
 	if anim_name=="walls":
 		$obstacles.show()
+
+
+func _on_last_part_entered(body: Node3D) -> void:
+	if body.is_in_group("player"):
+		$Enemy.active = true
+		$walls2.show()
+		$AnimationPlayer.play("last_wall")

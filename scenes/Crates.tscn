@@ -35,10 +35,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46268, 0)
 shape = SubResource("BoxShape3D_75urv")
 
 [node name="hit" type="Area3D" parent="."]
-collision_mask = 6
+collision_mask = 134
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="hit"]
 shape = SubResource("BoxShape3D_dk2q6")
+disabled = true
 
 [connection signal="body_entered" from="under" to="." method="_on_body_entered"]
+[connection signal="area_entered" from="hit" to="." method="_on_hit_area_entered"]
 [connection signal="body_entered" from="hit" to="." method="_on_hit_body_entered"]

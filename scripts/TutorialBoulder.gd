@@ -3,7 +3,7 @@ extends RigidBody3D
 func _physics_process(delta):
 	if position.y<6 and position.y>5:
 		linear_velocity.x = 20
-	if position.y<-1 or position.x>40:
+	if position.y<-1 or position.x>34:
 		respawn()
 
 func respawn():

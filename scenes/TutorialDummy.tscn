@@ -74,6 +74,7 @@ _data = {
 }
 
 [node name="TutorialDummy" type="CharacterBody3D" groups=["enemy"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("1_lu3ac")
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="." groups=["enemy"]]
