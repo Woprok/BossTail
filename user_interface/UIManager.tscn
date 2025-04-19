@@ -1,0 +1,20 @@
+[gd_scene load_steps=8 format=3 uid="uid://ffifrkk008jr"]
+
+[ext_resource type="Script" uid="uid://bviots3lh3wsu" path="res://user_interface/UIManager.gd" id="1_cdxc8"]
+[ext_resource type="PackedScene" uid="uid://dd1t8e65ub5g5" path="res://user_interface/screens/MenuScreen.tscn" id="2_n0w8r"]
+[ext_resource type="PackedScene" uid="uid://vtchnggfgf4f" path="res://user_interface/screens/PauseScreen.tscn" id="3_mwxrr"]
+[ext_resource type="PackedScene" uid="uid://b55rkrtbkh32g" path="res://user_interface/screens/SettingsScreen.tscn" id="4_65gy8"]
+[ext_resource type="PackedScene" uid="uid://b02ofqs5gyvt3" path="res://user_interface/screens/LevelScreen.tscn" id="5_ib6oj"]
+[ext_resource type="PackedScene" uid="uid://dra2yxhk1kcdq" path="res://user_interface/screens/NoneScreen.tscn" id="6_mwxrr"]
+[ext_resource type="PackedScene" uid="uid://bd46k2s343rar" path="res://user_interface/screens/HUDScreen.tscn" id="7_65gy8"]
+
+[node name="UiManager" type="CanvasLayer"]
+script = ExtResource("1_cdxc8")
+Screens = Dictionary[int, PackedScene]({
+0: ExtResource("6_mwxrr"),
+1: ExtResource("2_n0w8r"),
+2: ExtResource("3_mwxrr"),
+3: ExtResource("4_65gy8"),
+4: ExtResource("5_ib6oj"),
+5: ExtResource("7_65gy8")
+})

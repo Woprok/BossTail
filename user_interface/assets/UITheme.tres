@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=2 format=3 uid="uid://cuyhfwevfdcuw"]
 
-[ext_resource type="StyleBox" uid="uid://c87pt65swg7mh" path="res://assets/UIThemeBorder.tres" id="1_m4pxg"]
+[ext_resource type="StyleBox" uid="uid://c87pt65swg7mh" path="res://user_interface/assets/UIThemeBorder.tres" id="1_m4pxg"]
 
 [resource]
 Button/styles/disabled = ExtResource("1_m4pxg")

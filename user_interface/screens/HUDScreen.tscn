@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://bd46k2s343rar"]
+
+[ext_resource type="Script" uid="uid://cc0c4h6pljjac" path="res://user_interface/screens/HUDScreen.gd" id="1_7bmoq"]
+[ext_resource type="Theme" uid="uid://d2mah8qfufk0b" path="res://user_interface/assets/UIMenuTheme.tres" id="2_5nfxh"]
+
+[node name="HUDScreen" type="VBoxContainer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -372.0
+offset_right = 372.0
+offset_bottom = 374.0
+grow_horizontal = 2
+script = ExtResource("1_7bmoq")
+
+[node name="TitleLabel" type="Label" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+theme = ExtResource("2_5nfxh")
+text = "This will be NEW HUD"
+horizontal_alignment = 1
+vertical_alignment = 1

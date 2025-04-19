@@ -1,7 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://5w1iti7arvc5"]
+[gd_scene load_steps=7 format=3 uid="uid://5w1iti7arvc5"]
 
 [ext_resource type="PackedScene" uid="uid://dlrq4knk1gqi7" path="res://scenes/StonePlatform.tscn" id="1_dx7ke"]
-[ext_resource type="PackedScene" uid="uid://dd1t8e65ub5g5" path="res://scenes/UIMenu.tscn" id="2_r1rkc"]
 [ext_resource type="Shader" uid="uid://ckk3b6a4w762f" path="res://scenes/MenuSceneSkyShader.gdshader" id="3_ts21g"]
 [ext_resource type="PackedScene" uid="uid://dp3ikh08njxoy" path="res://scenes/characters/MouseketeerStaticModel.tscn" id="4_kek1a"]
 
@@ -28,8 +27,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.32836, 0, 0)
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(0.512537, -0.222239, 0.829407, -3.52196e-08, 0.965926, 0.258819, -0.858665, -0.132655, 0.495073, 6.96435, 2.03883, 6.80512)
 fov = 50.0
-
-[node name="UiMenu" parent="." instance=ExtResource("2_r1rkc")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_7qvtj")
