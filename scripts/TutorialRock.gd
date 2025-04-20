@@ -10,7 +10,7 @@ func _physics_process(delta):
 	if collision:
 		velocity = Vector3(0,0,0)
 		if collision.get_collider().is_in_group("enemy"):
-			collision.get_collider().hit()
+			collision.get_collider().hit(5)
 			respawn()
 
 

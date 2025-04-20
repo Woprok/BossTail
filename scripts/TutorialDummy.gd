@@ -3,6 +3,9 @@ extends CharacterBody3D
 var stopped = true
 var active = false
 var doing = false
+var last_cd_change = 0
+var num_of_volley = 1
+var actual_volley = 0
 var BOXES_IN_VOLLEY=4
 
 var WHIRLWIND_TIME_MAX = 9
@@ -14,13 +17,16 @@ var SLASH_TIME = 0
 var BARRAGE_TIME_MAX = 10 
 var BARRAGE_TIME_MIN = 5
 var BARRAGE_TIME = 0
+var VOLLEY_TIME = 1
 var whirlwind_time = 0
 var barrage_time = 0
 var slash_time = 0
+var volley_time = 0
 
 var box_size_div = 2
 @export var boss_data: BossDataModel = preload("res://data_resources/BossDataModelInstance.tres")
 var BOX = preload("res://scenes/Crates.tscn")
+
 
 func _ready() -> void:
 	boss_data.boss_restart()
@@ -41,23 +47,43 @@ func _physics_process(delta):
 		stopped = true
 		return
 	if doing:
+		if actual_volley<num_of_volley:
+			if volley_time<VOLLEY_TIME:
+				volley_time+=delta
+			else:
+				throw()
+				volley_time = 0
 		return
 	slash_time+=delta
 	if slash_time>=SLASH_TIME:
 		slash_time = 0
+		barrage_time -= 1
 		slash()
 		doing = true
 		return
 	barrage_time += delta
 	if barrage_time>=BARRAGE_TIME:
 		barrage_time = 0
+		slash_time -= 1
+		actual_volley = 0
 		throw()
+
+func hit(hp):
+	boss_data.boss_decrease_health(hp)
+	last_cd_change += hp
+	if last_cd_change>=25:
+		SLASH_TIME = max(SLASH_TIME_MIN, SLASH_TIME-2.5)
+		BARRAGE_TIME = max(BARRAGE_TIME_MIN, BARRAGE_TIME-2.5)
+		WHIRLWIND_TIME = max(WHIRLWIND_TIME_MIN, WHIRLWIND_TIME-2.5)
+		num_of_volley+=1
+		last_cd_change = 0 
 
 func slash():
 	$AnimationPlayer.play("slash",-1,3)
 
 func throw():
 	var init_dir = (get_parent().get_node("Player").position - position).normalized()
+	actual_volley+=1
 	for i in range(BOXES_IN_VOLLEY):
 		var dir = init_dir.rotated(Vector3(0,1,0),(randf()*2-1)*PI/4)
 		var box = BOX.instantiate()
@@ -69,6 +95,10 @@ func throw():
 		box.position.y=-4.8
 		box.velocity = dir.normalized()*12
 		box.velocity.y = 0
+	if actual_volley<num_of_volley:
+		doing = true
+	else:
+		doing = false
 	#podle poctu tolik krabic
 
 func _on_body_entered(body):

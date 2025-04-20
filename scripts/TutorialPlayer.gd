@@ -241,7 +241,8 @@ func _on_next_dash_timer_timeout():
 	$next_dash_timer.stop()
 
 func _on_melee_body_entered(body):
-	pass
+	if body.is_in_group("enemy"):
+		body.hit(10)
 
 func _on_pickup_entered(body):
 	if body.is_in_group("pebble"):

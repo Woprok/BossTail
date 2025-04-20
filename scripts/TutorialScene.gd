@@ -5,6 +5,8 @@ var walls_down = false
 @export var num_of_crates:Array[int]
 var Crates = preload("res://scenes/Crates.tscn")
 var Boulder = preload("res://scenes/TutorialBoulder.tscn")
+var Rock = preload("res://scenes/TutorialRock.tscn")
+
 var boulders_variant = [[Vector3(-24,20,11.7), Vector3(-24,20,5.7),Vector3(-24,20,-0.3), Vector3(-24,20,-11.7)],[Vector3(-24,20,11.7), Vector3(-24,20,0.3),Vector3(-24,20,-5.7), Vector3(-24,20,-11.7)],
 		[Vector3(-24,20,11.7), Vector3(-24,20,5.7),Vector3(-24,20,-5.7), Vector3(-24,20,-11.7)]]
 var time_crates = 0
@@ -59,6 +61,15 @@ func respawn_player():
 		$Player.respawn(reset_position_part2)
 	if $Player.part == 3:
 		$Player.respawn(reset_position_part3)
+
+func addRock(target_position:Vector3):
+	var rock = Rock.instantiate()
+	$obstacles/pebbles.add_child(rock)
+	if $obstacles/pebbles.get_child_count()>10:
+		var to_remove = $obstacles/pebbles.get_child(0)
+		$obstacles/pebbles.remove_child(to_remove)
+		to_remove.queue_free()
+	rock.global_position = target_position
 
 func _on_animation_finished(anim_name):
 	if anim_name=="walls":

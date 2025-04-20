@@ -75,21 +75,6 @@ tracks/1/keys = {
 "values": [Vector3(-30.343, 99.1489, 11.165)]
 }
 
-[sub_resource type="Animation" id="Animation_lap5x"]
-resource_name = "walls"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("walls:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 100, 0), Vector3(0, 0, 0)]
-}
-
 [sub_resource type="Animation" id="Animation_1wo6d"]
 resource_name = "last_wall"
 tracks/0/type = "value"
@@ -103,6 +88,21 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector3(-30.343, 100, 11.165), Vector3(-30.343, -0.508789, 11.165)]
+}
+
+[sub_resource type="Animation" id="Animation_lap5x"]
+resource_name = "walls"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("walls:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 100, 0), Vector3(0, 0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pfun0"]
@@ -128,7 +128,7 @@ light_energy = 0.5
 shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("1_atg64")]
-transform = Transform3D(1, 2.10379e-12, 0, 2.45587e-12, 1, 0, 0, 0, 1, -0.0861876, 0.430838, 62.7019)
+transform = Transform3D(1, 2.10376e-12, 0, 2.45584e-12, 1, 0, 0, 0, 1, -0.098092, 0.430831, 63.9526)
 script = ExtResource("2_u64d8")
 
 [node name="Enemy" parent="." instance=ExtResource("4_gsy1u")]
