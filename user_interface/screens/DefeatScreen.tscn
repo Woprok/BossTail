@@ -1,0 +1,42 @@
+[gd_scene load_steps=3 format=3 uid="uid://fk5q3y2ac7sy"]
+
+[ext_resource type="Script" uid="uid://b2u3es7pj5gkm" path="res://user_interface/screens/DefeatScreen.gd" id="1_4o6xw"]
+[ext_resource type="Theme" uid="uid://d2mah8qfufk0b" path="res://user_interface/assets/UIMenuTheme.tres" id="2_lrtvq"]
+
+[node name="DefeatScreen" type="VBoxContainer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -372.0
+offset_right = 372.0
+offset_bottom = 374.0
+grow_horizontal = 2
+script = ExtResource("1_4o6xw")
+
+[node name="TitleLabel" type="Label" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+theme = ExtResource("2_lrtvq")
+text = "DEFEAT"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MENU_ACTIONS" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+
+[node name="RestartButton" type="Button" parent="MENU_ACTIONS"]
+layout_mode = 2
+theme = ExtResource("2_lrtvq")
+text = "RESTART"
+
+[node name="MenuButton" type="Button" parent="MENU_ACTIONS"]
+layout_mode = 2
+theme = ExtResource("2_lrtvq")
+text = "MENU"
+
+[connection signal="pressed" from="MENU_ACTIONS/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="MENU_ACTIONS/MenuButton" to="." method="_on_menu_button_pressed"]

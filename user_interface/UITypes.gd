@@ -6,4 +6,6 @@ enum Mode {
 	SETTINGS,
 	LEVEL,
 	HUD,
+	VICTORY,
+	DEFEAT
 }

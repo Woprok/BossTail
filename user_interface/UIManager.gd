@@ -37,30 +37,10 @@ func _set_cursor_mode(new_mode: UI.Mode) -> void:
 		_: #UI.Mode.PAUSE, UI.Mode.MENU, UI.Mode.SETTINGS:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
-func SwitchToLevel() -> void:
-	_switch_UI(UI.Mode.LEVEL)
-	_set_cursor_mode(UI.Mode.LEVEL)
+func SwitchToMode(mode: UI.Mode) -> void:
+	_switch_UI(mode)
+	_set_cursor_mode(mode)
 
-func SwitchToHUD() -> void:
-	_switch_UI(UI.Mode.HUD)
-	_set_cursor_mode(UI.Mode.HUD)
-
-func SwitchToSettings() -> void:
-	_switch_UI(UI.Mode.SETTINGS)
-	_set_cursor_mode(UI.Mode.SETTINGS)
-
-func SwitchToNone() -> void:
-	_switch_UI(UI.Mode.NONE)
-	_set_cursor_mode(UI.Mode.NONE)
-
-func SwitchToMenu() -> void:
-	_switch_UI(UI.Mode.MENU)
-	_set_cursor_mode(UI.Mode.MENU)
-	
-func SwitchToPause() -> void:
-	_switch_UI(UI.Mode.PAUSE)
-	_set_cursor_mode(UI.Mode.PAUSE)
-	
 func SwitchToPrevious() -> void:
 	_switch_UI(PreviousMode)
 	_set_cursor_mode(PreviousMode)
