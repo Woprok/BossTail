@@ -1,23 +1,140 @@
-[gd_scene load_steps=3 format=3 uid="uid://bd46k2s343rar"]
+[gd_scene load_steps=12 format=3 uid="uid://bd46k2s343rar"]
 
 [ext_resource type="Script" uid="uid://cc0c4h6pljjac" path="res://user_interface/screens/HUDScreen.gd" id="1_7bmoq"]
-[ext_resource type="Theme" uid="uid://d2mah8qfufk0b" path="res://user_interface/assets/UIMenuTheme.tres" id="2_5nfxh"]
+[ext_resource type="PackedScene" uid="uid://dit6nlima4dcr" path="res://user_interface/controls/HealthBars/HealthBar.tscn" id="2_m5nw3"]
+[ext_resource type="PackedScene" uid="uid://ckokq01phsthv" path="res://user_interface/controls/ActionButton/ActionButton.tscn" id="3_c3u2o"]
+[ext_resource type="Texture2D" uid="uid://cexod28282fod" path="res://assets/temp/slash.png" id="4_m5nw3"]
+[ext_resource type="Texture2D" uid="uid://bmsgwqc5wo8d4" path="res://assets/temp/throw.png" id="5_d86cj"]
+[ext_resource type="Texture2D" uid="uid://clnlkd2icy745" path="res://assets/temp/dash.png" id="6_7uurq"]
+[ext_resource type="Texture2D" uid="uid://w2kbc6fwsil2" path="res://assets/temp/jump.png" id="6_c3u2o"]
 
-[node name="HUDScreen" type="VBoxContainer"]
+[sub_resource type="CanvasTexture" id="CanvasTexture_qxom7"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5trp1"]
+texture = SubResource("CanvasTexture_qxom7")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_gkg5n"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_o7g8q"]
+texture = SubResource("CanvasTexture_gkg5n")
+modulate_color = Color(0.360784, 0.160784, 0.207843, 1)
+
+[node name="HUDScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_7bmoq")
+
+[node name="BossHealthBar" parent="." instance=ExtResource("2_m5nw3")]
+unique_name_in_owner = true
+layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -372.0
-offset_right = 372.0
-offset_bottom = 374.0
+offset_left = -150.0
+offset_right = 150.0
 grow_horizontal = 2
-script = ExtResource("1_7bmoq")
 
-[node name="TitleLabel" type="Label" parent="."]
+[node name="PlayerHealthBar" parent="." instance=ExtResource("2_m5nw3")]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 150)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -33.0
+offset_bottom = 0.0
+grow_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -747.0
+offset_top = -155.0
+grow_horizontal = 0
+grow_vertical = 0
+alignment = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
-theme = ExtResource("2_5nfxh")
-text = "This will be NEW HUD"
+
+[node name="MeleeIcon" parent="HBoxContainer/VBoxContainer" instance=ExtResource("3_c3u2o")]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("4_m5nw3")
+
+[node name="melee_label" type="Label" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "MELEE"
 horizontal_alignment = 1
-vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="RangedIcon" parent="HBoxContainer/VBoxContainer2" instance=ExtResource("3_c3u2o")]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("5_d86cj")
+
+[node name="ranged_label" type="Label" parent="HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "RANGED"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="DashIcon" parent="HBoxContainer/VBoxContainer3" instance=ExtResource("3_c3u2o")]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("6_7uurq")
+
+[node name="dash_label" type="Label" parent="HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "DASH"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="JumpIcon" parent="HBoxContainer/VBoxContainer4" instance=ExtResource("3_c3u2o")]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("6_c3u2o")
+
+[node name="jump_indicator" type="ProgressBar" parent="HBoxContainer/VBoxContainer4/JumpIcon"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxTexture_5trp1")
+theme_override_styles/fill = SubResource("StyleBoxTexture_o7g8q")
+fill_mode = 3
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="jump_label" type="Label" parent="HBoxContainer/VBoxContainer4"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "JUMP"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true

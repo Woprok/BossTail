@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="UIDataModel" load_steps=2 format=3 uid="uid://dx4rv3p0eby8n"]
+
+[ext_resource type="Script" uid="uid://b8758pjfs3y2p" path="res://data_resources/PlayerDataModel.gd" id="1_y2kq6"]
+
+[resource]
+script = ExtResource("1_y2kq6")
+jump = 0
+metadata/_custom_type_script = "uid://b8758pjfs3y2p"

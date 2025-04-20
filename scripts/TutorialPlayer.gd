@@ -2,8 +2,8 @@ extends CharacterBody3D
 
 var Rock = preload("res://scenes/TutorialRock.tscn")
 
+@export var player_data: PlayerDataModel = preload("res://data_resources/PlayerDataModelInstance.tres")
 @onready var Camera = $CameraPivot/SpringArm3D/Camera3D
-@onready var ui = $health/ui
 @onready var pebbles = get_parent().get_node("obstacles/pebbles") #opravit
 
 var weapon_type:int = -1
@@ -73,7 +73,7 @@ func _physics_process(delta):
 		
 	if Input.is_action_just_pressed("dash") and can_dash:
 		dashing = true
-		ui.change_dash_indicator(false)
+		player_data.change_dash_indicator(false)
 		can_dash = false
 		$dash_timer.start(0.5)
 		
@@ -86,12 +86,12 @@ func _physics_process(delta):
 		speed = SPEED
 		
 	if Input.is_action_just_pressed("jump"):
-		ui.change_jump_height(delta)
+		player_data.change_jump_height(delta)
 		direction.y += 1
 	if Input.is_action_pressed("jump"):
-		ui.change_jump_height(delta*333)
+		player_data.change_jump_height(delta*333)
 	if Input.is_action_just_released("jump"):
-		ui.change_jump_height(0)
+		player_data.change_jump_height(0)
 		target_velocity.y *= 0.1
 		
 	if direction != Vector3.ZERO:
@@ -105,21 +105,21 @@ func _physics_process(delta):
 			$AnimationPlayer.play("GAME_03_jump_looping")
 		
 	if last_shot > 0.5 and Input.is_action_pressed("aim"):
-		ui.change_ranged_indicator(true)
+		player_data.change_ranged_indicator(true)
 	else:
-		ui.change_ranged_indicator(false)
+		player_data.change_ranged_indicator(false)
 	if Input.is_action_pressed("fight"):
 		if not aiming:
 			$melee/target.disabled = false
 			$AnimationPlayer.play("GAME_05_lunge_right")
 			fighting=true
-			ui.change_melee_indicator(false)
+			player_data.change_melee_indicator(false)
 		elif last_shot>0.5:
 			shoot()
 			last_shot = 0
 	elif Input.is_action_just_pressed("aim"):
-		ui.change_melee_indicator(false)
-		ui.change_ranged_indicator(true)
+		player_data.change_melee_indicator(false)
+		player_data.change_ranged_indicator(true)
 		aiming = true
 		mouse_sensitivity = AIM_MOUSE_SENS
 		speed = AIM_SPEED
@@ -127,8 +127,8 @@ func _physics_process(delta):
 		Camera.get_node("target").show()
 		$CameraPivot/zoom.play("zoom")
 	elif Input.is_action_just_released("aim"):
-		ui.change_melee_indicator(true)
-		ui.change_ranged_indicator(false)	
+		player_data.change_melee_indicator(true)
+		player_data.change_ranged_indicator(false)	
 		aiming = false
 		mouse_sensitivity = MOUSE_SENS
 		speed = SPEED
@@ -177,8 +177,8 @@ func hit(health):
 	if lastHit<1:
 		return
 	lastHit = 0
-	ui.get_node("health_player").decHealth(health)
-	if ui.get_node("health_player").health<=0:
+	player_data.player_decrease_health(health)
+	if player_data.is_player_dead():
 		#death
 		pass
 
@@ -217,7 +217,7 @@ func _on_animation_finished(anim_name):
 			melee = false
 			$melee/target.disabled = true
 			fighting=false
-			ui.change_melee_indicator(true)
+			player_data.change_melee_indicator(true)
 		else:
 			back *= -1
 			$AnimationPlayer.play_backwards("GAME_05_lunge_right")
@@ -237,7 +237,7 @@ func _on_dash_timer_timeout():
 
 func _on_next_dash_timer_timeout():
 	can_dash = true
-	ui.change_dash_indicator(true)	
+	player_data.change_dash_indicator(true)	
 	$next_dash_timer.stop()
 
 func _on_melee_body_entered(body):

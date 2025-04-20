@@ -31,7 +31,7 @@ func _switch_UI(new_mode: UI.Mode) -> void:
 func _set_cursor_mode(new_mode: UI.Mode) -> void:
 	match new_mode:
 		UI.Mode.HUD: # for HUD we want to capture it
-			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED) #MOUSE_MODE_CONFINED_HIDDEN - won't be enough
 		UI.Mode.NONE: # if I ever decide that we can hide HUD
 			Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 		_: #UI.Mode.PAUSE, UI.Mode.MENU, UI.Mode.SETTINGS:

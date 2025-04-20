@@ -19,9 +19,11 @@ var barrage_time = 0
 var slash_time = 0
 
 var box_size_div = 2
+@export var boss_data: BossDataModel = preload("res://data_resources/BossDataModelInstance.tres")
 var BOX = preload("res://scenes/Crates.tscn")
 
 func _ready() -> void:
+	boss_data.boss_restart()
 	WHIRLWIND_TIME = WHIRLWIND_TIME_MAX
 	SLASH_TIME = SLASH_TIME_MAX
 	BARRAGE_TIME = BARRAGE_TIME_MAX

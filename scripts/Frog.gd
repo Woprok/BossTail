@@ -47,12 +47,14 @@ var radius = 12.5
 var angle = 0.0
 var init_angle = 0
 
+@export var boss_data: BossDataModel = preload("res://data_resources/BossDataModelInstance.tres")
 @onready var player = get_parent().get_node("Player")
 @onready var flies = get_parent().get_node("flies")
-@onready var health = get_parent().get_node("Player/health/ui/health_boss")
 var Bubble = preload("res://scenes/Bubble.tscn")
 var WaterBubble = preload("res://scenes/WaterBubble.tscn")
 
+func _ready() -> void:
+	boss_data.boss_restart()
 	
 func _physics_process(delta):
 	boulderHit += delta
@@ -103,7 +105,7 @@ func _physics_process(delta):
 				tongue_hit = 0
 				leg_hit = 0
 				return
-			if health.health <= 25 and time_grab >= GRAB_TIME and not doing and platform==player.platform:
+			if boss_data.get_current_health() <= 25 and time_grab >= GRAB_TIME and not doing and platform==player.platform:
 				if position.distance_to(player.position)<6.25 or position.distance_to(player.position)>6.35:
 					var point = find_point_on_platform(platform.position,player.position,6.3)
 					if point!=null:
@@ -111,7 +113,7 @@ func _physics_process(delta):
 					doing = true
 					grab_target=player
 					grab = true
-			if health.health <= 25 and time_grab >= GRAB_TIME and not doing and platform!=player.platform and player.platform.is_in_group("stone_platform"):
+			if boss_data.get_current_health() <= 25 and time_grab >= GRAB_TIME and not doing and platform!=player.platform and player.platform.is_in_group("stone_platform"):
 				time_bubble = 0
 				time_swipe = 0
 				plan_path(player.platform)
@@ -119,7 +121,7 @@ func _physics_process(delta):
 					doing = true
 				else:
 					path = []
-			if health.health <= 50 and not doing:
+			if boss_data.get_current_health() <= 50 and not doing:
 				if platform == player.platform and time_swipe>SAME_PLATFORM_TIME:
 					time_bubble = 0
 					randomize()
@@ -136,7 +138,7 @@ func _physics_process(delta):
 					$AnimationPlayer.play("GAME_03-tongue_grab-start")
 					tongue_hit = 0
 					time_swipe = 0
-			if health.health!=100 and time_bubble>BUBBLE_TIME and platform != player.platform and not doing:
+			if boss_data.get_current_health() != 100 and time_bubble>BUBBLE_TIME and platform != player.platform and not doing:
 				doing = true
 				bubble_spit()
 		else:
@@ -235,7 +237,7 @@ func _physics_process(delta):
 						time_slam = 0
 						return
 				plan_path(get_parent().get_node("lilyPlatforms/largeLily"))
-		if health.health <= 50 and not doing:
+		if boss_data.get_current_health() <= 50 and not doing:
 			if platform!=null and platform == player.platform and time_swipe>SAME_PLATFORM_TIME:
 				time_bubble = 0
 				randomize()
@@ -252,7 +254,7 @@ func _physics_process(delta):
 				$AnimationPlayer.play("GAME_03-tongue_grab-start")
 				tongue_hit = 0
 				time_swipe = 0
-		if health.health!=100 and time_bubble>BUBBLE_TIME and platform!=null and platform != player.platform and not doing:
+		if boss_data.get_current_health() !=100 and time_bubble>BUBBLE_TIME and platform!=null and platform != player.platform and not doing:
 				doing = true
 				bubble_spit()
 	if not $AnimationPlayer.is_playing() and not swipe and not extended and not jump:
@@ -378,43 +380,43 @@ func jump_to_platform():
 	
 	
 func hit(area):
-	if health.health == 100:
+	if boss_data.get_current_health() == 100:
 		time_bubble = 0
 	if swimming:
 		if area.is_in_group("boulder"):
-			health.decHealth(20)
+			boss_data.boss_decrease_health(20)
 			jump_to_platform()
 			tongue_hit = 0
 			leg_hit = 0
 			triggered = true
 		if area.is_in_group("pebble"):
-			health.decHealth(1)
+			boss_data.boss_decrease_health(1)
 	else:
 		sluggish = false
 		if area.is_in_group("tongue"):
 			tongue_hit += 1
 			if tongue_hit>=5:
-				health.decHealth(5)
+				boss_data.boss_decrease_health(5)
 				tongue_hit = 0
 				if time_stop>=STOP_TIME:
 					time_stop = 0
 				else:
 					time_stop = 5
 			elif tongue_hit==3:
-				health.decHealth(5)
+				boss_data.boss_decrease_health(5)
 		if area.is_in_group("body"):
 			leg_hit += 1
 			time_stop = 5
-			health.decHealth(5)
+			boss_data.boss_decrease_health(5)
 			if leg_hit == 2:
 				triggered = true
 		if area.is_in_group("head"):
-			health.decHealth(10)
+			boss_data.boss_decrease_health(10)
 			time_stop = 5
 			triggered = true
 	if Global.phase > 1:
 		triggered = false
-	if health.health<=0:
+	if boss_data.get_current_health() <= 0:
 		Global.changeScene()
 
 func _on_ground_entered(area):
