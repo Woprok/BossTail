@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+@export var animationPlayer : AnimationPlayer
+
 var speed:int = 2
 var gravity:int = -10
 var HEIGHT_OF_ARC:float = 4.5
@@ -70,7 +72,7 @@ func _physics_process(delta):
 			if slam and collision.get_collider().is_in_group("stone_platform"):
 				ground_slam()
 			jump = false
-			$AnimationPlayer.play("GAME_02-jump-end")
+			animationPlayer.play("G_02-jump-end")
 			if path == [] and triggered:
 				triggered = false
 				doing = false
@@ -86,13 +88,13 @@ func _physics_process(delta):
 		if swimming:
 			extended = false
 			time_of_extend = 0
-			$AnimationPlayer.play("GAME_03-tongue_grab-end")
+			animationPlayer.play("G_03-tongue_grab-end")
 		else:
 			time_of_extend += delta
 			if time_of_extend >= EXTEND_TIME:
 				extended = false
 				time_of_extend = 0
-				$AnimationPlayer.play("GAME_03-tongue_grab-end")
+				animationPlayer.play("G_03-tongue_grab-end")
 	if doing:
 		return
 	if Global.phase == 1:
@@ -128,14 +130,14 @@ func _physics_process(delta):
 					SAME_PLATFORM_TIME = randi()%2+2
 					swipe = true
 					doing = true
-					$AnimationPlayer.play("GAME_03-tongue_grab-start")
+					animationPlayer.play("G_03-tongue_grab-start")
 					tongue_hit = 0
 					time_swipe = 0
 				if platform!=player.platform and platform.neighbors.has(player.platform) and time_swipe>DIFF_PLATFORM_TIME:
 					time_bubble = 0
 					swipe = true
 					doing = true
-					$AnimationPlayer.play("GAME_03-tongue_grab-start")
+					animationPlayer.play("G_03-tongue_grab-start")
 					tongue_hit = 0
 					time_swipe = 0
 			if boss_data.get_current_health() != 100 and time_bubble>BUBBLE_TIME and platform != player.platform and not doing:
@@ -188,7 +190,7 @@ func _physics_process(delta):
 					position = Vector3(x, -1, z)
 	elif Global.phase==2:
 		if grab == false and sluggish:
-			$AnimationPlayer.play("GAME_01-idle")
+			animationPlayer.play("G_00-idle")
 			return
 		time_bubble += delta
 		time_swipe += delta
@@ -244,21 +246,21 @@ func _physics_process(delta):
 				SAME_PLATFORM_TIME = randi()%2+2
 				swipe = true
 				doing = true
-				$AnimationPlayer.play("GAME_03-tongue_grab-start")
+				animationPlayer.play("G_03-tongue_grab-start")
 				tongue_hit = 0
 				time_swipe = 0
 			if platform!=null and platform!=player.platform and platform.neighbors.has(player.platform) and time_swipe>DIFF_PLATFORM_TIME:
 				time_bubble = 0
 				swipe = true
 				doing = true
-				$AnimationPlayer.play("GAME_03-tongue_grab-start")
+				animationPlayer.play("G_03-tongue_grab-start")
 				tongue_hit = 0
 				time_swipe = 0
 		if boss_data.get_current_health() !=100 and time_bubble>BUBBLE_TIME and platform!=null and platform != player.platform and not doing:
 				doing = true
 				bubble_spit()
-	if not $AnimationPlayer.is_playing() and not swipe and not extended and not jump:
-		$AnimationPlayer.play("GAME_01-idle")
+	if not animationPlayer.is_playing() and not swipe and not extended and not jump:
+		animationPlayer.play("G_00-idle")
 	
 
 func bubble_spit():
@@ -283,7 +285,7 @@ func tongue_swipe():
 
 
 func after_swipe():
-	$AnimationPlayer.play("GAME_03-tongue_grab-end")
+	animationPlayer.play("G_03-tongue_grab-end")
 	swipe = false
 	time_swipe = 0
 	
@@ -317,7 +319,7 @@ func find_point_on_platform(platform_position, player_position, distance):
 		for z in range(int(platform_top_left.z), int(platform_bottom_right.z)):
 			var point = Vector3(x, player.position.y, z)
 			if point.distance_to(player_position) >= distance-0.1 and point.distance_to(player_position)<=distance+0.1:
-				return point  
+				return point
 	return null
 
 func jump_direction(target_position):
@@ -331,12 +333,12 @@ func jump_direction(target_position):
 	var velocity_xz = displacemnt_xz/(sqrt(-2*height/gravity)+sqrt(2*(displacement_y-height)/gravity))
 	velocity = velocity_y+velocity_xz
 	jump = true
-	$AnimationPlayer.play("GAME_02-jump-start")
+	animationPlayer.play("G_02-jump-start")
 
 func extend():
 	if extended:
 		return
-	$AnimationPlayer.play("GAME_03-tongue_grab-start")
+	animationPlayer.play("G_03-tongue_grab-start")
 	time_of_extend = 0
 	tongue_hit = 0
 	return
@@ -488,20 +490,20 @@ func _on_tongue_body_entered(body):
 
 
 func _on_animation_finished(anim_name):
-	if anim_name=="GAME_03-tongue_grab-end":
+	if anim_name=="G_03-tongue_grab-end":
 		extended = false
 		doing = false
 		$tongue/CollisionShape3D.disabled = true
 		$tongueShape.disabled = true
 		grab = false
-	if anim_name == "GAME_03-tongue_grab-start":
+	if anim_name == "G_03-tongue_grab-start":
 		extended = true
 		$tongue/CollisionShape3D.disabled = false
 		$tongueShape.disabled = false
 		if swipe:
 			grab = false
 			tongue_swipe()
-	if anim_name == "GAME_02-jump-end":
+	if anim_name == "G_02-jump-end":
 		if grab:
 			time_bubble = 0
 			time_swipe = 0
