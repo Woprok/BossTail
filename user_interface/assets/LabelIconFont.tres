@@ -1,0 +1,8 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://pbq27lqhapcu"]
+
+[ext_resource type="FontFile" uid="uid://df7a04q8c8wpm" path="res://user_interface/assets/kenney_input_keyboard_&_mouse.ttf" id="1_je2u4"]
+
+[resource]
+font = ExtResource("1_je2u4")
+font_color = Color(0, 0, 0, 1)
+outline_color = Color(0, 0, 0, 1)
