@@ -1,23 +1,158 @@
-[gd_scene load_steps=12 format=3 uid="uid://bd46k2s343rar"]
+[gd_scene load_steps=18 format=3 uid="uid://bd46k2s343rar"]
 
 [ext_resource type="Script" uid="uid://cc0c4h6pljjac" path="res://user_interface/screens/HUDScreen.gd" id="1_7bmoq"]
-[ext_resource type="PackedScene" uid="uid://dit6nlima4dcr" path="res://user_interface/controls/HealthBars/HealthBar.tscn" id="2_m5nw3"]
+[ext_resource type="PackedScene" uid="uid://cdw5piocy8wkc" path="res://user_interface/controls/PaddingPanel.tscn" id="2_7uurq"]
+[ext_resource type="PackedScene" uid="uid://duk7113l5nik4" path="res://user_interface/controls/HealthBars/BossHealthBar.tscn" id="2_d86cj"]
+[ext_resource type="PackedScene" uid="uid://dit6nlima4dcr" path="res://user_interface/controls/HealthBars/PlayerHealthBar.tscn" id="2_m5nw3"]
 [ext_resource type="PackedScene" uid="uid://ckokq01phsthv" path="res://user_interface/controls/ActionButton/ActionButton.tscn" id="3_c3u2o"]
 [ext_resource type="Texture2D" uid="uid://cexod28282fod" path="res://assets/temp/slash.png" id="4_m5nw3"]
 [ext_resource type="Texture2D" uid="uid://bmsgwqc5wo8d4" path="res://assets/temp/throw.png" id="5_d86cj"]
 [ext_resource type="Texture2D" uid="uid://clnlkd2icy745" path="res://assets/temp/dash.png" id="6_7uurq"]
 [ext_resource type="Texture2D" uid="uid://w2kbc6fwsil2" path="res://assets/temp/jump.png" id="6_c3u2o"]
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_qxom7"]
+[sub_resource type="Shader" id="Shader_7uurq"]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5trp1"]
-texture = SubResource("CanvasTexture_qxom7")
+uniform float progress : hint_range(0.0, 1.0) = 0.0;
+uniform vec4 in_color : source_color = vec4(0.36, 0.67, 0.33, 1.0);
+uniform vec4 out_color : source_color = vec4(1.0, 0.0, 0.1647, 1.0);
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_gkg5n"]
+void fragment() {
+    // Make texture be a circle
+    vec2 center = vec2(0.5);
+    float dist = distance(UV, center);
+    if (dist > 0.5) {
+        discard;
+    }
+	
+	vec4 base_color = texture(TEXTURE, UV);
+	
+	float cutoff = 1.0 - progress;
+	bool in_progress_zone = UV.y > cutoff;
+	bool is_target_color = distance(base_color.rgb, in_color.rgb) < 0.05;
+    // Show only if within fill range
+    if (in_progress_zone && is_target_color) {
+        COLOR = out_color;
+    } else {
+        COLOR = base_color;
+    }
+}"
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_o7g8q"]
-texture = SubResource("CanvasTexture_gkg5n")
-modulate_color = Color(0.360784, 0.160784, 0.207843, 1)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ajvi2"]
+resource_local_to_scene = true
+shader = SubResource("Shader_7uurq")
+shader_parameter/progress = 0.0
+shader_parameter/in_color = Color(0.36, 0.67, 0.33, 1)
+shader_parameter/out_color = Color(1, 0, 0.1647, 1)
+
+[sub_resource type="Shader" id="Shader_nh7qp"]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
+
+uniform float progress : hint_range(0.0, 1.0) = 0.0;
+uniform vec4 in_color : source_color = vec4(0.36, 0.67, 0.33, 1.0);
+uniform vec4 out_color : source_color = vec4(1.0, 0.0, 0.1647, 1.0);
+
+void fragment() {
+    // Make texture be a circle
+    vec2 center = vec2(0.5);
+    float dist = distance(UV, center);
+    if (dist > 0.5) {
+        discard;
+    }
+	
+	vec4 base_color = texture(TEXTURE, UV);
+	
+	float cutoff = 1.0 - progress;
+	bool in_progress_zone = UV.y > cutoff;
+	bool is_target_color = distance(base_color.rgb, in_color.rgb) < 0.05;
+    // Show only if within fill range
+    if (in_progress_zone && is_target_color) {
+        COLOR = out_color;
+    } else {
+        COLOR = base_color;
+    }
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f61yv"]
+resource_local_to_scene = true
+shader = SubResource("Shader_nh7qp")
+shader_parameter/progress = 0.0
+shader_parameter/in_color = Color(0.36, 0.67, 0.33, 1)
+shader_parameter/out_color = Color(1, 0, 0.1647, 1)
+
+[sub_resource type="Shader" id="Shader_gim6p"]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
+
+uniform float progress : hint_range(0.0, 1.0) = 0.0;
+uniform vec4 in_color : source_color = vec4(0.36, 0.67, 0.33, 1.0);
+uniform vec4 out_color : source_color = vec4(1.0, 0.0, 0.1647, 1.0);
+
+void fragment() {
+    // Make texture be a circle
+    vec2 center = vec2(0.5);
+    float dist = distance(UV, center);
+    if (dist > 0.5) {
+        discard;
+    }
+	
+	vec4 base_color = texture(TEXTURE, UV);
+	
+	float cutoff = 1.0 - progress;
+	bool in_progress_zone = UV.y > cutoff;
+	bool is_target_color = distance(base_color.rgb, in_color.rgb) < 0.05;
+    // Show only if within fill range
+    if (in_progress_zone && is_target_color) {
+        COLOR = out_color;
+    } else {
+        COLOR = base_color;
+    }
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wnxpr"]
+resource_local_to_scene = true
+shader = SubResource("Shader_gim6p")
+shader_parameter/progress = 0.0
+shader_parameter/in_color = Color(0.36, 0.67, 0.33, 1)
+shader_parameter/out_color = Color(1, 0, 0.1647, 1)
+
+[sub_resource type="Shader" id="Shader_kc68n"]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
+
+uniform float progress : hint_range(0.0, 1.0) = 0.0;
+uniform vec4 in_color : source_color = vec4(0.36, 0.67, 0.33, 1.0);
+uniform vec4 out_color : source_color = vec4(1.0, 0.0, 0.1647, 1.0);
+
+void fragment() {
+    // Make texture be a circle
+    vec2 center = vec2(0.5);
+    float dist = distance(UV, center);
+    if (dist > 0.5) {
+        discard;
+    }
+	
+	vec4 base_color = texture(TEXTURE, UV);
+	
+	float cutoff = 1.0 - progress;
+	bool in_progress_zone = UV.y > cutoff;
+	bool is_target_color = distance(base_color.rgb, in_color.rgb) < 0.05;
+    // Show only if within fill range
+    if (in_progress_zone && is_target_color) {
+        COLOR = out_color;
+    } else {
+        COLOR = base_color;
+    }
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eb80y"]
+resource_local_to_scene = true
+shader = SubResource("Shader_kc68n")
+shader_parameter/progress = 0.0
+shader_parameter/in_color = Color(0.36, 0.67, 0.33, 1)
+shader_parameter/out_color = Color(1, 0, 0.1647, 1)
 
 [node name="HUDScreen" type="Control"]
 layout_mode = 3
@@ -29,25 +164,38 @@ grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_7bmoq")
 
-[node name="BossHealthBar" parent="." instance=ExtResource("2_m5nw3")]
-unique_name_in_owner = true
+[node name="TopBarContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -150.0
-offset_right = 150.0
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 10.0
+offset_bottom = 60.0
 grow_horizontal = 2
 
-[node name="PlayerHealthBar" parent="." instance=ExtResource("2_m5nw3")]
+[node name="PaddingPanel" parent="TopBarContainer" instance=ExtResource("2_7uurq")]
+layout_mode = 2
+
+[node name="BossHealthBar" parent="TopBarContainer" instance=ExtResource("2_d86cj")]
 unique_name_in_owner = true
+layout_mode = 2
+
+[node name="PaddingPanel2" parent="TopBarContainer" instance=ExtResource("2_7uurq")]
+layout_mode = 2
+
+[node name="BottomLeftCenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -33.0
-offset_bottom = 0.0
+offset_left = 10.0
+offset_top = -60.0
+offset_right = 310.0
+offset_bottom = -10.0
 grow_vertical = 0
+
+[node name="PlayerHealthBar" parent="BottomLeftCenterContainer" instance=ExtResource("2_m5nw3")]
+unique_name_in_owner = true
+layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -56,8 +204,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -747.0
-offset_top = -155.0
+offset_left = -278.0
+offset_top = -74.0
+offset_right = -10.0
+offset_bottom = -10.0
 grow_horizontal = 0
 grow_vertical = 0
 alignment = 2
@@ -67,74 +217,33 @@ layout_mode = 2
 
 [node name="MeleeIcon" parent="HBoxContainer/VBoxContainer" instance=ExtResource("3_c3u2o")]
 unique_name_in_owner = true
+material = SubResource("ShaderMaterial_ajvi2")
 layout_mode = 2
 texture = ExtResource("4_m5nw3")
-
-[node name="melee_label" type="Label" parent="HBoxContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-text = "MELEE"
-horizontal_alignment = 1
-metadata/_edit_use_anchors_ = true
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
 
 [node name="RangedIcon" parent="HBoxContainer/VBoxContainer2" instance=ExtResource("3_c3u2o")]
 unique_name_in_owner = true
+material = SubResource("ShaderMaterial_f61yv")
 layout_mode = 2
 texture = ExtResource("5_d86cj")
-
-[node name="ranged_label" type="Label" parent="HBoxContainer/VBoxContainer2"]
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-text = "RANGED"
-horizontal_alignment = 1
-metadata/_edit_use_anchors_ = true
 
 [node name="VBoxContainer3" type="VBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
 
 [node name="DashIcon" parent="HBoxContainer/VBoxContainer3" instance=ExtResource("3_c3u2o")]
 unique_name_in_owner = true
+material = SubResource("ShaderMaterial_wnxpr")
 layout_mode = 2
 texture = ExtResource("6_7uurq")
-
-[node name="dash_label" type="Label" parent="HBoxContainer/VBoxContainer3"]
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-text = "DASH"
-horizontal_alignment = 1
-metadata/_edit_use_anchors_ = true
 
 [node name="VBoxContainer4" type="VBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
 
 [node name="JumpIcon" parent="HBoxContainer/VBoxContainer4" instance=ExtResource("3_c3u2o")]
 unique_name_in_owner = true
+material = SubResource("ShaderMaterial_eb80y")
 layout_mode = 2
 texture = ExtResource("6_c3u2o")
-
-[node name="jump_indicator" type="ProgressBar" parent="HBoxContainer/VBoxContainer4/JumpIcon"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(20, 0)
-layout_mode = 1
-anchors_preset = 11
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -1.0
-grow_horizontal = 0
-grow_vertical = 2
-theme_override_styles/background = SubResource("StyleBoxTexture_5trp1")
-theme_override_styles/fill = SubResource("StyleBoxTexture_o7g8q")
-fill_mode = 3
-show_percentage = false
-metadata/_edit_use_anchors_ = true
-
-[node name="jump_label" type="Label" parent="HBoxContainer/VBoxContainer4"]
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-text = "JUMP"
-horizontal_alignment = 1
-metadata/_edit_use_anchors_ = true

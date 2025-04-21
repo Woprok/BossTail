@@ -1,6 +1,6 @@
 extends Node3D
 
-@onready var frog_health = get_node("Player/health/ui/health_boss")
+var frog_health = preload("res://data_resources/FrogBossDataModel.tres")
 var WaterBubble = preload("res://scenes/WaterBubble.tscn")
 var last_bubble = 0
 var angle = 0
@@ -10,7 +10,7 @@ func _process(delta):
 	angle += delta
 	randomize()
 	if Global.phase == 2:
-		if last_bubble >= 4.0/100.0 * frog_health.health+0.01:
+		if last_bubble >= 4.0/100.0 * frog_health.boss_current_health + 0.01:
 			last_bubble = 0
 			var bubble = WaterBubble.instantiate()
 			bubble.scale*=8

@@ -1,0 +1,57 @@
+[gd_scene load_steps=7 format=3 uid="uid://duk7113l5nik4"]
+
+[ext_resource type="Script" uid="uid://ds8bil4m70lrh" path="res://user_interface/controls/HealthBars/BossHealthBar.gd" id="1_gi35u"]
+[ext_resource type="StyleBox" uid="uid://jhaple7ivh4u" path="res://user_interface/controls/HealthBars/BossBarBackground.tres" id="1_pj0l3"]
+[ext_resource type="StyleBox" uid="uid://duqfahedjiwbd" path="res://user_interface/controls/HealthBars/BossBarFillHealth.tres" id="2_d0ghj"]
+[ext_resource type="StyleBox" uid="uid://cctr4lkx828wf" path="res://user_interface/controls/TransparentStyleBox.tres" id="3_1b6rx"]
+[ext_resource type="StyleBox" uid="uid://d3pclqa63xtkb" path="res://user_interface/controls/HealthBars/BossBarFillDamage.tres" id="4_ml6vr"]
+[ext_resource type="LabelSettings" uid="uid://t4p3t2s0v4mt" path="res://user_interface/controls/HealthBars/BossNameLabel.tres" id="6_w36oh"]
+
+[node name="BossHealthBar" type="Panel"]
+custom_minimum_size = Vector2(600, 50)
+offset_right = 600.0
+offset_bottom = 50.0
+size_flags_horizontal = 3
+theme_override_styles/panel = ExtResource("1_pj0l3")
+script = ExtResource("1_gi35u")
+
+[node name="DamageBar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = ExtResource("3_1b6rx")
+theme_override_styles/fill = ExtResource("4_ml6vr")
+step = 1.0
+value = 75.0
+show_percentage = false
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = ExtResource("3_1b6rx")
+theme_override_styles/fill = ExtResource("2_d0ghj")
+step = 1.0
+value = 50.0
+show_percentage = false
+
+[node name="Name" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "TEST NAME OF GOOD LENGTH"
+label_settings = ExtResource("6_w36oh")
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -49,7 +49,7 @@ var radius = 12.5
 var angle = 0.0
 var init_angle = 0
 
-@export var boss_data: BossDataModel = preload("res://data_resources/BossDataModelInstance.tres")
+@export var boss_data: BossDataModel = preload("res://data_resources/FrogBossDataModel.tres")
 @onready var player = get_parent().get_node("Player")
 @onready var flies = get_parent().get_node("flies")
 var Bubble = preload("res://scenes/Bubble.tscn")
@@ -57,6 +57,7 @@ var WaterBubble = preload("res://scenes/WaterBubble.tscn")
 
 func _ready() -> void:
 	boss_data.boss_restart()
+	GameEvents.boss_changed.emit(boss_data)
 	
 func _physics_process(delta):
 	boulderHit += delta

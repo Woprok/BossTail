@@ -1,9 +1,14 @@
-extends ProgressBar
+extends Control
 class_name HealthBar
 
-func change_health(current, max):
-	min_value = 0
-	max_value = max
-	value = current
-	#var tween = get_tree().create_tween()
-	#tween.tween_property($".", "value", current, 0.2)
+var Minimum: float 
+var Current: float
+var Maximum: float 
+
+func SetHealth(minimum: float, current: float, maximum: float) -> void:
+	Minimum = minimum
+	Current = current
+	Maximum = maximum
+	
+func ChangeHealth(current: float) -> void:
+	Current = current

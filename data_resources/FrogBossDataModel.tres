@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="BossDataModel" load_steps=2 format=3 uid="uid://c0h5l2dk3fvdc"]
+
+[ext_resource type="Script" uid="uid://c3osreqikx4xt" path="res://data_resources/BossDataModel.gd" id="1_owqqf"]
+
+[resource]
+script = ExtResource("1_owqqf")
+boss_current_health = 100
+boss_min_health = 0
+boss_max_health = 100
+boss_name = "THE ABYSSAL CROAKER"
+metadata/_custom_type_script = "uid://c3osreqikx4xt"

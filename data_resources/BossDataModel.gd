@@ -5,6 +5,10 @@ class_name BossDataModel
 @export var boss_min_health: int = 0
 @export var boss_max_health: int = 100
 
+@export var boss_name: String = "BAD DATA FOR BOSS"
+
+signal OnHealthChanged
+
 func boss_restart() -> void:
 	boss_current_health = boss_max_health
 
@@ -18,8 +22,10 @@ func boss_decrease_health(value):
 	boss_current_health -= value
 	if boss_current_health <= boss_min_health:
 		boss_current_health = boss_min_health
+	OnHealthChanged.emit()
 	
 func boss_increase_health(value):
 	boss_current_health += value	
 	if boss_current_health >= boss_max_health:
 		boss_current_health = boss_max_health
+	OnHealthChanged.emit()

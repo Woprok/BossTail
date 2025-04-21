@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="BossDataModel" load_steps=2 format=3 uid="uid://bi8qlvc2t1itu"]
+
+[ext_resource type="Script" uid="uid://c3osreqikx4xt" path="res://data_resources/BossDataModel.gd" id="1_ovmjt"]
+
+[resource]
+script = ExtResource("1_ovmjt")
+boss_current_health = 100
+boss_min_health = 0
+boss_max_health = 100
+boss_name = "THE ANGRY DUMMY"
+metadata/_custom_type_script = "uid://c3osreqikx4xt"
