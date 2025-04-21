@@ -1,8 +1,14 @@
-[gd_resource type="Resource" script_class="UIDataModel" load_steps=2 format=3 uid="uid://dx4rv3p0eby8n"]
+[gd_resource type="Resource" script_class="PlayerDataModel" load_steps=2 format=3 uid="uid://dx4rv3p0eby8n"]
 
 [ext_resource type="Script" uid="uid://b8758pjfs3y2p" path="res://data_resources/PlayerDataModel.gd" id="1_y2kq6"]
 
 [resource]
 script = ExtResource("1_y2kq6")
-jump = 0
+jump_value = 0
+melee_enabled = true
+ranged_enabled = true
+dash_enabled = true
+player_current_health = 100
+player_min_health = 0
+player_max_health = 100
 metadata/_custom_type_script = "uid://b8758pjfs3y2p"
