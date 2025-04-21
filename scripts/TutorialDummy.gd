@@ -5,7 +5,7 @@ var active = false
 var doing = false
 var last_cd_change = 0
 var num_of_volley = 1
-var actual_volley = 0
+var actual_volley = 1
 var BOXES_IN_VOLLEY=4
 
 var WHIRLWIND_TIME_MAX = 9
@@ -19,6 +19,7 @@ var BARRAGE_TIME_MIN = 5
 var BARRAGE_TIME = 0
 var VOLLEY_TIME = 1
 var whirlwind_time = 0
+var last_whirlwind = 0
 var barrage_time = 0
 var slash_time = 0
 var volley_time = 0
@@ -39,14 +40,16 @@ func _ready() -> void:
 func _physics_process(delta):
 	if not active:
 		return
-	#look at player
 	if not stopped:
 		doing = true
 		rotate_y(delta*20)
 		whirlwind_time += delta
 	if whirlwind_time>=WHIRLWIND_TIME:
 		whirlwind_time = 0
+		push()
+		$box.use_collision=false
 		stopped = true
+		$AnimationPlayer.play("whirlwind_end")
 		return
 	if doing:
 		if actual_volley<num_of_volley:
@@ -56,6 +59,7 @@ func _physics_process(delta):
 				throw()
 				volley_time = 0
 		return
+	look_at(Vector3(get_parent().get_node("Player").position.x,position.y,get_parent().get_node("Player").position.z))
 	slash_time+=delta
 	if slash_time>=SLASH_TIME:
 		slash_time = 0
@@ -71,17 +75,35 @@ func _physics_process(delta):
 		throw()
 
 func hit(hp):
+	if stopped==false:
+		return
 	boss_data.boss_decrease_health(hp)
 	last_cd_change += hp
+	last_whirlwind += hp
 	if last_cd_change>=25:
 		SLASH_TIME = max(SLASH_TIME_MIN, SLASH_TIME-2.5)
 		BARRAGE_TIME = max(BARRAGE_TIME_MIN, BARRAGE_TIME-2.5)
 		WHIRLWIND_TIME = max(WHIRLWIND_TIME_MIN, WHIRLWIND_TIME-2.5)
 		num_of_volley+=1
 		last_cd_change = 0 
+	if last_whirlwind>=10:
+		last_whirlwind = 0
+		whirlwind()
 
 func slash():
 	$AnimationPlayer.play("slash",-1,3)
+
+func whirlwind():
+	barrage_time = 0
+	slash_time = 0 
+	$AnimationPlayer.play("whirlwind_start",2)
+	
+
+func push():
+	var player = get_parent().get_node("Player")
+	player.velocity=(player.global_position-global_position).normalized()*25
+	player.velocity.y = 0
+	player.pushed = true
 
 func throw():
 	var init_dir = (get_parent().get_node("Player").position - position).normalized()
@@ -101,11 +123,10 @@ func throw():
 		doing = true
 	else:
 		doing = false
-	#podle poctu tolik krabic
 
 func _on_body_entered(body):
 	if not stopped and body.is_in_group("player") and body.pushed == false:
-		body.velocity=(body.global_position-global_position).normalized()*15
+		body.velocity=(body.global_position-global_position).normalized()*12
 		body.velocity.y = 0
 		body.pushed = true
 
@@ -115,6 +136,20 @@ func _on_slash_entered(body):
 		body.hit(10)
 
 
+func _on_box_hit(body: Node3D) -> void:
+	if body.is_in_group("pebble"):
+		body.queue_free()
+		whirlwind_time = 0
+		$box.use_collision=false
+		stopped = true
+		$AnimationPlayer.play("whirlwind_end")
+
+
 func _on_animation_finished(anim_name):
 	if anim_name == "slash":
+		doing = false
+	if anim_name == "whirlwind_start":
+		stopped = false
+		$box.use_collision = true
+	if anim_name == "whirlwind_end":
 		doing = false

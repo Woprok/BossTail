@@ -128,11 +128,11 @@ light_energy = 0.5
 shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("1_atg64")]
-transform = Transform3D(1, 2.10376e-12, 0, 2.45584e-12, 1, 0, 0, 0, 1, -0.098092, 0.430831, 63.9526)
+transform = Transform3D(1, 2.10376e-12, 0, 2.45584e-12, 1, 0, 0, 0, 1, -0.944509, 0.430769, 62.3599)
 script = ExtResource("2_u64d8")
 
 [node name="Enemy" parent="." instance=ExtResource("4_gsy1u")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -0.0778503, -3.7218, -56.3515)
+transform = Transform3D(-2, 0, -1.74846e-07, 0, 2, 0, 1.74846e-07, 0, -2, -0.0778503, -3.7218, -56.3515)
 
 [node name="MiniDummy" parent="." instance=ExtResource("5_ctt0m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.7, -4.70081, -26.6)

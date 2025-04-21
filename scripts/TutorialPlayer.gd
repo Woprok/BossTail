@@ -191,7 +191,7 @@ func shoot():
 		p = Rock.instantiate()
 		pebbles.add_child(p)
 		
-	p.global_position = position-transform.basis.z
+	p.global_position = position-transform.basis.z*2
 	p.velocity=-transform.basis.z
 	
 	var space_state = Camera.get_world_3d().direct_space_state
@@ -207,6 +207,7 @@ func shoot():
 	weapon_type = -1
 
 func respawn(reset_position):
+	pushed = false
 	position = reset_position
 	
 
@@ -220,6 +221,8 @@ func _on_animation_finished(anim_name):
 			player_data.change_melee_indicator(true)
 		else:
 			back *= -1
+			$melee/target.disabled = true
+			player_data.change_melee_indicator(true)
 			$AnimationPlayer.play_backwards("GAME_05_lunge_right")
 
 # melee

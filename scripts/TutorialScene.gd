@@ -15,6 +15,7 @@ var TIME_CRATES = 1
 var TIME_BOULDER = 1.7
 var reset_position_part2 = Vector3(-25, 1, 35)
 var reset_position_part3 = Vector3(47, -1.2, -16.6)
+var reset_position_part4 = Vector3(-26,1,-37)
 
 
 func _process(delta):
@@ -61,6 +62,8 @@ func respawn_player():
 		$Player.respawn(reset_position_part2)
 	if $Player.part == 3:
 		$Player.respawn(reset_position_part3)
+	if $Player.part == 4:
+		$Player.respawn(reset_position_part4)
 
 func addRock(target_position:Vector3):
 	var rock = Rock.instantiate()
@@ -78,6 +81,7 @@ func _on_animation_finished(anim_name):
 
 func _on_last_part_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):
+		$Player.part = 4
 		$Enemy.active = true
 		$walls2.show()
 		$AnimationPlayer.play("last_wall")
