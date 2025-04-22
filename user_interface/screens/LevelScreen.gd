@@ -2,8 +2,7 @@ extends Node
 class_name LevelScreen
 
 func _ready() -> void:
-	%Level2BButton.visible = GameInstance.enable_debug
-	%DebugButton.visible = GameInstance.enable_debug
+	%DebugLevels.visible = GameInstance.enable_debug
 
 func _on_level_1_button_pressed() -> void:
 	GameInstance.TravelToLevel(GameInstance.GameLevels.TUTORIAL_PHASE_1)

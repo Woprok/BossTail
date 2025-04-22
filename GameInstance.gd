@@ -46,9 +46,9 @@ func _try_handle_pause(event: InputEvent) -> bool:
 	return true
 		
 func _try_handle_debug(event: InputEvent) -> bool:
-	if not event.is_action_pressed("debug"):
+	if not event.is_action_pressed("debug") or not enable_debug:
 		return false
-	# Swift debug tricks
+	# Swift debug tricks here
 	PlayerVictorious()
 	
 	return true
