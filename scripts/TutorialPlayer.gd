@@ -36,7 +36,9 @@ var last_shot:float = 0
 var direction = Vector3.ZERO
 
 var part = 1
-
+var reset_position_part2 = Vector3(-25, 1, 35)
+var reset_position_part3 = Vector3(47, -1.2, -16.6)
+var reset_position_part4 = Vector3(-26,1,-37)
 
 func _ready():
 	$CameraPivot.rotation.x = deg_to_rad(-8)	
@@ -179,8 +181,8 @@ func hit(health):
 	lastHit = 0
 	player_data.player_decrease_health(health)
 	if player_data.is_player_dead():
-		#death
-		pass
+		respawn()
+		player_data.player_restart()
 
 # strelba dle typu zbrane
 func shoot():
@@ -206,7 +208,14 @@ func shoot():
 	p.shoot(origin, end, result)
 	weapon_type = -1
 
-func respawn(reset_position):
+func respawn():
+	var reset_position 
+	if part == 2:
+		reset_position = reset_position_part2
+	if part == 3:
+		reset_position = reset_position_part3
+	if part == 4:
+		reset_position = reset_position_part4
 	pushed = false
 	position = reset_position
 	

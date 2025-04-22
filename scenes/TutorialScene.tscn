@@ -136,6 +136,7 @@ transform = Transform3D(-2, 0, -1.74846e-07, 0, 2, 0, 1.74846e-07, 0, -2, -0.077
 
 [node name="MiniDummy" parent="." instance=ExtResource("5_ctt0m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.7, -4.70081, -26.6)
+visible = false
 
 [node name="arena" type="CSGCombiner3D" parent="."]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 2, 0)

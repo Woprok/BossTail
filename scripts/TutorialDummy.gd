@@ -80,6 +80,9 @@ func hit(hp):
 	boss_data.boss_decrease_health(hp)
 	last_cd_change += hp
 	last_whirlwind += hp
+	if boss_data.is_boss_dead():
+		GameInstance.PlayerVictorious()
+		return
 	if last_cd_change>=25:
 		SLASH_TIME = max(SLASH_TIME_MIN, SLASH_TIME-2.5)
 		BARRAGE_TIME = max(BARRAGE_TIME_MIN, BARRAGE_TIME-2.5)

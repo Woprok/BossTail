@@ -420,7 +420,7 @@ func hit(area):
 	if Global.phase > 1:
 		triggered = false
 	if boss_data.get_current_health() <= 0:
-		Global.changeScene()
+		GameInstance.PlayerVictorious()
 
 func _on_ground_entered(area):
 	if Global.phase >= 2:

@@ -13,16 +13,10 @@ var time_crates = 0
 var time_boulder = 0
 var TIME_CRATES = 1
 var TIME_BOULDER = 1.7
-var reset_position_part2 = Vector3(-25, 1, 35)
-var reset_position_part3 = Vector3(47, -1.2, -16.6)
-var reset_position_part4 = Vector3(-26,1,-37)
-
 
 func _process(delta):
 	if not walls_down and $Player.position.distance_to($Enemy.position)<=115:
 		$walls.show()
-		$walls2.show()
-		$arena/spikes.show()
 		$AnimationPlayer.play("walls",2)
 		$Player.part=2
 		walls_down=true
@@ -58,12 +52,7 @@ func _process(delta):
 		boulder4.position = boulders_variant[variant][3]
 
 func respawn_player():
-	if $Player.part == 2:
-		$Player.respawn(reset_position_part2)
-	if $Player.part == 3:
-		$Player.respawn(reset_position_part3)
-	if $Player.part == 4:
-		$Player.respawn(reset_position_part4)
+	$Player.respawn()
 
 func addRock(target_position:Vector3):
 	var rock = Rock.instantiate()
@@ -77,6 +66,9 @@ func addRock(target_position:Vector3):
 func _on_animation_finished(anim_name):
 	if anim_name=="walls":
 		$obstacles.show()
+		$walls2.show()
+		$MiniDummy.show()
+		$arena/spikes.show()
 
 
 func _on_last_part_entered(body: Node3D) -> void:

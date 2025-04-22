@@ -184,8 +184,7 @@ func hit(health):
 	lastHit = 0
 	player_data.player_decrease_health(health)
 	if player_data.is_player_dead():
-		#death
-		pass
+		GameInstance.PlayerDefeated()
 
 # strelba dle typu zbrane
 func shoot():
