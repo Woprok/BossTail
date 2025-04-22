@@ -2,6 +2,8 @@ extends Node
 # Manages transitions between levels & screens
 # class_name GameInstance #Defined as autoloaded Global
 
+@export var enable_debug: bool = true
+
 # Opted for enum, this makes it less likely to miss-spell 
 enum GameLevels {
 	MENU,
