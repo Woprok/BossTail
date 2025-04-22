@@ -2,7 +2,7 @@ extends HealthBar
 class_name PlayerHealthBar
 
 var DamageBarTween: Tween
-@export var DamageBarTweenDurationPerPercent: float = 0.75
+@export var DamageBarTweenDuration: float = 0.5
 
 func SetHealth(minimum: float, current: float, maximum: float) -> void:
 	super(minimum, current, maximum)
@@ -14,15 +14,14 @@ func SetHealth(minimum: float, current: float, maximum: float) -> void:
 	%DamageBar.value = Current
 
 func ChangeHealth(current: float) -> void:
-	var difference: float = Current - current
 	super(current)
 	
 	if DamageBarTween:
 		DamageBarTween.kill()
 		
 	DamageBarTween = get_tree().create_tween()
-	DamageBarTween.tween_property(%DamageBar, "value", Current, difference * DamageBarTweenDurationPerPercent) \
-				  .set_trans(Tween.TRANS_BOUNCE) \
-				  .set_ease(Tween.EASE_OUT)
+	DamageBarTween.tween_property(%DamageBar, "value", Current, DamageBarTweenDuration) \
+				  .set_trans(Tween.TRANS_CUBIC) \
+				  .set_ease(Tween.EASE_IN)
 				
 	%HealthBar.value = Current

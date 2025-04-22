@@ -10,6 +10,8 @@ class_name PlayerDataModel
 @export var player_min_health: int = 0
 @export var player_max_health: int = 100
 
+signal OnHealthChanged
+
 func player_restart() -> void:
 	player_current_health = player_max_health
 
@@ -32,8 +34,10 @@ func player_decrease_health(value):
 	player_current_health -= value
 	if player_current_health <= player_min_health:
 		player_current_health = player_min_health
+	OnHealthChanged.emit()
 	
 func player_increase_health(value):
 	player_current_health += value	
 	if player_current_health >= player_max_health:
 		player_current_health = player_max_health
+	OnHealthChanged.emit()

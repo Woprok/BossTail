@@ -12,7 +12,8 @@ func _ready() -> void:
 		_on_boss_data_changed(GameEvents.boss_data)
 	# Player Data Setup
 	%PlayerHealthBar.SetHealth(player_data.player_min_health, player_data.player_current_health, player_data.player_max_health)
-	
+	player_data.OnHealthChanged.connect(UpdatePlayerHealth)
+
 func _on_boss_data_changed(new_data: BossDataModel):
 	# Rebind old for new
 	if boss_data:
@@ -25,12 +26,15 @@ func _on_boss_data_changed(new_data: BossDataModel):
 	
 func _exit_tree() -> void:
 	boss_data.OnHealthChanged.disconnect(UpdateBossHealth)
+	player_data.OnHealthChanged.disconnect(UpdatePlayerHealth)
 	
 func UpdateBossHealth() -> void:
 	%BossHealthBar.ChangeHealth(boss_data.boss_current_health)
+
+func UpdatePlayerHealth() -> void:
+	%PlayerHealthBar.ChangeHealth(player_data.player_current_health)
 	
 func _process(delta: float) -> void:
-	%PlayerHealthBar.ChangeHealth(player_data.player_current_health)
 	change_melee_indicator(player_data.melee_enabled)
 	change_ranged_indicator(player_data.ranged_enabled)
 	change_dash_indicator(player_data.dash_enabled)
