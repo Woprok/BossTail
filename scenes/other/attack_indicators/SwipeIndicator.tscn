@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=4 uid="uid://cnemri5psdci6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q3uty"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_7uaqr"]
+_surfaces = [{
+"aabb": AABB(-4.10702, 0, 6.23983e-08, 8.21404, 1e-05, 4.18748),
+"format": 34896613377,
+"index_count": 84,
+"index_data": PackedByteArray("AAABAAEAAAACAAEAAgABAAEAAgADAAEAAwABAAEAAwAEAAEABAABAAEABAAFAAEABQABAAEABQAGAAEABgABAAEABgAHAAEABwABAAEABwAIAAEACAABAAEACAAJAAEACQABAAEACQAKAAEACgABAAEACgALAAEACwABAAEACwAMAAEADAABAAEADAANAAEADQABAAEADQAOAAEADgABAAEADgAPAAEA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 16,
+"vertex_data": PackedByteArray("//8AAPExAAD/fwwAAAAAAJH4AAD3YQAAguwAADmOAABH3AAABLUAAIDIAADa1AAA8LEAAILsAAB1mQAAE/sAAP9/AAD//wAAiWYAABP7AAAOTgAAguwAAH43AADa1AAAtyMAAAS1AAB8EwAAOY4AAG0HAAD3YQAAAAAAAPExAAA=")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_aqpjw"]
+resource_name = "Toad_attack_indicators_Cylinder"
+_surfaces = [{
+"aabb": AABB(-4.10702, 0, 6.23983e-08, 8.21404, 1e-05, 4.18748),
+"attribute_data": PackedByteArray("qv8AAG3t//+q////be0AADDb//8w2wAA88j///PIAAC2tv//trYAAHmk//95pAAAPJL//zySAAD/f////38AAMJt///CbQAAhVv//4VbAABISf//SEkAAAs3//8LNwAAziT//84kAACREv//kRIAAFQA//9UAAAA"),
+"format": 34896613399,
+"index_count": 84,
+"index_data": PackedByteArray("AAABAAIAAAADAAEAAwAEAAEAAwAFAAQABQAGAAQABQAHAAYABwAIAAYABwAJAAgACQAKAAgACQALAAoACwAMAAoACwANAAwADQAOAAwADQAPAA4ADwAQAA4ADwARABAAEQASABAAEQATABIAEwAUABIAEwAVABQAFQAWABQAFQAXABYAFwAYABYAFwAZABgAGQAaABgAGQAbABoAGwAcABoAGwAdABwA"),
+"material": SubResource("StandardMaterial3D_q3uty"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 30,
+"vertex_data": PackedByteArray("//8AAPExODH/fwwAAAA4Mf9/DAAAAP+/kfgAAPdhGTX/fwwAAAAZNYLsAAA5joI4/38MAAAAgjhH3AAABLVdO/9/DAAAAF07gMgAANrUlz3/fwwAAACXPfCxAACC7B8//38MAAAAHz91mQAAE/vmP/9/DAAAAOY//38AAP//5j//fwwAAADmP4lmAAAT+x8//38MAAAAHz8OTgAAguyXPf9/DAAAAJc9fjcAANrUXTv/fwwAAABdO7cjAAAEtYI4/38MAAAAgjh8EwAAOY4ZNf9/DAAAABk1bQcAAPdhODH/fwwAAAA4MQAAAADxMTgxxNmLM8TZizP///9/Gt02OhrdNjri4MZB4uDGQU3lm0pN5ZtKoupGVaLqRlVa8bZiWvG2YkX6i3RF+ot0i/S5hYv0uYW14qSOteKkjkbVW5VG1VuVm8qxmpvKsZrGwRufxsEbnza646I2uuOiirM5poqzOaaKszmm")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_7uaqr")
+
+[node name="SwipeIndicator" type="Node3D"]
+
+[node name="SwipeIndicatorMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0724047, 0, 1.50508)
+mesh = SubResource("ArrayMesh_aqpjw")
+skeleton = NodePath("")

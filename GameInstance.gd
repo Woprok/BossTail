@@ -20,7 +20,7 @@ enum GameLevels {
 	GameLevels.TUTORIAL_PHASE_1: "res://scenes/TutorialScene.tscn",
 	GameLevels.FROG_PHASE_1: "res://scenes/FirstPhase.tscn",
 	GameLevels.FROG_PHASE_2: "res://scenes/SecondPhase.tscn",
-	GameLevels.TOAD_ANIMS_TEST: "res://scenes/characters/ToadBoss.tscn",
+	GameLevels.TOAD_ANIMS_TEST: "res://scenes/test_scenes/ToadAnimationTesting.tscn",
 }
 @export var LevelTransitions: Dictionary[GameLevels, GameLevels] = {
 	GameLevels.TUTORIAL_PHASE_1: GameLevels.FROG_PHASE_1
