@@ -14,6 +14,7 @@ signal OnHealthChanged
 
 func player_restart() -> void:
 	player_current_health = player_max_health
+	OnHealthChanged.emit()
 
 func change_jump_height(value):
 	jump_value = value

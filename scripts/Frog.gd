@@ -419,7 +419,7 @@ func hit(area):
 		if area.is_in_group("body"):
 			leg_hit += 1
 			time_stop = 5
-			boss_data.boss_decrease_health(50)
+			boss_data.boss_decrease_health(5)
 			if leg_hit == 2:
 				triggered = true
 		if area.is_in_group("head"):
