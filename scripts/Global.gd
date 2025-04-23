@@ -1,6 +1,6 @@
 extends Node
 
-var phase = 1
+var phase = 0
 
 static func LogInfo(log) -> void:
 	print_rich("[color=white][INFO] ", log)

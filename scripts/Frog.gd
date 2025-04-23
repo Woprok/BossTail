@@ -1,6 +1,7 @@
 extends CharacterBody3D
 
 @export var animationPlayer : AnimationPlayer
+@onready var animationTree : AnimationTree = $AnimationTree
 
 var speed:int = 2
 var gravity:int = -10
@@ -70,10 +71,8 @@ func _physics_process(delta):
 		if collision and jump:
 			if not swimming and collision.get_collider().is_in_group("water"):
 				return
-			if slam and collision.get_collider().is_in_group("stone_platform"):
-				ground_slam()
 			jump = false
-			animationPlayer.play("G_02-jump-end")
+			animationTree.jump_end()
 			if path == [] and triggered:
 				triggered = false
 				doing = false
@@ -89,13 +88,13 @@ func _physics_process(delta):
 		if swimming:
 			extended = false
 			time_of_extend = 0
-			animationPlayer.play("G_03-tongue_grab-end")
+			animationTree.tongue_grab_end()
 		else:
 			time_of_extend += delta
 			if time_of_extend >= EXTEND_TIME:
 				extended = false
 				time_of_extend = 0
-				animationPlayer.play("G_03-tongue_grab-end")
+				animationTree.tongue_grab_end()
 	if doing:
 		return
 	if Global.phase == 1:
@@ -131,28 +130,31 @@ func _physics_process(delta):
 					SAME_PLATFORM_TIME = randi()%2+2
 					swipe = true
 					doing = true
-					animationPlayer.play("G_03-tongue_grab-start")
+					tongue_swipe()
 					tongue_hit = 0
 					time_swipe = 0
 				if platform!=player.platform and platform.neighbors.has(player.platform) and time_swipe>DIFF_PLATFORM_TIME:
 					time_bubble = 0
 					swipe = true
 					doing = true
-					animationPlayer.play("G_03-tongue_grab-start")
+					tongue_swipe()
 					tongue_hit = 0
 					time_swipe = 0
 			if boss_data.get_current_health() != 100 and time_bubble>BUBBLE_TIME and platform != player.platform and not doing:
 				doing = true
+				animationTree.spit_start(0.05)
 				bubble_spit()
+				animationTree.spit_end()
 		else:
 			if not swimming:
 				var dir = (prev_platform.position-platform.position).normalized()
-				jump_direction(Vector3(platform.position.x + dir.x * radius,platform.position.y - 1,platform.position.z + dir.z * radius))
+				jump_direction(Vector3(platform.position.x + dir.x * radius,platform.position.y,platform.position.z + dir.z * radius))
 				swimming = true
 				time_swimming = 0
 				init_angle = atan2(dir.z * radius, dir.x * radius) 
 				angle = init_angle
 			else:
+				animationTree.swim_idle()
 				time_bubble += delta
 				time_swimming += delta
 				if time_swimming >= SWIMMING_TIME:
@@ -162,16 +164,19 @@ func _physics_process(delta):
 					leg_hit = 0
 					return
 				if time_bubble >= WATER_BUBBLE_TIME and time_swimming<=SWIMMING_TIME-4:
+					animationTree.swim_bubble_atk_start(0.4)
 					look_at(Vector3(player.position.x,position.y, player.position.z))
 					if time_bubble>=WATER_BUBBLE_TIME+0.5:
 						doing = true
 						time_bubble=0
 						bubble_spit()
+						animationTree.swim_bubble_atk_end_antic()
 						return
 					return
+				animationTree.swim_start_swimming()
 				if angle-init_angle>TAU:
 					var dir = (platform.position-prev_platform.position).normalized()
-					var target_position = Vector3(prev_platform.position.x + dir.x * radius,-1,prev_platform.position.z + dir.z * radius)					
+					var target_position = Vector3(prev_platform.position.x + dir.x * radius,-0.15,prev_platform.position.z + dir.z * radius)					
 					var dir_frog = (target_position - position).normalized()
 					if target_position.distance_to(position)>0.2:
 						look_at(Vector3(target_position.x,position.y, target_position.z))
@@ -187,11 +192,11 @@ func _physics_process(delta):
 					angle += delta
 					var x = center_position.x + cos(angle) * radius
 					var z = center_position.z + sin(angle) * radius
-					look_at(Vector3(x, -1, z))
-					position = Vector3(x, -1, z)
+					look_at(Vector3(x, -0.15, z))
+					position = Vector3(x, -0.15, z)
 	elif Global.phase==2:
 		if grab == false and sluggish:
-			animationPlayer.play("G_00-idle")
+			animationTree.idle()
 			return
 		time_bubble += delta
 		time_swipe += delta
@@ -230,7 +235,7 @@ func _physics_process(delta):
 					randomize()
 					SLAM_TIME = randi()%5+5
 					doing = true
-					jump_direction(position)
+					animationTree.ground_slam_start(0.1)
 					slam = true
 			else:
 				for s in get_parent().get_node("stonePlatforms").get_children():
@@ -247,21 +252,21 @@ func _physics_process(delta):
 				SAME_PLATFORM_TIME = randi()%2+2
 				swipe = true
 				doing = true
-				animationPlayer.play("G_03-tongue_grab-start")
+				tongue_swipe()
 				tongue_hit = 0
 				time_swipe = 0
 			if platform!=null and platform!=player.platform and platform.neighbors.has(player.platform) and time_swipe>DIFF_PLATFORM_TIME:
 				time_bubble = 0
 				swipe = true
 				doing = true
-				animationPlayer.play("G_03-tongue_grab-start")
+				tongue_swipe()
 				tongue_hit = 0
 				time_swipe = 0
 		if boss_data.get_current_health() !=100 and time_bubble>BUBBLE_TIME and platform!=null and platform != player.platform and not doing:
 				doing = true
+				animationTree.spit_start(0.05)
 				bubble_spit()
-	if not animationPlayer.is_playing() and not swipe and not extended and not jump:
-		animationPlayer.play("G_00-idle")
+				animationTree.spit_end()
 	
 
 func bubble_spit():
@@ -280,15 +285,19 @@ func bubble_spit():
 
 
 func tongue_swipe():
-	var tween = get_tree().create_tween()
-	tween.tween_property(self,"rotation",self.rotation+Vector3(0,6.2,0),0.5)
-	tween.tween_callback(after_swipe)
+	grab = false
+	look_at(Vector3(player.position.x,position.y,player.position.z))
+	animationTree.swipe_start(0.1)
+	extended = true
+	#var tween = get_tree().create_tween()
+	#tween.tween_property(self,"rotation",self.rotation+Vector3(0,6.2,0),0.5)
+	#tween.tween_callback(after_swipe)
 
 
-func after_swipe():
-	animationPlayer.play("G_03-tongue_grab-end")
-	swipe = false
-	time_swipe = 0
+#func after_swipe():
+#	animationPlayer.play("G_03-tongue_grab-end")
+#	swipe = false
+#	time_swipe = 0
 	
 func ground_slam():
 	slam = false
@@ -334,12 +343,12 @@ func jump_direction(target_position):
 	var velocity_xz = displacemnt_xz/(sqrt(-2*height/gravity)+sqrt(2*(displacement_y-height)/gravity))
 	velocity = velocity_y+velocity_xz
 	jump = true
-	animationPlayer.play("G_02-jump-start")
+	animationTree.jump_start()
 
 func extend():
 	if extended:
 		return
-	animationPlayer.play("G_03-tongue_grab-start")
+	animationTree.tongue_grab_start(0.05)
 	time_of_extend = 0
 	tongue_hit = 0
 	return
@@ -410,7 +419,7 @@ func hit(area):
 		if area.is_in_group("body"):
 			leg_hit += 1
 			time_stop = 5
-			boss_data.boss_decrease_health(5)
+			boss_data.boss_decrease_health(50)
 			if leg_hit == 2:
 				triggered = true
 		if area.is_in_group("head"):
@@ -501,9 +510,17 @@ func _on_animation_finished(anim_name):
 		extended = true
 		$tongue/CollisionShape3D.disabled = false
 		$tongueShape.disabled = false
-		if swipe:
-			grab = false
-			tongue_swipe()
+	if anim_name == "G_05-swipe-start":
+		extended = false
+		doing = false
+		$tongue/CollisionShape3D.disabled = false
+		$tongueShape.disabled = false
+		animationTree.swipe_end()
+	if anim_name == "G_05-swipe-end":
+		$tongue/CollisionShape3D.disabled = true
+		$tongueShape.disabled = true
+		swipe = false
+		time_swipe = 0
 	if anim_name == "G_02-jump-end":
 		if grab:
 			time_bubble = 0
@@ -512,6 +529,9 @@ func _on_animation_finished(anim_name):
 			look_at(Vector3(grab_target.position.x,position.y,grab_target.position.z))
 			grab_target = null
 			extend()
+	if anim_name == "G_07-ground_slam-start":
+		animationTree.ground_slam_end()
+		ground_slam()
 
 
 func _on_head_entered(body):

@@ -97,6 +97,7 @@ func TravelToNextLevel() -> void:
 	if not CanTravelToNextLevel():
 		Global.LogError("UNVERIFIED ATTEMPT TO ACCESS NEXT LEVEL")
 		return
+	Global.phase += 1
 	TravelToLevel(LevelTransitions[CurrentLevel])
 
 # Reload the last set scene
