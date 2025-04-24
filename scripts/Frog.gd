@@ -3,7 +3,10 @@ extends CharacterBody3D
 @export var animationPlayer : AnimationPlayer
 @onready var animationTree : AnimationTree = $AnimationTree
 
-var speed:int = 2
+@export var speed:int = 2
+@export var swimming_speed = 10
+@export var hp_for_swipe = 50
+@export var hp_for_grab = 25
 var gravity:int = -10
 var HEIGHT_OF_ARC:float = 4.5
 
@@ -15,17 +18,17 @@ var time_swimming = 0
 var time_stop = 5
 var time_slam = 0
 var time_eat = 0
-var EXTEND_TIME = 3
-var SAME_PLATFORM_TIME = 2
-var DIFF_PLATFORM_TIME = 10
-var BUBBLE_TIME = 5
-var WATER_BUBBLE_TIME = 4
-var STOP_TIME = 5
-var TONGUE_TIME = 10
-var GRAB_TIME = 10
-var SWIMMING_TIME = 30
-var SLAM_TIME = 5
-var EAT_TIME = 20
+
+@export var TONGUE_EXTEND_TIME = 3
+@export var SWIPE_SAME_PLATFORM_TIME = 2
+@export var SWIPE_DIFF_PLATFORM_TIME = 10
+@export var SPIT_BUBBLE_TIME = 5
+@export var WATER_BUBBLE_TIME = 4
+@export var STOP_TIME = 5
+@export var GRAB_TIME = 10
+@export var SWIMMING_TIME = 30
+@export var SLAM_TIME = 5
+@export var EAT_TIME = 20
 
 var grab = false
 var slam = false
@@ -46,7 +49,7 @@ var platform : Node
 var prev_platform : Node
 var grab_target = null
 
-var radius = 12.5                        
+var radius = 11                     
 var angle = 0.0
 var init_angle = 0
 
@@ -91,7 +94,7 @@ func _physics_process(delta):
 			animationTree.tongue_grab_end()
 		else:
 			time_of_extend += delta
-			if time_of_extend >= EXTEND_TIME:
+			if time_of_extend >= TONGUE_EXTEND_TIME:
 				extended = false
 				time_of_extend = 0
 				animationTree.tongue_grab_end()
@@ -124,23 +127,23 @@ func _physics_process(delta):
 				else:
 					path = []
 			if boss_data.get_current_health() <= 50 and not doing:
-				if platform == player.platform and time_swipe>SAME_PLATFORM_TIME:
+				if platform == player.platform and time_swipe>SWIPE_SAME_PLATFORM_TIME:
 					time_bubble = 0
 					randomize()
-					SAME_PLATFORM_TIME = randi()%2+2
+					SWIPE_SAME_PLATFORM_TIME = randi()%2+2
 					swipe = true
 					doing = true
 					tongue_swipe()
 					tongue_hit = 0
 					time_swipe = 0
-				if platform!=player.platform and platform.neighbors.has(player.platform) and time_swipe>DIFF_PLATFORM_TIME:
+				if platform!=player.platform and platform.neighbors.has(player.platform) and time_swipe>SWIPE_DIFF_PLATFORM_TIME:
 					time_bubble = 0
 					swipe = true
 					doing = true
 					tongue_swipe()
 					tongue_hit = 0
 					time_swipe = 0
-			if boss_data.get_current_health() != 100 and time_bubble>BUBBLE_TIME and platform != player.platform and not doing:
+			if boss_data.get_current_health() != 100 and time_bubble>SPIT_BUBBLE_TIME and platform != player.platform and not doing:
 				doing = true
 				animationTree.spit_start(0.05)
 				bubble_spit()
@@ -180,7 +183,7 @@ func _physics_process(delta):
 					var dir_frog = (target_position - position).normalized()
 					if target_position.distance_to(position)>0.2:
 						look_at(Vector3(target_position.x,position.y, target_position.z))
-						position += dir_frog*delta*10
+						position += dir_frog*delta*swimming_speed
 					else:
 						init_angle = atan2(dir.z * radius, dir.x * radius) 
 						angle = init_angle
@@ -246,23 +249,23 @@ func _physics_process(delta):
 						return
 				plan_path(get_parent().get_node("lilyPlatforms/largeLily"))
 		if boss_data.get_current_health() <= 50 and not doing:
-			if platform!=null and platform == player.platform and time_swipe>SAME_PLATFORM_TIME:
+			if platform!=null and platform == player.platform and time_swipe>SWIPE_SAME_PLATFORM_TIME:
 				time_bubble = 0
 				randomize()
-				SAME_PLATFORM_TIME = randi()%2+2
+				SWIPE_SAME_PLATFORM_TIME = randi()%2+2
 				swipe = true
 				doing = true
 				tongue_swipe()
 				tongue_hit = 0
 				time_swipe = 0
-			if platform!=null and platform!=player.platform and platform.neighbors.has(player.platform) and time_swipe>DIFF_PLATFORM_TIME:
+			if platform!=null and platform!=player.platform and platform.neighbors.has(player.platform) and time_swipe>SWIPE_DIFF_PLATFORM_TIME:
 				time_bubble = 0
 				swipe = true
 				doing = true
 				tongue_swipe()
 				tongue_hit = 0
 				time_swipe = 0
-		if boss_data.get_current_health() !=100 and time_bubble>BUBBLE_TIME and platform!=null and platform != player.platform and not doing:
+		if boss_data.get_current_health() !=100 and time_bubble>SPIT_BUBBLE_TIME and platform!=null and platform != player.platform and not doing:
 				doing = true
 				animationTree.spit_start(0.05)
 				bubble_spit()
