@@ -3,13 +3,19 @@ extends CharacterBody3D
 @export var animationPlayer : AnimationPlayer
 @onready var animationTree : AnimationTree = $AnimationTree
 
+# speed on ground
 @export var speed:int = 2
+# swimming speed
 @export var swimming_speed = 10
-@export var hp_for_swipe = 50
-@export var hp_for_grab = 25
+# health percent for swipe
+@export var SWIPE_HP = 50
+# health percent for grab
+@export var GRAB_HP = 25
+
 var gravity:int = -10
 var HEIGHT_OF_ARC:float = 4.5
 
+# actual time of ability
 var time_of_extend = 0
 var time_bubble = 0
 var time_swipe = 0
@@ -19,16 +25,35 @@ var time_stop = 5
 var time_slam = 0
 var time_eat = 0
 
+# time of extension of tongue 
 @export var TONGUE_EXTEND_TIME = 3
+# time between two swipes, player and enemy on same platform
 @export var SWIPE_SAME_PLATFORM_TIME = 2
+# time between two swipes, player and enemy on different platform
 @export var SWIPE_DIFF_PLATFORM_TIME = 10
+# time between two spit attacks
 @export var SPIT_BUBBLE_TIME = 5
+# time between two bubble attacks from water
 @export var WATER_BUBBLE_TIME = 4
+# time of waiting after tongue major damage
 @export var STOP_TIME = 5
+# time between two grabs
 @export var GRAB_TIME = 10
+# time of swimming
 @export var SWIMMING_TIME = 30
+# time between two slams
 @export var SLAM_TIME = 5
+# time between two eatings
 @export var EAT_TIME = 20
+
+@export var SLAM_HP = 5
+@export var SWIPE_DAMAGE_HP = 5
+@export var GRAB_DAMAGE_HP = 5
+@export var LEG_HP = 5
+@export var HEAD_HP = 10
+@export var BOULDER_HP = 20
+@export var SPIKE_HP = 20
+@export var PEBBLE_HP = 1
 
 var grab = false
 var slam = false
@@ -38,17 +63,26 @@ var jump = false
 var swimming = false
 var sluggish = false
 var boulderHit = 0
-var tongue_hit = 0
-var leg_hit = 0
-var tongue = false
+# num of tongue hits for one grab
+var tongueHit = 0
+# num of leg hits from last triggering of swimming
+var legHit = 0
+# is tongue extended
 var extended = false
+# is subphase change triggered
 var triggered = false
+# path between platforms
 var path:Array[Node]
+# num of subphase
 var subphase = 0
+# actual platform with toadboss
 var platform : Node
+# previous platform
 var prev_platform : Node
+# target for grab attack or eating target
 var grab_target = null
 
+# radius of path around platform for swimming
 var radius = 11                     
 var angle = 0.0
 var init_angle = 0
@@ -62,15 +96,21 @@ var WaterBubble = preload("res://scenes/WaterBubble.tscn")
 func _ready() -> void:
 	boss_data.boss_restart()
 	GameEvents.boss_changed.emit(boss_data)
-	
+
+# behavior for character in both phase
 func _physics_process(delta):
 	boulderHit += delta
 	time_stop += delta
+	
+	# is stopped and do nothing
 	if time_stop < STOP_TIME:
 		return
+		
+	# character moving
 	if not swimming or jump:
 		velocity.y += speed*gravity*delta
 		var collision = move_and_collide(speed*velocity*delta)
+		# collision and jump means end of jumping
 		if collision and jump:
 			if not swimming and collision.get_collider().is_in_group("water"):
 				return
@@ -80,7 +120,8 @@ func _physics_process(delta):
 				triggered = false
 				doing = false
 				subphase = 1-subphase
-				
+	
+	# jumping between platforms if path is not empty
 	if path!=[] and not jump:
 		jump_direction(path[0].global_position)
 		path.pop_front()
@@ -98,6 +139,7 @@ func _physics_process(delta):
 				extended = false
 				time_of_extend = 0
 				animationTree.tongue_grab_end()
+	# 
 	if doing:
 		return
 	if Global.phase == 1:
@@ -107,10 +149,10 @@ func _physics_process(delta):
 			time_grab += delta
 			if triggered:
 				jump_to_water()
-				tongue_hit = 0
-				leg_hit = 0
+				tongueHit = 0
+				legHit = 0
 				return
-			if boss_data.get_current_health() <= 25 and time_grab >= GRAB_TIME and not doing and platform==player.platform:
+			if boss_data.get_current_health() <= GRAB_HP and time_grab >= GRAB_TIME and not doing and platform==player.platform:
 				if position.distance_to(player.position)<6.25 or position.distance_to(player.position)>6.35:
 					var point = find_point_on_platform(platform.position,player.position,6.3)
 					if point!=null:
@@ -118,7 +160,7 @@ func _physics_process(delta):
 					doing = true
 					grab_target=player
 					grab = true
-			if boss_data.get_current_health() <= 25 and time_grab >= GRAB_TIME and not doing and platform!=player.platform and player.platform.is_in_group("stone_platform"):
+			if boss_data.get_current_health() <= GRAB_HP and time_grab >= GRAB_TIME and not doing and platform!=player.platform and player.platform.is_in_group("stone_platform"):
 				time_bubble = 0
 				time_swipe = 0
 				plan_path(player.platform)
@@ -126,22 +168,20 @@ func _physics_process(delta):
 					doing = true
 				else:
 					path = []
-			if boss_data.get_current_health() <= 50 and not doing:
+			if boss_data.get_current_health() <= SWIPE_HP and not doing:
 				if platform == player.platform and time_swipe>SWIPE_SAME_PLATFORM_TIME:
 					time_bubble = 0
-					randomize()
-					SWIPE_SAME_PLATFORM_TIME = randi()%2+2
 					swipe = true
 					doing = true
 					tongue_swipe()
-					tongue_hit = 0
+					tongueHit = 0
 					time_swipe = 0
 				if platform!=player.platform and platform.neighbors.has(player.platform) and time_swipe>SWIPE_DIFF_PLATFORM_TIME:
 					time_bubble = 0
 					swipe = true
 					doing = true
 					tongue_swipe()
-					tongue_hit = 0
+					tongueHit = 0
 					time_swipe = 0
 			if boss_data.get_current_health() != 100 and time_bubble>SPIT_BUBBLE_TIME and platform != player.platform and not doing:
 				doing = true
@@ -163,10 +203,10 @@ func _physics_process(delta):
 				if time_swimming >= SWIMMING_TIME:
 					jump_to_platform()
 					triggered = true
-					tongue_hit = 0
-					leg_hit = 0
+					tongueHit = 0
+					legHit = 0
 					return
-				if time_bubble >= WATER_BUBBLE_TIME and time_swimming<=SWIMMING_TIME-4:
+				if time_bubble >= WATER_BUBBLE_TIME and time_swimming<=SWIMMING_TIME:
 					animationTree.swim_bubble_atk_start(0.4)
 					look_at(Vector3(player.position.x,position.y, player.position.z))
 					if time_bubble>=WATER_BUBBLE_TIME+0.5:
@@ -235,8 +275,6 @@ func _physics_process(delta):
 				if platform == player.platform:
 					time_bubble = 0
 					time_slam = 0
-					randomize()
-					SLAM_TIME = randi()%5+5
 					doing = true
 					animationTree.ground_slam_start(0.1)
 					slam = true
@@ -248,22 +286,20 @@ func _physics_process(delta):
 						time_slam = 0
 						return
 				plan_path(get_parent().get_node("lilyPlatforms/largeLily"))
-		if boss_data.get_current_health() <= 50 and not doing:
+		if boss_data.get_current_health() <= SWIPE_HP and not doing:
 			if platform!=null and platform == player.platform and time_swipe>SWIPE_SAME_PLATFORM_TIME:
 				time_bubble = 0
-				randomize()
-				SWIPE_SAME_PLATFORM_TIME = randi()%2+2
 				swipe = true
 				doing = true
 				tongue_swipe()
-				tongue_hit = 0
+				tongueHit = 0
 				time_swipe = 0
 			if platform!=null and platform!=player.platform and platform.neighbors.has(player.platform) and time_swipe>SWIPE_DIFF_PLATFORM_TIME:
 				time_bubble = 0
 				swipe = true
 				doing = true
 				tongue_swipe()
-				tongue_hit = 0
+				tongueHit = 0
 				time_swipe = 0
 		if boss_data.get_current_health() !=100 and time_bubble>SPIT_BUBBLE_TIME and platform!=null and platform != player.platform and not doing:
 				doing = true
@@ -271,7 +307,7 @@ func _physics_process(delta):
 				bubble_spit()
 				animationTree.spit_end()
 	
-
+# spit and bubble attack
 func bubble_spit():
 	var bubble
 	if swimming:
@@ -305,7 +341,7 @@ func tongue_swipe():
 func ground_slam():
 	slam = false
 	platform.health -= 1
-	player.hit(5)
+	player.hit(SLAM_HP)
 	player.get_node("CameraPivot").apply_shake()
 	doing = false
 	if platform.health == 0:
@@ -353,7 +389,7 @@ func extend():
 		return
 	animationTree.tongue_grab_start(0.05)
 	time_of_extend = 0
-	tongue_hit = 0
+	tongueHit = 0
 	return
 	
 func plan_path(target):
@@ -399,34 +435,34 @@ func hit(area):
 		time_bubble = 0
 	if swimming:
 		if area.is_in_group("boulder"):
-			boss_data.boss_decrease_health(20)
+			boss_data.boss_decrease_health(BOULDER_HP)
 			jump_to_platform()
-			tongue_hit = 0
-			leg_hit = 0
+			tongueHit = 0
+			legHit = 0
 			triggered = true
 		if area.is_in_group("pebble"):
-			boss_data.boss_decrease_health(1)
+			boss_data.boss_decrease_health(PEBBLE_HP)
 	else:
 		sluggish = false
 		if area.is_in_group("tongue"):
-			tongue_hit += 1
-			if tongue_hit>=5:
+			tongueHit += 1
+			if tongueHit>=5:
 				boss_data.boss_decrease_health(5)
-				tongue_hit = 0
+				tongueHit = 0
 				if time_stop>=STOP_TIME:
 					time_stop = 0
 				else:
 					time_stop = 5
-			elif tongue_hit==3:
+			elif tongueHit==3:
 				boss_data.boss_decrease_health(5)
 		if area.is_in_group("body"):
-			leg_hit += 1
+			legHit += 1
 			time_stop = 5
-			boss_data.boss_decrease_health(5)
-			if leg_hit == 2:
+			boss_data.boss_decrease_health(LEG_HP)
+			if legHit == 2:
 				triggered = true
 		if area.is_in_group("head"):
-			boss_data.boss_decrease_health(10)
+			boss_data.boss_decrease_health(HEAD_HP)
 			time_stop = 5
 			triggered = true
 	if Global.phase > 1:
@@ -468,10 +504,10 @@ func _on_ground_entered(area):
 func _on_tongue_body_entered(body):
 	if body.is_in_group("player"):
 		if swipe:
-			body.hit(5)
+			body.hit(SWIPE_DAMAGE_HP)
 			body.launch(transform.basis.z)
 		if grab:
-			body.hit(5)
+			body.hit(GRAB_DAMAGE_HP)
 			var farestPlatform = []
 			var max = -INF
 			for p in get_parent().get_node("stonePlatforms").get_children():
@@ -496,8 +532,7 @@ func _on_tongue_body_entered(body):
 			player.velocity = velocity_y+velocity_xz
 			player.grabbed = true
 	if body.is_in_group("spike"):
-		hit($head)
-		hit($head)
+		hit(SPIKE_HP)
 	if body.is_in_group("fly"):
 		body.queue_free()
 
