@@ -1,86 +1,16 @@
-[gd_scene load_steps=18 format=3 uid="uid://bd46k2s343rar"]
+[gd_scene load_steps=20 format=3 uid="uid://bd46k2s343rar"]
 
 [ext_resource type="Script" uid="uid://cc0c4h6pljjac" path="res://user_interface/screens/HUDScreen.gd" id="1_7bmoq"]
 [ext_resource type="PackedScene" uid="uid://cdw5piocy8wkc" path="res://user_interface/controls/PaddingPanel.tscn" id="2_7uurq"]
 [ext_resource type="PackedScene" uid="uid://duk7113l5nik4" path="res://user_interface/controls/HealthBars/BossHealthBar.tscn" id="2_d86cj"]
 [ext_resource type="PackedScene" uid="uid://dit6nlima4dcr" path="res://user_interface/controls/HealthBars/PlayerHealthBar.tscn" id="2_m5nw3"]
 [ext_resource type="PackedScene" uid="uid://ckokq01phsthv" path="res://user_interface/controls/ActionButton/ActionButton.tscn" id="3_c3u2o"]
+[ext_resource type="PackedScene" uid="uid://bgql3g7t6i7vg" path="res://user_interface/controls/Tutorials/TutorialObjective.tscn" id="4_ajvi2"]
 [ext_resource type="Texture2D" uid="uid://cexod28282fod" path="res://assets/temp/slash.png" id="4_m5nw3"]
 [ext_resource type="Texture2D" uid="uid://bmsgwqc5wo8d4" path="res://assets/temp/throw.png" id="5_d86cj"]
 [ext_resource type="Texture2D" uid="uid://clnlkd2icy745" path="res://assets/temp/dash.png" id="6_7uurq"]
 [ext_resource type="Texture2D" uid="uid://w2kbc6fwsil2" path="res://assets/temp/jump.png" id="6_c3u2o"]
-
-[sub_resource type="Shader" id="Shader_7uurq"]
-resource_local_to_scene = true
-code = "shader_type canvas_item;
-
-uniform float progress : hint_range(0.0, 1.0) = 0.0;
-uniform vec4 in_color : source_color = vec4(0.36, 0.67, 0.33, 1.0);
-uniform vec4 out_color : source_color = vec4(1.0, 0.0, 0.1647, 1.0);
-
-void fragment() {
-    // Make texture be a circle
-    vec2 center = vec2(0.5);
-    float dist = distance(UV, center);
-    if (dist > 0.5) {
-        discard;
-    }
-	
-	vec4 base_color = texture(TEXTURE, UV);
-	
-	float cutoff = 1.0 - progress;
-	bool in_progress_zone = UV.y > cutoff;
-	bool is_target_color = distance(base_color.rgb, in_color.rgb) < 0.05;
-    // Show only if within fill range
-    if (in_progress_zone && is_target_color) {
-        COLOR = out_color;
-    } else {
-        COLOR = base_color;
-    }
-}"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ajvi2"]
-resource_local_to_scene = true
-shader = SubResource("Shader_7uurq")
-shader_parameter/progress = 0.0
-shader_parameter/in_color = Color(0.36, 0.67, 0.33, 1)
-shader_parameter/out_color = Color(1, 0, 0.1647, 1)
-
-[sub_resource type="Shader" id="Shader_ajvi2"]
-resource_local_to_scene = true
-code = "shader_type canvas_item;
-
-uniform float progress : hint_range(0.0, 1.0) = 0.0;
-uniform vec4 in_color : source_color = vec4(0.36, 0.67, 0.33, 1.0);
-uniform vec4 out_color : source_color = vec4(1.0, 0.0, 0.1647, 1.0);
-
-void fragment() {
-    // Make texture be a circle
-    vec2 center = vec2(0.5);
-    float dist = distance(UV, center);
-    if (dist > 0.5) {
-        discard;
-    }
-	
-	vec4 base_color = texture(TEXTURE, UV);
-	
-	float cutoff = 1.0 - progress;
-	bool in_progress_zone = UV.y > cutoff;
-	bool is_target_color = distance(base_color.rgb, in_color.rgb) < 0.05;
-    // Show only if within fill range
-    if (in_progress_zone && is_target_color) {
-        COLOR = out_color;
-    } else {
-        COLOR = base_color;
-    }
-}"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_f61yv"]
-resource_local_to_scene = true
-shader = SubResource("Shader_ajvi2")
-shader_parameter/progress = 0.0
-shader_parameter/in_color = Color(0.36, 0.67, 0.33, 1)
-shader_parameter/out_color = Color(1, 0, 0.1647, 1)
+[ext_resource type="PackedScene" uid="uid://cmbratyfgjcr0" path="res://user_interface/controls/Tutorials/TutorialHint.tscn" id="11_nh7qp"]
 
 [sub_resource type="Shader" id="Shader_nh7qp"]
 resource_local_to_scene = true
@@ -111,7 +41,7 @@ void fragment() {
     }
 }"
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_wnxpr"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ajvi2"]
 resource_local_to_scene = true
 shader = SubResource("Shader_nh7qp")
 shader_parameter/progress = 0.0
@@ -147,9 +77,81 @@ void fragment() {
     }
 }"
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_eb80y"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f61yv"]
 resource_local_to_scene = true
 shader = SubResource("Shader_f61yv")
+shader_parameter/progress = 0.0
+shader_parameter/in_color = Color(0.36, 0.67, 0.33, 1)
+shader_parameter/out_color = Color(1, 0, 0.1647, 1)
+
+[sub_resource type="Shader" id="Shader_gim6p"]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
+
+uniform float progress : hint_range(0.0, 1.0) = 0.0;
+uniform vec4 in_color : source_color = vec4(0.36, 0.67, 0.33, 1.0);
+uniform vec4 out_color : source_color = vec4(1.0, 0.0, 0.1647, 1.0);
+
+void fragment() {
+    // Make texture be a circle
+    vec2 center = vec2(0.5);
+    float dist = distance(UV, center);
+    if (dist > 0.5) {
+        discard;
+    }
+	
+	vec4 base_color = texture(TEXTURE, UV);
+	
+	float cutoff = 1.0 - progress;
+	bool in_progress_zone = UV.y > cutoff;
+	bool is_target_color = distance(base_color.rgb, in_color.rgb) < 0.05;
+    // Show only if within fill range
+    if (in_progress_zone && is_target_color) {
+        COLOR = out_color;
+    } else {
+        COLOR = base_color;
+    }
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wnxpr"]
+resource_local_to_scene = true
+shader = SubResource("Shader_gim6p")
+shader_parameter/progress = 0.0
+shader_parameter/in_color = Color(0.36, 0.67, 0.33, 1)
+shader_parameter/out_color = Color(1, 0, 0.1647, 1)
+
+[sub_resource type="Shader" id="Shader_wnxpr"]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
+
+uniform float progress : hint_range(0.0, 1.0) = 0.0;
+uniform vec4 in_color : source_color = vec4(0.36, 0.67, 0.33, 1.0);
+uniform vec4 out_color : source_color = vec4(1.0, 0.0, 0.1647, 1.0);
+
+void fragment() {
+    // Make texture be a circle
+    vec2 center = vec2(0.5);
+    float dist = distance(UV, center);
+    if (dist > 0.5) {
+        discard;
+    }
+	
+	vec4 base_color = texture(TEXTURE, UV);
+	
+	float cutoff = 1.0 - progress;
+	bool in_progress_zone = UV.y > cutoff;
+	bool is_target_color = distance(base_color.rgb, in_color.rgb) < 0.05;
+    // Show only if within fill range
+    if (in_progress_zone && is_target_color) {
+        COLOR = out_color;
+    } else {
+        COLOR = base_color;
+    }
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eb80y"]
+resource_local_to_scene = true
+shader = SubResource("Shader_wnxpr")
 shader_parameter/progress = 0.0
 shader_parameter/in_color = Color(0.36, 0.67, 0.33, 1)
 shader_parameter/out_color = Color(1, 0, 0.1647, 1)
@@ -181,6 +183,20 @@ layout_mode = 2
 
 [node name="PaddingPanel2" parent="TopBarContainer" instance=ExtResource("2_7uurq")]
 layout_mode = 2
+
+[node name="TutorialObjectiveWrapper" type="HBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 65.0
+offset_bottom = 115.0
+grow_horizontal = 2
+
+[node name="TutorialObjective" parent="TutorialObjectiveWrapper" instance=ExtResource("4_ajvi2")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 6
 
 [node name="BottomLeftCenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
@@ -247,3 +263,23 @@ unique_name_in_owner = true
 material = SubResource("ShaderMaterial_eb80y")
 layout_mode = 2
 texture = ExtResource("6_c3u2o")
+
+[node name="TutorialHintWrapper" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -410.0
+offset_top = -160.0
+offset_right = -10.0
+offset_bottom = -80.0
+grow_horizontal = 0
+grow_vertical = 0
+alignment = 2
+
+[node name="TutorialHint" parent="TutorialHintWrapper" instance=ExtResource("11_nh7qp")]
+unique_name_in_owner = true
+layout_mode = 2

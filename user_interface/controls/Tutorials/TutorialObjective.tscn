@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://bgql3g7t6i7vg"]
+
+[ext_resource type="StyleBox" uid="uid://cwi3586klkctu" path="res://user_interface/controls/Tutorials/TutorialStyleBox.tres" id="1_8084t"]
+[ext_resource type="Script" uid="uid://di4jxqhknjscd" path="res://user_interface/controls/Tutorials/TutorialObjective.gd" id="1_pm7eg"]
+[ext_resource type="Theme" uid="uid://d2mah8qfufk0b" path="res://user_interface/assets/UIMenuTheme.tres" id="2_uwy78"]
+
+[node name="TutorialObjective" type="Panel"]
+custom_minimum_size = Vector2(600, 50)
+theme_override_styles/panel = ExtResource("1_8084t")
+script = ExtResource("1_pm7eg")
+
+[node name="ObjectiveLabel" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_uwy78")
+theme_override_font_sizes/font_size = 30
+text = "HELP OBJECTIVE IS THIS LONG AND FINE"
+horizontal_alignment = 1
+vertical_alignment = 1

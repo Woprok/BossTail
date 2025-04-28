@@ -6,6 +6,8 @@ class_name BossDataModel
 @export var boss_max_health: int = 100
 
 @export var boss_name: String = "BAD DATA FOR BOSS"
+# Class needs to support it, see DummyBossDataModel
+var has_tutorial_data: bool = false
 
 signal OnHealthChanged
 

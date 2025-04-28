@@ -18,11 +18,35 @@ func _on_boss_data_changed(new_data: BossDataModel):
 	# Rebind old for new
 	if boss_data:
 		boss_data.OnHealthChanged.disconnect(UpdateBossHealth)
+		_deattach_tutorial()
 	boss_data = new_data
 	boss_data.OnHealthChanged.connect(UpdateBossHealth)
 	# Update
 	%BossHealthBar.SetHealth(boss_data.boss_min_health, boss_data.boss_current_health, boss_data.boss_max_health)
 	%BossHealthBar.SetName(boss_data.boss_name)
+	
+	_toggle_tutorial(new_data.has_tutorial_data)
+	
+func _toggle_tutorial(new_visibility: bool) -> void:
+	%TutorialObjectiveWrapper.visible = new_visibility
+	%TutorialHintWrapper.visible = new_visibility
+	# toggle on true needs to always update tutorial
+	if new_visibility:
+		_attach_tutorial()
+		_update_tutorial(0)
+
+func _attach_tutorial() -> void:
+	if boss_data.has_tutorial_data:
+		GameEvents.tutorial_phase.connect(_update_tutorial)
+
+func _deattach_tutorial() -> void:
+	if boss_data.has_tutorial_data:
+		GameEvents.tutorial_phase.disconnect(_update_tutorial)
+	
+func _update_tutorial(phase: int) -> void:
+	%TutorialObjective.SetObjective(boss_data.Objectives.get(phase))
+	%TutorialHint.SetHint(boss_data.ControlHintTitles.get(phase), boss_data.ControlHints.get(phase))
+	%BossHealthBar.SetName(boss_data.Names.get(phase))
 	
 func _exit_tree() -> void:
 	boss_data.OnHealthChanged.disconnect(UpdateBossHealth)

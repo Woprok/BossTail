@@ -14,3 +14,5 @@ func _ready() -> void:
 
 var boss_data: BossDataModel
 signal boss_changed(data: BossDataModel)
+
+signal tutorial_phase(phase: int)

@@ -42,7 +42,8 @@ var reset_position_part4 = Vector3(-26,1,-37)
 
 func _ready():
 	$CameraPivot.rotation.x = deg_to_rad(-8)	
-	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)		
+	GameEvents.tutorial_phase.emit(0)
 	
 func _physics_process(delta):
 	time = time+ delta
@@ -266,7 +267,8 @@ func _on_standing(area):
 		hit(20)
 		get_parent().respawn_player()
 	if area.is_in_group("part2"):
-		part = 3
+		part = 3		
+		GameEvents.tutorial_phase.emit(2)
 		
 func _on_leaving(area):
 	pass

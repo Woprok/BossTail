@@ -1,13 +1,16 @@
 extends BossDataModel
 class_name DummyBossDataModel
 
+func _init() -> void:
+	has_tutorial_data = true
+
 @export var TutorialPhases: int = 0
 
 @export var Objectives: Dictionary[int, String] = {
 	0: "Get to the Dummy",
 	1: "Traverse the arena",
-	2: "Pass through small dummy",
-	3: "Beat the dummy",
+	2: "Pass through Small Dummy by destroying it",
+	3: "Beat the Angry Dummy",
 }
 
 @export var Names: Dictionary[int, String] = {
@@ -17,19 +20,16 @@ class_name DummyBossDataModel
 	3: "Angry Dummy",
 }
 
-@export var ControlHelps: Dictionary[int, String] = {
-	0: "You can move and control camera",
-	1: "Jump over obstacles with SPACE_KEY. Dash to gain forward movement boost with DASH_KEY.",
-	2: "You can throw small objects, such as rock with AIM_KEY + SLASH_KEY.",
-	3: "Beware, dummy can hit back. Hit it harder with SLASH_KEY."
+@export var ControlHintTitles: Dictionary[int, String] = {
+	0: "Movement & Camera",
+	1: "Jump & Dash",
+	2: "Throw & Slash",
+	3: "BOSS"
 }
 
-#During the boss fights, player can see controls in left-center of the screens. (Small unobtrusive way.) 
-# Additionally, important controls such as attacks and other are shown next to their indicators in bottom right panel. Finally, the boss health bar has objective for current part written under it. Guiding player through this fight.
-
-#Objective: Move toward the Dummy
-#Objective: Reach Dummy, Use Jump
-#Objective: Reach Dummy, Avoid being hit, Pick & Throw
-
-#Control List:
-#WASD, SPACE, SHIFT, LMB, RMB
+@export var ControlHints: Dictionary[int, String] = {
+	0: "You can move (TODO_MOVE WASD) and control camera (TODO_CAMERA Q/E or Mouse).",
+	1: "Abilities are shown down here.\nJump over obstacles with (TODO_JUMP SPACE).\nDash to gain forward movement boost with (TODO_DASH SHIFT).",
+	2: "You can throw small objects, such as rock.\n Start AIM with (TODO_AIM RMB) and THROW (TODO_STAB LMB).",
+	3: "Bosses will hit you back.\nUse everything you have and see to beat them.\n"
+}

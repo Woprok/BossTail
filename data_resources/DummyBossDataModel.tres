@@ -4,6 +4,25 @@
 
 [resource]
 script = ExtResource("1_ovmjt")
+TutorialPhases = 0
+Objectives = Dictionary[int, String]({
+0: "Get to the Dummy",
+1: "Traverse the arena",
+2: "Pass through small dummy",
+3: "Beat the dummy"
+})
+Names = Dictionary[int, String]({
+0: "Peaceful Dummy",
+1: "Sharing Dummy",
+2: "Small Dummy",
+3: "Angry Dummy"
+})
+ControlHelps = Dictionary[int, String]({
+0: "You can move and control camera",
+1: "Jump over obstacles with SPACE_KEY. Dash to gain forward movement boost with DASH_KEY.",
+2: "You can throw small objects, such as rock with AIM_KEY + SLASH_KEY.",
+3: "Beware, dummy can hit back. Hit it harder with SLASH_KEY."
+})
 boss_current_health = 100
 boss_min_health = 0
 boss_max_health = 100
