@@ -1,16 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://b55rkrtbkh32g"]
+[gd_scene load_steps=5 format=3 uid="uid://b55rkrtbkh32g"]
 
 [ext_resource type="Theme" uid="uid://d2mah8qfufk0b" path="res://user_interface/assets/UIMenuTheme.tres" id="1_0k3k3"]
 [ext_resource type="Script" uid="uid://c2mrq8dngs06t" path="res://user_interface/screens/SettingsScreen.gd" id="1_0nnwj"]
+[ext_resource type="PackedScene" uid="uid://cdw5piocy8wkc" path="res://user_interface/controls/PaddingPanel.tscn" id="3_kta6o"]
+[ext_resource type="PackedScene" uid="uid://bqlxumifjjfvc" path="res://user_interface/controls/Settings/KeybindList.tscn" id="3_sbgcw"]
 
 [node name="SettingsScreen" type="VBoxContainer"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -372.0
-offset_right = 372.0
-offset_bottom = 374.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_0nnwj")
 
 [node name="TitleLabel" type="Label" parent="."]
@@ -22,15 +22,40 @@ text = "Settings"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="SETTINGS_ACTIONS" type="VBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="PaddingPanel" parent="HBoxContainer" instance=ExtResource("3_kta6o")]
+layout_mode = 2
+
+[node name="KeybindList" parent="HBoxContainer" instance=ExtResource("3_sbgcw")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PaddingPanel2" parent="HBoxContainer" instance=ExtResource("3_kta6o")]
+layout_mode = 2
+
+[node name="SETTINGS_ACTIONS" type="HBoxContainer" parent="."]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 3
 
 [node name="BackButton" type="Button" parent="SETTINGS_ACTIONS"]
 layout_mode = 2
 theme = ExtResource("1_0k3k3")
 text = "BACK"
 
+[node name="ResetButton" type="Button" parent="SETTINGS_ACTIONS"]
+layout_mode = 2
+theme = ExtResource("1_0k3k3")
+text = "RESET"
+
+[node name="SaveButton" type="Button" parent="SETTINGS_ACTIONS"]
+layout_mode = 2
+theme = ExtResource("1_0k3k3")
+text = "SAVE"
+
 [connection signal="pressed" from="SETTINGS_ACTIONS/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="SETTINGS_ACTIONS/ResetButton" to="." method="_on_reset_button_pressed"]
+[connection signal="pressed" from="SETTINGS_ACTIONS/SaveButton" to="." method="_on_save_button_pressed"]

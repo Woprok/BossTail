@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="UserSettings" load_steps=2 format=3 uid="uid://c5ya8uljl6qt3"]
+
+[ext_resource type="Script" uid="uid://c0ytd3xjaff2d" path="res://data_resources/UserSettings.gd" id="1_du7w1"]
+
+[resource]
+script = ExtResource("1_du7w1")
+customizable_keybinds = Dictionary[StringName, String]({
+&"aim": "Aim",
+&"dash": "Dash",
+&"fight": "Attack / Throw (During Aim)",
+&"jump": "Jump",
+&"move_back": "Move Back",
+&"move_forward": "Move Forward",
+&"move_left": "Move Left",
+&"move_right": "Move Right",
+&"pause": "Pause / Menu",
+&"strafe_left": "Strafe Left",
+&"strafe_right": "Strafe Right"
+})
+metadata/_custom_type_script = "uid://c0ytd3xjaff2d"

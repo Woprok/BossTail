@@ -46,7 +46,7 @@ shader_parameter/progress = 0.0
 shader_parameter/in_color = Color(0.36, 0.67, 0.33, 1)
 shader_parameter/out_color = Color(1, 0, 0.1647, 1)
 
-[sub_resource type="Shader" id="Shader_nh7qp"]
+[sub_resource type="Shader" id="Shader_ajvi2"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 
@@ -77,12 +77,12 @@ void fragment() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_f61yv"]
 resource_local_to_scene = true
-shader = SubResource("Shader_nh7qp")
+shader = SubResource("Shader_ajvi2")
 shader_parameter/progress = 0.0
 shader_parameter/in_color = Color(0.36, 0.67, 0.33, 1)
 shader_parameter/out_color = Color(1, 0, 0.1647, 1)
 
-[sub_resource type="Shader" id="Shader_gim6p"]
+[sub_resource type="Shader" id="Shader_nh7qp"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 
@@ -113,12 +113,12 @@ void fragment() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wnxpr"]
 resource_local_to_scene = true
-shader = SubResource("Shader_gim6p")
+shader = SubResource("Shader_nh7qp")
 shader_parameter/progress = 0.0
 shader_parameter/in_color = Color(0.36, 0.67, 0.33, 1)
 shader_parameter/out_color = Color(1, 0, 0.1647, 1)
 
-[sub_resource type="Shader" id="Shader_kc68n"]
+[sub_resource type="Shader" id="Shader_f61yv"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 
@@ -149,7 +149,7 @@ void fragment() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_eb80y"]
 resource_local_to_scene = true
-shader = SubResource("Shader_kc68n")
+shader = SubResource("Shader_f61yv")
 shader_parameter/progress = 0.0
 shader_parameter/in_color = Color(0.36, 0.67, 0.33, 1)
 shader_parameter/out_color = Color(1, 0, 0.1647, 1)

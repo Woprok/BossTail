@@ -1,6 +1,6 @@
-[gd_resource type="Resource" script_class="BossDataModel" load_steps=2 format=3 uid="uid://bi8qlvc2t1itu"]
+[gd_resource type="Resource" script_class="DummyBossDataModel" load_steps=2 format=3 uid="uid://bi8qlvc2t1itu"]
 
-[ext_resource type="Script" uid="uid://c3osreqikx4xt" path="res://data_resources/BossDataModel.gd" id="1_ovmjt"]
+[ext_resource type="Script" uid="uid://q083uq2lvc4l" path="res://data_resources/DummyBossDataModel.gd" id="1_ovmjt"]
 
 [resource]
 script = ExtResource("1_ovmjt")

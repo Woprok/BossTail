@@ -13,6 +13,8 @@ enum GameLevels {
 	TOAD_ANIMS_TEST,
 }
 
+@export var default_user_settings: UserSettings = preload("res://data_resources/UserSettingsDefaultInstance.tres")
+
 @export var CurrentLevel: GameLevels = GameLevels.MENU
 # Levels
 @export var Levels: Dictionary[GameLevels, String] = {
@@ -28,6 +30,10 @@ enum GameLevels {
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
+	_load_and_apply_local_user_settings()
+
+func _load_and_apply_local_user_settings() -> void:
+	default_user_settings.ApplyLocalSettings()	
 
 func _unhandled_input(event: InputEvent) -> void:
 	if _try_handle_pause(event):
