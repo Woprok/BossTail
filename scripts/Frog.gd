@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
 @export var animationPlayer : AnimationPlayer
-@onready var animationTree : AnimationTree = $AnimationTree
+@onready var animationTree : ToadAnimationController = $AnimationTree
 
 # speed on ground
 @export var speed:int = 2
@@ -25,6 +25,22 @@ var time_stop = 5
 var time_slam = 0
 var time_eat = 0
 
+@export_group("Animation Timings")
+@export_subgroup("Anticipations")
+@export var TONGUE_SWIPE_ANTIC_DUR = 0.6667
+@export var TONGUE_GRAB_ANTIC_DUR = 0.6667
+@export var GROUND_SLAM_ANTIC_DUR = 0.5
+@export var SPIT_ANTIC_DUR = 0.5
+@export var BUBBLE_ANTIC_DUR = 0.8333
+
+@export_subgroup("Window of Opportunity")
+@export var TONGUE_SWIPE_WOO_DUR = 1
+@export var TONGUE_GRAB_WOO_DUR = TONGUE_EXTEND_TIME
+@export var GROUND_SLAM_WOO_DUR = 1
+@export var SPIT_WOO_DUR = 0
+@export var BUBBLE_WOO_DUR = 0
+
+@export_group("")
 # time of extension of tongue 
 @export var TONGUE_EXTEND_TIME = 3
 # time between two swipes, player and enemy on same platform
@@ -195,9 +211,9 @@ func _physics_process(delta):
 					time_swipe = 0
 			if boss_data.get_current_health() != 100 and time_bubble>SPIT_BUBBLE_TIME and platform != player.platform and not doing:
 				doing = true
-				animationTree.spit_start(0.05)
+				animationTree.spit_start(SPIT_ANTIC_DUR, SPIT_WOO_DUR)
 				bubble_spit()
-				animationTree.spit_end()
+				#animationTree.spit_end()
 		else:
 			if not swimming:
 				var dir = (prev_platform.position-platform.position).normalized()
@@ -217,7 +233,7 @@ func _physics_process(delta):
 					HPHit = 0
 					return
 				if time_bubble >= WATER_BUBBLE_TIME and time_swimming<=SWIMMING_TIME:
-					animationTree.swim_bubble_atk_start(0.4)
+					animationTree.swim_bubble_atk_start()
 					look_at(Vector3(player.position.x,position.y, player.position.z))
 					if time_bubble>=WATER_BUBBLE_TIME+0.5:
 						doing = true
@@ -286,7 +302,7 @@ func _physics_process(delta):
 					time_bubble = 0
 					time_slam = 0
 					doing = true
-					animationTree.ground_slam_start(0.1)
+					animationTree.ground_slam_start(GROUND_SLAM_ANTIC_DUR)
 					slam = true
 			else:
 				for s in get_parent().get_node("stonePlatforms").get_children():
@@ -313,9 +329,9 @@ func _physics_process(delta):
 				time_swipe = 0
 		if boss_data.get_current_health() !=100 and time_bubble>SPIT_BUBBLE_TIME and platform!=null and platform != player.platform and not doing:
 				doing = true
-				animationTree.spit_start(0.05)
+				animationTree.spit_start(SPIT_ANTIC_DUR, SPIT_WOO_DUR)
 				bubble_spit()
-				animationTree.spit_end()
+				#animationTree.spit_end()
 	
 # spit and bubble attack
 func bubble_spit():
@@ -336,7 +352,7 @@ func bubble_spit():
 func tongue_swipe():
 	grab = false
 	look_at(Vector3(player.position.x,position.y,player.position.z))
-	animationTree.swipe_start(0.1)
+	animationTree.swipe_start(TONGUE_SWIPE_ANTIC_DUR)
 	extended = true
 	#var tween = get_tree().create_tween()
 	#tween.tween_property(self,"rotation",self.rotation+Vector3(0,6.2,0),0.5)
@@ -397,7 +413,7 @@ func jump_direction(target_position):
 func extend():
 	if extended:
 		return
-	animationTree.tongue_grab_start(0.05)
+	animationTree.tongue_grab_start(TONGUE_GRAB_ANTIC_DUR)
 	time_of_extend = 0
 	tongueHit = 0
 	return

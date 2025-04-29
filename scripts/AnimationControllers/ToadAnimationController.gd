@@ -46,19 +46,22 @@ func hop_L_start():
 	state_machine.travel("Hop_L")
 func hop_R_start():
 	state_machine.travel("Hop_R")
-	
+
+func seq_anim_start(anim_type: SEQ_ANIM, antic_dur: float = 0, end_time: float = -1, end_func_name: String = "") -> void:
+	var anim_antic_len = get_anim_seq_antic_len(anim_type)
+	#if antic_dur < anim_antic_len: Global.LogInfo("swipe_start(): antic_dur param " + str(antic_dur) + " lower than base dur: " + str(anim_antic_len) + " . using base")
+	var max_antic = maxf(anim_antic_len, antic_dur)
+	antic_set_dur_subroutine(max_antic)
+	if end_time != -1:
+		var start_len = get_anim_seq_start_len(anim_type)
+		if start_len > 0:
+			delayed_call(start_len + end_time + max_antic, Callable(self, end_func_name))
+
 func swipe_start(antic_dur: float = 0, end_time: float = -1):
 	show_tongue()
 	state_machine.travel("Swipe_Antic")
-	if antic_dur != 0:
-		var anim_antic_len = get_anim_seq_antic_len(SEQ_ANIM.TONGUE_SWIPE)
-		#if antic_dur < anim_antic_len: Global.LogInfo("swipe_start(): antic_dur param " + str(antic_dur) + " lower than base dur: " + str(anim_antic_len) + " . using base")
-		var max_antic = maxf(anim_antic_len, antic_dur)
-		antic_set_dur_subroutine(max_antic)
-		if end_time != -1:
-			var start_len = get_anim_seq_start_len(SEQ_ANIM.TONGUE_SWIPE)
-			if start_len > 0:
-				delayed_call(start_len + end_time + max_antic, Callable(self, "swipe_end"))
+	if antic_dur >= 0:
+		seq_anim_start(SEQ_ANIM.TONGUE_SWIPE, antic_dur, end_time, "swipe_end")
 	
 func swipe_end_antic():
 	antic_end_subroutine()
@@ -72,15 +75,8 @@ func swipe_end():
 func tongue_grab_start(antic_dur: float = 0, end_time: float = -1):
 	show_tongue()
 	state_machine.travel("TongueGrab_Antic")
-	if antic_dur != 0:
-		var anim_antic_len = get_anim_seq_antic_len(SEQ_ANIM.TONGUE_GRAB)
-		#if antic_dur < anim_antic_len: Global.LogInfo("tongue_grab_start(): antic_dur param " + str(antic_dur) + " lower than base dur: " + str(anim_antic_len) + " . using base")
-		var max_antic = maxf(anim_antic_len, antic_dur)
-		antic_set_dur_subroutine(max_antic)
-		if end_time != -1:
-			var start_len = get_anim_seq_start_len(SEQ_ANIM.TONGUE_GRAB)
-			if start_len > 0:
-				delayed_call(start_len + end_time + max_antic, Callable(self, "tongue_grab_end"))
+	if antic_dur >= 0:
+		seq_anim_start(SEQ_ANIM.TONGUE_GRAB, antic_dur, end_time, "tongue_grab_end")
 	
 func tongue_grab_antic_end():
 	antic_end_subroutine()
@@ -95,15 +91,8 @@ func tongue_grab_end():
 func spit_start(antic_dur: float = 0, end_time: float = -1):
 	show_tongue()
 	state_machine.travel("Spit_Antic")
-	if antic_dur != 0:
-		var anim_antic_len = get_anim_seq_antic_len(SEQ_ANIM.SPIT)
-		#if antic_dur < anim_antic_len: Global.LogInfo("spit_start(): antic_dur param " + str(antic_dur) + " lower than base dur: " + str(anim_antic_len) + " . using base")
-		var max_antic = maxf(anim_antic_len, antic_dur)
-		antic_set_dur_subroutine(max_antic)
-		if end_time != -1:
-			var start_len = get_anim_seq_start_len(SEQ_ANIM.SPIT)
-			if start_len > 0:
-				delayed_call(start_len + end_time + max_antic, Callable(self, "spit_end"))
+	if antic_dur >= 0:
+		seq_anim_start(SEQ_ANIM.SPIT, antic_dur, end_time, "spit_end")
 			
 func spit_antic_end():
 	antic_end_subroutine()
@@ -116,15 +105,8 @@ func spit_end():
 	
 func ground_slam_start(antic_dur: float = 0, end_time: float = -1):
 	state_machine.travel("GroundSlam_Antic")
-	if antic_dur != 0:
-		var anim_antic_len = get_anim_seq_antic_len(SEQ_ANIM.GROUND_SLAM)
-		if antic_dur < anim_antic_len: Global.LogInfo("spit_start(): antic_dur param " + str(antic_dur) + " lower than base dur: " + str(anim_antic_len) + " . using base")
-		var max_antic = maxf(anim_antic_len, antic_dur)
-		antic_set_dur_subroutine(max_antic)
-		if end_time != -1:
-			var start_len = get_anim_seq_start_len(SEQ_ANIM.GROUND_SLAM)
-			if start_len > 0:
-				delayed_call(start_len + end_time + max_antic, Callable(self, "ground_slam_end"))
+	if antic_dur >= 0:
+		seq_anim_start(SEQ_ANIM.TONGUE_GRAB, antic_dur, end_time, "ground_slam_end")
 	
 func ground_slam_antic_end():
 	antic_end_subroutine()
