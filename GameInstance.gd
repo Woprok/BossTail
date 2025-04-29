@@ -25,7 +25,8 @@ enum GameLevels {
 	GameLevels.TOAD_ANIMS_TEST: "res://scenes/test_scenes/ToadAnimationTesting.tscn",
 }
 @export var LevelTransitions: Dictionary[GameLevels, GameLevels] = {
-	GameLevels.TUTORIAL_PHASE_1: GameLevels.FROG_PHASE_1
+	GameLevels.TUTORIAL_PHASE_1: GameLevels.FROG_PHASE_1,
+	GameLevels.FROG_PHASE_1: GameLevels.FROG_PHASE_2
 }
 
 func _ready() -> void:
