@@ -46,14 +46,24 @@ var time_eat = 0
 # time between two eatings
 @export var EAT_TIME = 20
 
+# Player's HP lost by slam 
 @export var SLAM_HP = 5
+# Player's HP lost by swipe 
 @export var SWIPE_DAMAGE_HP = 5
+# Player's HP lost by grab
 @export var GRAB_DAMAGE_HP = 5
+# HP lost by leg hit
 @export var LEG_HP = 5
+# HP lost by head hit
 @export var HEAD_HP = 10
+# HP lost by boulder hit
 @export var BOULDER_HP = 20
+# HP lost by spike hit
 @export var SPIKE_HP = 20
+# HP lost by pebble hit
 @export var PEBBLE_HP = 1
+# HP lost to trigger swimming
+@export var TRIGGER_SWIMMING = 10
 
 var grab = false
 var slam = false
@@ -65,8 +75,8 @@ var sluggish = false
 var boulderHit = 0
 # num of tongue hits for one grab
 var tongueHit = 0
-# num of leg hits from last triggering of swimming
-var legHit = 0
+# HP lost from last triggering of swimming
+var HPHit = 0
 # is tongue extended
 var extended = false
 # is subphase change triggered
@@ -150,7 +160,7 @@ func _physics_process(delta):
 			if triggered:
 				jump_to_water()
 				tongueHit = 0
-				legHit = 0
+				HPHit = 0
 				return
 			if boss_data.get_current_health() <= GRAB_HP and time_grab >= GRAB_TIME and not doing and platform==player.platform:
 				if position.distance_to(player.position)<6.25 or position.distance_to(player.position)>6.35:
@@ -204,7 +214,7 @@ func _physics_process(delta):
 					jump_to_platform()
 					triggered = true
 					tongueHit = 0
-					legHit = 0
+					HPHit = 0
 					return
 				if time_bubble >= WATER_BUBBLE_TIME and time_swimming<=SWIMMING_TIME:
 					animationTree.swim_bubble_atk_start(0.4)
@@ -438,7 +448,7 @@ func hit(area):
 			boss_data.boss_decrease_health(BOULDER_HP)
 			jump_to_platform()
 			tongueHit = 0
-			legHit = 0
+			HPHit = 0
 			triggered = true
 		if area.is_in_group("pebble"):
 			boss_data.boss_decrease_health(PEBBLE_HP)
@@ -456,14 +466,14 @@ func hit(area):
 			elif tongueHit==3:
 				boss_data.boss_decrease_health(5)
 		if area.is_in_group("body"):
-			legHit += 1
+			HPHit += LEG_HP
 			time_stop = 5
 			boss_data.boss_decrease_health(LEG_HP)
-			if legHit == 2:
-				triggered = true
 		if area.is_in_group("head"):
+			HPHit += HEAD_HP
 			boss_data.boss_decrease_health(HEAD_HP)
 			time_stop = 5
+		if HPHit >= TRIGGER_SWIMMING:
 			triggered = true
 	if Global.phase > 1:
 		triggered = false
