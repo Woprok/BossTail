@@ -3,6 +3,6 @@
 [resource]
 resource_name = "BladeMaterial"
 cull_mode = 2
+shading_mode = 0
 vertex_color_use_as_albedo = true
 albedo_color = Color(0.709802, 0.709804, 0.709804, 1)
-roughness = 0.5
