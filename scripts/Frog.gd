@@ -83,7 +83,7 @@ var prev_platform : Node
 var grab_target = null
 
 # radius of path around platform for swimming
-var radius = 11                     
+var radius = 11.8                     
 var angle = 0.0
 var init_angle = 0
 
@@ -232,7 +232,7 @@ func _physics_process(delta):
 						prev_platform = p
 				else:
 					var center_position = platform.position 
-					angle += delta
+					angle += delta/10*swimming_speed
 					var x = center_position.x + cos(angle) * radius
 					var z = center_position.z + sin(angle) * radius
 					look_at(Vector3(x, -0.15, z))
