@@ -5,6 +5,7 @@ var Fly = preload("res://scenes/Fly.tscn")
 
 @export var player_data: PlayerDataModel = preload("res://data_resources/PlayerDataModelInstance.tres")
 @export var platform: Node
+@export var animation_player: AnimationPlayer
 @onready var Camera = $CameraPivot/SpringArm3D/Camera3D
 @onready var flies = get_parent().get_node("flies")
 @onready var pebbles = get_parent().get_node("pebbles")
@@ -103,11 +104,11 @@ func _physics_process(delta):
 		fighting = false
 		$melee/target.disabled = true
 		if is_on_floor() and direction.y!=0:
-			$AnimationPlayer.play("GAME_03_jump_start")
+			animation_player.play("GAME_03_jump_start")
 		elif is_on_floor():
-			$AnimationPlayer.play("GAME_02_run")
+			animation_player.play("GAME_02_run")
 		else:
-			$AnimationPlayer.play("GAME_03_jump_looping")
+			animation_player.play("GAME_03_jump_looping")
 		
 	if last_shot > 0.5 and Input.is_action_pressed("aim"):
 		player_data.change_ranged_indicator(true)
@@ -116,7 +117,7 @@ func _physics_process(delta):
 	if Input.is_action_pressed("fight"):
 		if not aiming:
 			$melee/target.disabled = false
-			$AnimationPlayer.play("GAME_05_lunge_right")
+			animation_player.play("GAME_05_lunge_right")
 			fighting=true
 			player_data.change_melee_indicator(false)
 		elif last_shot>0.5:
@@ -166,7 +167,7 @@ func _physics_process(delta):
 
 	velocity = target_velocity
 	if not fighting and is_on_floor() and direction==Vector3.ZERO:
-		$AnimationPlayer.play("GAME_01_idle")
+		animation_player.play("GAME_01_idle")
 		$melee/target.disabled = true
 	move_and_slide()
 	
@@ -255,7 +256,7 @@ func _on_animation_finished(anim_name):
 			player_data.change_melee_indicator(true)
 		else:
 			back *= -1
-			$AnimationPlayer.play_backwards("GAME_05_lunge_right")
+			animation_player.play_backwards("GAME_05_lunge_right")
 
 # melee
 func _on_area_entered(area):
@@ -299,7 +300,7 @@ func _on_standing(area):
 		grabbed = false
 		aciding_liquid += 1
 	if area.is_in_group("stone_platform") or area.is_in_group("lily_platform"):
-		$AnimationPlayer.play_backwards("GAME_03_jump_start")
+		animation_player.play_backwards("GAME_03_jump_start")
 		platform = area
 		launched = false
 		grabbed = false
