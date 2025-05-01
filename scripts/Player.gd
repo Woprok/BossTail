@@ -5,7 +5,7 @@ var Fly = preload("res://scenes/Fly.tscn")
 
 @export var player_data: PlayerDataModel = preload("res://data_resources/PlayerDataModelInstance.tres")
 @export var platform: Node
-@export var animation_player: AnimationPlayer
+@export var animation: AnimationTree
 @onready var Camera = $CameraPivot/SpringArm3D/Camera3D
 @onready var flies = get_parent().get_node("flies")
 @onready var pebbles = get_parent().get_node("pebbles")
@@ -82,6 +82,7 @@ func _physics_process(delta):
 		$dash_timer.start(0.5)
 		
 	if dashing:
+		animation.dash_start()
 		direction.z -= 1
 		speed = DASH_SPEED
 	elif aiming:
@@ -103,12 +104,13 @@ func _physics_process(delta):
 	if direction != Vector3.ZERO:
 		fighting = false
 		$melee/target.disabled = true
-		if is_on_floor() and direction.y!=0:
-			animation_player.play("GAME_03_jump_start")
-		elif is_on_floor():
-			animation_player.play("GAME_02_run")
-		else:
-			animation_player.play("GAME_03_jump_looping")
+		if not dashing:
+			if is_on_floor() and direction.y!=0:
+				animation.jump_start()
+			elif is_on_floor():
+				animation.run()
+			else:
+				animation.jump_descending()
 		
 	if last_shot > 0.5 and Input.is_action_pressed("aim"):
 		player_data.change_ranged_indicator(true)
@@ -117,7 +119,7 @@ func _physics_process(delta):
 	if Input.is_action_pressed("fight"):
 		if not aiming:
 			$melee/target.disabled = false
-			animation_player.play("GAME_05_lunge_right")
+			animation.lunge_r()
 			fighting=true
 			player_data.change_melee_indicator(false)
 		elif last_shot>0.5:
@@ -167,7 +169,7 @@ func _physics_process(delta):
 
 	velocity = target_velocity
 	if not fighting and is_on_floor() and direction==Vector3.ZERO:
-		animation_player.play("GAME_01_idle")
+		animation.idle()
 		$melee/target.disabled = true
 	move_and_slide()
 	
@@ -185,6 +187,7 @@ func hit(health):
 	lastHit = 0
 	player_data.player_decrease_health(health)
 	if player_data.is_player_dead():
+		animation.death()
 		GameInstance.PlayerDefeated()
 
 # strelba dle typu zbrane
@@ -248,16 +251,15 @@ func launch(pos):
 
 func _on_animation_finished(anim_name):
 	if anim_name == "GAME_05_lunge_right":
-		if back == 1:
-			back *= -1
-			melee = false
-			$melee/target.disabled = true
-			fighting=false
-			player_data.change_melee_indicator(true)
-		else:
-			back *= -1
-			animation_player.play_backwards("GAME_05_lunge_right")
-
+		$melee/target.disabled = true
+		player_data.change_melee_indicator(true)
+		$AnimationTree.idle()
+	if anim_name == "GAME_05_lunge_right_settle":
+		melee = false
+		$melee/target.disabled = true
+		fighting=false
+		player_data.change_melee_indicator(true)
+		
 # melee
 func _on_area_entered(area):
 	if area.get_parent().is_in_group("enemy") and not melee:
@@ -300,7 +302,7 @@ func _on_standing(area):
 		grabbed = false
 		aciding_liquid += 1
 	if area.is_in_group("stone_platform") or area.is_in_group("lily_platform"):
-		animation_player.play_backwards("GAME_03_jump_start")
+		animation.jump_land()
 		platform = area
 		launched = false
 		grabbed = false

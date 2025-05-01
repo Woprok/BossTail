@@ -12,7 +12,7 @@ func _physics_process(delta):
 	rotate_y(delta*20)
 
 
-func hit(health):
+func hit(_health):
 	stopped = true
 	stop_time = 0
 

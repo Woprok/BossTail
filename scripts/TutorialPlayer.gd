@@ -81,6 +81,7 @@ func _physics_process(delta):
 		$dash_timer.start(0.5)
 		
 	if dashing:
+		$AnimationTree.dash_start()
 		direction.z -= 1
 		speed = DASH_SPEED
 	elif aiming:
@@ -100,12 +101,13 @@ func _physics_process(delta):
 	if direction != Vector3.ZERO:
 		fighting = false
 		$melee/target.disabled = true
-		if is_on_floor() and direction.y!=0:
-			$AnimationPlayer.play("GAME_03_jump_start")
-		elif is_on_floor():
-			$AnimationPlayer.play("GAME_02_run")
-		else:
-			$AnimationPlayer.play("GAME_03_jump_looping")
+		if not dashing:
+			if is_on_floor() and direction.y!=0:
+				$AnimationTree.jump_start()
+			elif is_on_floor():
+				$AnimationTree.run()
+			else:
+				$AnimationTree.jump_descending()
 		
 	if last_shot > 0.5 and Input.is_action_pressed("aim"):
 		player_data.change_ranged_indicator(true)
@@ -114,7 +116,7 @@ func _physics_process(delta):
 	if Input.is_action_pressed("fight"):
 		if not aiming:
 			$melee/target.disabled = false
-			$AnimationPlayer.play("GAME_05_lunge_right")
+			$AnimationTree.lunge_r()
 			fighting=true
 			player_data.change_melee_indicator(false)
 		elif last_shot>0.5:
@@ -164,7 +166,7 @@ func _physics_process(delta):
 
 	velocity = target_velocity
 	if not fighting and is_on_floor() and direction==Vector3.ZERO:
-		$AnimationPlayer.play("GAME_01_idle")
+		$AnimationTree.idle()
 		$melee/target.disabled = true
 	move_and_slide()
 	
@@ -223,17 +225,16 @@ func respawn():
 
 func _on_animation_finished(anim_name):
 	if anim_name == "GAME_05_lunge_right":
-		if back == 1:
-			back *= -1
-			melee = false
-			$melee/target.disabled = true
-			fighting=false
-			player_data.change_melee_indicator(true)
-		else:
-			back *= -1
-			$melee/target.disabled = true
-			player_data.change_melee_indicator(true)
-			$AnimationPlayer.play_backwards("GAME_05_lunge_right")
+		$melee/target.disabled = true
+		player_data.change_melee_indicator(true)
+		$AnimationTree.idle()
+			
+			
+	if anim_name == "GAME_05_lunge_right_settle":
+		melee = false
+		$melee/target.disabled = true
+		fighting=false
+		player_data.change_melee_indicator(true)
 
 # melee
 func _on_area_entered(area):
