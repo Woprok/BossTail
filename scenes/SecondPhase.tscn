@@ -85,7 +85,7 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3.332
 platform = NodePath("../stonePlatforms/stonePlatform3")
 
 [node name="frog" parent="." instance=ExtResource("3_8kwl6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0.520247, -24)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 20, 0.520247, -24)
 
 [node name="lilyPlatforms" type="Node3D" parent="."]
 

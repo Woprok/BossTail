@@ -13,8 +13,8 @@ var Fly = preload("res://scenes/Fly.tscn")
 var start_position:Vector3 = Vector3(0,-1.8,0)
 var weapon_type:int = -1
 
-var speed:int = 10
-var jump_speed:int = 22
+var speed:int = 15
+var jump_speed:int = 30
 
 var fall_acceleration:int = 75
 var MOUSE_SENS:float = 0.008
@@ -22,7 +22,7 @@ var AIM_MOUSE_SENS:float = 0.004
 var DASH_SPEED:int = 25
 var AIM_SPEED:int = 5
 var STICKY_SPEED:int = 2
-var SPEED:int = 10
+var SPEED:int = 15
 var back = -1
 var lastHit = 100
 
@@ -32,7 +32,6 @@ var mouse_sensitivity:float = 0.008
 var melee:bool = false
 var fighting:bool = false
 var jump:bool = false
-var double_jump:bool = false
 var dashing:bool = false
 var can_dash:bool = true
 var aiming:bool = false
@@ -106,7 +105,7 @@ func _physics_process(delta):
 		$melee/target.disabled = true
 		if not dashing:
 			if is_on_floor() and direction.y!=0:
-				animation.jump_start()
+				animation.jump_descending()
 			elif is_on_floor():
 				animation.run()
 			else:
@@ -153,15 +152,11 @@ func _physics_process(delta):
 	
 	if is_on_floor():
 		jump = false
-		double_jump = false
 		
 	# skok
-	if direction.y>0 and jump==false and not double_jump:
+	if direction.y>0 and jump==false:
 		target_velocity.y = direction.y * jump_speed
 		jump = true
-	elif direction.y>0 and not is_on_floor() and double_jump == false:
-		double_jump = true
-		target_velocity.y = direction.y * speed	* 2	
 	
 	# pokud je ve vzduchu, spadne
 	if not is_on_floor():

@@ -79,7 +79,7 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -41, 2
 platform = NodePath("../stonePlatforms/stonePlatform6")
 
 [node name="frog" parent="." instance=ExtResource("2_8ot16")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26, 1.65, -23)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 26, 1.65, -23)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_07i65")

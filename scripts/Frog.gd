@@ -113,6 +113,8 @@ var radius = 11.8
 var angle = 0.0
 var init_angle = 0
 
+var grab_len = 6.25*2
+
 @export var boss_data: BossDataModel = preload("res://data_resources/FrogBossDataModel.tres")
 @onready var player = get_parent().get_node("Player")
 @onready var flies = get_parent().get_node("flies")
@@ -140,12 +142,7 @@ func _physics_process(delta):
 		if collision and jump:
 			if not swimming and collision.get_collider().is_in_group("water"):
 				return
-			jump = false
 			animationTree.jump_end()
-			if path == [] and triggered:
-				triggered = false
-				doing = false
-				subphase = 1-subphase
 	
 	# jumping between platforms if path is not empty
 	if path!=[] and not jump:
@@ -166,7 +163,7 @@ func _physics_process(delta):
 				time_of_extend = 0
 				animationTree.tongue_grab_end()
 	# 
-	if doing:
+	if doing or jump:
 		return
 	if Global.phase == 1:
 		if subphase == 0:
@@ -179,8 +176,8 @@ func _physics_process(delta):
 				HPHit = 0
 				return
 			if boss_data.get_current_health() <= GRAB_HP and time_grab >= GRAB_TIME and not doing and platform==player.platform:
-				if position.distance_to(player.position)<6.25 or position.distance_to(player.position)>6.35:
-					var point = find_point_on_platform(platform.position,player.position,6.3)
+				if position.distance_to(player.position)<grab_len-0.05 or position.distance_to(player.position)>grab_len+0.05:
+					var point = find_point_on_platform(platform.position,player.position,grab_len)
 					if point!=null:
 						jump_direction(point)
 					doing = true
@@ -282,8 +279,8 @@ func _physics_process(delta):
 						grab_target = fly
 						break
 			elif grab_target.platform==platform:
-				if position.distance_to(grab_target.position)<6.25 or position.distance_to(grab_target.position)>6.35:
-					var point = find_point_on_platform(platform.position,grab_target.position,6.3)
+				if position.distance_to(grab_target.position)<grab_len-0.05 or position.distance_to(grab_target.position)>grab_len+0.05:
+					var point = find_point_on_platform(platform.position,grab_target.position,grab_len)
 					if point!=null:
 						jump_direction(point)
 					doing = true
@@ -586,6 +583,11 @@ func _on_animation_finished(anim_name):
 		swipe = false
 		time_swipe = 0
 	if anim_name == "G_02-jump-end":
+		jump = false
+		if path == [] and triggered:
+			triggered = false
+			doing = false
+			subphase = 1-subphase
 		if grab:
 			time_bubble = 0
 			time_swipe = 0
