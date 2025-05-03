@@ -109,7 +109,7 @@ var prev_platform : Node
 var grab_target = null
 
 # radius of path around platform for swimming
-var radius = 11.8                     
+var radius = 11.8                   
 var angle = 0.0
 var init_angle = 0
 

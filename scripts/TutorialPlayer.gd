@@ -6,7 +6,8 @@ var Rock = preload("res://scenes/TutorialRock.tscn")
 @onready var Camera = $CameraPivot/SpringArm3D/Camera3D
 @onready var pebbles = get_parent().get_node("obstacles/pebbles") #opravit
 
-var weapon_type:int = -1
+var pebble_count = 0 
+@export var AMMO_CAPACITY = 3
 
 var speed:int = 15
 var jump_speed:int = 30
@@ -185,11 +186,12 @@ func hit(health):
 # strelba dle typu zbrane
 func shoot():
 	var p
-	if weapon_type == -1:
+	if pebble_count == 0:
 		return
-	if weapon_type == 0:
+	if pebble_count > 0:
 		p = Rock.instantiate()
 		pebbles.add_child(p)
+		pebble_count-=1
 		
 	p.global_position = position-transform.basis.z*2
 	p.velocity=-transform.basis.z
@@ -204,7 +206,6 @@ func shoot():
 	var result = space_state.intersect_ray(query)
 	
 	p.shoot(origin, end, result)
-	weapon_type = -1
 
 func respawn():
 	var reset_position 
@@ -254,8 +255,8 @@ func _on_melee_body_entered(body):
 		body.hit(10)
 
 func _on_pickup_entered(body):
-	if body.is_in_group("pebble"):
-		weapon_type = 0
+	if body.is_in_group("pebble") and pebble_count<AMMO_CAPACITY:
+		pebble_count += 1
 		body.queue_free()
 
 func _on_standing(area):

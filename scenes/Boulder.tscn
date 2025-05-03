@@ -1,4 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://cgydlwevhkirk"]
+[gd_scene load_steps=4 format=3 uid="uid://cgydlwevhkirk"]
+
+[ext_resource type="Script" uid="uid://dvan3gktdv14k" path="res://scripts/Boulder.gd" id="1_ua2kf"]
 
 [sub_resource type="ORMMaterial3D" id="ORMMaterial3D_gsd8a"]
 albedo_color = Color(0.117647, 0.117647, 0.117647, 1)
@@ -10,6 +12,7 @@ radius = 0.51
 collision_layer = 16
 collision_mask = 19
 mass = 0.01
+script = ExtResource("1_ua2kf")
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="."]
 transform = Transform3D(0.13, 0, 0, 0, 0.13, 0, 0, 0, 0.13, 0, 0, 0)

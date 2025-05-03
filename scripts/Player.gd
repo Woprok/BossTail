@@ -11,7 +11,10 @@ var Fly = preload("res://scenes/Fly.tscn")
 @onready var pebbles = get_parent().get_node("pebbles")
 
 var start_position:Vector3 = Vector3(0,-1.8,0)
-var weapon_type:int = -1
+var pebble_count = 0
+var fly_count = 0
+@export var AMMO_CAPACITY = 3
+@export var FLY_CAPACITY = 1
 
 var speed:int = 15
 var jump_speed:int = 30
@@ -188,14 +191,16 @@ func hit(health):
 # strelba dle typu zbrane
 func shoot():
 	var p
-	if weapon_type == -1:
+	if fly_count==0 and pebble_count==0:
 		return
-	if weapon_type == 0:
-		p = Rock.instantiate()
-		pebbles.add_child(p)
-	if weapon_type == 1:
+	if fly_count>0:
 		p = Fly.instantiate()
 		flies.add_child(p)
+		fly_count=0
+	elif pebble_count > 0:
+		p = Rock.instantiate()
+		pebbles.add_child(p)
+		pebble_count -= 1
 		
 	p.global_position = position-transform.basis.z
 	p.velocity=-transform.basis.z
@@ -210,7 +215,6 @@ func shoot():
 	var result = space_state.intersect_ray(query)
 	
 	p.shoot(origin, end, result)
-	weapon_type = -1
 
 func respawn():
 	player_data.player_decrease_health(1)
@@ -281,11 +285,11 @@ func _on_melee_body_entered(body):
 
 
 func _on_pickup_entered(body):
-	if body.is_in_group("fly") and body.dead:
-		weapon_type = 1
+	if body.is_in_group("fly") and body.dead and fly_count < FLY_CAPACITY:
+		fly_count += 1
 		body.queue_free()
-	if body.is_in_group("pebble"):
-		weapon_type = 0
+	if body.is_in_group("pebble") and pebble_count < AMMO_CAPACITY:
+		pebble_count += 1
 		body.queue_free()
 
 
