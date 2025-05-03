@@ -17,11 +17,22 @@ Names = Dictionary[int, String]({
 2: "Small Dummy",
 3: "Angry Dummy"
 })
-ControlHelps = Dictionary[int, String]({
-0: "You can move and control camera",
-1: "Jump over obstacles with SPACE_KEY. Dash to gain forward movement boost with DASH_KEY.",
-2: "You can throw small objects, such as rock with AIM_KEY + SLASH_KEY.",
-3: "Beware, dummy can hit back. Hit it harder with SLASH_KEY."
+ControlHintTitles = Dictionary[int, String]({
+0: "Movement & Camera",
+1: "Jump & Dash",
+2: "Throw & Slash",
+3: "BOSS"
+})
+ControlHints = Dictionary[int, String]({
+0: "You can move (TODO_MOVE WASD) and control camera (TODO_CAMERA Q/E or Mouse).",
+1: "Abilities are shown down here.
+Jump over obstacles with (TODO_JUMP SPACE).
+Dash to gain forward movement boost with (TODO_DASH SHIFT).",
+2: "You can throw small objects, such as rock.
+ Start AIM with (TODO_AIM RMB) and THROW (TODO_STAB LMB).",
+3: "Bosses will hit you back.
+Use everything you have and see to beat them.
+"
 })
 boss_current_health = 100
 boss_min_health = 0
