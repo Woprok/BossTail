@@ -1,4 +1,4 @@
-extends Node
+extends ScreenBase
 class_name LevelScreen
 
 func _ready() -> void:

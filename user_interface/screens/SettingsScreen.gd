@@ -1,4 +1,4 @@
-extends Node
+extends ScreenBase
 class_name SettingsScreen
 
 @export var default_user_settings: UserSettings = preload("res://data_resources/UserSettingsDefaultInstance.tres")

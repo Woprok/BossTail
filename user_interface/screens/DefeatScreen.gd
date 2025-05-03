@@ -1,8 +1,5 @@
-extends Node
+extends PausableScreenBase
 class_name DefeatScreen
-
-func _ready() -> void:
-	process_mode = Node.PROCESS_MODE_ALWAYS
 
 func _on_restart_button_pressed() -> void:
 	GameInstance.RestartCurrentLevel()

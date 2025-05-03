@@ -41,8 +41,7 @@ var reset_position_part3 = Vector3(47, -1.2, -16.6)
 var reset_position_part4 = Vector3(-26,1,-37)
 
 func _ready():
-	$CameraPivot.rotation.x = deg_to_rad(-8)	
-	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)		
+	$CameraPivot.rotation.x = deg_to_rad(-8)		
 	GameEvents.tutorial_phase.emit(0)
 	
 func _physics_process(delta):

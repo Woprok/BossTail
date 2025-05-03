@@ -7,7 +7,7 @@ extends CanvasLayer
 @export var Screens: Dictionary[UI.Mode, PackedScene] = {}
 @export var PreviousMode: UI.Mode = UI.Mode.MENU
 @export var CurrentMode: UI.Mode = UI.Mode.MENU
-var CurrentInstance: Node
+var CurrentInstance: ScreenBase
 
 func _ready() -> void:
 	_switch_UI(CurrentMode)
@@ -31,16 +31,16 @@ func _switch_UI(new_mode: UI.Mode) -> void:
 func _set_cursor_mode(new_mode: UI.Mode) -> void:
 	match new_mode:
 		UI.Mode.HUD: # for HUD we want to capture it
-			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED) #MOUSE_MODE_CONFINED_HIDDEN - won't be enough
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED) 
 		UI.Mode.NONE: # if I ever decide that we can hide HUD
-			Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+			Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED_HIDDEN)
 		_: #UI.Mode.PAUSE, UI.Mode.MENU, UI.Mode.SETTINGS:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func SwitchToMode(mode: UI.Mode) -> void:
-	_switch_UI(mode)
 	_set_cursor_mode(mode)
+	_switch_UI(mode)
 
 func SwitchToPrevious() -> void:
-	_switch_UI(PreviousMode)
 	_set_cursor_mode(PreviousMode)
+	_switch_UI(PreviousMode)

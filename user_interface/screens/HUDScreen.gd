@@ -1,11 +1,10 @@
-extends Node
+extends GameScreenBase
 class_name HUDScreen
 
 @export var player_data: PlayerDataModel = preload("res://data_resources/PlayerDataModelInstance.tres")
 @export var boss_data: BossDataModel
 	
 func _ready() -> void:
-	self.mouse_filter = Control.MOUSE_FILTER_PASS
 	# Boss Data Setup
 	GameEvents.boss_changed.connect(_on_boss_data_changed)
 	if GameEvents.boss_data:

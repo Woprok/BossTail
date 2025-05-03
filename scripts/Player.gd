@@ -47,7 +47,6 @@ var direction = Vector3.ZERO
 func _ready() -> void:
 	player_data.player_restart()
 	$CameraPivot.rotation.x = deg_to_rad(-8)	
-	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	
 func _physics_process(delta):
 	time = time+ delta

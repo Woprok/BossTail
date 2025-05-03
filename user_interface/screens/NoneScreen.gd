@@ -1,2 +1,2 @@
-extends Node
+extends GameScreenBase
 class_name NoneScreen
