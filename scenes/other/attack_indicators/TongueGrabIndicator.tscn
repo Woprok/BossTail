@@ -1,40 +1,29 @@
-[gd_scene load_steps=4 format=3 uid="uid://ckjheqfxgru67"]
+[gd_scene load_steps=4 format=4 uid="uid://bu1jujqa8g7eb"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wkav4"]
+[ext_resource type="Material" uid="uid://cio0utej2mgd4" path="res://assets/materials/toad_atk_indic_mat.tres" id="1_uy0jn"]
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_6wtwk"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lv8s0"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_byfyw"]
+resource_name = "ToadAttackIndicators_Plane_001"
 _surfaces = [{
-"aabb": AABB(-0.258735, 0, -0.0816376, 0.517469, 1e-05, 4.8574),
-"format": 34896613377,
-"index_count": 6,
-"index_data": PackedByteArray(0, 0, 1, 0, 2, 0, 0, 0, 3, 0, 1, 0),
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 4,
-"vertex_data": PackedByteArray(0, 0, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 0, 0, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-}]
-blend_shape_mode = 0
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_v5p2e"]
-resource_name = "Toad_attack_indicators_Plane_001"
-_surfaces = [{
-"aabb": AABB(-0.258735, 0, -0.0816376, 0.517469, 1e-05, 4.8574),
-"attribute_data": PackedByteArray(255, 255, 0, 0, 0, 0, 255, 255, 0, 0, 0, 0, 255, 255, 255, 255),
+"aabb": AABB(-0.359894, 0, -0.0816376, 0.719788, 1e-05, 4.8574),
+"attribute_data": PackedByteArray("YpNv2xVu/v8Vbm/bYpP+/2KT37YVbt+2YpNQkhVuUJJik8FtFW7BbWKTMkkVbjJJYpOjJBVuoyRikxQAFW4UAA=="),
 "format": 34896613399,
-"index_count": 6,
-"index_data": PackedByteArray(0, 0, 1, 0, 2, 0, 0, 0, 3, 0, 1, 0),
-"material": SubResource("StandardMaterial3D_wkav4"),
+"index_count": 42,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAAAAIABAACAAUABgAEAAUABgAFAAcACAAGAAcACAAHAAkACgAIAAkACgAJAAsADAAKAAsADAALAA0ADgAMAA0ADgANAA8A"),
+"material": SubResource("StandardMaterial3D_lv8s0"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 4,
-"vertex_data": PackedByteArray(0, 0, 0, 0, 255, 255, 255, 255, 255, 255, 0, 0, 0, 0, 255, 255, 255, 255, 0, 0, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 255, 255, 255, 127, 255, 191, 255, 127, 255, 191, 255, 127, 255, 191, 255, 127, 255, 191)
+"vertex_count": 16,
+"vertex_data": PackedByteArray("AAAAAJIk/////wAAAAD/////AACSJP//AAAAAAAA//8AAAAAJEn/////AAAkSf//AAAAALZt/////wAAtm3//wAAAABIkv////8AAEiS//8AAAAA2rb/////AADatv//AAAAAGzb/////wAAbNv//wAAAAD///////8AAP//////f/+//3//v/9//7//f/+//3//v/9//7//f/+//3//v/9//7//f/+//3//v/9//7//f/+//3//v/9//7//f/+/")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_6wtwk")
 
 [node name="TongueGrabIndicator" type="Node3D"]
 
 [node name="TongueGrabIndicatorMesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00913103, 0, 1.74613)
-mesh = SubResource("ArrayMesh_v5p2e")
+material_override = ExtResource("1_uy0jn")
+mesh = SubResource("ArrayMesh_byfyw")
 skeleton = NodePath("")

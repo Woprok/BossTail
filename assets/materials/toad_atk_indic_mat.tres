@@ -1,0 +1,19 @@
+[gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://cio0utej2mgd4"]
+
+[ext_resource type="Shader" uid="uid://bt4qmiveh8efs" path="res://assets/shaders/toad_attack_indic_shader.tres" id="1_jvcel"]
+[ext_resource type="Texture2D" uid="uid://bnkmal4dhn0is" path="res://assets/textures/GroundSlamIndicBorderV2.png" id="2_gl6r8"]
+[ext_resource type="Texture2D" uid="uid://mvb5n2ad1wwv" path="res://assets/textures/seamless-noise.png" id="3_hfc3t"]
+[ext_resource type="Texture2D" uid="uid://d11x3x2pw7qra" path="res://assets/textures/seamless-voronoi.png" id="4_ayodc"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_jvcel")
+shader_parameter/BorderColor = Color(0.547275, 0, 0.129235, 1)
+shader_parameter/BorderDissolvePanSpeed = Vector2(0, 0.1)
+shader_parameter/NoiseTexture = ExtResource("3_hfc3t")
+shader_parameter/BorderMaskTexture = ExtResource("2_gl6r8")
+shader_parameter/ShapesColor = Color(0.144284, 0.0243984, 0.17656, 1)
+shader_parameter/EffectPanSpeed = Vector2(0, 0.2)
+shader_parameter/ShapesTexture = ExtResource("4_ayodc")
+shader_parameter/BorderOpacity = 0.6
+shader_parameter/ShapesOpacity = 0.4
