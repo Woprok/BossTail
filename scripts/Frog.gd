@@ -1,4 +1,5 @@
 extends CharacterBody3D
+class_name Frog
 
 @export var animationPlayer : AnimationPlayer
 @onready var animationTree : ToadAnimationController = $AnimationTree
@@ -120,6 +121,10 @@ var grab_len = 6.25*2
 @onready var flies = get_parent().get_node("flies")
 var Bubble = preload("res://scenes/Bubble.tscn")
 var WaterBubble = preload("res://scenes/WaterBubble.tscn")
+
+@export var swipe_indicator: PackedScene
+@export var grab_indicator: PackedScene
+@export var ground_slam_indicator: PackedScene
 
 func _ready() -> void:
 	boss_data.boss_restart()
@@ -300,6 +305,11 @@ func _physics_process(delta):
 					time_slam = 0
 					doing = true
 					animationTree.ground_slam_start(GROUND_SLAM_ANTIC_DUR)
+					
+					var indicCtrlr = instantiate_indicator_object(ground_slam_indicator)
+					indicCtrlr.appear(GROUND_SLAM_ANTIC_DUR * 0.75)
+					get_tree().create_tween().tween_callback(indicCtrlr.fade.bind(0.5)).set_delay(GROUND_SLAM_ANTIC_DUR)
+					
 					slam = true
 			else:
 				for s in get_parent().get_node("stonePlatforms").get_children():
@@ -350,6 +360,10 @@ func tongue_swipe():
 	grab = false
 	look_at(Vector3(player.position.x,position.y,player.position.z))
 	animationTree.swipe_start(TONGUE_SWIPE_ANTIC_DUR)
+	
+	var indicCtrlr = instantiate_indicator_object(swipe_indicator)
+	indicCtrlr.appear(TONGUE_SWIPE_ANTIC_DUR * 0.75)
+	get_tree().create_tween().tween_callback(indicCtrlr.fade.bind(0.5)).set_delay(TONGUE_SWIPE_ANTIC_DUR)
 	extended = true
 	#var tween = get_tree().create_tween()
 	#tween.tween_property(self,"rotation",self.rotation+Vector3(0,6.2,0),0.5)
@@ -411,6 +425,11 @@ func extend():
 	if extended:
 		return
 	animationTree.tongue_grab_start(TONGUE_GRAB_ANTIC_DUR)
+	
+	var indicCtrlr = instantiate_indicator_object(grab_indicator)
+	indicCtrlr.appear(TONGUE_GRAB_ANTIC_DUR * 0.75)
+	get_tree().create_tween().tween_callback(indicCtrlr.fade.bind(0.5)).set_delay(TONGUE_GRAB_ANTIC_DUR)
+	
 	time_of_extend = 0
 	tongueHit = 0
 	return
@@ -610,3 +629,12 @@ func _on_body_entered(body):
 	if body.is_in_group("boulder") and boulderHit>5 and swimming:
 		boulderHit = 0
 		hit(body)
+
+func instantiate_indicator_object(indicatorScene: PackedScene) -> ToadAtkIndicatorVFXController:
+	var indicRoot: ToadAtkIndicatorVFXController = indicatorScene.instantiate()
+	self.add_child(indicRoot)
+	indicRoot.global_position = self.global_position + Vector3(0, 0.1, 0)
+	indicRoot.global_rotation = self.global_rotation
+	
+	indicRoot.setup()
+	return indicRoot

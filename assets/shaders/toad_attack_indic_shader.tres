@@ -355,7 +355,7 @@ void fragment() {
 
 }
 "
-graph_offset = Vector2(-320.772, -5.33022)
+graph_offset = Vector2(-456.423, 23.3764)
 flags/unshaded = true
 preview_params/BorderMaskTexture = "Resource(\"res://assets/textures/GroundSlamIndicBorderV2.png\")"
 preview_params/NoiseTexture = "Resource(\"res://assets/textures/seamless-noise.png\")"
@@ -424,9 +424,9 @@ nodes/fragment/34/position = Vector2(-780, 280)
 nodes/fragment/36/node = SubResource("VisualShaderNodeFloatOp_fhjpq")
 nodes/fragment/36/position = Vector2(140, 760)
 nodes/fragment/37/node = SubResource("VisualShaderNodeSmoothStep_fhjpq")
-nodes/fragment/37/position = Vector2(-860, 620)
+nodes/fragment/37/position = Vector2(-840, 620)
 nodes/fragment/38/node = SubResource("VisualShaderNodeFloatFunc_ukulo")
-nodes/fragment/38/position = Vector2(-660, 820)
+nodes/fragment/38/position = Vector2(-640, 840)
 nodes/fragment/39/node = SubResource("VisualShaderNodeFloatOp_vttos")
 nodes/fragment/39/position = Vector2(-440, 1080)
 nodes/fragment/41/node = SubResource("VisualShaderNodeFloatOp_xqbin")

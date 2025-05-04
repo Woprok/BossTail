@@ -21,8 +21,11 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[node name="ToadAtkSwipeIndicator" type="Node3D"]
+[node name="ToadAtkSwipeIndicator" type="Node3D" node_paths=PackedStringArray("indicMesh")]
 script = ExtResource("1_b37q8")
+indicMesh = NodePath("SwipeIndicator/SwipeIndicatorMesh")
+startBorderOpacity = 0.6
+startShapesOpacity = 0.4
 
 [node name="SwipeIndicator" type="Node3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)

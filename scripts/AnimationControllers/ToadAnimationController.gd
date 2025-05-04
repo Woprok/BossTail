@@ -8,6 +8,8 @@ class_name ToadAnimationController
 @export var AnimSeqPrefixes: Dictionary[SEQ_ANIM, String] = {}
 @export var TongueNodes: Array[MeshInstance3D] = []
 
+var OnAttackStarted: Signal
+
 func _ready() -> void:
 	hide_tongue()
 	pass
@@ -123,9 +125,11 @@ func jump_end():
 func antic_end_subroutine():
 	set_sm_cond("anticEnd", true)
 	delayed_call(0.1, Callable(self, "set_sm_cond").bind("anticEnd", false))
+	OnAttackStarted.emit()
 
 func antic_set_dur_subroutine(duration: float):
 	delayed_call(duration, Callable(self, "set_sm_cond").bind("anticEnd", true))
+	delayed_call(duration, OnAttackStarted.emit)
 	delayed_call(duration + 0.1, Callable(self, "set_sm_cond").bind("anticEnd", false))
 
 func get_anim_seq_start_len(anim_type : SEQ_ANIM) -> float:

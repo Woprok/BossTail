@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=4 uid="uid://bu1jujqa8g7eb"]
+[gd_scene load_steps=5 format=4 uid="uid://bu1jujqa8g7eb"]
 
+[ext_resource type="Script" uid="uid://c3b7penlfb52b" path="res://scripts/VFX/ToadAtkIndicatorVFXController.gd" id="1_84msh"]
 [ext_resource type="Material" uid="uid://cio0utej2mgd4" path="res://assets/materials/toad_atk_indic_mat.tres" id="1_uy0jn"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lv8s0"]
@@ -20,9 +21,16 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[node name="TongueGrabIndicator" type="Node3D"]
+[node name="ToadAtkGrabIndicator" type="Node3D" node_paths=PackedStringArray("indicMesh")]
+script = ExtResource("1_84msh")
+indicMesh = NodePath("TongueGrabIndicator/TongueGrabIndicatorMesh")
+startBorderOpacity = 0.6
+startShapesOpacity = 0.4
 
-[node name="TongueGrabIndicatorMesh" type="MeshInstance3D" parent="."]
+[node name="TongueGrabIndicator" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="TongueGrabIndicatorMesh" type="MeshInstance3D" parent="TongueGrabIndicator"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00913103, 0, 1.74613)
 material_override = ExtResource("1_uy0jn")
 mesh = SubResource("ArrayMesh_byfyw")

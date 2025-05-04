@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=4 uid="uid://dr57smrnd47hf"]
+[gd_scene load_steps=5 format=4 uid="uid://dr57smrnd47hf"]
 
+[ext_resource type="Script" uid="uid://c3b7penlfb52b" path="res://scripts/VFX/ToadAtkIndicatorVFXController.gd" id="1_d0owa"]
 [ext_resource type="Material" uid="uid://cio0utej2mgd4" path="res://assets/materials/toad_atk_indic_mat.tres" id="1_mrnyl"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dgywm"]
@@ -20,9 +21,16 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[node name="GroundSlamIndicator" type="Node3D"]
+[node name="ToadAtkGroundSlamIndicator" type="Node3D" node_paths=PackedStringArray("indicMesh")]
+script = ExtResource("1_d0owa")
+indicMesh = NodePath("GroundSlamIndicator/GroundSlamIndicatorMesh")
+startBorderOpacity = 0.6
+startShapesOpacity = 0.4
 
-[node name="GroundSlamIndicatorMesh" type="MeshInstance3D" parent="."]
+[node name="GroundSlamIndicator" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="GroundSlamIndicatorMesh" type="MeshInstance3D" parent="GroundSlamIndicator"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.532925)
 material_override = ExtResource("1_mrnyl")
 mesh = SubResource("ArrayMesh_h4o33")
