@@ -5,4 +5,4 @@ resource_name = "GrassBladeMat"
 cull_mode = 2
 shading_mode = 0
 vertex_color_use_as_albedo = true
-albedo_color = Color(0.247058, 0.513726, 0.180392, 1)
+albedo_color = Color(0.298483, 0.462433, 0.174465, 1)

@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://kygcdj0xxkql"]
+
+[ext_resource type="Script" uid="uid://cd2ycapel0nho" path="res://scripts/Stone_platform.gd" id="1_md4mw"]
+[ext_resource type="PackedScene" uid="uid://blufwi85senv3" path="res://scenes/environment/Rock_1.tscn" id="3_36o60"]
+[ext_resource type="PackedScene" uid="uid://cgydlwevhkirk" path="res://scenes/Boulder.tscn" id="3_b01aw"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_36o60"]
+points = PackedVector3Array(2.1079, -2.0196, 0, 2.43944, 0.269109, 0, 1.54701, 1.9111, 0, -0.416999, 3.7036, 0, -3.39481, 5.26109, 0, -5.21119, 4.39765, 0, -7.57402, 1.65092, 0, -8.04113, -0.858136, 0, -7.36764, -2.1519, 0, -6.05202, -2.55537, 0, -2.41923, -2.55371, 0, 0.244961, -2.74471, 0, 2.108, -2.02, 2.419, 2.439, 0.269, 2.5, 1.547, 1.911, 2.5, -0.417, 3.704, 2.5, -3.395, 5.261, 2.5, -5.211, 4.398, 2.5, -7.574, 1.651, 2.5, -8.041, -0.858, 2.5, -7.368, -2.152, 2.5, -6.052, -2.555, 2.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_md4mw"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0)
+
+[node name="Node3D" type="Area3D" groups=["stone_platform"]]
+script = ExtResource("1_md4mw")
+
+[node name="Rock_1" parent="." groups=["stone_platform"] instance=ExtResource("3_36o60")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -1.53663, -1.8901, -0.530566)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." groups=["stone_platform"]]
+transform = Transform3D(1.9, 0, 0, 0, -8.30516e-08, -1.9, 0, 1.9, -8.30516e-08, 6.34664, 0.543049, -1.55234)
+shape = SubResource("ConvexPolygonShape3D_36o60")
+
+[node name="boulders" type="Node3D" parent="."]
+
+[node name="boulder1" parent="boulders" instance=ExtResource("3_b01aw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, -4, -3)
+visible = false
+
+[node name="boulder2" parent="boulders" instance=ExtResource("3_b01aw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -4, 4)
+visible = false
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="." groups=["stone_platform"]]
+transform = Transform3D(1.9, 0, 0, 0, -8.30516e-08, -1.9, 0, 1.9, -8.30516e-08, 6.42911, -4.82471, -1.31329)
+use_collision = true
+polygon = PackedVector2Array(2.1079, -2.0196, 2.43944, 0.269109, 1.54701, 1.9111, -0.416999, 3.7036, -3.39481, 5.26109, -5.21119, 4.39765, -7.57402, 1.65092, -8.04113, -0.858136, -7.36764, -2.1519, -6.05202, -2.55537, -2.41923, -2.55371, 0.244961, -2.74471)
+depth = 3.0
+material = SubResource("StandardMaterial3D_md4mw")

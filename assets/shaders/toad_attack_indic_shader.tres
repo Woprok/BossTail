@@ -355,7 +355,6 @@ void fragment() {
 
 }
 "
-graph_offset = Vector2(-456.423, 23.3764)
 flags/unshaded = true
 preview_params/BorderMaskTexture = "Resource(\"res://assets/textures/GroundSlamIndicBorderV2.png\")"
 preview_params/NoiseTexture = "Resource(\"res://assets/textures/seamless-noise.png\")"
