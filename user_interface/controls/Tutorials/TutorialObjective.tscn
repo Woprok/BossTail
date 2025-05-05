@@ -5,7 +5,7 @@
 [ext_resource type="Theme" uid="uid://d2mah8qfufk0b" path="res://user_interface/assets/UIMenuTheme.tres" id="2_uwy78"]
 
 [node name="TutorialObjective" type="Panel"]
-custom_minimum_size = Vector2(600, 50)
+custom_minimum_size = Vector2(400, 50)
 theme_override_styles/panel = ExtResource("1_8084t")
 script = ExtResource("1_pm7eg")
 
@@ -19,6 +19,6 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_uwy78")
 theme_override_font_sizes/font_size = 30
-text = "HELP OBJECTIVE IS THIS LONG AND FINE"
+text = "HELP OBJECTIVE IS LONGER"
 horizontal_alignment = 1
 vertical_alignment = 1

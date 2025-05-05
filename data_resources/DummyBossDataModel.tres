@@ -5,34 +5,42 @@
 [resource]
 script = ExtResource("1_ovmjt")
 TutorialPhases = 0
-Objectives = Dictionary[int, String]({
-0: "Get to the Dummy",
-1: "Traverse the arena",
-2: "Pass through small dummy",
-3: "Beat the dummy"
-})
 Names = Dictionary[int, String]({
 0: "Peaceful Dummy",
 1: "Sharing Dummy",
 2: "Small Dummy",
 3: "Angry Dummy"
 })
+Objectives = Dictionary[int, String]({
+0: "Find & Reach Dummy",
+1: "Cross the Arena",
+2: "Destroy Small Dummy",
+3: "Defeat Angry Dummy"
+})
+ObjectiveFlavors = Dictionary[int, String]({
+0: "\"It’s just across the arena.\"",
+1: "\"The floor’s safe — the rest, maybe not.\"",
+2: "\"Small, but that box gives it an edge.\"",
+3: "\"Whirlwinds, slashes, and flying boxes — brace yourself.\""
+})
 ControlHintTitles = Dictionary[int, String]({
 0: "Movement & Camera",
 1: "Jump & Dash",
 2: "Throw & Slash",
-3: "BOSS"
+3: "Boss Fight"
 })
 ControlHints = Dictionary[int, String]({
-0: "You can move (TODO_MOVE WASD) and control camera (TODO_CAMERA Q/E or Mouse).",
-1: "Abilities are shown down here.
-Jump over obstacles with (TODO_JUMP SPACE).
-Dash to gain forward movement boost with (TODO_DASH SHIFT).",
-2: "You can throw small objects, such as rock.
- Start AIM with (TODO_AIM RMB) and THROW (TODO_STAB LMB).",
-3: "Bosses will hit you back.
-Use everything you have and see to beat them.
-"
+0: "Use (TODO_MOVE WASD) to move, and (TODO_CAMERA_KEYS Q/E or TODO_CAMERA_MOUSE) to look around.",
+1: "Jump with (TODO_JUMP SPACE). Hold to jump higher.
+Dash with (TODO_DASH SHIFT) to clear gaps or dodge.
+The current state of all abilities is shown in the bottom-right corner (Stab, Throw, Dash, Jump).",
+2: "You can’t reach a spinning dummy up close — throw small objects, like rocks.
+Aim with (TODO_AIM RMB), throw with (TODO_STAB LMB).
+Break the box with a precise throw.
+Finish the dummy with a stab (TODO_STAB LMB).",
+3: "The boss combines everything you’ve learned.
+Stop its whirlwind by hitting the box.
+Watch out for its box barrage and great slash."
 })
 boss_current_health = 100
 boss_min_health = 0

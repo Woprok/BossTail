@@ -275,7 +275,6 @@ func _on_standing(area):
 		get_parent().respawn_player()
 	if area.is_in_group("part2"):
 		part = 3
-		GameEvents.tutorial_phase.emit(2)
 		
 		
 func _on_leaving(area):

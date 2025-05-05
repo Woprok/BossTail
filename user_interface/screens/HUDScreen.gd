@@ -28,7 +28,6 @@ func _on_boss_data_changed(new_data: BossDataModel):
 	
 func _toggle_tutorial(new_visibility: bool) -> void:
 	%TutorialObjectiveWrapper.visible = new_visibility
-	%TutorialHintWrapper.visible = new_visibility
 	# toggle on true needs to always update tutorial
 	if new_visibility:
 		_attach_tutorial()
@@ -43,7 +42,7 @@ func _deattach_tutorial() -> void:
 		GameEvents.tutorial_phase.disconnect(_update_tutorial)
 	
 func _update_tutorial(phase: int) -> void:
-	%TutorialObjective.SetObjective(boss_data.Objectives.get(phase))
+	%TutorialHint.SetObjective(boss_data.Objectives.get(phase), boss_data.ObjectiveFlavors.get(phase))
 	%TutorialHint.SetHint(boss_data.ControlHintTitles.get(phase), boss_data.ControlHints.get(phase))
 	%BossHealthBar.SetName(boss_data.Names.get(phase))
 	

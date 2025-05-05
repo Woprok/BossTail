@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dlgjnby6p27p1"]
+[gd_scene load_steps=24 format=3 uid="uid://dlgjnby6p27p1"]
 
 [ext_resource type="PackedScene" uid="uid://cs51pokcyuwhd" path="res://scenes/characters/Mouseketeer.tscn" id="1_atg64"]
 [ext_resource type="Script" uid="uid://dw74qj554c1ac" path="res://scripts/TutorialScene.gd" id="1_ch07a"]
@@ -29,6 +29,9 @@ tonemap_mode = 2
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1wo6d"]
 size = Vector3(1.5, 10, 18)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xcboo"]
+size = Vector3(20, 15, 20)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8u2v2"]
 albedo_color = Color(0, 0, 0, 1)
@@ -2730,6 +2733,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.98224, 0, -40.6566)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="arena/Area3D"]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 6.18988, -2.97479, -2.56736)
 shape = SubResource("BoxShape3D_1wo6d")
+debug_color = Color(1, 0, 0, 1)
+
+[node name="Phase2Tutorial" type="Area3D" parent="arena"]
+transform = Transform3D(1, 1.36424e-12, 0, -5.45697e-12, 1, -5.00222e-12, 0, 5.91172e-12, 1, -16.8557, -7.76052e-05, -28.7816)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="arena/Phase2Tutorial"]
+transform = Transform3D(0.709509, -0.000115104, -0.704696, 7.69232e-05, 1, -8.58905e-05, 0.704696, 6.73264e-06, 0.709509, 1.70601, -2.97497, -0.918213)
+shape = SubResource("BoxShape3D_xcboo")
+debug_color = Color(1, 0, 0, 1)
 
 [node name="walls" type="CSGCombiner3D" parent="."]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 100, 0)
@@ -7630,4 +7642,5 @@ libraries = {
 }
 
 [connection signal="body_entered" from="arena/Area3D" to="." method="_on_last_part_entered"]
+[connection signal="body_entered" from="arena/Phase2Tutorial" to="." method="_on_phase_2_tutorial_body_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_finished"]

@@ -4,38 +4,55 @@
 [ext_resource type="StyleBox" uid="uid://cwi3586klkctu" path="res://user_interface/controls/Tutorials/TutorialStyleBox.tres" id="1_hafd2"]
 [ext_resource type="Theme" uid="uid://d2mah8qfufk0b" path="res://user_interface/assets/UIMenuTheme.tres" id="3_lhk0g"]
 
-[node name="TutorialHint" type="Panel"]
-custom_minimum_size = Vector2(400, 150)
-offset_right = 400.0
-offset_bottom = 150.0
+[node name="TutorialHint" type="PanelContainer"]
+custom_minimum_size = Vector2(400, 0)
+offset_right = 399.0
+offset_bottom = 188.0
 size_flags_vertical = 3
 theme_override_styles/panel = ExtResource("1_hafd2")
 script = ExtResource("1_6cg5n")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-custom_minimum_size = Vector2(400, 150)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_bottom = 108.0
-grow_horizontal = 2
-grow_vertical = 2
+custom_minimum_size = Vector2(395, 0)
+layout_mode = 2
+size_flags_vertical = 3
 
-[node name="HintLabel" type="Label" parent="VBoxContainer"]
+[node name="ObjectiveLabel" type="Label" parent="VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("3_lhk0g")
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 30
+text = "HELP OBJECTIVE IS LONGER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ObjectiveFlavor" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(390, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 20
+text = "VERY SHORT, SINGLE LINE"
+horizontal_alignment = 2
+autowrap_mode = 3
+
+[node name="HintLabel" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(390, 0)
+layout_mode = 2
+theme = ExtResource("3_lhk0g")
+theme_override_font_sizes/font_size = 20
 text = "HELP OBJECTIVE IS THIS LONG AND FINE"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HintDescription" type="Label" parent="VBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(400, 0)
+custom_minimum_size = Vector2(390, 0)
 layout_mode = 2
-size_flags_vertical = 2
-theme_override_font_sizes/font_size = 16
-text = "HELP OBJECTIVE IS THIS LONG AND FINE HELP OBJECTIVE IS THIS LONG AND FINE HAAAAAAA HAAAAAAA HAAAAAAA HAAAAAAAAAAAA HELP OBJECTIVE IS THIS LONG AND FINE HELP OBJECTIVE IS THIS LONG AND FINE HAAAAAAA HAAAAAAA HAAAAAAA HAAAAAAAAAAAA HELP OBJECTIVE IS THIS LONG AND FINE HELP OBJECTIVE IS THIS LONG AND FINE HAAAAAAA HAAAAAAA HAAAAAAA HAAAAAAAAAAAA"
+size_flags_horizontal = 4
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 20
+text = "HELP OBJECTIVE IS THIS LONG AND FINE HELP OBJECTIVE IS THIS LONG AND FINE HAAAAAAA HAAAAAAA HAAAAAAA HAAAAAAAAAAAA HE HELP BUT THIS IS ALWAYS NEEDED TO BE LARGER"
 autowrap_mode = 3

@@ -25,6 +25,7 @@ func hit(_health):
 
 func death():
 	get_parent().get_node("AnimationPlayer").play("last_wall")
+	GameEvents.tutorial_phase.emit(3)
 	queue_free()
 	
 func whirlwind():

@@ -78,5 +78,8 @@ func _on_animation_finished(anim_name):
 func _on_last_part_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):
 		$Player.part = 4
-		GameEvents.tutorial_phase.emit(3)
 		$Enemy.active = true
+
+
+func _on_phase_2_tutorial_body_entered(body: Node3D) -> void:
+	GameEvents.tutorial_phase.emit(2)
