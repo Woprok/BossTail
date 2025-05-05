@@ -190,18 +190,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, 2)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, -2)
 
 [node name="largeLily" parent="lilyPlatforms" node_paths=PackedStringArray("neighbors") groups=["big_lily"] instance=ExtResource("4_hj8bh")]
-transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 25, -1.24654, -25)
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 25, -0.0888251, -25)
 neighbors = [NodePath("../../shards/shard1"), NodePath("../../shards/shard2"), NodePath("../../shards/shard3"), NodePath("../../shards/shard4")]
 radius = 14
 
 [node name="grass1" parent="lilyPlatforms/largeLily" instance=ExtResource("7_0b6fy")]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 2.4, 0.53335, -1.66422)
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 2.4, 0.18855, -1.66422)
 
 [node name="grass2" parent="lilyPlatforms/largeLily" instance=ExtResource("7_0b6fy")]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -0.799999, 0.53335, -3.26422)
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -0.996532, 0.112305, -2.57516)
 
 [node name="reed1" parent="lilyPlatforms/largeLily" instance=ExtResource("8_i4gxl")]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.587, 0.533, -2.257)
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.587001, 0.105021, -2.257)
 
 [node name="stonePlatforms" type="Node3D" parent="."]
 

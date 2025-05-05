@@ -53,10 +53,11 @@ func _physics_process(delta):
 	lastHit += delta
 	if position.y<-3 or (is_on_floor() and position.y<-0.6):
 		respawn()
-		
 	if grabbed:
 		velocity.y += 2.5*-9*delta
 		var collision = move_and_collide(2.5*velocity*delta)
+		if velocity.y<0 and position.y<3:
+			grabbed = false
 		return
 	
 	last_shot += delta

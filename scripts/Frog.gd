@@ -14,7 +14,7 @@ class_name Frog
 @export var GRAB_HP = 25
 
 var gravity:int = -10
-var HEIGHT_OF_ARC:float = 4.5
+var HEIGHT_OF_ARC:float = 5
 
 # actual time of ability
 var time_of_extend = 0
@@ -185,9 +185,9 @@ func _physics_process(delta):
 					var point = find_point_on_platform(platform.position,player.position,grab_len)
 					if point!=null:
 						jump_direction(point)
-					doing = true
-					grab_target=player
-					grab = true
+						doing = true
+						grab_target=player
+						grab = true
 			if boss_data.get_current_health() <= GRAB_HP and time_grab >= GRAB_TIME and not doing and platform!=player.platform and player.platform.is_in_group("stone_platform"):
 				time_bubble = 0
 				time_swipe = 0
@@ -399,8 +399,8 @@ func ground_slam():
 		newShards.get_node("AnimationPlayer").play("break")
 	
 func find_point_on_platform(platform_position, player_position, distance):
-	var platform_top_left = Vector3(platform_position.x - 14 / 2, platform_position.y, platform.position.z - 14 / 2)
-	var platform_bottom_right =  Vector3(platform_position.x + 14 / 2, platform_position.y, platform.position.z + 14 / 2)
+	var platform_top_left = Vector3(platform_position.x - 13 / 2, platform_position.y, platform.position.z - 13 / 2)
+	var platform_bottom_right =  Vector3(platform_position.x + 13 / 2, platform_position.y, platform.position.z + 13 / 2)
 	for x in range(int(platform_top_left.x), int(platform_bottom_right.x)):
 		for z in range(int(platform_top_left.z), int(platform_bottom_right.z)):
 			var point = Vector3(x, player.position.y, z)
@@ -537,7 +537,7 @@ func _on_ground_entered(area):
 			else:
 				var sign1 = 1 if randi() % 2 == 0 else -1
 				var sign2 = 1 if randi() % 2 == 0 else -1
-				area.get_node("boulders/boulder2").linear_velocity = Vector3(sign1*10,10,sign2*10)
+				area.get_node("boulders/boulder2").linear_velocity = Vector3(sign1*30,20,sign2*30)
 		if platform!=null and platform.is_in_group("stone_platform"):
 			prev_platform = platform
 		platform = area
@@ -584,21 +584,21 @@ func _on_animation_finished(anim_name):
 		extended = false
 		doing = false
 		$tongue/CollisionShape3D.disabled = true
-		$tongueShape.disabled = true
+		#$tongueShape.disabled = true
 		grab = false
 	if anim_name == "G_03-tongue_grab-start":
 		extended = true
 		$tongue/CollisionShape3D.disabled = false
-		$tongueShape.disabled = false
+		#$tongueShape.disabled = false
 	if anim_name == "G_05-swipe-start":
 		extended = false
 		doing = false
 		$tongue/CollisionShape3D.disabled = false
-		$tongueShape.disabled = false
+		#$tongueShape.disabled = false
 		animationTree.swipe_end()
 	if anim_name == "G_05-swipe-end":
 		$tongue/CollisionShape3D.disabled = true
-		$tongueShape.disabled = true
+		#$tongueShape.disabled = true
 		swipe = false
 		time_swipe = 0
 	if anim_name == "G_02-jump-end":

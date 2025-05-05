@@ -13,7 +13,6 @@ height = 1.4
 radius = 8.5
 
 [node name="Node3D" type="Area3D" groups=["stone_platform"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.39432, 0)
 script = ExtResource("1_3gn8n")
 
 [node name="platform" type="CSGCylinder3D" parent="." groups=["stone_platform"]]

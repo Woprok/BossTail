@@ -7599,39 +7599,30 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -59.602, 3.25916, -4.21918)
 
 [node name="TutorialRock" parent="obstacles/pebbles" instance=ExtResource("8_rtu3h")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 1, 0, 1)
-respawn_immediately = true
 
 [node name="TutorialRock2" parent="obstacles/pebbles" instance=ExtResource("8_rtu3h")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0.576653, 0, 0.89389)
-respawn_immediately = true
 
 [node name="TutorialRock3" parent="obstacles/pebbles" instance=ExtResource("8_rtu3h")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0.520489, 0, 0.455284)
-respawn_immediately = true
 
 [node name="TutorialRock4" parent="obstacles/pebbles" instance=ExtResource("8_rtu3h")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0.97979, 0, 0.536194)
-respawn_immediately = true
 
 [node name="TutorialRock5" parent="obstacles/pebbles" instance=ExtResource("8_rtu3h")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0.748161, 0, 0.0540695)
-respawn_immediately = true
 
 [node name="TutorialRock6" parent="obstacles/pebbles" instance=ExtResource("8_rtu3h")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0.284073, 0, 0.0731888)
-respawn_immediately = true
 
 [node name="TutorialRock7" parent="obstacles/pebbles" instance=ExtResource("8_rtu3h")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -0.010685, 0, 0.424767)
-respawn_immediately = true
 
 [node name="TutorialRock8" parent="obstacles/pebbles" instance=ExtResource("8_rtu3h")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0.0460052, 0, 0.932816)
-respawn_immediately = true
 
 [node name="TutorialRock9" parent="obstacles/pebbles" instance=ExtResource("8_rtu3h")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 1.27402, 0, 0.115181)
-respawn_immediately = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
