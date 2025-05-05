@@ -154,6 +154,7 @@ func _physics_process(delta):
 	
 	if is_on_floor():
 		jump = false
+		target_velocity.y = 0
 		
 	# skok
 	if direction.y>0 and jump==false:

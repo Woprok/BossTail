@@ -6,16 +6,18 @@ var doing = false
 var last_cd_change = 0
 var num_of_volley = 1
 var actual_volley = 1
-var BOXES_IN_VOLLEY=4
+@export_group("Attack params")
+@export var BOXES_IN_VOLLEY=4
 
-var WHIRLWIND_TIME_MAX = 9
-var WHIRLWIND_TIME_MIN = 3
+@export var WHIRLWIND_STRENGTH = 15
+@export var WHIRLWIND_TIME_MAX = 9
+@export var WHIRLWIND_TIME_MIN = 3
 var WHIRLWIND_TIME = 0
-var SLASH_TIME_MAX = 10
-var SLASH_TIME_MIN = 2
+@export var SLASH_TIME_MAX = 10
+@export var SLASH_TIME_MIN = 2
 var SLASH_TIME = 0
-var BARRAGE_TIME_MAX = 10 
-var BARRAGE_TIME_MIN = 5
+@export var BARRAGE_TIME_MAX = 10 
+@export var BARRAGE_TIME_MIN = 5
 var BARRAGE_TIME = 0
 var VOLLEY_TIME = 1
 var whirlwind_time = 0
@@ -40,6 +42,12 @@ func _ready() -> void:
 func _physics_process(delta):
 	if not active:
 		return
+	
+	if stopped:
+		$Area3D/CollisionShape3D.disabled = true
+	else:
+		$Area3D/CollisionShape3D.disabled = false	
+	
 	if not stopped:
 		doing = true
 		rotate_y(delta*20)
@@ -75,8 +83,11 @@ func _physics_process(delta):
 		throw()
 
 func hit(hp):
-	if stopped==false:
+	if stopped==false or (boss_data.get_current_health()==100 and position.distance_to(get_parent().get_node("Player").position)>33):
 		return
+	if boss_data.get_current_health()==100:
+		get_parent().get_node("AnimationPlayer").play_backwards("last_wall")
+
 	boss_data.boss_decrease_health(hp)
 	last_cd_change += hp
 	last_whirlwind += hp
@@ -104,7 +115,7 @@ func whirlwind():
 
 func push():
 	var player = get_parent().get_node("Player")
-	player.velocity=(player.global_position-global_position).normalized()*25
+	player.velocity=(player.global_position-global_position).normalized()*35
 	player.velocity.y = 0
 	player.pushed = true
 
@@ -129,7 +140,7 @@ func throw():
 
 func _on_body_entered(body):
 	if not stopped and body.is_in_group("player") and body.pushed == false:
-		body.velocity=(body.global_position-global_position).normalized()*12
+		body.velocity=(body.global_position-global_position).normalized()*WHIRLWIND_STRENGTH
 		body.velocity.y = 0
 		body.pushed = true
 

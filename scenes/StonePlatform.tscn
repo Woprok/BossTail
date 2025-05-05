@@ -19,12 +19,12 @@ script = ExtResource("1_3gn8n")
 [node name="platform" type="CSGCylinder3D" parent="." groups=["stone_platform"]]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -0.75, 0.237)
 use_collision = true
-radius = 4.3
+radius = 4.1
 height = 1.5
 material = SubResource("StandardMaterial3D_dbnof")
 
 [node name="Rock_3" parent="platform" instance=ExtResource("3_qqd3n")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.062067, -1.35702, -0.025271)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00585941, -1.35702, -0.234816)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0383453, 0.207271, 0.2288)

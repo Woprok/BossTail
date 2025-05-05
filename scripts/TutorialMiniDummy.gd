@@ -1,32 +1,41 @@
 extends CharacterBody3D
 var stopped = false
-@export var RESPAWN_TIME = 3
-var stop_time = 0
+@export var BOX_RESPAWN_TIME = 3
+@export var WHIRLWIND_STRENGTH = 15
+var stop_time = 10
 
 func _ready() -> void:
 	whirlwind()
 
 func _physics_process(delta):
 	stop_time += delta
-	if stop_time>=RESPAWN_TIME:
+	if stopped and stop_time>=BOX_RESPAWN_TIME:
 		stopped = false
+		whirlwind()
 	if stopped:
+		$Area3D/CollisionShape3D.disabled = true
 		return
+	$Area3D/CollisionShape3D.disabled = false
 	rotate_y(delta*20)
-
 
 func hit(_health):
 	stopped = true
 	stop_time = 0
 
+
+func death():
+	get_parent().get_node("AnimationPlayer").play("last_wall")
+	queue_free()
+	
 func whirlwind():
 	$AnimationPlayer.play("whirlwind_start",2)
 	
 
 func _on_body_entered(body):
 	if not stopped and body.is_in_group("player") and body.pushed == false:
-		body.velocity=(body.global_position-global_position).normalized()*13
-		body.velocity.y = 0
+		var vel = (body.global_position-global_position).normalized()*WHIRLWIND_STRENGTH
+		vel.y = 0
+		body.velocity = vel
 		body.pushed = true
 
 

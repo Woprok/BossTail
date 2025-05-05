@@ -23,7 +23,7 @@ var lastHit = 100
 
 var time:float = 0
 var target_velocity:Vector3 = Vector3.ZERO
-var mouse_sensitivity:float = 0.008
+var mouse_sensitivity:float = MOUSE_SENS
 var melee:bool = false
 var fighting:bool = false
 var jump:bool = false
@@ -55,6 +55,7 @@ func _physics_process(delta):
 		rotate_y(0.05)
 	
 	if pushed:
+		velocity.y = 0
 		time_of_push += delta
 		if time_of_push >= 1:
 			time_of_push = 0
@@ -104,6 +105,7 @@ func _physics_process(delta):
 			if is_on_floor() and direction.y!=0:
 				$AnimationTree.jump_descending()
 			elif is_on_floor():
+				direction.y = 0
 				$AnimationTree.run()
 			else:
 				$AnimationTree.jump_descending()
@@ -112,6 +114,7 @@ func _physics_process(delta):
 		player_data.change_ranged_indicator(true)
 	else:
 		player_data.change_ranged_indicator(false)
+	
 	if Input.is_action_pressed("fight"):
 		if not aiming:
 			$melee/target.disabled = false
@@ -121,6 +124,7 @@ func _physics_process(delta):
 		elif last_shot>0.5:
 			shoot()
 			last_shot = 0
+			
 	elif Input.is_action_just_pressed("aim"):
 		player_data.change_melee_indicator(false)
 		player_data.change_ranged_indicator(true)
@@ -130,6 +134,7 @@ func _physics_process(delta):
 		$CameraPivot/zoom.speed_scale = 3
 		Camera.get_node("target").show()
 		$CameraPivot/zoom.play("zoom")
+		
 	elif Input.is_action_just_released("aim"):
 		player_data.change_melee_indicator(true)
 		player_data.change_ranged_indicator(false)	
@@ -149,6 +154,7 @@ func _physics_process(delta):
 	
 	if is_on_floor():
 		jump = false
+		target_velocity.y = 0
 		
 	# skok
 	if direction.y>0 and jump==false:
@@ -182,7 +188,6 @@ func hit(health):
 		respawn()
 		player_data.player_restart()
 
-# strelba dle typu zbrane
 func shoot():
 	var p
 	if pebble_count == 0:
@@ -231,6 +236,7 @@ func _on_animation_finished(anim_name):
 		fighting=false
 		player_data.change_melee_indicator(true)
 
+
 # melee
 func _on_area_entered(area):
 	if area.get_parent().is_in_group("enemy") and not melee:
@@ -249,22 +255,28 @@ func _on_next_dash_timer_timeout():
 	player_data.change_dash_indicator(true)	
 	$next_dash_timer.stop()
 
+
 func _on_melee_body_entered(body):
-	if body.is_in_group("enemy"):
+	if body.is_in_group("mini_dummy"):
+		body.death()
+	elif body.is_in_group("enemy"):
 		body.hit(10)
+
 
 func _on_pickup_entered(body):
 	if body.is_in_group("pebble") and pebble_count<AMMO_CAPACITY:
 		pebble_count += 1
 		body.queue_free()
 
+
 func _on_standing(area):
 	if area.is_in_group("spike"):
 		hit(20)
 		get_parent().respawn_player()
 	if area.is_in_group("part2"):
-		part = 3		
+		part = 3
 		GameEvents.tutorial_phase.emit(2)
+		
 		
 func _on_leaving(area):
 	pass

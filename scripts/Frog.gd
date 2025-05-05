@@ -41,7 +41,7 @@ var time_eat = 0
 @export var SPIT_WOO_DUR = 0
 @export var BUBBLE_WOO_DUR = 0
 
-@export_group("")
+@export_group("Attack params")
 # time of extension of tongue 
 @export var TONGUE_EXTEND_TIME = 3
 # time between two swipes, player and enemy on same platform

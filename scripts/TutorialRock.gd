@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 var speed:int = 2
 var gravity:int = -10
-var HEIGHT_OF_ARC:float = 2
+var HEIGHT_OF_ARC:float = 1.8
 
 func _physics_process(delta):
 	velocity.y += speed*gravity*delta

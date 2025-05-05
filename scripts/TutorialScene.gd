@@ -51,6 +51,8 @@ func _process(delta):
 		boulder2.position = boulders_variant[variant][1]
 		boulder3.position = boulders_variant[variant][2]
 		boulder4.position = boulders_variant[variant][3]
+	if $obstacles/pebbles.get_child_count()<10:
+		addRock($obstacles/pebbles.position)
 
 func respawn_player():
 	$Player.respawn()
@@ -63,6 +65,7 @@ func addRock(target_position:Vector3):
 		$obstacles/pebbles.remove_child(to_remove)
 		to_remove.queue_free()
 	rock.global_position = target_position
+
 
 func _on_animation_finished(anim_name):
 	if anim_name=="walls":
@@ -77,5 +80,3 @@ func _on_last_part_entered(body: Node3D) -> void:
 		$Player.part = 4
 		GameEvents.tutorial_phase.emit(3)
 		$Enemy.active = true
-		$walls2.show()
-		$AnimationPlayer.play("last_wall")
