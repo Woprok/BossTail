@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dx5p1m6m74i6b"]
+
+[ext_resource type="Shader" uid="uid://b6qarj3xlu85r" path="res://shaders/unlit_texture_color_overlay.tres" id="1_ubbw7"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_ubbw7")
+shader_parameter/OverlayColor = Color(1, 1, 1, 1)
+shader_parameter/BlendWeight = 0.0

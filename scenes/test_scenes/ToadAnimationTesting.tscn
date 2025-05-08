@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dkj8c3e3jxv0y"]
+[gd_scene load_steps=7 format=3 uid="uid://dkj8c3e3jxv0y"]
 
 [ext_resource type="Script" uid="uid://105qvuh2b74w" path="res://scripts/AnimationControllers/ToadControllerTests.gd" id="1_fyick"]
 [ext_resource type="PackedScene" uid="uid://m3d44565ohak" path="res://scenes/characters/ToadBoss.tscn" id="2_tbdu8"]
+[ext_resource type="PackedScene" uid="uid://dlrb2m6f8fadf" path="res://scenes/other/vfx/ImpactVFX.tscn" id="3_m5eqx"]
 [ext_resource type="PackedScene" uid="uid://dlrq4knk1gqi7" path="res://scenes/StonePlatform.tscn" id="3_tbdu8"]
 [ext_resource type="PackedScene" uid="uid://ipqvbwkp71ku" path="res://scenes/other/attack_indicators/SwipeIndicator.tscn" id="4_ib4g6"]
 
@@ -10,35 +11,42 @@ size = Vector3(8.0896, 0.509644, 11.9229)
 
 [node name="ToadAnimationTesting" type="Node3D"]
 
-[node name="ControllerTests" type="Node3D" parent="." node_paths=PackedStringArray("toad_controller", "toad")]
+[node name="ControllerTests" type="Node3D" parent="." node_paths=PackedStringArray("toad_controller", "toad", "hitVFX", "impactPos")]
 script = ExtResource("1_fyick")
 toad_controller = NodePath("../ToadBoss/AnimationTree")
 swipeIndicScene = ExtResource("4_ib4g6")
 toad = NodePath("../ToadBoss")
+hitVFX = NodePath("../ToadBoss/ToadHitVFX")
+impactVFX = ExtResource("3_m5eqx")
+impactPos = NodePath("../testVFXPos")
 
 [node name="ToadBoss" parent="." instance=ExtResource("2_tbdu8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.225623, 0.241673, 0.579742)
 
 [node name="Skeleton3D" parent="ToadBoss/Char_ToadBoss/rig_deform" index="0"]
-bones/10/rotation = Quaternion(0.0636803, 4.76563e-14, 1.5183e-08, 0.99797)
-bones/11/rotation = Quaternion(-0.00941569, 4.40342e-13, -2.24499e-09, 0.999956)
-bones/12/rotation = Quaternion(-0.0708157, 1.34704e-11, -1.68851e-08, 0.99749)
-bones/14/rotation = Quaternion(-0.545229, -0.350389, -0.380138, 0.659885)
-bones/16/rotation = Quaternion(0.605644, -0.291492, 0.253797, 0.695568)
-bones/18/rotation = Quaternion(0.182448, -0.2215, -0.314274, 0.904921)
-bones/28/rotation = Quaternion(-0.559661, 0.346016, 0.262765, 0.705696)
-bones/30/rotation = Quaternion(0.562031, 0.289145, -0.218571, 0.743467)
-bones/32/rotation = Quaternion(0.182286, 0.24108, 0.258193, 0.917599)
-bones/41/rotation = Quaternion(0.145204, 7.09412e-11, 3.41282e-08, 0.989402)
-bones/51/position = Vector3(-1.84121e-08, 0.202102, 0.188509)
-bones/51/rotation = Quaternion(-0.117769, 7.48269e-07, -1.30814e-07, 0.993041)
-bones/52/position = Vector3(9.3563e-09, 0.453123, 0.0911907)
-bones/52/rotation = Quaternion(-0.277042, 3.8408e-07, -1.77244e-07, 0.960858)
-bones/53/position = Vector3(1.53288e-08, 0.350632, 0.0275604)
-bones/53/rotation = Quaternion(0.528097, 3.21775e-07, 2.76645e-07, 0.849184)
+bones/10/rotation = Quaternion(0.0619911, 6.62526e-14, 1.47802e-08, 0.998077)
+bones/11/rotation = Quaternion(-0.0128997, 4.97519e-13, -3.07573e-09, 0.999917)
+bones/12/rotation = Quaternion(-0.0611789, 1.33634e-11, -1.45873e-08, 0.998127)
+bones/14/rotation = Quaternion(-0.546011, -0.35039, -0.374066, 0.662701)
+bones/16/rotation = Quaternion(0.603108, -0.291237, 0.251363, 0.698755)
+bones/18/rotation = Quaternion(0.182951, -0.220888, -0.315638, 0.904494)
+bones/28/rotation = Quaternion(-0.559603, 0.34589, 0.256709, 0.708029)
+bones/30/rotation = Quaternion(0.558937, 0.288854, -0.216241, 0.746588)
+bones/32/rotation = Quaternion(0.182898, 0.240701, 0.259283, 0.917269)
+bones/41/rotation = Quaternion(0.138003, 3.82785e-11, 3.26311e-08, 0.990432)
+bones/51/position = Vector3(-2.33995e-08, 0.210439, 0.116025)
+bones/51/rotation = Quaternion(-0.08083, 8.06845e-07, -1.18477e-07, 0.996728)
+bones/52/position = Vector3(6.30834e-09, 0.467984, 0.0375963)
+bones/52/rotation = Quaternion(-0.241187, 4.46428e-07, -1.69404e-07, 0.970479)
+bones/53/position = Vector3(9.05592e-10, 0.370497, -0.0334612)
+bones/53/rotation = Quaternion(0.559251, 3.43952e-07, 2.42403e-07, 0.828998)
+
+[node name="ToadHitVFX" parent="ToadBoss" index="9"]
+HitFlashDuration = 0.2
+HitFlashPeakBlendValue = 0.6
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-0.220817, -0.391293, 0.893381, 0, 0.915992, 0.401197, -0.975315, 0.0885908, -0.202266, 3.05583, 1.2207, -2.87792)
+transform = Transform3D(-0.610602, -0.317723, 0.725409, -5.7636e-09, 0.915992, 0.401196, -0.791938, 0.244971, -0.559306, 1.90253, 1.49187, -1.93853)
 
 [node name="Area3D" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.239104, 0)
@@ -49,5 +57,23 @@ shape = SubResource("BoxShape3D_fyick")
 [node name="Platofrm" parent="." instance=ExtResource("3_tbdu8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.305231, -0.583671, -0.0883607)
 
+[node name="testVFXPos" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.566627, 0.875337, -0.660301)
+
+[node name="HitImpactVFX" parent="." instance=ExtResource("3_m5eqx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.372479, 0.57373, -1.98911)
+
+[node name="Flash" parent="HitImpactVFX" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.183709, 0)
+
+[node name="Halo" parent="HitImpactVFX" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.183709, 0)
+
+[node name="Sparks" parent="HitImpactVFX" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.183709, 0)
+explosiveness = 0.98
+fixed_fps = 60
+
 [editable path="ToadBoss"]
 [editable path="Platofrm"]
+[editable path="HitImpactVFX"]

@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://4mqupyxvlkp3"]
+
+[ext_resource type="Shader" uid="uid://b6qarj3xlu85r" path="res://assets/shaders/unlit_texture_color_overlay.tres" id="1_28w4r"]
+[ext_resource type="Texture2D" uid="uid://fsbgqai3y8u2" path="res://assets/models/characters/Char_Mouseketeer_CloakAlbedoTexture.png" id="2_28w4r"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_28w4r")
+shader_parameter/AlbedoTexture = ExtResource("2_28w4r")
+shader_parameter/OverlayColor = Color(1, 1, 1, 1)
+shader_parameter/BlendWeight = 0.0

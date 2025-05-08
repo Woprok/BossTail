@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://bbtl8ujs12xq8"]
+
+[ext_resource type="Shader" uid="uid://b6qarj3xlu85r" path="res://assets/shaders/unlit_texture_color_overlay.tres" id="1_dfu5g"]
+[ext_resource type="Texture2D" uid="uid://oqj4vkbba1ih" path="res://assets/models/characters/Char_Mouseketeer_BeltMatAlbedoTexture.png" id="2_vtuvt"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_dfu5g")
+shader_parameter/AlbedoTexture = ExtResource("2_vtuvt")
+shader_parameter/OverlayColor = Color(1, 1, 1, 1)
+shader_parameter/BlendWeight = 0.0

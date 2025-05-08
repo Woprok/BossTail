@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bb6d5e4nuxvub"]
+
+[ext_resource type="Shader" uid="uid://dhb630iow5yw5" path="res://assets/shaders/unlit_albedo_color_overlay.tres" id="1_evdos"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_evdos")
+shader_parameter/SurfaceAlbedo = Color(0.90588, 0.690196, 0.690196, 1)
+shader_parameter/OverlayColor = Color(1, 1, 1, 1)
+shader_parameter/BlendWeight = 0.0

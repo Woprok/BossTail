@@ -4,11 +4,21 @@ extends Node3D
 var swipe_indic: ToadAtkIndicatorVFXController
 @export var swipeIndicScene: PackedScene
 @export var toad: Frog
+@export var hitVFX: EntityHitVFX
+@export var impactVFX: PackedScene
+@export var impactPos: Node3D
 
 func _ready() -> void:
-	toad_controller.swim_bubble_atk_start(1,0)
-	
-	
+	#toad_controller.swim_bubble_atk_start(1,0)
+	create_tween().tween_callback(test_impact).set_delay(2.9)
+	create_tween().tween_callback(hitVFX.play_effect).set_delay(3)
+	pass
+
+func test_impact():
+	var impactObj: Node3D = impactVFX.instantiate()
+	self.add_child(impactObj)
+	impactObj.global_position = impactPos.global_position
+
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_released("move_forward"):
 		toad_controller.swipe_start(1, 0.5)
