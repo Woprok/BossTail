@@ -49,10 +49,14 @@ func _physics_process(delta):
 	lastHit += delta
 	last_shot += delta
 	
-	if Input.is_action_pressed("move_right"):
+	if Input.is_action_pressed("camera_right"):
 		rotate_y(-0.05)
-	if Input.is_action_pressed("move_left"):
+	if Input.is_action_pressed("camera_left"):
 		rotate_y(0.05)
+	if Input.is_action_pressed("camera_up"):
+		rotate_x(-0.05)
+	if Input.is_action_pressed("camera_down"):
+		rotate_x(0.05)
 	
 	if pushed:
 		velocity.y = 0

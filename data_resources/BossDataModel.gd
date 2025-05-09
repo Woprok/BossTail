@@ -5,9 +5,10 @@ class_name BossDataModel
 @export var boss_min_health: int = 0
 @export var boss_max_health: int = 100
 
-@export var boss_name: String = "BAD DATA FOR BOSS"
-# Class needs to support it, see DummyBossDataModel
-var has_tutorial_data: bool = false
+@export var boss_name: String = "BOSS"
+# Whatever this supports tutorial or not
+@export var has_tutorial: bool = false
+@export var tutorial_data: TutorialDataModel = null
 
 signal OnHealthChanged
 

@@ -24,7 +24,7 @@ func _on_boss_data_changed(new_data: BossDataModel):
 	%BossHealthBar.SetHealth(boss_data.boss_min_health, boss_data.boss_current_health, boss_data.boss_max_health)
 	%BossHealthBar.SetName(boss_data.boss_name)
 	
-	_toggle_tutorial(new_data.has_tutorial_data)
+	_toggle_tutorial(new_data.has_tutorial)
 	
 func _toggle_tutorial(new_visibility: bool) -> void:
 	%TutorialObjectiveWrapper.visible = new_visibility
@@ -34,17 +34,16 @@ func _toggle_tutorial(new_visibility: bool) -> void:
 		_update_tutorial(0)
 
 func _attach_tutorial() -> void:
-	if boss_data.has_tutorial_data:
+	if boss_data.has_tutorial:
 		GameEvents.tutorial_phase.connect(_update_tutorial)
 
 func _deattach_tutorial() -> void:
-	if boss_data.has_tutorial_data:
+	if boss_data.has_tutorial:
 		GameEvents.tutorial_phase.disconnect(_update_tutorial)
 	
 func _update_tutorial(phase: int) -> void:
-	%TutorialHint.SetObjective(boss_data.Objectives.get(phase), boss_data.ObjectiveFlavors.get(phase))
-	%TutorialHint.SetHint(boss_data.ControlHintTitles.get(phase), boss_data.ControlHints.get(phase))
-	%BossHealthBar.SetName(boss_data.Names.get(phase))
+	%TutorialHint.SetData(boss_data.tutorial_data, phase)
+	%BossHealthBar.SetName(boss_data.tutorial_data.Names.get(phase))
 	
 func _exit_tree() -> void:
 	boss_data.OnHealthChanged.disconnect(UpdateBossHealth)

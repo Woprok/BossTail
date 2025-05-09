@@ -1,0 +1,63 @@
+[gd_resource type="Resource" script_class="TutorialDataModel" load_steps=2 format=3 uid="uid://bv03en7sdd0ao"]
+
+[ext_resource type="Script" uid="uid://cnig85daaq2ks" path="res://data_resources/TutorialDataModel.gd" id="1_togkc"]
+
+[resource]
+script = ExtResource("1_togkc")
+TutorialFirstPhases = 0
+TutorialLastPhases = 3
+TutorialPhases = 0
+TutorialActions = Dictionary[StringName, StringName]({
+&"TUTORIAL_AIM": &"aim",
+&"TUTORIAL_CAMERA_DOWN": &"camera_down",
+&"TUTORIAL_CAMERA_LEFT": &"camera_left",
+&"TUTORIAL_CAMERA_RIGHT": &"camera_right",
+&"TUTORIAL_CAMERA_UP": &"camera_up",
+&"TUTORIAL_DASH": &"dash",
+&"TUTORIAL_DEBUG": &"debug",
+&"TUTORIAL_JUMP": &"jump",
+&"TUTORIAL_MOVE_DOWN": &"move_back",
+&"TUTORIAL_MOVE_LEFT": &"strafe_left",
+&"TUTORIAL_MOVE_RIGHT": &"strafe_right",
+&"TUTORIAL_MOVE_UP": &"move_forward",
+&"TUTORIAL_PAUSE": &"pause",
+&"TUTORIAL_STAB": &"fight"
+})
+Names = Dictionary[int, String]({
+0: "Peaceful Dummy",
+1: "Sharing Dummy",
+2: "Small Dummy",
+3: "Angry Dummy"
+})
+Objectives = Dictionary[int, String]({
+0: "Find & Reach Dummy",
+1: "Cross the Arena",
+2: "Destroy Small Dummy",
+3: "Defeat Angry Dummy"
+})
+ObjectiveFlavors = Dictionary[int, String]({
+0: "\"It’s just across the arena.\"",
+1: "\"The floor’s safe — the rest, maybe not.\"",
+2: "\"Small, but that box gives it an edge.\"",
+3: "\"Whirlwinds, slashes, and flying boxes — brace yourself.\""
+})
+ControlHintTitles = Dictionary[int, String]({
+0: "Movement & Camera",
+1: "Jump & Dash",
+2: "Throw & Slash",
+3: "Boss Fight"
+})
+ControlHints = Dictionary[int, String]({
+0: "Use TUTORIAL_MOVE_UP TUTORIAL_MOVE_DOWN TUTORIAL_MOVE_LEFT TUTORIAL_MOVE_RIGHT to move, and TUTORIAL_CAMERA_UP TUTORIAL_CAMERA_DOWN TUTORIAL_CAMERA_LEFT TUTORIAL_CAMERA_RIGHT to look around.",
+1: "Jump with TUTORIAL_JUMP. Hold to jump higher.
+Dash with TUTORIAL_DASH to clear gaps or dodge.
+The current state of all abilities is shown in the bottom-right corner (Stab, Throw, Dash, Jump).",
+2: "You can’t reach a spinning dummy up close — throw small objects, like rocks.
+Aim with TUTORIAL_AIM, throw with TUTORIAL_STAB.
+Break the box with a precise throw.
+Finish the dummy with a stab TUTORIAL_STAB.",
+3: "The boss combines everything you’ve learned.
+Stop its whirlwind by hitting the box.
+Watch out for its box barrage and great slash."
+})
+metadata/_custom_type_script = "uid://cnig85daaq2ks"
