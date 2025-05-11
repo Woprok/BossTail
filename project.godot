@@ -115,8 +115,3 @@ debug={
 3d_physics/layer_5="Boulder"
 3d_physics/layer_6="Bubble"
 3d_physics/layer_7="SwimmingGround"
-
-[rendering]
-
-renderer/rendering_method="gl_compatibility"
-renderer/rendering_method.mobile="gl_compatibility"

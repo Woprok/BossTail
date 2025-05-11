@@ -1,0 +1,77 @@
+[gd_scene load_steps=15 format=3 uid="uid://1rmbnirihdoa"]
+
+[ext_resource type="Script" uid="uid://bhvt0iv7a1e6f" path="res://scripts/VFX/PlayParticleSysOnStart.gd" id="1_ja7vw"]
+[ext_resource type="Shader" uid="uid://qism00l1540j" path="res://assets/shaders/bw_quad_mask.tres" id="1_onue7"]
+[ext_resource type="Texture2D" uid="uid://dg2mx5qhp6xjk" path="res://assets/textures/spittle_mask.png" id="2_ja7vw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tpnig"]
+render_priority = 0
+shader = ExtResource("1_onue7")
+shader_parameter/Mask = ExtResource("2_ja7vw")
+
+[sub_resource type="Curve" id="Curve_k5bxy"]
+_data = [Vector2(0.00763359, 0.00160015), 0.0, 31.6077, 0, 0, Vector2(0.110687, 1), 0.0, 0.0, 0, 0, Vector2(0.992366, 0), -1.25125, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_yi0jx"]
+curve = SubResource("Curve_k5bxy")
+
+[sub_resource type="Gradient" id="Gradient_v46ek"]
+colors = PackedColorArray(0.471494, 0.609899, 0.195519, 1, 0.0106515, 0.114877, 1.20327e-08, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_mec1c"]
+gradient = SubResource("Gradient_v46ek")
+
+[sub_resource type="Curve" id="Curve_3r6ex"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.00160015), -3.13352, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_xkjfw"]
+curve = SubResource("Curve_3r6ex")
+
+[sub_resource type="Curve" id="Curve_hg42y"]
+_limits = [0.0, 3.0, 0.0, 1.0]
+_data = [Vector2(0, 1.0032), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.34794, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_3r6ex"]
+curve = SubResource("Curve_hg42y")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hg42y"]
+emission_shape = 1
+emission_sphere_radius = 0.4
+direction = Vector3(1, 0.25, 0)
+initial_velocity_min = 4.0
+initial_velocity_max = 5.0
+gravity = Vector3(0, -9, 0)
+linear_accel_min = -2.23517e-06
+linear_accel_max = -2.23517e-06
+radial_accel_min = -2.23517e-06
+radial_accel_max = -2.23517e-06
+tangential_accel_min = -2.23517e-06
+tangential_accel_max = -2.23517e-06
+damping_min = 0.25
+damping_max = 2.0
+scale_min = 0.05
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_xkjfw")
+scale_over_velocity_curve = SubResource("CurveTexture_3r6ex")
+color_ramp = SubResource("GradientTexture1D_mec1c")
+alpha_curve = SubResource("CurveTexture_yi0jx")
+
+[sub_resource type="QuadMesh" id="QuadMesh_k5bxy"]
+
+[node name="SpittleBurst" type="Node3D"]
+script = ExtResource("1_ja7vw")
+
+[node name="Spittle" type="GPUParticles3D" parent="."]
+material_override = SubResource("ShaderMaterial_tpnig")
+emitting = false
+amount = 12
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.7
+transform_align = 3
+trail_lifetime = 0.5
+process_material = SubResource("ParticleProcessMaterial_hg42y")
+draw_pass_1 = SubResource("QuadMesh_k5bxy")

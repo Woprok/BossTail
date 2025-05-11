@@ -1,0 +1,132 @@
+[gd_resource type="VisualShader" load_steps=10 format=3 uid="uid://2l4mld21tq6r"]
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_lgaui"]
+parameter_name = "BlinkSpeed"
+default_value_enabled = true
+default_value = 10.0
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_lgaui"]
+output_port_for_preview = 0
+source = 5
+
+[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_gv7fr"]
+parameter_name = "HaloTexture"
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_gv7fr"]
+output_port_for_preview = 0
+default_input_values = [0, Quaternion(0, 0, 0, 0), 1, Quaternion(0, 0, 0, 0)]
+op_type = 2
+operator = 2
+
+[sub_resource type="VisualShaderNodeFloatFunc" id="VisualShaderNodeFloatFunc_e85dt"]
+output_port_for_preview = 0
+function = 0
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_n3au1"]
+input_name = "time"
+
+[sub_resource type="VisualShaderNodeRemap" id="VisualShaderNodeRemap_cqstt"]
+output_port_for_preview = 0
+default_input_values = [1, -1.0, 2, 1.0, 3, 1.0, 4, 4.0]
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_20ixo"]
+default_input_values = [0, 0.0, 1, 2.0]
+operator = 2
+
+[sub_resource type="VisualShaderNodeBillboard" id="VisualShaderNodeBillboard_lgaui"]
+keep_scale = true
+
+[resource]
+code = "shader_type spatial;
+render_mode blend_add, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx;
+
+uniform sampler2D HaloTexture;
+uniform float BlinkSpeed = 10.0;
+
+
+
+void vertex() {
+	mat4 n_out2p0;
+// GetBillboardMatrix:2
+	{
+		mat4 __mvm = VIEW_MATRIX * mat4(INV_VIEW_MATRIX[0], INV_VIEW_MATRIX[1], INV_VIEW_MATRIX[2], MODEL_MATRIX[3]);
+		__mvm = __mvm * mat4(vec4(length(MODEL_MATRIX[0].xyz), 0.0, 0.0, 0.0), vec4(0.0, length(MODEL_MATRIX[1].xyz), 0.0, 0.0), vec4(0.0, 0.0, length(MODEL_MATRIX[2].xyz), 0.0), vec4(0.0, 0.0, 0.0, 1.0));
+		n_out2p0 = __mvm;
+	}
+
+
+// Output:0
+	MODELVIEW_MATRIX = n_out2p0;
+
+
+}
+
+void fragment() {
+	vec4 n_out2p0;
+// Texture2D:2
+	n_out2p0 = texture(HaloTexture, UV);
+
+
+// Input:7
+	float n_out7p0 = TIME;
+
+
+// FloatParameter:10
+	float n_out10p0 = BlinkSpeed;
+
+
+// FloatOp:9
+	float n_out9p0 = n_out7p0 * n_out10p0;
+
+
+// FloatFunc:6
+	float n_out6p0 = sin(n_out9p0);
+
+
+	float n_out8p0;
+// Remap:8
+	float n_in8p1 = -1.00000;
+	float n_in8p2 = 1.00000;
+	float n_in8p3 = 1.00000;
+	float n_in8p4 = 4.00000;
+	{
+		float __input_range = n_in8p2 - n_in8p1;
+		float __output_range = n_in8p4 - n_in8p3;
+		n_out8p0 = n_in8p3 + __output_range * ((n_out6p0 - n_in8p1) / __input_range);
+	}
+
+
+// VectorOp:4
+	vec4 n_out4p0 = n_out2p0 * vec4(n_out8p0);
+
+
+// Output:0
+	ALBEDO = vec3(n_out4p0.xyz);
+	ALPHA = n_out2p0.x;
+
+
+}
+"
+modes/blend = 1
+preview_params/HaloTexture = "Resource(\"res://assets/textures/bubble_halo.png\")"
+nodes/vertex/2/node = SubResource("VisualShaderNodeBillboard_lgaui")
+nodes/vertex/2/position = Vector2(119.994, 519.299)
+nodes/vertex/connections = PackedInt32Array(2, 0, 0, 10)
+nodes/fragment/0/position = Vector2(480, 140)
+nodes/fragment/2/node = SubResource("VisualShaderNodeTexture_lgaui")
+nodes/fragment/2/position = Vector2(-360, 180)
+nodes/fragment/3/node = SubResource("VisualShaderNodeTexture2DParameter_gv7fr")
+nodes/fragment/3/position = Vector2(-900, 40)
+nodes/fragment/4/node = SubResource("VisualShaderNodeVectorOp_gv7fr")
+nodes/fragment/4/position = Vector2(120, 380)
+nodes/fragment/6/node = SubResource("VisualShaderNodeFloatFunc_e85dt")
+nodes/fragment/6/position = Vector2(-940, 660)
+nodes/fragment/7/node = SubResource("VisualShaderNodeInput_n3au1")
+nodes/fragment/7/position = Vector2(-1560, 600)
+nodes/fragment/8/node = SubResource("VisualShaderNodeRemap_cqstt")
+nodes/fragment/8/position = Vector2(-600, 620)
+nodes/fragment/9/node = SubResource("VisualShaderNodeFloatOp_20ixo")
+nodes/fragment/9/position = Vector2(-1180, 680)
+nodes/fragment/10/node = SubResource("VisualShaderNodeFloatParameter_lgaui")
+nodes/fragment/10/position = Vector2(-1620, 760)
+nodes/fragment/connections = PackedInt32Array(3, 0, 2, 2, 2, 0, 0, 1, 2, 0, 4, 0, 4, 0, 0, 0, 6, 0, 8, 0, 7, 0, 9, 0, 9, 0, 6, 0, 10, 0, 9, 1, 8, 0, 4, 1)

@@ -1,0 +1,46 @@
+[gd_scene load_steps=12 format=3 uid="uid://4cpxnb1p15dn"]
+
+[ext_resource type="Shader" uid="uid://b8kdvqhcdhxje" path="res://assets/shaders/BubbleScroll.tres" id="1_pmi0y"]
+[ext_resource type="Texture2D" uid="uid://1gr47i01gcv0" path="res://assets/textures/bubble_scroll.png" id="2_pvjwk"]
+[ext_resource type="Shader" uid="uid://2l4mld21tq6r" path="res://assets/shaders/BubbleHalo.tres" id="3_g4hu1"]
+[ext_resource type="Texture2D" uid="uid://ddewn0kkvjdgj" path="res://assets/textures/bubble_halo.png" id="4_vy7q3"]
+[ext_resource type="Shader" uid="uid://cl711tkbuy6nt" path="res://assets/shaders/BubbleGlow.tres" id="5_imbi0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vy7q3"]
+render_priority = 0
+shader = ExtResource("1_pmi0y")
+shader_parameter/ScrollColor = Color(0.592738, 0.726184, 0.807925, 1)
+shader_parameter/PanningSpeed = Vector2(0.5, 0.25)
+shader_parameter/ScrollTexture = ExtResource("2_pvjwk")
+
+[sub_resource type="SphereMesh" id="SphereMesh_imbi0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_imbi0"]
+render_priority = 0
+shader = ExtResource("3_g4hu1")
+shader_parameter/HaloTexture = ExtResource("4_vy7q3")
+shader_parameter/BlinkSpeed = 10.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_pvjwk"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_vy7q3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rbsqb"]
+render_priority = 0
+shader = ExtResource("5_imbi0")
+shader_parameter/GlowColor = Color(0.150647, 0.658017, 0.83248, 1)
+
+[node name="Bubble" type="Node3D"]
+
+[node name="Scroll" type="MeshInstance3D" parent="."]
+material_override = SubResource("ShaderMaterial_vy7q3")
+mesh = SubResource("SphereMesh_imbi0")
+
+[node name="Halo" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0)
+material_override = SubResource("ShaderMaterial_imbi0")
+mesh = SubResource("QuadMesh_pvjwk")
+
+[node name="Glow" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_vy7q3")
+surface_material_override/0 = SubResource("ShaderMaterial_rbsqb")

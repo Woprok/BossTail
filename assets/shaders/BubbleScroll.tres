@@ -1,0 +1,132 @@
+[gd_resource type="VisualShader" load_steps=12 format=3 uid="uid://b8kdvqhcdhxje"]
+
+[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_e3ktq"]
+output_port_for_preview = 0
+parameter_name = "ScrollColor"
+default_value_enabled = true
+default_value = Color(0.697933, 0.809313, 0.858118, 1)
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_e3ktq"]
+default_input_values = [0, Quaternion(0, 0, 0, 0), 1, Quaternion(0, 0, 0, 0)]
+op_type = 2
+operator = 2
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_e3ktq"]
+input_name = "time"
+
+[sub_resource type="VisualShaderNodeVec2Parameter" id="VisualShaderNodeVec2Parameter_rdfis"]
+parameter_name = "PanningSpeed"
+default_value_enabled = true
+default_value = Vector2(0.5, 0.25)
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_rvakj"]
+default_input_values = [0, Vector2(0, 0), 1, Vector2(0, 0)]
+op_type = 0
+operator = 2
+
+[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_e3ktq"]
+parameter_name = "ScrollTexture"
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_rdfis"]
+output_port_for_preview = 0
+source = 5
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_rvakj"]
+output_port_for_preview = 0
+input_name = "uv"
+
+[sub_resource type="VisualShaderNodeUVFunc" id="VisualShaderNodeUVFunc_8fqbc"]
+
+[sub_resource type="VisualShaderNodeFresnel" id="VisualShaderNodeFresnel_e3ktq"]
+output_port_for_preview = 0
+default_input_values = [2, true, 3, 3.0]
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_rdfis"]
+input_name = "view"
+
+[resource]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_disabled, diffuse_lambert, specular_schlick_ggx, unshaded;
+
+uniform vec4 ScrollColor : source_color = vec4(0.697933, 0.809313, 0.858118, 1.000000);
+uniform vec2 PanningSpeed = vec2(0.500000, 0.250000);
+uniform sampler2D ScrollTexture;
+
+
+
+void fragment() {
+// ColorParameter:10
+	vec4 n_out10p0 = ScrollColor;
+
+
+// Input:7
+	vec3 n_out7p0 = VIEW;
+
+
+// Fresnel:6
+	float n_in6p3 = 3.00000;
+	float n_out6p0 = pow(clamp(dot(NORMAL, n_out7p0), 0.0, 1.0), n_in6p3);
+
+
+// Input:4
+	vec2 n_out4p0 = UV;
+
+
+// Vector2Parameter:13
+	vec2 n_out13p0 = PanningSpeed;
+
+
+// Input:12
+	float n_out12p0 = TIME;
+
+
+// VectorOp:14
+	vec2 n_out14p0 = n_out13p0 * vec2(n_out12p0);
+
+
+// UVFunc:5
+	vec2 n_in5p1 = vec2(1.00000, 1.00000);
+	vec2 n_out5p0 = n_out14p0 * n_in5p1 + n_out4p0;
+
+
+	vec4 n_out3p0;
+// Texture2D:3
+	n_out3p0 = texture(ScrollTexture, n_out5p0);
+
+
+// VectorOp:11
+	vec4 n_out11p0 = vec4(n_out6p0) * n_out3p0;
+
+
+// Output:0
+	ALBEDO = vec3(n_out10p0.xyz);
+	ALPHA = n_out11p0.x;
+
+
+}
+"
+modes/cull = 2
+flags/unshaded = true
+nodes/fragment/2/node = SubResource("VisualShaderNodeTexture2DParameter_e3ktq")
+nodes/fragment/2/position = Vector2(-1020, 80)
+nodes/fragment/3/node = SubResource("VisualShaderNodeTexture_rdfis")
+nodes/fragment/3/position = Vector2(-540, 360)
+nodes/fragment/4/node = SubResource("VisualShaderNodeInput_rvakj")
+nodes/fragment/4/position = Vector2(-1240, 360)
+nodes/fragment/5/node = SubResource("VisualShaderNodeUVFunc_8fqbc")
+nodes/fragment/5/position = Vector2(-860, 520)
+nodes/fragment/6/node = SubResource("VisualShaderNodeFresnel_e3ktq")
+nodes/fragment/6/position = Vector2(-420, -160)
+nodes/fragment/7/node = SubResource("VisualShaderNodeInput_rdfis")
+nodes/fragment/7/position = Vector2(-780, -120)
+nodes/fragment/10/node = SubResource("VisualShaderNodeColorParameter_e3ktq")
+nodes/fragment/10/position = Vector2(-20, -240)
+nodes/fragment/11/node = SubResource("VisualShaderNodeVectorOp_e3ktq")
+nodes/fragment/11/position = Vector2(-60, 200)
+nodes/fragment/12/node = SubResource("VisualShaderNodeInput_e3ktq")
+nodes/fragment/12/position = Vector2(-1400, 720)
+nodes/fragment/13/node = SubResource("VisualShaderNodeVec2Parameter_rdfis")
+nodes/fragment/13/position = Vector2(-1240, 840)
+nodes/fragment/14/node = SubResource("VisualShaderNodeVectorOp_rvakj")
+nodes/fragment/14/position = Vector2(-960, 660)
+nodes/fragment/connections = PackedInt32Array(2, 0, 3, 2, 4, 0, 5, 0, 5, 0, 3, 0, 7, 0, 6, 1, 6, 0, 11, 0, 11, 0, 0, 1, 10, 0, 0, 0, 13, 0, 14, 0, 12, 0, 14, 1, 14, 0, 5, 2, 3, 0, 11, 1)

@@ -1,0 +1,60 @@
+[gd_resource type="VisualShader" load_steps=5 format=3 uid="uid://qism00l1540j"]
+
+[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_bl3ie"]
+parameter_name = "Mask"
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_20783"]
+expanded_output_ports = [0]
+source = 5
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_h8m7d"]
+expanded_output_ports = [0]
+input_name = "color"
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_bt0ca"]
+operator = 2
+
+[resource]
+code = "shader_type spatial;
+render_mode blend_add, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx, unshaded;
+
+uniform sampler2D Mask;
+
+
+
+void fragment() {
+// Input:4
+	vec4 n_out4p0 = COLOR;
+	float n_out4p4 = n_out4p0.a;
+
+
+	vec4 n_out3p0;
+// Texture2D:3
+	n_out3p0 = texture(Mask, UV);
+	float n_out3p1 = n_out3p0.r;
+
+
+// FloatOp:5
+	float n_out5p0 = n_out4p4 * n_out3p1;
+
+
+// Output:0
+	ALBEDO = vec3(n_out4p0.xyz);
+	ALPHA = n_out5p0;
+
+
+}
+"
+graph_offset = Vector2(-397.449, -131.722)
+modes/blend = 1
+flags/unshaded = true
+preview_params/Mask = "Resource(\"res://assets/textures/spittle_mask.png\")"
+nodes/fragment/2/node = SubResource("VisualShaderNodeTexture2DParameter_bl3ie")
+nodes/fragment/2/position = Vector2(-980, 80)
+nodes/fragment/3/node = SubResource("VisualShaderNodeTexture_20783")
+nodes/fragment/3/position = Vector2(-600, 160)
+nodes/fragment/4/node = SubResource("VisualShaderNodeInput_h8m7d")
+nodes/fragment/4/position = Vector2(-260, -180)
+nodes/fragment/5/node = SubResource("VisualShaderNodeFloatOp_bt0ca")
+nodes/fragment/5/position = Vector2(20, 200)
+nodes/fragment/connections = PackedInt32Array(2, 0, 3, 2, 4, 4, 5, 0, 3, 1, 5, 1, 5, 0, 0, 1, 4, 0, 0, 0)
