@@ -70,7 +70,7 @@ default_input_values = [0, 0.8, 1, 0.0]
 
 [resource]
 code = "shader_type spatial;
-render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx;
+render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx, unshaded;
 
 uniform vec4 Color : source_color = vec4(1.000000, 1.000000, 1.000000, 1.000000);
 uniform float Alpha = 1.0;
@@ -157,7 +157,7 @@ void fragment() {
 
 }
 "
-graph_offset = Vector2(-320.7, -82.123)
+flags/unshaded = true
 preview_params/Noise = "Object(NoiseTexture2D,\"resource_local_to_scene\":false,\"resource_name\":\"\",\"width\":512,\"height\":512,\"invert\":false,\"in_3d_space\":false,\"generate_mipmaps\":true,\"seamless\":false,\"seamless_blend_skirt\":0.1,\"as_normal_map\":false,\"bump_strength\":8.0,\"normalize\":true,\"color_ramp\":null,\"noise\":null,\"script\":null)
 "
 nodes/fragment/2/node = SubResource("VisualShaderNodeTexture2DParameter_fht1m")

@@ -24,8 +24,8 @@ blend_shape_mode = 0
 [node name="ToadAtkGroundSlamIndicator" type="Node3D" node_paths=PackedStringArray("indicMesh")]
 script = ExtResource("1_d0owa")
 indicMesh = NodePath("GroundSlamIndicator/GroundSlamIndicatorMesh")
-startBorderOpacity = 0.6
-startShapesOpacity = 0.4
+startBorderOpacity = 0.8
+startShapesOpacity = 0.8
 
 [node name="GroundSlamIndicator" type="Node3D" parent="."]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)

@@ -78,7 +78,7 @@ curve = SubResource("Curve_ib0fc")
 
 [sub_resource type="Gradient" id="Gradient_ib0fc"]
 offsets = PackedFloat32Array(0, 0.0037037, 0.277778, 1)
-colors = PackedColorArray(0.995755, 0.909532, 0.708442, 1, 2, 0.661, 0.34, 1, 4, 2, 0.6, 1, 1, 1, 1, 1)
+colors = PackedColorArray(0.995755, 0.909532, 0.708442, 1, 2, 0.661, 0.34, 1, 2, 1, 0.6, 1, 1, 1, 1, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_anr15"]
 gradient = SubResource("Gradient_ib0fc")
@@ -140,8 +140,8 @@ spread = 180.0
 initial_velocity_min = 2.0
 initial_velocity_max = 4.0
 gravity = Vector3(0, 0, 0)
-scale_min = 0.1
-scale_max = 0.25
+scale_min = 0.05
+scale_max = 0.15
 scale_curve = SubResource("CurveXYZTexture_8f208")
 color_ramp = SubResource("GradientTexture1D_anr15")
 alpha_curve = SubResource("CurveTexture_n3sfd")

@@ -46,7 +46,7 @@ input_name = "view"
 
 [resource]
 code = "shader_type spatial;
-render_mode blend_mix, depth_draw_opaque, cull_disabled, diffuse_lambert, specular_schlick_ggx, unshaded;
+render_mode blend_add, depth_draw_opaque, cull_disabled, diffuse_lambert, specular_schlick_ggx, unshaded;
 
 uniform vec4 ScrollColor : source_color = vec4(0.697933, 0.809313, 0.858118, 1.000000);
 uniform vec2 PanningSpeed = vec2(0.500000, 0.250000);
@@ -105,6 +105,7 @@ void fragment() {
 
 }
 "
+modes/blend = 1
 modes/cull = 2
 flags/unshaded = true
 nodes/fragment/2/node = SubResource("VisualShaderNodeTexture2DParameter_e3ktq")

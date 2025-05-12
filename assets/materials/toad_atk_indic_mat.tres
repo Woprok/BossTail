@@ -8,12 +8,12 @@
 [resource]
 render_priority = 0
 shader = ExtResource("1_jvcel")
-shader_parameter/BorderColor = Color(0.547275, 0, 0.129235, 1)
+shader_parameter/BorderColor = Color(0.0457125, 0.00932615, 0.00101222, 1)
 shader_parameter/BorderDissolvePanSpeed = Vector2(0, 0.1)
 shader_parameter/NoiseTexture = ExtResource("3_hfc3t")
 shader_parameter/BorderMaskTexture = ExtResource("2_gl6r8")
-shader_parameter/ShapesColor = Color(0.144284, 0.0243984, 0.17656, 1)
+shader_parameter/ShapesColor = Color(0.123563, 0.0650067, 0.118524, 1)
 shader_parameter/EffectPanSpeed = Vector2(0, 0.2)
 shader_parameter/ShapesTexture = ExtResource("4_ayodc")
-shader_parameter/BorderOpacity = 0.6
-shader_parameter/ShapesOpacity = 0.4
+shader_parameter/BorderOpacity = 0.8
+shader_parameter/ShapesOpacity = 0.8

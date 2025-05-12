@@ -44,6 +44,8 @@ var grabbed: bool = false
 var launched:bool = false
 var direction = Vector3.ZERO
 
+@export var PlayerHitVFX: EntityHitVFX
+
 func _ready() -> void:
 	player_data.player_restart()
 	$CameraPivot.rotation.x = deg_to_rad(-8)	
@@ -149,7 +151,7 @@ func _physics_process(delta):
 		Camera.get_node("target").hide()
 		$CameraPivot/zoom.speed_scale = 1
 		Camera.rotation.x = deg_to_rad(-20)
-		$CameraPivot/zoom.play_backwards("zoom")	
+		$CameraPivot/zoom.play_backwards("zoom")
 		
 	var movement_dir = transform.basis * Vector3(direction.x, 0, direction.z)
 	
@@ -192,6 +194,8 @@ func hit(health):
 	if player_data.is_player_dead():
 		animation.death()
 		GameInstance.PlayerDefeated()
+	if PlayerHitVFX != null:
+		PlayerHitVFX.play_effect()
 
 # strelba dle typu zbrane
 func shoot():
@@ -254,11 +258,11 @@ func launch(pos):
 	
 
 func _on_animation_finished(anim_name):
-	if anim_name == "GAME_05_lunge_right":
+	if anim_name == "GAME_05_lunge_right" or anim_name == "GAME_05_lunge_left_combo":
 		$melee/target.disabled = true
 		player_data.change_melee_indicator(true)
 		$AnimationTree.idle()
-	if anim_name == "GAME_05_lunge_right_settle":
+	if anim_name == "GAME_05_lunge_right_settle" or anim_name == "GAME_05_lunge_left_settle":
 		melee = false
 		$melee/target.disabled = true
 		fighting=false

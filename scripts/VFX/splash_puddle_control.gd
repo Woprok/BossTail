@@ -1,11 +1,12 @@
 extends MeshInstance3D
+class_name PuddleController
 
 var material: ShaderMaterial
 var param_name: String = "Dissolve"
 var effect_tweener: Tween
 
-func _ready() -> void:
-	material = self.material
+func setup():
+	material = self.material_override
 	set_dissolve_param_value(1.0)
 	
 func puddle_appear(duration: float) -> void:

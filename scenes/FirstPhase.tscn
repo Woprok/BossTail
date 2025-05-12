@@ -22,8 +22,9 @@ noise = SubResource("FastNoiseLite_wjuqv")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_si4mm"]
 transparency = 1
+blend_mode = 1
 depth_draw_mode = 1
-albedo_color = Color(0.333333, 0.505882, 1, 0.627451)
+albedo_color = Color(0.200515, 0.368993, 0.999981, 1)
 normal_enabled = true
 normal_scale = 4.0
 normal_texture = SubResource("NoiseTexture2D_c7usa")

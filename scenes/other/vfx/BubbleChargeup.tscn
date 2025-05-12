@@ -1,13 +1,20 @@
-[gd_scene load_steps=11 format=3 uid="uid://v5oqhofaska"]
+[gd_scene load_steps=12 format=3 uid="uid://v5oqhofaska"]
 
 [ext_resource type="Texture2D" uid="uid://dd3ey01sahhmr" path="res://assets/textures/swirl.png" id="1_6a1nf"]
+[ext_resource type="Script" uid="uid://dvm6ys2u0mmyo" path="res://scripts/VFX/bubble_chargeup_VFX_controller.gd" id="1_ab1eh"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_um4ie"]
 transparency = 1
+blend_mode = 1
 cull_mode = 2
+depth_draw_mode = 2
 no_depth_test = true
+shading_mode = 0
 vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_color = Color(1, 1, 1, 0)
 albedo_texture = ExtResource("1_6a1nf")
+disable_receive_shadows = true
 billboard_mode = 3
 billboard_keep_scale = true
 particles_anim_h_frames = 1
@@ -50,11 +57,14 @@ alpha_curve = SubResource("CurveTexture_07jfa")
 [sub_resource type="QuadMesh" id="QuadMesh_esjpw"]
 
 [node name="BubbleChargeup" type="Node3D"]
+script = ExtResource("1_ab1eh")
 
 [node name="Chargeup" type="GPUParticles3D" parent="."]
 material_override = SubResource("StandardMaterial3D_um4ie")
 amount = 4
 lifetime = 0.6
+speed_scale = 0.0
 fixed_fps = 60
+local_coords = true
 process_material = SubResource("ParticleProcessMaterial_07jfa")
 draw_pass_1 = SubResource("QuadMesh_esjpw")

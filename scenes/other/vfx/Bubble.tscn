@@ -9,7 +9,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vy7q3"]
 render_priority = 0
 shader = ExtResource("1_pmi0y")
-shader_parameter/ScrollColor = Color(0.592738, 0.726184, 0.807925, 1)
+shader_parameter/ScrollColor = Color(1, 0.6, 3, 1)
 shader_parameter/PanningSpeed = Vector2(0.5, 0.25)
 shader_parameter/ScrollTexture = ExtResource("2_pvjwk")
 
@@ -28,7 +28,7 @@ shader_parameter/BlinkSpeed = 10.0
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rbsqb"]
 render_priority = 0
 shader = ExtResource("5_imbi0")
-shader_parameter/GlowColor = Color(0.150647, 0.658017, 0.83248, 1)
+shader_parameter/GlowColor = Color(0.3, 1.2, 3, 1)
 
 [node name="Bubble" type="Node3D"]
 

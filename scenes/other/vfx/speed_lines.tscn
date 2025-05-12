@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://gcdomxl8xgx0"]
+[gd_scene load_steps=8 format=4 uid="uid://gcdomxl8xgx0"]
 
 [ext_resource type="Shader" uid="uid://dkoycn8q6xxp" path="res://assets/shaders/speed_lines.tres" id="1_on201"]
 
@@ -52,26 +52,6 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_ah1xu")
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_jjf15"]
-noise_type = 0
-frequency = 0.0217
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_wf5t3"]
-generate_mipmaps = false
-noise = SubResource("FastNoiseLite_jjf15")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_kdnkk"]
-render_priority = 0
-shader = ExtResource("1_on201")
-shader_parameter/Color = Color(1, 1, 1, 1)
-shader_parameter/Alpha = 0.5
-shader_parameter/StepValue = 0.8
-shader_parameter/Scale = Vector2(10, 0.1)
-shader_parameter/PanSpeed = Vector2(0, 0)
-shader_parameter/Noise = SubResource("NoiseTexture2D_wf5t3")
-
-[sub_resource type="QuadMesh" id="QuadMesh_y44cd"]
-
 [node name="SpeedLines" type="Node3D"]
 
 [node name="SpeedlinesCone" type="Node3D" parent="."]
@@ -82,11 +62,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0237005, 0, 0.000371277)
 material_override = SubResource("ShaderMaterial_wf5t3")
 mesh = SubResource("ArrayMesh_vinll")
 skeleton = NodePath("")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.95995, -0.00366259, -1.77722)
-material_override = SubResource("ShaderMaterial_kdnkk")
-mesh = SubResource("QuadMesh_y44cd")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)

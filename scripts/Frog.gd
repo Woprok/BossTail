@@ -122,14 +122,26 @@ var grab_len = 6.25*2
 var Bubble = preload("res://scenes/Bubble.tscn")
 var WaterBubble = preload("res://scenes/WaterBubble.tscn")
 
+@export_group("VFX")
+@export var bubble_chargeup: BubbleChargeupVFXController
+@export var bubble_appear_pos: Node3D
+@export var hit_VFX: EntityHitVFX
+@export var hit_impact_VFX: PackedScene
 @export var swipe_indicator: PackedScene
 @export var grab_indicator: PackedScene
 @export var ground_slam_indicator: PackedScene
 
+@export var hit_body_pos: Node3D
+@export var hit_head_pos: Node3D
+
+var current_bubble_inst = null
+var triggered_once: bool = false
+
 func _ready() -> void:
 	boss_data.boss_restart()
 	GameEvents.boss_changed.emit(boss_data)
-
+	
+# tf is this mess?
 # behavior for character in both phase
 func _physics_process(delta):
 	boulderHit += delta
@@ -236,11 +248,26 @@ func _physics_process(delta):
 					return
 				if time_bubble >= WATER_BUBBLE_TIME and time_swimming<=SWIMMING_TIME:
 					animationTree.swim_bubble_atk_start()
+					# play antic chargeup vfx and inst and scale up bubble proj
+					if not triggered_once and bubble_chargeup != null:
+						triggered_once = true
+						bubble_chargeup.fx_appear(0.1)
+						create_tween().tween_callback(bubble_chargeup.fx_fade.bind(0.1)).set_delay(BUBBLE_ANTIC_DUR - 0.2)
+						#instatiate bubble and tween its scale to one
+						current_bubble_inst = WaterBubble.instantiate()
+						get_parent().add_child(current_bubble_inst)
+						current_bubble_inst.antic_phase = true
+						current_bubble_inst.global_position = bubble_appear_pos.global_position
+						current_bubble_inst.scale = Vector3.ZERO
+						create_tween().tween_property(current_bubble_inst, "scale", Vector3.ONE, BUBBLE_ANTIC_DUR - 0.1)
 					look_at(Vector3(player.position.x,position.y, player.position.z))
-					if time_bubble>=WATER_BUBBLE_TIME+0.5:
+					if current_bubble_inst != null: current_bubble_inst.global_position = bubble_appear_pos.global_position
+					if time_bubble>=WATER_BUBBLE_TIME + BUBBLE_ANTIC_DUR:
+						triggered_once = false
 						doing = true
 						time_bubble=0
-						bubble_spit()
+						bubble_spit(current_bubble_inst)
+						current_bubble_inst = null
 						animationTree.swim_bubble_atk_end_antic()
 						return
 					return
@@ -341,20 +368,23 @@ func _physics_process(delta):
 				#animationTree.spit_end()
 	
 # spit and bubble attack
-func bubble_spit():
+func bubble_spit(water_bubble_instance = null):
 	var bubble
 	if swimming:
-		bubble = WaterBubble.instantiate()
+		if water_bubble_instance != null:
+			bubble = water_bubble_instance
+		else:
+			bubble = WaterBubble.instantiate()
 	else:
-		bubble = Bubble.instantiate()
-	get_parent().add_child(bubble)
-	bubble.position = position-transform.basis.z*2
-	bubble.position.y+=0.2
+		bubble = Bubble.instantiate()	
+	if water_bubble_instance == null:
+		get_parent().add_child(bubble)
+		bubble.position = position-transform.basis.z*2
+		bubble.position.y+=0.2
 	look_at(Vector3(player.position.x,position.y, player.position.z))
 	bubble.shoot(player.position)
 	time_bubble = 0
 	doing = false
-
 
 func tongue_swipe():
 	grab = false
@@ -473,6 +503,7 @@ func jump_to_platform():
 	
 	
 func hit(area):
+	var hit_pos: Vector3 = hit_body_pos.global_position
 	if boss_data.get_current_health() == 100:
 		time_bubble = 0
 	if swimming:
@@ -482,6 +513,7 @@ func hit(area):
 			tongueHit = 0
 			HPHit = 0
 			triggered = true
+			hit_pos = hit_head_pos.global_position
 		if area.is_in_group("pebble"):
 			boss_data.boss_decrease_health(PEBBLE_HP)
 	else:
@@ -505,13 +537,25 @@ func hit(area):
 			HPHit += HEAD_HP
 			boss_data.boss_decrease_health(HEAD_HP)
 			time_stop = 5
+			hit_pos = hit_head_pos.global_position
 		if HPHit >= TRIGGER_SWIMMING:
 			triggered = true
 	if Global.phase > 1:
 		triggered = false
 	if boss_data.get_current_health() <= 0:
 		GameInstance.PlayerVictorious()
-
+		
+	#hit vfx
+	if hit_impact_VFX != null:
+		var impactVFXObj = hit_impact_VFX.instantiate()
+		get_parent().add_child(impactVFXObj)
+		impactVFXObj.global_position = hit_pos
+	if hit_VFX != null:
+		if hit_impact_VFX != null:
+			create_tween().tween_callback(hit_VFX.play_effect).set_delay(0.1)
+		else:
+			hit_VFX.play_effect()
+	
 func _on_ground_entered(area):
 	if Global.phase >= 2:
 		if area.is_in_group("stone_platform") or area.is_in_group("lily_platform"):

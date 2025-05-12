@@ -1,6 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://tu85h6deilw2"]
+[gd_scene load_steps=18 format=3 uid="uid://tu85h6deilw2"]
 
 [ext_resource type="Script" uid="uid://bk74dqwsj6ymy" path="res://scripts/WaterBubble.gd" id="1_5t4so"]
+[ext_resource type="PackedScene" uid="uid://durpektqxj2k6" path="res://scenes/other/vfx/water_splash.tscn" id="2_6nkay"]
+[ext_resource type="Shader" uid="uid://b8kdvqhcdhxje" path="res://assets/shaders/BubbleScroll.tres" id="2_v24ao"]
+[ext_resource type="Texture2D" uid="uid://1gr47i01gcv0" path="res://assets/textures/bubble_scroll.png" id="3_6nkay"]
+[ext_resource type="Shader" uid="uid://2l4mld21tq6r" path="res://assets/shaders/BubbleHalo.tres" id="4_5af36"]
+[ext_resource type="Texture2D" uid="uid://ddewn0kkvjdgj" path="res://assets/textures/bubble_halo.png" id="5_d5t3u"]
+[ext_resource type="Shader" uid="uid://cl711tkbuy6nt" path="res://assets/shaders/BubbleGlow.tres" id="6_h3oe7"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_qsonp"]
 
@@ -17,20 +23,65 @@ ao_light_affect = 1.0
 [sub_resource type="SphereMesh" id="SphereMesh_2fvjp"]
 material = SubResource("StandardMaterial3D_nfpct")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vy7q3"]
+render_priority = 0
+shader = ExtResource("2_v24ao")
+shader_parameter/ScrollColor = Color(1, 0.6, 3, 1)
+shader_parameter/PanningSpeed = Vector2(0.5, 0.25)
+shader_parameter/ScrollTexture = ExtResource("3_6nkay")
+
+[sub_resource type="SphereMesh" id="SphereMesh_imbi0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_imbi0"]
+render_priority = 0
+shader = ExtResource("4_5af36")
+shader_parameter/HaloTexture = ExtResource("5_d5t3u")
+shader_parameter/BlinkSpeed = 10.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_pvjwk"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_vy7q3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rbsqb"]
+render_priority = 0
+shader = ExtResource("6_h3oe7")
+shader_parameter/GlowColor = Color(0.3, 1.2, 3, 1)
+
 [node name="WaterBubble" type="CharacterBody3D"]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
 collision_layer = 32
 collision_mask = 3
 script = ExtResource("1_5t4so")
+speed = 2.0
+SplashVFX = ExtResource("2_6nkay")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_qsonp")
 
 [node name="bubble" type="Area3D" parent="."]
+visible = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="bubble"]
 mesh = SubResource("SphereMesh_2fvjp")
 skeleton = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="bubble"]
+shape = SubResource("SphereShape3D_qsonp")
+
+[node name="Bubble" type="Area3D" parent="."]
+
+[node name="Scroll" type="MeshInstance3D" parent="Bubble"]
+material_override = SubResource("ShaderMaterial_vy7q3")
+mesh = SubResource("SphereMesh_imbi0")
+
+[node name="Halo" type="MeshInstance3D" parent="Bubble"]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0)
+material_override = SubResource("ShaderMaterial_imbi0")
+mesh = SubResource("QuadMesh_pvjwk")
+
+[node name="Glow" type="MeshInstance3D" parent="Bubble"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0382257, 0, 0.00110006)
+mesh = SubResource("SphereMesh_vy7q3")
+surface_material_override/0 = SubResource("ShaderMaterial_rbsqb")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Bubble"]
 shape = SubResource("SphereShape3D_qsonp")

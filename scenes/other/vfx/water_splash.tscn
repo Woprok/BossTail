@@ -1,7 +1,8 @@
-[gd_scene load_steps=25 format=3 uid="uid://durpektqxj2k6"]
+[gd_scene load_steps=26 format=3 uid="uid://durpektqxj2k6"]
 
 [ext_resource type="Shader" uid="uid://biqy6knk8hy8o" path="res://assets/shaders/alpha_clip_material.tres" id="1_l75kt"]
 [ext_resource type="Shader" uid="uid://ca1whfj0cg75e" path="res://assets/shaders/water_splash_sphere.tres" id="1_nn642"]
+[ext_resource type="Script" uid="uid://bmj24ruy4xs82" path="res://scripts/VFX/PlayBubbleSplashOnStart.gd" id="1_wdb8g"]
 [ext_resource type="Texture2D" uid="uid://mvb5n2ad1wwv" path="res://assets/textures/seamless-noise.png" id="2_ckhv4"]
 [ext_resource type="Texture2D" uid="uid://cbxdhlmmvdqud" path="res://assets/textures/puddle.png" id="3_nn642"]
 [ext_resource type="Script" uid="uid://cjbwlsyhp5kji" path="res://scripts/VFX/splash_puddle_control.gd" id="5_pkoxv"]
@@ -36,10 +37,9 @@ emission_ring_inner_radius = 0.0
 emission_ring_cone_angle = 90.0
 direction = Vector3(0, 1, 0)
 spread = 60.0
-initial_velocity_min = 1.5
-initial_velocity_max = 5.0
-damping_min = 3.0
-damping_max = 5.0
+initial_velocity_min = 3.0
+initial_velocity_max = 8.0
+damping_max = 1.0
 scale_min = 0.01
 scale_max = 0.05
 scale_curve = SubResource("CurveTexture_lst5o")
@@ -73,7 +73,7 @@ render_priority = 0
 shader = ExtResource("1_nn642")
 
 [sub_resource type="Curve" id="Curve_nn642"]
-_data = [Vector2(0, 0.463549), 0.0, -1.28315, 0, 0, Vector2(0.608108, 0.0522697), -0.220541, -0.220541, 0, 0, Vector2(1, 0), -0.135718, 0.0, 0, 0]
+_data = [Vector2(0, 1), 0.0, -1.28315, 0, 0, Vector2(0.586826, 0.281213), -1.04487, -1.04487, 0, 0, Vector2(1, 0), -0.135718, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="CurveTexture" id="CurveTexture_pkoxv"]
@@ -88,8 +88,10 @@ curve = SubResource("Curve_pkoxv")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5p2cg"]
 gravity = Vector3(0, 0, 0)
+scale_min = 2.0
+scale_max = 2.0
 scale_curve = SubResource("CurveTexture_u8jbt")
-color = Color(0.311, 0.635, 0.826, 1)
+color = Color(0.18142, 0.453118, 0.607563, 1)
 alpha_curve = SubResource("CurveTexture_pkoxv")
 
 [sub_resource type="SphereMesh" id="SphereMesh_nn642"]
@@ -98,7 +100,7 @@ alpha_curve = SubResource("CurveTexture_pkoxv")
 render_priority = 0
 shader = ExtResource("1_l75kt")
 shader_parameter/ColorParameter = Color(0.275495, 0.512384, 0.7783, 1)
-shader_parameter/AlphaValue = 0.1
+shader_parameter/AlphaValue = 0.5
 shader_parameter/AlphaMask = ExtResource("3_nn642")
 shader_parameter/Dissolve = 0.0
 shader_parameter/DissolveTexture = ExtResource("2_ckhv4")
@@ -106,12 +108,15 @@ shader_parameter/DissolveTexture = ExtResource("2_ckhv4")
 [sub_resource type="QuadMesh" id="QuadMesh_5p2cg"]
 
 [node name="WaterSplash" type="Node3D"]
+script = ExtResource("1_wdb8g")
+PuddleFadeTime = 1.0
+DestroyInSeconds = 2.0
 
 [node name="SplashDroplets" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00413001, 0.00664115, -0.00545549)
 emitting = false
-amount = 20
-lifetime = 0.8
+amount = 30
+lifetime = 0.6
 one_shot = true
 explosiveness = 0.75
 fixed_fps = 60
