@@ -23,6 +23,7 @@ var fall_acceleration:int = 75
 var MOUSE_SENS:float = 0.008
 var AIM_MOUSE_SENS:float = 0.004
 var DASH_SPEED:int = 25
+var DASH_TIME:float = 0.5
 var AIM_SPEED:int = 5
 var STICKY_SPEED:int = 2
 var SPEED:int = 15
@@ -43,8 +44,9 @@ var aciding_liquid:int = 0
 var grabbed: bool = false
 var launched:bool = false
 var direction = Vector3.ZERO
-
+@export_group("VFX")
 @export var PlayerHitVFX: EntityHitVFX
+@export var CamSpeedLines: CamSpeedLinesController
 
 func _ready() -> void:
 	player_data.player_restart()
@@ -87,7 +89,9 @@ func _physics_process(delta):
 		dashing = true
 		player_data.change_dash_indicator(false)		
 		can_dash = false
-		$dash_timer.start(0.5)
+		$dash_timer.start(DASH_TIME)
+		CamSpeedLines.appear(0.1)
+		create_tween().tween_callback(CamSpeedLines.fade.bind(0.15)).set_delay(DASH_TIME - 0.15)
 		
 	if dashing:
 		animation.dash_start()

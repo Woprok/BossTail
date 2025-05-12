@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=4 uid="uid://gcdomxl8xgx0"]
+[gd_scene load_steps=9 format=4 uid="uid://gcdomxl8xgx0"]
 
 [ext_resource type="Shader" uid="uid://dkoycn8q6xxp" path="res://assets/shaders/speed_lines.tres" id="1_on201"]
+[ext_resource type="Script" uid="uid://b40g3m8tkhye3" path="res://scenes/other/vfx/camera_speed_lines_controller.gd" id="1_x8sh1"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_on201"]
 frequency = 0.0395
@@ -12,7 +13,7 @@ noise = SubResource("FastNoiseLite_on201")
 render_priority = 0
 shader = ExtResource("1_on201")
 shader_parameter/Color = Color(1, 1, 1, 1)
-shader_parameter/Alpha = 1.0
+shader_parameter/Alpha = 0.0
 shader_parameter/StepValue = 0.8
 shader_parameter/Scale = Vector2(5, 0.2)
 shader_parameter/PanSpeed = Vector2(0, 0.3)
@@ -52,16 +53,14 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_ah1xu")
 
-[node name="SpeedLines" type="Node3D"]
+[node name="SpeedLines" type="Node3D" node_paths=PackedStringArray("shader_mesh")]
+script = ExtResource("1_x8sh1")
+shader_mesh = NodePath("SpeedlinesCone/SpeedlinesConeMesh")
 
 [node name="SpeedlinesCone" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.06247, 0)
 
 [node name="SpeedlinesConeMesh" type="MeshInstance3D" parent="SpeedlinesCone"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0237005, 0, 0.000371277)
 material_override = SubResource("ShaderMaterial_wf5t3")
 mesh = SubResource("ArrayMesh_vinll")
 skeleton = NodePath("")
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
