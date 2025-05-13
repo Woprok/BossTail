@@ -17,7 +17,7 @@ func _physics_process(delta):
 		return
 		
 	#align with velocity
-	look_at(velocity)
+	look_at(self.position + velocity)
 	if position.y<-1:
 		queue_free()
 	velocity.y += speed*gravity*delta

@@ -46,7 +46,7 @@ ao_light_affect = 1.0
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_ck5pk"]
 height = 0.1
-radius = 1.2
+radius = 2.4
 
 [node name="aciding_liquid" type="Area3D" groups=["aciding_liquid"]]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)

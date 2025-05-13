@@ -3,6 +3,7 @@ class_name PlayBubbleSplashOnStart
 
 @onready var puddle : PuddleController = $Puddle
 @export var PuddleFadeTime: float
+@export var AdditionalPuddleComponents: Array[Node3D]
 var create_puddle: bool = true
 
 func _ready() -> void:
@@ -10,6 +11,9 @@ func _ready() -> void:
 	if create_puddle:
 		puddle.setup()
 		puddle.puddle_appear(0.2)
+	else: #disable additional puddle components
+		for obj in AdditionalPuddleComponents:
+			obj.queue_free()
 	
 	if DestroyInSeconds > 0:
 		if create_puddle:

@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=4 uid="uid://gcdomxl8xgx0"]
 
 [ext_resource type="Shader" uid="uid://dkoycn8q6xxp" path="res://assets/shaders/speed_lines.tres" id="1_on201"]
-[ext_resource type="Script" uid="uid://b40g3m8tkhye3" path="res://scenes/other/vfx/camera_speed_lines_controller.gd" id="1_x8sh1"]
+[ext_resource type="Script" uid="uid://b40g3m8tkhye3" path="res://scripts/VFX/camera_speed_lines_controller.gd" id="1_x8sh1"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_on201"]
 frequency = 0.0395

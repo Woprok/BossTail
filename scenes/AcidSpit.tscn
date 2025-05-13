@@ -1,0 +1,33 @@
+[gd_scene load_steps=7 format=3 uid="uid://c8rgya1tfw6ms"]
+
+[ext_resource type="Script" uid="uid://db3pvxrsaepm8" path="res://scripts/Bubble.gd" id="1_65kc3"]
+[ext_resource type="PackedScene" uid="uid://cwj3shlceff7f" path="res://scenes/other/vfx/acid_splash.tscn" id="2_4fn2h"]
+[ext_resource type="PackedScene" uid="uid://b8ccdcd8q3lxw" path="res://scenes/other/vfx/spit_projectile.tscn" id="2_d87fs"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2kvhc"]
+transparency = 1
+depth_draw_mode = 1
+shading_mode = 0
+albedo_color = Color(0.557949, 0.539186, 0.0663631, 0.553)
+
+[sub_resource type="SphereMesh" id="SphereMesh_2een1"]
+material = SubResource("StandardMaterial3D_2kvhc")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_4ca46"]
+radius = 0.4
+
+[node name="AcidSpit" type="CharacterBody3D" groups=["frog_bubble"]]
+collision_layer = 32
+collision_mask = 3
+script = ExtResource("1_65kc3")
+splash_prefab = ExtResource("2_4fn2h")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)
+mesh = SubResource("SphereMesh_2een1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_4ca46")
+
+[node name="SpitProjectile" parent="." instance=ExtResource("2_d87fs")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0.79061)

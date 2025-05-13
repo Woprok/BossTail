@@ -119,8 +119,8 @@ var grab_len = 6.25*2
 @export var boss_data: BossDataModel = preload("res://data_resources/FrogBossDataModel.tres")
 @onready var player = get_parent().get_node("Player")
 @onready var flies = get_parent().get_node("flies")
-var Bubble = preload("res://scenes/Bubble.tscn")
-var WaterBubble = preload("res://scenes/WaterBubble.tscn")
+@export var AcidSpit: PackedScene
+@export var WaterBubble: PackedScene
 
 @export_group("VFX")
 @export var bubble_chargeup: BubbleChargeupVFXController
@@ -376,11 +376,11 @@ func bubble_spit(water_bubble_instance = null):
 		else:
 			bubble = WaterBubble.instantiate()
 	else:
-		bubble = Bubble.instantiate()	
+		bubble = AcidSpit.instantiate()
 	if water_bubble_instance == null:
 		get_parent().add_child(bubble)
 		bubble.position = position-transform.basis.z*2
-		bubble.position.y+=0.2
+		bubble.position.y+=0.5
 	look_at(Vector3(player.position.x,position.y, player.position.z))
 	bubble.shoot(player.position)
 	time_bubble = 0
@@ -551,10 +551,7 @@ func hit(area):
 		get_parent().add_child(impactVFXObj)
 		impactVFXObj.global_position = hit_pos
 	if hit_VFX != null:
-		if hit_impact_VFX != null:
-			create_tween().tween_callback(hit_VFX.play_effect).set_delay(0.1)
-		else:
-			hit_VFX.play_effect()
+		hit_VFX.play_effect()
 	
 func _on_ground_entered(area):
 	if Global.phase >= 2:

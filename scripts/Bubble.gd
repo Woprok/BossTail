@@ -3,17 +3,19 @@ extends CharacterBody3D
 var gravity:int = -9
 var HEIGHT_OF_ARC:float = 1
 var speed:int = 2.5
-var ACID = preload("res://scenes/AcidingLiquid.tscn")
+@export var splash_prefab: PackedScene
 
 func _physics_process(delta):
 	velocity.y += speed*gravity*delta
 	var collision = move_and_collide(speed*velocity*delta)
 	if collision:
 		if collision.get_collider().is_in_group("player"):
+			instantiate_splash(collision.get_position())
 			collision.get_collider().hit(5)
 			queue_free()
 			return
 		if collision.get_collider().is_in_group("lily_platform"):
+			instantiate_splash(collision.get_position())
 			if collision.get_collider().name=="largeLily":
 				queue_free()
 			var tween = get_tree().create_tween()
@@ -22,21 +24,30 @@ func _physics_process(delta):
 			queue_free()
 			return
 		if collision.get_collider().is_in_group("stone_platform"): 
-			var liquid = ACID.instantiate()
-			liquid.position = position
-			get_parent().add_child(liquid)
+			instantiate_splash(collision.get_position(), true)
 			queue_free()
 			return
 		if collision.get_collider().is_in_group("pebble"):
+			instantiate_splash(collision.get_position())
 			collision.get_collider().respawn()
 			queue_free()
 			return
 		if  collision.get_collider().is_in_group("boulder"):
+			instantiate_splash(collision.get_position())
 			collision.get_collider().queue_free()
 			queue_free()
 			return
 	if speed<=0:
 		queue_free()
+		
+	look_at(self.position + velocity)
+
+func instantiate_splash(splash_pos: Vector3, create_puddle: bool = false):
+	var splash: PlayBubbleSplashOnStart = splash_prefab.instantiate()
+	get_parent().add_child(splash)
+	splash.global_position = splash_pos
+	if create_puddle:
+		splash.create_puddle = true
 
 func shoot(end):
 	var height = end.y - global_position.y + HEIGHT_OF_ARC

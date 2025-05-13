@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=4 uid="uid://b8ccdcd8q3lxw"]
+[gd_scene load_steps=22 format=4 uid="uid://b8ccdcd8q3lxw"]
 
 [ext_resource type="Shader" uid="uid://c2xq1cm1w53ek" path="res://assets/shaders/SpitProjectile.tres" id="1_vwnx6"]
-[ext_resource type="Texture2D" uid="uid://ug50lkafx3kp" path="res://assets/textures/dissolve_texture.png" id="2_ika5p"]
+[ext_resource type="Texture2D" uid="uid://d11x3x2pw7qra" path="res://assets/textures/seamless-voronoi.png" id="2_ika5p"]
+[ext_resource type="Texture2D" uid="uid://dwlydon653q3j" path="res://assets/textures/flare_base_transparent.PNG" id="3_ika5p"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bakpc"]
 
@@ -38,19 +39,146 @@ shadow_mesh = SubResource("ArrayMesh_arr7y")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_e7xur"]
 render_priority = 0
 shader = ExtResource("1_vwnx6")
-shader_parameter/ColorStart = Color(0.769136, 0.769837, 0.078405, 1)
-shader_parameter/GradientMixWeight = -0.125
-shader_parameter/ColorEnd = Color(0.06017, 0.113802, 0.024234, 1)
-shader_parameter/ErodePanSpeed1 = 3.0
+shader_parameter/ColorStart = Color(0.577879, 0.827819, 0.192156, 1)
+shader_parameter/GradientMixWeight = -0.15
+shader_parameter/ColorEnd = Color(0.145884, 0.239394, 0.0795232, 1)
+shader_parameter/ErodePanSpeed1 = 2.0
 shader_parameter/ErodeTexture = ExtResource("2_ika5p")
-shader_parameter/ErodePanSpeed2 = -1.5
+
+[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_ika5p"]
+parameter_name = "Mask"
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_xb0t3"]
+output_port_for_preview = 1
+expanded_output_ports = [0]
+source = 5
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_rm536"]
+output_port_for_preview = 1
+expanded_output_ports = [0]
+input_name = "color"
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_srmas"]
+operator = 2
+
+[sub_resource type="VisualShader" id="VisualShader_30xcd"]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_disabled, diffuse_lambert, specular_schlick_ggx, unshaded, fog_disabled;
+
+uniform sampler2D Mask;
+
+
+
+void fragment() {
+// Input:4
+	vec4 n_out4p0 = COLOR;
+	float n_out4p4 = n_out4p0.a;
+
+
+	vec4 n_out3p0;
+// Texture2D:3
+	n_out3p0 = texture(Mask, UV);
+	float n_out3p1 = n_out3p0.r;
+
+
+// FloatOp:5
+	float n_out5p0 = n_out4p4 * n_out3p1;
+
+
+// Output:0
+	ALBEDO = vec3(n_out4p0.xyz);
+	ALPHA = n_out5p0;
+
+
+}
+"
+graph_offset = Vector2(-587.683, -101.366)
+modes/cull = 2
+flags/unshaded = true
+flags/fog_disabled = true
+preview_params/Mask = "Resource(\"res://assets/textures/spittle_mask.png\")"
+nodes/fragment/2/node = SubResource("VisualShaderNodeTexture2DParameter_ika5p")
+nodes/fragment/2/position = Vector2(-980, 80)
+nodes/fragment/3/node = SubResource("VisualShaderNodeTexture_xb0t3")
+nodes/fragment/3/position = Vector2(-600, 160)
+nodes/fragment/4/node = SubResource("VisualShaderNodeInput_rm536")
+nodes/fragment/4/position = Vector2(-360, -200)
+nodes/fragment/5/node = SubResource("VisualShaderNodeFloatOp_srmas")
+nodes/fragment/5/position = Vector2(40, 180)
+nodes/fragment/connections = PackedInt32Array(2, 0, 3, 2, 4, 4, 5, 0, 3, 1, 5, 1, 5, 0, 0, 1, 4, 0, 0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mnswt"]
+render_priority = 0
+shader = SubResource("VisualShader_30xcd")
+shader_parameter/Mask = ExtResource("3_ika5p")
+
+[sub_resource type="Curve" id="Curve_k5bxy"]
+_data = [Vector2(0.00763359, 0.00160015), 0.0, 31.6077, 0, 0, Vector2(0.110687, 1), 0.0, 0.0, 0, 0, Vector2(0.992366, 0), -1.25125, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_yi0jx"]
+curve = SubResource("Curve_k5bxy")
+
+[sub_resource type="Gradient" id="Gradient_srmas"]
+colors = PackedColorArray(0.17034, 0.229439, 0.052747, 1, 0.00109626, 0.0166066, 1.50409e-09, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_30xcd"]
+gradient = SubResource("Gradient_srmas")
+use_hdr = true
+
+[sub_resource type="Curve" id="Curve_3r6ex"]
+_data = [Vector2(0, 1), 0.0, -0.133181, 0, 0, Vector2(1, 0.00160015), -1.86029, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_xkjfw"]
+curve = SubResource("Curve_3r6ex")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mnswt"]
+lifetime_randomness = 0.1
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 0.5
+emission_ring_radius = 0.45
+emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
+inherit_velocity_ratio = 1.0
+direction = Vector3(0, 0, 0)
+spread = 15.0
+initial_velocity_min = 5.0
+initial_velocity_max = 15.0
+gravity = Vector3(0, -5, 0)
+linear_accel_min = -2.23517e-06
+linear_accel_max = -2.23517e-06
+radial_accel_min = -2.23517e-06
+radial_accel_max = -2.23517e-06
+tangential_accel_min = -2.23517e-06
+tangential_accel_max = -2.23517e-06
+damping_min = 0.25
+damping_max = 2.0
+scale_min = 0.25
+scale_curve = SubResource("CurveTexture_xkjfw")
+color = Color(0.796243, 0.796243, 0.796243, 1)
+color_ramp = SubResource("GradientTexture1D_30xcd")
+alpha_curve = SubResource("CurveTexture_yi0jx")
+
+[sub_resource type="QuadMesh" id="QuadMesh_k5bxy"]
 
 [node name="SpitProjectile" type="Node3D"]
 
 [node name="spit_projectile" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.119789, 0, -0.410019)
 
 [node name="Spit_Mesh" type="MeshInstance3D" parent="spit_projectile"]
+transform = Transform3D(1, -0.000132018, 0.000116425, 0.000132149, 0.999999, -0.00113838, -0.000116276, 0.0011384, 0.999999, 0, 0, 0)
 mesh = SubResource("ArrayMesh_vbblc")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_e7xur")
+
+[node name="Spittle" type="GPUParticles3D" parent="spit_projectile"]
+transform = Transform3D(0.999993, 0.00358877, 0.000697854, -0.00358704, 0.999991, -0.00246163, -0.000706681, 0.0024591, 0.999997, 0.116274, 0.0100186, 0.430627)
+material_override = SubResource("ShaderMaterial_mnswt")
+amount = 20
+lifetime = 0.5
+transform_align = 3
+trail_lifetime = 0.5
+process_material = SubResource("ParticleProcessMaterial_mnswt")
+draw_pass_1 = SubResource("QuadMesh_k5bxy")
