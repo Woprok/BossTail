@@ -6,7 +6,7 @@ var jump = false
 var box_hit = true
 
 @export var BOX_RESPAWN_TIME = 3
-@export var STOP_TIME = 2
+@export var STUNNED_TIME = 2
 @export var WHIRLWIND_STRENGTH = 15
 
 var Box = preload("res://scenes/Crates.tscn")
@@ -22,7 +22,7 @@ func _physics_process(delta):
 		var collision = move_and_collide(speed*velocity*delta)
 	else:
 		velocity.y = 0
-	if stopped and ((box_hit and stop_time>=BOX_RESPAWN_TIME) or (not box_hit and stop_time>=STOP_TIME)):
+	if stopped and ((box_hit and stop_time>=BOX_RESPAWN_TIME) or (not box_hit and stop_time>=STUNNED_TIME)):
 		stopped = false
 		whirlwind()
 	if stopped:
@@ -54,7 +54,7 @@ func whirlwind():
 		box.dummy_parent = self
 		box.get_node("hit/CollisionShape3D").disabled = false
 		get_parent().add_child.call_deferred(box)
-		box.global_position = Vector3(position.x,-5.25,position.z)
+		box.position = Vector3(position.x,-5.25,position.z)
 		box.scale/=4
 
 func _on_body_entered(body):

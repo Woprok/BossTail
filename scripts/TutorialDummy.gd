@@ -9,6 +9,16 @@ var actual_volley = 1
 @export_group("Attack params")
 @export var BOXES_IN_VOLLEY=4
 
+var speed = 10
+var gravity = -5
+var jump = false
+var box_hit = true
+var stop_time = 10
+var whirlwind_box = null
+
+@export var BOX_RESPAWN_TIME = 3
+@export var STUNNED_TIME = 2
+
 @export var WHIRLWIND_STRENGTH = 15
 @export var WHIRLWIND_TIME_MAX = 9
 @export var WHIRLWIND_TIME_MIN = 3
@@ -43,21 +53,42 @@ func _physics_process(delta):
 	if not active:
 		return
 	
+	velocity.x=0
+	velocity.z=0
+	
+	if stopped and whirlwind_box!=null:
+		stop_time += delta
+		if stop_time>=STUNNED_TIME:
+			whirlwind_time = 0
+			stopped = false
+	if jump:
+		if velocity.y<0 and doing and whirlwind_box==null:
+			show_box()
+		velocity.y += speed*gravity*delta
+		var collision = move_and_collide(speed*velocity*delta)
+	else:
+		velocity.y = 0
+		
 	if stopped:
 		$Area3D/CollisionShape3D.disabled = true
 	else:
 		$Area3D/CollisionShape3D.disabled = false	
-	
+			
 	if not stopped:
 		doing = true
 		rotate_y(delta*20)
 		whirlwind_time += delta
+		
 	if whirlwind_time>=WHIRLWIND_TIME:
 		whirlwind_time = 0
-		push()
-		$box.use_collision=false
+		if whirlwind_box!=null:
+			whirlwind_box.queue_free()
+			whirlwind_box = null
 		stopped = true
-		$AnimationPlayer.play("whirlwind_end")
+		jump = true
+		doing = false
+		box_hit = true
+		push()
 		return
 	if doing:
 		if actual_volley<num_of_volley:
@@ -83,8 +114,17 @@ func _physics_process(delta):
 		throw()
 
 func hit(hp):
-	if stopped==false or (boss_data.get_current_health()==100 and position.distance_to(get_parent().get_node("Player").position)>33):
+	if not typeof(hp) == TYPE_INT:
 		return
+		
+	if (boss_data.get_current_health()==100 and position.distance_to(get_parent().get_node("Player").position)>33):
+		return
+	
+	if not stopped:
+		stopped = true
+		stop_time = 0
+		return
+		
 	if boss_data.get_current_health()==100:
 		get_parent().get_node("AnimationPlayer").play_backwards("last_wall")
 
@@ -104,20 +144,39 @@ func hit(hp):
 		last_whirlwind = 0
 		whirlwind()
 
+
 func slash():
 	$AnimationPlayer.play("slash",-1,3)
+
 
 func whirlwind():
 	barrage_time = 0
 	slash_time = 0 
-	$AnimationPlayer.play("whirlwind_start",2)
+	stopped = false
+	doing = true
+	box_hit = false
+	jump = true
+	velocity.y = speed
 	
 
+func show_box():
+	var box = BOX.instantiate()
+	whirlwind_box = box
+	box.dummy_box = true
+	box.dummy_parent = self
+	box.get_node("hit/CollisionShape3D").disabled = false
+	box.position = Vector3(position.x,-4.5,position.z)
+	box.scale/=2
+	get_parent().add_child.call_deferred(box)
+	
+	
 func push():
 	var player = get_parent().get_node("Player")
-	player.velocity=(player.global_position-global_position).normalized()*35
+	player.velocity=player.global_position-global_position
 	player.velocity.y = 0
+	player.velocity = player.velocity.normalized()*35
 	player.pushed = true
+
 
 func throw():
 	var init_dir = (get_parent().get_node("Player").position - position).normalized()
@@ -138,10 +197,12 @@ func throw():
 	else:
 		doing = false
 
+
 func _on_body_entered(body):
-	if not stopped and body.is_in_group("player") and body.pushed == false:
-		body.velocity=(body.global_position-global_position).normalized()*WHIRLWIND_STRENGTH
+	if body.is_in_group("player") and body.pushed == false:
+		body.velocity=body.global_position-global_position
 		body.velocity.y = 0
+		body.velocity = body.velocity.normalized()*WHIRLWIND_STRENGTH
 		body.pushed = true
 
 
@@ -154,16 +215,18 @@ func _on_box_hit(body: Node3D) -> void:
 	if body.is_in_group("pebble"):
 		body.queue_free()
 		whirlwind_time = 0
-		$box.use_collision=false
+		whirlwind_box = null
 		stopped = true
-		$AnimationPlayer.play("whirlwind_end")
+		doing = false
+		jump = true
+		box_hit = true
+
+
+func _on_ground_body_entered(body: Node3D) -> void:
+	if velocity.y<0:
+		jump = false
 
 
 func _on_animation_finished(anim_name):
 	if anim_name == "slash":
-		doing = false
-	if anim_name == "whirlwind_start":
-		stopped = false
-		$box.use_collision = true
-	if anim_name == "whirlwind_end":
 		doing = false
