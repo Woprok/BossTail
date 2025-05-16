@@ -16,3 +16,4 @@ func _on_body_entered(body):
 	if body.is_in_group("player"):
 		body.hit(20)
 		body.get_parent().respawn_player()
+		queue_free()

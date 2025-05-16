@@ -13,7 +13,7 @@ func _process(delta):
 		if last_bubble >= 4.0/100.0 * frog_health.boss_current_health + 0.01:
 			last_bubble = 0
 			var bubble = WaterBubble.instantiate()
-			bubble.scale*=8
+			bubble.scale*=2
 			$bubbles.add_child(bubble)
 			if $Player.platform != null:
 				var center_position = $Player.platform.global_position 

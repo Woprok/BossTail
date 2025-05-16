@@ -13,8 +13,8 @@ var speed:int = 15
 var jump_speed:int = 30
 
 var fall_acceleration:int = 75
-var MOUSE_SENS:float = 0.008
-var AIM_MOUSE_SENS:float = 0.004
+@export var MOUSE_SENS:float = 0.008
+@export var AIM_MOUSE_SENS:float = 0.004
 var DASH_SPEED:int = 25
 var AIM_SPEED:int = 5
 var SPEED:int = 15
@@ -54,9 +54,13 @@ func _physics_process(delta):
 	if Input.is_action_pressed("camera_left"):
 		rotate_y(0.05)
 	if Input.is_action_pressed("camera_up"):
-		rotate_x(-0.05)
+		rotation_degrees.x -= 0.8
+		if rotation_degrees.x <= -45:
+			rotation_degrees.x = -45
 	if Input.is_action_pressed("camera_down"):
-		rotate_x(0.05)
+		rotation_degrees.x += 0.8
+		if rotation_degrees.x >= 45:
+			rotation_degrees.x = 45
 	
 	if pushed:
 		velocity.y = 0

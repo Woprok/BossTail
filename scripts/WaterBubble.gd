@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 @export var gravity:float = -9
 @export var HEIGHT_OF_ARC:float = 4
-@export var speed:float = 3
+@export var speed:float = 5
 var collision_num = 0 
 var collision_with_player = false
 
@@ -17,9 +17,10 @@ func _physics_process(delta):
 		return
 		
 	#align with velocity
-	look_at(self.position + velocity)
-	if position.y<-1:
-		queue_free()
+#	look_at(self.position + velocity)
+	
+	#if position.y<-1:
+	#	queue_free()
 	velocity.y += speed*gravity*delta
 	var collision: KinematicCollision3D = move_and_collide(speed*velocity*delta)
 	

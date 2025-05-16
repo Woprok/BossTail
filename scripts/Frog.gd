@@ -110,7 +110,7 @@ var prev_platform : Node
 var grab_target = null
 
 # radius of path around platform for swimming
-var radius = 11.8                   
+var radius = 12.5                  
 var angle = 0.0
 var init_angle = 0
 
@@ -150,7 +150,14 @@ func _physics_process(delta):
 	# is stopped and do nothing
 	if time_stop < STOP_TIME:
 		return
-		
+	
+	if jump and velocity.y>0:
+		$bodyShape.disabled = true
+		$legShape.disabled = true
+	elif velocity.y<=0:
+		$bodyShape.disabled = false
+		$legShape.disabled = false
+	
 	# character moving
 	if not swimming or jump:
 		velocity.y += speed*gravity*delta
@@ -182,6 +189,7 @@ func _physics_process(delta):
 	# 
 	if doing or jump:
 		return
+		
 	if Global.phase == 1:
 		if subphase == 0:
 			time_bubble += delta
@@ -230,6 +238,9 @@ func _physics_process(delta):
 				#animationTree.spit_end()
 		else:
 			if not swimming:
+				if prev_platform==null or platform==null:
+					jump_to_water()
+					return
 				var dir = (prev_platform.position-platform.position).normalized()
 				jump_direction(Vector3(platform.position.x + dir.x * radius,platform.position.y,platform.position.z + dir.z * radius))
 				swimming = true
@@ -377,11 +388,12 @@ func bubble_spit(water_bubble_instance = null):
 			bubble = WaterBubble.instantiate()
 	else:
 		bubble = AcidSpit.instantiate()
+	look_at(Vector3(player.position.x,position.y, player.position.z))
 	if water_bubble_instance == null:
 		get_parent().add_child(bubble)
-		bubble.position = position-transform.basis.z*2
-		bubble.position.y+=0.5
-	look_at(Vector3(player.position.x,position.y, player.position.z))
+		if not swimming:
+			bubble.position = position-transform.basis.z*2
+			bubble.position.y+=0.5
 	bubble.shoot(player.position)
 	time_bubble = 0
 	doing = false
@@ -507,7 +519,7 @@ func hit(area):
 	if boss_data.get_current_health() == 100:
 		time_bubble = 0
 	if swimming:
-		if area.is_in_group("boulder"):
+		if area.is_in_group("boulder") and position.y < 1:
 			boss_data.boss_decrease_health(BOULDER_HP)
 			jump_to_platform()
 			tongueHit = 0

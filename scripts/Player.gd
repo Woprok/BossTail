@@ -20,8 +20,8 @@ var speed:int = 15
 var jump_speed:int = 30
 
 var fall_acceleration:int = 75
-var MOUSE_SENS:float = 0.008
-var AIM_MOUSE_SENS:float = 0.004
+@export var MOUSE_SENS:float = 0.008
+@export var AIM_MOUSE_SENS:float = 0.004
 var DASH_SPEED:int = 25
 var DASH_TIME:float = 0.5
 var AIM_SPEED:int = 5
@@ -70,9 +70,13 @@ func _physics_process(delta):
 	if Input.is_action_pressed("camera_left"):
 		rotate_y(0.05)
 	if Input.is_action_pressed("camera_up"):
-		rotate_x(-0.05)
+		rotation_degrees.x += 0.8
+		if rotation_degrees.x >= 45:
+			rotation_degrees.x = 45
 	if Input.is_action_pressed("camera_down"):
-		rotate_x(0.05)
+		rotation_degrees.x -= 0.8
+		if rotation_degrees.x <= -45:
+			rotation_degrees.x = -45
 	
 	if not launched:
 		direction = Vector3.ZERO
@@ -243,7 +247,7 @@ func respawn():
 		position = platform.position
 		position.y += 5
 	else:
-		if position.y>-3:
+		if get_parent().get_node("frog").platform == platform:
 			for i in platform.neighbors:
 				if i != null and i.is_in_group("stone_platform") and get_parent().get_node("frog").platform != i:
 					platform = i
@@ -251,8 +255,9 @@ func respawn():
 				if i != null and i.is_in_group("lily_platform") and i.sinked == false:
 					platform = i
 					break
-		position = platform.global_position
-		position.y += 5
+		else:
+			position = platform.global_position
+			position.y += 5
 	
 	
 func launch(pos):

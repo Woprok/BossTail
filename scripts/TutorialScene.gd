@@ -52,7 +52,9 @@ func _process(delta):
 		boulder3.position = boulders_variant[variant][2]
 		boulder4.position = boulders_variant[variant][3]
 	if $obstacles/pebbles.get_child_count()<10:
-		addRock($obstacles/pebbles.position)
+		var x = randf() * 2 - 1
+		var z = randf() * 2 - 1
+		addRock($obstacles/pebbles.position+Vector3(x, 0, z))
 
 func respawn_player():
 	$Player.respawn()
