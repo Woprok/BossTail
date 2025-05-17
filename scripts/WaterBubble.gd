@@ -24,7 +24,7 @@ func _physics_process(delta):
 	velocity.y += speed*gravity*delta
 	var collision: KinematicCollision3D = move_and_collide(speed*velocity*delta)
 	
-	if collision:		
+	if collision:
 		if collision.get_collider().is_in_group("player") and not collision_with_player:
 			collision_with_player = true
 			collision_num += 1

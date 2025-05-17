@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://durpektqxj2k6"]
+[gd_scene load_steps=27 format=3 uid="uid://durpektqxj2k6"]
 
 [ext_resource type="Shader" uid="uid://biqy6knk8hy8o" path="res://assets/shaders/alpha_clip_material.tres" id="1_l75kt"]
 [ext_resource type="Shader" uid="uid://ca1whfj0cg75e" path="res://assets/shaders/water_splash_sphere.tres" id="1_nn642"]
@@ -107,7 +107,11 @@ shader_parameter/DissolveTexture = ExtResource("2_ckhv4")
 
 [sub_resource type="QuadMesh" id="QuadMesh_5p2cg"]
 
-[node name="WaterSplash" type="Node3D"]
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_wdb8g"]
+height = 0.1
+radius = 0.26
+
+[node name="WaterSplash" type="Node3D" groups=["water_splash"]]
 script = ExtResource("1_wdb8g")
 PuddleFadeTime = 1.0
 DestroyInSeconds = 2.0
@@ -140,3 +144,10 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -3.123
 material_override = SubResource("ShaderMaterial_ckhv4")
 mesh = SubResource("QuadMesh_5p2cg")
 script = ExtResource("5_pkoxv")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("CylinderShape3D_wdb8g")
+
+[connection signal="area_entered" from="Area3D" to="." method="_on_water_and_acid_splash_entered"]

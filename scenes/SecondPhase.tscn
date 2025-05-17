@@ -13,28 +13,30 @@
 [ext_resource type="PackedScene" uid="uid://bcltx0r4cig8q" path="res://scenes/BreakablePlatform.tscn" id="9_npsua"]
 [ext_resource type="PackedScene" uid="uid://drg5tjf7wiuib" path="res://scenes/Swarm.tscn" id="10_663fb"]
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_m4gwv"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_wjuqv"]
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_y12j1"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_c7usa"]
 seamless = true
 as_normal_map = true
-noise = SubResource("FastNoiseLite_m4gwv")
+noise = SubResource("FastNoiseLite_wjuqv")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gkyis"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mtf15"]
 transparency = 1
+blend_mode = 1
 depth_draw_mode = 1
-albedo_color = Color(0.333333, 0.505882, 1, 0.627451)
+albedo_color = Color(0.200515, 0.368993, 0.999981, 1)
 normal_enabled = true
 normal_scale = 4.0
-normal_texture = SubResource("NoiseTexture2D_y12j1")
+normal_texture = SubResource("NoiseTexture2D_c7usa")
 refraction_enabled = true
-refraction_texture = SubResource("NoiseTexture2D_y12j1")
+refraction_texture = SubResource("NoiseTexture2D_c7usa")
 uv2_scale = Vector3(0.03, 0.03, 0.03)
 uv2_triplanar = true
 uv2_world_triplanar = true
+disable_receive_shadows = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_owglc"]
-material = SubResource("StandardMaterial3D_gkyis")
+material = SubResource("StandardMaterial3D_mtf15")
 size = Vector3(1000, 1, 1000)
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_0n06u"]

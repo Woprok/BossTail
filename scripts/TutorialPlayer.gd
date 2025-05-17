@@ -4,7 +4,7 @@ var Rock = preload("res://scenes/TutorialRock.tscn")
 
 @export var player_data: PlayerDataModel = preload("res://data_resources/PlayerDataModelInstance.tres")
 @onready var Camera = $CameraPivot/SpringArm3D/Camera3D
-@onready var pebbles = get_parent().get_node("obstacles/pebbles") #opravit
+@onready var pebbles = get_parent().get_node("obstacles/pebbles")
 
 var pebble_count = 0 
 @export var AMMO_CAPACITY = 3
@@ -48,19 +48,18 @@ func _physics_process(delta):
 	time = time+ delta
 	lastHit += delta
 	last_shot += delta
-	
 	if Input.is_action_pressed("camera_right"):
 		rotate_y(-0.05)
 	if Input.is_action_pressed("camera_left"):
 		rotate_y(0.05)
 	if Input.is_action_pressed("camera_up"):
-		rotation_degrees.x -= 0.8
-		if rotation_degrees.x <= -45:
-			rotation_degrees.x = -45
+		Camera.rotation.x += deg_to_rad(0.8)
+		if Camera.rotation.x >= 0.3:
+			Camera.rotation.x = 0.3
 	if Input.is_action_pressed("camera_down"):
-		rotation_degrees.x += 0.8
-		if rotation_degrees.x >= 45:
-			rotation_degrees.x = 45
+		Camera.rotation.x -= deg_to_rad(0.8)
+		if Camera.rotation.x <= -0.7:
+			Camera.rotation.x = -0.7
 	
 	if pushed:
 		velocity.y = 0
@@ -110,13 +109,7 @@ func _physics_process(delta):
 		fighting = false
 		$melee/target.disabled = true
 		if not dashing:
-			if is_on_floor() and direction.y!=0:
-				$AnimationTree.jump_descending()
-			elif is_on_floor():
-				direction.y = 0
-				$AnimationTree.run()
-			else:
-				$AnimationTree.jump_descending()
+			$AnimationTree.run()
 		
 	if last_shot > 0.5 and Input.is_action_pressed("aim"):
 		player_data.change_ranged_indicator(true)
@@ -177,6 +170,10 @@ func _physics_process(delta):
 	if not fighting and is_on_floor() and direction==Vector3.ZERO:
 		$AnimationTree.idle()
 		$melee/target.disabled = true
+	if velocity.y<0:
+		$AnimationTree.jump_descending()
+	elif velocity.y>0:
+		$AnimationTree.jump_start()
 	move_and_slide()
 	
 		

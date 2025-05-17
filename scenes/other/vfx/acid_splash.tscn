@@ -105,14 +105,14 @@ shader_parameter/DissolveTexture = ExtResource("5_w2s1w")
 size = Vector2(2, 2)
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_ck5pk"]
-height = 0.1
+height = 0.15
 radius = 2.4
 
 [node name="AcidSplash" type="Node3D" node_paths=PackedStringArray("AdditionalPuddleComponents")]
 script = ExtResource("1_wkxvf")
 PuddleFadeTime = 2.0
 AdditionalPuddleComponents = [NodePath("aciding_liquid")]
-DestroyInSeconds = 10.0
+DestroyInSeconds = 0.0
 
 [node name="SplashDroplets" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00413001, 0.00664115, -0.00545549)
@@ -147,4 +147,5 @@ script = ExtResource("6_ivo5k")
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="aciding_liquid"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0330404, 0)
 shape = SubResource("CylinderShape3D_ck5pk")

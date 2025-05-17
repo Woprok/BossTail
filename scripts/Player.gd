@@ -70,13 +70,13 @@ func _physics_process(delta):
 	if Input.is_action_pressed("camera_left"):
 		rotate_y(0.05)
 	if Input.is_action_pressed("camera_up"):
-		rotation_degrees.x += 0.8
-		if rotation_degrees.x >= 45:
-			rotation_degrees.x = 45
+		Camera.rotation.x += deg_to_rad(0.8)
+		if Camera.rotation.x >= 0.3:
+			Camera.rotation.x = 0.3
 	if Input.is_action_pressed("camera_down"):
-		rotation_degrees.x -= 0.8
-		if rotation_degrees.x <= -45:
-			rotation_degrees.x = -45
+		Camera.rotation.x -= deg_to_rad(0.8)
+		if Camera.rotation.x <= -0.8:
+			Camera.rotation.x = -0.8
 	
 	if not launched:
 		direction = Vector3.ZERO
@@ -121,12 +121,7 @@ func _physics_process(delta):
 		fighting = false
 		$melee/target.disabled = true
 		if not dashing:
-			if is_on_floor() and direction.y!=0:
-				animation.jump_descending()
-			elif is_on_floor():
-				animation.run()
-			else:
-				animation.jump_descending()
+			animation.run()
 		
 	if last_shot > 0.5 and Input.is_action_pressed("aim"):
 		player_data.change_ranged_indicator(true)
@@ -184,6 +179,10 @@ func _physics_process(delta):
 	if not fighting and is_on_floor() and direction==Vector3.ZERO:
 		animation.idle()
 		$melee/target.disabled = true
+	if velocity.y<0:
+		animation.jump_descending()
+	elif velocity.y>0:
+		animation.jump_start()
 	move_and_slide()
 	
 		
@@ -247,7 +246,7 @@ func respawn():
 		position = platform.position
 		position.y += 5
 	else:
-		if get_parent().get_node("frog").platform == platform:
+		if get_parent().get_node("frog").platform == platform or position.y>-3:
 			for i in platform.neighbors:
 				if i != null and i.is_in_group("stone_platform") and get_parent().get_node("frog").platform != i:
 					platform = i
@@ -255,9 +254,8 @@ func respawn():
 				if i != null and i.is_in_group("lily_platform") and i.sinked == false:
 					platform = i
 					break
-		else:
-			position = platform.global_position
-			position.y += 5
+		position = platform.global_position
+		position.y += 5
 	
 	
 func launch(pos):

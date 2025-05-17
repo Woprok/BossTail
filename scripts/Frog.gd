@@ -114,7 +114,8 @@ var radius = 12.5
 var angle = 0.0
 var init_angle = 0
 
-var grab_len = 6.25*2
+var grab_len_max = 6.2*2
+var grab_len_min = 4
 
 @export var boss_data: BossDataModel = preload("res://data_resources/FrogBossDataModel.tres")
 @onready var player = get_parent().get_node("Player")
@@ -201,8 +202,8 @@ func _physics_process(delta):
 				HPHit = 0
 				return
 			if boss_data.get_current_health() <= GRAB_HP and time_grab >= GRAB_TIME and not doing and platform==player.platform:
-				if position.distance_to(player.position)<grab_len-0.05 or position.distance_to(player.position)>grab_len+0.05:
-					var point = find_point_on_platform(platform.position,player.position,grab_len)
+				if position.distance_to(player.position)<grab_len_min or position.distance_to(player.position)>grab_len_max:
+					var point = find_point_on_platform(platform.position,player.position,grab_len_min, grab_len_max)
 					if point!=null:
 						jump_direction(point)
 						doing = true
@@ -322,8 +323,8 @@ func _physics_process(delta):
 						grab_target = fly
 						break
 			elif grab_target.platform==platform:
-				if position.distance_to(grab_target.position)<grab_len-0.05 or position.distance_to(grab_target.position)>grab_len+0.05:
-					var point = find_point_on_platform(platform.position,grab_target.position,grab_len)
+				if position.distance_to(grab_target.position)<grab_len_min or position.distance_to(grab_target.position)>grab_len_max:
+					var point = find_point_on_platform(platform.position,grab_target.position,grab_len_min, grab_len_max)
 					if point!=null:
 						jump_direction(point)
 					doing = true
@@ -440,13 +441,13 @@ func ground_slam():
 		platform = newShards.get_node("stone1")
 		newShards.get_node("AnimationPlayer").play("break")
 	
-func find_point_on_platform(platform_position, player_position, distance):
-	var platform_top_left = Vector3(platform_position.x - 13 / 2, platform_position.y, platform.position.z - 13 / 2)
-	var platform_bottom_right =  Vector3(platform_position.x + 13 / 2, platform_position.y, platform.position.z + 13 / 2)
+func find_point_on_platform(platform_position, player_position, min_distance, max_distance):
+	var platform_top_left = Vector3(platform_position.x - 10 / 2, platform_position.y, platform.position.z - 10 / 2)
+	var platform_bottom_right =  Vector3(platform_position.x + 10 / 2, platform_position.y, platform.position.z + 10 / 2)
 	for x in range(int(platform_top_left.x), int(platform_bottom_right.x)):
 		for z in range(int(platform_top_left.z), int(platform_bottom_right.z)):
 			var point = Vector3(x, player.position.y, z)
-			if point.distance_to(player_position) >= distance-0.1 and point.distance_to(player_position)<=distance+0.1:
+			if point.distance_to(player_position) >= min_distance and point.distance_to(player_position)<=max_distance:
 				return point
 	return null
 
@@ -597,6 +598,7 @@ func _on_ground_entered(area):
 
 
 func _on_tongue_body_entered(body):
+	print(body)
 	if body.is_in_group("player"):
 		if swipe:
 			body.hit(SWIPE_DAMAGE_HP)
@@ -637,21 +639,17 @@ func _on_animation_finished(anim_name):
 		extended = false
 		doing = false
 		$tongue/CollisionShape3D.disabled = true
-		#$tongueShape.disabled = true
 		grab = false
 	if anim_name == "G_03-tongue_grab-start":
 		extended = true
 		$tongue/CollisionShape3D.disabled = false
-		#$tongueShape.disabled = false
 	if anim_name == "G_05-swipe-start":
 		extended = false
 		doing = false
 		$tongue/CollisionShape3D.disabled = false
-		#$tongueShape.disabled = false
 		animationTree.swipe_end()
 	if anim_name == "G_05-swipe-end":
 		$tongue/CollisionShape3D.disabled = true
-		#$tongueShape.disabled = true
 		swipe = false
 		time_swipe = 0
 	if anim_name == "G_02-jump-end":
