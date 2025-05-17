@@ -12,7 +12,10 @@ func dash_start():
 	
 func dash_end():
 	state_machine.travel("Dash_end")
-	
+
+func falling():
+	state_machine.travel("Falling")
+
 func jump_start():
 	state_machine.travel("Jump_start")
 	

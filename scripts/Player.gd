@@ -31,6 +31,7 @@ var back = -1
 var lastHit = 100
 
 var time:float = 0
+var jump_time: float = 0
 var target_velocity:Vector3 = Vector3.ZERO
 var mouse_sensitivity:float = 0.008
 var melee:bool = false
@@ -109,14 +110,28 @@ func _physics_process(delta):
 		speed = SPEED
 		
 	if Input.is_action_just_pressed("jump") and aciding_liquid == 0:
+		jump_time = 0
 		player_data.change_jump_height(delta)
 		direction.y += 1
 	if Input.is_action_pressed("jump") and aciding_liquid == 0:
+		jump_time += delta
 		player_data.change_jump_height(delta*333)
 	if Input.is_action_just_released("jump"):
 		player_data.change_jump_height(0)
-		target_velocity.y *= 0.1
 		
+		if jump_time>=0.7:
+			target_velocity.y *= 0.1
+			jump_time = 0
+		else:
+			target_velocity.y *= 0.7
+			
+	if not Input.is_action_pressed("jump") and jump_time != 0:
+		if jump_time>=0.7:
+			jump_time = 0
+			target_velocity.y *= 0.1
+		else:
+			jump_time+=delta 
+			
 	if direction != Vector3.ZERO:
 		fighting = false
 		$melee/target.disabled = true
@@ -179,8 +194,12 @@ func _physics_process(delta):
 	if not fighting and is_on_floor() and direction==Vector3.ZERO:
 		animation.idle()
 		$melee/target.disabled = true
+		
 	if velocity.y<0:
-		animation.jump_descending()
+		if jump:
+			animation.jump_descending()
+		else:
+			animation.falling()
 	elif velocity.y>0:
 		animation.jump_start()
 	move_and_slide()
