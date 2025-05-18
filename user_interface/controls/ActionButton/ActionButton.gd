@@ -11,7 +11,7 @@ func AddProgress(progress: float) -> void:
 	current_progress = total_progress / 100.0
 	material.set_shader_parameter("progress", current_progress) 
 	
-func ResetProgress(progress: float) -> void:
+func ResetProgress() -> void:
 	total_progress = 0.0
 	current_progress = 0.0
 	material.set_shader_parameter("progress", current_progress) 

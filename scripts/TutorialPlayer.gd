@@ -300,5 +300,5 @@ func _on_standing(area):
 		part = 3
 		
 		
-func _on_leaving(area):
+func _on_leaving(_area):
 	pass

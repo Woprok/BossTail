@@ -55,7 +55,7 @@ func UpdateBossHealth() -> void:
 func UpdatePlayerHealth() -> void:
 	%PlayerHealthBar.ChangeHealth(player_data.player_current_health)
 	
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	change_melee_indicator(player_data.melee_enabled)
 	change_ranged_indicator(player_data.ranged_enabled)
 	change_dash_indicator(player_data.dash_enabled)
@@ -63,7 +63,7 @@ func _process(delta: float) -> void:
 
 func change_jump_height(value):
 	if value == 0:
-		%JumpIcon.ResetProgress(0.0)
+		%JumpIcon.ResetProgress()
 		#%JumpIcon.texture = load("res://assets/temp/jump.png")
 	else:
 		%JumpIcon.AddProgress(value)

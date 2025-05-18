@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 var gravity:int = -9
 var HEIGHT_OF_ARC:float = 1
-var speed:int = 2.5
+var speed:float = 2.5
 @export var splash_prefab: PackedScene
 
 func _physics_process(delta):

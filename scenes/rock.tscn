@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cfby3q2ua7ewi"]
 
-[ext_resource type="Script" uid="uid://dcw57fqrggfws" path="res://scripts/Rock.gd" id="1_diqi0"]
+[ext_resource type="Script" uid="uid://jfbmi2yjgsql" path="res://scripts/Rock.gd" id="1_diqi0"]
 
 [sub_resource type="ORMMaterial3D" id="ORMMaterial3D_h43qs"]
 albedo_color = Color(0.117647, 0.117647, 0.117647, 1)
@@ -8,7 +8,7 @@ albedo_color = Color(0.117647, 0.117647, 0.117647, 1)
 [sub_resource type="SphereShape3D" id="SphereShape3D_w6b4g"]
 radius = 0.0582903
 
-[node name="rock" type="CharacterBody3D" groups=["pebble"]]
+[node name="Rock" type="CharacterBody3D" groups=["pebble"]]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 collision_layer = 5
 collision_mask = 3

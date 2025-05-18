@@ -60,7 +60,7 @@ func _physics_process(delta):
 		respawn()
 	if grabbed:
 		velocity.y += 2.5*-9*delta
-		var collision = move_and_collide(2.5*velocity*delta)
+		var _collision = move_and_collide(2.5*velocity*delta)
 		if velocity.y<0 and position.y<3:
 			grabbed = false
 		return
@@ -255,10 +255,10 @@ func respawn():
 	player_data.player_decrease_health(1)
 	if launched:
 		launched = false
-		var min = INF
+		var min_respawn_pos = INF
 		for i in get_parent().get_node("stonePlatforms").get_children():
-			if get_parent().get_node("frog").platform != i and min > i.position.distance_to(position):
-				min = i.position.distance_to(position)
+			if get_parent().get_node("frog").platform != i and min_respawn_pos > i.position.distance_to(position):
+				min_respawn_pos = i.position.distance_to(position)
 				platform = i
 		if platform == null and Global.phase>1:
 			platform = get_parent().get_node("lilyPlatforms/largeLily")

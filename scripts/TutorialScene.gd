@@ -83,5 +83,5 @@ func _on_last_part_entered(body: Node3D) -> void:
 		$Enemy.active = true
 
 
-func _on_phase_2_tutorial_body_entered(body: Node3D) -> void:
+func _on_phase_2_tutorial_body_entered(_body: Node3D) -> void:
 	GameEvents.tutorial_phase.emit(2)

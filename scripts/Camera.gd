@@ -11,7 +11,7 @@ func _ready():
 func apply_shake():
 	shake_strength = random_strength
 	
-func _process(delta):
+func _process(_delta):
 	if shake_strength>0:
 		shake_strength -=shakeFade/3
 		position += randomOffset()

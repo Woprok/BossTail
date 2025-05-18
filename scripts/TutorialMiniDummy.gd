@@ -19,7 +19,7 @@ func _physics_process(delta):
 	stop_time += delta
 	if jump:
 		velocity.y += speed*gravity*delta
-		var collision = move_and_collide(speed*velocity*delta)
+		var _collision = move_and_collide(speed*velocity*delta)
 	else:
 		velocity.y = 0
 	if stopped and ((box_hit and stop_time>=BOX_RESPAWN_TIME) or (not box_hit and stop_time>=STUNNED_TIME)):
@@ -73,6 +73,6 @@ func _on_box_hit(body: Node3D) -> void:
 		stop_time = 0
 		
 
-func _on_ground_body_entered(body: Node3D) -> void:
+func _on_ground_body_entered(_body: Node3D) -> void:
 	if velocity.y<0:
 		jump = false

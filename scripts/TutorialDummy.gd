@@ -65,7 +65,7 @@ func _physics_process(delta):
 		if velocity.y<0 and doing and whirlwind_box==null:
 			show_box()
 		velocity.y += speed*gravity*delta
-		var collision = move_and_collide(speed*velocity*delta)
+		var _collision = move_and_collide(speed*velocity*delta)
 	else:
 		velocity.y = 0
 		
@@ -222,7 +222,7 @@ func _on_box_hit(body: Node3D) -> void:
 		box_hit = true
 
 
-func _on_ground_body_entered(body: Node3D) -> void:
+func _on_ground_body_entered(_body: Node3D) -> void:
 	if velocity.y<0:
 		jump = false
 

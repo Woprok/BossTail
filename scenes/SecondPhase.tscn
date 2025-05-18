@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cnfgurppt1mae" path="res://scenes/environment/GrassClump_1.tscn" id="7_0b6fy"]
 [ext_resource type="PackedScene" uid="uid://dlrq4knk1gqi7" path="res://scenes/StonePlatform.tscn" id="7_pliwi"]
 [ext_resource type="PackedScene" uid="uid://car7kr8fau320" path="res://scenes/environment/ReedClump_2.tscn" id="8_i4gxl"]
-[ext_resource type="PackedScene" uid="uid://cfby3q2ua7ewi" path="res://scenes/rock.tscn" id="8_iwwvi"]
+[ext_resource type="PackedScene" uid="uid://cfby3q2ua7ewi" path="res://scenes/Rock.tscn" id="8_iwwvi"]
 [ext_resource type="PackedScene" uid="uid://bcltx0r4cig8q" path="res://scenes/BreakablePlatform.tscn" id="9_npsua"]
 [ext_resource type="PackedScene" uid="uid://drg5tjf7wiuib" path="res://scenes/Swarm.tscn" id="10_663fb"]
 

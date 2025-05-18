@@ -10,8 +10,11 @@ config_version=5
 
 [application]
 
-config/name="BossTail"
+config/name="Mouseketeer"
+config/version="0.2.0"
 run/main_scene="res://scenes/MenuScene.tscn"
+config/use_custom_user_dir=true
+config/custom_user_dir_name="Mouseketeer"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 

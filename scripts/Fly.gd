@@ -58,7 +58,7 @@ func _physics_process(delta):
 		swarm = false
 			
 
-func shoot(origin, end, result):
+func shoot(_origin, _end, result):
 	if result:
 		var result_position = result.get("position")
 		var height = result_position.y - global_position.y + HEIGHT_OF_ARC
@@ -70,22 +70,22 @@ func shoot(origin, end, result):
 		velocity = velocity_y+velocity_xz
 
 
-func chase_position(delta, target_position,global):
+func chase_position(delta, target_pos,global):
 	if global:
-		var dir = target_position-global_position
+		var dir = target_pos - global_position
 		dir = dir.normalized()
 		global_position += dir*speed*delta
 	else:
-		var dir = target_position-position
+		var dir = target_pos - position
 		dir = dir.normalized()
 		position += dir*speed*delta
 	
 
 func fly_around(center, radius):
-	var angle = randf() * TAU
+	var fly_angle = randf() * TAU
 	var distance = sqrt(randf()) * radius
-	var x = center.x + distance * cos(angle)
-	var z = center.z + distance * sin(angle)
+	var x = center.x + distance * cos(fly_angle)
+	var z = center.z + distance * sin(fly_angle)
 	return Vector3(x,center.y, z)
 
 
