@@ -10,6 +10,7 @@ var pebble_count = 0
 # Common Mouse & Camera
 @onready var Camera = $CameraPivot/SpringArm3D/Camera3D
 @export var AIM_MOUSE_SENS:float = 0.004
+@export var MOUSE_VERTICAL_SENS:float = 0.004
 @export var MOUSE_SENS:float = 0.008
 # Common Movement
 var speed:int = 15
@@ -40,6 +41,12 @@ var aiming:bool = false
 var last_shot:float = 0
 var direction = Vector3.ZERO
 
+# rotation for camera
+@export var CAMERA_MIN_X: float = -30
+@export var CAMERA_MAX_X: float = 00
+@export var AIM_CAMERA_MIN_X: float = -70
+@export var AIM_CAMERA_MAX_X: float = 25
+
 # Init
 func _ready():
 	player_data.player_restart()
@@ -50,7 +57,11 @@ func _unhandled_input(event):
 		rotate_y(-event.relative.x * mouse_sensitivity)
 		if Input.is_action_pressed("aim"):
 			Camera.rotation.x -= event.relative.y * mouse_sensitivity
-			Camera.rotation.x = clamp(Camera.rotation.x, deg_to_rad(-70), deg_to_rad(25))
+			Camera.rotation.x = clamp(Camera.rotation.x, deg_to_rad(AIM_CAMERA_MIN_X), deg_to_rad(AIM_CAMERA_MAX_X))
+		else:
+			Camera.rotation.x -= event.relative.y * MOUSE_VERTICAL_SENS
+			Camera.rotation.x = clamp(Camera.rotation.x, deg_to_rad(CAMERA_MIN_X), deg_to_rad(CAMERA_MAX_X))
+			
 			
 func _start_dash() -> void:
 	dashing = true
@@ -67,12 +78,14 @@ func _handle_camera() -> void:
 		rotate_y(0.05)
 	if Input.is_action_pressed("camera_up"):
 		Camera.rotation.x += deg_to_rad(0.8)
-		if Camera.rotation.x >= 0.3:
-			Camera.rotation.x = 0.3
+		#if Camera.rotation.x >= 0.3:
+		#	Camera.rotation.x = 0.3
+		Camera.rotation.x = clamp(Camera.rotation.x, deg_to_rad(CAMERA_MIN_X), deg_to_rad(CAMERA_MAX_X))
 	if Input.is_action_pressed("camera_down"):
 		Camera.rotation.x -= deg_to_rad(0.8)
-		if Camera.rotation.x <= -0.8:
-			Camera.rotation.x = -0.8
+		#if Camera.rotation.x <= -0.8:
+		#	Camera.rotation.x = -0.8
+		Camera.rotation.x = clamp(Camera.rotation.x, deg_to_rad(CAMERA_MIN_X), deg_to_rad(CAMERA_MAX_X))
 	
 func _stab_started() -> void:
 	$melee/target.disabled = false
