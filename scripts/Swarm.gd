@@ -47,8 +47,8 @@ func _process(delta):
 			target_position = fly_around(bigLily.position,20)
 			chase_position(delta, target_position)
 
-func chase_position(delta, target_position):
-	var dir = target_position-position
+func chase_position(delta, swarm_target_position):
+	var dir = swarm_target_position - position
 	dir = dir.normalized()
 	position += dir*speed*delta
 	

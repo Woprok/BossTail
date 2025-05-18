@@ -9,9 +9,9 @@ class_name Frog
 # swimming speed
 @export var swimming_speed = 10
 # health percent for swipe
-@export var SWIPE_HP = 50
+@export var SWIPE_HP = 75
 # health percent for grab
-@export var GRAB_HP = 25
+@export var GRAB_HP = 45
 
 var gravity:int = -10
 var HEIGHT_OF_ARC:float = 5
@@ -64,7 +64,7 @@ var time_eat = 0
 @export var EAT_TIME = 20
 
 # Player's HP lost by slam 
-@export var SLAM_HP = 5
+@export var SLAM_HP = 10
 # Player's HP lost by swipe 
 @export var SWIPE_DAMAGE_HP = 5
 # Player's HP lost by grab
