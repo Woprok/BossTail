@@ -1,57 +1,24 @@
-extends CharacterBody3D
+extends PlayerBase
 
 var Rock = preload("res://scenes/Rock.tscn")
 var Fly = preload("res://scenes/Fly.tscn")
 
-@export var player_data: PlayerDataModel = preload("res://data_resources/PlayerDataModelInstance.tres")
 @export var platform: Node
 @export var animation: AnimationTree
-@onready var Camera = $CameraPivot/SpringArm3D/Camera3D
 @onready var flies = get_parent().get_node("flies")
 @onready var pebbles = get_parent().get_node("pebbles")
 
 var start_position:Vector3 = Vector3(0,-1.8,0)
-var pebble_count = 0
 var fly_count = 0
-@export var AMMO_CAPACITY = 3
 @export var FLY_CAPACITY = 1
 
-var speed:int = 15
-var jump_speed:int = 30
-
-var fall_acceleration:int = 75
-@export var MOUSE_SENS:float = 0.008
-@export var AIM_MOUSE_SENS:float = 0.004
-var DASH_SPEED:int = 25
-var DASH_TIME:float = 0.5
-var AIM_SPEED:int = 5
 var STICKY_SPEED:int = 2
-var SPEED:int = 15
-var back = -1
-var lastHit = 100
 
-var time:float = 0
-var jump_time: float = 0
-var target_velocity:Vector3 = Vector3.ZERO
-var mouse_sensitivity:float = 0.008
-var melee:bool = false
-var fighting:bool = false
-var jump:bool = false
-var dashing:bool = false
-var can_dash:bool = true
-var aiming:bool = false
-var last_shot:float = 0
 var aciding_liquid:int = 0
 var grabbed: bool = false
 var launched:bool = false
-var direction = Vector3.ZERO
 @export_group("VFX")
 @export var PlayerHitVFX: EntityHitVFX
-@export var CamSpeedLines: CamSpeedLinesController
-
-func _ready() -> void:
-	player_data.player_restart()
-	$CameraPivot.rotation.x = deg_to_rad(-8)	
 	
 func _physics_process(delta):
 	time = time+ delta
@@ -66,18 +33,8 @@ func _physics_process(delta):
 		return
 	
 	last_shot += delta
-	if Input.is_action_pressed("camera_right"):
-		rotate_y(-0.05)
-	if Input.is_action_pressed("camera_left"):
-		rotate_y(0.05)
-	if Input.is_action_pressed("camera_up"):
-		Camera.rotation.x += deg_to_rad(0.8)
-		if Camera.rotation.x >= 0.3:
-			Camera.rotation.x = 0.3
-	if Input.is_action_pressed("camera_down"):
-		Camera.rotation.x -= deg_to_rad(0.8)
-		if Camera.rotation.x <= -0.8:
-			Camera.rotation.x = -0.8
+	
+	_handle_camera()
 	
 	if not launched:
 		direction = Vector3.ZERO
@@ -91,12 +48,7 @@ func _physics_process(delta):
 		direction.x += 1
 		
 	if Input.is_action_just_pressed("dash") and can_dash:
-		dashing = true
-		player_data.change_dash_indicator(false)		
-		can_dash = false
-		$dash_timer.start(DASH_TIME)
-		CamSpeedLines.appear(0.1)
-		create_tween().tween_callback(CamSpeedLines.fade.bind(0.15)).set_delay(DASH_TIME - 0.15)
+		_start_dash()
 		
 	if dashing:
 		animation.dash_start()
@@ -142,34 +94,18 @@ func _physics_process(delta):
 		player_data.change_ranged_indicator(true)
 	else:
 		player_data.change_ranged_indicator(false)
+
 	if Input.is_action_pressed("fight"):
 		if not aiming:
-			$melee/target.disabled = false
-			animation.lunge_r()
-			fighting=true
-			player_data.change_melee_indicator(false)
-		elif last_shot>0.5:
+			_stab_started()
+		elif last_shot > 0.5:
 			shoot()
 			last_shot = 0
 	elif Input.is_action_just_pressed("aim"):
-		player_data.change_melee_indicator(false)
-		player_data.change_ranged_indicator(true)
-		aiming = true
-		mouse_sensitivity = AIM_MOUSE_SENS
-		speed = AIM_SPEED
-		$CameraPivot/zoom.speed_scale = 3
-		Camera.get_node("target").show()
-		$CameraPivot/zoom.play("zoom")
+		_aim_started()
+
 	elif Input.is_action_just_released("aim"):
-		player_data.change_melee_indicator(true)
-		player_data.change_ranged_indicator(false)	
-		aiming = false
-		mouse_sensitivity = MOUSE_SENS
-		speed = SPEED
-		Camera.get_node("target").hide()
-		$CameraPivot/zoom.speed_scale = 1
-		Camera.rotation.x = deg_to_rad(-20)
-		$CameraPivot/zoom.play_backwards("zoom")
+		_aim_finished()
 		
 	var movement_dir = transform.basis * Vector3(direction.x, 0, direction.z)
 	
@@ -205,12 +141,6 @@ func _physics_process(delta):
 	move_and_slide()
 	
 		
-func _unhandled_input(event):
-	if event is InputEventMouseMotion:
-		rotate_y(-event.relative.x * mouse_sensitivity)
-		if Input.is_action_pressed("aim"):
-			Camera.rotation.x -= event.relative.y * mouse_sensitivity
-			Camera.rotation.x = clamp(Camera.rotation.x, deg_to_rad(-70), deg_to_rad(25))
 
 func hit(health):
 	if lastHit<1:
