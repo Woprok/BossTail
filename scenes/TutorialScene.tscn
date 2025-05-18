@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cwiap64eupo14" path="res://scenes/Spike.tscn" id="6_ljx6i"]
 [ext_resource type="PackedScene" uid="uid://8533bk0osnnf" path="res://scenes/TutorialBoulder.tscn" id="7_m2fwn"]
 [ext_resource type="PackedScene" uid="uid://c7rer8lovnu7h" path="res://scenes/TutorialRock.tscn" id="8_rtu3h"]
+[ext_resource type="PackedScene" uid="uid://bsnikqr85iv8t" path="res://scenes/tutorial/TutorialPoint.tscn" id="8_xcboo"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_stgmv"]
 sky_top_color = Color(0.329412, 0.411765, 0.917647, 1)
@@ -29,9 +30,6 @@ tonemap_mode = 2
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1wo6d"]
 size = Vector3(1.5, 10, 18)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_xcboo"]
-size = Vector3(20, 15, 20)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8u2v2"]
 albedo_color = Color(0, 0, 0, 1)
@@ -2736,13 +2734,23 @@ transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 
 shape = SubResource("BoxShape3D_1wo6d")
 debug_color = Color(1, 0, 0, 1)
 
-[node name="Phase2Tutorial" type="Area3D" parent="arena"]
-transform = Transform3D(1, 1.36424e-12, 0, -5.45697e-12, 1, -5.00222e-12, 0, 5.91172e-12, 1, -16.8557, -7.76052e-05, -28.7816)
+[node name="TutorialPoint0" parent="arena" instance=ExtResource("8_xcboo")]
+transform = Transform3D(0.707107, 1.36424e-11, 0.707107, 2.09184e-11, 1, -5.0433e-12, -0.707107, 2.6148e-11, 0.707107, -45, 0, 45)
+tutorial_point_id = 0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="arena/Phase2Tutorial"]
-transform = Transform3D(0.709509, -0.000115104, -0.704696, 7.69232e-05, 1, -8.58905e-05, 0.704696, 6.73264e-06, 0.709509, 1.70601, -2.97497, -0.918213)
-shape = SubResource("BoxShape3D_xcboo")
-debug_color = Color(1, 0, 0, 1)
+[node name="TutorialPoint1" parent="arena" instance=ExtResource("8_xcboo")]
+transform = Transform3D(0.707107, 4.59318e-12, 0.707107, 6.36646e-12, 1, -1.28622e-11, -0.707107, 1.35967e-11, 0.707107, -25, 0, 25)
+tutorial_point_size = Vector3(25, 25, 75)
+tutorial_point_id = 1
+
+[node name="TutorialPoint2" parent="arena" instance=ExtResource("8_xcboo")]
+transform = Transform3D(0.707107, 1.45519e-11, 0.707107, 1.36424e-11, 1, -5.0433e-12, -0.707107, 2.52385e-11, 0.707107, -20, 0, -42)
+tutorial_point_size = Vector3(30, 25, 45)
+tutorial_point_id = 2
+
+[node name="TutorialPoint3" parent="arena" instance=ExtResource("8_xcboo")]
+transform = Transform3D(0.707107, 1.45519e-11, 0.707107, 1.36424e-11, 1, -5.0433e-12, -0.707107, 2.52385e-11, 0.707107, 11.674, -0.00199306, -49.7285)
+tutorial_point_id = 3
 
 [node name="walls" type="CSGCombiner3D" parent="."]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 100, 0)
@@ -7643,5 +7651,4 @@ libraries = {
 }
 
 [connection signal="body_entered" from="arena/Area3D" to="." method="_on_last_part_entered"]
-[connection signal="body_entered" from="arena/Phase2Tutorial" to="." method="_on_phase_2_tutorial_body_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_finished"]

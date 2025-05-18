@@ -19,7 +19,6 @@ func _process(delta):
 		$walls.show()
 		$AnimationPlayer.play("walls",2)
 		$Player.part=2
-		GameEvents.tutorial_phase.emit(1)
 		walls_down=true
 	time_crates += delta
 	time_boulder += delta
@@ -81,7 +80,3 @@ func _on_last_part_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):
 		$Player.part = 4
 		$Enemy.active = true
-
-
-func _on_phase_2_tutorial_body_entered(_body: Node3D) -> void:
-	GameEvents.tutorial_phase.emit(2)

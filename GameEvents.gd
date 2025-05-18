@@ -11,11 +11,10 @@ extends Node
 
 func _ready() -> void:
 	boss_changed.connect(func(data: BossDataModel): boss_data = data)
-	tutorial_phase.connect(func(phase: int): phase_data = phase)
-	tutorial_phase.connect(func(phase: int): print(phase))
+	tutorial_phase.connect(func(phase: int): tutorial_phase_data = phase)
 
 var boss_data: BossDataModel
 signal boss_changed(data: BossDataModel)
 
-var phase_data: int
+var tutorial_phase_data: int
 signal tutorial_phase(phase: int)

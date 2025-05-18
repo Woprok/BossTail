@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://bsnikqr85iv8t"]
+
+[ext_resource type="Script" uid="uid://btfokxfqhcswm" path="res://scenes/tutorial/TutorialPoint.gd" id="1_dxrp7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xcboo"]
+resource_local_to_scene = true
+size = Vector3(25, 25, 25)
+
+[node name="TutorialPoint" type="Area3D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_dxrp7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_xcboo")
+debug_color = Color(0.816144, 0.0695594, 0.130502, 1)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

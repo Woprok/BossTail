@@ -33,6 +33,10 @@ file_logging/enable_file_logging=true
 
 window/main_scene="res://scenes/emptyLevel.tscn"
 
+[global_group]
+
+player=""
+
 [input]
 
 camera_up={

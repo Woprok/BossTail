@@ -31,7 +31,7 @@ func _toggle_tutorial(new_visibility: bool) -> void:
 	# toggle on true needs to always update tutorial
 	if new_visibility:
 		_attach_tutorial()
-		_update_tutorial(0)
+		_update_tutorial(GameEvents.tutorial_phase_data)
 
 func _attach_tutorial() -> void:
 	if boss_data.has_tutorial:
