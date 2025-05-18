@@ -6,6 +6,7 @@ var max_time:int = 30
 var gravity:int = -10
 var HEIGHT_OF_ARC:float = 2
 @onready var stone_platforms = get_parent().get_parent().get_node("stonePlatforms")
+@export var thrown: bool = false
 
 func _physics_process(delta):
 	time += delta
@@ -17,11 +18,13 @@ func _physics_process(delta):
 		return
 	var collision = move_and_collide(speed*velocity*delta)
 	if collision:
-		if collision.get_collider().is_in_group("enemy"):
+		if collision.get_collider().is_in_group("enemy") and thrown:
 			if collision.get_collider().swimming:
 				collision.get_collider().hit(self)
 			else:
 				collision.get_collider().hit(collision.get_collider_shape())
+			respawn()
+		elif collision.get_collider().is_in_group("enemy") and not thrown:
 			respawn()
 
 

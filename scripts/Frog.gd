@@ -115,7 +115,7 @@ var angle = 0.0
 var init_angle = 0
 
 var grab_len_max = 6.2*2
-var grab_len_min = 4
+var grab_len_min = 6
 
 @export var boss_data: BossDataModel = preload("res://data_resources/FrogBossDataModel.tres")
 @onready var player = get_parent().get_node("Player")
@@ -421,11 +421,13 @@ func tongue_swipe():
 func ground_slam():
 	slam = false
 	platform.health -= 1
-	player.hit(SLAM_HP)
-	player.get_node("CameraPivot").apply_shake()
+	if player.is_on_floor():
+		player.hit(SLAM_HP)
+		player.get_node("CameraPivot").apply_shake()
 	doing = false
 	if platform.health == 0:
-		player.launch(platform.position-player.position+Vector3(0,1.2,0))
+		if player.is_on_floor():
+			player.launch(platform.position-player.position+Vector3(0,1.2,0))
 		for s in get_parent().get_node("stonePlatforms").get_children():
 			if s.health>0:
 				plan_path(s)
@@ -582,7 +584,7 @@ func _on_ground_entered(area):
 			else:
 				var sign1 = 1 if randi() % 2 == 0 else -1
 				var sign2 = 1 if randi() % 2 == 0 else -1
-				area.get_node("boulders/boulder1").linear_velocity = Vector3(sign1*10,10,sign2*10)
+				area.get_node("boulders/boulder1").linear_velocity = Vector3(sign1*30,20,sign2*30)
 			if area.get_node("boulders/boulder2").is_visible()==false or area.get_node("boulders/boulder2").position.y<-3:
 				area.get_node("boulders/boulder2").position = area.boulder2Position
 				area.get_node("boulders/boulder2").linear_velocity = Vector3(0,0,0)
@@ -598,7 +600,6 @@ func _on_ground_entered(area):
 
 
 func _on_tongue_body_entered(body):
-	print(body)
 	if body.is_in_group("player"):
 		if swipe:
 			body.hit(SWIPE_DAMAGE_HP)

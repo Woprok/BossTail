@@ -17,8 +17,9 @@ func _physics_process(delta):
 			return
 		if collision.get_collider().is_in_group("lily_platform"):
 			#instantiate_splash(collision.get_position())
-			if collision.get_collider().name=="largeLily":
+			if collision.get_collider().get_parent().name=="largeLily":
 				queue_free()
+				return
 			var tween = get_tree().create_tween()
 			var platform = collision.get_collider().get_parent()
 			tween.tween_property(platform,"position",Vector3(platform.position.x,-0.9,platform.position.z),0.5)

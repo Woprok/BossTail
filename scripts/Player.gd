@@ -47,7 +47,7 @@ func _physics_process(delta):
 	if Input.is_action_pressed("strafe_right") and not launched:
 		direction.x += 1
 		
-	if Input.is_action_just_pressed("dash") and can_dash:
+	if Input.is_action_just_pressed("dash") and can_dash and not fighting:
 		_start_dash()
 		
 	if dashing:
@@ -85,19 +85,22 @@ func _physics_process(delta):
 			jump_time+=delta 
 			
 	if direction != Vector3.ZERO:
-		fighting = false
 		$melee/target.disabled = true
 		if not dashing:
 			animation.run()
 		
 	if last_shot > 0.5 and Input.is_action_pressed("aim"):
 		player_data.change_ranged_indicator(true)
+	elif last_shot > 0.5:
+		player_data.change_melee_indicator(true)
 	else:
 		player_data.change_ranged_indicator(false)
 
-	if Input.is_action_pressed("fight"):
+	if Input.is_action_pressed("fight") and is_on_floor() and direction == Vector3.ZERO:
 		if not aiming:
-			_stab_started()
+			if last_shot > 0.5:
+				last_shot = 0
+				_stab_started()
 		elif last_shot > 0.5:
 			shoot()
 			last_shot = 0
@@ -164,6 +167,7 @@ func shoot():
 		fly_count=0
 	elif pebble_count > 0:
 		p = Rock.instantiate()
+		p.thrown = true
 		pebbles.add_child(p)
 		pebble_count -= 1
 		
@@ -182,6 +186,10 @@ func shoot():
 	p.shoot(origin, end, result)
 
 func respawn():
+	player_data.change_melee_indicator(true)
+	player_data.change_ranged_indicator(false)
+	fighting = false
+	
 	player_data.player_decrease_health(1)
 	if launched:
 		launched = false
@@ -218,6 +226,8 @@ func _on_animation_finished(anim_name):
 		$melee/target.disabled = true
 		player_data.change_melee_indicator(true)
 		$AnimationTree.idle()
+		fighting = false
+		
 	if anim_name == "GAME_05_lunge_right_settle" or anim_name == "GAME_05_lunge_left_settle":
 		melee = false
 		$melee/target.disabled = true
