@@ -39,6 +39,7 @@ func _on_body_entered(body):
 	if body.is_in_group("boulder"):
 		sinked = true
 		position.y = -0.9
+		body.respawn()
 
 
 func _on_body_exited(body):

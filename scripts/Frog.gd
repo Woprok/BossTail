@@ -52,6 +52,8 @@ var time_eat = 0
 @export var SPIT_BUBBLE_TIME = 5
 # time between two bubble attacks from water
 @export var WATER_BUBBLE_TIME = 4
+# number of water bubbles to spit
+@export var BUBBLE_NUM = 3
 # time of waiting after tongue major damage
 @export var STOP_TIME = 5
 # time between two grabs
@@ -89,6 +91,7 @@ var swipe = false
 var jump = false
 var swimming = false
 var sluggish = false
+var bubble_num = 0
 var boulderHit = 0
 # num of tongue hits for one grab
 var tongueHit = 0
@@ -187,14 +190,12 @@ func _physics_process(delta):
 				extended = false
 				time_of_extend = 0
 				animationTree.tongue_grab_end()
-	# 
+				
 	if doing or jump:
 		return
 		
 	if Global.phase == 1:
 		if subphase == 0:
-			time_bubble += delta
-			time_swipe += delta
 			time_grab += delta
 			if triggered:
 				jump_to_water()
@@ -217,6 +218,7 @@ func _physics_process(delta):
 					doing = true
 				else:
 					path = []
+			time_swipe += delta
 			if boss_data.get_current_health() <= SWIPE_HP and not doing:
 				if platform == player.platform and time_swipe>SWIPE_SAME_PLATFORM_TIME:
 					time_bubble = 0
@@ -232,6 +234,7 @@ func _physics_process(delta):
 					tongue_swipe()
 					tongueHit = 0
 					time_swipe = 0
+			time_bubble += delta
 			if boss_data.get_current_health() != 100 and time_bubble>SPIT_BUBBLE_TIME and platform != player.platform and not doing:
 				doing = true
 				animationTree.spit_start(SPIT_ANTIC_DUR, SPIT_WOO_DUR)
@@ -279,6 +282,11 @@ func _physics_process(delta):
 						doing = true
 						time_bubble=0
 						bubble_spit(current_bubble_inst)
+						bubble_num += 1
+						if bubble_num==BUBBLE_NUM:
+							bubble_num = 0
+						else:
+							time_bubble = WATER_BUBBLE_TIME
 						current_bubble_inst = null
 						animationTree.swim_bubble_atk_end_antic()
 						return
@@ -308,10 +316,8 @@ func _physics_process(delta):
 		if grab == false and sluggish:
 			animationTree.idle()
 			return
-		time_bubble += delta
-		time_swipe += delta
+		
 		time_grab += delta
-		time_slam += delta
 		time_of_extend += delta
 		time_eat+=delta
 		if platform!=null and platform != player.platform and platform.is_in_group("stone_platform") and platform.health>0:
@@ -336,7 +342,7 @@ func _physics_process(delta):
 				if platform != grab_target.platform:
 					time_swipe = 0
 					plan_path(grab_target.platform)
-					
+		time_slam += delta
 		if time_slam>SLAM_TIME:
 			if platform.is_in_group("stone_platform") and platform.health>0:
 				if platform == player.platform:
@@ -358,6 +364,7 @@ func _physics_process(delta):
 						time_slam = 0
 						return
 				plan_path(get_parent().get_node("lilyPlatforms/largeLily"))
+		time_swipe += delta
 		if boss_data.get_current_health() <= SWIPE_HP and not doing:
 			if platform!=null and platform == player.platform and time_swipe>SWIPE_SAME_PLATFORM_TIME:
 				time_bubble = 0
@@ -373,6 +380,7 @@ func _physics_process(delta):
 				tongue_swipe()
 				tongueHit = 0
 				time_swipe = 0
+		time_bubble += delta
 		if boss_data.get_current_health() !=100 and time_bubble>SPIT_BUBBLE_TIME and platform!=null and platform != player.platform and not doing:
 				doing = true
 				animationTree.spit_start(SPIT_ANTIC_DUR, SPIT_WOO_DUR)
@@ -533,6 +541,8 @@ func hit(area):
 			boss_data.boss_decrease_health(PEBBLE_HP)
 	else:
 		sluggish = false
+		if typeof(area) == TYPE_INT:
+			boss_data.boss_decrease_health(area)
 		if area.is_in_group("tongue"):
 			tongueHit += 1
 			if tongueHit>=5:
@@ -585,6 +595,8 @@ func _on_ground_entered(area):
 				var sign1 = 1 if randi() % 2 == 0 else -1
 				var sign2 = 1 if randi() % 2 == 0 else -1
 				area.get_node("boulders/boulder1").linear_velocity = Vector3(sign1*30,20,sign2*30)
+				area.get_node("boulders/boulder1").launched = true
+				area.get_node("boulders/boulder1").respawn_position = area.boulder1Position
 			if area.get_node("boulders/boulder2").is_visible()==false or area.get_node("boulders/boulder2").position.y<-3:
 				area.get_node("boulders/boulder2").position = area.boulder2Position
 				area.get_node("boulders/boulder2").linear_velocity = Vector3(0,0,0)
@@ -594,6 +606,8 @@ func _on_ground_entered(area):
 				var sign1 = 1 if randi() % 2 == 0 else -1
 				var sign2 = 1 if randi() % 2 == 0 else -1
 				area.get_node("boulders/boulder2").linear_velocity = Vector3(sign1*30,20,sign2*30)
+				area.get_node("boulders/boulder2").launched = true
+				area.get_node("boulders/boulder2").respawn_position = area.boulder2Position
 		if platform!=null and platform.is_in_group("stone_platform"):
 			prev_platform = platform
 		platform = area
