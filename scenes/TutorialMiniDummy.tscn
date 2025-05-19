@@ -8,7 +8,7 @@ albedo_color = Color(0, 1, 1, 1)
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_jkcqp"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_eejci"]
-height = 6.0
+height = 10.0
 radius = 6.0
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_pmcoa"]
@@ -32,7 +32,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.98205, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.69349, 0)
 shape = SubResource("CylinderShape3D_eejci")
 
 [node name="ground" type="Area3D" parent="."]

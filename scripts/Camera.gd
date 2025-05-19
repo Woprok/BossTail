@@ -19,4 +19,4 @@ func _process(_delta):
 		position = origin_position
 	
 func randomOffset():
-	return Vector3(randf_range(-2,2),randf_range(-2,2),0)
+	return Vector3(randf_range(-0.75,0.75),0,0)

@@ -644,6 +644,8 @@ func _on_animation_finished(anim_name):
 	if anim_name == "G_03-tongue_grab-start":
 		extended = true
 		$tongue/CollisionShape3D.disabled = false
+	if anim_name == "G_05-swipe-antic":
+		$tongue/CollisionShape3D.disabled = false
 	if anim_name == "G_05-swipe-start":
 		extended = false
 		doing = false
