@@ -17,7 +17,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -29,7 +29,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -41,7 +41,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -53,7 +53,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -241,29 +241,33 @@ disabled = true
 
 [node name="stone1" parent="." node_paths=PackedStringArray("neighbors") instance=ExtResource("1_nhwjf")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -1.85986, 0, -2.01459)
+visible = false
 neighbors = [NodePath("../stone2"), NodePath("../stone3"), NodePath("../stone4")]
 radius = 6
 health = 0
 
 [node name="stone2" parent="." node_paths=PackedStringArray("neighbors") instance=ExtResource("1_nhwjf")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 1.92175, 0, -2.10743)
+visible = false
 neighbors = [NodePath("../stone1"), NodePath("../stone3"), NodePath("../stone4")]
 radius = 6
 health = 0
 
 [node name="stone3" parent="." node_paths=PackedStringArray("neighbors") instance=ExtResource("1_nhwjf")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -2.04553, 0, 1.98364)
+visible = false
 neighbors = [NodePath("../stone1"), NodePath("../stone2"), NodePath("../stone4")]
 radius = 6
 health = 0
 
 [node name="stone4" parent="." node_paths=PackedStringArray("neighbors") instance=ExtResource("1_nhwjf")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 2.26216, 0, 2.01459)
+visible = false
 neighbors = [NodePath("../stone1"), NodePath("../stone2"), NodePath("../stone3")]
 radius = 6
 health = 0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_gj4xu")
+&"": SubResource("AnimationLibrary_gj4xu")
 }

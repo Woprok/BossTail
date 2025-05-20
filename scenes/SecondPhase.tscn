@@ -214,7 +214,7 @@ num = 2
 transform = Transform3D(0.406258, 0, 0.913758, 0, 1, 0, -0.913758, 0, 0.406258, 49.6836, 1.896, -50.3196)
 neighbors = [NodePath("../../lilyPlatforms/lily6_alt"), NodePath("../../lilyPlatforms/lily7")]
 neighborStonePlatform = [NodePath("../stonePlatform2"), NodePath("../stonePlatformV3_1")]
-num = 2
+num = 4
 
 [node name="stonePlatformV3_1" parent="stonePlatforms" node_paths=PackedStringArray("neighbors", "neighborStonePlatform") instance=ExtResource("10_n75re")]
 transform = Transform3D(0.592618, 0, 0.805484, 0, 1, 0, -0.805484, 0, 0.592618, 0, 2.37197, -49.7)
@@ -226,6 +226,7 @@ num = 3
 transform = Transform3D(0.226634, 0, -0.97398, 0, 1, 0, 0.97398, 0, 0.226634, 0, 1.896, 0)
 neighbors = [NodePath("../../lilyPlatforms/lily2"), NodePath("../../lilyPlatforms/lily3")]
 neighborStonePlatform = [NodePath("../stonePlatform2"), NodePath("../stonePlatformV3_1")]
+num = 1
 
 [node name="shards" type="Node3D" parent="."]
 
@@ -328,7 +329,7 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 50.607, 3.5, -3.519)
 
 [node name="breakable" type="Node3D" parent="."]
 
-[node name="BreakablePlatform" parent="breakable" instance=ExtResource("9_npsua")]
+[node name="BreakablePlatform1" parent="breakable" instance=ExtResource("9_npsua")]
 transform = Transform3D(1, 0, 0, 0, 4, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="BreakablePlatform2" parent="breakable" instance=ExtResource("9_npsua")]

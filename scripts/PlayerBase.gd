@@ -81,17 +81,12 @@ func _handle_camera() -> void:
 		rotate_y(0.05)
 	if Input.is_action_pressed("camera_up"):
 		Camera.rotation.x += deg_to_rad(0.8)
-		#if Camera.rotation.x >= 0.3:
-		#	Camera.rotation.x = 0.3
 		Camera.rotation.x = clamp(Camera.rotation.x, deg_to_rad(CAMERA_MIN_X), deg_to_rad(CAMERA_MAX_X))
 	if Input.is_action_pressed("camera_down"):
 		Camera.rotation.x -= deg_to_rad(0.8)
-		#if Camera.rotation.x <= -0.8:
-		#	Camera.rotation.x = -0.8
 		Camera.rotation.x = clamp(Camera.rotation.x, deg_to_rad(CAMERA_MIN_X), deg_to_rad(CAMERA_MAX_X))
 	
 func _stab_started() -> void:
-	$melee/target.disabled = false
 	$AnimationTree.lunge_r()
 	fighting=true
 	player_data.change_melee_indicator(false)

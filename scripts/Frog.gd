@@ -19,7 +19,8 @@ var HEIGHT_OF_ARC:float = 5
 # actual time of ability
 var time_of_extend = 0
 var time_bubble = 0
-var time_swipe = 0
+var time_swipe_diff = 0
+var time_swipe_same = 0 
 var time_grab = 0
 var time_swimming = 0
 var time_stop = 5
@@ -157,10 +158,12 @@ func _physics_process(delta):
 	
 	if jump and velocity.y>0:
 		$bodyShape.disabled = true
+		$headShape.disabled = true
 		$legShape.disabled = true
 	elif velocity.y<=0:
 		$bodyShape.disabled = false
 		$legShape.disabled = false
+		$headShape.disabled = false
 	
 	# character moving
 	if not swimming or jump:
@@ -196,12 +199,12 @@ func _physics_process(delta):
 		
 	if Global.phase == 1:
 		if subphase == 0:
-			time_grab += delta
 			if triggered:
 				jump_to_water()
 				tongueHit = 0
 				HPHit = 0
 				return
+			time_grab += delta
 			if boss_data.get_current_health() <= GRAB_HP and time_grab >= GRAB_TIME and not doing and platform==player.platform:
 				if position.distance_to(player.position)<grab_len_min or position.distance_to(player.position)>grab_len_max:
 					var point = find_point_on_platform(platform.position,player.position,grab_len_min, grab_len_max)
@@ -212,31 +215,37 @@ func _physics_process(delta):
 						grab = true
 			if boss_data.get_current_health() <= GRAB_HP and time_grab >= GRAB_TIME and not doing and platform!=player.platform and player.platform.is_in_group("stone_platform"):
 				time_bubble = 0
-				time_swipe = 0
+				time_swipe_diff = 0
+				time_swipe_same = 0
 				plan_path(player.platform)
 				if path.size()<=3:
 					doing = true
 				else:
 					path = []
-			time_swipe += delta
 			if boss_data.get_current_health() <= SWIPE_HP and not doing:
-				if platform == player.platform and time_swipe>SWIPE_SAME_PLATFORM_TIME:
+				time_swipe_diff += delta
+				time_swipe_same += delta
+				if platform == player.platform and time_swipe_same>SWIPE_SAME_PLATFORM_TIME:
 					time_bubble = 0
 					swipe = true
 					doing = true
 					tongue_swipe()
 					tongueHit = 0
-					time_swipe = 0
-				if platform!=player.platform and platform.neighbors.has(player.platform) and time_swipe>SWIPE_DIFF_PLATFORM_TIME:
+					time_swipe_same = 0
+					time_swipe_diff = 0
+				if platform!=player.platform and platform.neighbors.has(player.platform) and time_swipe_diff>SWIPE_DIFF_PLATFORM_TIME:
 					time_bubble = 0
 					swipe = true
 					doing = true
 					tongue_swipe()
 					tongueHit = 0
-					time_swipe = 0
+					time_swipe_same = 0
+					time_swipe_diff = 0
 			time_bubble += delta
 			if boss_data.get_current_health() != 100 and time_bubble>SPIT_BUBBLE_TIME and platform != player.platform and not doing:
 				doing = true
+				time_swipe_diff -= 1
+				time_swipe_same = 0 
 				animationTree.spit_start(SPIT_ANTIC_DUR, SPIT_WOO_DUR)
 				bubble_spit()
 				#animationTree.spit_end()
@@ -325,7 +334,7 @@ func _physics_process(delta):
 		if path==[] and time_eat>=EAT_TIME:
 			if grab_target==null:
 				for fly in flies.get_children():
-					if fly.groupSize>=3 and ((fly.platform.is_in_group("big_lily") and fly.platform.is_in_group("lily_platform")) or (not fly.platform.is_in_group("shard")) and fly.platform.is_in_group("stone_platform")):
+					if fly.groupSize>=3 and ((fly.platform.is_in_group("big_lily")) or (not fly.platform.is_in_group("shard")) and fly.platform.is_in_group("stone_platform")):
 						grab_target = fly
 						break
 			elif grab_target.platform==platform:
@@ -335,12 +344,14 @@ func _physics_process(delta):
 						jump_direction(point)
 					doing = true
 					time_eat = 0
-					time_swipe = 0
+					time_swipe_same = 0
+					time_swipe_diff = 0
 					sluggish = true
 					grab = true
 			else:
 				if platform != grab_target.platform:
-					time_swipe = 0
+					time_swipe_same = 0
+					time_swipe_diff = 0
 					plan_path(grab_target.platform)
 		time_slam += delta
 		if time_slam>SLAM_TIME:
@@ -364,22 +375,25 @@ func _physics_process(delta):
 						time_slam = 0
 						return
 				plan_path(get_parent().get_node("lilyPlatforms/largeLily"))
-		time_swipe += delta
 		if boss_data.get_current_health() <= SWIPE_HP and not doing:
-			if platform!=null and platform == player.platform and time_swipe>SWIPE_SAME_PLATFORM_TIME:
+			time_swipe_same += delta
+			time_swipe_diff += delta
+			if platform!=null and platform == player.platform and time_swipe_same>SWIPE_SAME_PLATFORM_TIME:
 				time_bubble = 0
 				swipe = true
 				doing = true
 				tongue_swipe()
 				tongueHit = 0
-				time_swipe = 0
-			if platform!=null and platform!=player.platform and platform.neighbors.has(player.platform) and time_swipe>SWIPE_DIFF_PLATFORM_TIME:
+				time_swipe_same = 0
+				time_swipe_diff = 0
+			if platform!=null and platform!=player.platform and platform.neighbors.has(player.platform) and time_swipe_diff>SWIPE_DIFF_PLATFORM_TIME:
 				time_bubble = 0
 				swipe = true
 				doing = true
 				tongue_swipe()
 				tongueHit = 0
-				time_swipe = 0
+				time_swipe_same = 0
+				time_swipe_diff = 0
 		time_bubble += delta
 		if boss_data.get_current_health() !=100 and time_bubble>SPIT_BUBBLE_TIME and platform!=null and platform != player.platform and not doing:
 				doing = true
@@ -435,7 +449,7 @@ func ground_slam():
 	doing = false
 	if platform.health == 0:
 		if player.is_on_floor():
-			player.launch(platform.position-player.position+Vector3(0,1.2,0))
+			player.launch((platform.global_position-player.global_position).normalized()*2)
 		for s in get_parent().get_node("stonePlatforms").get_children():
 			if s.health>0:
 				plan_path(s)
@@ -617,7 +631,7 @@ func _on_tongue_body_entered(body):
 	if body.is_in_group("player"):
 		if swipe:
 			body.hit(SWIPE_DAMAGE_HP)
-			body.launch(transform.basis.z)
+			body.launch((position - body.position).normalized()*1.2)
 		if grab:
 			body.hit(GRAB_DAMAGE_HP)
 			var farestPlatform = []
@@ -668,7 +682,8 @@ func _on_animation_finished(anim_name):
 	if anim_name == "G_05-swipe-end":
 		$tongue/CollisionShape3D.disabled = true
 		swipe = false
-		time_swipe = 0
+		time_swipe_same = 0
+		time_swipe_diff = 0
 	if anim_name == "G_02-jump-end":
 		jump = false
 		if path == [] and triggered:
@@ -677,7 +692,8 @@ func _on_animation_finished(anim_name):
 			subphase = 1-subphase
 		if grab:
 			time_bubble = 0
-			time_swipe = 0
+			time_swipe_same = 0
+			time_swipe_diff = 0
 			time_grab = 0
 			look_at(Vector3(grab_target.position.x,position.y,grab_target.position.z))
 			grab_target = null
