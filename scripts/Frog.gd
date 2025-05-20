@@ -132,6 +132,7 @@ var grab_len_min = 6
 @export var bubble_appear_pos: Node3D
 @export var hit_VFX: EntityHitVFX
 @export var hit_impact_VFX: PackedScene
+@export var stun_VFX: StunVFX
 @export var swipe_indicator: PackedScene
 @export var grab_indicator: PackedScene
 @export var ground_slam_indicator: PackedScene
@@ -145,6 +146,8 @@ var triggered_once: bool = false
 func _ready() -> void:
 	boss_data.boss_restart()
 	GameEvents.boss_changed.emit(boss_data)
+	
+	#create_tween().tween_callback(stun_VFX.play_stun_effect.bind(3)).set_delay(0.5)
 	
 # tf is this mess?
 # behavior for character in both phase

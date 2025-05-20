@@ -4,6 +4,9 @@ class_name PlayParticleSysOnStart
 @export var DestroyInSeconds: float = 1
 
 func _ready() -> void:
+	init()
+
+func init():
 	play_particle_systems()
 	
 	if DestroyInSeconds > 0:
