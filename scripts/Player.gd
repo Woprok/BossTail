@@ -109,8 +109,12 @@ func _physics_process(delta):
 
 	elif Input.is_action_just_released("aim"):
 		_aim_finished()
-		
-	var movement_dir = transform.basis * Vector3(direction.x, 0, direction.z)
+	
+	var movement_dir = null
+	if launched:
+		movement_dir = Vector3(direction.x, 0, direction.z)
+	else:
+		movement_dir = transform.basis * Vector3(direction.x, 0, direction.z)
 	
 	# pohyb po zemi
 	target_velocity.x = movement_dir.x * speed

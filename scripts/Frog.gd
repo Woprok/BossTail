@@ -146,7 +146,6 @@ var triggered_once: bool = false
 func _ready() -> void:
 	boss_data.boss_restart()
 	GameEvents.boss_changed.emit(boss_data)
-	
 	#create_tween().tween_callback(stun_VFX.play_stun_effect.bind(3)).set_delay(0.5)
 	
 # tf is this mess?
@@ -202,6 +201,12 @@ func _physics_process(delta):
 		
 	if Global.phase == 1:
 		if subphase == 0:
+			$body/bodyShape.disabled = false
+			$body/legShape.disabled = false
+			$body/swimmingShape.disabled = true
+			$headShape.disabled = false
+			$bodyShape.disabled = false
+			$legShape.disabled = false
 			if triggered:
 				jump_to_water()
 				tongueHit = 0
@@ -264,6 +269,12 @@ func _physics_process(delta):
 				init_angle = atan2(dir.z * radius, dir.x * radius) 
 				angle = init_angle
 			else:
+				$body/bodyShape.disabled = true
+				$body/legShape.disabled = true
+				$body/swimmingShape.disabled = false
+				$headShape.disabled = true
+				$bodyShape.disabled = true
+				$legShape.disabled = true
 				animationTree.swim_idle()
 				time_bubble += delta
 				time_swimming += delta
@@ -452,7 +463,7 @@ func ground_slam():
 	doing = false
 	if platform.health == 0:
 		if player.is_on_floor():
-			player.launch((platform.global_position-player.global_position).normalized()*2)
+			player.launch((player.position - platform.position-Vector3(0,1,0)).normalized()*1.2)
 		for s in get_parent().get_node("stonePlatforms").get_children():
 			if s.health>0:
 				plan_path(s)
@@ -634,7 +645,7 @@ func _on_tongue_body_entered(body):
 	if body.is_in_group("player"):
 		if swipe:
 			body.hit(SWIPE_DAMAGE_HP)
-			body.launch((position - body.position).normalized()*1.2)
+			body.launch((body.position - position).normalized()*1.2)
 		if grab:
 			body.hit(GRAB_DAMAGE_HP)
 			var farestPlatform = []
@@ -675,12 +686,12 @@ func _on_animation_finished(anim_name):
 	if anim_name == "G_03-tongue_grab-start":
 		extended = true
 		$tongue/CollisionShape3D.disabled = false
-	if anim_name == "G_05-swipe-antic":
-		$tongue/CollisionShape3D.disabled = false
+	#if anim_name == "G_05-swipe-antic":
+	#	$tongue/CollisionShape3D.disabled = false
 	if anim_name == "G_05-swipe-start":
 		extended = false
 		doing = false
-		$tongue/CollisionShape3D.disabled = false
+	#	$tongue/CollisionShape3D.disabled = false
 		animationTree.swipe_end()
 	if anim_name == "G_05-swipe-end":
 		$tongue/CollisionShape3D.disabled = true
@@ -704,14 +715,7 @@ func _on_animation_finished(anim_name):
 	if anim_name == "G_07-ground_slam-start":
 		animationTree.ground_slam_end()
 		ground_slam()
-
-
-func _on_head_entered(body):
-	if body.is_in_group("boulder") and boulderHit>5 and swimming:
-		boulderHit = 0
-		hit(body)
-
-
+		
 func _on_body_entered(body):
 	if body.is_in_group("boulder") and boulderHit>5 and swimming:
 		boulderHit = 0
