@@ -97,6 +97,7 @@ alpha_curve = SubResource("CurveTexture_pkoxv")
 [sub_resource type="SphereMesh" id="SphereMesh_nn642"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ckhv4"]
+resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("1_l75kt")
 shader_parameter/ColorParameter = Color(0.275495, 0.512384, 0.7783, 1)

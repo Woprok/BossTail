@@ -11,7 +11,7 @@ func dash_start():
 	state_machine.travel("Dash_start")
 	
 func dash_end():
-	state_machine.travel("Dash_end")
+	state_machine.travel("Dash_end_called")
 
 func falling():
 	state_machine.travel("Falling")

@@ -68,9 +68,12 @@ func _start_dash() -> void:
 	player_data.change_dash_indicator(false)
 	can_dash = false
 	$dash_timer.start(DASH_TIME)
+	$AnimationTree.dash_start()
 	CamSpeedLines.appear(0.1)
-	create_tween().tween_callback(CamSpeedLines.fade.bind(0.15)).set_delay(DASH_TIME - 0.15)
-			
+	var dash_timing = create_tween()
+	dash_timing.tween_callback(CamSpeedLines.fade.bind(0.15)).set_delay(DASH_TIME - 0.1)
+	dash_timing.parallel().tween_callback($AnimationTree.dash_end).set_delay(DASH_TIME - 0.1)
+	
 func _handle_camera() -> void:
 	if Input.is_action_pressed("camera_right"):
 		rotate_y(-0.05)

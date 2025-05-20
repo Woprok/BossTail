@@ -5,6 +5,7 @@ extends CharacterBody3D
 @export var speed:float = 5
 var collision_num = 0 
 var collision_with_player = false
+@export var ignore_collisions_time = 0.25
 
 @onready var bubble_obj: Node3D = $Bubble
 var antic_phase: bool = false
@@ -24,6 +25,7 @@ func _physics_process(delta):
 	velocity.y += speed*gravity*delta
 	var collision: KinematicCollision3D = move_and_collide(speed*velocity*delta)
 	
+	
 	if collision:
 		if collision.get_collider().is_in_group("player") and not collision_with_player:
 			collision_with_player = true
@@ -38,6 +40,12 @@ func _physics_process(delta):
 		else:
 			collision_num += 1
 			pop(collision.get_position())
+	if ignore_collisions_time > 0:
+		ignore_collisions_time -= delta
+		if ignore_collisions_time <= 0:
+			$CollisionShape3D.disabled = false
+	
+		
 
 func pop(collision_pos: Vector3, create_puddle: bool = false):
 	if collision_num == 1:
@@ -48,9 +56,6 @@ func pop(collision_pos: Vector3, create_puddle: bool = false):
 		scale_tweener = create_tween()
 		scale_tweener.tween_property(bubble_obj, "scale", Vector3(1.25, 0.75, 1.25), 0.05)
 		scale_tweener.tween_callback(instantiate_splash_vfx.bind(create_puddle, collision_pos))
-		#var tween = get_tree().create_tween()
-		#tween.tween_property($bubble,"scale",Vector3(10,10,10),0.1)
-		#tween.tween_callback(queue_free)
 		
 	pass
 
@@ -72,6 +77,8 @@ func shoot(end):
 	var velocity_y = Vector3.UP * sqrt(-2*gravity*height)
 	var velocity_xz = displacemnt_xz/(sqrt(-2*height/gravity)+sqrt(2*(displacement_y-height)/gravity))
 	velocity = velocity_y+velocity_xz
+	
+	$CollisionShape3D.disabled = true
 	
 	#stretch
 	scale_tweener = create_tween()

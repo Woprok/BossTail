@@ -48,7 +48,6 @@ shader = ExtResource("6_h3oe7")
 shader_parameter/GlowColor = Color(0.3, 1.2, 3, 1)
 
 [node name="WaterBubble" type="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00472593, -0.00476319, 0.00248468)
 collision_layer = 32
 collision_mask = 3
 script = ExtResource("1_5t4so")
@@ -86,3 +85,4 @@ surface_material_override/0 = SubResource("ShaderMaterial_rbsqb")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Bubble"]
 shape = SubResource("SphereShape3D_qsonp")
+disabled = true

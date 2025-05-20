@@ -45,7 +45,6 @@ void fragment() {
 
 }
 "
-graph_offset = Vector2(-397.449, -131.722)
 modes/blend = 1
 flags/unshaded = true
 preview_params/Mask = "Resource(\"res://assets/textures/spittle_mask.png\")"

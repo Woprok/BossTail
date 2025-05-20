@@ -51,7 +51,7 @@ func _physics_process(delta):
 		_start_dash()
 		
 	if dashing:
-		animation.dash_start()
+		#animation.dash_start()
 		direction.z -= 1
 		speed = DASH_SPEED
 	elif aiming:
