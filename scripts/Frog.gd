@@ -118,7 +118,7 @@ var radius = 12.5
 var angle = 0.0
 var init_angle = 0
 
-var grab_len_max = 6.2*2
+var grab_len_max = 6*2
 var grab_len_min = 6
 
 @export var boss_data: BossDataModel = preload("res://data_resources/FrogBossDataModel.tres")
@@ -464,7 +464,7 @@ func tongue_swipe():
 func ground_slam():
 	slam = false
 	platform.health -= 1
-	if player.is_on_floor():
+	if player.is_on_floor() and player.platform == platform:
 		player.hit(SLAM_HP)
 		player.get_node("CameraPivot").apply_shake()
 	doing = false
