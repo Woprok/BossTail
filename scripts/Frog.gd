@@ -44,7 +44,7 @@ var time_eat = 0
 
 @export_group("Attack params")
 # time of extension of tongue 
-@export var TONGUE_EXTEND_TIME = 3
+@export var TONGUE_EXTEND_TIME = 6
 # time between two swipes, player and enemy on same platform
 @export var SWIPE_SAME_PLATFORM_TIME = 2
 # time between two swipes, player and enemy on different platform

@@ -88,10 +88,10 @@ func _physics_process(delta):
 	
 	if Input.is_action_pressed("fight") and is_on_floor() and direction == Vector3.ZERO:
 		if not aiming:
-			if last_shot > 0.5:
+			if last_shot > 0.75:
 				last_shot = 0
 				_stab_started()
-		elif last_shot > 0.5:
+		elif last_shot > 0.75:
 			shoot()
 			last_shot = 0
 			
