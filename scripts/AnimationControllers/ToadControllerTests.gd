@@ -10,8 +10,8 @@ var swipe_indic: ToadAtkIndicatorVFXController
 
 func _ready() -> void:
 	#toad_controller.swim_bubble_atk_start(1,0)
-	create_tween().tween_callback(test_impact).set_delay(2.9)
-	create_tween().tween_callback(hitVFX.play_effect).set_delay(3)
+	#create_tween().tween_callback(test_impact).set_delay(2.9)
+	#create_tween().tween_callback(hitVFX.play_effect).set_delay(3)
 	pass
 
 func test_impact():

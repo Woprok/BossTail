@@ -122,7 +122,7 @@ var grab_len_max = 6.2*2
 var grab_len_min = 6
 
 @export var boss_data: BossDataModel = preload("res://data_resources/FrogBossDataModel.tres")
-@onready var player = get_parent().get_node("Player")
+@onready var player: PlayerBase = get_parent().get_node("Player")
 @onready var flies = get_parent().get_node("flies")
 @export var AcidSpit: PackedScene
 @export var WaterBubble: PackedScene
@@ -146,6 +146,8 @@ var triggered_once: bool = false
 func _ready() -> void:
 	boss_data.boss_restart()
 	GameEvents.boss_changed.emit(boss_data)
+	
+	#stun test
 	#create_tween().tween_callback(stun_VFX.play_stun_effect.bind(3)).set_delay(0.5)
 	
 # tf is this mess?
@@ -421,6 +423,11 @@ func bubble_spit(water_bubble_instance = null):
 	if swimming:
 		if water_bubble_instance != null:
 			bubble = water_bubble_instance
+			var distance = player.position.distance_to(bubble.position)
+			#print(distance)
+			if distance <= 5.0: #hacky hack
+				bubble.ignore_collisions_time = 0.0
+			
 		else:
 			bubble = WaterBubble.instantiate()
 	else:

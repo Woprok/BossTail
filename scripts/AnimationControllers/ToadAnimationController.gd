@@ -15,18 +15,23 @@ func _ready() -> void:
 	pass
 	
 func idle():
+	hide_tongue()
 	state_machine.travel("Idle")
 	
 func swim_idle():
+	hide_tongue()
 	state_machine.travel("Swim_Idle")
 
 func swim_start_swimming():
+	hide_tongue()
 	state_machine.travel("Swim_Swimming")
 
 func swim_stop_swimming():
+	hide_tongue()
 	state_machine.travel("Swim_Idle")
 
 func swim_bubble_atk_start(antic_dur: float = 0, end_time: float = -1):
+	hide_tongue()
 	state_machine.travel("Swim_BubbleAtk_Antic")
 	if antic_dur != 0:
 		var anim_antic_len = get_anim_length(AnimSeqPrefixes.get(SEQ_ANIM.BUBBLE) + "_antic")
@@ -45,8 +50,10 @@ func swim_bubble_atk_end():
 	pass
 	
 func hop_L_start():
+	hide_tongue()
 	state_machine.travel("Hop_L")
 func hop_R_start():
+	hide_tongue()
 	state_machine.travel("Hop_R")
 
 func seq_anim_start(anim_type: SEQ_ANIM, antic_dur: float = 0, end_time: float = -1, end_func_name: String = "") -> void:
@@ -71,8 +78,8 @@ func swipe_end_antic():
 func swipe_end():
 	state_machine.travel("Swipe_End")
 	var end_len: float = get_anim_seq_end_len(SEQ_ANIM.TONGUE_SWIPE)
-	if end_len > 0:
-		delayed_call(end_len, Callable(self, "hide_tongue"))
+	#if end_len > 0:
+	#	delayed_call(end_len, Callable(self, "hide_tongue"))
 	
 func tongue_grab_start(antic_dur: float = 0, end_time: float = -1):
 	show_tongue()
@@ -87,8 +94,8 @@ func tongue_grab_end():
 	state_machine.travel("TongueGrab_End")
 	
 	var end_len: float = get_anim_seq_end_len(SEQ_ANIM.TONGUE_GRAB)
-	if end_len > 0:
-		delayed_call(end_len, Callable(self, "hide_tongue"))
+	#if end_len > 0:
+	#	delayed_call(end_len, Callable(self, "hide_tongue"))
 	
 func spit_start(antic_dur: float = 0, end_time: float = -1):
 	show_tongue()
@@ -102,10 +109,11 @@ func spit_antic_end():
 func spit_end():
 	state_machine.travel("Spit_End")
 	var end_len: float = get_anim_seq_end_len(SEQ_ANIM.SPIT)
-	if end_len > 0:
-		delayed_call(end_len, Callable(self, "hide_tongue"))
+	#if end_len > 0:
+	#	delayed_call(end_len, Callable(self, "hide_tongue"))
 	
 func ground_slam_start(antic_dur: float = 0, end_time: float = -1):
+	hide_tongue()
 	state_machine.travel("GroundSlam_Antic")
 	if antic_dur >= 0:
 		seq_anim_start(SEQ_ANIM.TONGUE_GRAB, antic_dur, end_time, "ground_slam_end")
@@ -117,6 +125,7 @@ func ground_slam_end():
 	state_machine.travel("GroundSlam_End")
 	
 func jump_start():
+	hide_tongue()
 	state_machine.travel("Jump_Start")
 	
 func jump_end():

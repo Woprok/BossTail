@@ -1,4 +1,4 @@
-[gd_scene load_steps=114 format=4 uid="uid://m3d44565ohak"]
+[gd_scene load_steps=116 format=4 uid="uid://m3d44565ohak"]
 
 [ext_resource type="Script" uid="uid://bd4khaoi0cec7" path="res://scripts/Frog.gd" id="1_5bebj"]
 [ext_resource type="PackedScene" uid="uid://c8rgya1tfw6ms" path="res://scenes/AcidSpit.tscn" id="2_536sw"]
@@ -14,6 +14,8 @@
 [ext_resource type="Material" uid="uid://djacdjciv0o5i" path="res://assets/materials/toad_unlit_overlay_outline.tres" id="8_dc5xi"]
 [ext_resource type="PackedScene" uid="uid://v5oqhofaska" path="res://scenes/other/vfx/BubbleChargeup.tscn" id="11_3brhb"]
 [ext_resource type="Script" uid="uid://bv2wp2k08iurt" path="res://scripts/VFX/entity_hit_vfx.gd" id="11_dc5xi"]
+[ext_resource type="Script" uid="uid://sp6i6mkgktqu" path="res://scripts/VFX/stun_vfx_controller.gd" id="15_ai1dd"]
+[ext_resource type="PackedScene" uid="uid://c0folhnrmhgor" path="res://scenes/other/vfx/StunVFX.tscn" id="16_vvbav"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_qigc3"]
 resource_name = "Char_Toad_Blocking_Actions_Sphere_002"
@@ -23230,7 +23232,7 @@ height = 0.4
 [sub_resource type="SphereShape3D" id="SphereShape3D_ljifa"]
 radius = 0.35
 
-[node name="ToadBoss" type="CharacterBody3D" node_paths=PackedStringArray("animationPlayer", "bubble_chargeup", "bubble_appear_pos", "hit_VFX", "hit_body_pos", "hit_head_pos") groups=["enemy"]]
+[node name="ToadBoss" type="CharacterBody3D" node_paths=PackedStringArray("animationPlayer", "bubble_chargeup", "bubble_appear_pos", "hit_VFX", "stun_VFX", "hit_body_pos", "hit_head_pos") groups=["enemy"]]
 collision_mask = 65
 script = ExtResource("1_5bebj")
 animationPlayer = NodePath("Char_ToadBoss/AnimationPlayer")
@@ -23240,6 +23242,7 @@ bubble_chargeup = NodePath("VFX/BubbleChargeup")
 bubble_appear_pos = NodePath("VFX/BubblePosition")
 hit_VFX = NodePath("VFX/ToadHitVFX")
 hit_impact_VFX = ExtResource("2_dc5xi")
+stun_VFX = NodePath("VFX/StunVFX")
 swipe_indicator = ExtResource("2_t1bhq")
 grab_indicator = ExtResource("3_8dlpd")
 ground_slam_indicator = ExtResource("4_3brhb")
@@ -23327,21 +23330,21 @@ bones/10/parent = 9
 bones/10/rest = Transform3D(1, -1.55057e-08, 5.04203e-10, 1.55057e-08, 0.997883, -0.0650352, 5.05282e-10, 0.0650352, 0.997883, 1.5564e-15, 0.459597, -1.86265e-08)
 bones/10/enabled = true
 bones/10/position = Vector3(1.5564e-15, 0.459597, -1.86265e-08)
-bones/10/rotation = Quaternion(0.062574, 7.03326e-14, 1.49192e-08, 0.99804)
+bones/10/rotation = Quaternion(0.061931, 6.58918e-14, 1.47659e-08, 0.99808)
 bones/10/scale = Vector3(1, 1, 1)
 bones/11/name = "DEF-spine.002"
 bones/11/parent = 10
 bones/11/rest = Transform3D(1, -9.9797e-09, 2.08875e-10, 9.9797e-09, 0.999124, -0.0418576, 2.09035e-10, 0.0418576, 0.999124, -2.71683e-15, 0.265309, 1.11759e-08)
 bones/11/enabled = true
 bones/11/position = Vector3(5.77753e-15, 0.265309, -2.72918e-08)
-bones/11/rotation = Quaternion(-0.0110623, 4.77285e-13, -2.63761e-09, 0.999939)
+bones/11/rotation = Quaternion(-0.0129788, 5.00031e-13, -3.09457e-09, 0.999916)
 bones/11/scale = Vector3(1, 1, 1)
 bones/12/name = "DEF-spine.003"
 bones/12/parent = 11
 bones/12/rest = Transform3D(1, 4.68785e-09, 4.62423e-11, -4.68785e-09, 0.999807, 0.0196621, 4.59397e-11, -0.0196621, 0.999807, 1.07036e-15, 0.264004, -2.98023e-08)
 bones/12/enabled = true
 bones/12/position = Vector3(-5.37731e-14, 0.264005, 8.58681e-08)
-bones/12/rotation = Quaternion(-0.0670977, 1.33574e-11, -1.59985e-08, 0.997746)
+bones/12/rotation = Quaternion(-0.0606827, 1.33747e-11, -1.44689e-08, 0.998157)
 bones/12/scale = Vector3(1, 1, 1)
 bones/13/name = "DEF-Shoulder_R"
 bones/13/parent = 12
@@ -23355,7 +23358,7 @@ bones/14/parent = 13
 bones/14/rest = Transform3D(0.56524, 0.386286, -0.728894, -0.0401706, 0.895427, 0.443391, 0.823948, -0.221342, 0.521649, 1.49012e-08, 0.435165, -5.21541e-08)
 bones/14/enabled = true
 bones/14/position = Vector3(4.69926e-08, 0.435168, -1.17479e-06)
-bones/14/rotation = Quaternion(-0.54556, -0.35039, -0.377625, 0.661053)
+bones/14/rotation = Quaternion(-0.546028, -0.35039, -0.373931, 0.662764)
 bones/14/scale = Vector3(1, 1, 1)
 bones/15/name = "DEF-upper_arm.R.001"
 bones/15/parent = 14
@@ -23369,7 +23372,7 @@ bones/16/parent = 15
 bones/16/rest = Transform3D(1, 4.87448e-08, -8.19348e-07, -1.78498e-07, 0.987259, -0.159119, 8.01153e-07, 0.159119, 0.987259, -2.6077e-08, 0.188396, 7.45058e-08)
 bones/16/enabled = true
 bones/16/position = Vector3(4.6878e-08, 0.179454, -3.02226e-06)
-bones/16/rotation = Quaternion(0.60448, -0.291375, 0.252674, 0.697037)
+bones/16/rotation = Quaternion(0.60305, -0.291231, 0.251308, 0.698828)
 bones/16/scale = Vector3(1, 1, 1)
 bones/17/name = "DEF-forearm.R.001"
 bones/17/parent = 16
@@ -23383,7 +23386,7 @@ bones/18/parent = 17
 bones/18/rest = Transform3D(0.994171, 0.107813, 2.07373e-08, -0.107804, 0.994084, -0.0132125, -0.0014245, 0.0131355, 0.999913, 2.6077e-08, 0.257269, 2.23517e-08)
 bones/18/enabled = true
 bones/18/position = Vector3(-1.55171e-07, 0.247559, -8.72375e-07)
-bones/18/rotation = Quaternion(0.182725, -0.221162, -0.315029, 0.904686)
+bones/18/rotation = Quaternion(0.182973, -0.220862, -0.315697, 0.904476)
 bones/18/scale = Vector3(1, 1, 1)
 bones/19/name = "DEF-finger1.R"
 bones/19/parent = 18
@@ -23453,7 +23456,7 @@ bones/28/parent = 27
 bones/28/rest = Transform3D(0.56524, -0.386286, 0.728894, 0.0401706, 0.895427, 0.443391, -0.823948, -0.221342, 0.521649, 0, 0.435165, -4.09782e-08)
 bones/28/enabled = true
 bones/28/position = Vector3(0, 0.435165, -4.09782e-08)
-bones/28/rotation = Quaternion(-0.559643, 0.345964, 0.260259, 0.706664)
+bones/28/rotation = Quaternion(-0.559601, 0.345887, 0.256575, 0.70808)
 bones/28/scale = Vector3(1, 1, 1)
 bones/29/name = "DEF-upper_arm.L.001"
 bones/29/parent = 28
@@ -23467,7 +23470,7 @@ bones/30/parent = 29
 bones/30/rest = Transform3D(1, -1.18615e-08, 8.58573e-07, 1.48326e-07, 0.987259, -0.159119, -8.45747e-07, 0.159119, 0.987259, 4.47035e-08, 0.188396, 4.47035e-08)
 bones/30/enabled = true
 bones/30/position = Vector3(8.71004e-09, 0.179949, -2.02691e-06)
-bones/30/rotation = Quaternion(0.560611, 0.289011, -0.217496, 0.744905)
+bones/30/rotation = Quaternion(0.558866, 0.288847, -0.216188, 0.746659)
 bones/30/scale = Vector3(1, 1, 1)
 bones/31/name = "DEF-forearm.L.001"
 bones/31/parent = 30
@@ -23481,7 +23484,7 @@ bones/32/parent = 31
 bones/32/rest = Transform3D(0.994171, -0.107813, -3.15639e-08, 0.107804, 0.994084, -0.0132125, 0.00142451, 0.0131355, 0.999913, 4.09782e-08, 0.257269, -1.49012e-08)
 bones/32/enabled = true
 bones/32/position = Vector3(1.30325e-08, 0.24824, -1.2023e-06)
-bones/32/rotation = Quaternion(0.182669, 0.240842, 0.258876, 0.917393)
+bones/32/rotation = Quaternion(0.182922, 0.240687, 0.259325, 0.917257)
 bones/32/scale = Vector3(1, 1, 1)
 bones/33/name = "DEF-finger1.L"
 bones/33/parent = 32
@@ -23544,7 +23547,7 @@ bones/41/parent = 12
 bones/41/rest = Transform3D(1, 2.84096e-08, 1.69859e-09, -2.84096e-08, 0.992875, 0.119158, 1.69874e-09, -0.119158, 0.992875, 4.62308e-15, 0.398871, 1.49012e-08)
 bones/41/enabled = true
 bones/41/position = Vector3(2.09533e-14, 0.398872, 8.53155e-08)
-bones/41/rotation = Quaternion(0.142432, -9.27376e-11, 3.45834e-08, 0.989805)
+bones/41/rotation = Quaternion(0.137631, 2.73361e-11, 3.26173e-08, 0.990484)
 bones/41/scale = Vector3(1, 1, 1)
 bones/42/name = "DEF-neck.001"
 bones/42/parent = 41
@@ -23613,22 +23616,22 @@ bones/51/name = "DEF-Chin.001"
 bones/51/parent = 48
 bones/51/rest = Transform3D(1, 5.61318e-08, 1.43722e-06, -3.92928e-07, 0.97189, 0.235436, -1.38361e-06, -0.235436, 0.97189, -4.53091e-08, 0.201937, 0.190042)
 bones/51/enabled = true
-bones/51/position = Vector3(-5.37596e-08, 0.205307, 0.159867)
-bones/51/rotation = Quaternion(-0.103138, 7.2543e-07, -1.03308e-07, 0.994667)
+bones/51/position = Vector3(-2.45136e-08, 0.210882, 0.112335)
+bones/51/rotation = Quaternion(-0.0789568, 8.08638e-07, -1.17288e-07, 0.996878)
 bones/51/scale = Vector3(1, 1, 1)
 bones/52/name = "DEF-Chin.002"
 bones/52/parent = 48
 bones/52/rest = Transform3D(1, 1.27255e-07, 7.52059e-07, -5.09023e-07, 0.845643, 0.533749, -5.68052e-07, -0.533749, 0.845643, -2.20114e-08, 0.452805, 0.0923233)
 bones/52/enabled = true
-bones/52/position = Vector3(-3.15026e-08, 0.459083, 0.0699803)
-bones/52/rotation = Quaternion(-0.262867, 3.59621e-07, -1.5931e-07, 0.964832)
+bones/52/position = Vector3(5.18572e-09, 0.468723, 0.0348738)
+bones/52/rotation = Quaternion(-0.239364, 4.48349e-07, -1.68634e-07, 0.97093)
 bones/52/scale = Vector3(1, 1, 1)
 bones/53/name = "DEF-Chin"
 bones/53/parent = 48
 bones/53/rest = Transform3D(1, -2.13674e-07, 8.47911e-07, 8.54703e-07, 0.443607, -0.896221, -1.8464e-07, 0.896221, 0.443607, -6.87793e-09, 0.350214, 0.0288484)
 bones/53/enabled = true
-bones/53/position = Vector3(-1.86751e-08, 0.35851, 0.00336017)
-bones/53/rotation = Quaternion(0.540541, 3.08674e-07, 3.09634e-07, 0.841318)
+bones/53/position = Vector3(-5.24318e-10, 0.371502, -0.0365503)
+bones/53/rotation = Quaternion(0.560808, 3.44519e-07, 2.41811e-07, 0.827946)
 bones/53/scale = Vector3(1, 1, 1)
 bones/54/name = "DEF-LowerJawSupport.L"
 bones/54/parent = 48
@@ -23956,6 +23959,11 @@ skin = SubResource("Skin_ogm42")
 mesh = SubResource("ArrayMesh_bhv6x")
 skin = SubResource("Skin_ogm42")
 
+[node name="StunImpactPos" type="BoneAttachment3D" parent="Char_ToadBoss/rig_deform/Skeleton3D"]
+transform = Transform3D(-0.221245, -0.0138508, -0.97512, -0.945323, 0.248726, 0.210951, 0.239615, 0.968475, -0.0681227, 0.00507018, 0.985891, 1.596)
+bone_name = "DEF-Jaw"
+bone_idx = 57
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Char_ToadBoss"]
 libraries = {
 &"": SubResource("AnimationLibrary_h7t4e")
@@ -24044,6 +24052,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.233, -1.429)
 
 [node name="BubblePosition" type="Node3D" parent="VFX"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.233, -2.171)
+
+[node name="StunVFX" type="Node3D" parent="VFX" node_paths=PackedStringArray("ImpactPos")]
+script = ExtResource("15_ai1dd")
+StunVFXPrefab = ExtResource("16_vvbav")
+ImpactPos = NodePath("../../Char_ToadBoss/rig_deform/Skeleton3D/StunImpactPos")
+HelixStartOffset = Vector3(0, 0.34918, -0.0741702)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.46467, -3.76808)
 
 [connection signal="animation_finished" from="Char_ToadBoss/AnimationPlayer" to="." method="_on_animation_finished"]
 [connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_finished"]

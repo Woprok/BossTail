@@ -161,6 +161,7 @@ amount = 1
 lifetime = 0.5
 one_shot = true
 fixed_fps = 60
+local_coords = true
 trail_lifetime = 0.2
 process_material = SubResource("ParticleProcessMaterial_adav6")
 draw_pass_1 = SubResource("QuadMesh_1blwg")
@@ -172,6 +173,7 @@ amount = 16
 lifetime = 0.45
 one_shot = true
 explosiveness = 1.0
+local_coords = true
 process_material = SubResource("ParticleProcessMaterial_0nlxv")
 draw_pass_1 = SubResource("QuadMesh_jdqv3")
 

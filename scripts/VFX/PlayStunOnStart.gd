@@ -2,6 +2,7 @@ extends PlayParticleSysOnStart
 class_name PlayStunVFXOnStart
 
 @export var HelixStartPos: Node3D
+@export var HelixStartOffset: Vector3 = Vector3.ZERO
 @export var HelixRiseAmount: float
 @export var HelixFadeInDur: float
 @export var HelixRiseTime: float
@@ -17,7 +18,7 @@ var stunHelixDefaultColor: Color
 
 var helixTweener: Tween
 
-func _ready() -> void:	
+func _ready() -> void:
 	self.init()
 	stunHelixMaterial = HelixMesh.get_active_material(0)
 	stunHelixDefaultColor = stunHelixMaterial.albedo_color
@@ -29,7 +30,11 @@ func _fadeInScaleHelix():
 		helixTweener.kill()
 	helixTweener = create_tween()
 	
-	#HelixMesh.global_position = HelixStartPos.global_position
+	if HelixStartPos != null:
+		HelixMesh.global_position = HelixStartPos.global_position
+	else:
+		HelixMesh.position += HelixStartOffset
+		
 	HelixMesh.scale = Vector3.ONE * HelixMinScale
 	stunHelixMaterial.albedo_color.a = 0.1
 	var targetHelixPos = HelixMesh.position + Vector3.UP * HelixRiseAmount
