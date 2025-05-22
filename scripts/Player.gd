@@ -52,7 +52,7 @@ func _physics_process(delta):
 		
 	if dashing:
 		#animation.dash_start()
-		direction.z -= 1
+		direction.z = -1
 		speed = DASH_SPEED
 	elif aiming:
 		speed = AIM_SPEED
@@ -145,7 +145,6 @@ func _physics_process(delta):
 	elif velocity.y>0:
 		animation.jump_start()
 	move_and_slide()
-	
 		
 
 func hit(health):

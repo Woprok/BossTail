@@ -44,7 +44,7 @@ func _physics_process(delta):
 		
 	if dashing:
 		$AnimationTree.dash_start()
-		direction.z -= 1
+		direction.z = -1
 		speed = DASH_SPEED
 	elif aiming:
 		speed = AIM_SPEED

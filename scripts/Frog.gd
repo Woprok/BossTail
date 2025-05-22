@@ -26,6 +26,7 @@ var time_swimming = 0
 var time_stop = 5
 var time_slam = 0
 var time_eat = 0
+var time_doing = 0
 
 @export_group("Animation Timings")
 @export_subgroup("Anticipations")
@@ -84,6 +85,8 @@ var time_eat = 0
 @export var PEBBLE_HP = 1
 # HP lost to trigger swimming
 @export var TRIGGER_SWIMMING = 10
+
+var DOING_TIME = 5
 
 var grab = false
 var slam = false
@@ -199,6 +202,11 @@ func _physics_process(delta):
 				animationTree.tongue_grab_end()
 				
 	if doing or jump:
+		time_doing += delta
+		if time_doing>=DOING_TIME:
+			doing = false
+			animationTree.idle()
+			time_doing = 0
 		return
 		
 	if Global.phase == 1:
@@ -221,6 +229,7 @@ func _physics_process(delta):
 					if point!=null:
 						jump_direction(point)
 						doing = true
+						time_doing = 0
 						grab_target=player
 						grab = true
 			if boss_data.get_current_health() <= GRAB_HP and time_grab >= GRAB_TIME and not doing and platform!=player.platform and player.platform.is_in_group("stone_platform"):
@@ -230,6 +239,7 @@ func _physics_process(delta):
 				plan_path(player.platform)
 				if path.size()<=3:
 					doing = true
+					time_doing = 0
 				else:
 					path = []
 			if boss_data.get_current_health() <= SWIPE_HP and not doing:
@@ -239,6 +249,7 @@ func _physics_process(delta):
 					time_bubble = 0
 					swipe = true
 					doing = true
+					time_doing = 0
 					tongue_swipe()
 					tongueHit = 0
 					time_swipe_same = 0
@@ -247,6 +258,7 @@ func _physics_process(delta):
 					time_bubble = 0
 					swipe = true
 					doing = true
+					time_doing = 0
 					tongue_swipe()
 					tongueHit = 0
 					time_swipe_same = 0
@@ -254,6 +266,7 @@ func _physics_process(delta):
 			time_bubble += delta
 			if boss_data.get_current_health() != 100 and time_bubble>SPIT_BUBBLE_TIME and platform != player.platform and not doing:
 				doing = true
+				time_doing = 0
 				time_swipe_diff -= 1
 				time_swipe_same = 0 
 				animationTree.spit_start(SPIT_ANTIC_DUR, SPIT_WOO_DUR)
@@ -305,6 +318,7 @@ func _physics_process(delta):
 					if time_bubble>=WATER_BUBBLE_TIME + BUBBLE_ANTIC_DUR:
 						triggered_once = false
 						doing = true
+						time_doing = 0
 						time_bubble=0
 						bubble_spit(current_bubble_inst)
 						bubble_num += 1
@@ -359,6 +373,7 @@ func _physics_process(delta):
 					if point!=null:
 						jump_direction(point)
 					doing = true
+					time_doing = 0
 					time_eat = 0
 					time_swipe_same = 0
 					time_swipe_diff = 0
@@ -375,7 +390,11 @@ func _physics_process(delta):
 				if platform == player.platform:
 					time_bubble = 0
 					time_slam = 0
+					time_grab = 0
+					time_swipe_same = 0
+					time_swipe_diff = 0
 					doing = true
+					time_doing = 0
 					animationTree.ground_slam_start(GROUND_SLAM_ANTIC_DUR)
 					
 					var indicCtrlr = instantiate_indicator_object(ground_slam_indicator)
@@ -389,6 +408,8 @@ func _physics_process(delta):
 						plan_path(s)
 						time_bubble = 0
 						time_slam = 0
+						time_swipe_same = 0
+						time_swipe_diff -= 1
 						return
 				plan_path(get_parent().get_node("lilyPlatforms/largeLily"))
 		if boss_data.get_current_health() <= SWIPE_HP and not doing:
@@ -398,6 +419,7 @@ func _physics_process(delta):
 				time_bubble = 0
 				swipe = true
 				doing = true
+				time_doing = 0
 				tongue_swipe()
 				tongueHit = 0
 				time_swipe_same = 0
@@ -406,6 +428,7 @@ func _physics_process(delta):
 				time_bubble = 0
 				swipe = true
 				doing = true
+				time_doing = 0
 				tongue_swipe()
 				tongueHit = 0
 				time_swipe_same = 0
@@ -413,6 +436,7 @@ func _physics_process(delta):
 		time_bubble += delta
 		if boss_data.get_current_health() !=100 and time_bubble>SPIT_BUBBLE_TIME and platform!=null and platform != player.platform and not doing:
 				doing = true
+				time_doing = 0
 				animationTree.spit_start(SPIT_ANTIC_DUR, SPIT_WOO_DUR)
 				bubble_spit()
 				#animationTree.spit_end()
@@ -544,6 +568,7 @@ func jump_to_water():
 	randomize()
 	var i = randi() % platform.neighborStonePlatform.size()
 	doing = true
+	time_doing = 0
 	time_bubble = 0
 	plan_path(platform.neighborStonePlatform[i])
 
@@ -557,6 +582,7 @@ func jump_to_platform():
 		jump_direction(Vector3(prev_platform.position.x, 1.6, prev_platform.position.z))
 	time_bubble = 0
 	doing = true
+	time_doing = 0
 	swimming = false
 	
 	
