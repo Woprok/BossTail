@@ -1,0 +1,38 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://bt40qo2wg37a7"
+path.s3tc="res://.godot/imported/StoneTiles_Floor_Tiles_Albedo.png-0fa861f7123d93c16ed79b25d33d1913.s3tc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "b86265e9485dbcdc0e0212c6821a0f4e"
+}
+
+[deps]
+
+source_file="res://assets/models/environment/StoneTiles_Floor_Tiles_Albedo.png"
+dest_files=["res://.godot/imported/StoneTiles_Floor_Tiles_Albedo.png-0fa861f7123d93c16ed79b25d33d1913.s3tc.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0

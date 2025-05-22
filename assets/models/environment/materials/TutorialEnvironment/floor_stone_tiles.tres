@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://dmb600je4pcao"]
+
+[ext_resource type="Texture2D" uid="uid://bt40qo2wg37a7" path="res://assets/models/environment/StoneTiles_Floor_Tiles_Albedo.png" id="1_8bjgu"]
+
+[resource]
+resource_name = "floor_stone_tiles"
+cull_mode = 2
+shading_mode = 0
+albedo_texture = ExtResource("1_8bjgu")
