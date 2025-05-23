@@ -9,6 +9,15 @@ var box_hit = true
 @export var STUNNED_TIME = 2
 @export var WHIRLWIND_STRENGTH = 15
 
+@export var DummyArms: Array[SmallDummyArm]
+@export var DummyPole: Node3D
+
+@export_category("VFX")
+@export var StunVFXController: StunVFX
+
+var poleRotTime: float = 0
+var poleRotAngle: float = 2
+
 var Box = preload("res://scenes/Crates.tscn")
 var stop_time = 10
 
@@ -29,13 +38,21 @@ func _physics_process(delta):
 		$Area3D/CollisionShape3D.disabled = true
 		return
 	$Area3D/CollisionShape3D.disabled = false
-	rotate_y(delta*20)
+	rotate_dummy(delta)
 
+func rotate_dummy(delta: float) -> void:
+	for dummyArm in DummyArms:
+		dummyArm.rotate_arm(delta)
+	poleRotTime += delta
+	var xAngle = sin(poleRotTime * PI * 5) * poleRotAngle
+	var zAngle = cos(poleRotTime * PI * 5) * poleRotAngle
+	DummyPole.rotation_degrees.x = xAngle
+	DummyPole.rotation_degrees.z = zAngle
 
 func hit(_health):
 	stopped = true
 	stop_time = 0
-
+	StunVFXController.play_stun_effect(STUNNED_TIME)
 
 func death():
 	if box_hit == false:
@@ -71,7 +88,7 @@ func _on_box_hit(body: Node3D) -> void:
 		stopped = true
 		jump = true
 		stop_time = 0
-		
+		StunVFXController.play_stun_effect(BOX_RESPAWN_TIME)
 
 func _on_ground_body_entered(_body: Node3D) -> void:
 	if velocity.y<0:

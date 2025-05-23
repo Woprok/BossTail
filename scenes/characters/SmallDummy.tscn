@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://cjid25xc62odb"]
+
+[node name="SmallDummy" type="CharacterBody3D"]
