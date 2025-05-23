@@ -10,9 +10,13 @@ func _physics_process(delta):
 	var collision = move_and_collide(speed*velocity*delta)
 	if collision:
 		if collision.get_collider().is_in_group("player"):
-			if collision.get_collider().platform.is_in_group("stone_platform"):
+			if collision.get_collider().platform.is_in_group("stone_platform") or collision.get_collider().platform.is_in_group("big_lily"):
 				instantiate_splash(collision.get_position()-Vector3(0,0.5,0))
 			collision.get_collider().hit(5)
+			queue_free()
+			return
+		if collision.get_collider().is_in_group("stone_platform") or collision.get_collider().get_parent().is_in_group("big_lily"): 
+			instantiate_splash(collision.get_position(), true)
 			queue_free()
 			return
 		if collision.get_collider().is_in_group("lily_platform"):
@@ -23,10 +27,6 @@ func _physics_process(delta):
 			var tween = get_tree().create_tween()
 			var platform = collision.get_collider().get_parent()
 			tween.tween_property(platform,"position",Vector3(platform.position.x,-0.9,platform.position.z),0.5)
-			queue_free()
-			return
-		if collision.get_collider().is_in_group("stone_platform"): 
-			instantiate_splash(collision.get_position(), true)
 			queue_free()
 			return
 		if collision.get_collider().is_in_group("pebble"):

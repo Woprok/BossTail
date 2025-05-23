@@ -189,6 +189,7 @@ func _physics_process(delta):
 		path.pop_front()
 		if path == [] and not triggered:
 			doing = false
+			time_doing = 0
 	
 	if extended:
 		if swimming:
@@ -205,7 +206,7 @@ func _physics_process(delta):
 	if doing or jump:
 		time_doing += delta
 		# prevents from freezing
-		if time_doing>=DOING_TIME:
+		if doing and time_doing>=DOING_TIME:
 			doing = false
 			animationTree.idle()
 			time_doing = 0
@@ -227,13 +228,24 @@ func _physics_process(delta):
 			time_grab += delta
 			if boss_data.get_current_health() <= GRAB_HP and time_grab >= GRAB_TIME and not doing and platform==player.platform:
 				if position.distance_to(player.position)<grab_len_min or position.distance_to(player.position)>grab_len_max:
-					var point = find_point_on_platform(platform.position,player.position,grab_len_min, grab_len_max)
+					var point = find_point_on_platform(platform.global_position,player.global_position,grab_len_min, grab_len_max)
 					if point!=null:
 						jump_direction(point)
 						doing = true
 						time_doing = 0
 						grab_target=player
 						grab = true
+						time_bubble = 0
+						time_swipe_diff = 0
+						time_swipe_same = 0
+				else:
+					doing = true
+					time_doing = 0
+					grab_target = player
+					grab = true
+					time_bubble = 0
+					time_swipe_diff = 0
+					time_swipe_same = 0
 			if boss_data.get_current_health() <= GRAB_HP and time_grab >= GRAB_TIME and not doing and platform!=player.platform and player.platform.is_in_group("stone_platform"):
 				time_bubble = 0
 				time_swipe_diff = 0
@@ -254,6 +266,7 @@ func _physics_process(delta):
 					time_doing = 0
 					tongue_swipe()
 					tongueHit = 0
+					time_grab -= 1
 					time_swipe_same = 0
 					time_swipe_diff = 0
 				if platform!=player.platform and platform.neighbors.has(player.platform) and time_swipe_diff>SWIPE_DIFF_PLATFORM_TIME:
@@ -262,18 +275,20 @@ func _physics_process(delta):
 					doing = true
 					time_doing = 0
 					tongue_swipe()
+					time_grab -= 1
 					tongueHit = 0
 					time_swipe_same = 0
 					time_swipe_diff = 0
-			time_bubble += delta
-			if boss_data.get_current_health() != 100 and time_bubble>SPIT_BUBBLE_TIME and platform != player.platform and not doing:
-				doing = true
-				time_doing = 0
-				time_swipe_diff -= 1
-				time_swipe_same = 0 
-				animationTree.spit_start(SPIT_ANTIC_DUR, SPIT_WOO_DUR)
-				bubble_spit()
-				#animationTree.spit_end()
+			if boss_data.get_current_health() != 100 and not doing:
+				time_bubble += delta
+				if time_bubble>SPIT_BUBBLE_TIME and platform != player.platform:
+					doing = true
+					time_doing = 0
+					time_swipe_diff -= 1
+					time_swipe_same = 0 
+					animationTree.spit_start(SPIT_ANTIC_DUR, SPIT_WOO_DUR)
+					bubble_spit()
+					#animationTree.spit_end()
 		else:
 			if not swimming:
 				if prev_platform==null or platform==null:
@@ -371,7 +386,7 @@ func _physics_process(delta):
 						break
 			elif grab_target.platform==platform:
 				if position.distance_to(grab_target.position)<grab_len_min or position.distance_to(grab_target.position)>grab_len_max:
-					var point = find_point_on_platform(platform.position,grab_target.position,grab_len_min, grab_len_max)
+					var point = find_point_on_platform(platform.global_position,grab_target.global_position,grab_len_min, grab_len_max)
 					if point!=null:
 						jump_direction(point)
 					doing = true
@@ -513,8 +528,8 @@ func ground_slam():
 		newShards.get_node("AnimationPlayer").play("break")
 	
 func find_point_on_platform(platform_position, player_position, min_distance, max_distance):
-	var platform_top_left = Vector3(platform_position.x - 10 / 2, platform_position.y, platform.position.z - 10 / 2)
-	var platform_bottom_right =  Vector3(platform_position.x + 10 / 2, platform_position.y, platform.position.z + 10 / 2)
+	var platform_top_left = Vector3(platform_position.x - 9 / 2, platform_position.y, platform.position.z - 9 / 2)
+	var platform_bottom_right =  Vector3(platform_position.x + 9 / 2, platform_position.y, platform.position.z + 9 / 2)
 	for x in range(int(platform_top_left.x), int(platform_bottom_right.x)):
 		for z in range(int(platform_top_left.z), int(platform_bottom_right.z)):
 			var point = Vector3(x, player.position.y, z)
@@ -716,6 +731,7 @@ func _on_animation_finished(anim_name):
 	if anim_name=="G_03-tongue_grab-end":
 		extended = false
 		doing = false
+		tongueHit = 0
 		$tongue/CollisionShape3D.disabled = true
 		grab = false
 	if anim_name == "G_03-tongue_grab-start":
