@@ -86,7 +86,8 @@ var time_doing = 0
 # HP lost to trigger swimming
 @export var TRIGGER_SWIMMING = 10
 
-var DOING_TIME = 5
+# must be bigger than attack length
+var DOING_TIME = 8
 
 var grab = false
 var slam = false
@@ -203,6 +204,7 @@ func _physics_process(delta):
 				
 	if doing or jump:
 		time_doing += delta
+		# prevents from freezing
 		if time_doing>=DOING_TIME:
 			doing = false
 			animationTree.idle()
@@ -718,6 +720,7 @@ func _on_animation_finished(anim_name):
 		grab = false
 	if anim_name == "G_03-tongue_grab-start":
 		extended = true
+		time_of_extend = 0
 		$tongue/CollisionShape3D.disabled = false
 	#if anim_name == "G_05-swipe-antic":
 	#	$tongue/CollisionShape3D.disabled = false
@@ -752,6 +755,8 @@ func _on_animation_finished(anim_name):
 func _on_body_entered(body):
 	if body.is_in_group("boulder") and boulderHit>5 and swimming:
 		boulderHit = 0
+		hit(body)
+	if body.is_in_group("pebble") and swimming:
 		hit(body)
 
 func instantiate_indicator_object(indicatorScene: PackedScene) -> ToadAtkIndicatorVFXController:

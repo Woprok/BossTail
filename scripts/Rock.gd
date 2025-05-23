@@ -13,16 +13,13 @@ func _physics_process(delta):
 	if time>max_time:
 		respawn()
 	velocity.y += speed*gravity*delta
-	if position.y<-0.3:
+	if position.y<-1:
 		respawn()
 		return
 	var collision = move_and_collide(speed*velocity*delta)
 	if collision:
 		if collision.get_collider().is_in_group("enemy") and thrown:
-			if collision.get_collider().swimming:
-				collision.get_collider().hit(self)
-			else:
-				collision.get_collider().hit(collision.get_collider_shape())
+			collision.get_collider().hit(collision.get_collider_shape())
 			respawn()
 		elif collision.get_collider().is_in_group("enemy") and not thrown:
 			respawn()
