@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://5rwptpyg61pr"]
+
+[ext_resource type="Texture2D" uid="uid://cbphoe7smfrxv" path="res://assets/models/environment/TutorialExtraObjects_DoorAlbedo.png" id="1_jtn8j"]
+
+[resource]
+resource_name = "DoorMaterial"
+cull_mode = 2
+shading_mode = 0
+albedo_texture = ExtResource("1_jtn8j")

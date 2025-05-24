@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://dryyrj0lom0lx"]
+
+[ext_resource type="Texture2D" uid="uid://cyt8tjmdx8mmq" path="res://assets/models/environment/TutorialExtraObjects_BarrelAlbedo.png" id="1_jlw7h"]
+
+[resource]
+resource_name = "Material"
+cull_mode = 2
+shading_mode = 0
+albedo_texture = ExtResource("1_jlw7h")
