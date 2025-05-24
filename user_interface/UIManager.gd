@@ -15,7 +15,7 @@ func _ready() -> void:
 # Switches between different UI Screens
 func _switch_UI(new_mode: UI.Mode) -> void:
 	# Cleans up current screen instance
-	if CurrentInstance:		
+	if CurrentInstance:
 		remove_child(CurrentInstance)
 		CurrentInstance.queue_free()
 	# Instantiate next screen (safely) and save the previous in case of "Back"
@@ -31,11 +31,20 @@ func _switch_UI(new_mode: UI.Mode) -> void:
 func _set_cursor_mode(new_mode: UI.Mode) -> void:
 	match new_mode:
 		UI.Mode.HUD: # for HUD we want to capture it
-			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED) 
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		UI.Mode.NONE: # if I ever decide that we can hide HUD
 			Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED_HIDDEN)
 		_: #UI.Mode.PAUSE, UI.Mode.MENU, UI.Mode.SETTINGS:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
+func IsGame() -> bool:
+	match CurrentMode:
+		UI.Mode.HUD: # for HUD we want to capture it
+			return true
+		UI.Mode.NONE: # if I ever decide that we can hide HUD
+			return true
+		_: #UI.Mode.PAUSE, UI.Mode.MENU, UI.Mode.SETTINGS:
+			return false
 
 func SwitchToMode(mode: UI.Mode) -> void:
 	_set_cursor_mode(mode)

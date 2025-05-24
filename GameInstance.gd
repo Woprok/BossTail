@@ -36,6 +36,16 @@ func _ready() -> void:
 func _load_and_apply_local_user_settings() -> void:
 	default_user_settings.ApplyLocalSettings()	
 
+func _notification(what):
+	match what:
+		#NOTIFICATION_APPLICATION_FOCUS_IN:
+		#	ResumeGame()
+		# This handles special case, where user can bug the game window out of screenscape
+		# as by default game prevents correct moving of window by unintentionally controlling all mouse events
+		NOTIFICATION_APPLICATION_FOCUS_OUT:
+			if UIManager.IsGame():
+				PauseGame()
+
 func _unhandled_input(event: InputEvent) -> void:
 	if _try_handle_pause(event):
 		return

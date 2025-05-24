@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bd46k2s343rar"]
+[gd_scene load_steps=17 format=3 uid="uid://bd46k2s343rar"]
 
 [ext_resource type="Script" uid="uid://cc0c4h6pljjac" path="res://user_interface/screens/HUDScreen.gd" id="1_7bmoq"]
 [ext_resource type="PackedScene" uid="uid://cdw5piocy8wkc" path="res://user_interface/controls/PaddingPanel.tscn" id="2_7uurq"]
@@ -9,8 +9,41 @@
 [ext_resource type="Texture2D" uid="uid://bmsgwqc5wo8d4" path="res://assets/temp/throw.png" id="5_d86cj"]
 [ext_resource type="Texture2D" uid="uid://clnlkd2icy745" path="res://assets/temp/dash.png" id="6_7uurq"]
 [ext_resource type="Texture2D" uid="uid://w2kbc6fwsil2" path="res://assets/temp/jump.png" id="6_c3u2o"]
+[ext_resource type="Shader" uid="uid://ct10omn6kodu3" path="res://user_interface/controls/ActionButton/ActionButton.gdshader" id="7_f61yv"]
 [ext_resource type="PackedScene" uid="uid://c64wbc052n3cg" path="res://user_interface/controls/Ammo/AmmoIndicator.tscn" id="8_nh7qp"]
 [ext_resource type="PackedScene" uid="uid://cmbratyfgjcr0" path="res://user_interface/controls/Tutorials/TutorialHint.tscn" id="11_nh7qp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gim6p"]
+resource_local_to_scene = true
+shader = ExtResource("7_f61yv")
+shader_parameter/progress = 0.0
+shader_parameter/in_color = Color(0.36, 0.67, 0.33, 1)
+shader_parameter/out_color = Color(1, 0, 0.1647, 1)
+shader_parameter/border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wnxpr"]
+resource_local_to_scene = true
+shader = ExtResource("7_f61yv")
+shader_parameter/progress = 0.0
+shader_parameter/in_color = Color(0.36, 0.67, 0.33, 1)
+shader_parameter/out_color = Color(1, 0, 0.1647, 1)
+shader_parameter/border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kc68n"]
+resource_local_to_scene = true
+shader = ExtResource("7_f61yv")
+shader_parameter/progress = 0.0
+shader_parameter/in_color = Color(0.36, 0.67, 0.33, 1)
+shader_parameter/out_color = Color(1, 0, 0.1647, 1)
+shader_parameter/border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eb80y"]
+resource_local_to_scene = true
+shader = ExtResource("7_f61yv")
+shader_parameter/progress = 0.0
+shader_parameter/in_color = Color(0.36, 0.67, 0.33, 1)
+shader_parameter/out_color = Color(1, 0, 0.1647, 1)
+shader_parameter/border_color = Color(1, 1, 1, 1)
 
 [node name="HUDScreen" type="Control"]
 layout_mode = 3
@@ -99,6 +132,7 @@ size_flags_vertical = 8
 
 [node name="MeleeIcon" parent="HBoxContainer/VBoxContainer" instance=ExtResource("3_c3u2o")]
 unique_name_in_owner = true
+material = SubResource("ShaderMaterial_gim6p")
 layout_mode = 2
 texture = ExtResource("4_m5nw3")
 
@@ -112,6 +146,7 @@ layout_mode = 2
 
 [node name="RangedIcon" parent="HBoxContainer/VBoxContainer2" instance=ExtResource("3_c3u2o")]
 unique_name_in_owner = true
+material = SubResource("ShaderMaterial_wnxpr")
 layout_mode = 2
 texture = ExtResource("5_d86cj")
 
@@ -121,6 +156,7 @@ size_flags_vertical = 8
 
 [node name="DashIcon" parent="HBoxContainer/VBoxContainer3" instance=ExtResource("3_c3u2o")]
 unique_name_in_owner = true
+material = SubResource("ShaderMaterial_kc68n")
 layout_mode = 2
 texture = ExtResource("6_7uurq")
 
@@ -130,5 +166,6 @@ size_flags_vertical = 8
 
 [node name="JumpIcon" parent="HBoxContainer/VBoxContainer4" instance=ExtResource("3_c3u2o")]
 unique_name_in_owner = true
+material = SubResource("ShaderMaterial_eb80y")
 layout_mode = 2
 texture = ExtResource("6_c3u2o")
