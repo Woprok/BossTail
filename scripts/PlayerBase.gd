@@ -4,9 +4,6 @@ class_name PlayerBase
 # Common Preloads
 @export var player_data: PlayerDataModel = preload("res://data_resources/PlayerDataModelInstance.tres")
 
-# Common Throw
-var pebble_count = 0 
-@export var AMMO_CAPACITY = 3
 # Common Mouse & Camera
 @onready var Camera = $CameraPivot/SpringArm3D/Camera3D
 @export var AIM_MOUSE_SENS:float = 0.004
@@ -111,3 +108,24 @@ func _aim_finished() -> void:
 	$CameraPivot/zoom.speed_scale = 1
 	Camera.rotation.x = deg_to_rad(-20)
 	$CameraPivot/zoom.play_backwards("zoom")
+
+
+func _on_pickup_entered(body):
+	if body.is_in_group("pebble") and player_data.ammo_standard.can_pick():
+		player_data.player_ammo_picked()
+		body.queue_free()
+
+func _shoot(projectile) -> void:
+	projectile.global_position = position - transform.basis.z * 2
+	projectile.velocity = - transform.basis.z
+	
+	var space_state = Camera.get_world_3d().direct_space_state
+	var screen_center = get_viewport().size / 2
+	var origin = Camera.project_ray_origin(screen_center)
+	var end = origin + Camera.project_ray_normal(screen_center) * 1000
+	
+	var query = PhysicsRayQueryParameters3D.create(origin,end)
+	query.collide_with_bodies = true
+	var result = space_state.intersect_ray(query)
+	
+	projectile.shoot(origin, end, result)

@@ -12,6 +12,7 @@ func _ready() -> void:
 	# Player Data Setup
 	%PlayerHealthBar.SetHealth(player_data.player_min_health, player_data.player_current_health, player_data.player_max_health)
 	player_data.OnHealthChanged.connect(UpdatePlayerHealth)
+	player_data.OnAmmoChanged.connect(UpdatePlayerAmmo)
 
 func _on_boss_data_changed(new_data: BossDataModel):
 	# Rebind old for new
@@ -48,9 +49,13 @@ func _update_tutorial(phase: int) -> void:
 func _exit_tree() -> void:
 	boss_data.OnHealthChanged.disconnect(UpdateBossHealth)
 	player_data.OnHealthChanged.disconnect(UpdatePlayerHealth)
+	player_data.OnAmmoChanged.disconnect(UpdatePlayerAmmo)
 	
 func UpdateBossHealth() -> void:
 	%BossHealthBar.ChangeHealth(boss_data.boss_current_health)
+
+func UpdatePlayerAmmo(ammo: AmmoStatus) -> void:
+	%AmmoIndicator.ChangeAmmo(ammo)
 
 func UpdatePlayerHealth() -> void:
 	%PlayerHealthBar.ChangeHealth(player_data.player_current_health)

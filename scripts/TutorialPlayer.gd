@@ -148,26 +148,14 @@ func hit(health):
 
 func shoot():
 	var p
-	if pebble_count == 0:
+	if not player_data.ammo_standard.has_any_ammo_left():
 		return
-	if pebble_count > 0:
+	if player_data.ammo_standard.has_any_ammo_left():
 		p = Rock.instantiate()
 		pebbles.add_child(p)
-		pebble_count-=1
+		player_data.player_ammo_used()
 		
-	p.global_position = position-transform.basis.z*2
-	p.velocity=-transform.basis.z
-	
-	var space_state = Camera.get_world_3d().direct_space_state
-	var screen_center = get_viewport().size/2
-	var origin = Camera.project_ray_origin(screen_center)
-	var end = origin + Camera.project_ray_normal(screen_center)*1000
-	
-	var query = PhysicsRayQueryParameters3D.create(origin,end)
-	query.collide_with_bodies = true
-	var result = space_state.intersect_ray(query)
-	
-	p.shoot(origin, end, result)
+	_shoot(p)
 
 func respawn():
 	player_data.change_melee_indicator(true)
@@ -225,11 +213,6 @@ func _on_melee_body_entered(body):
 	elif body.is_in_group("enemy"):
 		body.hit(10)
 
-
-func _on_pickup_entered(body):
-	if body.is_in_group("pebble") and pebble_count<AMMO_CAPACITY:
-		pebble_count += 1
-		body.queue_free()
 
 
 func _on_standing(area):

@@ -10,11 +10,43 @@ class_name PlayerDataModel
 @export var player_min_health: int = 0
 @export var player_max_health: int = 100
 
+@export var ammo_standard: AmmoStatus = AmmoStatus.new(0, 3, false)
+@export var ammo_special: AmmoStatus = AmmoStatus.new(0, 1, true)
+
 signal OnHealthChanged
+signal OnAmmoChanged(ammo: AmmoStatus)
+
+# This needs wrapper for callback
+func player_ammo_picked(is_special: bool = false) -> void:
+	if is_special:
+		ammo_special.add()
+	else:
+		ammo_standard.add()
+	# Update UI
+	_player_ammo_update()
+	
+# This needs wrapper for callback
+func player_ammo_used(is_special: bool = false) -> void:
+	if is_special:
+		ammo_special.use()
+	else:
+		ammo_standard.use()
+	# Update UI
+	_player_ammo_update()
+
+func _player_ammo_update():
+	if ammo_special.has_any_ammo_left():
+		OnAmmoChanged.emit(ammo_special)
+	else:
+		OnAmmoChanged.emit(ammo_standard)
+	
 
 func player_restart() -> void:
 	player_current_health = player_max_health
+	ammo_special.reset()
+	ammo_standard.reset()
 	OnHealthChanged.emit()
+	_player_ammo_update()
 
 func change_jump_height(value):
 	jump_value = value

@@ -9,8 +9,6 @@ var Fly = preload("res://scenes/Fly.tscn")
 @onready var pebbles = get_parent().get_node("pebbles")
 
 var start_position:Vector3 = Vector3(0,-1.8,0)
-var fly_count = 0
-@export var FLY_CAPACITY = 1
 
 var STICKY_SPEED:int = 2
 
@@ -161,31 +159,19 @@ func hit(health):
 # strelba dle typu zbrane
 func shoot():
 	var p
-	if fly_count==0 and pebble_count==0:
+	if not player_data.ammo_special.has_any_ammo_left() and not player_data.ammo_standard.has_any_ammo_left():
 		return
-	if fly_count>0:
+	if player_data.ammo_special.has_any_ammo_left():
 		p = Fly.instantiate()
 		flies.add_child(p)
-		fly_count=0
-	elif pebble_count > 0:
+		player_data.player_ammo_used(true)
+	elif player_data.ammo_standard.has_any_ammo_left():
 		p = Rock.instantiate()
 		p.thrown = true
 		pebbles.add_child(p)
-		pebble_count -= 1
+		player_data.player_ammo_used()
 		
-	p.global_position = position-transform.basis.z
-	p.velocity=-transform.basis.z
-	
-	var space_state = Camera.get_world_3d().direct_space_state
-	var screen_center = get_viewport().size/2
-	var origin = Camera.project_ray_origin(screen_center)
-	var end = origin + Camera.project_ray_normal(screen_center)*1000
-	
-	var query = PhysicsRayQueryParameters3D.create(origin,end)
-	query.collide_with_bodies = true
-	var result = space_state.intersect_ray(query)
-	
-	p.shoot(origin, end, result)
+	_shoot(p)
 
 func respawn():
 	player_data.change_melee_indicator(true)
@@ -260,14 +246,11 @@ func _on_melee_body_entered(body):
 		body.velocity.y = 1
 		body.flying = false
 
-
 func _on_pickup_entered(body):
-	if body.is_in_group("fly") and body.dead and fly_count < FLY_CAPACITY:
-		fly_count += 1
+	if body.is_in_group("fly") and body.dead and player_data.ammo_special.can_pick():
+		player_data.player_ammo_picked(true)
 		body.queue_free()
-	if body.is_in_group("pebble") and pebble_count < AMMO_CAPACITY:
-		pebble_count += 1
-		body.queue_free()
+	super._on_pickup_entered(body)
 
 
 func _on_standing(area):
