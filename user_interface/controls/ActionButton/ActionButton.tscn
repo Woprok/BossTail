@@ -4,15 +4,16 @@
 [ext_resource type="Texture2D" uid="uid://cg202homam7a1" path="res://assets/temp/throwing-ball.png" id="3_bmr6w"]
 [ext_resource type="Script" uid="uid://bcttncej3jelw" path="res://user_interface/controls/ActionButton/ActionButton.gd" id="3_t66cv"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_aspo8"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t66cv"]
 resource_local_to_scene = true
 shader = ExtResource("1_hf3yu")
 shader_parameter/progress = 0.0
 shader_parameter/in_color = Color(0.36, 0.67, 0.33, 1)
 shader_parameter/out_color = Color(1, 0, 0.1647, 1)
+shader_parameter/border_color = Color(1, 1, 1, 1)
 
 [node name="TextureRect" type="TextureRect"]
-material = SubResource("ShaderMaterial_aspo8")
+material = SubResource("ShaderMaterial_t66cv")
 custom_minimum_size = Vector2(64, 64)
 offset_right = 64.0
 offset_bottom = 64.0
