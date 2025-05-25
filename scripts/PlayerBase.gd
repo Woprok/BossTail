@@ -3,12 +3,25 @@ class_name PlayerBase
 
 # Common Preloads
 @export var player_data: PlayerDataModel = preload("res://data_resources/PlayerDataModelInstance.tres")
+@export var user_settings: UserSettings = preload("res://data_resources/UserSettingsDefaultInstance.tres")
 
 # Common Mouse & Camera
 @onready var Camera = $CameraPivot/SpringArm3D/Camera3D
-@export var AIM_MOUSE_SENS:float = 0.004
-@export var MOUSE_VERTICAL_SENS:float = 0.004
-@export var MOUSE_SENS:float = 0.008
+@export var BASE_AIM_MOUSE_SENS: float = 0.004
+@export var BASE_VERTICAL_MOUSE_SENS: float = 0.004
+@export var BASE_HORIZONTAL_MOUSE_SENS: float = 0.008
+var USER_AIM_MOUSE_SENS: float = 1.0
+var USER_MOUSE_SENS: float = 1.0
+var AIM_MOUSE_SENS: float:
+	get:
+		return BASE_AIM_MOUSE_SENS * USER_AIM_MOUSE_SENS
+var MOUSE_VERTICAL_SENS: float:
+	get:
+		return BASE_VERTICAL_MOUSE_SENS * USER_MOUSE_SENS
+var MOUSE_HORIZONTAL_SENS: float:
+	get:
+		return BASE_HORIZONTAL_MOUSE_SENS * USER_MOUSE_SENS
+var mouse_sensitivity: float = MOUSE_HORIZONTAL_SENS
 # Common Movement
 var speed:int = 15
 var jump_speed:int = 30
@@ -26,7 +39,6 @@ var lastHit = 100
 var time:float = 0
 var jump_time:float = 0
 var target_velocity:Vector3 = Vector3.ZERO
-var mouse_sensitivity:float = MOUSE_SENS
 
 var melee:bool = false
 var fighting:bool = false
@@ -47,7 +59,13 @@ var direction = Vector3.ZERO
 # Init
 func _ready():
 	player_data.player_restart()
+	_load_preferences()
 	$CameraPivot.rotation.x = deg_to_rad(-8)	
+
+func _load_preferences() -> void:
+	var settings: LocalUserSettings = user_settings.GetUserSettings()
+	USER_AIM_MOUSE_SENS = settings.mouse_aim_sensititivy
+	USER_MOUSE_SENS = settings.mouse_camera_sensititivy
 
 func _unhandled_input(event):
 	if event is InputEventMouseMotion:
@@ -102,7 +120,7 @@ func _aim_finished() -> void:
 	player_data.change_melee_indicator(true)
 	player_data.change_ranged_indicator(false)	
 	aiming = false
-	mouse_sensitivity = MOUSE_SENS
+	mouse_sensitivity = MOUSE_HORIZONTAL_SENS
 	speed = SPEED
 	Camera.get_node("target").hide()
 	$CameraPivot/zoom.speed_scale = 1

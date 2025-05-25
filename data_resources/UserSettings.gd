@@ -26,6 +26,20 @@ func GetUserSettingsFullPath() -> String:
 func ApplyLocalSettings() -> void:
 	var settings = GetUserSettings()
 	_apply_keybinds(settings)
+	_apply_sensitivity(settings)
+	_apply_window(settings)
+
+func _apply_window(settings: LocalUserSettings) -> void:
+	ToggleFullScreen(settings.is_full_screen)
+	
+func ToggleFullScreen(is_full_screen: bool) -> void:
+	if is_full_screen:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	else:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+
+func _apply_sensitivity(settings: LocalUserSettings) -> void:
+	pass
 
 func _apply_keybinds(settings: LocalUserSettings) -> void:
 	for keybind in customizable_keybinds.keys():
