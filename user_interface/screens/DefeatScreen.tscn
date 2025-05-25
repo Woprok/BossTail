@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://fk5q3y2ac7sy"]
 
 [ext_resource type="Script" uid="uid://b2u3es7pj5gkm" path="res://user_interface/screens/DefeatScreen.gd" id="1_4o6xw"]
-[ext_resource type="Theme" uid="uid://d2mah8qfufk0b" path="res://user_interface/assets/UIMenuTheme.tres" id="2_lrtvq"]
+[ext_resource type="Theme" uid="uid://d2mah8qfufk0b" path="res://user_interface/assets/UIMainTheme.tres" id="2_lrtvq"]
 
 [node name="DefeatScreen" type="VBoxContainer"]
 anchors_preset = 5

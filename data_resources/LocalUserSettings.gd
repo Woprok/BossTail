@@ -1,6 +1,9 @@
 extends Resource
 class_name LocalUserSettings
 
+@export var mouse_aim_sensititivy: float = 1.0
+@export var mouse_camera_sensititivy: float = 1.0
+@export var is_full_screen: bool = false
 @export var custom_keybinds: Dictionary[StringName, KeybindSetting] = {}
 
 func ResetKeybinds() -> void:

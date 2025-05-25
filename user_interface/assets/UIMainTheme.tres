@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=2 format=3 uid="uid://d2mah8qfufk0b"]
 
-[ext_resource type="StyleBox" uid="uid://dm2dywvpwanff" path="res://user_interface/assets/UIMenuThemeBorder.tres" id="1_yenvq"]
+[ext_resource type="StyleBox" uid="uid://dm2dywvpwanff" path="res://user_interface/assets/UIMainThemeBorder.tres" id="1_yenvq"]
 
 [resource]
 Button/colors/font_color = Color(1, 1, 1, 1)

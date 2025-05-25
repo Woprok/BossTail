@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://vtchnggfgf4f"]
 
 [ext_resource type="Script" uid="uid://m2mtl4g3vkej" path="res://user_interface/screens/PauseScreen.gd" id="1_23led"]
-[ext_resource type="Theme" uid="uid://d2mah8qfufk0b" path="res://user_interface/assets/UIMenuTheme.tres" id="1_fiql1"]
+[ext_resource type="Theme" uid="uid://d2mah8qfufk0b" path="res://user_interface/assets/UIMainTheme.tres" id="1_fiql1"]
 
 [node name="PauseScreen" type="VBoxContainer"]
 anchors_preset = 5

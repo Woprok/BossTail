@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cugk3gvwwo83b"]
 
 [ext_resource type="Script" uid="uid://cglrxlk3d8rbj" path="res://user_interface/controls/Settings/KeybindSettingControl.gd" id="1_4ew07"]
-[ext_resource type="Theme" uid="uid://d2mah8qfufk0b" path="res://user_interface/assets/UIMenuTheme.tres" id="2_ksikw"]
+[ext_resource type="Theme" uid="uid://d2mah8qfufk0b" path="res://user_interface/assets/UIMainTheme.tres" id="2_ksikw"]
 
 [node name="KeybindSettingControl" type="Panel"]
 custom_minimum_size = Vector2(500, 30)

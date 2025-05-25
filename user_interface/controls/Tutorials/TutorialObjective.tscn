@@ -2,7 +2,7 @@
 
 [ext_resource type="StyleBox" uid="uid://cwi3586klkctu" path="res://user_interface/controls/Tutorials/TutorialStyleBox.tres" id="1_8084t"]
 [ext_resource type="Script" uid="uid://di4jxqhknjscd" path="res://user_interface/controls/Tutorials/TutorialObjective.gd" id="1_pm7eg"]
-[ext_resource type="Theme" uid="uid://d2mah8qfufk0b" path="res://user_interface/assets/UIMenuTheme.tres" id="2_uwy78"]
+[ext_resource type="Theme" uid="uid://d2mah8qfufk0b" path="res://user_interface/assets/UIMainTheme.tres" id="2_uwy78"]
 
 [node name="TutorialObjective" type="Panel"]
 custom_minimum_size = Vector2(400, 50)

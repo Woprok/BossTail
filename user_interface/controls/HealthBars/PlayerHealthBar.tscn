@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://qou3ia2ohllt" path="res://user_interface/controls/HealthBars/PlayerHealthBar.gd" id="2_jk2rn"]
 [ext_resource type="StyleBox" uid="uid://cctr4lkx828wf" path="res://user_interface/controls/TransparentStyleBox.tres" id="3_7x30k"]
 [ext_resource type="StyleBox" uid="uid://br07x4arv5w01" path="res://user_interface/controls/HealthBars/PlayerBarFillDamage.tres" id="4_jk2rn"]
-[ext_resource type="Theme" uid="uid://d2mah8qfufk0b" path="res://user_interface/assets/UIMenuTheme.tres" id="5_7x30k"]
+[ext_resource type="Theme" uid="uid://d2mah8qfufk0b" path="res://user_interface/assets/UIMainTheme.tres" id="5_7x30k"]
 [ext_resource type="StyleBox" uid="uid://bwswuf3f0td2m" path="res://user_interface/controls/HealthBars/PlayerBarFillHealth.tres" id="5_h0vb6"]
 
 [node name="PlayerHealthBar" type="Panel"]

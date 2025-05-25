@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://b02ofqs5gyvt3"]
 
 [ext_resource type="Script" uid="uid://b3q5t5ih8agjt" path="res://user_interface/screens/LevelScreen.gd" id="1_5s4jb"]
-[ext_resource type="Theme" uid="uid://d2mah8qfufk0b" path="res://user_interface/assets/UIMenuTheme.tres" id="1_alm15"]
+[ext_resource type="Theme" uid="uid://d2mah8qfufk0b" path="res://user_interface/assets/UIMainTheme.tres" id="1_alm15"]
 
 [node name="LevelScreen" type="VBoxContainer"]
 anchors_preset = 5
