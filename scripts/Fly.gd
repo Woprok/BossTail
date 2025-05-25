@@ -42,6 +42,8 @@ func _physics_process(delta):
 		else:
 			chase_position(delta, position_in_swarm, false)
 		return
+	if $Body.disabled:
+		call_deferred("enable_collision")
 	velocity.y += speed*gravity*delta
 	var collision = move_and_collide(speed*velocity*delta)
 	if collision:
@@ -87,6 +89,10 @@ func fly_around(center, radius):
 	var x = center.x + distance * cos(fly_angle)
 	var z = center.z + distance * sin(fly_angle)
 	return Vector3(x,center.y, z)
+
+
+func enable_collision():
+	$Body.disabled = false
 
 
 func _on_body_entered(body):

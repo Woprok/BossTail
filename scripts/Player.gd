@@ -227,6 +227,10 @@ func _on_area_entered(area):
 	if area.get_parent().is_in_group("enemy") and not melee:
 		melee = true
 		area.get_parent().hit(area)
+	if area.get_parent()!=null and area.get_parent().is_in_group("fly"):
+		area.get_parent().call_deferred("enable_collision")
+		area.get_parent().velocity.y = 1
+		area.get_parent().flying = false
 
 
 func _on_dash_timer_timeout():
@@ -240,11 +244,6 @@ func _on_next_dash_timer_timeout():
 	player_data.change_dash_indicator(true)	
 	$next_dash_timer.stop()
 
-
-func _on_melee_body_entered(body):
-	if body.is_in_group("fly"):
-		body.velocity.y = 1
-		body.flying = false
 
 func _on_pickup_entered(body):
 	if body.is_in_group("fly") and body.dead and player_data.ammo_special.can_pick():
