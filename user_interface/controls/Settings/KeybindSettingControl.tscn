@@ -1,10 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://cugk3gvwwo83b"]
+[gd_scene load_steps=4 format=3 uid="uid://cugk3gvwwo83b"]
 
 [ext_resource type="Script" uid="uid://cglrxlk3d8rbj" path="res://user_interface/controls/Settings/KeybindSettingControl.gd" id="1_4ew07"]
+[ext_resource type="StyleBox" uid="uid://cctr4lkx828wf" path="res://user_interface/controls/TransparentStyleBox.tres" id="1_ksikw"]
 [ext_resource type="Theme" uid="uid://d2mah8qfufk0b" path="res://user_interface/assets/UIMainTheme.tres" id="2_ksikw"]
 
 [node name="KeybindSettingControl" type="Panel"]
 custom_minimum_size = Vector2(500, 30)
+theme_override_styles/panel = ExtResource("1_ksikw")
 script = ExtResource("1_4ew07")
 
 [node name="HorizontalBox" type="HBoxContainer" parent="."]
@@ -17,8 +19,9 @@ grow_vertical = 2
 
 [node name="NameLabel" type="Label" parent="HorizontalBox"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(200, 0)
+custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
+theme_type_variation = &"TextLabel"
 text = "KEYNAME"
 
 [node name="ChangeButton" type="Button" parent="HorizontalBox"]
@@ -31,6 +34,7 @@ text = "Change"
 [node name="KeyLabel" type="Label" parent="HorizontalBox"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_type_variation = &"TextLabel"
 text = "KEYBIND"
 
 [connection signal="pressed" from="HorizontalBox/ChangeButton" to="." method="_on_change_button_pressed"]

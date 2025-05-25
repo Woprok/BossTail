@@ -37,6 +37,10 @@ window/main_scene="res://scenes/emptyLevel.tscn"
 
 player=""
 
+[gui]
+
+theme/custom="uid://d2mah8qfufk0b"
+
 [input]
 
 camera_up={

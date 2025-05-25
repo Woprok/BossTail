@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://d2mah8qfufk0b" path="res://user_interface/assets/UIMainTheme.tres" id="1_0k3k3"]
 [ext_resource type="Script" uid="uid://c2mrq8dngs06t" path="res://user_interface/screens/SettingsScreen.gd" id="1_0nnwj"]
-[ext_resource type="PackedScene" uid="uid://cdw5piocy8wkc" path="res://user_interface/controls/PaddingPanel.tscn" id="3_kta6o"]
+[ext_resource type="StyleBox" uid="uid://erii3upkvymj" path="res://user_interface/controls/Settings/OptionBackground.tres" id="3_kta6o"]
 [ext_resource type="PackedScene" uid="uid://bqlxumifjjfvc" path="res://user_interface/controls/Settings/KeybindList.tscn" id="3_sbgcw"]
 
 [node name="SettingsScreen" type="VBoxContainer"]
@@ -22,35 +22,84 @@ text = "Settings"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("3_kta6o")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 4
+
+[node name="OptionVBoxContainer" type="VBoxContainer" parent="PanelContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/ScrollContainer/OptionVBoxContainer"]
 layout_mode = 2
 
-[node name="PaddingPanel" parent="HBoxContainer" instance=ExtResource("3_kta6o")]
+[node name="WindowTitleLabel" type="Label" parent="PanelContainer/ScrollContainer/OptionVBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"TitleMediumLabel"
+text = "Window"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="PanelContainer/ScrollContainer/OptionVBoxContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="KeybindList" parent="HBoxContainer" instance=ExtResource("3_sbgcw")]
+[node name="Label" type="Label" parent="PanelContainer/ScrollContainer/OptionVBoxContainer/VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_type_variation = &"TextLabel"
+text = "Fullscreen"
+
+[node name="FullScreenCheckButton" type="CheckButton" parent="PanelContainer/ScrollContainer/OptionVBoxContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+
+[node name="MouseTitleLabel" type="Label" parent="PanelContainer/ScrollContainer/OptionVBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"TitleMediumLabel"
+text = "Mouse"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/ScrollContainer/OptionVBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/ScrollContainer/OptionVBoxContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_type_variation = &"TextLabel"
+text = "Mouse Sensitivity"
+
+[node name="CameraSensitivitySlider" type="HSlider" parent="PanelContainer/ScrollContainer/OptionVBoxContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/ScrollContainer/OptionVBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/ScrollContainer/OptionVBoxContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_type_variation = &"TextLabel"
+text = "Aim Sensitivity"
+
+[node name="AimSensitivitySlider" type="HSlider" parent="PanelContainer/ScrollContainer/OptionVBoxContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="KeybindTitleLabel" type="Label" parent="PanelContainer/ScrollContainer/OptionVBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"TitleMediumLabel"
+text = "Keybinds"
+
+[node name="KeybindList" parent="PanelContainer/ScrollContainer/OptionVBoxContainer" instance=ExtResource("3_sbgcw")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
-
-[node name="PaddingPanel2" parent="HBoxContainer" instance=ExtResource("3_kta6o")]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 2
-size_flags_horizontal = 4
-
-[node name="CameraSensitivitySlider" type="HSlider" parent="VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("1_0k3k3")
-
-[node name="AimSensitivitySlider" type="HSlider" parent="VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("1_0k3k3")
-
-[node name="FullScreenCheckButton" type="CheckButton" parent="VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("1_0k3k3")
 
 [node name="SETTINGS_ACTIONS" type="HBoxContainer" parent="."]
 unique_name_in_owner = true
