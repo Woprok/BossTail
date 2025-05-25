@@ -5,12 +5,14 @@
 [ext_resource type="Script" uid="uid://o811q4lye8nf" path="res://user_interface/controls/Ammo/AmmoCircles.gd" id="3_8f0qf"]
 
 [node name="AmmoIndicator" type="PanelContainer"]
+mouse_filter = 2
 theme_override_styles/panel = ExtResource("1_1yspf")
 script = ExtResource("2_s3mdq")
 
 [node name="AmmoColorRect" type="ColorRect" parent="."]
 unique_name_in_owner = true
 layout_mode = 2
+mouse_filter = 2
 color = Color(1, 1, 1, 0)
 script = ExtResource("3_8f0qf")
 circle_color_ready = Color(0.36, 0.67, 0.33, 1)

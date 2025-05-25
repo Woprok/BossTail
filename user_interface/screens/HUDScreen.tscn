@@ -52,6 +52,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("1_7bmoq")
 
 [node name="TopBarContainer" type="HBoxContainer" parent="."]
@@ -61,9 +62,11 @@ anchor_right = 1.0
 offset_top = 10.0
 offset_bottom = 60.0
 grow_horizontal = 2
+mouse_filter = 2
 
 [node name="PaddingPanel" parent="TopBarContainer" instance=ExtResource("2_7uurq")]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="BossHealthBar" parent="TopBarContainer" instance=ExtResource("2_d86cj")]
 unique_name_in_owner = true
@@ -71,6 +74,7 @@ layout_mode = 2
 
 [node name="PaddingPanel2" parent="TopBarContainer" instance=ExtResource("2_7uurq")]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="TutorialObjectiveWrapper" type="VBoxContainer" parent="."]
 unique_name_in_owner = true
@@ -85,12 +89,14 @@ offset_top = -304.0
 offset_bottom = -100.0
 grow_horizontal = 0
 grow_vertical = 0
+mouse_filter = 2
 alignment = 2
 
 [node name="BoxContainer" type="BoxContainer" parent="TutorialObjectiveWrapper"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 3
+mouse_filter = 2
 
 [node name="TutorialHint" parent="TutorialObjectiveWrapper/BoxContainer" instance=ExtResource("11_nh7qp")]
 unique_name_in_owner = true
@@ -106,6 +112,7 @@ offset_top = -60.0
 offset_right = 310.0
 offset_bottom = -10.0
 grow_vertical = 0
+mouse_filter = 2
 
 [node name="PlayerHealthBar" parent="BottomLeftCenterContainer" instance=ExtResource("2_m5nw3")]
 unique_name_in_owner = true
@@ -124,11 +131,13 @@ offset_right = -10.0
 offset_bottom = -10.0
 grow_horizontal = 0
 grow_vertical = 0
+mouse_filter = 2
 alignment = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 8
+mouse_filter = 2
 
 [node name="MeleeIcon" parent="HBoxContainer/VBoxContainer" instance=ExtResource("3_c3u2o")]
 unique_name_in_owner = true
@@ -139,6 +148,7 @@ texture = ExtResource("4_m5nw3")
 [node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 8
+mouse_filter = 2
 
 [node name="AmmoIndicator" parent="HBoxContainer/VBoxContainer2" instance=ExtResource("8_nh7qp")]
 unique_name_in_owner = true
@@ -153,6 +163,7 @@ texture = ExtResource("5_d86cj")
 [node name="VBoxContainer3" type="VBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 8
+mouse_filter = 2
 
 [node name="DashIcon" parent="HBoxContainer/VBoxContainer3" instance=ExtResource("3_c3u2o")]
 unique_name_in_owner = true
@@ -163,6 +174,7 @@ texture = ExtResource("6_7uurq")
 [node name="VBoxContainer4" type="VBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 8
+mouse_filter = 2
 
 [node name="JumpIcon" parent="HBoxContainer/VBoxContainer4" instance=ExtResource("3_c3u2o")]
 unique_name_in_owner = true

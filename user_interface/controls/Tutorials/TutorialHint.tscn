@@ -8,6 +8,7 @@ custom_minimum_size = Vector2(400, 0)
 offset_right = 399.0
 offset_bottom = 188.0
 size_flags_vertical = 3
+mouse_filter = 2
 theme_override_styles/panel = ExtResource("1_hafd2")
 script = ExtResource("1_6cg5n")
 
@@ -15,6 +16,7 @@ script = ExtResource("1_6cg5n")
 custom_minimum_size = Vector2(395, 0)
 layout_mode = 2
 size_flags_vertical = 3
+mouse_filter = 2
 
 [node name="ObjectiveLabel" type="Label" parent="VBoxContainer"]
 unique_name_in_owner = true
@@ -50,6 +52,7 @@ custom_minimum_size = Vector2(390, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
+mouse_filter = 2
 bbcode_enabled = true
 text = "HELP OBJECTIVE IS THIS LONG AND FINE HELP OBJECTIVE IS THIS LONG AND FINE HAAAAAAA HAAAAAAA HAAAAAAA HAAAAAAAAAAAA HE HELP BUT THIS IS ALWAYS NEEDED TO BE LARGER "
 fit_content = true

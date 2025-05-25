@@ -31,6 +31,7 @@ enum GameLevels {
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
+	get_window().min_size = Vector2i(1152, 648)
 	_load_and_apply_local_user_settings()
 
 func _load_and_apply_local_user_settings() -> void:
