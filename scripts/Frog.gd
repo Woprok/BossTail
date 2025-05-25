@@ -50,6 +50,11 @@ var time_doing = 0
 @export var SWIPE_SAME_PLATFORM_TIME = 2
 # time between two swipes, player and enemy on different platform
 @export var SWIPE_DIFF_PLATFORM_TIME = 10
+@export var SLAM_TIME_CONST = 5
+@export var SWIPE_SAME_PLATFORM_TIME_CONST = 2
+@export var SWIPE_DIFF_PLATFORM_TIME_CONST = 10
+@export var SPIT_BUBBLE_TIME_CONST = 5
+
 # time between two spit attacks
 @export var SPIT_BUBBLE_TIME = 5
 # time between two bubble attacks from water
@@ -87,7 +92,7 @@ var time_doing = 0
 @export var TRIGGER_SWIMMING = 10
 
 # must be bigger than attack length
-var DOING_TIME = 8
+var DOING_TIME = 10
 
 var grab = false
 var slam = false
@@ -164,6 +169,17 @@ func _physics_process(delta):
 	if time_stop < STOP_TIME:
 		return
 	
+	if sluggish:
+		SWIPE_DIFF_PLATFORM_TIME = SWIPE_DIFF_PLATFORM_TIME_CONST * 2
+		SWIPE_SAME_PLATFORM_TIME = SWIPE_SAME_PLATFORM_TIME_CONST * 2
+		SLAM_TIME = SLAM_TIME_CONST * 2
+		SPIT_BUBBLE_TIME = SPIT_BUBBLE_TIME_CONST * 2
+	else:
+		SWIPE_DIFF_PLATFORM_TIME = SWIPE_DIFF_PLATFORM_TIME_CONST
+		SWIPE_SAME_PLATFORM_TIME = SWIPE_SAME_PLATFORM_TIME_CONST
+		SPIT_BUBBLE_TIME = SPIT_BUBBLE_TIME_CONST
+		SLAM_TIME = SLAM_TIME_CONST
+		
 	if jump and velocity.y>0:
 		$bodyShape.disabled = true
 		$headShape.disabled = true
@@ -239,6 +255,7 @@ func _physics_process(delta):
 						time_swipe_diff = 0
 						time_swipe_same = 0
 				else:
+					jump_direction(position)
 					doing = true
 					time_doing = 0
 					grab_target = player
@@ -369,11 +386,6 @@ func _physics_process(delta):
 					look_at(Vector3(x, -0.15, z))
 					position = Vector3(x, -0.15, z)
 	elif Global.phase==2:
-		if grab == false and sluggish:
-			animationTree.idle()
-			return
-		
-		time_grab += delta
 		time_of_extend += delta
 		time_eat+=delta
 		if platform!=null and platform != player.platform and platform.is_in_group("stone_platform") and platform.health>0:
@@ -389,6 +401,15 @@ func _physics_process(delta):
 					var point = find_point_on_platform(platform.global_position,grab_target.global_position,grab_len_min, grab_len_max)
 					if point!=null:
 						jump_direction(point)
+						doing = true
+						time_doing = 0
+						time_eat = 0
+						time_swipe_same = 0
+						time_swipe_diff = 0
+						sluggish = true
+						grab = true
+				else:
+					jump_direction(position)
 					doing = true
 					time_doing = 0
 					time_eat = 0
@@ -407,7 +428,6 @@ func _physics_process(delta):
 				if platform == player.platform:
 					time_bubble = 0
 					time_slam = 0
-					time_grab = 0
 					time_swipe_same = 0
 					time_swipe_diff = 0
 					doing = true
@@ -505,7 +525,7 @@ func tongue_swipe():
 func ground_slam():
 	slam = false
 	platform.health -= 1
-	if player.is_on_floor() and player.platform == platform:
+	if player.platform == platform:
 		player.hit(SLAM_HP)
 		player.get_node("CameraPivot").apply_shake()
 	doing = false
@@ -523,6 +543,8 @@ func ground_slam():
 		newShards.get_node("stone2").neighbors.append_array(platform.neighbors)
 		newShards.get_node("stone3").neighbors.append_array(platform.neighbors)
 		newShards.get_node("stone4").neighbors.append_array(platform.neighbors)
+		if player.platform == platform:
+			player.platform = newShards.get_node("stone2")
 		platform.queue_free()
 		platform = newShards.get_node("stone1")
 		newShards.get_node("AnimationPlayer").play("break")
@@ -566,7 +588,7 @@ func extend():
 func plan_path(target):
 	path = []
 	if platform == target:
-		return	
+		return
 	var next = platform
 	while target != next:
 		var min = INF
@@ -761,6 +783,8 @@ func _on_animation_finished(anim_name):
 			time_swipe_same = 0
 			time_swipe_diff = 0
 			time_grab = 0
+			if grab_target == null:
+				return
 			look_at(Vector3(grab_target.position.x,position.y,grab_target.position.z))
 			grab_target = null
 			extend()
