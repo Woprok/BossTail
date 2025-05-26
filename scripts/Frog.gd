@@ -788,6 +788,8 @@ func _on_animation_finished(anim_name):
 			look_at(Vector3(grab_target.position.x,position.y,grab_target.position.z))
 			grab_target = null
 			extend()
+	if anim_name == "G_07-ground_slam-antic":
+		animationTree.ground_slam_start()
 	if anim_name == "G_07-ground_slam-start":
 		animationTree.ground_slam_end()
 		ground_slam()
