@@ -1,6 +1,25 @@
-[gd_resource type="Resource" script_class="PlayerDataModel" load_steps=2 format=3 uid="uid://dx4rv3p0eby8n"]
+[gd_resource type="Resource" script_class="PlayerDataModel" load_steps=5 format=3 uid="uid://dx4rv3p0eby8n"]
 
+[ext_resource type="Script" uid="uid://cbxpfjbrvg7db" path="res://data_resources/AmmoStatus.gd" id="1_ds05a"]
 [ext_resource type="Script" uid="uid://b8758pjfs3y2p" path="res://data_resources/PlayerDataModel.gd" id="1_y2kq6"]
+
+[sub_resource type="Resource" id="Resource_lom33"]
+script = ExtResource("1_ds05a")
+max = 1
+min = 0
+current = 0
+initial = 0
+is_special = true
+metadata/_custom_type_script = "uid://cbxpfjbrvg7db"
+
+[sub_resource type="Resource" id="Resource_go2jv"]
+script = ExtResource("1_ds05a")
+max = 3
+min = 0
+current = 0
+initial = 0
+is_special = false
+metadata/_custom_type_script = "uid://cbxpfjbrvg7db"
 
 [resource]
 script = ExtResource("1_y2kq6")
@@ -11,4 +30,6 @@ dash_enabled = true
 player_current_health = 100
 player_min_health = 0
 player_max_health = 100
+ammo_standard = SubResource("Resource_go2jv")
+ammo_special = SubResource("Resource_lom33")
 metadata/_custom_type_script = "uid://b8758pjfs3y2p"

@@ -10,8 +10,8 @@ class_name PlayerDataModel
 @export var player_min_health: int = 0
 @export var player_max_health: int = 100
 
-@export var ammo_standard: AmmoStatus = AmmoStatus.new(0, 3, false)
-@export var ammo_special: AmmoStatus = AmmoStatus.new(0, 1, true)
+@export var ammo_standard: AmmoStatus
+@export var ammo_special: AmmoStatus
 
 signal OnHealthChanged
 signal OnAmmoChanged(ammo: AmmoStatus)

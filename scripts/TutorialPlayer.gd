@@ -14,10 +14,10 @@ var reset_position_part4 = Vector3(-26,1,-37)
 	
 func _ready() -> void:
 	super._ready()
-	%melee.connect("body_entered", _on_melee_body_entered)
+	$melee.connect("body_entered", _on_melee_body_entered)
 	
 func _exit_tree() -> void:
-	%melee.disconnect("body_entered", _on_melee_body_entered)
+	$melee.disconnect("body_entered", _on_melee_body_entered)
 	
 func _physics_process(delta):
 	if position.y < -10:

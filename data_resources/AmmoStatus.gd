@@ -10,12 +10,12 @@ class_name AmmoStatus
 # technically this is not needed, but I wanted to make fancy UI
 @export var is_special: bool = false
 
-func _init(new_initial: int, new_max: int, new_is_special: bool = false) -> void:
-	initial = new_initial
-	current = new_initial
-	min = 0
-	max = new_max
-	is_special = new_is_special
+#func _init(new_initial: int, new_max: int, new_is_special: bool = false) -> void:
+#	initial = new_initial
+#	current = new_initial
+#	min = 0
+#	max = new_max
+#	is_special = new_is_special
 	
 func has_any_ammo_left() -> bool:
 	return current > min  
