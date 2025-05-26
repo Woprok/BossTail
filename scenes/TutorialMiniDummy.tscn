@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://c0folhnrmhgor" path="res://scenes/other/vfx/StunVFX.tscn" id="8_a6iu1"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_jkcqp"]
+height = 3.35791
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_eejci"]
 height = 10.0
@@ -303,6 +304,7 @@ DummyPole = NodePath("SmallTrainingDummy/DummyLog")
 StunVFXController = NodePath("StunVFX")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.678955, 0)
 shape = SubResource("CylinderShape3D_jkcqp")
 
 [node name="Area3D" type="Area3D" parent="."]

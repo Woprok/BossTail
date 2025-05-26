@@ -12,6 +12,13 @@ var reset_position_part2 = Vector3(-25, 1, 35)
 var reset_position_part3 = Vector3(47, -1.2, -16.6)
 var reset_position_part4 = Vector3(-26,1,-37)
 	
+func _ready() -> void:
+	super._ready()
+	%melee.connect("body_entered", _on_melee_body_entered)
+	
+func _exit_tree() -> void:
+	%melee.disconnect("body_entered", _on_melee_body_entered)
+	
 func _physics_process(delta):
 	if position.y < -10:
 		respawn()
