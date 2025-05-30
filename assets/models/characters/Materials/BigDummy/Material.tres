@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://yq36oj573hbs"]
+
+[ext_resource type="Texture2D" uid="uid://bcdaklapy3cr" path="res://assets/models/characters/Char_BigDummy_BarrelAlbedo.png" id="1_j58iu"]
+
+[resource]
+resource_name = "Material"
+cull_mode = 2
+shading_mode = 0
+albedo_texture = ExtResource("1_j58iu")

@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://tgk2ktn1aof8"]
+
+[ext_resource type="Texture2D" uid="uid://vepa8ksfykth" path="res://assets/models/characters/Char_BigDummy_HeadPlateAlbedo.png" id="1_237yo"]
+
+[resource]
+resource_name = "HeadPlate"
+cull_mode = 2
+shading_mode = 0
+albedo_texture = ExtResource("1_237yo")

@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cwijhfm278v8t"]
+
+[resource]
+resource_name = "MagicSphere"
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(0.906332, 0.906332, 0.906332, 1)

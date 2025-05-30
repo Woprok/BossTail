@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://ccib3w13ln8dm"]
+
+[ext_resource type="Texture2D" uid="uid://cs83gwboxjg24" path="res://assets/models/characters/Char_BigDummy_SmallDummyBaseAlbedo.png" id="1_mwr4h"]
+
+[resource]
+resource_name = "Material.001"
+cull_mode = 2
+shading_mode = 0
+albedo_texture = ExtResource("1_mwr4h")

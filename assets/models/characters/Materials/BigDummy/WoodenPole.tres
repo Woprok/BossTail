@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://brskcp0ipr4qw"]
+
+[ext_resource type="Texture2D" uid="uid://dcpegkp5yunsf" path="res://assets/models/characters/Char_BigDummy_RotatingArmAlbedo.png" id="1_8udhx"]
+
+[resource]
+resource_name = "WoodenPole"
+cull_mode = 2
+shading_mode = 0
+albedo_texture = ExtResource("1_8udhx")
