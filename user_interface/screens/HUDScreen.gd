@@ -22,7 +22,8 @@ func _on_boss_data_changed(new_data: BossDataModel):
 	boss_data = new_data
 	boss_data.OnHealthChanged.connect(UpdateBossHealth)
 	# Update
-	%BossHealthBar.SetHealth(boss_data.boss_min_health, boss_data.boss_current_health, boss_data.boss_max_health)
+	%BossHealthBar.SetHealth(boss_data.health_standard.min, boss_data.health_standard.current, boss_data.health_standard.max)
+	%BossSpecialHealthBar.SetHealth(boss_data.health_special.min, boss_data.health_special.current, boss_data.health_special.max)
 	%BossHealthBar.SetName(boss_data.boss_name)
 	
 	_toggle_tutorial(new_data.has_tutorial)
@@ -52,7 +53,8 @@ func _exit_tree() -> void:
 	player_data.OnAmmoChanged.disconnect(UpdatePlayerAmmo)
 	
 func UpdateBossHealth() -> void:
-	%BossHealthBar.ChangeHealth(boss_data.boss_current_health)
+	%BossHealthBar.ChangeHealth(boss_data.health_standard.current)
+	%BossSpecialHealthBar.ChangeHealth(boss_data.health_special.current)
 
 func UpdatePlayerAmmo(ammo: AmmoStatus) -> void:
 	%AmmoIndicator.ChangeAmmo(ammo)

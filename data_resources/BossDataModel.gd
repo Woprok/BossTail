@@ -1,9 +1,8 @@
 extends Resource
 class_name BossDataModel
 
-@export var boss_current_health: int = 100
-@export var boss_min_health: int = 0
-@export var boss_max_health: int = 100
+@export var health_standard: HealthStatus
+@export var health_special: HealthStatus
 
 @export var boss_name: String = "BOSS"
 # Whatever this supports tutorial or not
@@ -13,22 +12,25 @@ class_name BossDataModel
 signal OnHealthChanged
 
 func boss_restart() -> void:
-	boss_current_health = boss_max_health
+	health_standard.reset()
+	health_special.reset()
 
 func get_current_health() -> int:
-	return boss_current_health
+	return health_standard.current
 
 func is_boss_dead() -> bool:
-	return boss_current_health <= boss_min_health
+	return not health_standard.has_any_health_left()
 	
-func boss_decrease_health(value):
-	boss_current_health -= value
-	if boss_current_health <= boss_min_health:
-		boss_current_health = boss_min_health
+func boss_take_damage(value): #boss_decrease_health
+	if health_special.has_any_health_left():
+		health_special.decrease(value)
+	else:
+		health_standard.decrease(value)
 	OnHealthChanged.emit()
 	
-func boss_increase_health(value):
-	boss_current_health += value	
-	if boss_current_health >= boss_max_health:
-		boss_current_health = boss_max_health
+func boss_heal(value): #boss_increase_health
+	if health_special.has_any_health_left() and health_special.can_heal:
+		health_special.increase(value)
+	else:
+		health_standard.increase(value)
 	OnHealthChanged.emit()

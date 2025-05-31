@@ -128,7 +128,7 @@ func hit(hp):
 	if boss_data.get_current_health()==100:
 		get_parent().get_node("AnimationPlayer").play_backwards("last_wall")
 
-	boss_data.boss_decrease_health(hp)
+	boss_data.boss_take_damage(hp)
 	last_cd_change += hp
 	last_whirlwind += hp
 	if boss_data.is_boss_dead():

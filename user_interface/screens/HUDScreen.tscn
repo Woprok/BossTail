@@ -1,10 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://bd46k2s343rar"]
+[gd_scene load_steps=18 format=3 uid="uid://bd46k2s343rar"]
 
 [ext_resource type="Script" uid="uid://cc0c4h6pljjac" path="res://user_interface/screens/HUDScreen.gd" id="1_7bmoq"]
 [ext_resource type="PackedScene" uid="uid://cdw5piocy8wkc" path="res://user_interface/controls/PaddingPanel.tscn" id="2_7uurq"]
 [ext_resource type="PackedScene" uid="uid://duk7113l5nik4" path="res://user_interface/controls/HealthBars/BossHealthBar.tscn" id="2_d86cj"]
 [ext_resource type="PackedScene" uid="uid://dit6nlima4dcr" path="res://user_interface/controls/HealthBars/PlayerHealthBar.tscn" id="2_m5nw3"]
 [ext_resource type="PackedScene" uid="uid://ckokq01phsthv" path="res://user_interface/controls/ActionButton/ActionButton.tscn" id="3_c3u2o"]
+[ext_resource type="PackedScene" uid="uid://d0lbat1nwhivk" path="res://user_interface/controls/HealthBars/BossSpecialHealthBar.tscn" id="4_gim6p"]
 [ext_resource type="Texture2D" uid="uid://cexod28282fod" path="res://assets/temp/slash.png" id="4_m5nw3"]
 [ext_resource type="Texture2D" uid="uid://bmsgwqc5wo8d4" path="res://assets/temp/throw.png" id="5_d86cj"]
 [ext_resource type="Texture2D" uid="uid://clnlkd2icy745" path="res://assets/temp/dash.png" id="6_7uurq"]
@@ -73,6 +74,28 @@ unique_name_in_owner = true
 layout_mode = 2
 
 [node name="PaddingPanel2" parent="TopBarContainer" instance=ExtResource("2_7uurq")]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="TopBarContainer2" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 65.0
+offset_bottom = 90.0
+grow_horizontal = 2
+mouse_filter = 2
+
+[node name="PaddingPanel" parent="TopBarContainer2" instance=ExtResource("2_7uurq")]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="BossSpecialHealthBar" parent="TopBarContainer2" instance=ExtResource("4_gim6p")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(600, 25)
+layout_mode = 2
+
+[node name="PaddingPanel2" parent="TopBarContainer2" instance=ExtResource("2_7uurq")]
 layout_mode = 2
 mouse_filter = 2
 

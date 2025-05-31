@@ -631,36 +631,36 @@ func hit(area):
 		time_bubble = 0
 	if swimming:
 		if area.is_in_group("boulder") and position.y < 1:
-			boss_data.boss_decrease_health(BOULDER_HP)
+			boss_data.boss_take_damage(BOULDER_HP)
 			jump_to_platform()
 			tongueHit = 0
 			HPHit = 0
 			triggered = true
 			hit_pos = hit_head_pos.global_position
 		if area.is_in_group("pebble"):
-			boss_data.boss_decrease_health(PEBBLE_HP)
+			boss_data.boss_take_damage(PEBBLE_HP)
 	else:
 		sluggish = false
 		if typeof(area) == TYPE_INT:
-			boss_data.boss_decrease_health(area)
+			boss_data.boss_take_damage(area)
 		if area.is_in_group("tongue"):
 			tongueHit += 1
 			if tongueHit>=5:
-				boss_data.boss_decrease_health(5)
+				boss_data.boss_take_damage(5)
 				tongueHit = 0
 				if time_stop>=STOP_TIME:
 					time_stop = 0
 				else:
 					time_stop = 5
 			elif tongueHit==3:
-				boss_data.boss_decrease_health(5)
+				boss_data.boss_take_damage(5)
 		if area.is_in_group("body"):
 			HPHit += LEG_HP
 			time_stop = 5
-			boss_data.boss_decrease_health(LEG_HP)
+			boss_data.boss_take_damage(LEG_HP)
 		if area.is_in_group("head"):
 			HPHit += HEAD_HP
-			boss_data.boss_decrease_health(HEAD_HP)
+			boss_data.boss_take_damage(HEAD_HP)
 			time_stop = 5
 			hit_pos = hit_head_pos.global_position
 		if HPHit >= TRIGGER_SWIMMING:

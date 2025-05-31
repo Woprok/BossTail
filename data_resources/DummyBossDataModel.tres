@@ -1,13 +1,31 @@
-[gd_resource type="Resource" script_class="BossDataModel" load_steps=3 format=3 uid="uid://bi8qlvc2t1itu"]
+[gd_resource type="Resource" script_class="BossDataModel" load_steps=6 format=3 uid="uid://bi8qlvc2t1itu"]
 
 [ext_resource type="Script" uid="uid://c3osreqikx4xt" path="res://data_resources/BossDataModel.gd" id="1_ovmjt"]
+[ext_resource type="Script" uid="uid://dpmkmpcfjksca" path="res://data_resources/HealthStatus.gd" id="1_v5n8a"]
 [ext_resource type="Resource" uid="uid://bv03en7sdd0ao" path="res://data_resources/TutorialDataModelInstance.tres" id="2_viwx3"]
+
+[sub_resource type="Resource" id="Resource_v5n8a"]
+script = ExtResource("1_v5n8a")
+max = 0.0
+min = 0.0
+current = 0.0
+initial = null
+can_heal = true
+metadata/_custom_type_script = "uid://dpmkmpcfjksca"
+
+[sub_resource type="Resource" id="Resource_esdup"]
+script = ExtResource("1_v5n8a")
+max = 100.0
+min = 0.0
+current = 0.0
+initial = 100.0
+can_heal = true
+metadata/_custom_type_script = "uid://dpmkmpcfjksca"
 
 [resource]
 script = ExtResource("1_ovmjt")
-boss_current_health = 100
-boss_min_health = 0
-boss_max_health = 100
+health_standard = SubResource("Resource_esdup")
+health_special = SubResource("Resource_v5n8a")
 boss_name = "THE ANGRY DUMMY"
 has_tutorial = true
 tutorial_data = ExtResource("2_viwx3")
