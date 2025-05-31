@@ -37,6 +37,17 @@ func _set_cursor_mode(new_mode: UI.Mode) -> void:
 		_: #UI.Mode.PAUSE, UI.Mode.MENU, UI.Mode.SETTINGS:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
+func IsPauseable() -> bool:
+	match CurrentMode:
+		UI.Mode.VICTORY:
+			return false
+		UI.Mode.DEFEAT:
+			return false
+		UI.Mode.MENU:
+			return false
+		_:
+			return true
+
 func IsGame() -> bool:
 	match CurrentMode:
 		UI.Mode.HUD: # for HUD we want to capture it

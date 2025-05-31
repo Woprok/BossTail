@@ -55,6 +55,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _try_handle_pause(event: InputEvent) -> bool:
 	# We only need to process the navigation between HUD and PAUSE, thus in non menu level.
+	# Additionally, we have to exclude win and lose screens
 	if not event.is_action_pressed("pause") or not _can_pause():
 		return false
 	if _is_paused():
@@ -72,7 +73,7 @@ func _try_handle_debug(event: InputEvent) -> bool:
 	return true
 		
 func _can_pause() -> bool:
-	return CurrentLevel != GameLevels.MENU
+	return CurrentLevel != GameLevels.MENU and UIManager.IsPauseable()
 
 func _is_paused() -> bool:
 	Global.LogInfo(get_tree().get_current_scene())
