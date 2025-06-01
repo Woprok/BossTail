@@ -37,7 +37,7 @@ func _apply_window(settings: LocalUserSettings) -> void:
 func ToggleFullScreen(is_full_screen: bool) -> void:
 	if is_full_screen:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-	else:
+	elif not is_full_screen and DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 
 func _apply_sensitivity(settings: LocalUserSettings) -> void:
