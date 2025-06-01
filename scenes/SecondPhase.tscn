@@ -4,13 +4,13 @@
 [ext_resource type="PackedScene" uid="uid://cs51pokcyuwhd" path="res://scenes/characters/Mouseketeer.tscn" id="2_k20qr"]
 [ext_resource type="PackedScene" uid="uid://m3d44565ohak" path="res://scenes/characters/ToadBoss.tscn" id="3_8kwl6"]
 [ext_resource type="PackedScene" uid="uid://byq2mhcwqgxom" path="res://scenes/Lily.tscn" id="4_hj8bh"]
+[ext_resource type="PackedScene" uid="uid://d1s2ioqlu8tsa" path="res://scenes/projectile_spawners/PebblePlatformSpawner.tscn" id="4_sahdt"]
 [ext_resource type="PackedScene" uid="uid://catdqfnxrr054" path="res://scenes/Flower.tscn" id="5_xj70a"]
 [ext_resource type="PackedScene" uid="uid://cwiap64eupo14" path="res://scenes/Spike.tscn" id="6_o8pkl"]
 [ext_resource type="PackedScene" uid="uid://cnfgurppt1mae" path="res://scenes/environment/GrassClump_1.tscn" id="7_0b6fy"]
 [ext_resource type="PackedScene" uid="uid://ca6njqftxrpbi" path="res://scenes/LilyVer2.tscn" id="7_m8ndt"]
 [ext_resource type="PackedScene" uid="uid://dlrq4knk1gqi7" path="res://scenes/StonePlatform.tscn" id="7_pliwi"]
 [ext_resource type="PackedScene" uid="uid://car7kr8fau320" path="res://scenes/environment/ReedClump_2.tscn" id="8_i4gxl"]
-[ext_resource type="PackedScene" uid="uid://cfby3q2ua7ewi" path="res://scenes/Rock.tscn" id="8_iwwvi"]
 [ext_resource type="PackedScene" uid="uid://bcltx0r4cig8q" path="res://scenes/BreakablePlatform.tscn" id="9_npsua"]
 [ext_resource type="PackedScene" uid="uid://drg5tjf7wiuib" path="res://scenes/Swarm.tscn" id="10_663fb"]
 [ext_resource type="PackedScene" uid="uid://d36ikuoge2gln" path="res://scenes/StonePlatformVer3.tscn" id="10_n75re"]
@@ -92,6 +92,8 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3.332
 
 [node name="frog" parent="." instance=ExtResource("3_8kwl6")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 20, 0.520247, -24)
+
+[node name="PebblePlatformSpawner" parent="." instance=ExtResource("4_sahdt")]
 
 [node name="lilyPlatforms" type="Node3D" parent="."]
 
@@ -307,23 +309,6 @@ transform = Transform3D(2.5, 0, 0, 0, 1, 0, 0, 0, 2.5, 3.93266, 1.12923, 5)
 transform = Transform3D(2.5, 0, 0, 0, 1, 0, 0, 0, 2.5, 3.41998, 1.19191, -3.29424)
 
 [node name="flies" type="Node3D" parent="."]
-
-[node name="pebbles" type="Node3D" parent="."]
-
-[node name="rock1" parent="pebbles" instance=ExtResource("8_iwwvi")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -2.633, 3.5, -3.052)
-
-[node name="rock2" parent="pebbles" instance=ExtResource("8_iwwvi")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 25.607, 3.5, -5.519)
-
-[node name="rock3" parent="pebbles" instance=ExtResource("8_iwwvi")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 49.607, 3.5, -52.519)
-
-[node name="rock4" parent="pebbles" instance=ExtResource("8_iwwvi")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 51.607, 3.5, -48.519)
-
-[node name="rock5" parent="pebbles" instance=ExtResource("8_iwwvi")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 50.607, 3.5, -3.519)
 
 [node name="bubbles" type="Node3D" parent="."]
 

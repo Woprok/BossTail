@@ -526,7 +526,7 @@ func ground_slam():
 	slam = false
 	platform.health -= 1
 	if player.platform == platform:
-		player.hit(SLAM_HP)
+		player.hit(null, SLAM_HP)
 		player.get_node("CameraPivot").apply_shake()
 	doing = false
 	if platform.health == 0:
@@ -625,7 +625,7 @@ func jump_to_platform():
 	swimming = false
 	
 	
-func hit(area):
+func hit(area, health):
 	var hit_pos: Vector3 = hit_body_pos.global_position
 	if boss_data.get_current_health() == 100:
 		time_bubble = 0
@@ -637,7 +637,7 @@ func hit(area):
 			HPHit = 0
 			triggered = true
 			hit_pos = hit_head_pos.global_position
-		if area.is_in_group("pebble"):
+		if area.is_in_group("player_projectile") and area.is_in_group("ammo_standard"):
 			boss_data.boss_take_damage(PEBBLE_HP)
 	else:
 		sluggish = false
@@ -716,10 +716,10 @@ func _on_ground_entered(area):
 func _on_tongue_body_entered(body):
 	if body.is_in_group("player"):
 		if swipe:
-			body.hit(SWIPE_DAMAGE_HP)
+			body.hit(null, SWIPE_DAMAGE_HP)
 			body.launch((body.position - position).normalized()*1.2)
 		if grab:
-			body.hit(GRAB_DAMAGE_HP)
+			body.hit(null, GRAB_DAMAGE_HP)
 			var farestPlatform = []
 			var max = -INF
 			for p in get_parent().get_node("stonePlatforms").get_children():
@@ -744,7 +744,7 @@ func _on_tongue_body_entered(body):
 			player.velocity = velocity_y+velocity_xz
 			player.grabbed = true
 	if body.is_in_group("spike"):
-		hit(SPIKE_HP)
+		hit(null, SPIKE_HP)
 	if body.is_in_group("fly"):
 		body.queue_free()
 
@@ -797,9 +797,9 @@ func _on_animation_finished(anim_name):
 func _on_body_entered(body):
 	if body.is_in_group("boulder") and boulderHit>5 and swimming:
 		boulderHit = 0
-		hit(body)
-	if body.is_in_group("pebble") and swimming:
-		hit(body)
+		hit(body, 0)
+	if body.is_in_group("player_projectile") and body.is_in_group("ammo_standard") and swimming:
+		hit(body, 0)
 
 func instantiate_indicator_object(indicatorScene: PackedScene) -> ToadAtkIndicatorVFXController:
 	var indicRoot: ToadAtkIndicatorVFXController = indicatorScene.instantiate()

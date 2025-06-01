@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://b33ol1q8n0xww"]
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_thqv4"]
+albedo_color = Color(0.117647, 0.117647, 0.117647, 1)
+
+[node name="CSGCombiner3D" type="CSGCombiner3D"]
+
+[node name="head" type="CSGSphere3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.06, 0, 0)
+radius = 0.03
+material = SubResource("ORMMaterial3D_thqv4")
+
+[node name="body" type="CSGSphere3D" parent="."]
+radius = 0.05
+material = SubResource("ORMMaterial3D_thqv4")
+
+[node name="wings" type="CSGCylinder3D" parent="."]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0.06)
+radius = 0.025
+height = 0.001
+
+[node name="wings2" type="CSGCylinder3D" parent="."]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, -0.06)
+radius = 0.025
+height = 0.001

@@ -4,6 +4,10 @@ class_name PlayerBase
 # Common Preloads
 @export var player_data: PlayerDataModel = preload("res://data_resources/PlayerDataModelInstance.tres")
 @export var user_settings: UserSettings = preload("res://data_resources/UserSettingsDefaultInstance.tres")
+# Default Projectile generated on throw.
+@export var standard_projectile: PackedScene
+# Level Specific Projectile generated on throw.
+@export var special_projectile: PackedScene
 
 # Common Mouse & Camera
 @onready var Camera = $CameraPivot/SpringArm3D/Camera3D
@@ -129,10 +133,28 @@ func _aim_finished() -> void:
 
 
 func _on_pickup_entered(body):
-	if body.is_in_group("pebble") and player_data.ammo_standard.can_pick():
+	if body.is_in_group("pickable") and body.is_in_group("ammo_standard") and player_data.ammo_standard.can_pick():
+		body.on_pick_up()
 		player_data.player_ammo_picked()
-		body.queue_free()
 
+func shoot():
+	if player_data.ammo_special.has_any_ammo_left():
+		shoot_special_projectile()
+	if player_data.ammo_standard.has_any_ammo_left():
+		shoot_standard_projectile()
+	
+func shoot_standard_projectile():
+	var projectile = standard_projectile.instantiate()
+	get_tree().root.add_child(projectile)		
+	player_data.player_ammo_used(false)
+	_shoot(projectile)
+	
+func shoot_special_projectile():
+	var projectile = special_projectile.instantiate()
+	get_tree().root.add_child(projectile)		
+	player_data.player_ammo_used(true)
+	_shoot(projectile)
+	
 func _shoot(projectile) -> void:
 	projectile.global_position = position - transform.basis.z * 2
 	projectile.velocity = - transform.basis.z

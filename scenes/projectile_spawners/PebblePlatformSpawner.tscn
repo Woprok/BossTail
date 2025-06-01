@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://d1s2ioqlu8tsa"]
+
+[ext_resource type="Script" uid="uid://b2weylcdbpiht" path="res://scenes/projectile_spawners/PebblePlatformSpawner.gd" id="1_7ukpy"]
+[ext_resource type="PackedScene" uid="uid://bpt5c0nqxcwqa" path="res://scenes/player/PebbleProjectile.tscn" id="2_op8es"]
+
+[node name="PebblePlatformSpawner" type="Node3D"]
+script = ExtResource("1_7ukpy")
+projectile = ExtResource("2_op8es")

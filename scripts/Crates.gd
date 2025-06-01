@@ -6,7 +6,7 @@ var thrown = false
 var hitted = false
 var dummy_box = false
 var dummy_parent = null
-
+var projectile_drop = preload("res://scenes/player/PebbleProjectile.tscn")
 
 func _physics_process(delta):
 	time += delta
@@ -26,7 +26,7 @@ func _physics_process(delta):
 
 func _on_body_entered(body):
 	if body.is_in_group("player") and not thrown and not dummy_box:
-		body.hit(10)
+		body.hit(null, 10)
 		get_parent().get_parent().get_parent().num_of_crates[pos_index]-=1
 		queue_free()
 
@@ -34,13 +34,13 @@ func _on_body_entered(body):
 func _on_hit_body_entered(body):
 	if body.is_in_group("player") and not dummy_box :
 		if body.position.y+0.1>=position.y+3*scale.y:
-			get_parent().addRock(position)
+			_spawn_rock()
 			queue_free()
 		else:
-			body.hit(5)
-			get_parent().addRock(position)
+			body.hit(null, 5)
+			_spawn_rock()
 			queue_free()
-	if body.is_in_group("pebble"):
+	if body.is_in_group("player_projectile"):
 		if dummy_box:
 			if dummy_parent.stopped:
 				return 
@@ -53,5 +53,10 @@ func _on_hit_body_entered(body):
 func _on_hit_area_entered(area: Area3D) -> void:
 	if area.is_in_group("spike") and not hitted:
 		hitted = true
-		get_parent().addRock(position)
+		_spawn_rock()
 		queue_free()
+
+func _spawn_rock() -> void:
+	var np = projectile_drop.instantiate()
+	np.global_position = position
+	get_tree().root.add_child(np)

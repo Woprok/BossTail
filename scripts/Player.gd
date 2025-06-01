@@ -1,12 +1,10 @@
 extends PlayerBase
 
-var Rock = preload("res://scenes/Rock.tscn")
 var Fly = preload("res://scenes/Fly.tscn")
 
 @export var platform: Node
 @export var animation: AnimationTree
 @onready var flies = get_parent().get_node("flies")
-@onready var pebbles = get_parent().get_node("pebbles")
 
 var start_position:Vector3 = Vector3(0,-1.8,0)
 
@@ -145,7 +143,7 @@ func _physics_process(delta):
 	move_and_slide()
 		
 
-func hit(health):
+func hit(_collision, health):
 	if lastHit<1:
 		return
 	lastHit = 0
@@ -155,23 +153,6 @@ func hit(health):
 		GameInstance.PlayerDefeated()
 	if PlayerHitVFX != null:
 		PlayerHitVFX.play_effect()
-
-# strelba dle typu zbrane
-func shoot():
-	var p
-	if not player_data.ammo_special.has_any_ammo_left() and not player_data.ammo_standard.has_any_ammo_left():
-		return
-	if player_data.ammo_special.has_any_ammo_left():
-		p = Fly.instantiate()
-		flies.add_child(p)
-		player_data.player_ammo_used(true)
-	elif player_data.ammo_standard.has_any_ammo_left():
-		p = Rock.instantiate()
-		p.thrown = true
-		pebbles.add_child(p)
-		player_data.player_ammo_used()
-		
-	_shoot(p)
 
 func respawn():
 	player_data.change_melee_indicator(true)
@@ -226,7 +207,7 @@ func _on_animation_finished(anim_name):
 func _on_area_entered(area):
 	if area.get_parent().is_in_group("enemy") and not melee:
 		melee = true
-		area.get_parent().hit(area)
+		area.get_parent().hit(area, 0)
 	if area.get_parent()!=null and area.get_parent().is_in_group("fly"):
 		area.get_parent().call_deferred("enable_collision")
 		area.get_parent().velocity.y = 1
@@ -254,7 +235,7 @@ func _on_pickup_entered(body):
 
 func _on_standing(area):
 	if area.is_in_group("spike"):
-		hit(5)
+		hit(null, 5)
 	if area.is_in_group("aciding_liquid"):
 		launched = false
 		grabbed = false

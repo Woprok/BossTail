@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=3 uid="uid://dsm6yi3jl1vdd"]
+
+[ext_resource type="Material" uid="uid://cctvegqrour2r" path="res://assets/material.tres" id="1_i6aqx"]
+[ext_resource type="PackedScene" uid="uid://cs51pokcyuwhd" path="res://scenes/characters/Mouseketeer.tscn" id="2_d0i78"]
+[ext_resource type="Script" uid="uid://vwfgr43qq50f" path="res://scripts/TutorialPlayer.gd" id="3_mt435"]
+[ext_resource type="PackedScene" uid="uid://bgipbdnblmeyp" path="res://scenes/player/ProjectileSpawnerBase.tscn" id="4_mt435"]
+
+[node name="CharacterTestingArea" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 10, 0)
+light_color = Color(1, 0.992157, 0.662745, 1)
+light_energy = 0.5
+shadow_enabled = true
+
+[node name="arenaFloor" type="CSGCombiner3D" parent="."]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 2, 0)
+use_collision = true
+
+[node name="floor2" type="CSGBox3D" parent="arenaFloor"]
+transform = Transform3D(1, 1.87811e-10, 0, -6.56655e-10, 1, -3.3242e-10, 0, 3.54021e-10, 1, 3.67774e-10, -8.54799, 6.80021e-10)
+size = Vector3(100, 1.33203, 100)
+material = ExtResource("1_i6aqx")
+
+[node name="Player" parent="." instance=ExtResource("2_d0i78")]
+transform = Transform3D(1, 2.10376e-12, 0, 2.45584e-12, 1, 0, 0, 0, 1, -0.945, 0.431, 62.36)
+script = ExtResource("3_mt435")
+
+[node name="ProjectileSpawnerBase" parent="." instance=ExtResource("4_mt435")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1839, -5.83198, 48.1273)
+
+[node name="ProjectileSpawnerBase2" parent="." instance=ExtResource("4_mt435")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.40006, -5.83197, 48.3752)
+
+[node name="ProjectileSpawnerBase3" parent="." instance=ExtResource("4_mt435")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.04165, -5.83197, 47.5767)
+
+[node name="ProjectileSpawnerBase4" parent="." instance=ExtResource("4_mt435")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.863925, -5.83197, 47.5767)
+
+[node name="ProjectileSpawnerBase5" parent="." instance=ExtResource("4_mt435")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.69885, -5.83197, 47.5767)
+
+[node name="ProjectileSpawnerBase6" parent="." instance=ExtResource("4_mt435")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.24874, -5.83197, 47.5767)

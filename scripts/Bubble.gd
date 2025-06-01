@@ -12,7 +12,7 @@ func _physics_process(delta):
 		if collision.get_collider().is_in_group("player"):
 			if collision.get_collider().platform.is_in_group("stone_platform") or collision.get_collider().platform.is_in_group("big_lily"):
 				instantiate_splash(collision.get_position()-Vector3(0,0.5,0))
-			collision.get_collider().hit(5)
+			collision.get_collider().hit(collision.get_collider_shape(), 5)
 			queue_free()
 			return
 		if collision.get_collider().is_in_group("stone_platform") or collision.get_collider().get_parent().is_in_group("big_lily"): 
@@ -29,7 +29,7 @@ func _physics_process(delta):
 			tween.tween_property(platform,"position",Vector3(platform.position.x,-0.9,platform.position.z),0.5)
 			queue_free()
 			return
-		if collision.get_collider().is_in_group("pebble"):
+		if collision.get_collider().is_in_group("player_projectile"):
 			instantiate_splash(collision.get_position())
 			collision.get_collider().respawn()
 			queue_free()

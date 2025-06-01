@@ -49,7 +49,7 @@ func rotate_dummy(delta: float) -> void:
 	DummyPole.rotation_degrees.x = xAngle
 	DummyPole.rotation_degrees.z = zAngle
 
-func hit(_health):
+func hit(_collision, _health):
 	stopped = true
 	stop_time = 0
 	StunVFXController.play_stun_effect(STUNNED_TIME)
@@ -83,7 +83,7 @@ func _on_body_entered(body):
 
 
 func _on_box_hit(body: Node3D) -> void:
-	if body.is_in_group("pebble"):
+	if body.is_in_group("player_projectile"):
 		box_hit = true
 		stopped = true
 		jump = true

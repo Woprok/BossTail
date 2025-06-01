@@ -113,7 +113,7 @@ func _physics_process(delta):
 		actual_volley = 0
 		throw()
 
-func hit(hp):
+func hit(_collision, hp):
 	if not typeof(hp) == TYPE_INT:
 		return
 		
@@ -208,11 +208,11 @@ func _on_body_entered(body):
 
 func _on_slash_entered(body):
 	if body.is_in_group("player"):
-		body.hit(10)
+		body.hit(null, 10)
 
 
 func _on_box_hit(body: Node3D) -> void:
-	if body.is_in_group("pebble"):
+	if body.is_in_group("player_projectile"):
 		body.queue_free()
 		whirlwind_time = 0
 		whirlwind_box = null

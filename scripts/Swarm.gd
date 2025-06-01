@@ -23,7 +23,7 @@ func _process(delta):
 		time += delta
 		if time>1:
 			time=0
-			player.hit(1)
+			player.hit(null, 1)
 	else:
 		time = 0
 	if dispersed:
@@ -87,7 +87,7 @@ func is_player_in_area():
 	return false
 
 func _on_body_entered(body):
-	if body.is_in_group("pebble"):
+	if body.is_in_group("player_projectile") and body.is_in_group("ammo_standard"):
 		dispersed = true
 		dispersed_time = 0
 		body.respawn()

@@ -48,9 +48,11 @@ func _update_tutorial(phase: int) -> void:
 	%BossHealthBar.SetName(boss_data.tutorial_data.Names.get(phase))
 	
 func _exit_tree() -> void:
-	boss_data.OnHealthChanged.disconnect(UpdateBossHealth)
-	player_data.OnHealthChanged.disconnect(UpdatePlayerHealth)
-	player_data.OnAmmoChanged.disconnect(UpdatePlayerAmmo)
+	if boss_data:
+		boss_data.OnHealthChanged.disconnect(UpdateBossHealth)
+	if player_data:
+		player_data.OnHealthChanged.disconnect(UpdatePlayerHealth)
+		player_data.OnAmmoChanged.disconnect(UpdatePlayerAmmo)
 	
 func UpdateBossHealth() -> void:
 	%BossHealthBar.ChangeHealth(boss_data.health_standard.current)

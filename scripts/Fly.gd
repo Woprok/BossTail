@@ -1,13 +1,10 @@
-extends CharacterBody3D
+extends ProjectileBase
 
-var speed:int = 2
 var time:int = 0
-var gravity:int = -10
 @export var flying = false
 @export var swarm = false
 @export var position_in_swarm = Vector3(0,0,0)
 var dead = false
-var HEIGHT_OF_ARC:float = 2
 var groupSize = 1
 var angle = 0
 var platform:Node
@@ -59,19 +56,6 @@ func _physics_process(delta):
 		self.position = gl_position
 		swarm = false
 			
-
-func shoot(_origin, _end, result):
-	if result:
-		var result_position = result.get("position")
-		var height = result_position.y - global_position.y + HEIGHT_OF_ARC
-		height = abs(height)
-		var displacement_y = result_position.y-global_position.y
-		var displacemnt_xz = Vector3(result_position.x-global_position.x,0,result_position.z-global_position.z)
-		var velocity_y = Vector3.UP * sqrt(-2*gravity*height)
-		var velocity_xz = displacemnt_xz/(sqrt(-2*height/gravity)+sqrt(2*(displacement_y-height)/gravity))
-		velocity = velocity_y+velocity_xz
-
-
 func chase_position(delta, target_pos,global):
 	if global:
 		var dir = target_pos - global_position

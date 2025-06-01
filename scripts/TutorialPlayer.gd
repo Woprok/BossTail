@@ -1,9 +1,5 @@
 extends PlayerBase
 
-var Rock = preload("res://scenes/TutorialRock.tscn")
-
-@onready var pebbles = get_parent().get_node("obstacles/pebbles")
-
 var pushed = false
 var time_of_push = 0
 
@@ -144,7 +140,7 @@ func _physics_process(delta):
 	move_and_slide()
 	
 	
-func hit(health):
+func hit(_collision, health):
 	if lastHit<1:
 		return
 	lastHit = 0
@@ -152,17 +148,6 @@ func hit(health):
 	if player_data.is_player_dead():
 		respawn()
 		player_data.player_restart()
-
-func shoot():
-	var p
-	if not player_data.ammo_standard.has_any_ammo_left():
-		return
-	if player_data.ammo_standard.has_any_ammo_left():
-		p = Rock.instantiate()
-		pebbles.add_child(p)
-		player_data.player_ammo_used()
-		
-	_shoot(p)
 
 func respawn():
 	player_data.change_melee_indicator(true)
@@ -199,7 +184,7 @@ func _on_animation_finished(anim_name):
 func _on_area_entered(area):
 	if area.get_parent().is_in_group("enemy") and not melee:
 		melee = true
-		area.get_parent().hit(area)
+		area.get_parent().hit(area, 0)
 
 
 func _on_dash_timer_timeout():
@@ -218,13 +203,13 @@ func _on_melee_body_entered(body):
 	if body.is_in_group("mini_dummy"):
 		body.death()
 	elif body.is_in_group("enemy"):
-		body.hit(10)
+		body.hit(null, 10)
 
 
 
 func _on_standing(area):
 	if area.is_in_group("spike"):
-		hit(20)
+		hit(null, 20)
 		get_parent().respawn_player()
 	if area.is_in_group("part2"):
 		part = 3

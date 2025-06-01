@@ -36,6 +36,12 @@ window/main_scene="res://scenes/emptyLevel.tscn"
 [global_group]
 
 player=""
+boss=""
+minion=""
+pickable=""
+ammo_standard=""
+player_projectile=""
+ammo_special=""
 
 [gui]
 
