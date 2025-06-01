@@ -6,13 +6,15 @@
 script = ExtResource("1_du7w1")
 customizable_keybinds = Dictionary[StringName, String]({
 &"aim": "Aim",
+&"camera_down": "Camera Down",
+&"camera_left": "Camera Left",
+&"camera_right": "Camera Right",
+&"camera_up": "Camera Up",
 &"dash": "Dash",
 &"fight": "Attack / Throw (During Aim)",
 &"jump": "Jump",
 &"move_back": "Move Back",
 &"move_forward": "Move Forward",
-&"move_left": "Move Left",
-&"move_right": "Move Right",
 &"pause": "Pause / Menu",
 &"strafe_left": "Strafe Left",
 &"strafe_right": "Strafe Right"
