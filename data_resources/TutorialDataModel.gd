@@ -54,6 +54,6 @@ class_name TutorialDataModel
 @export var ControlHints: Dictionary[int, String] = {
 	0: "Use TUTORIAL_MOVE_UP TUTORIAL_MOVE_DOWN TUTORIAL_MOVE_LEFT TUTORIAL_MOVE_RIGHT to move, and TUTORIAL_CAMERA_UP TUTORIAL_CAMERA_DOWN TUTORIAL_CAMERA_LEFT TUTORIAL_CAMERA_RIGHT to look around.",
 	1: "Jump with TUTORIAL_JUMP. Hold to jump higher.\nDash with TUTORIAL_DASH to clear gaps or dodge.\nThe current state of all abilities is shown in the bottom-right corner (Stab, Throw, Dash, Jump).",
-	2: "You can’t reach a spinning dummy up close — throw small objects, like rocks.\nAim with TUTORIAL_AIM, throw with TUTORIAL_STAB.\nBreak the box with a precise throw.\nFinish the dummy with a stab TUTORIAL_STAB.",
-	3: "The boss combines everything you’ve learned.\nStop its whirlwind by hitting the box.\nWatch out for its box barrage and great slash."
+	2: "You can’t reach a spinning dummy up close — throw small objects, like pebbles.\nAim with TUTORIAL_AIM, shoot with TUTORIAL_STAB.\nPick up pebbles and shoot the box to break it.\nAfter breaking the box, the dummy will be stunned — use that chance to finish it with a stab TUTORIAL_STAB.",
+	3: "The boss combines everything you’ve learned.\nStop its whirlwind by shooting the box.\nWatch out for its box barrage and great slash."
 }

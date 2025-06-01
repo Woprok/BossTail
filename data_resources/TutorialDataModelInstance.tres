@@ -52,12 +52,12 @@ ControlHints = Dictionary[int, String]({
 1: "Jump with TUTORIAL_JUMP. Hold to jump higher.
 Dash with TUTORIAL_DASH to clear gaps or dodge.
 The current state of all abilities is shown in the bottom-right corner (Stab, Throw, Dash, Jump).",
-2: "You can’t reach a spinning dummy up close — throw small objects, like rocks.
-Aim with TUTORIAL_AIM, throw with TUTORIAL_STAB.
-Break the box with a precise throw.
-Finish the dummy with a stab TUTORIAL_STAB.",
+2: "You can’t reach a spinning dummy up close — throw small objects, like pebbles.
+Aim with TUTORIAL_AIM, shoot with TUTORIAL_STAB.
+Pick up pebbles and shoot the box to break it.
+After breaking the box, the dummy will be stunned — use that chance to finish it with a stab TUTORIAL_STAB.",
 3: "The boss combines everything you’ve learned.
-Stop its whirlwind by hitting the box.
+Stop its whirlwind by shooting the box.
 Watch out for its box barrage and great slash."
 })
 metadata/_custom_type_script = "uid://cnig85daaq2ks"
