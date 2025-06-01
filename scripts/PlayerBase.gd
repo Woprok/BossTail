@@ -140,7 +140,7 @@ func _on_pickup_entered(body):
 func shoot():
 	if player_data.ammo_special.has_any_ammo_left():
 		shoot_special_projectile()
-	if player_data.ammo_standard.has_any_ammo_left():
+	elif player_data.ammo_standard.has_any_ammo_left():
 		shoot_standard_projectile()
 	
 func shoot_standard_projectile():

@@ -11,6 +11,7 @@ func _ready() -> void:
 		_on_boss_data_changed(GameEvents.boss_data)
 	# Player Data Setup
 	%PlayerHealthBar.SetHealth(player_data.player_min_health, player_data.player_current_health, player_data.player_max_health)
+	LoadPlayerAmmo()
 	player_data.OnHealthChanged.connect(UpdatePlayerHealth)
 	player_data.OnAmmoChanged.connect(UpdatePlayerAmmo)
 
@@ -57,6 +58,12 @@ func _exit_tree() -> void:
 func UpdateBossHealth() -> void:
 	%BossHealthBar.ChangeHealth(boss_data.health_standard.current)
 	%BossSpecialHealthBar.ChangeHealth(boss_data.health_special.current)
+
+func LoadPlayerAmmo() -> void:
+	if player_data.ammo_special.has_any_ammo_left():
+		UpdatePlayerAmmo(player_data.ammo_special)
+	else:
+		UpdatePlayerAmmo(player_data.ammo_standard)
 
 func UpdatePlayerAmmo(ammo: AmmoStatus) -> void:
 	%AmmoIndicator.ChangeAmmo(ammo)
