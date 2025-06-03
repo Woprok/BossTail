@@ -48,7 +48,7 @@ ControlHintTitles = Dictionary[int, String]({
 3: "Boss Fight"
 })
 ControlHints = Dictionary[int, String]({
-0: "Use TUTORIAL_MOVE_UP TUTORIAL_MOVE_DOWN TUTORIAL_MOVE_LEFT TUTORIAL_MOVE_RIGHT to move, and TUTORIAL_CAMERA_UP TUTORIAL_CAMERA_DOWN TUTORIAL_CAMERA_LEFT TUTORIAL_CAMERA_RIGHT to look around.",
+0: "Use TUTORIAL_MOVE_UP TUTORIAL_MOVE_DOWN TUTORIAL_MOVE_LEFT TUTORIAL_MOVE_RIGHT to move, and TUTORIAL_CAMERA_UP TUTORIAL_CAMERA_DOWN TUTORIAL_CAMERA_LEFT TUTORIAL_CAMERA_RIGHT or Mouse to look around.",
 1: "Jump with TUTORIAL_JUMP. Hold to jump higher.
 Dash with TUTORIAL_DASH to clear gaps or dodge.
 The current state of all abilities is shown in the bottom-right corner (Stab, Throw, Dash, Jump).",
