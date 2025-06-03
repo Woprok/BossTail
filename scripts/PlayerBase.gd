@@ -14,6 +14,7 @@ class_name PlayerBase
 @export var BASE_AIM_MOUSE_SENS: float = 0.004
 @export var BASE_VERTICAL_MOUSE_SENS: float = 0.004
 @export var BASE_HORIZONTAL_MOUSE_SENS: float = 0.008
+
 var USER_AIM_MOUSE_SENS: float = 1.0
 var USER_MOUSE_SENS: float = 1.0
 var AIM_MOUSE_SENS: float:
@@ -40,7 +41,7 @@ var SPEED:int = 15
 var back = -1
 var lastHit = 100
 
-var time:float = 0
+#var time:float = 0
 var jump_time:float = 0
 var target_velocity:Vector3 = Vector3.ZERO
 
@@ -50,6 +51,9 @@ var jump:bool = false
 var dashing:bool = false
 var can_dash:bool = true
 
+var respawn_time:float = 0
+var respawning:bool = false
+@export var RESPAWN_TIME:float = 1
 var aiming:bool = false
 var last_shot:float = 0
 var direction = Vector3.ZERO
@@ -169,3 +173,13 @@ func _shoot(projectile) -> void:
 	var result = space_state.intersect_ray(query)
 	
 	projectile.shoot(origin, end, result)
+
+
+func respawn_freeze(delta) -> bool:
+	if respawning:
+		respawn_time+=delta
+		if respawn_time>=RESPAWN_TIME:
+			respawn_time = 0
+			respawning = false
+		return true
+	return false

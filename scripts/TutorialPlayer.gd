@@ -16,10 +16,13 @@ func _exit_tree() -> void:
 	$melee.disconnect("body_entered", _on_melee_body_entered)
 	
 func _physics_process(delta):
+	if respawn_freeze(delta): 
+		return
+	
 	if position.y < -10:
 		respawn()
 		
-	time = time+ delta
+	#time = time+ delta
 	lastHit += delta
 	last_shot += delta
 	
@@ -153,6 +156,12 @@ func respawn():
 	player_data.change_melee_indicator(true)
 	player_data.change_ranged_indicator(false)
 	fighting = false
+	if aiming:
+		_aim_finished()
+	Camera.rotation.x = deg_to_rad(-20)
+	velocity=Vector3.ZERO
+	respawning = true
+	$PlayerHitVFX.play_effect()
 	
 	var reset_position 
 	if part == 2:

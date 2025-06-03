@@ -17,7 +17,10 @@ var launched:bool = false
 @export var PlayerHitVFX: EntityHitVFX
 	
 func _physics_process(delta):
-	time = time+ delta
+#	time = time+ delta
+	if respawn_freeze(delta): 
+		return
+		
 	lastHit += delta
 	if position.y<-3 or (is_on_floor() and position.y<-0.6):
 		respawn()
@@ -158,6 +161,12 @@ func respawn():
 	player_data.change_melee_indicator(true)
 	player_data.change_ranged_indicator(false)
 	fighting = false
+	if aiming:
+		_aim_finished()
+	Camera.rotation.x = deg_to_rad(-20)
+	velocity=Vector3.ZERO
+	respawning = true
+	PlayerHitVFX.play_effect()
 	
 	player_data.player_decrease_health(1)
 	if launched:

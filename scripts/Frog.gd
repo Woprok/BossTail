@@ -471,7 +471,7 @@ func _physics_process(delta):
 				time_swipe_same = 0
 				time_swipe_diff = 0
 		time_bubble += delta
-		if boss_data.get_current_health() !=100 and time_bubble>SPIT_BUBBLE_TIME and platform!=null and platform != player.platform and not doing:
+		if time_bubble>SPIT_BUBBLE_TIME and platform!=null and platform != player.platform and not doing:
 				doing = true
 				time_doing = 0
 				animationTree.spit_start(SPIT_ANTIC_DUR, SPIT_WOO_DUR)
