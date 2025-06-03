@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://dpldsjgvpqunu"]
+
+[ext_resource type="Shader" uid="uid://b6qarj3xlu85r" path="res://assets/shaders/unlit_texture_color_overlay.tres" id="1_ya03s"]
+[ext_resource type="Texture2D" uid="uid://dcpegkp5yunsf" path="res://assets/models/characters/Char_BigDummy_RotatingArmAlbedo.png" id="2_ya03s"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_ya03s")
+shader_parameter/AlbedoTexture = ExtResource("2_ya03s")
+shader_parameter/OverlayColor = Color(1, 1, 1, 1)
+shader_parameter/BlendWeight = 0.0

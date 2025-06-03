@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://05irr0bha1vd"]
+
+[ext_resource type="Shader" uid="uid://b6qarj3xlu85r" path="res://assets/shaders/unlit_texture_color_overlay.tres" id="1_1aqet"]
+[ext_resource type="Texture2D" uid="uid://5i28fc3ru7oj" path="res://assets/models/characters/Char_BigDummy_SmallDummyLogAlbedo.png" id="2_1aqet"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_1aqet")
+shader_parameter/AlbedoTexture = ExtResource("2_1aqet")
+shader_parameter/OverlayColor = Color(1, 1, 1, 1)
+shader_parameter/BlendWeight = 0.0

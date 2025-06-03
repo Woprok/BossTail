@@ -6,8 +6,14 @@ var doing = false
 var last_cd_change = 0
 var num_of_volley = 1
 var actual_volley = 1
+
+@export var DummyAnimationController: BigDummyAnimController
+@export var DummyEntity: Node3D
+@export var DummyBase: Node3D
 @export_group("Attack params")
 @export var BOXES_IN_VOLLEY=4
+
+var barrage_dirs: Array[Vector3]
 
 var speed = 10
 var gravity = -5
@@ -40,6 +46,19 @@ var box_size_div = 2
 @export var boss_data: BossDataModel = preload("res://data_resources/DummyBossDataModel.tres")
 var BOX = preload("res://scenes/Crates.tscn")
 
+@export_group("AttackTimings")
+@export var SLASH_ANTIC_TIME: float = 0.5
+@export var BARRAGE_ANTIC_TIME: float = 0.2
+@export var WHIRLWIND_ANTIC_TIME: float = 0.6667
+var attack_seq_timer: Tween
+
+@export_group("VFX")
+@export var StunVFXController: StunVFX
+@export var HitFlashVFX: EntityHitVFX
+@export var HitImpactVFX: PackedScene
+@export var HitImpactPos: Node3D
+@export var SlashAttackIndicator: PackedScene
+@export var BarrageLaneIndicator: PackedScene
 
 func _ready() -> void:
 	boss_data.boss_restart()
@@ -48,6 +67,8 @@ func _ready() -> void:
 	WHIRLWIND_TIME = WHIRLWIND_TIME_MAX
 	SLASH_TIME = SLASH_TIME_MAX
 	BARRAGE_TIME = BARRAGE_TIME_MAX
+	
+	DummyAnimationController.idle()
 
 func _physics_process(delta):
 	if not active:
@@ -72,7 +93,7 @@ func _physics_process(delta):
 	if stopped:
 		$Area3D/CollisionShape3D.disabled = true
 	else:
-		$Area3D/CollisionShape3D.disabled = false	
+		$Area3D/CollisionShape3D.disabled = false
 			
 	if not stopped:
 		doing = true
@@ -98,7 +119,8 @@ func _physics_process(delta):
 				throw()
 				volley_time = 0
 		return
-	look_at(Vector3(get_parent().get_node("Player").position.x,position.y,get_parent().get_node("Player").position.z))
+	var look_at_vec = Vector3(get_parent().get_node("Player").position.x, DummyEntity.global_position.y ,get_parent().get_node("Player").position.z)
+	DummyEntity.look_at(look_at_vec)
 	slash_time+=delta
 	if slash_time>=SLASH_TIME:
 		slash_time = 0
@@ -116,17 +138,27 @@ func _physics_process(delta):
 func hit(_collision, hp):
 	if (not typeof(hp) == TYPE_INT and not typeof(hp) == TYPE_FLOAT) or hp<=0:
 		return
-		
+	
 	if (boss_data.get_current_health()==100 and position.distance_to(get_parent().get_node("Player").position)>33):
 		return
 	
 	if not stopped:
 		stopped = true
 		stop_time = 0
+		#i assume this is where stun happens
+		StunVFXController.play_stun_effect(STUNNED_TIME)
 		return
 		
 	if boss_data.get_current_health()==100:
 		get_parent().get_node("AnimationPlayer").play_backwards("last_wall")
+
+	#hit vfx
+	if HitImpactVFX != null:
+		var impactVFXObj: Node3D = HitImpactVFX.instantiate()
+		get_parent().add_child(impactVFXObj)
+		impactVFXObj.global_position = HitImpactPos.global_position
+	if HitFlashVFX != null:
+		HitFlashVFX.play_effect()
 
 	boss_data.boss_take_damage(hp)
 	last_cd_change += hp
@@ -147,6 +179,19 @@ func hit(_collision, hp):
 
 func slash():
 	$AnimationPlayer.play("slash",-1,3)
+	
+	#spawn slash indicator
+	var indicCtrlr = instantiate_indicator_object(SlashAttackIndicator)
+	#indicCtrlr.look_at(indicCtrlr.global_position + flat(DummyEntity.global_basis.z), Vector3.UP)
+	indicCtrlr.appear(SLASH_ANTIC_TIME)
+	get_tree().create_tween().tween_callback(indicCtrlr.fade.bind(0.5)).set_delay(SLASH_ANTIC_TIME)
+	#start slash anim sequence
+	DummyAnimationController.great_slash_start(-1)
+	if attack_seq_timer != null and attack_seq_timer.is_running():
+		print("Different attack sequence has been interrupted. This shouldn't happen")
+		attack_seq_timer.kill()
+	attack_seq_timer = get_tree().create_tween()
+	attack_seq_timer.tween_callback(DummyAnimationController.great_slash_play_start).set_delay(SLASH_ANTIC_TIME)
 
 
 func whirlwind():
@@ -157,6 +202,8 @@ func whirlwind():
 	box_hit = false
 	jump = true
 	velocity.y = speed
+	
+	DummyAnimationController.whirlwind_start(-1)
 	
 
 func show_box():
@@ -176,13 +223,36 @@ func push():
 	player.velocity.y = 0
 	player.velocity = player.velocity.normalized()*35
 	player.pushed = true
-
-
+	
+	# play whirlwind start anim
+	DummyAnimationController.whirlwind_end_antic()
+	
 func throw():
+	# Anticipation Phase --------------------
+	DummyAnimationController.barrage_start(-1)
+	if attack_seq_timer != null and attack_seq_timer.is_running():
+		print("Different attack sequence has been interrupted. This shouldn't happen")
+		attack_seq_timer.kill()
+	attack_seq_timer = get_tree().create_tween()
+	attack_seq_timer.tween_callback(DummyAnimationController.barrage_play_start).set_delay(BARRAGE_ANTIC_TIME)
+	# generate and store directions for barrage boulders
 	var init_dir = (get_parent().get_node("Player").position - position).normalized()
+	barrage_dirs.clear()
+	for i in range(BOXES_IN_VOLLEY):
+		var dir = init_dir.rotated(Vector3.UP,(randf()*2-1)*PI/4)
+		barrage_dirs.append(dir)
+		# spawn boulder travel indicator
+		var indicCtrlr = instantiate_indicator_object(BarrageLaneIndicator)
+		indicCtrlr.indicMesh.scale = Vector3(5.0,5.0,8.0)
+		var look_pos: Vector3 = indicCtrlr.position + flat(dir)
+		indicCtrlr.look_at(look_pos, Vector3.UP)
+		indicCtrlr.appear(BARRAGE_ANTIC_TIME * 3)
+		get_tree().create_tween().tween_callback(indicCtrlr.fade.bind(0.5)).set_delay(BARRAGE_ANTIC_TIME)
+		
+	# Barrage release phase --------------------
 	actual_volley+=1
 	for i in range(BOXES_IN_VOLLEY):
-		var dir = init_dir.rotated(Vector3(0,1,0),(randf()*2-1)*PI/4)
+		var dir = barrage_dirs[i]
 		var box = BOX.instantiate()
 		box.thrown = true
 		box.scale /= box_size_div
@@ -196,6 +266,8 @@ func throw():
 		doing = true
 	else:
 		doing = false
+		
+	
 
 
 func _on_body_entered(body):
@@ -230,3 +302,16 @@ func _on_ground_body_entered(_body: Node3D) -> void:
 func _on_animation_finished(anim_name):
 	if anim_name == "slash":
 		doing = false
+		
+		
+func flat(in_vec: Vector3) -> Vector3:
+	return Vector3(in_vec.x, 0.0, in_vec.z)
+	
+func instantiate_indicator_object(indicatorScene: PackedScene) -> ToadAtkIndicatorVFXController:
+	var indicRoot: ToadAtkIndicatorVFXController = indicatorScene.instantiate()
+	get_parent().add_child(indicRoot)
+	indicRoot.global_position = DummyBase.global_position + Vector3(0, 0.1, 0)
+	indicRoot.global_rotation = DummyEntity.global_rotation
+	
+	indicRoot.setup()
+	return indicRoot

@@ -21,8 +21,8 @@ func delayed_call(delay: float, delayed_callback: Callable) -> void:
 func delayed_call_cleanup(timer: SceneTreeTimer, callback: Callable) -> void:
 	if not prevent_delayed_call_exec:
 		callback.call()
-	if timer: # just trying to get rid of warnings to cleanup logs
-		timer = null # null the ref -> garbage collector should destroy it now, maybe this is unnecessary idk
+	if timer:
+		timer = null
 
 func set_sm_cond(cond_name: String, cond_val: bool):
 	self.set("parameters/conditions/" + cond_name, cond_val)

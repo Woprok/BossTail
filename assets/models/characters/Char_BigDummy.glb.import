@@ -46,6 +46,10 @@ _subresources={
 "use_external/enabled": true,
 "use_external/path": "res://assets/models/characters/Materials/BigDummy/EyePlate.tres"
 },
+"Eyes": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/models/characters/Materials/BigDummy/Eyes.tres"
+},
 "HeadPlate": {
 "use_external/enabled": true,
 "use_external/path": "res://assets/models/characters/Materials/BigDummy/HeadPlate.tres"

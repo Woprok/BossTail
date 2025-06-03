@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://7h2r7t7bsxad"]
+
+[ext_resource type="Shader" uid="uid://b6qarj3xlu85r" path="res://assets/shaders/unlit_texture_color_overlay.tres" id="1_uvcip"]
+[ext_resource type="Texture2D" uid="uid://dt3aru5dybun1" path="res://assets/models/characters/Char_BigDummy_BreastplateAlbedo.png" id="2_uvcip"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_uvcip")
+shader_parameter/AlbedoTexture = ExtResource("2_uvcip")
+shader_parameter/OverlayColor = Color(1, 1, 1, 1)
+shader_parameter/BlendWeight = 0.0

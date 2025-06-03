@@ -1,0 +1,149 @@
+[gd_scene load_steps=14 format=3 uid="uid://cexu8vsrt1jho"]
+
+[ext_resource type="Script" uid="uid://c3hv7v2dtx7h0" path="res://scripts/TutorialDummy.gd" id="1_lu3ac"]
+[ext_resource type="PackedScene" uid="uid://dlrb2m6f8fadf" path="res://scenes/other/vfx/ImpactVFX.tscn" id="2_5rkcl"]
+[ext_resource type="PackedScene" uid="uid://c7e35pnktddno" path="res://scenes/characters/BigDummy.tscn" id="2_f2h6d"]
+[ext_resource type="PackedScene" uid="uid://ipqvbwkp71ku" path="res://scenes/other/attack_indicators/SwipeIndicator.tscn" id="3_wk3td"]
+[ext_resource type="PackedScene" uid="uid://bu1jujqa8g7eb" path="res://scenes/other/attack_indicators/TongueGrabIndicator.tscn" id="4_7ch85"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rfu1p"]
+albedo_color = Color(0.439216, 0.239216, 0, 1)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_7ou3l"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_dwgjd"]
+radius = 0.7
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_y8dm5"]
+height = 6.0
+radius = 3.0
+
+[sub_resource type="Animation" id="Animation_cuxop"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_ht2tr"]
+resource_name = "slash"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SlashHitArea/SlashHitboxShape:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.4, 0.7, 0.991667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, true, false, false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rujn5"]
+_data = {
+&"RESET": SubResource("Animation_cuxop"),
+&"slash": SubResource("Animation_ht2tr")
+}
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_edvls"]
+height = 0.5
+
+[node name="TutorialDummy" type="CharacterBody3D" node_paths=PackedStringArray("StunVFXController", "HitFlashVFX", "HitImpactPos") groups=["enemy"]]
+script = ExtResource("1_lu3ac")
+StunVFXController = NodePath("Char_BigDummy/VFX/StunVFXController")
+HitFlashVFX = NodePath("Char_BigDummy/VFX/HitFlashVFX")
+HitImpactVFX = ExtResource("2_5rkcl")
+HitImpactPos = NodePath("Char_BigDummy/DummyBase/GAMERIG_BigDummy/Skeleton3D/BonePosAttachment/HitImpactPos")
+SlashAttackIndicator = ExtResource("3_wk3td")
+BarrageLaneIndicator = ExtResource("4_7ch85")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="." groups=["enemy"]]
+visible = false
+sides = 6
+material = SubResource("StandardMaterial3D_rfu1p")
+
+[node name="DummyHitboxShape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.00436592)
+shape = SubResource("CylinderShape3D_7ou3l")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="." groups=["enemy"]]
+transform = Transform3D(-0.00546982, -0.16491, 3.2425e-06, -0.16491, 0.00546982, 0, -1.3867e-08, -4.18077e-07, -1.279, 0.398, 0, -0.4)
+visible = false
+radius = 0.387232
+
+[node name="CSGSphere3D2" type="CSGSphere3D" parent="CSGSphere3D" groups=["enemy"]]
+transform = Transform3D(0.349121, 0.0502736, -5.40085, 0.0346924, 0.487975, 1.63523, 0.045971, -0.012478, 0.68559, -1.92256, 0.58247, 0.508016)
+visible = false
+
+[node name="SlashHitArea" type="Area3D" parent="."]
+transform = Transform3D(-0.0331503, -0.99945, 2.53518e-06, -0.99945, 0.0331503, 0, -8.4042e-08, -2.53379e-06, -1, 0.142183, 0.34838, -0.836582)
+collision_layer = 0
+collision_mask = 2
+
+[node name="SlashHitboxShape" type="CollisionShape3D" parent="SlashHitArea"]
+transform = Transform3D(0.785964, 0.618272, 0, -0.618272, 0.785964, 0, 0, 0, 1, 0.123318, -0.0970071, 0.388163)
+shape = SubResource("SphereShape3D_dwgjd")
+disabled = true
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.692895, 0)
+shape = SubResource("CylinderShape3D_y8dm5")
+disabled = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_rujn5")
+}
+
+[node name="ground" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.264984, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.10321, 0)
+shape = SubResource("CylinderShape3D_edvls")
+
+[node name="Char_BigDummy" parent="." instance=ExtResource("2_f2h6d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.264984, 0)
+
+[node name="Skeleton3D" parent="Char_BigDummy/DummyBase/GAMERIG_BigDummy" index="0"]
+bones/0/rotation = Quaternion(1.54543e-08, -0.707107, 1.54543e-08, 0.707107)
+bones/1/rotation = Quaternion(3.55271e-15, 0.707107, -3.09086e-08, 0.707107)
+bones/2/position = Vector3(-4.1051e-11, 0.691973, -3.03738e-08)
+bones/2/rotation = Quaternion(2.71051e-20, 1, -4.37114e-08, -3.53257e-06)
+bones/3/rotation = Quaternion(-0.496666, 0.503308, -0.496625, 0.503356)
+bones/4/position = Vector3(-0.347611, 0.103498, 0.000565955)
+bones/4/rotation = Quaternion(0.965916, -0.214722, 0.137344, -0.0451308)
+bones/5/position = Vector3(-5.43495e-08, 0.263414, 3.09996e-08)
+bones/5/rotation = Quaternion(7.10349e-08, -0.0911459, 1.3743e-07, 0.995838)
+bones/6/position = Vector3(8.26809e-08, 0.263415, 1.97906e-09)
+bones/6/rotation = Quaternion(0.865606, -0.0911458, 0.170859, 0.461764)
+bones/7/position = Vector3(-3.4268e-08, 0.253626, 1.01472e-07)
+bones/7/rotation = Quaternion(1.02905e-07, 0.244658, -8.98357e-08, 0.969609)
+bones/8/position = Vector3(-8.11077e-09, 0.253626, -9.15329e-08)
+bones/8/rotation = Quaternion(-0.0306148, 0.244779, 0.0303748, 0.968619)
+bones/9/position = Vector3(0.350443, 0.103498, 0.000571098)
+bones/9/rotation = Quaternion(0.953091, 0.245245, -0.162397, -0.0714109)
+bones/10/position = Vector3(8.22835e-08, 0.262927, 4.32452e-08)
+bones/10/rotation = Quaternion(-3.44976e-08, 0.12618, 1.3402e-07, 0.992007)
+bones/11/position = Vector3(-6.58866e-08, 0.262927, 2.14204e-08)
+bones/11/rotation = Quaternion(0.804882, 0.126179, -0.184776, 0.549637)
+bones/12/position = Vector3(6.87211e-08, 0.266345, 5.6035e-08)
+bones/12/rotation = Quaternion(9.71803e-08, -0.398241, -7.87915e-08, 0.917281)
+bones/13/position = Vector3(8.84402e-09, 0.266345, 4.81996e-08)
+bones/13/rotation = Quaternion(-0.28633, -0.785877, -0.29162, 0.464081)
+bones/14/rotation = Quaternion(-0.00248809, 0.675566, -0.0139195, 0.737164)
+bones/15/position = Vector3(-9.50053e-08, 0.333299, -3.21907e-08)
+bones/15/rotation = Quaternion(5.96047e-08, 7.07805e-08, 6.13277e-08, 1)
+bones/16/position = Vector3(-8.63757e-08, 0.3334, -5.75312e-08)
+bones/16/rotation = Quaternion(2.1233e-15, -7.45058e-09, -9.14546e-15, 1)
+
+[node name="BonePosAttachment" parent="Char_BigDummy/DummyBase/GAMERIG_BigDummy/Skeleton3D" index="3"]
+transform = Transform3D(-8.89549e-05, 6.5701e-07, -1, -0.999911, 0.0133726, 8.90195e-05, 0.0133727, 0.999911, -4.45048e-07, -0.00245756, 1.91921, -0.0161201)
+
+[connection signal="body_entered" from="SlashHitArea" to="." method="_on_slash_entered"]
+[connection signal="body_entered" from="Area3D" to="." method="_on_body_entered"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_finished"]
+[connection signal="body_entered" from="ground" to="." method="_on_ground_body_entered"]
+
+[editable path="Char_BigDummy"]

@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dykpluj0kpp26"]
+
+[ext_resource type="PackedScene" uid="uid://c7gwn2dlyv8a" path="res://assets/models/vfx/great_slash_mesh.glb" id="1_uxxmx"]
+
+[node name="GreatSlash" type="Node3D"]
+
+[node name="great_slash_mesh" parent="." instance=ExtResource("1_uxxmx")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[editable path="great_slash_mesh"]

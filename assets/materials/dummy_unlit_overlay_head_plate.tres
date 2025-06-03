@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://cc0yxc08vi25n"]
+
+[ext_resource type="Shader" uid="uid://b6qarj3xlu85r" path="res://assets/shaders/unlit_texture_color_overlay.tres" id="1_xv6kl"]
+[ext_resource type="Texture2D" uid="uid://vepa8ksfykth" path="res://assets/models/characters/Char_BigDummy_HeadPlateAlbedo.png" id="2_xv6kl"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_xv6kl")
+shader_parameter/AlbedoTexture = ExtResource("2_xv6kl")
+shader_parameter/OverlayColor = Color(1, 1, 1, 1)
+shader_parameter/BlendWeight = 0.0

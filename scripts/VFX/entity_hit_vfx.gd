@@ -11,10 +11,12 @@ var mesh_shaders: Array[ShaderMaterial]
 var effect_tweener: Tween
 
 func _ready() -> void:
-	for mesh in OverlayMatMeshes:
-		var surfaces = mesh.get_surface_override_material_count()
-		for surf_id in surfaces:
-			mesh_shaders.append(mesh.get_active_material(surf_id))
+	for mesh in OverlayMatMeshes:		
+			var surfaces = mesh.get_surface_override_material_count()
+			for surf_id in surfaces:
+				var material = mesh.get_active_material(surf_id)
+				if material is ShaderMaterial:
+					mesh_shaders.append(material)
 	
 	for shader in mesh_shaders:
 		shader.set_shader_parameter("OverlayColor", HitColor)
