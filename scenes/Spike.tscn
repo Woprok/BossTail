@@ -3,11 +3,11 @@
 [ext_resource type="PackedScene" uid="uid://bjo5n1gleds5x" path="res://scenes/environment/Thorn.tscn" id="1_54pep"]
 [ext_resource type="Script" uid="uid://duoeuec8701v5" path="res://scripts/Spike.gd" id="1_uiy7f"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_3qgoe"]
-size = Vector3(1, 0.8, 1)
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_uiy7f"]
+points = PackedVector3Array(0, 0.5, 0, -0.45, -0.45, 0, 0.45, -0.45, 0, 0, -0.45, -0.45, 0, -0.45, 0.45, 0.3, -0.45, 0.3, -0.3, -0.45, -0.3, -0.3, -0.45, 0.3, 0.3, -0.45, -0.3)
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ycsm2"]
-points = PackedVector3Array(0, 0.2, 0, 0.14, -0.2, 0, -0.12, -0.2, 0, 0, -0.2, 0.14, 0, -0.2, -0.14, 0.1, -0.2, 0.1, -0.1, -0.2, -0.1, -0.1, -0.2, 0.1, 0.1, -0.2, -0.1)
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_alo23"]
+points = PackedVector3Array(0, 0.2, 0, 0.14, -0.15, 0, -0.12, -0.15, 0, 0, -0.15, 0.14, 0, -0.15, -0.14, 0.1, -0.15, 0.1, -0.1, -0.15, -0.1, -0.1, -0.15, 0.1, 0.1, -0.15, -0.1)
 
 [node name="Spike" type="StaticBody3D" groups=["spike"]]
 collision_layer = 128
@@ -18,14 +18,14 @@ transform = Transform3D(2, 0, 0, 0, 1.5, 0, 0, 0, 2, 0, -0.6, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
-shape = SubResource("BoxShape3D_3qgoe")
+shape = SubResource("ConvexPolygonShape3D_uiy7f")
 
 [node name="Area3D" type="Area3D" parent="." groups=["spike"]]
 collision_layer = 129
 collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00456238, 0.278349, 0.0171051)
-shape = SubResource("ConvexPolygonShape3D_ycsm2")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00456238, 0.271696, 0.0171051)
+shape = SubResource("ConvexPolygonShape3D_alo23")
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_body_entered"]

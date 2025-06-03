@@ -147,20 +147,13 @@ func hit(_collision, health):
 		return
 	lastHit = 0
 	player_data.player_decrease_health(health)
+	$PlayerHitVFX.play_effect()
 	if player_data.is_player_dead():
 		respawn()
 		player_data.player_restart()
 
 func respawn():
-	player_data.change_melee_indicator(true)
-	player_data.change_ranged_indicator(false)
-	fighting = false
-	if aiming:
-		_aim_finished()
-	Camera.rotation.x = deg_to_rad(-20)
-	velocity=Vector3.ZERO
-	respawning = true
-	$PlayerHitVFX.play_effect()
+	reset_player_respawn()
 	
 	var reset_position 
 	if part == 2:

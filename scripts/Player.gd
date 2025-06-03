@@ -19,8 +19,10 @@ var launched:bool = false
 func _physics_process(delta):
 #	time = time+ delta
 	var freeze = respawn_freeze(delta)
-		
+	
 	lastHit += delta
+	if spike_hit:
+		hit(null, 1)
 	if position.y<-3 or (is_on_floor() and position.y<-0.6):
 		respawn()
 	if grabbed:
@@ -157,15 +159,7 @@ func hit(_collision, health):
 		PlayerHitVFX.play_effect()
 
 func respawn():
-	player_data.change_melee_indicator(true)
-	player_data.change_ranged_indicator(false)
-	fighting = false
-	if aiming:
-		_aim_finished()
-	Camera.rotation.x = deg_to_rad(-20)
-	velocity=Vector3.ZERO
-	respawning = true
-	PlayerHitVFX.play_effect()
+	reset_player_respawn()
 	
 	player_data.player_decrease_health(1)
 	if launched:
@@ -244,6 +238,7 @@ func _on_pickup_entered(body):
 func _on_standing(area):
 	if area.is_in_group("spike"):
 		hit(null, 5)
+		spike_hit = true
 	if area.is_in_group("aciding_liquid"):
 		launched = false
 		grabbed = false
@@ -258,7 +253,8 @@ func _on_standing(area):
 func _on_leaving(area):
 	if area.is_in_group("aciding_liquid"):
 		aciding_liquid -= 1
-
+	if area.is_in_group("spike"):
+		spike_hit = false
 
 func _on_frog_standing(area: Area3D) -> void:
 	if area.is_in_group("body") and area.get_parent().is_in_group("enemy"):

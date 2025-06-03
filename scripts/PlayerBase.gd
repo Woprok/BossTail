@@ -38,6 +38,7 @@ var DASH_TIME:float = 0.5
 var AIM_SPEED:int = 5
 var SPEED:int = 15
 
+var spike_hit = false
 var back = -1
 var lastHit = 100
 
@@ -183,3 +184,14 @@ func respawn_freeze(delta) -> bool:
 			respawning = false
 		return true
 	return false
+
+func reset_player_respawn():
+	player_data.change_melee_indicator(true)
+	player_data.change_ranged_indicator(false)
+	fighting = false
+	if aiming:
+		_aim_finished()
+	Camera.rotation.x = deg_to_rad(-20)
+	velocity=Vector3.ZERO
+	respawning = true
+	$PlayerHitVFX.play_effect()

@@ -1,0 +1,88 @@
+[gd_scene load_steps=5 format=3 uid="uid://7wtg3h4cmetl"]
+
+[ext_resource type="PackedScene" uid="uid://bjo5n1gleds5x" path="res://scenes/environment/Thorn.tscn" id="1_54pep"]
+[ext_resource type="Script" uid="uid://duoeuec8701v5" path="res://scripts/Spike.gd" id="1_uiy7f"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_uiy7f"]
+points = PackedVector3Array(0, 0.5, 0, -0.45, -0.45, 0, 0.45, -0.45, 0, 0, -0.45, -0.45, 0, -0.45, 0.45, 0.3, -0.45, 0.3, -0.3, -0.45, -0.3, -0.3, -0.45, 0.3, 0.3, -0.45, -0.3)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ycsm2"]
+points = PackedVector3Array(0, 0.2, 0, 0.14, -0.15, 0, -0.12, -0.15, 0, 0, -0.15, 0.14, 0, -0.15, -0.14, 0.1, -0.15, 0.1, -0.1, -0.15, -0.1, -0.1, -0.15, 0.1, 0.1, -0.15, -0.1)
+
+[node name="Spike" type="StaticBody3D" groups=["spike"]]
+collision_layer = 128
+script = ExtResource("1_uiy7f")
+
+[node name="Thorn1" parent="." instance=ExtResource("1_54pep")]
+transform = Transform3D(2, 0, 0, 0, 1.5, 0, 0, 0, 2, 0, -0.6, 0)
+
+[node name="Thorn11" parent="Thorn1" instance=ExtResource("1_54pep")]
+transform = Transform3D(0.33, 0, 0, 0, 0.116226, -0.382485, 0, 0.231457, 0.192065, 0, 0.411424, 0.0400099)
+
+[node name="Thorn12" parent="Thorn1" instance=ExtResource("1_54pep")]
+transform = Transform3D(-3.35276e-08, 0.231548, 0.191765, -9.93411e-09, 0.116044, -0.382636, -0.33, -1.86265e-09, 0, 0.0395195, 0.411333, 0.00108482)
+
+[node name="Thorn13" parent="Thorn1" instance=ExtResource("1_54pep")]
+transform = Transform3D(-0.33, -2.02459e-08, -1.67538e-08, 0, 0.11597, -0.382698, 2.88495e-08, -0.231586, -0.191641, 0.00432654, 0.411334, -0.0306851)
+
+[node name="Thorn14" parent="Thorn1" instance=ExtResource("1_54pep")]
+transform = Transform3D(-1.44248e-08, -0.231586, -0.191641, 0, 0.11597, -0.382698, 0.33, -1.01229e-08, -8.37689e-09, -0.0276874, 0.411334, 0.00108482)
+
+[node name="Thorn21" parent="Thorn1" instance=ExtResource("1_54pep")]
+transform = Transform3D(0.233345, 0.163613, 0.135983, 0, 0.116374, -0.382363, -0.233345, 0.163613, 0.135983, 0.0522111, 0.210295, 0.0585779)
+
+[node name="Thorn22" parent="Thorn1" instance=ExtResource("1_54pep")]
+transform = Transform3D(-0.233345, 0.163613, 0.135983, 0, 0.116374, -0.382363, -0.233345, -0.163613, -0.135983, 0.0642655, 0.210295, -0.0644995)
+
+[node name="Thorn23" parent="Thorn1" instance=ExtResource("1_54pep")]
+transform = Transform3D(-0.233345, -0.163613, -0.135983, 0, 0.116374, -0.382363, 0.233345, -0.163613, -0.135983, -0.0655987, 0.210295, -0.0560157)
+
+[node name="Thorn24" parent="Thorn1" instance=ExtResource("1_54pep")]
+transform = Transform3D(0.233345, -0.163613, -0.135983, 0, 0.116374, -0.382363, 0.233345, 0.163613, 0.135983, -0.0528646, 0.210295, 0.0624339)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+shape = SubResource("ConvexPolygonShape3D_uiy7f")
+
+[node name="Area3D" type="Area3D" parent="." groups=["spike"]]
+collision_layer = 129
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00456238, 0.278349, 0.0171051)
+shape = SubResource("ConvexPolygonShape3D_ycsm2")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 0.449319, -0.893371, 0, 0.893371, 0.449319, 0.000811934, 0.0715981, 0.270587)
+shape = SubResource("ConvexPolygonShape3D_ycsm2")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(-4.37114e-08, 0.893371, 0.449319, 0, 0.449319, -0.893371, -1, -3.90505e-08, -1.96404e-08, 0.277713, 0.0715981, 0.00937679)
+shape = SubResource("ConvexPolygonShape3D_ycsm2")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(-1, -7.8101e-08, -3.92807e-08, 0, 0.449319, -0.893371, 8.74228e-08, -0.893371, -0.449319, 0.00449729, 0.0691412, -0.242221)
+shape = SubResource("ConvexPolygonShape3D_ycsm2")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(-4.37114e-08, -0.893371, -0.449319, 0, 0.449319, -0.893371, 1, -3.90505e-08, -1.96404e-08, -0.239527, 0.0728265, 0.00465441)
+shape = SubResource("ConvexPolygonShape3D_ycsm2")
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(0.707107, 0.631709, 0.317716, 0, 0.449319, -0.893371, -0.707107, 0.631709, 0.317716, 0.239206, -0.220664, 0.248146)
+shape = SubResource("ConvexPolygonShape3D_ycsm2")
+
+[node name="CollisionShape3D7" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(-0.707107, 0.631709, 0.317716, 0, 0.449319, -0.893371, -0.707107, -0.631709, -0.317716, 0.269718, -0.231196, -0.25349)
+shape = SubResource("ConvexPolygonShape3D_ycsm2")
+
+[node name="CollisionShape3D8" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(-0.707107, -0.631709, -0.317716, 0, 0.449319, -0.893371, 0.707107, -0.631709, -0.317716, -0.265671, -0.220664, -0.237076)
+shape = SubResource("ConvexPolygonShape3D_ycsm2")
+
+[node name="CollisionShape3D9" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(0.707107, -0.631709, -0.317716, 0, 0.449319, -0.893371, 0.707107, 0.631709, 0.317716, -0.213294, -0.228904, 0.266213)
+shape = SubResource("ConvexPolygonShape3D_ycsm2")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_body_exited"]
