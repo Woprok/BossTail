@@ -114,7 +114,7 @@ func _physics_process(delta):
 		throw()
 
 func hit(_collision, hp):
-	if not typeof(hp) == TYPE_INT:
+	if (not typeof(hp) == TYPE_INT and not typeof(hp) == TYPE_FLOAT) or hp<=0:
 		return
 		
 	if (boss_data.get_current_health()==100 and position.distance_to(get_parent().get_node("Player").position)>33):

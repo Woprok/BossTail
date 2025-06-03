@@ -14,7 +14,7 @@ func _ready() -> void:
 	velocity.y = -1
 
 func _physics_process(delta):
-	if velocity.y == 0:
+	if is_on_floor():
 		# should be ignored, if it's just lying on the ground
 		return
 	velocity.y += speed * gravity * delta
