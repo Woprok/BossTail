@@ -25,6 +25,7 @@ noise = SubResource("FastNoiseLite_wjuqv")
 transparency = 1
 blend_mode = 1
 depth_draw_mode = 1
+diffuse_mode = 3
 albedo_color = Color(0.200515, 0.368993, 0.999981, 1)
 normal_enabled = true
 normal_scale = 4.0
@@ -102,7 +103,7 @@ environment = SubResource("Environment_07i65")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433012, -3.36497, 5.26746, -11.7946)
 light_color = Color(1, 0.992157, 0.662745, 1)
-light_energy = 0.5
+light_energy = 0.7
 shadow_enabled = true
 
 [node name="PebblePlatformSpawner" parent="." instance=ExtResource("3_5ylab")]

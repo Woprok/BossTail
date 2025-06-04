@@ -84,7 +84,7 @@ environment = SubResource("Environment_fmekn")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, -3.36497, 5.26746, -11.7946)
 light_color = Color(1, 0.992157, 0.662745, 1)
-light_energy = 0.5
+light_energy = 0.7
 shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("2_k20qr")]

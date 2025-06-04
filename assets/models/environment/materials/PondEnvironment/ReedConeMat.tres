@@ -3,6 +3,6 @@
 [resource]
 resource_name = "ReedConeMat"
 cull_mode = 2
-shading_mode = 0
+diffuse_mode = 3
 vertex_color_use_as_albedo = true
 albedo_color = Color(0.286274, 0.164706, 0.109804, 1)

@@ -4,6 +4,5 @@
 
 [resource]
 resource_name = "DoorMaterial"
-cull_mode = 2
-shading_mode = 0
+diffuse_mode = 3
 albedo_texture = ExtResource("1_jtn8j")

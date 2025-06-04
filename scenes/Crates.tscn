@@ -1,10 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://cue84bk6umx6y"]
+[gd_scene load_steps=7 format=3 uid="uid://cue84bk6umx6y"]
 
 [ext_resource type="Script" uid="uid://clmiahgpqjasb" path="res://scripts/Crates.gd" id="1_dvfpn"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3ah7t"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nvng3"]
 albedo_color = Color(0.380392, 0.219608, 0.0941176, 1)
-refraction_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_nvng3"]
+material = SubResource("StandardMaterial3D_nvng3")
+size = Vector3(3.5, 3.5, 3.5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_p8bh4"]
 size = Vector3(3.5, 3.5, 3.5)
@@ -18,10 +21,9 @@ size = Vector3(4, 4, 4)
 [node name="Crates" type="CharacterBody3D" groups=["box"]]
 script = ExtResource("1_dvfpn")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
-collision_mask = 3
-size = Vector3(3.5, 3.5, 3.5)
-material = SubResource("StandardMaterial3D_3ah7t")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_nvng3")
+skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_p8bh4")

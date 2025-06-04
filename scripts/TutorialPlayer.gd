@@ -5,7 +5,7 @@ var time_of_push = 0
 
 var part = 1
 var reset_position_part2 = Vector3(-25, 1, 35)
-var reset_position_part3 = Vector3(47, -1.2, -16.6)
+var reset_position_part3 = Vector3(66.5, 1.82, 0.26)
 var reset_position_part4 = Vector3(-26,1,-37)
 	
 func _ready() -> void:
@@ -17,7 +17,7 @@ func _exit_tree() -> void:
 	
 func _physics_process(delta):
 	var freeze = respawn_freeze(delta)
-	
+	print(global_position)
 	if position.y < -10:
 		respawn()
 		
