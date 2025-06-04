@@ -31,7 +31,7 @@ startShapesOpacity = 0.8
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="TongueGrabIndicatorMesh" type="MeshInstance3D" parent="TongueGrabIndicator"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00913103, 0, 1.74613)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00913109, 0, 1.095)
 material_override = ExtResource("1_uy0jn")
 mesh = SubResource("ArrayMesh_byfyw")
 skeleton = NodePath("")

@@ -434,8 +434,8 @@ func _physics_process(delta):
 					time_doing = 0
 					animationTree.ground_slam_start(GROUND_SLAM_ANTIC_DUR)
 					
-					var indicCtrlr = instantiate_indicator_object(ground_slam_indicator)
-					indicCtrlr.appear(GROUND_SLAM_ANTIC_DUR * 0.75)
+					var indicCtrlr = instantiate_indicator_object(ground_slam_indicator, Vector3(platform.position.x,global_position.y,platform.position.z))
+					indicCtrlr.appear(GROUND_SLAM_ANTIC_DUR * 0.75,1.8)
 					get_tree().create_tween().tween_callback(indicCtrlr.fade.bind(0.5)).set_delay(GROUND_SLAM_ANTIC_DUR)
 					
 					slam = true
@@ -459,6 +459,7 @@ func _physics_process(delta):
 				time_doing = 0
 				tongue_swipe()
 				tongueHit = 0
+				time_slam -= 1
 				time_swipe_same = 0
 				time_swipe_diff = 0
 			if platform!=null and platform!=player.platform and platform.neighbors.has(player.platform) and time_swipe_diff>SWIPE_DIFF_PLATFORM_TIME:
@@ -466,6 +467,7 @@ func _physics_process(delta):
 				swipe = true
 				doing = true
 				time_doing = 0
+				time_slam -= 1
 				tongue_swipe()
 				tongueHit = 0
 				time_swipe_same = 0
@@ -508,8 +510,8 @@ func tongue_swipe():
 	look_at(Vector3(player.position.x,position.y,player.position.z))
 	animationTree.swipe_start(TONGUE_SWIPE_ANTIC_DUR)
 	
-	var indicCtrlr = instantiate_indicator_object(swipe_indicator)
-	indicCtrlr.appear(TONGUE_SWIPE_ANTIC_DUR * 0.75)
+	var indicCtrlr = instantiate_indicator_object(swipe_indicator,global_position)
+	indicCtrlr.appear(TONGUE_SWIPE_ANTIC_DUR * 0.75,1.02)
 	get_tree().create_tween().tween_callback(indicCtrlr.fade.bind(0.5)).set_delay(TONGUE_SWIPE_ANTIC_DUR)
 	extended = true
 	#var tween = get_tree().create_tween()
@@ -525,7 +527,7 @@ func tongue_swipe():
 func ground_slam():
 	slam = false
 	platform.health -= 1
-	if player.platform == platform:
+	if player.platform == platform and player.position.distance_to(Vector3(platform.position.x,player.position.y, platform.position.z))<8:
 		player.hit(null, SLAM_HP)
 		player.get_node("CameraPivot").apply_shake()
 	doing = false
@@ -577,8 +579,8 @@ func extend():
 		return
 	animationTree.tongue_grab_start(TONGUE_GRAB_ANTIC_DUR)
 	
-	var indicCtrlr = instantiate_indicator_object(grab_indicator)
-	indicCtrlr.appear(TONGUE_GRAB_ANTIC_DUR * 0.75)
+	var indicCtrlr = instantiate_indicator_object(grab_indicator,global_position)
+	indicCtrlr.appear(TONGUE_GRAB_ANTIC_DUR * 0.75,1.02)
 	get_tree().create_tween().tween_callback(indicCtrlr.fade.bind(0.5)).set_delay(TONGUE_GRAB_ANTIC_DUR)
 	
 	time_of_extend = 0
@@ -788,8 +790,8 @@ func _on_animation_finished(anim_name):
 			look_at(Vector3(grab_target.position.x,position.y,grab_target.position.z))
 			grab_target = null
 			extend()
-	if anim_name == "G_07-ground_slam-antic":
-		animationTree.ground_slam_start()
+	#if anim_name == "G_07-ground_slam-antic":
+	#	animationTree.ground_slam_start()
 	if anim_name == "G_07-ground_slam-start":
 		animationTree.ground_slam_end()
 		ground_slam()
@@ -801,10 +803,10 @@ func _on_body_entered(body):
 	if body.is_in_group("player_projectile") and body.is_in_group("ammo_standard") and swimming:
 		hit(body, 0)
 
-func instantiate_indicator_object(indicatorScene: PackedScene) -> ToadAtkIndicatorVFXController:
+func instantiate_indicator_object(indicatorScene: PackedScene, ind_position:Vector3) -> ToadAtkIndicatorVFXController:
 	var indicRoot: ToadAtkIndicatorVFXController = indicatorScene.instantiate()
 	self.add_child(indicRoot)
-	indicRoot.global_position = self.global_position + Vector3(0, 0.1, 0)
+	indicRoot.global_position = ind_position + Vector3(0, 0.1, 0)
 	indicRoot.global_rotation = self.global_rotation
 	
 	indicRoot.setup()

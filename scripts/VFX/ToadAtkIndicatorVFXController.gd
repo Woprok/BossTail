@@ -12,7 +12,7 @@ func setup() -> void:
 	set_border_opacity(startBorderOpacity)
 	set_shapes_opacity(startShapesOpacity)
 	
-func appear(scale_in_dur: float) -> void:
+func appear(scale_in_dur: float, ind_scale: float) -> void:
 	if vfxTweener:
 		vfxTweener.kill()
 	vfxTweener = self.create_tween()
@@ -20,7 +20,7 @@ func appear(scale_in_dur: float) -> void:
 	self.scale = Vector3.ZERO
 	set_border_opacity(startBorderOpacity)
 	set_shapes_opacity(0)
-	vfxTweener.tween_property(self, "scale", Vector3.ONE, scale_in_dur).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	vfxTweener.tween_property(self, "scale", Vector3.ONE*ind_scale, scale_in_dur).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	vfxTweener.parallel().tween_method(set_shapes_opacity, 0.01, startShapesOpacity, scale_in_dur)
 
 func fade(duration: float) -> void:

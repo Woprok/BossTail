@@ -12,4 +12,5 @@ func _physics_process(_delta):
 
 func respawn():
 	launched = false
-	position = respawn_position
+	if respawn_position:
+		position = respawn_position
