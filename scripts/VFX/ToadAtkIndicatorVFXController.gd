@@ -12,7 +12,7 @@ func setup() -> void:
 	set_border_opacity(startBorderOpacity)
 	set_shapes_opacity(startShapesOpacity)
 	
-func appear(scale_in_dur: float, ind_scale: float) -> void:
+func appear(scale_in_dur: float, ind_scale: float = 1) -> void:
 	if vfxTweener:
 		vfxTweener.kill()
 	vfxTweener = self.create_tween()
