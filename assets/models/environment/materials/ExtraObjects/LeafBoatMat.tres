@@ -5,7 +5,7 @@
 [resource]
 resource_name = "LeafBoatMat"
 cull_mode = 2
-shading_mode = 0
+diffuse_mode = 3
 vertex_color_use_as_albedo = true
 albedo_color = Color(0.793894, 0.805679, 0.380645, 1)
 albedo_texture = ExtResource("1_q7xt2")
