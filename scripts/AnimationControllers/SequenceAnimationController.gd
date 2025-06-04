@@ -1,7 +1,7 @@
 extends AnimationController
 class_name SequenceAnimationController
 
-func get_anim_seq_start_len(anim_prefix: String) -> float:	
+func get_anim_seq_start_len(anim_prefix: String) -> float:
 	var antic_name: String = anim_prefix + "-antic"
 	var start_name: String = anim_prefix + "-start"
 	var antic_len: float = get_anim_length(antic_name)

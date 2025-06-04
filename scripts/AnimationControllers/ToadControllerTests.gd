@@ -26,7 +26,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		toad.rotate_y(PI)
 		
 		if !swipe_indic:
-			swipe_indic = toad.instantiate_indicator_object(toad.swipe_indicator)
+			swipe_indic = toad.instantiate_indicator_object(toad.swipe_indicator, Vector3.ZERO)
 			
 			swipe_indic.appear(0.7)
 			get_tree().create_tween().tween_callback(swipe_indic.fade.bind(0.5)).set_delay(1)

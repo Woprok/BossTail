@@ -55,10 +55,12 @@ var attack_seq_timer: Tween
 @export_group("VFX")
 @export var StunVFXController: StunVFX
 @export var HitFlashVFX: EntityHitVFX
+@export var WhirlwindVFX: WhirlwindVFXController
 @export var HitImpactVFX: PackedScene
 @export var HitImpactPos: Node3D
 @export var SlashAttackIndicator: PackedScene
 @export var BarrageLaneIndicator: PackedScene
+@export var SlashVFX: PackedScene
 
 func _ready() -> void:
 	boss_data.boss_restart()
@@ -185,6 +187,7 @@ func slash():
 	#indicCtrlr.look_at(indicCtrlr.global_position + flat(DummyEntity.global_basis.z), Vector3.UP)
 	indicCtrlr.appear(SLASH_ANTIC_TIME)
 	get_tree().create_tween().tween_callback(indicCtrlr.fade.bind(0.5)).set_delay(SLASH_ANTIC_TIME)
+	
 	#start slash anim sequence
 	DummyAnimationController.great_slash_start(-1)
 	if attack_seq_timer != null and attack_seq_timer.is_running():
@@ -192,7 +195,12 @@ func slash():
 		attack_seq_timer.kill()
 	attack_seq_timer = get_tree().create_tween()
 	attack_seq_timer.tween_callback(DummyAnimationController.great_slash_play_start).set_delay(SLASH_ANTIC_TIME)
-
+	create_tween().tween_callback(spawn_slash_vfx).set_delay(SLASH_ANTIC_TIME)
+	
+func spawn_slash_vfx():
+	var slash_vfx_node: Node3D = SlashVFX.instantiate()
+	slash_vfx_node.global_rotation = DummyEntity.global_rotation
+	DummyEntity.add_child(slash_vfx_node)
 
 func whirlwind():
 	barrage_time = 0
@@ -204,6 +212,7 @@ func whirlwind():
 	velocity.y = speed
 	
 	DummyAnimationController.whirlwind_start(-1)
+	WhirlwindVFX.appear_whirlwind(1.5)
 	
 
 func show_box():
@@ -226,6 +235,9 @@ func push():
 	
 	# play whirlwind start anim
 	DummyAnimationController.whirlwind_end_antic()
+	
+	WhirlwindVFX.shockwave()
+	WhirlwindVFX.fade_whirlwind(0.15)
 	
 func throw():
 	# Anticipation Phase --------------------

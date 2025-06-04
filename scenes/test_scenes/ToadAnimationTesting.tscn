@@ -265,6 +265,9 @@ bones/94/rotation = Quaternion(0.046469, -0.536984, -0.0492355, 0.840871)
 bones/95/rotation = Quaternion(0.00741924, 1.91767e-05, -0.00260726, 0.999969)
 bones/96/rotation = Quaternion(0.017292, -5.67362e-06, 0.00554322, 0.999835)
 
+[node name="StunImpactPos" parent="ToadBoss/Char_ToadBoss/rig_deform/Skeleton3D" index="6"]
+transform = Transform3D(-0.223544, -0.0136356, -0.974598, -0.966129, -0.129164, 0.223409, -0.128929, 0.99153, 0.0157001, 0.00507024, 0.00200549, 1.36836)
+
 [node name="Bubble" parent="ToadBoss/Char_ToadBoss" index="2" instance=ExtResource("5_50hin")]
 transform = Transform3D(0.85, 0, 0, 0, 0.85, 0, 0, 0, 1.25, 0, 0.344726, -1.97913)
 

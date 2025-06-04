@@ -12,6 +12,7 @@ enum GameLevels {
 	FROG_PHASE_2,
 	TOAD_ANIMS_TEST,
 	CHAR_TEST,
+	DUMMY_TEST,
 }
 
 @export var default_user_settings: UserSettings = preload("res://data_resources/UserSettingsDefaultInstance.tres")
@@ -25,6 +26,7 @@ enum GameLevels {
 	GameLevels.FROG_PHASE_2: "res://scenes/SecondPhase.tscn",
 	GameLevels.TOAD_ANIMS_TEST: "res://scenes/test_scenes/ToadAnimationTesting.tscn",
 	GameLevels.CHAR_TEST: "res://scenes/test_scenes/CharacterTestingArea.tscn",
+	GameLevels.DUMMY_TEST: "res://scenes/test_scenes/DummyTesting.tscn",
 }
 @export var LevelTransitions: Dictionary[GameLevels, GameLevels] = {
 	GameLevels.TUTORIAL_PHASE_1: GameLevels.FROG_PHASE_1,

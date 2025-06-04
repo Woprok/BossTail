@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://b13vq0gmycaix"]
+
+[ext_resource type="PackedScene" uid="uid://dlrq4knk1gqi7" path="res://scenes/StonePlatform.tscn" id="1_ualnn"]
+[ext_resource type="Script" uid="uid://biyboasi4la8m" path="res://scenes/test_scenes/DummyTests.gd" id="1_vds82"]
+[ext_resource type="PackedScene" uid="uid://c7e35pnktddno" path="res://scenes/characters/BigDummy.tscn" id="2_urmed"]
+[ext_resource type="PackedScene" uid="uid://dykpluj0kpp26" path="res://scenes/other/vfx/GreatSlash.tscn" id="2_vg30g"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_urmed"]
+size = Vector3(8.0896, 0.509644, 11.9229)
+
+[node name="DummyTesting" type="Node3D"]
+
+[node name="Tests" type="Node3D" parent="." node_paths=PackedStringArray("DummyAnimCtrlr", "DummyEntityNode", "Whirlwind")]
+script = ExtResource("1_vds82")
+DummyAnimCtrlr = NodePath("../Char_BigDummy/AnimationTree")
+DummyEntityNode = NodePath("../Char_BigDummy/DummyBase/GAMERIG_BigDummy")
+SlashVFX = ExtResource("2_vg30g")
+Whirlwind = NodePath("../Char_BigDummy/VFX/WhirlwindVFX")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-0.97988, 0.0457121, -0.194284, 0.00712722, 0.980812, 0.194824, 0.199462, 0.189519, -0.961404, -1.76341, 2.89222, -5.9869)
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.239104, 0)
+
+[node name="Ground" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_urmed")
+
+[node name="Platofrm" parent="." instance=ExtResource("1_ualnn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.305231, -0.583671, -0.0883607)
+
+[node name="Char_BigDummy" parent="." instance=ExtResource("2_urmed")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.189, 0)
+
+[editable path="Platofrm"]
+[editable path="Char_BigDummy"]
+[editable path="Char_BigDummy/DummyBase/GAMERIG_BigDummy/Skeleton3D/OrbHandPos/OrbFlare"]

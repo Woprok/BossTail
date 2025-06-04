@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://cexu8vsrt1jho"]
+[gd_scene load_steps=15 format=3 uid="uid://cexu8vsrt1jho"]
 
 [ext_resource type="Script" uid="uid://c3hv7v2dtx7h0" path="res://scripts/TutorialDummy.gd" id="1_lu3ac"]
 [ext_resource type="PackedScene" uid="uid://dlrb2m6f8fadf" path="res://scenes/other/vfx/ImpactVFX.tscn" id="2_5rkcl"]
 [ext_resource type="PackedScene" uid="uid://c7e35pnktddno" path="res://scenes/characters/BigDummy.tscn" id="2_f2h6d"]
 [ext_resource type="PackedScene" uid="uid://ipqvbwkp71ku" path="res://scenes/other/attack_indicators/SwipeIndicator.tscn" id="3_wk3td"]
 [ext_resource type="PackedScene" uid="uid://bu1jujqa8g7eb" path="res://scenes/other/attack_indicators/TongueGrabIndicator.tscn" id="4_7ch85"]
+[ext_resource type="PackedScene" uid="uid://dykpluj0kpp26" path="res://scenes/other/vfx/GreatSlash.tscn" id="5_wk3td"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rfu1p"]
 albedo_color = Color(0.439216, 0.239216, 0, 1)
@@ -45,17 +46,19 @@ _data = {
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_edvls"]
 height = 0.5
 
-[node name="TutorialDummy" type="CharacterBody3D" node_paths=PackedStringArray("DummyAnimationController", "DummyEntity", "DummyBase", "StunVFXController", "HitFlashVFX", "HitImpactPos") groups=["enemy"]]
+[node name="TutorialDummy" type="CharacterBody3D" node_paths=PackedStringArray("DummyAnimationController", "DummyEntity", "DummyBase", "StunVFXController", "HitFlashVFX", "WhirlwindVFX", "HitImpactPos") groups=["enemy"]]
 script = ExtResource("1_lu3ac")
 DummyAnimationController = NodePath("Char_BigDummy/AnimationTree")
 DummyEntity = NodePath("Char_BigDummy/DummyBase/GAMERIG_BigDummy")
 DummyBase = NodePath("Char_BigDummy/DummyBase")
 StunVFXController = NodePath("Char_BigDummy/VFX/StunVFXController")
 HitFlashVFX = NodePath("Char_BigDummy/VFX/HitFlashVFX")
+WhirlwindVFX = NodePath("Char_BigDummy/VFX/WhirlwindVFX")
 HitImpactVFX = ExtResource("2_5rkcl")
-HitImpactPos = NodePath("Char_BigDummy/DummyBase/GAMERIG_BigDummy/Skeleton3D/BonePosAttachment/HitImpactPos")
+HitImpactPos = NodePath("Char_BigDummy/DummyBase/GAMERIG_BigDummy/Skeleton3D/JawPos/HitImpactPos")
 SlashAttackIndicator = ExtResource("3_wk3td")
 BarrageLaneIndicator = ExtResource("4_7ch85")
+SlashVFX = ExtResource("5_wk3td")
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="." groups=["enemy"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01015, 0)
@@ -116,28 +119,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="Skeleton3D" parent="Char_BigDummy/DummyBase/GAMERIG_BigDummy" index="0"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
-bones/0/rotation = Quaternion(1.54543e-08, -0.707107, 1.54543e-08, 0.707107)
-bones/1/rotation = Quaternion(3.55271e-15, 0.707107, -3.09086e-08, 0.707107)
-bones/2/position = Vector3(-4.1051e-11, 0.691973, -3.03738e-08)
-bones/2/rotation = Quaternion(2.71051e-20, 1, -4.37114e-08, -3.53257e-06)
-bones/3/rotation = Quaternion(-0.496666, 0.503308, -0.496625, 0.503356)
-bones/4/rotation = Quaternion(0.965916, -0.214722, 0.137344, -0.0451308)
-bones/5/rotation = Quaternion(7.10349e-08, -0.0911459, 1.3743e-07, 0.995838)
-bones/6/position = Vector3(8.26809e-08, 0.263415, 1.97906e-09)
-bones/6/rotation = Quaternion(0.865606, -0.0911458, 0.170859, 0.461764)
-bones/7/rotation = Quaternion(1.02905e-07, 0.244658, -8.98357e-08, 0.969609)
-bones/8/rotation = Quaternion(-0.0306148, 0.244779, 0.0303748, 0.968619)
-bones/9/rotation = Quaternion(0.953091, 0.245245, -0.162397, -0.0714109)
-bones/10/rotation = Quaternion(-3.44976e-08, 0.12618, 1.3402e-07, 0.992007)
-bones/11/rotation = Quaternion(0.804882, 0.126179, -0.184776, 0.549637)
-bones/12/position = Vector3(6.87211e-08, 0.266345, 5.6035e-08)
-bones/12/rotation = Quaternion(9.71803e-08, -0.398241, -7.87915e-08, 0.917281)
-bones/13/position = Vector3(8.84402e-09, 0.266345, 4.81996e-08)
-bones/13/rotation = Quaternion(-0.28633, -0.785877, -0.29162, 0.464081)
-bones/14/rotation = Quaternion(-0.00248809, 0.675566, -0.0139195, 0.737164)
-
-[node name="BonePosAttachment" parent="Char_BigDummy/DummyBase/GAMERIG_BigDummy/Skeleton3D" index="3"]
-transform = Transform3D(-8.89549e-05, 6.5701e-07, -1, -0.999911, 0.0133726, 8.90195e-05, 0.0133727, 0.999911, -4.45048e-07, -0.00245756, 1.91921, -0.0161201)
 
 [node name="HitFlashVFX" parent="Char_BigDummy/VFX" index="1"]
 HitFlashDuration = 0.2
@@ -149,3 +130,4 @@ HitFlashPeakBlendValue = 0.8
 [connection signal="body_entered" from="ground" to="." method="_on_ground_body_entered"]
 
 [editable path="Char_BigDummy"]
+[editable path="Char_BigDummy/DummyBase/GAMERIG_BigDummy/Skeleton3D/OrbHandPos/OrbFlare"]

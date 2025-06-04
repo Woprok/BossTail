@@ -27,7 +27,7 @@ func barrage_end():
 func great_slash_play_start():
 	state_machine.start("Great_Slash_Start")
 	
-func great_slash_start(antic_dur: float = 0, end_time: float = -1):	
+func great_slash_start(antic_dur: float = 0, end_time: float = -1):
 	state_machine.travel("Great_Slash_Antic")
 	if antic_dur >= 0:
 		seq_anim_start(AnimSeqPrefixes.get(SEQ_ANIM.SLASH), antic_dur, end_time, "great_slash_end")
