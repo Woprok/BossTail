@@ -3,7 +3,7 @@ class_name PebblePlatformSpawner
 
 # just spawn stone, it should be good enough to pick any valid platform center
 func _select_spawn_position() -> Vector3:
-	var platforms: Array[Node] = get_tree().get_nodes_in_group("stone_platform")
+	var platforms: Array[Node] = get_tree().get_nodes_in_group("pebble_respawn_platform")
 	var random_platform = platforms.pick_random()
 	
 	var x = random_platform.position.x + randf_range(-distance_x, distance_x)
