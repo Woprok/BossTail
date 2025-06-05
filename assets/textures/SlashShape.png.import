@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d1ng8h3hkg4vp"
-path.s3tc="res://.godot/imported/SlashShape.png-40c318f8b08553937b0a4bb423fa7c96.s3tc.ctex"
+path="res://.godot/imported/SlashShape.png-40c318f8b08553937b0a4bb423fa7c96.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://assets/textures/SlashShape.png"
-dest_files=["res://.godot/imported/SlashShape.png-40c318f8b08553937b0a4bb423fa7c96.s3tc.ctex"]
+dest_files=["res://.godot/imported/SlashShape.png-40c318f8b08553937b0a4bb423fa7c96.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

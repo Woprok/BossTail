@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dk2hxcjphtx8h"
-path.s3tc="res://.godot/imported/acid_puddle.png-473d094ba52ec3f76f94fb506f2947c0.s3tc.ctex"
+path="res://.godot/imported/acid_puddle.png-473d094ba52ec3f76f94fb506f2947c0.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://assets/textures/acid_puddle.png"
-dest_files=["res://.godot/imported/acid_puddle.png-473d094ba52ec3f76f94fb506f2947c0.s3tc.ctex"]
+dest_files=["res://.godot/imported/acid_puddle.png-473d094ba52ec3f76f94fb506f2947c0.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

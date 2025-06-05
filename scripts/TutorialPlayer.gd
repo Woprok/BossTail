@@ -17,6 +17,7 @@ func _exit_tree() -> void:
 	
 func _physics_process(delta):
 	var freeze = respawn_freeze(delta)
+	#print(global_position)
 	if position.y < -10:
 		respawn()
 		

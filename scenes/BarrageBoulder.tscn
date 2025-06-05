@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://ds2km4lw3xrqp"]
+
+[ext_resource type="Script" uid="uid://ctb5gws6dmnnb" path="res://scripts/BarrageBoulder.gd" id="1_o6cjy"]
+[ext_resource type="Texture2D" uid="uid://ccsh5o075tbrl" path="res://assets/textures/BoulderAlbedo.png" id="2_78b46"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1n3tq"]
+shading_mode = 0
+albedo_texture = ExtResource("2_78b46")
+
+[sub_resource type="SphereMesh" id="SphereMesh_o6cjy"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_p8bh4"]
+size = Vector3(3.5, 3.5, 3.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_75urv"]
+size = Vector3(3, 1, 3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dk2q6"]
+size = Vector3(4, 4, 4)
+
+[node name="Boulder" type="CharacterBody3D" groups=["box"]]
+collision_layer = 128
+script = ExtResource("1_o6cjy")
+RollSpeed = 120.0
+
+[node name="BoulderMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_1n3tq")
+mesh = SubResource("SphereMesh_o6cjy")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_p8bh4")
+
+[node name="under" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="under"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46268, 0)
+shape = SubResource("BoxShape3D_75urv")
+
+[node name="hit" type="Area3D" parent="."]
+collision_mask = 135
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hit"]
+shape = SubResource("BoxShape3D_dk2q6")
+disabled = true
+
+[connection signal="body_entered" from="under" to="." method="_on_body_entered"]
+[connection signal="area_entered" from="hit" to="." method="_on_hit_area_entered"]
+[connection signal="body_entered" from="hit" to="." method="_on_hit_body_entered"]

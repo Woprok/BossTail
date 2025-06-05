@@ -338,6 +338,7 @@ shadow_mesh = SubResource("ArrayMesh_07swx")
 [node name="GreatSlash" type="Node3D"]
 
 [node name="great_slash_mesh" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="SlashMesh" type="MeshInstance3D" parent="great_slash_mesh"]
 material_override = SubResource("ShaderMaterial_tipci")

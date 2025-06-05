@@ -1,12 +1,15 @@
-[gd_scene load_steps=5 format=4 uid="uid://bpt5c0nqxcwqa"]
+[gd_scene load_steps=6 format=4 uid="uid://bpt5c0nqxcwqa"]
 
 [ext_resource type="Script" uid="uid://vfdntqxsvbco" path="res://scenes/player/ProjectileBase.gd" id="1_ucgoj"]
+[ext_resource type="Texture2D" uid="uid://ccsh5o075tbrl" path="res://assets/textures/BoulderAlbedo.png" id="2_wseep"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_2f775"]
 radius = 0.1
 
 [sub_resource type="ORMMaterial3D" id="ORMMaterial3D_8mq7h"]
-albedo_color = Color(0.117647, 0.117647, 0.117647, 1)
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("2_wseep")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_ucgoj"]
 _surfaces = [{

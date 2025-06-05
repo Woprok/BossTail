@@ -12,6 +12,7 @@ var actual_volley = 1
 @export var DummyBase: Node3D
 @export_group("Attack params")
 @export var BOXES_IN_VOLLEY=4
+@export var BoulderSpawnPos: Node3D
 
 var barrage_dirs: Array[Vector3]
 
@@ -45,12 +46,14 @@ var volley_time = 0
 var box_size_div = 2
 @export var boss_data: BossDataModel = preload("res://data_resources/DummyBossDataModel.tres")
 var BOX = preload("res://scenes/Crates.tscn")
+@export var BarrageBoulder: PackedScene
 
 @export_group("AttackTimings")
 @export var SLASH_ANTIC_TIME: float = 0.5
 @export var BARRAGE_ANTIC_TIME: float = 0.2
 @export var WHIRLWIND_ANTIC_TIME: float = 0.6667
 var attack_seq_timer: Tween
+var channelling_whirlwind: bool 
 
 @export_group("VFX")
 @export var StunVFXController: StunVFX
@@ -61,6 +64,10 @@ var attack_seq_timer: Tween
 @export var SlashAttackIndicator: PackedScene
 @export var BarrageLaneIndicator: PackedScene
 @export var SlashVFX: PackedScene
+@export var BarrageSummonVFX: PackedScene
+@export var EyesMesh: MeshInstance3D
+var eyes_overlay_mat: StandardMaterial3D
+var eyes_tween: Tween
 
 func _ready() -> void:
 	boss_data.boss_restart()
@@ -71,6 +78,7 @@ func _ready() -> void:
 	BARRAGE_TIME = BARRAGE_TIME_MAX
 	
 	DummyAnimationController.idle()
+	eyes_overlay_mat = EyesMesh.material_overlay
 
 func _physics_process(delta):
 	if not active:
@@ -99,7 +107,7 @@ func _physics_process(delta):
 			
 	if not stopped:
 		doing = true
-		rotate_y(delta*20)
+		#DummyEntity.rotate_y(-delta*10)
 		whirlwind_time += delta
 		
 	if whirlwind_time>=WHIRLWIND_TIME:
@@ -147,8 +155,11 @@ func hit(_collision, hp):
 	if not stopped:
 		stopped = true
 		stop_time = 0
-		#i assume this is where stun happens
-		StunVFXController.play_stun_effect(STUNNED_TIME)
+		
+		#if channelling_whirlwind:
+		#	WhirlwindVFX.fade_whirlwind(1.0)
+		#	channelling_whirlwind = false
+		#StunVFXController.play_stun_effect(STUNNED_TIME)
 		return
 		
 	if boss_data.get_current_health()==100:
@@ -178,7 +189,6 @@ func hit(_collision, hp):
 		last_whirlwind = 0
 		whirlwind()
 
-
 func slash():
 	$AnimationPlayer.play("slash",-1,3)
 	
@@ -187,6 +197,9 @@ func slash():
 	#indicCtrlr.look_at(indicCtrlr.global_position + flat(DummyEntity.global_basis.z), Vector3.UP)
 	indicCtrlr.appear(SLASH_ANTIC_TIME)
 	get_tree().create_tween().tween_callback(indicCtrlr.fade.bind(0.5)).set_delay(SLASH_ANTIC_TIME)
+	#eyes flash
+	eyes_flash(SLASH_ANTIC_TIME/2.0)
+	get_tree().create_tween().tween_callback(eyes_fade.bind(0.15)).set_delay(SLASH_ANTIC_TIME)
 	
 	#start slash anim sequence
 	DummyAnimationController.great_slash_start(-1)
@@ -199,8 +212,8 @@ func slash():
 	
 func spawn_slash_vfx():
 	var slash_vfx_node: Node3D = SlashVFX.instantiate()
-	slash_vfx_node.global_rotation = DummyEntity.global_rotation
 	DummyEntity.add_child(slash_vfx_node)
+	slash_vfx_node.global_rotation = DummyEntity.global_rotation
 
 func whirlwind():
 	barrage_time = 0
@@ -213,6 +226,7 @@ func whirlwind():
 	
 	DummyAnimationController.whirlwind_start(-1)
 	WhirlwindVFX.appear_whirlwind(1.5)
+	channelling_whirlwind = true
 	
 
 func show_box():
@@ -224,7 +238,6 @@ func show_box():
 	box.position = Vector3(position.x,-4.5,position.z)
 	box.scale/=2
 	get_parent().add_child.call_deferred(box)
-	
 	
 func push():
 	var player = get_parent().get_node("Player")
@@ -239,6 +252,11 @@ func push():
 	WhirlwindVFX.shockwave()
 	WhirlwindVFX.fade_whirlwind(0.15)
 	
+	eyes_flash(0.1)
+	get_tree().create_tween().tween_callback(eyes_fade.bind(0.25)).set_delay(0.2)
+	
+	channelling_whirlwind = false
+	
 func throw():
 	# Anticipation Phase --------------------
 	DummyAnimationController.barrage_start(-1)
@@ -247,7 +265,11 @@ func throw():
 		attack_seq_timer.kill()
 	attack_seq_timer = get_tree().create_tween()
 	attack_seq_timer.tween_callback(DummyAnimationController.barrage_play_start).set_delay(BARRAGE_ANTIC_TIME)
-	# generate and store directions for barrage boulders
+	
+	eyes_flash(BARRAGE_ANTIC_TIME)
+	get_tree().create_tween().tween_callback(eyes_fade.bind(0.15)).set_delay(BARRAGE_ANTIC_TIME)
+	
+	# generate and store directions for barrage boulders and spawn indicators
 	var init_dir = (get_parent().get_node("Player").position - position).normalized()
 	barrage_dirs.clear()
 	for i in range(BOXES_IN_VOLLEY):
@@ -255,25 +277,34 @@ func throw():
 		barrage_dirs.append(dir)
 		# spawn boulder travel indicator
 		var indicCtrlr = instantiate_indicator_object(BarrageLaneIndicator)
-		indicCtrlr.indicMesh.scale = Vector3(5.0,5.0,8.0)
+		indicCtrlr.indicMesh.scale = Vector3(2.5,2.5,4.0)
 		var look_pos: Vector3 = indicCtrlr.position + flat(dir)
 		indicCtrlr.look_at(look_pos, Vector3.UP)
-		indicCtrlr.appear(BARRAGE_ANTIC_TIME * 3)
-		get_tree().create_tween().tween_callback(indicCtrlr.fade.bind(0.5)).set_delay(BARRAGE_ANTIC_TIME)
+		indicCtrlr.appear(BARRAGE_ANTIC_TIME * 2)
+		get_tree().create_tween().tween_callback(indicCtrlr.fade.bind(0.5)).set_delay(BARRAGE_ANTIC_TIME + 0.75)
 		
 	# Barrage release phase --------------------
+	
+	#Barrage summon vfx
+	var summonVFX: Node3D = BarrageSummonVFX.instantiate()
+	self.add_child(summonVFX)
+	summonVFX.global_position = BoulderSpawnPos.global_position
+	
 	actual_volley+=1
 	for i in range(BOXES_IN_VOLLEY):
 		var dir = barrage_dirs[i]
-		var box = BOX.instantiate()
-		box.thrown = true
-		box.scale /= box_size_div
-		box.get_node("hit/CollisionShape3D").disabled = false
-		get_parent().add_child(box)
-		box.position = position+dir.normalized()*6
-		box.position.y=-4.8
-		box.velocity = dir.normalized()*12
-		box.velocity.y = 0
+		var boulder: BarrageBoulder = BarrageBoulder.instantiate()
+		boulder.thrown = true
+		boulder.scale /= box_size_div
+		boulder.get_node("hit/CollisionShape3D").disabled = false
+		get_parent().add_child(boulder)
+		boulder.position = BoulderSpawnPos.global_position
+		
+		boulder.spawn_drop(DummyBase.global_position.y)
+		#boulder.position = position+dir.normalized()*6
+		#boulder.position.y=-4.8
+		boulder.velocity = dir.normalized()*12
+		boulder.velocity.y = 0
 	if actual_volley<num_of_volley:
 		doing = true
 	else:
@@ -304,7 +335,14 @@ func _on_box_hit(body: Node3D) -> void:
 		doing = false
 		jump = true
 		box_hit = true
-
+		
+		if channelling_whirlwind:
+			WhirlwindVFX.fade_whirlwind(1.0)
+			channelling_whirlwind = false
+			#revert to idle
+			DummyAnimationController.idle()
+			
+		StunVFXController.play_stun_effect(STUNNED_TIME)
 
 func _on_ground_body_entered(_body: Node3D) -> void:
 	if velocity.y<0:
@@ -327,3 +365,15 @@ func instantiate_indicator_object(indicatorScene: PackedScene) -> ToadAtkIndicat
 	
 	indicRoot.setup()
 	return indicRoot
+
+func eyes_flash(dur: float):
+	eyes_tween_color(dur, Color.RED)
+	
+func eyes_fade(dur: float):
+	eyes_tween_color(dur, Color.TRANSPARENT)
+
+func eyes_tween_color(dur: float, color: Color):
+	if eyes_tween != null and eyes_tween.is_running():
+		eyes_tween.kill()
+	eyes_tween = create_tween()
+	eyes_tween.tween_property(eyes_overlay_mat, "albedo_color", color, dur)

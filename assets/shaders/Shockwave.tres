@@ -144,7 +144,6 @@ void fragment() {
 
 }
 "
-graph_offset = Vector2(-435.459, 93.1462)
 modes/cull = 2
 flags/unshaded = true
 preview_params/ShapeMask = "Resource(\"res://assets/textures/SlashShape.png\")"

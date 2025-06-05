@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=4 uid="uid://c7e35pnktddno"]
+[gd_scene load_steps=65 format=4 uid="uid://c7e35pnktddno"]
 
 [ext_resource type="Material" uid="uid://b5wrwyx1dgjd7" path="res://assets/materials/dummy_unlit_overlay_base.tres" id="1_0dkp3"]
 [ext_resource type="Material" uid="uid://b61erms3pe8ny" path="res://assets/materials/dummy_unlit_overlay_barrel.tres" id="2_0dkp3"]
@@ -2692,6 +2692,14 @@ advance_mode = 2
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_a1u7w"]
 advance_mode = 2
 
+[sub_resource type="Curve" id="Curve_hjyvm"]
+_data = [Vector2(0, 0), 0.0, 1.00474, 0, 0, Vector2(1, 1), 0.983163, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dmcij"]
+xfade_time = 0.15
+xfade_curve = SubResource("Curve_hjyvm")
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_dmcij"]
 states/Barrage_Antic/node = SubResource("AnimationNodeAnimation_f4r54")
 states/Barrage_Antic/position = Vector2(236, -65)
@@ -2708,13 +2716,13 @@ states/Idle/node = SubResource("AnimationNodeAnimation_7gpk3")
 states/Idle/position = Vector2(342, 91)
 states/Start/position = Vector2(116, 91)
 states/Whirlwind_Antic/node = SubResource("AnimationNodeAnimation_73w1k")
-states/Whirlwind_Antic/position = Vector2(216, 207)
+states/Whirlwind_Antic/position = Vector2(150, 220)
 states/Whirlwind_End/node = SubResource("AnimationNodeAnimation_lya4c")
 states/Whirlwind_End/position = Vector2(466, 391)
 states/Whirlwind_Start/node = SubResource("AnimationNodeAnimation_dyksf")
 states/Whirlwind_Start/position = Vector2(315, 295)
-transitions = ["Idle", "Whirlwind_Antic", SubResource("AnimationNodeStateMachineTransition_c0co1"), "Whirlwind_Antic", "Whirlwind_Start", SubResource("AnimationNodeStateMachineTransition_3um5l"), "Whirlwind_Start", "Whirlwind_End", SubResource("AnimationNodeStateMachineTransition_ty4jl"), "Whirlwind_End", "Idle", SubResource("AnimationNodeStateMachineTransition_te4ci"), "Idle", "Great_Slash_Antic", SubResource("AnimationNodeStateMachineTransition_0dkp3"), "Great_Slash_Antic", "Great_Slash_Start", SubResource("AnimationNodeStateMachineTransition_ntlsc"), "Great_Slash_Start", "Great_Slash_End", SubResource("AnimationNodeStateMachineTransition_sasjf"), "Great_Slash_End", "Idle", SubResource("AnimationNodeStateMachineTransition_lc360"), "Idle", "Barrage_Antic", SubResource("AnimationNodeStateMachineTransition_4i46t"), "Barrage_Antic", "Barrage_Start", SubResource("AnimationNodeStateMachineTransition_hjyvm"), "Barrage_Start", "Idle", SubResource("AnimationNodeStateMachineTransition_2b34w"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_a1u7w")]
-graph_offset = Vector2(75, -17)
+transitions = ["Idle", "Whirlwind_Antic", SubResource("AnimationNodeStateMachineTransition_c0co1"), "Whirlwind_Antic", "Whirlwind_Start", SubResource("AnimationNodeStateMachineTransition_3um5l"), "Whirlwind_Start", "Whirlwind_End", SubResource("AnimationNodeStateMachineTransition_ty4jl"), "Whirlwind_End", "Idle", SubResource("AnimationNodeStateMachineTransition_te4ci"), "Idle", "Great_Slash_Antic", SubResource("AnimationNodeStateMachineTransition_0dkp3"), "Great_Slash_Antic", "Great_Slash_Start", SubResource("AnimationNodeStateMachineTransition_ntlsc"), "Great_Slash_Start", "Great_Slash_End", SubResource("AnimationNodeStateMachineTransition_sasjf"), "Great_Slash_End", "Idle", SubResource("AnimationNodeStateMachineTransition_lc360"), "Idle", "Barrage_Antic", SubResource("AnimationNodeStateMachineTransition_4i46t"), "Barrage_Antic", "Barrage_Start", SubResource("AnimationNodeStateMachineTransition_hjyvm"), "Barrage_Start", "Idle", SubResource("AnimationNodeStateMachineTransition_2b34w"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_a1u7w"), "Whirlwind_Antic", "Idle", SubResource("AnimationNodeStateMachineTransition_dmcij")]
+graph_offset = Vector2(-95, 89)
 
 [node name="Char_BigDummy" type="Node3D"]
 
@@ -2872,13 +2880,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.385506, 0, -4.08251e-12)
 [node name="HitImpactPos" type="Node3D" parent="DummyBase/GAMERIG_BigDummy/Skeleton3D/JawPos"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.751398, 0, 5.32282e-10)
 
+[node name="BoulderSpawnPos" type="Node3D" parent="DummyBase/GAMERIG_BigDummy/Skeleton3D/JawPos"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.21694, 1.06151, -9.33342e-12)
+
 [node name="OrbHandPos" type="BoneAttachment3D" parent="DummyBase/GAMERIG_BigDummy/Skeleton3D"]
-transform = Transform3D(-0.098817, 0.0467056, -0.994009, -0.665429, 0.73961, 0.100904, 0.739891, 0.671413, -0.0420068, 0.546075, 1.40744, 0.433252)
+transform = Transform3D(-0.098817, 0.0467056, -0.994009, -0.665429, 0.73961, 0.100904, 0.739891, 0.671413, -0.0420067, 0.546075, 1.40744, 0.433252)
 bone_name = "DEF-hand.L"
 bone_idx = 8
 
 [node name="OrbFlare" parent="DummyBase/GAMERIG_BigDummy/Skeleton3D/OrbHandPos" instance=ExtResource("15_4i46t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.118571, 9.31323e-10)
+
+[node name="Flare" parent="DummyBase/GAMERIG_BigDummy/Skeleton3D/OrbHandPos/OrbFlare" index="0"]
+local_coords = true
 
 [node name="BaseOutline" type="MeshInstance3D" parent="DummyBase"]
 mesh = SubResource("ArrayMesh_7gpk3")

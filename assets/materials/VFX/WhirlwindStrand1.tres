@@ -1,12 +1,12 @@
 [gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://cx7ka13c2fq16"]
 
 [ext_resource type="Shader" uid="uid://c582b28a7vbvi" path="res://assets/shaders/WhirlwindStrand.tres" id="1_571xv"]
-[ext_resource type="Texture2D" uid="uid://c8t8qbwq5vhdm" path="res://assets/textures/WhirlwindStrand.png" id="2_7tbmg"]
+[ext_resource type="Texture2D" uid="uid://bqkmmjs3pkp42" path="res://assets/textures/WhirlwindStream.png" id="2_571xv"]
 
 [resource]
 render_priority = 0
 shader = ExtResource("1_571xv")
 shader_parameter/Color = Color(0.80687, 0.71267, 0.702618, 0.205)
 shader_parameter/ScrollSpeed = Vector2(-1.5, 0)
-shader_parameter/AlbedoMask = ExtResource("2_7tbmg")
+shader_parameter/AlbedoMask = ExtResource("2_571xv")
 shader_parameter/Opacity = 0.0
