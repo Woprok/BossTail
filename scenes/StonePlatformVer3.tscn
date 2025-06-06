@@ -60,9 +60,9 @@ shape = SubResource("ConvexPolygonShape3D_7mjmf")
 [node name="boulders" type="Node3D" parent="."]
 
 [node name="boulder1" parent="boulders" instance=ExtResource("3_w5a4w")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, -4, -3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -4, -2.5)
 visible = false
 
 [node name="boulder2" parent="boulders" instance=ExtResource("3_w5a4w")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -4, 4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, -4, 3)
 visible = false

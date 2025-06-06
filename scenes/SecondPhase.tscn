@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://byq2mhcwqgxom" path="res://scenes/Lily.tscn" id="4_hj8bh"]
 [ext_resource type="PackedScene" uid="uid://d1s2ioqlu8tsa" path="res://scenes/projectile_spawners/PebblePlatformSpawner.tscn" id="4_sahdt"]
 [ext_resource type="PackedScene" uid="uid://catdqfnxrr054" path="res://scenes/Flower.tscn" id="5_xj70a"]
-[ext_resource type="PackedScene" uid="uid://7wtg3h4cmetl" path="res://scenes/SpikeDanger.tscn" id="6_2qjty"]
+[ext_resource type="PackedScene" path="res://scenes/SpikeDanger.tscn" id="6_2qjty"]
 [ext_resource type="PackedScene" uid="uid://cnfgurppt1mae" path="res://scenes/environment/GrassClump_1.tscn" id="7_0b6fy"]
 [ext_resource type="PackedScene" uid="uid://ca6njqftxrpbi" path="res://scenes/LilyVer2.tscn" id="7_m8ndt"]
 [ext_resource type="PackedScene" uid="uid://dlrq4knk1gqi7" path="res://scenes/StonePlatform.tscn" id="7_pliwi"]

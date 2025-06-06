@@ -249,12 +249,13 @@ func _on_standing(area):
 		launched = false
 		grabbed = false
 		
-
 func _on_leaving(area):
 	if area.is_in_group("aciding_liquid"):
 		aciding_liquid -= 1
 	if area.is_in_group("spike"):
 		spike_hit = false
+	if area.is_in_group("boulder"):
+		collision_mask &= ~(1 << 4)
 
 func _on_frog_standing(area: Area3D) -> void:
 	if area.is_in_group("body") and area.get_parent().is_in_group("enemy"):
@@ -262,3 +263,8 @@ func _on_frog_standing(area: Area3D) -> void:
 		launched = true
 		direction = away
 		direction.y = 0.2  
+
+
+func _on_body_standing(body: Node3D) -> void:
+	if body.is_in_group("boulder"):
+		collision_mask |= 1 << 4
