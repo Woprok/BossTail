@@ -192,7 +192,7 @@ transform = Transform3D(-0.51607, 0, 0.856546, 0, 1, 0, -0.856546, 0, -0.51607, 
 [node name="spike4" parent="lilyPlatforms/lily6_alt" instance=ExtResource("6_2qjty")]
 transform = Transform3D(-0.51607, 0, 0.856546, 0, 1, 0, -0.856546, 0, -0.51607, -1.74202, 0.68757, 1.69244)
 
-[node name="lily1_alt" parent="lilyPlatforms" node_paths=PackedStringArray("neighbors") instance=ExtResource("7_m8ndt")]
+[node name="lily1_alt" parent="lilyPlatforms" node_paths=PackedStringArray("neighbors") groups=["flower_lily"] instance=ExtResource("7_m8ndt")]
 transform = Transform3D(0.886664, 0, 0.462414, 0, 1, 0, -0.462414, 0, 0.886664, -6.84699, 0, -33.9463)
 neighbors = [NodePath("../../stonePlatforms/stonePlatformV3_1"), NodePath("../lily2"), NodePath("../../shards/shard4")]
 radius = 6

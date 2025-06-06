@@ -6,7 +6,7 @@ var sinked = false
 @export var radius = 7
 var objects = 0
 var time=0
-var RESPAWN_TIME = 10
+@export var RESPAWN_TIME = 5
 
 func _process(delta):
 	if is_in_group("big_lily"):
@@ -15,6 +15,7 @@ func _process(delta):
 		if not get_node("Flower").has_node("fly"):
 			time+=delta
 			if time>RESPAWN_TIME:
+				time = 0
 				var fly = Fly.instantiate()
 				fly.name = "fly"
 				fly.flying = true
