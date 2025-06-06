@@ -90,6 +90,6 @@ func _on_body_entered(body):
 	if body.is_in_group("player_projectile") and body.is_in_group("ammo_standard"):
 		dispersed = true
 		dispersed_time = 0
-		body.respawn()
+		body.destroy()
 	if body.is_in_group("frog_bubble"):
 		body.queue_free()

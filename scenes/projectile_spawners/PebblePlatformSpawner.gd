@@ -5,6 +5,8 @@ class_name PebblePlatformSpawner
 func _select_spawn_position() -> Vector3:
 	var platforms: Array[Node] = get_tree().get_nodes_in_group("pebble_respawn_platform")
 	var random_platform = platforms.pick_random()
+	while not random_platform.visible:
+		random_platform = platforms.pick_random()
 	
 	var x = random_platform.position.x + randf_range(-distance_x, distance_x)
 	var y = random_platform.position.y + 2

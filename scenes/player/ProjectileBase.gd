@@ -22,8 +22,11 @@ func _physics_process(delta):
 	if position.y < KILL_ZONE:
 		destroy()
 	elif collision:
-		velocity = Vector3(0,0,0)
-		_on_hit(collision)
+		if spawner:
+			velocity = Vector3(-2,-1,-2)
+		else:
+			velocity = Vector3(0,0,0)
+			_on_hit(collision)
 
 func shoot(origin, end, result) -> void:
 	if result:
