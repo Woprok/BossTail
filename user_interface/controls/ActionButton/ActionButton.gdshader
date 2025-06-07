@@ -14,12 +14,12 @@ void fragment() {
 	bool is_out_color = distance(base_color.rgb, out_color.rgb) < 0.05;
     if (dist > 0.50) {
         discard;
-    }    
+    }
 	else if (dist > 0.47 && (is_target_color || is_out_color)) {
         COLOR = border_color;
     }
 	else {
-		
+
 		float cutoff = 1.0 - progress;
 		bool in_progress_zone = UV.y > cutoff;
 	    // Show only if within fill range

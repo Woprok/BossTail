@@ -1,55 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://catdqfnxrr054"]
+[gd_scene load_steps=3 format=3 uid="uid://catdqfnxrr054"]
 
 [ext_resource type="PackedScene" uid="uid://cghwxumcrmfcs" path="res://scenes/Fly.tscn" id="1_ld187"]
 [ext_resource type="PackedScene" uid="uid://cy0xtlleeu1q" path="res://scenes/environment/LilyFlower.tscn" id="2_sae6b"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_byps0"]
-albedo_color = Color(0, 0, 0, 1)
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_6kfsl"]
-material = SubResource("StandardMaterial3D_byps0")
-top_radius = 0.4
-bottom_radius = 0.4
-height = 0.2
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lohgm"]
-albedo_color = Color(1, 1, 0, 1)
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_2xpvf"]
-material = SubResource("StandardMaterial3D_lohgm")
-height = 0.1
-
 [node name="Flower" type="Node3D"]
-
-[node name="center" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.05, 0, 0)
-visible = false
-mesh = SubResource("CylinderMesh_6kfsl")
-
-[node name="petal1" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.05, 0, -0.75)
-visible = false
-mesh = SubResource("CylinderMesh_2xpvf")
-
-[node name="petal2" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0, -0.35)
-visible = false
-mesh = SubResource("CylinderMesh_2xpvf")
-
-[node name="petal3" type="MeshInstance3D" parent="."]
-transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, 0.7, 0, 0.45)
-visible = false
-mesh = SubResource("CylinderMesh_2xpvf")
-
-[node name="petal4" type="MeshInstance3D" parent="."]
-transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, -0.2, 0, 0.7)
-visible = false
-mesh = SubResource("CylinderMesh_2xpvf")
-
-[node name="petal5" type="MeshInstance3D" parent="."]
-transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, -0.7, 0, -0.1)
-visible = false
-mesh = SubResource("CylinderMesh_2xpvf")
 
 [node name="fly" parent="." instance=ExtResource("1_ld187")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 1.3, 0)

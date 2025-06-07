@@ -138,9 +138,12 @@ func _aim_finished() -> void:
 
 
 func _on_pickup_entered(body):
+	if body.is_in_group("pickable") and body.is_in_group("ammo_special") and player_data.ammo_special.can_pick():
+		body.on_pick_up()
+		player_data.player_ammo_picked(true)
 	if body.is_in_group("pickable") and body.is_in_group("ammo_standard") and player_data.ammo_standard.can_pick():
 		body.on_pick_up()
-		player_data.player_ammo_picked()
+		player_data.player_ammo_picked(false)
 
 func shoot():
 	if player_data.ammo_special.has_any_ammo_left():
