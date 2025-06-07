@@ -130,7 +130,7 @@ var angle = 0.0
 var init_angle = 0
 
 var grab_len_max = 6*2
-var grab_len_min = 6
+var grab_len_min = 1
 
 @export var boss_data: BossDataModel = preload("res://data_resources/FrogBossDataModel.tres")
 @onready var player: PlayerBase = get_parent().get_node("Player")
@@ -561,14 +561,37 @@ func ground_slam():
 		newShards.get_node("AnimationPlayer").play("break")
 	
 func find_point_on_platform(platform_position, player_position, min_distance, max_distance):
-	var platform_top_left = Vector3(platform_position.x - 9 / 2, platform_position.y, platform.position.z - 9 / 2)
-	var platform_bottom_right =  Vector3(platform_position.x + 9 / 2, platform_position.y, platform.position.z + 9 / 2)
+	var nav_distance = 2.5 # todo split this between large and small platforms, larger could use larger area
+	var platform_top_left = Vector3(platform_position.x - nav_distance, platform_position.y, platform.position.z - nav_distance)
+	var platform_bottom_right =  Vector3(platform_position.x + nav_distance, platform_position.y, platform.position.z + nav_distance)
+	var target_point = null
 	for x in range(int(platform_top_left.x), int(platform_bottom_right.x)):
 		for z in range(int(platform_top_left.z), int(platform_bottom_right.z)):
 			var point = Vector3(x, player.position.y, z)
 			if point.distance_to(player_position) >= min_distance and point.distance_to(player_position)<=max_distance:
-				return point
-	return null
+				target_point = point
+	
+	if target_point:
+		var ray = RayCast3D.new()
+		var cast_height = 5.0  # How high above the point to start the ray
+		var ray_origin = target_point + Vector3.UP * cast_height
+
+		ray.global_position = ray_origin
+		ray.target_position = Vector3.DOWN * cast_height * 2.0  # Cast downward far enough
+
+		# Optionally add to scene tree so it can function properly
+		add_child(ray)
+		ray.force_raycast_update()
+		if ray.is_colliding():
+			var collider = ray.get_collider()
+			var collision_point = ray.get_collision_point()
+			print("✅ Hit:", collider, "at", collision_point)
+		else:
+			print("❌ No collision at", target_point)
+		# Cleanup if it's a temporary ray
+		ray.queue_free()	
+	
+	return target_point
 
 func jump_direction(target_position):
 	if target_position!=position:

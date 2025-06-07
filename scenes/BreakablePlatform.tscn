@@ -239,28 +239,28 @@ _data = {
 shape = SubResource("BoxShape3D_ra307")
 disabled = true
 
-[node name="stone1" parent="." node_paths=PackedStringArray("neighbors") groups=["platform"] instance=ExtResource("1_nhwjf")]
+[node name="stone1" parent="." node_paths=PackedStringArray("neighbors") instance=ExtResource("1_nhwjf")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -1.85986, 0, -2.01459)
 visible = false
 neighbors = [NodePath("../stone2"), NodePath("../stone3"), NodePath("../stone4")]
 radius = 6
 health = 0
 
-[node name="stone2" parent="." node_paths=PackedStringArray("neighbors") groups=["platform"] instance=ExtResource("1_nhwjf")]
+[node name="stone2" parent="." node_paths=PackedStringArray("neighbors") instance=ExtResource("1_nhwjf")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 1.92175, 0, -2.10743)
 visible = false
 neighbors = [NodePath("../stone1"), NodePath("../stone3"), NodePath("../stone4")]
 radius = 6
 health = 0
 
-[node name="stone3" parent="." node_paths=PackedStringArray("neighbors") groups=["platform"] instance=ExtResource("1_nhwjf")]
+[node name="stone3" parent="." node_paths=PackedStringArray("neighbors") instance=ExtResource("1_nhwjf")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -2.04553, 0, 1.98364)
 visible = false
 neighbors = [NodePath("../stone1"), NodePath("../stone2"), NodePath("../stone4")]
 radius = 6
 health = 0
 
-[node name="stone4" parent="." node_paths=PackedStringArray("neighbors") groups=["platform"] instance=ExtResource("1_nhwjf")]
+[node name="stone4" parent="." node_paths=PackedStringArray("neighbors") instance=ExtResource("1_nhwjf")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 2.26216, 0, 2.01459)
 visible = false
 neighbors = [NodePath("../stone1"), NodePath("../stone2"), NodePath("../stone3")]
