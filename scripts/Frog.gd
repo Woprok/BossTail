@@ -80,6 +80,8 @@ var time_doing = 0
 @export var SWIPE_DAMAGE_HP = 5
 # Player's HP lost by grab
 @export var GRAB_DAMAGE_HP = 5
+# Player's HP lost by jump on him
+@export var JUMP_DAMAGE_HP = 10
 # HP lost by leg hit
 @export var LEG_HP = 5
 # HP lost by head hit
@@ -855,3 +857,13 @@ func instantiate_indicator_object(indicatorScene: PackedScene, ind_position:Vect
 	
 	indicRoot.setup()
 	return indicRoot
+
+
+func _on_ground_player(body: Node3D) -> void:
+	move_and_slide()
+	if body.is_in_group("player") and not is_on_floor():
+		body.hit(null, JUMP_DAMAGE_HP)
+		jump_direction(position)
+		var dir = body.position - position
+		dir.y = 0
+		body.push(dir.normalized(),5)

@@ -29,6 +29,8 @@ func _physics_process(delta):
 	
 	if launched and push_length!=0 and push_start_position.distance_to(position) >= push_length:
 		launched = false
+		direction = Vector3.ZERO
+		push_length = 0
 	
 	if position.y<-3 or (is_on_floor() and position.y<-0.6):
 		respawn()
