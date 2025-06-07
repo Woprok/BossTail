@@ -3,7 +3,7 @@
 [ext_resource type="Material" uid="uid://cctvegqrour2r" path="res://assets/material.tres" id="1_i6aqx"]
 [ext_resource type="PackedScene" uid="uid://cs51pokcyuwhd" path="res://scenes/characters/Mouseketeer.tscn" id="2_d0i78"]
 [ext_resource type="Script" uid="uid://vwfgr43qq50f" path="res://scripts/TutorialPlayer.gd" id="3_mt435"]
-[ext_resource type="PackedScene" uid="uid://bgipbdnblmeyp" path="res://scenes/player/ProjectileSpawnerBase.tscn" id="4_mt435"]
+[ext_resource type="PackedScene" uid="uid://bgipbdnblmeyp" path="res://scenes/projectile_spawners/ProjectileSpawnerBase.tscn" id="4_mt435"]
 
 [node name="CharacterTestingArea" type="Node3D"]
 

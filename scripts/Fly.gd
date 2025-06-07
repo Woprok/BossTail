@@ -7,7 +7,6 @@ var time:int = 0
 var dead = false
 var groupSize = 1
 var angle = 0
-var platform:Node
 var target_position
 var split_off = false
 var split_off_time = 0
@@ -91,8 +90,3 @@ func _on_body_exited(body):
 		groupSize -= 1
 	if body.is_in_group("player"):
 		player_in_area = false
-
-
-func _on_area_entered(area):
-	if area.is_in_group("stone_platform") or area.is_in_group("lily_platform"):
-		platform = area

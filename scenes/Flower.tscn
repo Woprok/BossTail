@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://catdqfnxrr054"]
+[gd_scene load_steps=4 format=3 uid="uid://catdqfnxrr054"]
 
 [ext_resource type="PackedScene" uid="uid://cghwxumcrmfcs" path="res://scenes/Fly.tscn" id="1_ld187"]
 [ext_resource type="PackedScene" uid="uid://cy0xtlleeu1q" path="res://scenes/environment/LilyFlower.tscn" id="2_sae6b"]
+[ext_resource type="Script" uid="uid://dxwndbui7jfh3" path="res://scenes/fly/SpawnPoint3D.gd" id="3_pk8at"]
 
 [node name="Flower" type="Node3D"]
 
@@ -11,3 +12,9 @@ flying = true
 
 [node name="LilyFlower" parent="." instance=ExtResource("2_sae6b")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -0.031868, -0.85369, 0.0448563)
+
+[node name="FlySpawnPoint3D" type="Node3D" parent="."]
+script = ExtResource("3_pk8at")
+entity_to_spawn = ExtResource("1_ld187")
+min_spawn_offset = Vector3(0, 1.5, 0)
+max_spawn_offset = Vector3(0, 2, 0)

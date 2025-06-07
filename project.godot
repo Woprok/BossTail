@@ -42,6 +42,7 @@ pickable=""
 ammo_standard=""
 player_projectile=""
 ammo_special=""
+platform="area that can be reached by jumping"
 
 [gui]
 

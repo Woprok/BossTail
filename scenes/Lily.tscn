@@ -14,7 +14,7 @@ radius = 3.5
 [sub_resource type="BoxShape3D" id="BoxShape3D_ulhgx"]
 size = Vector3(7, 0.2, 7)
 
-[node name="Node3D" type="Area3D" groups=["lily_platform"]]
+[node name="Node3D" type="Area3D" groups=["lily_platform", "platform"]]
 script = ExtResource("1_rxmmy")
 
 [node name="platform" type="CSGCylinder3D" parent="." groups=["lily_platform"]]

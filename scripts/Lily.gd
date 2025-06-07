@@ -1,4 +1,5 @@
 extends Node3D
+class_name Lily
 
 var Fly = preload("res://scenes/Fly.tscn")
 @export var neighbors: Array[Node] = []
@@ -27,11 +28,11 @@ func _process(delta):
 	else:
 		sinked = false
 	if objects>0:
-		if position.y<-3:
+		if position.y < -3:
 			return
-		position.y-=delta*0.2
-	elif position.y<0:
-		position.y+=delta*0.08	
+		position.y -= delta * 0.2
+	elif position.y < 0:
+		position.y += delta * 0.08	
 
 
 func _on_body_entered(body):

@@ -132,7 +132,6 @@ var grab_len_min = 6
 
 @export var boss_data: BossDataModel = preload("res://data_resources/FrogBossDataModel.tres")
 @onready var player: PlayerBase = get_parent().get_node("Player")
-@onready var flies = get_parent().get_node("flies")
 @export var AcidSpit: PackedScene
 @export var WaterBubble: PackedScene
 
@@ -391,32 +390,17 @@ func _physics_process(delta):
 		if platform!=null and platform != player.platform and platform.is_in_group("stone_platform") and platform.health>0:
 			time_slam = 0
 		if path==[] and time_eat>=EAT_TIME:
-			if grab_target==null:
-				for fly in flies.get_children():
-					if fly.groupSize>=3 and ((fly.platform.is_in_group("big_lily")) or (not fly.platform.is_in_group("shard")) and fly.platform.is_in_group("stone_platform")):
-						grab_target = fly
-						break
+			if grab_target == null:
+				grab_target = find_eat_target()
 			elif grab_target.platform==platform:
 				if position.distance_to(grab_target.position)<grab_len_min or position.distance_to(grab_target.position)>grab_len_max:
 					var point = find_point_on_platform(platform.global_position,grab_target.global_position,grab_len_min, grab_len_max)
 					if point!=null:
 						jump_direction(point)
-						doing = true
-						time_doing = 0
-						time_eat = 0
-						time_swipe_same = 0
-						time_swipe_diff = 0
-						sluggish = true
-						grab = true
+						reset_eat_time()
 				else:
 					jump_direction(position)
-					doing = true
-					time_doing = 0
-					time_eat = 0
-					time_swipe_same = 0
-					time_swipe_diff = 0
-					sluggish = true
-					grab = true
+					reset_eat_time()
 			else:
 				if platform != grab_target.platform:
 					time_swipe_same = 0
@@ -479,6 +463,29 @@ func _physics_process(delta):
 				animationTree.spit_start(SPIT_ANTIC_DUR, SPIT_WOO_DUR)
 				bubble_spit()
 				#animationTree.spit_end()
+	
+func reset_eat_time() -> void:
+	time_doing = 0
+	time_eat = 0
+	time_swipe_same = 0
+	time_swipe_diff = 0
+	doing = true
+	sluggish = true
+	grab = true
+	
+func find_eat_target() -> Node:
+	#@onready var flies = get_parent().get_node("flies")
+	#for fly in flies.get_children():
+	#	if fly.groupSize >= 1 and ((fly.platform.is_in_group("big_lily")) or (not fly.platform.is_in_group("shard")) and fly.platform.is_in_group("stone_platform")):
+	#		return fly
+	var fly_minions: Array[Node] = get_tree().get_nodes_in_group("minion")
+	
+	for fm in fly_minions:
+		if fm.is_in_group("pickable") and fm.is_pickable():
+			return fm
+	
+	return null
+	
 	
 # spit and bubble attack
 func bubble_spit(water_bubble_instance = null):
@@ -643,8 +650,16 @@ func hit(area, health):
 			boss_data.boss_take_damage(PEBBLE_HP)
 	else:
 		sluggish = false
+		# this one is probably obsolate
 		if typeof(area) == TYPE_INT:
 			boss_data.boss_take_damage(area)
+		elif area == null:
+			boss_data.boss_take_damage(health)		
+			# just in case, I do not understand this mess
+			if HPHit >= TRIGGER_SWIMMING:
+				triggered = true
+			return
+			
 		if area.is_in_group("tongue"):
 			tongueHit += 1
 			if tongueHit>=5:

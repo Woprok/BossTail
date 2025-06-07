@@ -42,7 +42,7 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_bc55o")
 
-[node name="Node3D" type="Area3D" groups=["pebble_respawn_platform", "stone_platform"]]
+[node name="Node3D" type="Area3D" groups=["pebble_respawn_platform", "platform", "stone_platform"]]
 script = ExtResource("1_3gn8n")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

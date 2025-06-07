@@ -1,6 +1,6 @@
-[gd_scene load_steps=5 format=4 uid="uid://bbrq1wlf7c3ht"]
+[gd_scene load_steps=6 format=4 uid="uid://bbrq1wlf7c3ht"]
 
-[ext_resource type="Script" uid="uid://vfdntqxsvbco" path="res://scenes/player/ProjectileBase.gd" id="1_pkn24"]
+[ext_resource type="Script" uid="uid://bqvraw1vxbgo2" path="res://scenes/player/FlyProjectile.gd" id="1_pkn24"]
 
 [sub_resource type="ORMMaterial3D" id="ORMMaterial3D_thqv4"]
 albedo_color = Color(0.117647, 0.117647, 0.117647, 1)
@@ -28,7 +28,10 @@ _surfaces = [{
 [sub_resource type="SphereShape3D" id="SphereShape3D_kn86t"]
 radius = 0.09
 
-[node name="FlyProjectile" type="CharacterBody3D" groups=["ammo_special", "pickable", "player_projectile"]]
+[sub_resource type="SphereShape3D" id="SphereShape3D_pkn24"]
+radius = 0.2
+
+[node name="FlyProjectile" type="CharacterBody3D" groups=["ammo_special", "minion", "pickable", "player_projectile"]]
 collision_layer = 8
 collision_mask = 13
 script = ExtResource("1_pkn24")
@@ -39,3 +42,11 @@ mesh = SubResource("ArrayMesh_pkn24")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_kn86t")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_pkn24")
+
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_entered"]
+[connection signal="area_exited" from="Area3D" to="." method="_on_area_exited"]

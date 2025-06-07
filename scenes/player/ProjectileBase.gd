@@ -13,6 +13,10 @@ var KILL_ZONE: float = -50.0
 func _ready() -> void:
 	velocity.y = -1
 
+func is_pickable() -> bool:
+	# why is this not on ground ? when it's not moving ? in_on_floor() return false
+	return velocity.length() == 0.0
+
 func _physics_process(delta):
 	if is_on_floor():
 		# should be ignored, if it's just lying on the ground
