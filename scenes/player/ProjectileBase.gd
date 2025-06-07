@@ -50,7 +50,7 @@ func shoot(origin, end, result) -> void:
 		velocity.y = height
 
 func on_pick_up():
-	_notify_spawner()
+	# same as destroy, both notify spawner and remove self from existance
 	destroy()
 
 func _on_hit(collision):

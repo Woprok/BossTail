@@ -70,7 +70,9 @@ var time_doing = 0
 # time between two slams
 @export var SLAM_TIME = 5
 # time between two eatings
-@export var EAT_TIME = 20
+@export var EAT_TIME = 10
+# health restored per eating
+@export var EAT_HP_RESTORE = 20
 
 # Player's HP lost by slam 
 @export var SLAM_HP = 10
@@ -762,9 +764,13 @@ func _on_tongue_body_entered(body):
 			player.grabbed = true
 	if body.is_in_group("spike"):
 		hit(null, SPIKE_HP)
-	if body.is_in_group("fly"):
-		body.queue_free()
+	if body.is_in_group("minion"):
+		_eat_fly(body)
 
+func _eat_fly(fly_body) -> void:
+	boss_data.boss_heal(EAT_HP_RESTORE)
+	fly_body.destroy()
+	
 
 func _on_animation_finished(anim_name):
 	if anim_name=="G_03-tongue_grab-end":
