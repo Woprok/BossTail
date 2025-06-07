@@ -13,6 +13,9 @@ var STICKY_SPEED:int = 2
 var aciding_liquid:int = 0
 var grabbed: bool = false
 var launched:bool = false
+var push_start_position = Vector3(0,0,0)
+var push_length = 0
+
 @export_group("VFX")
 @export var PlayerHitVFX: EntityHitVFX
 	
@@ -23,8 +26,13 @@ func _physics_process(delta):
 	lastHit += delta
 	if spike_hit:
 		hit(null, 1)
+	
+	if launched and push_length!=0 and push_start_position.distance_to(position) >= push_length:
+		launched = false
+	
 	if position.y<-3 or (is_on_floor() and position.y<-0.6):
 		respawn()
+		
 	if grabbed:
 		velocity.y += 2.5*-9*delta
 		var _collision = move_and_collide(2.5*velocity*delta)
@@ -190,7 +198,13 @@ func launch(pos):
 	launched=true
 	direction= pos+Vector3(0,1,0)
 	direction*=2.5
-	
+
+func push(dir:Vector3, push_len:float):
+	dir.y = 0
+	launched = true
+	push_start_position = position
+	push_length = push_len
+	direction = dir.normalized()
 
 func _on_animation_finished(anim_name):
 	if anim_name == "GAME_05_lunge_right" or anim_name == "GAME_05_lunge_left_combo":

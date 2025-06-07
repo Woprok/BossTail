@@ -31,7 +31,7 @@ func _physics_process(delta):
 			collision_with_player = true
 			collision_num += 1
 			pop(collision.get_position(), true)
-			collision.get_collider().launch(transform.basis.z)
+			collision.get_collider().push(collision.get_collider().position-position,3)
 			collision.get_collider().hit(null, 5)
 			return
 		elif collision.get_collider().is_in_group("stone_platform") or collision.get_collider().is_in_group("lily_platform"):
