@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bgipbdnblmeyp"]
 
-[ext_resource type="Script" uid="uid://v3fp7djbsull" path="res://scenes/player/ProjectileSpawnerBase.gd" id="1_41f1t"]
+[ext_resource type="Script" uid="uid://v3fp7djbsull" path="res://scenes/projectile_spawners/ProjectileSpawnerBase.gd" id="1_41f1t"]
 [ext_resource type="PackedScene" uid="uid://bpt5c0nqxcwqa" path="res://scenes/player/PebbleProjectile.tscn" id="2_xsfoh"]
 
 [node name="ProjectileSpawnerBase" type="Node3D"]
@@ -8,4 +8,5 @@ script = ExtResource("1_41f1t")
 projectile = ExtResource("2_xsfoh")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
+visible = false
 size = Vector3(1, 0.1, 1)
