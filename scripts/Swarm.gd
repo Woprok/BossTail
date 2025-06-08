@@ -4,16 +4,15 @@ class_name Swarm
 @export var swarm_home: Node3D
 @export var swarm_buzz_radius: float = 7.5
 @export var swarm_chase_radius: float = 20.0
-@export var additional_radius_per_fly: float = 1.25
+@export var additional_radius_per_fly: float = 1.7
 var is_in_chase_mode: bool = false
 var target_position: Vector3
+var active = 13
 
 var player_in_area:bool = false
 var time = 0
 var speed = 5
 @onready var player = get_tree().current_scene.get_node("Player")
-@onready var bigLily = get_tree().current_scene.get_node("lilyPlatforms/largeLily")
-var active = 8
 var dispersed = false
 var dispersed_time = 0
 var TIME_OF_DISPERSED = 30
