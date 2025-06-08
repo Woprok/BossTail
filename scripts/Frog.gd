@@ -835,29 +835,33 @@ func _on_tongue_body_entered(body):
 			body.launch((body.position - position).normalized()*1.2)
 		if grab:
 			body.hit(null, GRAB_DAMAGE_HP)
-			var farestPlatform = []
-			var max = -INF
-			for p in get_parent().get_node("stonePlatforms").get_children():
-				var dist = p.position.distance_to(platform.position)
-				if dist>=max:
-					if dist == max:
-						farestPlatform.append(p)
-					else:
-						max = dist
-						farestPlatform = [p]
-			if farestPlatform==[]:
-				return
-			randomize()
-			var i = randi()%farestPlatform.size()
-			var newPlatform = farestPlatform[i]
-			var height = newPlatform.position.y - player.position.y + 10
-			height = abs(height)
-			var displacement_y = newPlatform.position.y-player.position.y
-			var displacemnt_xz = Vector3(newPlatform.position.x-player.position.x,0,newPlatform.position.z-player.position.z)
-			var velocity_y = Vector3.UP * sqrt(-2*gravity*height)
-			var velocity_xz = displacemnt_xz/(sqrt(-2*height/gravity)+sqrt(2*(displacement_y-height)/gravity))
-			player.velocity = velocity_y+velocity_xz
-			player.grabbed = true
+			body.grab(position - body.position, position)
+			extended = false
+			time_of_extend = 0
+			animationTree.tongue_grab_end()
+			#var farestPlatform = []
+			#var max = -INF
+			#for p in get_parent().get_node("stonePlatforms").get_children():
+		#		var dist = p.position.distance_to(platform.position)
+		#		if dist>=max:
+		#			if dist == max:
+		#				farestPlatform.append(p)
+		#			else:
+		#				max = dist
+		#				farestPlatform = [p]
+		#	if farestPlatform==[]:
+		#		return
+		#	randomize()
+		#	var i = randi()%farestPlatform.size()
+		#	var newPlatform = farestPlatform[i]
+		#	var height = newPlatform.position.y - player.position.y + 10
+		#	height = abs(height)
+		#	var displacement_y = newPlatform.position.y-player.position.y
+		#	var displacemnt_xz = Vector3(newPlatform.position.x-player.position.x,0,newPlatform.position.z-player.position.z)
+		#	var velocity_y = Vector3.UP * sqrt(-2*gravity*height)
+		#	var velocity_xz = displacemnt_xz/(sqrt(-2*height/gravity)+sqrt(2*(displacement_y-height)/gravity))
+		#	player.velocity = velocity_y+velocity_xz
+		#	player.grabbed = true
 	if body.is_in_group("spike"):
 		hit(null, SPIKE_HP)
 	if body.is_in_group("minion"):
