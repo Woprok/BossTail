@@ -175,6 +175,308 @@ func _physics_process(delta):
 	if time_stop < STOP_TIME:
 		return
 	
+	set_ability_cooldown()
+	handle_movement(delta)
+	
+	handle_path_following()
+	
+	handle_tongue_extension(delta)
+				
+	if is_doing(delta): return
+		
+	if Global.phase == 1:
+		process_phase_1(delta)
+	elif Global.phase==2:
+		process_phase_2(delta)
+
+func process_phase_1(delta):
+	if subphase == 0:
+		set_ground_collisions()
+		if triggered:
+			jump_to_water()
+			tongueHit = 0
+			HPHit = 0
+			return
+		if can_grab_same_platform():
+			grab_same_platform(delta)
+		elif can_grab_other_platform():
+			grab_other_platform(delta)
+
+		if can_swipe():
+			handle_swipe(delta)
+
+		if can_spit_bubble(delta):
+			handle_bubble_spit(delta)
+	else:
+		if not swimming:
+			start_swimming()
+		else:
+			update_swimming(delta)
+
+func process_phase_2(delta:float):
+	time_of_extend += delta
+	time_eat+=delta
+	slam_reset()
+	if can_eat():
+		handle_eating()
+	time_slam += delta
+	if time_slam>SLAM_TIME:
+		if can_slam():
+			if platform == player.platform:
+				handle_slam()
+		else:
+			find_stone_platform_phase2()
+	if can_swipe():
+		handle_swipe(delta)
+	if can_spit_bubble(delta):
+			handle_bubble_spit(delta)
+
+func set_ground_collisions():
+	$body/bodyShape.disabled = false
+	$body/legShape.disabled = false
+	$body/swimmingShape.disabled = true
+	$headShape.disabled = false
+	$bodyShape.disabled = false
+	$legShape.disabled = false
+
+func set_swimming_collision():
+	$body/bodyShape.disabled = true
+	$body/legShape.disabled = true
+	$body/swimmingShape.disabled = false
+	$headShape.disabled = true
+	$bodyShape.disabled = true
+	$legShape.disabled = true
+
+func can_grab_same_platform():
+	return boss_data.get_current_health() <= GRAB_HP and not doing and platform == player.platform
+
+func can_grab_other_platform():
+	return boss_data.get_current_health() <= GRAB_HP and not doing and platform != player.platform \
+		and player.platform.is_in_group("stone_platform")
+
+func can_swipe():
+	return boss_data.get_current_health() <= SWIPE_HP and not doing
+	
+func can_spit_bubble(delta):
+	if Global.phase > 1:
+		time_bubble += delta
+	return (boss_data.get_current_health() != 100 or (Global.phase == 2 and time_bubble>SPIT_BUBBLE_TIME)) and not doing
+
+func grab_same_platform(delta:float):
+	time_grab += delta
+	if time_grab<GRAB_TIME:
+		return
+	if position.distance_to(player.position) < grab_len_min or position.distance_to(player.position) > grab_len_max:
+		var point = find_point_on_platform(platform.global_position, player.global_position, grab_len_min, grab_len_max)
+		if point != null:
+			jump_direction(point)
+	else:
+		jump_direction(position)
+	start_grab(player)
+
+func grab_other_platform(delta):
+	time_grab += delta
+	if time_grab<GRAB_TIME:
+		return
+	time_bubble = 0
+	time_swipe_diff = 0
+	time_swipe_same = 0
+	plan_path(player.platform)
+	if path.size() <= 3:
+		doing = true
+		time_doing = 0
+	else:
+		path = []
+	
+func handle_swipe(delta):
+	time_swipe_diff += delta
+	time_swipe_same += delta
+
+	if platform == player.platform and time_swipe_same > SWIPE_SAME_PLATFORM_TIME:
+		start_swipe()
+	elif platform != player.platform and platform.neighbors.has(player.platform) and time_swipe_diff > SWIPE_DIFF_PLATFORM_TIME:
+		start_swipe()
+
+func handle_bubble_spit(delta:float):
+	time_bubble += delta
+	if time_bubble>SPIT_BUBBLE_TIME and platform != player.platform:
+		time_bubble += delta
+		doing = true
+		time_doing = 0
+		time_swipe_diff -= 1
+		time_swipe_same = 0
+		animationTree.spit_start(SPIT_ANTIC_DUR, SPIT_WOO_DUR)
+		bubble_spit()
+	
+func start_grab(target):
+	doing = true
+	time_doing = 0
+	grab_target = target
+	grab = true
+	time_bubble = 0
+	time_swipe_diff = 0
+	time_swipe_same = 0
+	
+func start_swipe():
+	time_bubble = 0
+	swipe = true
+	doing = true
+	time_doing = 0
+	tongue_swipe()
+	tongueHit = 0
+	if Global.phase==1:
+		time_grab -= 1
+	else:
+		time_slam -= 1
+	time_swipe_same = 0
+	time_swipe_diff = 0
+
+func start_swimming():
+	if prev_platform == null or platform == null:
+		jump_to_water()
+		return
+	var dir = (prev_platform.position - platform.position).normalized()
+	jump_direction(Vector3(platform.position.x + dir.x * radius, platform.position.y, platform.position.z + dir.z * radius))
+	swimming = true
+	time_swimming = 0
+	init_angle = atan2(dir.z * radius, dir.x * radius)
+	angle = init_angle
+
+func update_swimming(delta):
+	set_swimming_collision()
+	animationTree.swim_idle()
+	time_bubble += delta
+	time_swimming += delta
+
+	if time_swimming >= SWIMMING_TIME:
+		end_swimming()
+		return
+
+	if time_bubble >= WATER_BUBBLE_TIME and time_swimming <= SWIMMING_TIME:
+		handle_swimming_bubble_attack()
+		return
+
+	animationTree.swim_start_swimming()
+	update_swimming_movement(delta)
+
+func end_swimming():
+	jump_to_platform()
+	triggered = true
+	tongueHit = 0
+	HPHit = 0
+	swimming_accumulated_damage = 0
+
+func handle_swimming_bubble_attack():
+	animationTree.swim_bubble_atk_start()
+
+	if not triggered_once and bubble_chargeup != null:
+		triggered_once = true
+		bubble_chargeup.fx_appear(0.1)
+		create_tween().tween_callback(bubble_chargeup.fx_fade.bind(0.1)).set_delay(BUBBLE_ANTIC_DUR - 0.2)
+
+		current_bubble_inst = WaterBubble.instantiate()
+		get_parent().add_child(current_bubble_inst)
+		current_bubble_inst.antic_phase = true
+		current_bubble_inst.global_position = bubble_appear_pos.global_position
+		current_bubble_inst.scale = Vector3.ZERO
+		create_tween().tween_property(current_bubble_inst, "scale", Vector3.ONE, BUBBLE_ANTIC_DUR - 0.1)
+
+	look_at(Vector3(player.position.x, position.y, player.position.z))
+
+	if current_bubble_inst != null:
+		current_bubble_inst.global_position = bubble_appear_pos.global_position
+
+	if time_bubble >= WATER_BUBBLE_TIME + BUBBLE_ANTIC_DUR:
+		triggered_once = false
+		doing = true
+		time_doing = 0
+		time_bubble = 0
+		bubble_spit(current_bubble_inst)
+		bubble_num += 1
+		if bubble_num == BUBBLE_NUM:
+			bubble_num = 0
+		else:
+			time_bubble = WATER_BUBBLE_TIME
+		current_bubble_inst = null
+		animationTree.swim_bubble_atk_end_antic()
+
+func update_swimming_movement(delta):
+	if angle - init_angle > TAU:
+		var dir = (platform.position - prev_platform.position).normalized()
+		var target_position = Vector3(prev_platform.position.x + dir.x * radius, -0.15, prev_platform.position.z + dir.z * radius)
+		var dir_frog = (target_position - position).normalized()
+		if target_position.distance_to(position) > 0.2:
+			look_at(Vector3(target_position.x, position.y, target_position.z))
+			position += dir_frog * delta * swimming_speed
+		else:
+			init_angle = atan2(dir.z * radius, dir.x * radius)
+			angle = init_angle
+			var p = platform
+			platform = prev_platform
+			prev_platform = p
+	else:
+		var center_position = platform.position
+		angle += delta / 10 * swimming_speed
+		var x = center_position.x + cos(angle) * radius
+		var z = center_position.z + sin(angle) * radius
+		look_at(Vector3(x, -0.15, z))
+		position = Vector3(x, -0.15, z)
+
+func slam_reset():
+	if platform != null and platform != player.platform and platform.is_in_group("stone_platform") and platform.health > 0:
+		time_slam = 0
+
+func can_slam():
+	return platform.is_in_group("stone_platform") and platform.health>0
+
+func handle_slam():
+	time_bubble = 0
+	time_slam = 0
+	time_swipe_same = 0
+	time_swipe_diff = 0
+	doing = true
+	time_doing = 0
+	animationTree.ground_slam_start(GROUND_SLAM_ANTIC_DUR)
+				
+	var indicCtrlr = instantiate_indicator_object(ground_slam_indicator, Vector3(platform.position.x,global_position.y,platform.position.z))
+	indicCtrlr.appear(GROUND_SLAM_ANTIC_DUR * 0.75,1.8)
+	get_tree().create_tween().tween_callback(indicCtrlr.fade.bind(0.5)).set_delay(GROUND_SLAM_ANTIC_DUR)
+	
+	slam = true
+
+func can_eat():
+	return path==[] and time_eat>=EAT_TIME
+
+func handle_eating():
+	if grab_target == null:
+		grab_target = find_eat_target()
+	elif grab_target.platform==platform:
+		if position.distance_to(grab_target.position)<grab_len_min or position.distance_to(grab_target.position)>grab_len_max:
+			var point = find_point_on_platform(platform.global_position,grab_target.global_position,grab_len_min, grab_len_max)
+			if point!=null:
+				jump_direction(point)
+				reset_eat_time()
+		else:
+				jump_direction(position)
+				reset_eat_time()
+	else:
+		if platform != grab_target.platform:
+			time_swipe_same = 0
+			time_swipe_diff = 0
+			plan_path(grab_target.platform)
+
+func find_stone_platform_phase2():
+	for s in get_parent().get_node("stonePlatforms").get_children():
+		if s.health>0:
+			plan_path(s)
+			time_bubble = 0
+			time_slam = 0
+			time_swipe_same = 0
+			time_swipe_diff -= 1
+			return
+	plan_path(get_parent().get_node("lilyPlatforms/largeLily"))
+
+func set_ability_cooldown():
 	if sluggish:
 		SWIPE_DIFF_PLATFORM_TIME = SWIPE_DIFF_PLATFORM_TIME_CONST * 2
 		SWIPE_SAME_PLATFORM_TIME = SWIPE_SAME_PLATFORM_TIME_CONST * 2
@@ -185,7 +487,8 @@ func _physics_process(delta):
 		SWIPE_SAME_PLATFORM_TIME = SWIPE_SAME_PLATFORM_TIME_CONST
 		SPIT_BUBBLE_TIME = SPIT_BUBBLE_TIME_CONST
 		SLAM_TIME = SLAM_TIME_CONST
-		
+	
+func set_movement_shape():
 	if jump and velocity.y>0:
 		$bodyShape.disabled = true
 		$headShape.disabled = true
@@ -194,8 +497,9 @@ func _physics_process(delta):
 		$bodyShape.disabled = false
 		$legShape.disabled = false
 		$headShape.disabled = false
-	
-	# character moving
+
+func handle_movement(delta:float):
+	set_movement_shape()
 	if not swimming or jump:
 		velocity.y += speed*gravity*delta
 		var collision = move_and_collide(speed*velocity*delta)
@@ -204,7 +508,8 @@ func _physics_process(delta):
 			if not swimming and collision.get_collider().is_in_group("water"):
 				return
 			animationTree.jump_end()
-	
+			
+func handle_path_following():
 	# jumping between platforms if path is not empty
 	if path!=[] and not jump:
 		jump_direction(path[0].global_position)
@@ -213,6 +518,7 @@ func _physics_process(delta):
 			doing = false
 			time_doing = 0
 	
+func handle_tongue_extension(delta:float):
 	if extended:
 		if swimming:
 			extended = false
@@ -225,6 +531,7 @@ func _physics_process(delta):
 				time_of_extend = 0
 				animationTree.tongue_grab_end()
 				
+func is_doing(delta:float)->bool:
 	if doing or jump:
 		time_doing += delta
 		# prevents from freezing
@@ -232,244 +539,8 @@ func _physics_process(delta):
 			doing = false
 			animationTree.idle()
 			time_doing = 0
-		return
-		
-	if Global.phase == 1:
-		if subphase == 0:
-			$body/bodyShape.disabled = false
-			$body/legShape.disabled = false
-			$body/swimmingShape.disabled = true
-			$headShape.disabled = false
-			$bodyShape.disabled = false
-			$legShape.disabled = false
-			if triggered:
-				jump_to_water()
-				tongueHit = 0
-				HPHit = 0
-				return
-			time_grab += delta
-			if boss_data.get_current_health() <= GRAB_HP and time_grab >= GRAB_TIME and not doing and platform==player.platform:
-				if position.distance_to(player.position)<grab_len_min or position.distance_to(player.position)>grab_len_max:
-					var point = find_point_on_platform(platform.global_position,player.global_position,grab_len_min, grab_len_max)
-					if point!=null:
-						jump_direction(point)
-						doing = true
-						time_doing = 0
-						grab_target=player
-						grab = true
-						time_bubble = 0
-						time_swipe_diff = 0
-						time_swipe_same = 0
-				else:
-					jump_direction(position)
-					doing = true
-					time_doing = 0
-					grab_target = player
-					grab = true
-					time_bubble = 0
-					time_swipe_diff = 0
-					time_swipe_same = 0
-			if boss_data.get_current_health() <= GRAB_HP and time_grab >= GRAB_TIME and not doing and platform!=player.platform and player.platform.is_in_group("stone_platform"):
-				time_bubble = 0
-				time_swipe_diff = 0
-				time_swipe_same = 0
-				plan_path(player.platform)
-				if path.size()<=3:
-					doing = true
-					time_doing = 0
-				else:
-					path = []
-			if boss_data.get_current_health() <= SWIPE_HP and not doing:
-				time_swipe_diff += delta
-				time_swipe_same += delta
-				if platform == player.platform and time_swipe_same>SWIPE_SAME_PLATFORM_TIME:
-					time_bubble = 0
-					swipe = true
-					doing = true
-					time_doing = 0
-					tongue_swipe()
-					tongueHit = 0
-					time_grab -= 1
-					time_swipe_same = 0
-					time_swipe_diff = 0
-				if platform!=player.platform and platform.neighbors.has(player.platform) and time_swipe_diff>SWIPE_DIFF_PLATFORM_TIME:
-					time_bubble = 0
-					swipe = true
-					doing = true
-					time_doing = 0
-					tongue_swipe()
-					time_grab -= 1
-					tongueHit = 0
-					time_swipe_same = 0
-					time_swipe_diff = 0
-			if boss_data.get_current_health() != 100 and not doing:
-				time_bubble += delta
-				if time_bubble>SPIT_BUBBLE_TIME and platform != player.platform:
-					doing = true
-					time_doing = 0
-					time_swipe_diff -= 1
-					time_swipe_same = 0 
-					animationTree.spit_start(SPIT_ANTIC_DUR, SPIT_WOO_DUR)
-					bubble_spit()
-					#animationTree.spit_end()
-		else:
-			if not swimming:
-				if prev_platform==null or platform==null:
-					jump_to_water()
-					return
-				var dir = (prev_platform.position-platform.position).normalized()
-				jump_direction(Vector3(platform.position.x + dir.x * radius,platform.position.y,platform.position.z + dir.z * radius))
-				swimming = true
-				time_swimming = 0
-				init_angle = atan2(dir.z * radius, dir.x * radius) 
-				angle = init_angle
-			else:
-				$body/bodyShape.disabled = true
-				$body/legShape.disabled = true
-				$body/swimmingShape.disabled = false
-				$headShape.disabled = true
-				$bodyShape.disabled = true
-				$legShape.disabled = true
-				animationTree.swim_idle()
-				time_bubble += delta
-				time_swimming += delta
-				if time_swimming >= SWIMMING_TIME:
-					jump_to_platform()
-					triggered = true
-					tongueHit = 0
-					HPHit = 0
-					return
-				if time_bubble >= WATER_BUBBLE_TIME and time_swimming<=SWIMMING_TIME:
-					animationTree.swim_bubble_atk_start()
-					# play antic chargeup vfx and inst and scale up bubble proj
-					if not triggered_once and bubble_chargeup != null:
-						triggered_once = true
-						bubble_chargeup.fx_appear(0.1)
-						create_tween().tween_callback(bubble_chargeup.fx_fade.bind(0.1)).set_delay(BUBBLE_ANTIC_DUR - 0.2)
-						#instatiate bubble and tween its scale to one
-						current_bubble_inst = WaterBubble.instantiate()
-						get_parent().add_child(current_bubble_inst)
-						current_bubble_inst.antic_phase = true
-						current_bubble_inst.global_position = bubble_appear_pos.global_position
-						current_bubble_inst.scale = Vector3.ZERO
-						create_tween().tween_property(current_bubble_inst, "scale", Vector3.ONE, BUBBLE_ANTIC_DUR - 0.1)
-					look_at(Vector3(player.position.x,position.y, player.position.z))
-					if current_bubble_inst != null: current_bubble_inst.global_position = bubble_appear_pos.global_position
-					if time_bubble>=WATER_BUBBLE_TIME + BUBBLE_ANTIC_DUR:
-						triggered_once = false
-						doing = true
-						time_doing = 0
-						time_bubble=0
-						bubble_spit(current_bubble_inst)
-						bubble_num += 1
-						if bubble_num==BUBBLE_NUM:
-							bubble_num = 0
-						else:
-							time_bubble = WATER_BUBBLE_TIME
-						current_bubble_inst = null
-						animationTree.swim_bubble_atk_end_antic()
-						return
-					return
-				animationTree.swim_start_swimming()
-				if angle-init_angle>TAU:
-					var dir = (platform.position-prev_platform.position).normalized()
-					var target_position = Vector3(prev_platform.position.x + dir.x * radius,-0.15,prev_platform.position.z + dir.z * radius)					
-					var dir_frog = (target_position - position).normalized()
-					if target_position.distance_to(position)>0.2:
-						look_at(Vector3(target_position.x,position.y, target_position.z))
-						position += dir_frog*delta*swimming_speed
-					else:
-						init_angle = atan2(dir.z * radius, dir.x * radius) 
-						angle = init_angle
-						var p = platform
-						platform = prev_platform
-						prev_platform = p
-				else:
-					var center_position = platform.position 
-					angle += delta/10*swimming_speed
-					var x = center_position.x + cos(angle) * radius
-					var z = center_position.z + sin(angle) * radius
-					look_at(Vector3(x, -0.15, z))
-					position = Vector3(x, -0.15, z)
-	elif Global.phase==2:
-		time_of_extend += delta
-		time_eat+=delta
-		if platform!=null and platform != player.platform and platform.is_in_group("stone_platform") and platform.health>0:
-			time_slam = 0
-		if path==[] and time_eat>=EAT_TIME:
-			if grab_target == null:
-				grab_target = find_eat_target()
-			elif grab_target.platform==platform:
-				if position.distance_to(grab_target.position)<grab_len_min or position.distance_to(grab_target.position)>grab_len_max:
-					var point = find_point_on_platform(platform.global_position,grab_target.global_position,grab_len_min, grab_len_max)
-					if point!=null:
-						jump_direction(point)
-						reset_eat_time()
-				else:
-					jump_direction(position)
-					reset_eat_time()
-			else:
-				if platform != grab_target.platform:
-					time_swipe_same = 0
-					time_swipe_diff = 0
-					plan_path(grab_target.platform)
-		time_slam += delta
-		if time_slam>SLAM_TIME:
-			if platform.is_in_group("stone_platform") and platform.health>0:
-				if platform == player.platform:
-					time_bubble = 0
-					time_slam = 0
-					time_swipe_same = 0
-					time_swipe_diff = 0
-					doing = true
-					time_doing = 0
-					animationTree.ground_slam_start(GROUND_SLAM_ANTIC_DUR)
-					
-					var indicCtrlr = instantiate_indicator_object(ground_slam_indicator, Vector3(platform.position.x,global_position.y,platform.position.z))
-					indicCtrlr.appear(GROUND_SLAM_ANTIC_DUR * 0.75,1.8)
-					get_tree().create_tween().tween_callback(indicCtrlr.fade.bind(0.5)).set_delay(GROUND_SLAM_ANTIC_DUR)
-					
-					slam = true
-			else:
-				for s in get_parent().get_node("stonePlatforms").get_children():
-					if s.health>0:
-						plan_path(s)
-						time_bubble = 0
-						time_slam = 0
-						time_swipe_same = 0
-						time_swipe_diff -= 1
-						return
-				plan_path(get_parent().get_node("lilyPlatforms/largeLily"))
-		if boss_data.get_current_health() <= SWIPE_HP and not doing:
-			time_swipe_same += delta
-			time_swipe_diff += delta
-			if platform!=null and platform == player.platform and time_swipe_same>SWIPE_SAME_PLATFORM_TIME:
-				time_bubble = 0
-				swipe = true
-				doing = true
-				time_doing = 0
-				tongue_swipe()
-				tongueHit = 0
-				time_slam -= 1
-				time_swipe_same = 0
-				time_swipe_diff = 0
-			if platform!=null and platform!=player.platform and platform.neighbors.has(player.platform) and time_swipe_diff>SWIPE_DIFF_PLATFORM_TIME:
-				time_bubble = 0
-				swipe = true
-				doing = true
-				time_doing = 0
-				time_slam -= 1
-				tongue_swipe()
-				tongueHit = 0
-				time_swipe_same = 0
-				time_swipe_diff = 0
-		time_bubble += delta
-		if time_bubble>SPIT_BUBBLE_TIME and platform!=null and platform != player.platform and not doing:
-				doing = true
-				time_doing = 0
-				animationTree.spit_start(SPIT_ANTIC_DUR, SPIT_WOO_DUR)
-				bubble_spit()
-				#animationTree.spit_end()
+		return true
+	return false
 	
 func reset_eat_time() -> void:
 	time_doing = 0
@@ -488,8 +559,7 @@ func find_eat_target() -> Node:
 			return fm
 	
 	return null
-	
-	
+		
 # spit and bubble attack
 func bubble_spit(water_bubble_instance = null):
 	var bubble
@@ -505,6 +575,7 @@ func bubble_spit(water_bubble_instance = null):
 			bubble = WaterBubble.instantiate()
 	else:
 		bubble = AcidSpit.instantiate()
+		
 	look_at(Vector3(player.position.x,position.y, player.position.z))
 	if water_bubble_instance == null:
 		get_parent().add_child(bubble)
@@ -524,15 +595,6 @@ func tongue_swipe():
 	indicCtrlr.appear(TONGUE_SWIPE_ANTIC_DUR * 0.75,1.02)
 	get_tree().create_tween().tween_callback(indicCtrlr.fade.bind(0.5)).set_delay(TONGUE_SWIPE_ANTIC_DUR)
 	extended = true
-	#var tween = get_tree().create_tween()
-	#tween.tween_property(self,"rotation",self.rotation+Vector3(0,6.2,0),0.5)
-	#tween.tween_callback(after_swipe)
-
-
-#func after_swipe():
-#	animationPlayer.play("G_03-tongue_grab-end")
-#	swipe = false
-#	time_swipe = 0
 	
 func ground_slam():
 	slam = false
@@ -635,10 +697,9 @@ func jump_to_platform():
 		look_at(Vector3(prev_platform.position.x, position.y, prev_platform.position.z))
 		jump_direction(Vector3(prev_platform.position.x, 1.6, prev_platform.position.z))
 	time_bubble = 0
-	doing = true
 	time_doing = 0
+	doing = true
 	swimming = false
-	
 	
 func _on_swimming_critical_damage() -> void:
 	jump_to_platform()
