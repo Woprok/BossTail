@@ -481,10 +481,6 @@ func reset_eat_time() -> void:
 	grab = true
 	
 func find_eat_target() -> Node:
-	#@onready var flies = get_parent().get_node("flies")
-	#for fly in flies.get_children():
-	#	if fly.groupSize >= 1 and ((fly.platform.is_in_group("big_lily")) or (not fly.platform.is_in_group("shard")) and fly.platform.is_in_group("stone_platform")):
-	#		return fly
 	var fly_minions: Array[Node] = get_tree().get_nodes_in_group("minion")
 	
 	for fm in fly_minions:

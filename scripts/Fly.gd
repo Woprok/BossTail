@@ -1,17 +1,21 @@
-extends ProjectileBase
+extends CharacterBody3D
+class_name Fly
+#enum FlyState { FLYING, NAVIGATING, SWARMING }
 
+@export var fly_speed: float = 1.5
+var gravity: int = -10
 var time:int = 0
 @export var flying = false
 @export var swarm = false
 @export var position_in_swarm = Vector3(0,0,0)
 var dead = false
-var groupSize = 1
 var angle = 0
 var target_position
 var split_off = false
 var split_off_time = 0
 var TIME_SPLIT_OFF = 10
 var player_in_area = false
+
 
 func _physics_process(delta):
 	if flying and not swarm:
@@ -40,8 +44,8 @@ func _physics_process(delta):
 		return
 	if $Body.disabled:
 		call_deferred("enable_collision")
-	velocity.y += speed*gravity*delta
-	var collision = move_and_collide(speed*velocity*delta)
+	velocity.y += fly_speed * gravity * delta
+	var collision = move_and_collide(fly_speed * velocity * delta)
 	if collision:
 		dead = true
 		if not swarm:
@@ -54,16 +58,21 @@ func _physics_process(delta):
 		root.get_node("flies").add_child(self)
 		self.position = gl_position
 		swarm = false
+		
+#func _destroy() -> void:
+#	if not dead:
+#		dead = true
+	
 			
 func chase_position(delta, target_pos,global):
 	if global:
 		var dir = target_pos - global_position
 		dir = dir.normalized()
-		global_position += dir*speed*delta
+		global_position += dir * fly_speed * delta
 	else:
 		var dir = target_pos - position
 		dir = dir.normalized()
-		position += dir*speed*delta
+		position += dir * fly_speed * delta
 	
 
 func fly_around(center, radius):
@@ -79,14 +88,10 @@ func enable_collision():
 
 
 func _on_body_entered(body):
-	if body.is_in_group("fly") and self!=body:
-		groupSize += 1
 	if body.is_in_group("player"):
 		player_in_area = true
 
 
 func _on_body_exited(body):
-	if body.is_in_group("fly") and self!=body:
-		groupSize -= 1
 	if body.is_in_group("player"):
 		player_in_area = false
