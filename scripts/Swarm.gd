@@ -1,11 +1,19 @@
 extends Area3D
+class_name Swarm
+
+@export var swarm_home: Node3D
+@export var swarm_buzz_radius: float = 7.5
+@export var swarm_chase_radius: float = 20.0
+@export var additional_radius_per_fly: float = 1.25
+var is_in_chase_mode: bool = false
+var target_position: Vector3
+
 var player_in_area:bool = false
 var time = 0
 var speed = 5
-@onready var player = get_parent().get_node("Player")
-@onready var bigLily = get_parent().get_node("lilyPlatforms/largeLily")
+@onready var player = get_tree().current_scene.get_node("Player")
+@onready var bigLily = get_tree().current_scene.get_node("lilyPlatforms/largeLily")
 var active = 8
-var target_position
 var dispersed = false
 var dispersed_time = 0
 var TIME_OF_DISPERSED = 30
@@ -38,27 +46,34 @@ func _process(delta):
 		split_off_time+=delta
 		if split_off_time>TIME_SPLIT_OFF:
 			split_off()
-	if player.platform != null and (player.platform.is_in_group("shard") or player.platform.is_in_group("big_lily")):
-		chase_position(delta,player.position)
-	else:
-		if target_position!= null and target_position.distance_to(position)>=0.2:
-			chase_position(delta, target_position)
-		else:
-			target_position = fly_around(bigLily.position,20)
-			chase_position(delta, target_position)
+	_navigate(delta)
 
-func chase_position(delta, swarm_target_position):
-	var dir = swarm_target_position - position
+func _get_swarm_radius(base) -> float:
+	return base + active * additional_radius_per_fly
+
+func _navigate(delta: float) -> void:
+	# Swarm chases player that is close enough
+	if swarm_home.global_position.distance_to(player.global_position) <= _get_swarm_radius(swarm_chase_radius):
+		is_in_chase_mode = true
+		target_position = player.global_position
+	# Swarm navigates around the home
+	else:
+		is_in_chase_mode = false
+		target_position = fly_around(swarm_home.global_position, _get_swarm_radius(swarm_buzz_radius))
+	# Move swarm to position
+	chase_position(target_position, delta)
+
+func chase_position(swarm_target_position, delta):
+	var dir = swarm_target_position - global_position
 	dir = dir.normalized()
-	position += dir*speed*delta
-	
+	global_position += dir * speed * delta
 
 func fly_around(center, radius):
 	var angle = randf() * TAU
 	var distance = sqrt(randf()) * radius
 	var x = center.x + distance * cos(angle)
 	var z = center.z + distance * sin(angle)
-	return Vector3(x,center.y+3, z)
+	return Vector3(x, center.y + 3, z)
 	
 
 func split_off():
