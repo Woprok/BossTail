@@ -91,9 +91,12 @@ var time_doing = 0
 # HP lost by spike hit
 @export var SPIKE_HP = 20
 # HP lost by pebble hit
-@export var PEBBLE_HP = 1
+@export var PEBBLE_HP = 2.5
 # HP lost to trigger swimming
 @export var TRIGGER_SWIMMING = 10
+@export var TRIGGER_SWIMMING_END: float = 7.5
+
+var swimming_accumulated_damage: float = 0
 
 # must be bigger than attack length
 var DOING_TIME = 10
@@ -573,26 +576,6 @@ func find_point_on_platform(platform_position, player_position, min_distance, ma
 			if point.distance_to(player_position) >= min_distance and point.distance_to(player_position)<=max_distance:
 				target_point = point
 	
-	if target_point:
-		var ray = RayCast3D.new()
-		var cast_height = 5.0  # How high above the point to start the ray
-		var ray_origin = target_point + Vector3.UP * cast_height
-
-		ray.global_position = ray_origin
-		ray.target_position = Vector3.DOWN * cast_height * 2.0  # Cast downward far enough
-
-		# Optionally add to scene tree so it can function properly
-		add_child(ray)
-		ray.force_raycast_update()
-		if ray.is_colliding():
-			var collider = ray.get_collider()
-			var collision_point = ray.get_collision_point()
-			print("✅ Hit:", collider, "at", collision_point)
-		else:
-			print("❌ No collision at", target_point)
-		# Cleanup if it's a temporary ray
-		ray.queue_free()	
-	
 	return target_point
 
 func jump_direction(target_position):
@@ -661,6 +644,13 @@ func jump_to_platform():
 	swimming = false
 	
 	
+func _on_swimming_critical_damage() -> void:
+	jump_to_platform()
+	tongueHit = 0
+	HPHit = 0
+	triggered = true
+	swimming_accumulated_damage = 0
+	
 func hit(area, health):
 	var hit_pos: Vector3 = hit_body_pos.global_position
 	if boss_data.get_current_health() == 100:
@@ -668,13 +658,14 @@ func hit(area, health):
 	if swimming:
 		if area.is_in_group("boulder") and position.y < 1:
 			boss_data.boss_take_damage(BOULDER_HP)
-			jump_to_platform()
-			tongueHit = 0
-			HPHit = 0
-			triggered = true
 			hit_pos = hit_head_pos.global_position
+			_on_swimming_critical_damage()
 		if area.is_in_group("player_projectile") and area.is_in_group("ammo_standard"):
 			boss_data.boss_take_damage(PEBBLE_HP)
+			swimming_accumulated_damage += PEBBLE_HP
+			if swimming_accumulated_damage >= TRIGGER_SWIMMING_END:
+				hit_pos = hit_head_pos.global_position
+				_on_swimming_critical_damage()
 	else:
 		sluggish = false
 		# this one is probably obsolate
@@ -686,7 +677,7 @@ func hit(area, health):
 			if HPHit >= TRIGGER_SWIMMING:
 				triggered = true
 			return
-			
+						
 		if area.is_in_group("tongue"):
 			tongueHit += 1
 			if tongueHit>=5:
@@ -843,11 +834,17 @@ func _on_animation_finished(anim_name):
 		ground_slam()
 		
 func _on_body_entered(body):
-	if body.is_in_group("boulder") and boulderHit>5 and swimming:
+	# Handle only case, when Frog is swimming
+	if swimming:
+		_on_swimming_damage_taken(body)
+		
+func _on_swimming_damage_taken(source) -> void:
+	# Swimming Frog can take damage from following two sources
+	if source.is_in_group("boulder") and boulderHit > 5:
 		boulderHit = 0
-		hit(body, 0)
-	if body.is_in_group("player_projectile") and body.is_in_group("ammo_standard") and swimming:
-		hit(body, 0)
+		hit(source, 0)
+	if source.is_in_group("player_projectile") and source.is_in_group("ammo_standard"):
+		hit(source, 0)
 
 func instantiate_indicator_object(indicatorScene: PackedScene, ind_position:Vector3) -> ToadAtkIndicatorVFXController:
 	var indicRoot: ToadAtkIndicatorVFXController = indicatorScene.instantiate()
