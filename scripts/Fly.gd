@@ -59,6 +59,9 @@ func _physics_process(delta):
 		self.position = gl_position
 		swarm = false
 		
+	if position.y<-10:
+		queue_free()
+		
 #func _destroy() -> void:
 #	if not dead:
 #		dead = true

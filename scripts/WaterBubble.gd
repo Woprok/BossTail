@@ -20,11 +20,8 @@ func _physics_process(delta):
 	#align with velocity
 #	look_at(self.position + velocity)
 	
-	#if position.y<-1:
-	#	queue_free()
 	velocity.y += speed*gravity*delta
 	var collision: KinematicCollision3D = move_and_collide(speed*velocity*delta)
-	
 	
 	if collision:
 		if collision.get_collider().is_in_group("player") and not collision_with_player:
@@ -40,6 +37,10 @@ func _physics_process(delta):
 		else:
 			collision_num += 1
 			pop(collision.get_position())
+	else:
+		if position.y<-10:
+			queue_free()
+	
 	if ignore_collisions_time > 0:
 		ignore_collisions_time -= delta
 		if ignore_collisions_time <= 0:
