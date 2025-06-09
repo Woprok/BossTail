@@ -8,7 +8,8 @@ enum FlyState {
 	FLYING, # Idle fly
 	NAVIGATING, # Moves toward the swarn
 	SWARMING, # Is moving as swarm
-	SACRIFICE # Moving to the boss
+	SACRIFICE, # Moving to the boss
+	DEAD
 }
 
 var state: FlyState = FlyState.FLYING
@@ -64,6 +65,8 @@ func SetSpawner(spawner) -> void:
 
 func SetState(desired_state: FlyState) -> void:
 	# this is called from outside, so we need to check that we understand the transition
+	if state == FlyState.DEAD: # point of no return
+		return
 	if desired_state == FlyState.SACRIFICE and state == FlyState.SWARMING:
 		state = desired_state
 	elif desired_state == FlyState.SWARMING and state == FlyState.FLYING:
@@ -81,6 +84,9 @@ func _physics_process(delta: float) -> void:
 			state = FlyState.FLYING
 		if home_swarm.can_join_swarm() and state == FlyState.FLYING:
 			state = FlyState.NAVIGATING
+			
+	if is_ignoring_swarms and (state == FlyState.NAVIGATING or state == FlyState.SWARMING):
+		state = FlyState.FLYING
 	
 	match state:
 		FlyState.FLYING:
@@ -141,6 +147,11 @@ func _on_body_exited(body):
 
 # Fly is dead
 func destroy() -> void:
+	if state == FlyState.DEAD:
+		print(self)
+		return
+	print(self)
+	state = FlyState.DEAD
 	# spawn projectile body
 	# leave swarm
 	# leave spawner
