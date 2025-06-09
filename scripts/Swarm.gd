@@ -110,7 +110,7 @@ func join_swarm(fly: Fly) -> void:
 # Thus all fly move to fill the spot
 func leave_swarm(leaving_fly: Fly) -> void:
 	active_swarm_fly.pop_at(leaving_fly.swarm_index)
-	for fly_index in active_swarm_fly.size():
+	for fly_index in range(active_swarm_fly.size()):
 		var swarm_fly = active_swarm_fly[fly_index]
 		swarm_fly.swarm_index = fly_index
 		swarm_fly.swarm_position = fly_in_swarm_positions[fly_index]
