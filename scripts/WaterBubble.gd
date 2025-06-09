@@ -6,6 +6,7 @@ extends CharacterBody3D
 var collision_num = 0 
 var collision_with_player = false
 @export var ignore_collisions_time = 0.25
+var spawner = false
 
 @onready var bubble_obj: Node3D = $Bubble
 var antic_phase: bool = false
@@ -29,8 +30,15 @@ func _physics_process(delta):
 			collision_num += 1
 			pop(collision.get_position(), true)
 			collision.get_collider().push(collision.get_collider().position-position,3)
-			collision.get_collider().hit(null, 5)
+			if spawner:
+				collision.get_collider().hit(null, 20)
+			else:
+				collision.get_collider().hit(null, 5)
 			return
+		elif collision.get_collider().is_in_group("enemy") and collision_num==0 and spawner:
+			collision_num += 1
+			pop(collision.get_position(), true)
+			collision.get_collider().hit(null, 20)
 		elif collision.get_collider().is_in_group("stone_platform") or collision.get_collider().is_in_group("lily_platform"):
 			collision_num += 1
 			pop(collision.get_position(), true)

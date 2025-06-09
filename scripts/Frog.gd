@@ -645,6 +645,7 @@ func ground_slam():
 		if player.platform == platform:
 			player.platform = newShards.get_node("stone2")
 		platform.queue_free()
+		newShards.get_node("BubblesSpawner").active = true
 		platform = newShards.get_node("stone1")
 		newShards.get_node("AnimationPlayer").play("break")
 	

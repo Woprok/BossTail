@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bcltx0r4cig8q"]
+[gd_scene load_steps=7 format=3 uid="uid://bcltx0r4cig8q"]
 
 [ext_resource type="PackedScene" uid="uid://dlrq4knk1gqi7" path="res://scenes/StonePlatform.tscn" id="1_nhwjf"]
+[ext_resource type="PackedScene" uid="uid://bcptidnpns0k8" path="res://scenes/BubblesSpawner.tscn" id="2_c35xr"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ra307"]
 size = Vector3(14, 0.65, 14)
@@ -271,3 +272,8 @@ health = 0
 libraries = {
 &"": SubResource("AnimationLibrary_gj4xu")
 }
+
+[node name="BubblesSpawner" parent="." instance=ExtResource("2_c35xr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+inner_circle = Array[Vector3]([Vector3(-6.5, 4, -5.5), Vector3(-0.5, 4, -5.5), Vector3(5.5, 4, -5.5), Vector3(7, 4, 0), Vector3(8.5, 4, 5.5), Vector3(1.5, 4, 5.5), Vector3(-5.5, 4, 5.5), Vector3(-6, 4, 0)])
+outer_circle = Array[Vector3]([Vector3(0, 0, 0)])
