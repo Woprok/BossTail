@@ -55,7 +55,7 @@ var last_target_position: Vector3
 @export var TIME_BETWEEN_SPLIT_OFF: float = 60.0
 var accumulated_split_off_time: float = 0
 
-func _process(delta):	
+func _physics_process(delta):	
 	# First resolve state change
 	match state:
 		SwarmState.DISPERSED:
@@ -109,7 +109,7 @@ func join_swarm(fly: Fly) -> void:
 # Fly is removed from swarm and it's position is released
 # Thus all fly move to fill the spot
 func leave_swarm(leaving_fly: Fly) -> void:
-	active_swarm_fly.remove_at(leaving_fly.swarm_index)
+	active_swarm_fly.pop_at(leaving_fly.swarm_index)
 	for fly_index in active_swarm_fly.size():
 		var swarm_fly = active_swarm_fly[fly_index]
 		swarm_fly.swarm_index = fly_index
@@ -131,8 +131,6 @@ func _can_chase_player() -> bool:
 	return swarm_home.global_position.distance_to(player.global_position) <= _get_swarm_radius(swarm_chase_radius)
 
 func _get_swarm_radius(base_radius: float) -> float:
-	print(active_swarm_fly.size())
-	print(base_radius + active_swarm_fly.size() * additional_radius_per_fly)
 	return base_radius + active_swarm_fly.size() * additional_radius_per_fly
 
 func _select_and_navigate_to_target(delta: float) -> void:
@@ -166,6 +164,15 @@ func _player_stop_taking_damage(_player_body) -> void:
 	%TickTimer.stop()
 	if state == SwarmState.CHASING and SWARM_FINAL_HIT != 0.0:
 		player.hit(self, SWARM_FINAL_HIT)
+
+func hit(source, damage) -> bool:
+	# Swarm is easy to hit and does take damage
+	# It's just super ineffective
+	# Pebbles solve this
+	if active_swarm_fly.size() > 0:
+		_murder_swarm_member(active_swarm_fly.pick_random())
+		return true
+	return false
 
 func _on_body_entered(body):
 	# swarm is chasing and reached player

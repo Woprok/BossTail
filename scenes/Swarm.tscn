@@ -8,7 +8,7 @@ radius = 0.45
 
 [node name="Swarm" type="Area3D" groups=["swarm"]]
 collision_layer = 8
-collision_mask = 38
+collision_mask = 294
 script = ExtResource("1_f2jtm")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

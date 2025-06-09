@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=4 uid="uid://cghwxumcrmfcs"]
+[gd_scene load_steps=6 format=4 uid="uid://cghwxumcrmfcs"]
 
 [ext_resource type="Script" uid="uid://bg5rh3uti6uuc" path="res://scripts/Fly.gd" id="1_xccur"]
-[ext_resource type="PackedScene" uid="uid://bbrq1wlf7c3ht" path="res://scenes/player/FlyProjectile.tscn" id="2_jlavi"]
 
 [sub_resource type="ORMMaterial3D" id="ORMMaterial3D_thqv4"]
 albedo_color = Color(0.117647, 0.117647, 0.117647, 1)
@@ -33,10 +32,9 @@ radius = 0.1
 radius = 0.12
 
 [node name="fly" type="CharacterBody3D" groups=["fly"]]
-collision_layer = 9
-collision_mask = 3
+collision_layer = 8
+collision_mask = 9
 script = ExtResource("1_xccur")
-dead_body = ExtResource("2_jlavi")
 
 [node name="CSGBakedMeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("ArrayMesh_hqylv")
@@ -46,10 +44,15 @@ shape = SubResource("SphereShape3D_pwoqt")
 disabled = true
 
 [node name="Area3D" type="Area3D" parent="."]
-collision_mask = 9
+collision_layer = 8
+collision_mask = 256
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("SphereShape3D_ooyci")
 
+[node name="SwarmJoinTimer" type="Timer" parent="."]
+wait_time = 15.0
+
 [connection signal="body_entered" from="Area3D" to="." method="_on_body_entered"]
 [connection signal="body_exited" from="Area3D" to="." method="_on_body_exited"]
+[connection signal="timeout" from="SwarmJoinTimer" to="." method="_on_swarm_join_timer_timeout"]

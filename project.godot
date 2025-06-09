@@ -133,3 +133,4 @@ debug={
 3d_physics/layer_5="Boulder"
 3d_physics/layer_6="Bubble"
 3d_physics/layer_7="SwimmingGround"
+3d_physics/layer_9="PlayerMeleeAttack"
