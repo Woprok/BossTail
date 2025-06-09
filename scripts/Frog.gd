@@ -131,6 +131,7 @@ var platform : Node
 var prev_platform : Node
 # target for grab attack or eating target
 var grab_target = null
+var grab_target_position = null
 
 # radius of path around platform for swimming
 var radius = 12.5                  
@@ -316,6 +317,7 @@ func start_grab(target):
 	doing = true
 	time_doing = 0
 	grab_target = target
+	grab_target_position = target.position
 	grab = true
 	time_bubble = 0
 	time_swipe_diff = 0
@@ -468,15 +470,17 @@ func handle_eating():
 	if grab_target == null:
 		grab_target = find_eat_target()
 	elif grab_target.platform==platform:
+		grab_target_position = grab_target.position
 		if position.distance_to(grab_target.position)<grab_len_min or position.distance_to(grab_target.position)>grab_len_max:
 			var point = find_point_on_platform(platform.global_position,grab_target.global_position,grab_len_min, grab_len_max)
 			if point!=null:
 				jump_direction(point)
 				reset_eat_time()
 		else:
-				jump_direction(position)
-				reset_eat_time()
+			jump_direction(position)
+			reset_eat_time()
 	else:
+		grab_target_position = grab_target.position 
 		if platform != grab_target.platform:
 			time_swipe_same = 0
 			time_swipe_diff = 0
@@ -906,10 +910,11 @@ func _on_animation_finished(anim_name):
 			time_swipe_same = 0
 			time_swipe_diff = 0
 			time_grab = 0
-			if grab_target == null:
+			if grab_target_position == null:
 				return
-			look_at(Vector3(grab_target.position.x,position.y,grab_target.position.z))
+			look_at(Vector3(grab_target_position.x,position.y,grab_target_position.z))
 			grab_target = null
+			grab_target_position = null
 			extend()
 	#if anim_name == "G_07-ground_slam-antic":
 	#	animationTree.ground_slam_start()
