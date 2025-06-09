@@ -1,13 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://drg5tjf7wiuib"]
+[gd_scene load_steps=3 format=3 uid="uid://drg5tjf7wiuib"]
 
 [ext_resource type="Script" uid="uid://b4icei2cjegta" path="res://scripts/Swarm.gd" id="1_f2jtm"]
-[ext_resource type="PackedScene" uid="uid://cghwxumcrmfcs" path="res://scenes/Fly.tscn" id="1_pbxlf"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_ua668"]
 height = 0.5
 radius = 0.45
 
-[node name="Swarm" type="Area3D"]
+[node name="Swarm" type="Area3D" groups=["swarm"]]
 collision_layer = 8
 collision_mask = 38
 script = ExtResource("1_f2jtm")
@@ -15,80 +14,14 @@ script = ExtResource("1_f2jtm")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CylinderShape3D_ua668")
 
-[node name="FlyCenter" parent="." instance=ExtResource("1_pbxlf")]
-flying = true
-swarm = true
+[node name="TickTimer" type="Timer" parent="."]
+unique_name_in_owner = true
 
-[node name="FlyCenterFront" parent="." instance=ExtResource("1_pbxlf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35, 0, 0)
-flying = true
-swarm = true
-position_in_swarm = Vector3(0.35, 0, 0)
-
-[node name="FlyCenterBack" parent="." instance=ExtResource("1_pbxlf")]
-transform = Transform3D(0.999999, -7.47649e-11, -0.00171042, 7.47649e-11, 1, -6.5135e-14, 0.00171042, -6.5135e-14, 0.999999, -0.35, 0, 0)
-flying = true
-swarm = true
-position_in_swarm = Vector3(-0.35, 0, 0)
-
-[node name="FlyCenterBottom" parent="." instance=ExtResource("1_pbxlf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.35)
-flying = true
-swarm = true
-position_in_swarm = Vector3(0, 0, 0.35)
-
-[node name="FlyCenterTop" parent="." instance=ExtResource("1_pbxlf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.35)
-flying = true
-swarm = true
-position_in_swarm = Vector3(0, 0, -0.35)
-
-[node name="FlyUpBottomFront" parent="." instance=ExtResource("1_pbxlf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0.2, 0.2)
-flying = true
-swarm = true
-position_in_swarm = Vector3(0.2, 0.2, 0.2)
-
-[node name="FlyUpBottomBack" parent="." instance=ExtResource("1_pbxlf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0.2, 0.2)
-flying = true
-swarm = true
-position_in_swarm = Vector3(-0.2, 0.2, 0.2)
-
-[node name="FlyUpTopFront" parent="." instance=ExtResource("1_pbxlf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0.2, -0.2)
-flying = true
-swarm = true
-position_in_swarm = Vector3(0.2, 0.2, -0.2)
-
-[node name="FlyUpTopBack" parent="." instance=ExtResource("1_pbxlf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0.2, -0.2)
-flying = true
-swarm = true
-position_in_swarm = Vector3(-0.2, 0.2, -0.2)
-
-[node name="FlyDownTopFront" parent="." instance=ExtResource("1_pbxlf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, -0.2, -0.2)
-flying = true
-swarm = true
-position_in_swarm = Vector3(0.2, -0.2, -0.2)
-
-[node name="FlyDownTopBack" parent="." instance=ExtResource("1_pbxlf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, -0.2, -0.2)
-flying = true
-swarm = true
-position_in_swarm = Vector3(-0.2, -0.2, -0.2)
-
-[node name="FlyDownBottomFront" parent="." instance=ExtResource("1_pbxlf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, -0.2, 0.2)
-flying = true
-swarm = true
-position_in_swarm = Vector3(0.2, -0.2, 0.2)
-
-[node name="FlyDownBottomBack" parent="." instance=ExtResource("1_pbxlf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, -0.2, 0.2)
-flying = true
-swarm = true
-position_in_swarm = Vector3(-0.2, -0.2, 0.2)
+[node name="DisperseTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 30.0
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="timeout" from="TickTimer" to="." method="_on_tick_timer_timeout"]
+[connection signal="timeout" from="DisperseTimer" to="." method="_on_disperse_timer_timeout"]

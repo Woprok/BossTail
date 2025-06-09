@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://ddrfp8or8dish"]
+
+[ext_resource type="Script" uid="uid://dxwndbui7jfh3" path="res://scenes/fly/SpawnPoint3D.gd" id="1_j7aij"]
+[ext_resource type="PackedScene" uid="uid://cghwxumcrmfcs" path="res://scenes/Fly.tscn" id="2_u7hxx"]
+
+[node name="FlySpawnPoint3D" type="Node3D"]
+script = ExtResource("1_j7aij")
+entity_to_spawn = ExtResource("2_u7hxx")
+min_spawn_offset = Vector3(-0.5, 0, -0.5)
+max_spawn_offset = Vector3(0.5, 0.5, 0.5)
+
+[node name="SpawnTimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

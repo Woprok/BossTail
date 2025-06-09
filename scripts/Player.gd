@@ -228,8 +228,9 @@ func _on_area_entered(area):
 		area.get_parent().hit(area, 0)
 	if area.get_parent()!=null and area.get_parent().is_in_group("fly"):
 		area.get_parent().call_deferred("enable_collision")
-		area.get_parent().velocity.y = 1
-		area.get_parent().flying = false
+		#area.get_parent().velocity.y = 1
+		#area.get_parent().flying = false
+		# aaaaaaaaaa this needs to be reworked
 
 
 func _on_dash_timer_timeout():
@@ -242,14 +243,6 @@ func _on_next_dash_timer_timeout():
 	can_dash = true
 	player_data.change_dash_indicator(true)	
 	$next_dash_timer.stop()
-
-
-func _on_pickup_entered(body):
-	if body.is_in_group("fly") and body.dead and player_data.ammo_special.can_pick():
-		player_data.player_ammo_picked(true)
-		body.queue_free()
-	super._on_pickup_entered(body)
-
 
 func _on_standing(area):
 	if area.is_in_group("spike"):
