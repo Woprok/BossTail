@@ -30,7 +30,7 @@ _surfaces = [{
 radius = 0.1
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ooyci"]
-radius = 1.0
+radius = 0.12
 
 [node name="fly" type="CharacterBody3D" groups=["fly"]]
 collision_layer = 9

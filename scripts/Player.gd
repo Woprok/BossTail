@@ -13,8 +13,9 @@ var STICKY_SPEED:int = 2
 var aciding_liquid:int = 0
 var grabbed: bool = false
 var launched:bool = false
-var push_start_position = Vector3(0,0,0)
+var push_start_position = Vector3.ZERO
 var push_length = 0
+var grab_target_position = Vector3.ZERO
 
 @export_group("VFX")
 @export var PlayerHitVFX: EntityHitVFX
@@ -31,6 +32,12 @@ func _physics_process(delta):
 		launched = false
 		direction = Vector3.ZERO
 		push_length = 0
+	
+	if launched and grab_target_position!=Vector3.ZERO and grab_target_position.distance_to(position)<3:
+		animation.idle()
+		launched = false
+		direction = Vector3.ZERO
+		grab_target_position = Vector3.ZERO
 	
 	if position.y<-3 or (is_on_floor() and position.y<-0.6):
 		respawn()
@@ -197,15 +204,21 @@ func respawn():
 	
 	
 func launch(pos):
-	launched=true
-	direction= pos+Vector3(0,1,0)
-	direction*=2.5
+	launched = true
+	direction = pos+Vector3(0,1,0)
+	direction *= 1.8
 
 func push(dir:Vector3, push_len:float):
 	dir.y = 0
 	launched = true
 	push_start_position = position
 	push_length = push_len
+	direction = dir.normalized()
+
+func grab(dir, target_position):
+	dir.y = 0
+	launched = true
+	grab_target_position = target_position
 	direction = dir.normalized()
 
 func _on_animation_finished(anim_name):

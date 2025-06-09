@@ -1,13 +1,13 @@
 [gd_scene load_steps=26 format=3 uid="uid://b7qeqaium4nae"]
 
-[ext_resource type="Script" uid="uid://cdcfiwg1yq4py" path="res://scripts/SecondPhase.gd" id="1_1oiri"]
 [ext_resource type="PackedScene" uid="uid://cs51pokcyuwhd" path="res://scenes/characters/Mouseketeer.tscn" id="2_k20qr"]
 [ext_resource type="PackedScene" uid="uid://m3d44565ohak" path="res://scenes/characters/ToadBoss.tscn" id="3_8kwl6"]
 [ext_resource type="PackedScene" uid="uid://byq2mhcwqgxom" path="res://scenes/Lily.tscn" id="4_hj8bh"]
 [ext_resource type="PackedScene" uid="uid://d1s2ioqlu8tsa" path="res://scenes/projectile_spawners/PebblePlatformSpawner.tscn" id="4_sahdt"]
 [ext_resource type="PackedScene" uid="uid://catdqfnxrr054" path="res://scenes/Flower.tscn" id="5_xj70a"]
-[ext_resource type="PackedScene" uid="uid://7wtg3h4cmetl" path="res://scenes/SpikeDanger.tscn" id="6_2qjty"]
+[ext_resource type="PackedScene" path="res://scenes/SpikeDanger.tscn" id="6_2qjty"]
 [ext_resource type="PackedScene" uid="uid://cnfgurppt1mae" path="res://scenes/environment/GrassClump_1.tscn" id="7_0b6fy"]
+[ext_resource type="Script" uid="uid://fpp2ynt8amt0" path="res://scripts/big_lily_bubbles_spawner.gd" id="7_2qjty"]
 [ext_resource type="PackedScene" uid="uid://ca6njqftxrpbi" path="res://scenes/LilyVer2.tscn" id="7_m8ndt"]
 [ext_resource type="PackedScene" uid="uid://dlrq4knk1gqi7" path="res://scenes/StonePlatform.tscn" id="7_pliwi"]
 [ext_resource type="PackedScene" uid="uid://car7kr8fau320" path="res://scenes/environment/ReedClump_2.tscn" id="8_i4gxl"]
@@ -65,7 +65,6 @@ ambient_light_energy = 2.0
 tonemap_mode = 2
 
 [node name="SecondPhase" type="Node3D"]
-script = ExtResource("1_1oiri")
 
 [node name="water" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.999995, 0.00275682, -0.00171328, -0.00275425, 0.999995, 0.00150771, 0.00171741, -0.001503, 0.999997, 0, -0.5, 0)
@@ -134,7 +133,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.68757, -2)
 [node name="largeLily" parent="lilyPlatforms" node_paths=PackedStringArray("neighbors") groups=["big_lily"] instance=ExtResource("4_hj8bh")]
 transform = Transform3D(2.11718, 0, 1.32949, 0, 2.5, 0, -1.32949, 0, 2.11718, 25, -0.0888251, -25)
 neighbors = [NodePath("../../shards/shard1"), NodePath("../../shards/shard2"), NodePath("../../shards/shard3"), NodePath("../../shards/shard4")]
-radius = 14
+radius = 12
+
+[node name="bubbles" type="Node3D" parent="lilyPlatforms/largeLily" node_paths=PackedStringArray("platform")]
+transform = Transform3D(0.338749, 0, -0.212719, 0, 0.4, 0, 0.212719, 0, 0.338749, 0.0116997, 0.03553, 0.00605631)
+script = ExtResource("7_2qjty")
+platform = NodePath("..")
 
 [node name="lily8_alt" parent="lilyPlatforms" node_paths=PackedStringArray("neighbors") instance=ExtResource("7_m8ndt")]
 transform = Transform3D(-0.0254093, 0, 0.999677, 0, 1, 0, -0.999677, 0, -0.0254093, 17.9347, 0, -55.451)
@@ -277,8 +281,6 @@ transform = Transform3D(2.5, 0, -1.19209e-07, 0, 1, 0, 1.19209e-07, 0, 2.5, 3.93
 transform = Transform3D(2.5, 0, -1.19209e-07, 0, 1, 0, 1.19209e-07, 0, 2.5, 3.41998, 1.19191, -3.29424)
 
 [node name="flies" type="Node3D" parent="."]
-
-[node name="bubbles" type="Node3D" parent="."]
 
 [node name="breakable" type="Node3D" parent="."]
 

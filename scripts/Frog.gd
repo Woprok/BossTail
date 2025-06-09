@@ -7,7 +7,7 @@ class_name Frog
 # speed on ground
 @export var speed:int = 2
 # swimming speed
-@export var swimming_speed = 10
+@export var MAX_SWIMMING_SPEED = 10
 # health percent for swipe
 @export var SWIPE_HP = 75
 # health percent for grab
@@ -96,6 +96,9 @@ var time_doing = 0
 @export var TRIGGER_SWIMMING = 10
 @export var TRIGGER_SWIMMING_END: float = 7.5
 
+@export var SWIMMING_ACCELERATION_TIME:float = 0.7
+@export var SWIMMING_DECELERATION_TIME:float = 0.7
+
 var swimming_accumulated_damage: float = 0
 
 # must be bigger than attack length
@@ -128,11 +131,14 @@ var platform : Node
 var prev_platform : Node
 # target for grab attack or eating target
 var grab_target = null
+var grab_target_position = null
 
 # radius of path around platform for swimming
 var radius = 12.5                  
 var angle = 0.0
 var init_angle = 0
+var swimming_speed = 0
+var swimming_stop = false
 
 var grab_len_max = 6*2
 var grab_len_min = 1
@@ -161,7 +167,6 @@ var triggered_once: bool = false
 func _ready() -> void:
 	boss_data.boss_restart()
 	GameEvents.boss_changed.emit(boss_data)
-	
 	#stun test
 	#create_tween().tween_callback(stun_VFX.play_stun_effect.bind(3)).set_delay(0.5)
 	
@@ -312,6 +317,7 @@ func start_grab(target):
 	doing = true
 	time_doing = 0
 	grab_target = target
+	grab_target_position = target.position
 	grab = true
 	time_bubble = 0
 	time_swipe_diff = 0
@@ -349,13 +355,20 @@ func update_swimming(delta):
 	time_swimming += delta
 
 	if time_swimming >= SWIMMING_TIME:
-		end_swimming()
-		return
+		swimming_stop = true
+		if swimming_speed == 0:
+			end_swimming()
+			swimming_stop = false
+			return
 
 	if time_bubble >= WATER_BUBBLE_TIME and time_swimming <= SWIMMING_TIME:
-		handle_swimming_bubble_attack()
-		return
-
+		swimming_stop = true
+		if swimming_speed == 0:
+			handle_swimming_bubble_attack()
+			swimming_stop = false
+			return
+			
+	handle_acceleration(delta)
 	animationTree.swim_start_swimming()
 	update_swimming_movement(delta)
 
@@ -365,6 +378,12 @@ func end_swimming():
 	tongueHit = 0
 	HPHit = 0
 	swimming_accumulated_damage = 0
+
+func handle_acceleration(delta:float):
+	if swimming_stop:
+		swimming_speed = max(0, swimming_speed - delta*MAX_SWIMMING_SPEED/SWIMMING_DECELERATION_TIME)
+	else:
+		swimming_speed = min(MAX_SWIMMING_SPEED, swimming_speed + delta * MAX_SWIMMING_SPEED/SWIMMING_ACCELERATION_TIME)
 
 func handle_swimming_bubble_attack():
 	animationTree.swim_bubble_atk_start()
@@ -451,15 +470,17 @@ func handle_eating():
 	if grab_target == null:
 		grab_target = find_eat_target()
 	elif grab_target.platform==platform:
+		grab_target_position = grab_target.position
 		if position.distance_to(grab_target.position)<grab_len_min or position.distance_to(grab_target.position)>grab_len_max:
 			var point = find_point_on_platform(platform.global_position,grab_target.global_position,grab_len_min, grab_len_max)
 			if point!=null:
 				jump_direction(point)
 				reset_eat_time()
 		else:
-				jump_direction(position)
-				reset_eat_time()
+			jump_direction(position)
+			reset_eat_time()
 	else:
+		grab_target_position = grab_target.position 
 		if platform != grab_target.platform:
 			time_swipe_same = 0
 			time_swipe_diff = 0
@@ -489,6 +510,10 @@ func set_ability_cooldown():
 		SLAM_TIME = SLAM_TIME_CONST
 	
 func set_movement_shape():
+	if jump and velocity.y<0:
+		$ground_player/CollisionShape3D.disabled = false
+	else:
+		$ground_player/CollisionShape3D.disabled = true
 	if jump and velocity.y>0:
 		$bodyShape.disabled = true
 		$headShape.disabled = true
@@ -702,7 +727,9 @@ func jump_to_platform():
 	swimming = false
 	
 func _on_swimming_critical_damage() -> void:
-	jump_to_platform()
+	#jump_to_platform()
+	swimming_stop = true
+	time_swimming = SWIMMING_TIME
 	tongueHit = 0
 	HPHit = 0
 	triggered = true
@@ -812,29 +839,33 @@ func _on_tongue_body_entered(body):
 			body.launch((body.position - position).normalized()*1.2)
 		if grab:
 			body.hit(null, GRAB_DAMAGE_HP)
-			var farestPlatform = []
-			var max = -INF
-			for p in get_parent().get_node("stonePlatforms").get_children():
-				var dist = p.position.distance_to(platform.position)
-				if dist>=max:
-					if dist == max:
-						farestPlatform.append(p)
-					else:
-						max = dist
-						farestPlatform = [p]
-			if farestPlatform==[]:
-				return
-			randomize()
-			var i = randi()%farestPlatform.size()
-			var newPlatform = farestPlatform[i]
-			var height = newPlatform.position.y - player.position.y + 10
-			height = abs(height)
-			var displacement_y = newPlatform.position.y-player.position.y
-			var displacemnt_xz = Vector3(newPlatform.position.x-player.position.x,0,newPlatform.position.z-player.position.z)
-			var velocity_y = Vector3.UP * sqrt(-2*gravity*height)
-			var velocity_xz = displacemnt_xz/(sqrt(-2*height/gravity)+sqrt(2*(displacement_y-height)/gravity))
-			player.velocity = velocity_y+velocity_xz
-			player.grabbed = true
+			body.grab(position - body.position, position)
+			extended = false
+			time_of_extend = 0
+			animationTree.tongue_grab_end()
+			#var farestPlatform = []
+			#var max = -INF
+			#for p in get_parent().get_node("stonePlatforms").get_children():
+		#		var dist = p.position.distance_to(platform.position)
+		#		if dist>=max:
+		#			if dist == max:
+		#				farestPlatform.append(p)
+		#			else:
+		#				max = dist
+		#				farestPlatform = [p]
+		#	if farestPlatform==[]:
+		#		return
+		#	randomize()
+		#	var i = randi()%farestPlatform.size()
+		#	var newPlatform = farestPlatform[i]
+		#	var height = newPlatform.position.y - player.position.y + 10
+		#	height = abs(height)
+		#	var displacement_y = newPlatform.position.y-player.position.y
+		#	var displacemnt_xz = Vector3(newPlatform.position.x-player.position.x,0,newPlatform.position.z-player.position.z)
+		#	var velocity_y = Vector3.UP * sqrt(-2*gravity*height)
+		#	var velocity_xz = displacemnt_xz/(sqrt(-2*height/gravity)+sqrt(2*(displacement_y-height)/gravity))
+		#	player.velocity = velocity_y+velocity_xz
+		#	player.grabbed = true
 	if body.is_in_group("spike"):
 		hit(null, SPIKE_HP)
 	if body.is_in_group("minion"):
@@ -879,10 +910,11 @@ func _on_animation_finished(anim_name):
 			time_swipe_same = 0
 			time_swipe_diff = 0
 			time_grab = 0
-			if grab_target == null:
+			if grab_target_position == null:
 				return
-			look_at(Vector3(grab_target.position.x,position.y,grab_target.position.z))
+			look_at(Vector3(grab_target_position.x,position.y,grab_target_position.z))
 			grab_target = null
+			grab_target_position = null
 			extend()
 	#if anim_name == "G_07-ground_slam-antic":
 	#	animationTree.ground_slam_start()
