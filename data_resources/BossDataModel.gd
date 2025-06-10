@@ -34,3 +34,8 @@ func boss_heal(value): #boss_increase_health
 	else:
 		health_standard.increase(value)
 	OnHealthChanged.emit()
+
+func start_health_special():
+	health_special.increase(100)
+	OnHealthChanged.emit()
+	

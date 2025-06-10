@@ -11,7 +11,7 @@ func _process(delta):
 	if Global.phase == 2:
 		last_bubble += delta
 		var num_of_bubbles = 5-(frog_health.get_current_health()-1)/20
-		if last_num_of_bubbles<num_of_bubbles:
+		if last_num_of_bubbles!=num_of_bubbles:
 			reset_respawn_position(num_of_bubbles)
 		if last_bubble >= 1:
 			last_bubble = 0

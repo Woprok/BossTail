@@ -42,7 +42,7 @@ func _physics_process(delta):
 			collision.get_collider().queue_free()
 			queue_free()
 			return
-	if speed<=0:
+	if speed<=0 or position.y<-10:
 		queue_free()
 		
 	look_at(self.position + velocity)

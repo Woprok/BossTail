@@ -646,6 +646,7 @@ func ground_slam():
 		newShards.get_node("stone4").neighbors.append_array(platform.neighbors)
 		if player.platform == platform:
 			player.platform = newShards.get_node("stone2")
+		boss_data.start_health_special()
 		platform.queue_free()
 		newShards.get_node("BubblesSpawner").active = true
 		platform = newShards.get_node("stone1")

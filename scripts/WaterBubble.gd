@@ -42,6 +42,8 @@ func _physics_process(delta):
 			collision_num += 1
 			pop(collision.get_position(), true)
 			collision.get_collider().hit(null, 20)
+			if collision.get_collider().boss_data.health_special.has_any_health_left():
+				collision.get_collider().hit(null, 30)
 		elif collision.get_collider().is_in_group("stone_platform") or collision.get_collider().is_in_group("lily_platform"):
 			collision_num += 1
 			pop(collision.get_position(), true)
