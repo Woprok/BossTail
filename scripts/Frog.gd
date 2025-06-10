@@ -456,7 +456,6 @@ func handle_slam():
 	doing = true
 	time_doing = 0
 	animationTree.ground_slam_start(GROUND_SLAM_ANTIC_DUR)
-				
 	var indicCtrlr = instantiate_indicator_object(ground_slam_indicator, Vector3(platform.position.x,global_position.y,platform.position.z))
 	indicCtrlr.appear(GROUND_SLAM_ANTIC_DUR * 0.75,1.8)
 	get_tree().create_tween().tween_callback(indicCtrlr.fade.bind(0.5)).set_delay(GROUND_SLAM_ANTIC_DUR)
@@ -600,6 +599,9 @@ func bubble_spit(water_bubble_instance = null):
 			bubble = WaterBubble.instantiate()
 	else:
 		bubble = AcidSpit.instantiate()
+		
+	#spit audio sfx
+	AudioClipManager.play("res://assets/audio/sfx/Spit.mp3")
 		
 	look_at(Vector3(player.position.x,position.y, player.position.z))
 	if water_bubble_instance == null:

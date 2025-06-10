@@ -98,6 +98,8 @@ func _start_dash() -> void:
 	dash_timing.tween_callback(CamSpeedLines.fade.bind(0.15)).set_delay(DASH_TIME - 0.1)
 	dash_timing.parallel().tween_callback($AnimationTree.dash_end).set_delay(DASH_TIME - 0.1)
 	
+	AudioClipManager.play("res://assets/audio/sfx/Dash.wav")
+	
 func _handle_camera() -> void:
 	if Input.is_action_pressed("camera_right"):
 		rotate_y(-0.05)
@@ -114,6 +116,8 @@ func _stab_started() -> void:
 	$AnimationTree.lunge_r()
 	fighting=true
 	player_data.change_melee_indicator(false)
+	
+	AudioClipManager.play("res://assets/audio/sfx/Attack.wav")
 	
 func _aim_started() -> void:
 	player_data.change_melee_indicator(false)
@@ -198,3 +202,4 @@ func reset_player_respawn():
 	velocity=Vector3.ZERO
 	respawning = true
 	$PlayerHitVFX.play_effect()
+	AudioClipManager.play("res://assets/audio/sfx/HitImpact.wav")

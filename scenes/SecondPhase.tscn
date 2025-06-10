@@ -1,11 +1,11 @@
-[gd_scene load_steps=26 format=3 uid="uid://b7qeqaium4nae"]
+[gd_scene load_steps=27 format=3 uid="uid://b7qeqaium4nae"]
 
 [ext_resource type="PackedScene" uid="uid://cs51pokcyuwhd" path="res://scenes/characters/Mouseketeer.tscn" id="2_k20qr"]
 [ext_resource type="PackedScene" uid="uid://m3d44565ohak" path="res://scenes/characters/ToadBoss.tscn" id="3_8kwl6"]
 [ext_resource type="PackedScene" uid="uid://byq2mhcwqgxom" path="res://scenes/Lily.tscn" id="4_hj8bh"]
 [ext_resource type="PackedScene" uid="uid://d1s2ioqlu8tsa" path="res://scenes/projectile_spawners/PebblePlatformSpawner.tscn" id="4_sahdt"]
 [ext_resource type="PackedScene" uid="uid://catdqfnxrr054" path="res://scenes/Flower.tscn" id="5_xj70a"]
-[ext_resource type="PackedScene" path="res://scenes/SpikeDanger.tscn" id="6_2qjty"]
+[ext_resource type="PackedScene" uid="uid://7wtg3h4cmetl" path="res://scenes/SpikeDanger.tscn" id="6_2qjty"]
 [ext_resource type="PackedScene" uid="uid://cnfgurppt1mae" path="res://scenes/environment/GrassClump_1.tscn" id="7_0b6fy"]
 [ext_resource type="Script" uid="uid://fpp2ynt8amt0" path="res://scripts/BigLilyBubblesSpawner.gd" id="7_2qjty"]
 [ext_resource type="PackedScene" uid="uid://ca6njqftxrpbi" path="res://scenes/LilyVer2.tscn" id="7_m8ndt"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://ni4i18ne3rtb" path="res://scenes/environment/PondShore.tscn" id="13_dcevk"]
 [ext_resource type="PackedScene" uid="uid://bsmbod3eiymdq" path="res://scenes/environment/ReedClump_1.tscn" id="14_ur7hn"]
 [ext_resource type="PackedScene" uid="uid://dumrn66mky8hf" path="res://scenes/environment/GrassClump_2.tscn" id="15_m8ndt"]
+[ext_resource type="PackedScene" uid="uid://cv7b86x78oqj2" path="res://scenes/other/pond_audio.tscn" id="18_2qjty"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_wjuqv"]
 
@@ -446,5 +447,8 @@ radius = 6
 
 [node name="Flower" parent="LilyFlowerPlatforms/LilyFlowerD" instance=ExtResource("5_xj70a")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.65, 0)
+
+[node name="PondAudio" parent="." instance=ExtResource("18_2qjty")]
+transform = Transform3D(0.886664, 0, 0.462414, 0, 1, 0, -0.462414, 0, 0.886664, 0, 0, 0)
 
 [editable path="PondShore"]

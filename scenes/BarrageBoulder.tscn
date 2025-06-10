@@ -21,7 +21,7 @@ size = Vector3(4, 4, 4)
 [node name="Boulder" type="CharacterBody3D" groups=["box"]]
 collision_layer = 128
 script = ExtResource("1_o6cjy")
-RollSpeed = 120.0
+RollSpeed = 240.0
 
 [node name="BoulderMesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bs2wo0hd3wnmr"]
+[gd_scene load_steps=24 format=3 uid="uid://bs2wo0hd3wnmr"]
 
 [ext_resource type="PackedScene" uid="uid://cs51pokcyuwhd" path="res://scenes/characters/Mouseketeer.tscn" id="1_gltnc"]
 [ext_resource type="PackedScene" uid="uid://m3d44565ohak" path="res://scenes/characters/ToadBoss.tscn" id="2_8ot16"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://car7kr8fau320" path="res://scenes/environment/ReedClump_2.tscn" id="12_sqrg6"]
 [ext_resource type="PackedScene" uid="uid://c7c6whce0i7ta" path="res://scenes/environment/LeafBoat.tscn" id="13_5ylab"]
 [ext_resource type="PackedScene" uid="uid://ni4i18ne3rtb" path="res://scenes/environment/PondShore.tscn" id="13_sqrg6"]
+[ext_resource type="PackedScene" uid="uid://cv7b86x78oqj2" path="res://scenes/other/pond_audio.tscn" id="14_sqrg6"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_wjuqv"]
 
@@ -306,3 +307,5 @@ transform = Transform3D(0.59017, 0, 1.21417, 0, 1.35, 0, -1.21417, 0, 0.59017, -
 
 [node name="PondShore" parent="." instance=ExtResource("13_sqrg6")]
 transform = Transform3D(0.218177, 0, -0.975909, 0, 1, 0, 0.975909, 0, 0.218177, 158.346, -7.96893, -63.8108)
+
+[node name="PondAudio" parent="." instance=ExtResource("14_sqrg6")]

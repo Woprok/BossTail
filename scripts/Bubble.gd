@@ -9,6 +9,9 @@ func _physics_process(delta):
 	velocity.y += speed*gravity*delta
 	var collision = move_and_collide(speed*velocity*delta)
 	if collision:
+		#play_hit sfx		
+		AudioClipManager.play("res://assets/audio/sfx/SpitSplash.wav")
+		
 		if collision.get_collider().is_in_group("player"):
 			if collision.get_collider().platform.is_in_group("stone_platform") or collision.get_collider().platform.is_in_group("big_lily"):
 				instantiate_splash(collision.get_position()-Vector3(0,0.5,0))

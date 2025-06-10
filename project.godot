@@ -24,6 +24,7 @@ GameInstance="*res://GameInstance.gd"
 GameEvents="*res://GameEvents.gd"
 Global="*res://scripts/Global.gd"
 UIManager="*res://user_interface/UIManager.tscn"
+AudioClipManager="*res://scripts/AudioClipManager.gd"
 
 [debug]
 

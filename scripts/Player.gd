@@ -82,6 +82,10 @@ func _physics_process(delta):
 		jump_time = 0
 		player_data.change_jump_height(delta)
 		direction.y += 1
+		
+		#jump audio sfx
+		AudioClipManager.play("res://assets/audio/sfx/Jump.wav")
+		
 	if Input.is_action_pressed("jump") and aciding_liquid == 0 and not freeze:
 		jump_time += delta
 		player_data.change_jump_height(delta*333)
@@ -174,6 +178,9 @@ func hit(_collision, health):
 		GameInstance.PlayerDefeated()
 	if PlayerHitVFX != null:
 		PlayerHitVFX.play_effect()
+		
+	#hit impact sfx
+	AudioClipManager.play("res://assets/audio/sfx/HitImpact.wav")
 
 func respawn():
 	reset_player_respawn()
@@ -239,6 +246,9 @@ func _on_area_entered(area):
 	if area.get_parent().is_in_group("enemy") and not melee:
 		melee = true
 		area.get_parent().hit(area, 0)
+		#melee hit sfx
+		AudioClipManager.play("res://assets/audio/sfx/StabHit.mp3")
+	
 	if area.get_parent()!=null and area.get_parent().is_in_group("fly"):
 		area.get_parent().call_deferred("enable_collision")
 		area.get_parent().velocity.y = 1
@@ -273,7 +283,7 @@ func _on_standing(area):
 		grabbed = false
 		aciding_liquid += 1
 	if area.is_in_group("stone_platform") or area.is_in_group("lily_platform"):
-		animation.jump_land()
+		animation.jump_land()		
 		platform = area
 		launched = false
 		grabbed = false
@@ -291,8 +301,7 @@ func _on_frog_standing(area: Area3D) -> void:
 		var away = (global_position - area.get_parent().global_position).normalized()
 		launched = true
 		direction = away
-		direction.y = 0.2  
-
+		direction.y = 0.2
 
 func _on_body_standing(body: Node3D) -> void:
 	if body.is_in_group("boulder"):

@@ -57,6 +57,7 @@ func _on_hit(collision):
 	if collision.get_collider().is_in_group("enemy"):
 		collision.get_collider().hit(collision.get_collider_shape(), projectile_damage)
 		destroy()
+		AudioClipManager.play("res://assets/audio/sfx/HitImpact.wav")
 
 func _notify_spawner() -> void:
 	if spawner:
