@@ -283,7 +283,10 @@ func _on_standing(area):
 		grabbed = false
 		aciding_liquid += 1
 	if area.is_in_group("stone_platform") or area.is_in_group("lily_platform"):
-		animation.jump_land()		
+		animation.jump_land()
+		#land sfx
+		AudioClipManager.play("res://assets/audio/sfx/Land.wav", 0.5)
+		
 		platform = area
 		launched = false
 		grabbed = false

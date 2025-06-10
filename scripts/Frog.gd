@@ -601,7 +601,7 @@ func bubble_spit(water_bubble_instance = null):
 		bubble = AcidSpit.instantiate()
 		
 	#spit audio sfx
-	AudioClipManager.play("res://assets/audio/sfx/Spit.mp3")
+	AudioClipManager.play("res://assets/audio/sfx/Spit.mp3", 0.75)
 		
 	look_at(Vector3(player.position.x,position.y, player.position.z))
 	if water_bubble_instance == null:
@@ -737,6 +737,8 @@ func _on_swimming_critical_damage() -> void:
 	HPHit = 0
 	triggered = true
 	swimming_accumulated_damage = 0
+	#sfx
+	AudioClipManager.play("res://assets/audio/sfx/HitImpact.wav", 1.5)
 	
 func hit(area, health):
 	var hit_pos: Vector3 = hit_body_pos.global_position

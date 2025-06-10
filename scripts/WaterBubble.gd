@@ -26,7 +26,7 @@ func _physics_process(delta):
 	
 	if collision:
 		#play sfx
-		AudioClipManager.play("res://assets/audio/sfx/WaterBubbleSplash.mp3")
+		AudioClipManager.play("res://assets/audio/sfx/WaterBubbleSplash.mp3", 0.5)
 		
 		if collision.get_collider().is_in_group("player") and not collision_with_player:
 			collision_with_player = true

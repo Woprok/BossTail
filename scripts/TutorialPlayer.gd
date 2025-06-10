@@ -218,6 +218,9 @@ func _on_standing(area):
 	if area.is_in_group("spike"):
 		hit(null, 20)
 		get_parent().respawn_player()
+	else:
+		#land sfx
+		AudioClipManager.play("res://assets/audio/sfx/Land.wav")
 	if area.is_in_group("part2"):
 		part = 3
 		
