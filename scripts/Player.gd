@@ -169,7 +169,7 @@ func _physics_process(delta):
 		
 
 func hit(_collision, health):
-	if lastHit<1:
+	if lastHit<1 and health==1:
 		return
 	lastHit = 0
 	player_data.player_decrease_health(health)
