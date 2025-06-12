@@ -63,12 +63,16 @@ func _physics_process(delta):
 		jump_time = 0
 		player_data.change_jump_height(delta)
 		direction.y += 1
+		
+		#jump audio sfx
+		AudioClipManager.play("res://assets/audio/sfx/Jump.wav")
+		
 	if Input.is_action_pressed("jump") and not freeze:
 		player_data.change_jump_height(delta*333)
 		jump_time += delta
 	if Input.is_action_just_released("jump") and not freeze:
-		player_data.change_jump_height(0)
-
+		player_data.change_jump_height(0)		
+		
 		if jump_time>=0.7:
 			target_velocity.y *= 0.1
 			jump_time = 0
@@ -151,6 +155,8 @@ func hit(_collision, health):
 	if player_data.is_player_dead():
 		respawn()
 		player_data.player_restart()
+	#sfx
+	AudioClipManager.play("res://assets/audio/sfx/HitImpact.wav")
 
 func respawn():
 	reset_player_respawn()
@@ -203,15 +209,18 @@ func _on_next_dash_timer_timeout():
 func _on_melee_body_entered(body):
 	if body.is_in_group("mini_dummy"):
 		body.death()
+		AudioClipManager.play("res://assets/audio/sfx/StabHit.mp3")
 	elif body.is_in_group("enemy"):
 		body.hit(null, 10)
-
-
+		AudioClipManager.play("res://assets/audio/sfx/StabHit.mp3")
 
 func _on_standing(area):
 	if area.is_in_group("spike"):
 		hit(null, 20)
 		get_parent().respawn_player()
+	else:
+		#land sfx
+		AudioClipManager.play("res://assets/audio/sfx/Land.wav")
 	if area.is_in_group("part2"):
 		part = 3
 		

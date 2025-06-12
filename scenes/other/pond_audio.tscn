@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cv7b86x78oqj2"]
+
+[ext_resource type="AudioStream" uid="uid://cmdf6gsy81fdm" path="res://assets/audio/music/PondAmbience.wav" id="1_868to"]
+[ext_resource type="AudioStream" uid="uid://bpyuc21otj4j7" path="res://assets/audio/music/PondBattleTheme.mp3" id="2_ja50x"]
+
+[node name="PondAudio" type="Node3D"]
+
+[node name="PondAmbience" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("1_868to")
+autoplay = true
+
+[node name="CombatMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_ja50x")
+volume_db = -3.0
+autoplay = true

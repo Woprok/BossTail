@@ -13,6 +13,8 @@ var projectile_drop = preload("res://scenes/player/PebbleProjectile.tscn")
 
 @export var RollSpeed: float
 @export var SpawnDropDur: float = 0.75
+@export var AppearScaleDur: float = 0.35
+@export var BoulderMeshScale: float = 4.0
 var spawn_drop_running: bool
 
 func spawn_drop(ground_y: float):
@@ -20,9 +22,14 @@ func spawn_drop(ground_y: float):
 	spawn_drop_running = true
 	var drop_height = self.position.y - ground_y
 	var drop_pos: Vector3 = position - Vector3(0, drop_height, 0) + Vector3.UP * 1.0
+	mesh.scale = Vector3.ZERO
 	var tween = get_tree().create_tween()
+	tween.tween_property(mesh, "scale", Vector3.ONE * BoulderMeshScale, AppearScaleDur)
 	tween.tween_property(self, "position", drop_pos, SpawnDropDur).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BOUNCE)
-	tween.tween_callback(func (): spawn_drop_running = false)
+	tween.tween_callback(spawn_drop_finished)
+	
+func spawn_drop_finished():
+	spawn_drop_running = false
 	
 func _physics_process(delta):
 	mesh.rotate_x(deg_to_rad(RollSpeed) * delta)

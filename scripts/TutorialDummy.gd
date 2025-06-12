@@ -210,6 +210,9 @@ func slash():
 	attack_seq_timer.tween_callback(DummyAnimationController.great_slash_play_start).set_delay(SLASH_ANTIC_TIME)
 	create_tween().tween_callback(spawn_slash_vfx).set_delay(SLASH_ANTIC_TIME)
 	
+	#sfx
+	AudioClipManager.play("res://assets/audio/sfx/Attack.wav")
+	
 func spawn_slash_vfx():
 	var slash_vfx_node: Node3D = SlashVFX.instantiate()
 	DummyEntity.add_child(slash_vfx_node)
@@ -252,6 +255,9 @@ func push():
 	WhirlwindVFX.shockwave()
 	WhirlwindVFX.fade_whirlwind(0.15)
 	
+	#whirlwind release sfx
+	AudioClipManager.play("res://assets/audio/sfx/WhirlwindRelease.wav")
+	
 	eyes_flash(0.1)
 	get_tree().create_tween().tween_callback(eyes_fade.bind(0.25)).set_delay(0.2)
 	
@@ -281,7 +287,7 @@ func throw():
 		var look_pos: Vector3 = indicCtrlr.position + flat(dir)
 		indicCtrlr.look_at(look_pos, Vector3.UP)
 		indicCtrlr.appear(BARRAGE_ANTIC_TIME * 2)
-		get_tree().create_tween().tween_callback(indicCtrlr.fade.bind(0.5)).set_delay(BARRAGE_ANTIC_TIME + 0.75)
+		get_tree().create_tween().tween_callback(indicCtrlr.fade.bind(0.5)).set_delay(BARRAGE_ANTIC_TIME + 1.15)
 		
 	# Barrage release phase --------------------
 	
@@ -289,6 +295,8 @@ func throw():
 	var summonVFX: Node3D = BarrageSummonVFX.instantiate()
 	self.add_child(summonVFX)
 	summonVFX.global_position = BoulderSpawnPos.global_position
+	#sfx
+	AudioClipManager.play("res://assets/audio/sfx/BarrageSummon.wav")
 	
 	actual_volley+=1
 	for i in range(BOXES_IN_VOLLEY):

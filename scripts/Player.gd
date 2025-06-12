@@ -52,16 +52,16 @@ func _physics_process(delta):
 	
 	if not launched:
 		direction = Vector3.ZERO
-	if Input.is_action_pressed("move_back") and not launched and not freeze:
+	if Input.is_action_pressed("move_back") and controls and not launched and not freeze:
 		direction.z += 1
-	if Input.is_action_pressed("move_forward") and not launched and not freeze:
+	if Input.is_action_pressed("move_forward") and controls and not launched and not freeze:
 		direction.z -= 1
-	if Input.is_action_pressed("strafe_left") and not launched and not freeze:
+	if Input.is_action_pressed("strafe_left") and controls and not launched and not freeze:
 		direction.x -= 1
-	if Input.is_action_pressed("strafe_right") and not launched and not freeze:
+	if Input.is_action_pressed("strafe_right") and controls and not launched and not freeze:
 		direction.x += 1
 		
-	if Input.is_action_just_pressed("dash") and can_dash and not fighting and not freeze:
+	if Input.is_action_just_pressed("dash") and controls and can_dash and not fighting and not freeze:
 		_start_dash()
 		
 	if dashing:
@@ -75,14 +75,18 @@ func _physics_process(delta):
 	else:
 		speed = SPEED
 		
-	if Input.is_action_just_pressed("jump") and aciding_liquid == 0 and not freeze:
+	if Input.is_action_just_pressed("jump") and controls and aciding_liquid == 0 and not freeze:
 		jump_time = 0
 		player_data.change_jump_height(delta)
 		direction.y += 1
-	if Input.is_action_pressed("jump") and aciding_liquid == 0 and not freeze:
+		
+		#jump audio sfx
+		AudioClipManager.play("res://assets/audio/sfx/Jump.wav")
+		
+	if Input.is_action_pressed("jump") and controls and aciding_liquid == 0 and not freeze:
 		jump_time += delta
 		player_data.change_jump_height(delta*333)
-	if Input.is_action_just_released("jump") and not freeze:
+	if Input.is_action_just_released("jump") and controls and not freeze:
 		player_data.change_jump_height(0)
 		
 		if jump_time>=0.7:
@@ -103,14 +107,14 @@ func _physics_process(delta):
 		if not dashing:
 			animation.run()
 		
-	if last_shot > 0.5 and Input.is_action_pressed("aim") and not freeze:
+	if last_shot > 0.5 and Input.is_action_pressed("aim") and controls and not freeze:
 		player_data.change_ranged_indicator(true)
 	elif last_shot > 0.5:
 		player_data.change_melee_indicator(true)
 	else:
 		player_data.change_ranged_indicator(false)
 
-	if Input.is_action_pressed("fight") and is_on_floor() and direction == Vector3.ZERO and not freeze:
+	if Input.is_action_pressed("fight") and is_on_floor() and controls and direction == Vector3.ZERO and not freeze:
 		if not aiming:
 			if last_shot > 0.75:
 				last_shot = 0
@@ -118,10 +122,10 @@ func _physics_process(delta):
 		elif last_shot > 0.75:
 			shoot()
 			last_shot = 0
-	elif Input.is_action_just_pressed("aim") and not freeze:
+	elif Input.is_action_just_pressed("aim") and controls and not freeze:
 		_aim_started()
 
-	elif Input.is_action_just_released("aim") and not freeze:
+	elif Input.is_action_just_released("aim") and controls and not freeze:
 		_aim_finished()
 	
 	var movement_dir = null
@@ -162,7 +166,7 @@ func _physics_process(delta):
 		
 
 func hit(_collision, health):
-	if lastHit<1:
+	if lastHit<1 and health==1:
 		return
 	lastHit = 0
 	player_data.player_decrease_health(health)
@@ -171,6 +175,9 @@ func hit(_collision, health):
 		GameInstance.PlayerDefeated()
 	if PlayerHitVFX != null:
 		PlayerHitVFX.play_effect()
+		
+	#hit impact sfx
+	AudioClipManager.play("res://assets/audio/sfx/HitImpact.wav")
 
 func respawn():
 	reset_player_respawn()
@@ -236,13 +243,16 @@ func _on_area_entered(area):
 	if area.get_parent().is_in_group("enemy") and not melee:
 		melee = true
 		area.get_parent().hit(area, 0)
+		#melee hit sfx
+		AudioClipManager.play("res://assets/audio/sfx/StabHit.mp3")
 	# melee attack against fly
 	if area.get_parent() != null and area.get_parent().is_in_group("fly"):
 		area.get_parent().hit(self, 5)
+		AudioClipManager.play("res://assets/audio/sfx/StabHit.mp3")
 	# melee attack against swarm
 	if area != null and area.is_in_group("swarm"):
 		area.hit(self, 5)
-
+		AudioClipManager.play("res://assets/audio/sfx/StabHit.mp3")
 
 func _on_dash_timer_timeout():
 	dashing = false
@@ -265,6 +275,9 @@ func _on_standing(area):
 		aciding_liquid += 1
 	if area.is_in_group("stone_platform") or area.is_in_group("lily_platform"):
 		animation.jump_land()
+		#land sfx
+		AudioClipManager.play("res://assets/audio/sfx/Land.wav", 0.5)
+		
 		platform = area
 		launched = false
 		grabbed = false
@@ -282,8 +295,7 @@ func _on_frog_standing(area: Area3D) -> void:
 		var away = (global_position - area.get_parent().global_position).normalized()
 		launched = true
 		direction = away
-		direction.y = 0.2  
-
+		direction.y = 0.2
 
 func _on_body_standing(body: Node3D) -> void:
 	if body.is_in_group("boulder"):

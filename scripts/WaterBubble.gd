@@ -6,6 +6,7 @@ extends CharacterBody3D
 var collision_num = 0 
 var collision_with_player = false
 @export var ignore_collisions_time = 0.25
+var spawner = false
 
 @onready var bubble_obj: Node3D = $Bubble
 var antic_phase: bool = false
@@ -24,13 +25,25 @@ func _physics_process(delta):
 	var collision: KinematicCollision3D = move_and_collide(speed*velocity*delta)
 	
 	if collision:
+		#play sfx
+		AudioClipManager.play("res://assets/audio/sfx/WaterBubbleSplash.mp3", 0.5)
+		
 		if collision.get_collider().is_in_group("player") and not collision_with_player:
 			collision_with_player = true
 			collision_num += 1
 			pop(collision.get_position(), true)
 			collision.get_collider().push(collision.get_collider().position-position,3)
-			collision.get_collider().hit(null, 5)
+			if spawner:
+				collision.get_collider().hit(null, 20)
+			else:
+				collision.get_collider().hit(null, 5)
 			return
+		elif collision.get_collider().is_in_group("enemy") and collision_num==0 and spawner:
+			collision_num += 1
+			pop(collision.get_position(), true)
+			collision.get_collider().hit(null, 20)
+			if collision.get_collider().boss_data.health_special.has_any_health_left():
+				collision.get_collider().hit(null, 30)
 		elif collision.get_collider().is_in_group("stone_platform") or collision.get_collider().is_in_group("lily_platform"):
 			collision_num += 1
 			pop(collision.get_position(), true)

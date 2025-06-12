@@ -27,6 +27,7 @@ var time_stop = 5
 var time_slam = 0
 var time_eat = 0
 var time_doing = 0
+var time_big_lily = 0
 
 @export_group("Animation Timings")
 @export_subgroup("Anticipations")
@@ -51,9 +52,10 @@ var time_doing = 0
 # time between two swipes, player and enemy on different platform
 @export var SWIPE_DIFF_PLATFORM_TIME = 10
 @export var SLAM_TIME_CONST = 5
-@export var SWIPE_SAME_PLATFORM_TIME_CONST = 2
+@export var SWIPE_SAME_PLATFORM_TIME_CONST = 3
 @export var SWIPE_DIFF_PLATFORM_TIME_CONST = 10
 @export var SPIT_BUBBLE_TIME_CONST = 5
+@export var BIG_LILY_BEHAVIOR_TIME = 1.5
 
 # time between two spit attacks
 @export var SPIT_BUBBLE_TIME = 5
@@ -111,6 +113,7 @@ var swipe = false
 var jump = false
 var swimming = false
 var sluggish = false
+var swipe_grab_switch = true
 var bubble_num = 0
 var boulderHit = 0
 # num of tongue hits for one grab
@@ -202,10 +205,11 @@ func process_phase_1(delta):
 			tongueHit = 0
 			HPHit = 0
 			return
-		if can_grab_same_platform():
-			grab_same_platform(delta)
-		elif can_grab_other_platform():
-			grab_other_platform(delta)
+		if can_grab(delta):
+			if can_grab_same_platform():
+				grab_same_platform()
+			elif can_grab_other_platform():
+				grab_other_platform()
 
 		if can_swipe():
 			handle_swipe(delta)
@@ -230,11 +234,14 @@ func process_phase_2(delta:float):
 			if platform == player.platform:
 				handle_slam()
 		else:
-			find_stone_platform_phase2()
-	if can_swipe():
-		handle_swipe(delta)
-	if can_spit_bubble(delta):
-			handle_bubble_spit(delta)
+			find_slam_platform_phase2()
+	if is_on_big_lily():
+		handle_big_lily(delta)
+	else:
+		if can_swipe():
+			handle_swipe(delta)
+		if can_spit_bubble(delta):
+				handle_bubble_spit(delta)
 
 func set_ground_collisions():
 	$body/bodyShape.disabled = false
@@ -262,15 +269,16 @@ func can_grab_other_platform():
 func can_swipe():
 	return boss_data.get_current_health() <= SWIPE_HP and not doing
 	
+func can_grab(delta):
+	time_grab += delta
+	return time_grab>=GRAB_TIME
+	
 func can_spit_bubble(delta):
 	if Global.phase > 1:
 		time_bubble += delta
 	return (boss_data.get_current_health() != 100 or (Global.phase == 2 and time_bubble>SPIT_BUBBLE_TIME)) and not doing
 
-func grab_same_platform(delta:float):
-	time_grab += delta
-	if time_grab<GRAB_TIME:
-		return
+func grab_same_platform():
 	if position.distance_to(player.position) < grab_len_min or position.distance_to(player.position) > grab_len_max:
 		var point = find_point_on_platform(platform.global_position, player.global_position, grab_len_min, grab_len_max)
 		if point != null:
@@ -279,10 +287,7 @@ func grab_same_platform(delta:float):
 		jump_direction(position)
 	start_grab(player)
 
-func grab_other_platform(delta):
-	time_grab += delta
-	if time_grab<GRAB_TIME:
-		return
+func grab_other_platform():
 	time_bubble = 0
 	time_swipe_diff = 0
 	time_swipe_same = 0
@@ -313,6 +318,16 @@ func handle_bubble_spit(delta:float):
 		animationTree.spit_start(SPIT_ANTIC_DUR, SPIT_WOO_DUR)
 		bubble_spit()
 	
+func handle_big_lily(delta):
+	time_big_lily+=delta
+	if time_big_lily>=BIG_LILY_BEHAVIOR_TIME:
+		time_big_lily = 0
+		swipe_grab_switch = !swipe_grab_switch
+		if swipe_grab_switch:
+			start_swipe()
+		else:
+			grab_same_platform()
+			
 func start_grab(target):
 	doing = true
 	time_doing = 0
@@ -331,9 +346,9 @@ func start_swipe():
 	tongue_swipe()
 	tongueHit = 0
 	if Global.phase==1:
-		time_grab -= 1
+		time_grab -= 0.5
 	else:
-		time_slam -= 1
+		time_slam -= 0.5
 	time_swipe_same = 0
 	time_swipe_diff = 0
 
@@ -442,11 +457,14 @@ func update_swimming_movement(delta):
 		position = Vector3(x, -0.15, z)
 
 func slam_reset():
-	if platform != null and platform != player.platform and platform.is_in_group("stone_platform") and platform.health > 0:
+	if platform != null and platform != player.platform:
 		time_slam = 0
+		
+func is_on_big_lily():
+	return platform!=null and platform.is_in_group("big_lily") and platform == player.platform
 
 func can_slam():
-	return platform.is_in_group("stone_platform") and platform.health>0
+	return (platform.is_in_group("stone_platform") and platform.health>0) || platform.is_in_group("big_lily")
 
 func handle_slam():
 	time_bubble = 0
@@ -456,7 +474,6 @@ func handle_slam():
 	doing = true
 	time_doing = 0
 	animationTree.ground_slam_start(GROUND_SLAM_ANTIC_DUR)
-				
 	var indicCtrlr = instantiate_indicator_object(ground_slam_indicator, Vector3(platform.position.x,global_position.y,platform.position.z))
 	indicCtrlr.appear(GROUND_SLAM_ANTIC_DUR * 0.75,1.8)
 	get_tree().create_tween().tween_callback(indicCtrlr.fade.bind(0.5)).set_delay(GROUND_SLAM_ANTIC_DUR)
@@ -486,7 +503,7 @@ func handle_eating():
 			time_swipe_diff = 0
 			plan_path(grab_target.platform)
 
-func find_stone_platform_phase2():
+func find_slam_platform_phase2():
 	for s in get_parent().get_node("stonePlatforms").get_children():
 		if s.health>0:
 			plan_path(s)
@@ -601,13 +618,16 @@ func bubble_spit(water_bubble_instance = null):
 	else:
 		bubble = AcidSpit.instantiate()
 		
+	#spit audio sfx
+	AudioClipManager.play("res://assets/audio/sfx/Spit.mp3", 0.75)
+		
 	look_at(Vector3(player.position.x,position.y, player.position.z))
 	if water_bubble_instance == null:
 		get_parent().add_child(bubble)
 		if not swimming:
 			bubble.position = position-transform.basis.z*2
 			bubble.position.y+=0.5
-	bubble.shoot(player.position)
+	bubble.shoot(player.position+Vector3(0,0.5,0))
 	time_bubble = 0
 	doing = false
 
@@ -623,7 +643,10 @@ func tongue_swipe():
 	
 func ground_slam():
 	slam = false
-	platform.health -= 1
+	if !platform.is_in_group("big_lily"):
+		platform.health -= 1
+	else:
+		platform.sinked = true
 	if player.platform == platform and player.position.distance_to(Vector3(platform.position.x,player.position.y, platform.position.z))<8:
 		player.hit(null, SLAM_HP)
 		player.get_node("CameraPivot").apply_shake()
@@ -644,7 +667,9 @@ func ground_slam():
 		newShards.get_node("stone4").neighbors.append_array(platform.neighbors)
 		if player.platform == platform:
 			player.platform = newShards.get_node("stone2")
+		boss_data.start_health_special()
 		platform.queue_free()
+		newShards.get_node("BubblesSpawner").active = true
 		platform = newShards.get_node("stone1")
 		newShards.get_node("AnimationPlayer").play("break")
 	
@@ -734,6 +759,8 @@ func _on_swimming_critical_damage() -> void:
 	HPHit = 0
 	triggered = true
 	swimming_accumulated_damage = 0
+	#sfx
+	AudioClipManager.play("res://assets/audio/sfx/HitImpact.wav", 1.5)
 	
 func hit(area, health):
 	var hit_pos: Vector3 = hit_body_pos.global_position
