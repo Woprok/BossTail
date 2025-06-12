@@ -23,7 +23,7 @@ func spawn_projectile():
 	new_pickable.spawner = self
 	spawned_count += 1
 	new_pickable.position = _select_spawn_position()
-	get_tree().root.add_child(new_pickable)
+	get_tree().current_scene.add_child.call_deferred(new_pickable)
 
 func _select_spawn_position() -> Vector3:
 	var x = self.global_position.x + randf_range(-distance_x, distance_x)

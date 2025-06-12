@@ -130,11 +130,14 @@ func _select_and_navigate_to_target(delta: float) -> void:
 	# Fly moves based on state
 	match state:
 		FlyState.FLYING:
-			last_target_position = MovementComponent.fly_around_orbit(home_spawner.global_position, fly_buzz_radius, delta)
+			if home_spawner:
+				last_target_position = MovementComponent.fly_around_orbit(home_spawner.global_position, fly_buzz_radius, delta)
 		FlyState.NAVIGATING:
-			last_target_position = home_swarm.global_position
+			if home_swarm:
+				last_target_position = home_swarm.global_position
 		FlyState.SWARMING:
-			last_target_position = home_swarm.global_position + swarm_position #* randf()
+			if home_swarm:
+				last_target_position = home_swarm.global_position + swarm_position #* randf()
 		FlyState.SACRIFICE:
 			# Defines target as boss global position
 			var boss = get_tree().get_first_node_in_group("boss")
@@ -162,7 +165,7 @@ func _on_body_exited(body):
 	if body.is_in_group("player"):
 		pass
 
-func hit(source, damage) -> bool:
+func hit(_source, _damage) -> bool:
 	if state == FlyState.SWARMING:
 		_try_leave_swarm()
 		return false
@@ -189,7 +192,7 @@ func destroy() -> void:
 func _try_spawn_body() -> void:
 	if randf() >= projectile_chance:
 		var fd = dead_body.instantiate()
-		get_tree().root.add_child(fd)
+		get_tree().current_scene.add_child(fd)
 		fd.global_position = self.global_position
 	
 # Swarm leaving mechanic on hit

@@ -21,8 +21,8 @@ func spawn() -> void:
 	# assign entity under desired root or default
 	if entity_custom_root:
 		entity_custom_root.add_child(new_entity)
-	else:
-		get_tree().root.add_child(new_entity)
+	else:		
+		get_tree().current_scene.add_child(new_entity)
 	new_entity.SetSpawner(self)
 
 func _select_spawn_position() -> Vector3:

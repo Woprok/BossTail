@@ -169,7 +169,7 @@ func _player_stop_taking_damage(_player_body) -> void:
 	if state == SwarmState.CHASING and SWARM_FINAL_HIT != 0.0:
 		player.hit(self, SWARM_FINAL_HIT)
 
-func hit(source, damage) -> bool:
+func hit(_source, _damage) -> bool:
 	# Swarm is easy to hit and does take damage
 	# It's just super ineffective
 	# Pebbles solve this

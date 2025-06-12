@@ -158,13 +158,13 @@ func shoot():
 	
 func shoot_standard_projectile():
 	var projectile = standard_projectile.instantiate()
-	get_tree().root.add_child(projectile)		
+	get_tree().current_scene.add_child(projectile)		
 	player_data.player_ammo_used(false)
 	_shoot(projectile)
 	
 func shoot_special_projectile():
 	var projectile = special_projectile.instantiate()
-	get_tree().root.add_child(projectile)		
+	get_tree().current_scene.add_child(projectile)		
 	player_data.player_ammo_used(true)
 	_shoot(projectile)
 	
