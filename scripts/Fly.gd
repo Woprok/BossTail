@@ -31,7 +31,7 @@ var MovementComponent: FlyMovement = FlyMovement.new(fly_idle_speed, fly_chase_s
 @export var home_spawner: Node3D
 @export var home_swarm: Swarm #Node3D
 @export var fly_buzz_radius: float = 10.0
-@export var fly_leave_swarm_on_hit_chance: float = 0.1
+@export var fly_leave_swarm_on_hit_chance: float = 0.7
 # Required for Swarm
 var swarm_index: int = -1
 var swarm_position: Vector3 = Vector3.ZERO

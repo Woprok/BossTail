@@ -11,7 +11,7 @@ enum SwarmState {
 @onready var player = get_tree().current_scene.get_node("Player")
 # Swarm must move slower than individual fly, so fly can catch up and keep up
 @export var fly_idle_speed: float = 1.0
-@export var fly_chase_speed: float = 5.0
+@export var fly_chase_speed: float = 4.0
 var MovementComponent: FlyMovement = FlyMovement.new(fly_idle_speed, fly_chase_speed, Vector3(0.0, 3.0, 0.0))
 
 # Swarm configuration
@@ -44,8 +44,8 @@ var state: SwarmState = SwarmState.BUZZING
 var last_target_position: Vector3
 
 @export_category("Swarm Damage")
-@export var SWARM_INITIAL_HIT: float = 2.0
-@export var SWARM_CONTINUOUS_HIT: float = 1.0
+@export var SWARM_INITIAL_HIT: float = 0.5
+@export var SWARM_CONTINUOUS_HIT: float = 0.5
 @export var SWARM_FINAL_HIT: float = 0.0
 @export var FLY_REQUIRED_FOR_CHASE: int = 5
 
@@ -184,10 +184,12 @@ func _on_body_entered(body):
 		body.destroy()
 		_transition_to_dispersed()
 	# swarm is destroyed by Frog or Environment
-	# TODO frog can kill swarm
 	if body.is_in_group("frog_bubble"):
 		body.queue_free()
-		_murder_swarm()
+		_transition_to_dispersed()
+	# TODO frog can kill swarm
+	#if body.is_in_group("boss"):
+	#	_murder_swarm()
 
 func _on_body_exited(body: Node3D) -> void:
 	if body.is_in_group("player"):
