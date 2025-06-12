@@ -30,7 +30,7 @@ var mouse_sensitivity: float = MOUSE_HORIZONTAL_SENS
 # Common Movement
 var speed:int = 15
 var jump_speed:int = 30
-var controls:bool = false
+var controls:bool = true
 
 var fall_acceleration:int = 75
 var DASH_SPEED:int = 25
