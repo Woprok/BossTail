@@ -96,36 +96,50 @@ func can_join_swarm() -> bool:
 	return active_swarm_fly.size() < fly_in_swarm_positions.size()
 
 # Fly is notified of joining the swarm at specific position
-func join_swarm(fly: Fly) -> void:
+func join_swarm(fly: Fly) -> bool:
 	if not can_join_swarm():
-		return
+		return false
+	print(" joined ", self)
 	var idx = active_swarm_fly.size()
 	fly.swarm_index = idx 
 	fly.swarm_position = fly_in_swarm_positions[idx] 
-	active_swarm_fly.append(fly)
+	active_swarm_fly.push_back(fly)
 	# fly is informed of joining the swarm
 	fly.SetState(Fly.FlyState.SWARMING)
+	return true
 	
 # Fly is removed from swarm and it's position is released
 # Thus all fly move to fill the spot
 func leave_swarm(leaving_fly: Fly) -> void:
-	active_swarm_fly.pop_at(leaving_fly.swarm_index)
+	print("leaving target ", leaving_fly)
+	print(active_swarm_fly.size())
+	print(leaving_fly.swarm_index)
+	var leavidx = active_swarm_fly.find(leaving_fly)
+	print("size pre  remove ", active_swarm_fly.size(), " lidx ", leavidx, " sidx ", leaving_fly.swarm_index)
+	active_swarm_fly.erase(leaving_fly)
+	print("size post remove ", active_swarm_fly.size())
+	# Set's fly as free
+	leaving_fly.SetState(Fly.FlyState.FLYING)
+	# Clean it from array
 	for fly_index in range(active_swarm_fly.size()):
 		var swarm_fly = active_swarm_fly[fly_index]
 		swarm_fly.swarm_index = fly_index
 		swarm_fly.swarm_position = fly_in_swarm_positions[fly_index]
-	# notify swarm of leaving the swarm
-	# this does not kill fly, for that we use separate method
-	leaving_fly.SetState(Fly.FlyState.FLYING)
 	
 func _murder_swarm() -> void:
-	for fly in active_swarm_fly:
-		fly.destroy()
-	active_swarm_fly.clear()
 	state = SwarmState.DISPERSED
+	while active_swarm_fly.size() > 0:
+		var next_fly = active_swarm_fly.pop_back()
+		print("murder_swarm ", self)
+		next_fly.destroy()
 	
-func _murder_swarm_member(fly: Fly) -> void:
-	fly.destroy()
+func _murder_swarm_member() -> bool:
+	if active_swarm_fly.size() > 0:
+		var next_fly = active_swarm_fly.pick_random()
+		print("murder ", self)
+		next_fly.destroy()
+		return true
+	return false
 
 func _can_chase_player() -> bool:
 	return swarm_home.global_position.distance_to(player.global_position) <= _get_swarm_radius(swarm_chase_radius)
@@ -169,10 +183,7 @@ func hit(source, damage) -> bool:
 	# Swarm is easy to hit and does take damage
 	# It's just super ineffective
 	# Pebbles solve this
-	if active_swarm_fly.size() > 0:
-		_murder_swarm_member(active_swarm_fly.pick_random())
-		return true
-	return false
+	return _murder_swarm_member()
 
 func _on_body_entered(body):
 	# swarm is chasing and reached player
@@ -193,6 +204,7 @@ func _on_body_exited(body: Node3D) -> void:
 		_player_stop_taking_damage(body)
 
 func _on_disperse_timer_timeout() -> void:
+	print("disperse ended")
 	%DisperseTimer.stop()
 	# Always moved to idle state
 	state = SwarmState.BUZZING

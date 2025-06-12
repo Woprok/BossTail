@@ -11,6 +11,7 @@ class_name SpawnPoint3D
 var spawned_entities: int = 0
 
 func despawn(entity) -> void:
+	print("spawner no longer counts fly (-1) ", entity)
 	spawned_entities -= 1
 
 func spawn() -> void:

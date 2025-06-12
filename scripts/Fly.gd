@@ -37,14 +37,6 @@ var is_ignoring_swarms: bool = false
 @export var dead_body: PackedScene = preload("res://scenes/player/FlyProjectile.tscn")
 @export var projectile_chance: float = 0.5 # randf is from 0.0 to 1.0
 
-func hit(source, damage) -> bool:
-	if state == FlyState.SWARMING:
-		_try_leave_swarm()
-		return false
-	else:
-		destroy()
-		return true
-
 func _ready() -> void:
 	# handle finding closest swarm
 	# funny thing this is bad idea as it can sometimes find closest that is not intended
@@ -67,44 +59,47 @@ func SetState(desired_state: FlyState) -> void:
 	# this is called from outside, so we need to check that we understand the transition
 	if state == FlyState.DEAD: # point of no return
 		return
-	if desired_state == FlyState.SACRIFICE and state == FlyState.SWARMING:
+	# Flying -> Navigating
+	if desired_state == FlyState.NAVIGATING and state == FlyState.FLYING:
 		state = desired_state
-	elif desired_state == FlyState.SWARMING and state == FlyState.FLYING:
+	# Navigating -> Swarming, Flying
+	elif desired_state == FlyState.FLYING and state == FlyState.NAVIGATING:
 		state = desired_state
+	elif desired_state == FlyState.SWARMING and state == FlyState.NAVIGATING:
+		state = desired_state
+	# Swarming -> Sacrifice, Flying
 	elif desired_state == FlyState.FLYING and state == FlyState.SWARMING:
 		state = desired_state
+	elif desired_state == FlyState.SACRIFICE and state == FlyState.SWARMING:
+		state = desired_state
+	# -> Dead
+	elif desired_state == FlyState.DEAD:
+		state = desired_state
+	else:
+		print("WHY IS THIS TRANSITION ATTEMPTED")
+		print(desired_state)
 
 func _physics_process(delta: float) -> void:
 	# Fly is simple as it can get
 	# State determines target to move toward
-	
-	# Try Join Swarm when relevant only
-	if home_swarm:
-		if not home_swarm.can_join_swarm() and state == FlyState.NAVIGATING:
-			state = FlyState.FLYING
-		if home_swarm.can_join_swarm() and state == FlyState.FLYING:
-			state = FlyState.NAVIGATING
-			
-	if is_ignoring_swarms and (state == FlyState.NAVIGATING or state == FlyState.SWARMING):
-		state = FlyState.FLYING
-	
+	# Handle additional state transition per tick
 	match state:
 		FlyState.FLYING:
-			_fly_idle(delta)
+			if home_swarm != null and home_swarm.can_join_swarm() and not is_ignoring_swarms:
+				SetState(FlyState.NAVIGATING)
 		FlyState.NAVIGATING:
-			_navigate_to_swarm(delta)
-		FlyState.SWARMING:
-			_swarm_behavior(delta)
-		FlyState.SACRIFICE:
-			_try_sacrifice_self(delta)
-			
-	# the above defines only targets, this moves fly
-	_navigate_to_last_target(delta)
-	if _reached_target_position():
-		match state:
-			FlyState.NAVIGATING:
-				state = FlyState.SWARMING
+			if home_swarm == null or not home_swarm.can_join_swarm():
+				SetState(FlyState.FLYING)
+			if _reached_target_position():
 				home_swarm.join_swarm(self)
+		FlyState.SWARMING:
+			pass				
+		FlyState.SACRIFICE:
+			pass
+		FlyState.DEAD:
+			return
+			
+	_select_and_navigate_to_target(delta)
 		
 	# Move with physics
 	var direction = (last_target_position - global_position).normalized()
@@ -112,19 +107,22 @@ func _physics_process(delta: float) -> void:
 	velocity.y += gravity * delta
 	move_and_slide()
 
-func _fly_idle(delta: float) -> void:
-	last_target_position = MovementComponent.fly_around_orbit(home_spawner.global_position, fly_buzz_radius, delta)
-	
-func _navigate_to_swarm(delta: float) -> void:
-	last_target_position = home_swarm.global_position
-	
-func _swarm_behavior(delta: float) -> void:
-	last_target_position = home_swarm.global_position + swarm_position #* randf()
-
-func _try_sacrifice_self(delta: float) -> void:
-	# Defines target as boss global position
-	var boss = get_tree().get_first_node_in_group("boss")
-	last_target_position = boss.global_position
+func _select_and_navigate_to_target(delta: float) -> void:
+	# Fly moves based on state
+	match state:
+		FlyState.FLYING:
+			last_target_position = MovementComponent.fly_around_orbit(home_spawner.global_position, fly_buzz_radius, delta)
+		FlyState.NAVIGATING:
+			last_target_position = home_swarm.global_position
+		FlyState.SWARMING:
+			last_target_position = home_swarm.global_position + swarm_position #* randf()
+		FlyState.SACRIFICE:
+			# Defines target as boss global position
+			var boss = get_tree().get_first_node_in_group("boss")
+			if boss:
+				last_target_position = boss.global_position
+		FlyState.DEAD:
+			return
 
 func _navigate_to_last_target(delta: float) -> void:
 	self.global_position = MovementComponent.get_target_position_by_chase(self.global_position, last_target_position, delta)
@@ -145,34 +143,48 @@ func _on_body_exited(body):
 	if body.is_in_group("player"):
 		pass
 
+func hit(source, damage) -> bool:
+	if state == FlyState.SWARMING:
+		_try_leave_swarm()
+		return false
+	else:
+		print("HIT TO DEAD ", self)
+		destroy()
+		return true
+
 # Fly is dead
 func destroy() -> void:
+	Global.LogError("DESTROY")
+	print("Destroy called on ", self)
 	if state == FlyState.DEAD:
-		print(self)
+		print("Somehow I called Destroy on Destroyed", self)
 		return
-	print(self)
-	state = FlyState.DEAD
 	# spawn projectile body
 	# leave swarm
 	# leave spawner
 	_try_spawn_body()
 	if home_swarm and state == FlyState.SWARMING:
+		print("dead leaving swarm ", self)
 		home_swarm.leave_swarm(self)
 	if home_spawner:
 		home_spawner.despawn(self)
+	print("This fly was marked dead ", self)
+	SetState(FlyState.DEAD)
 	# free self as there is nothing to do as dead fly
+	print("now destroyed ", self)
 	queue_free()
 	
 # This is random as we now have too many fly
 func _try_spawn_body() -> void:
 	if randf() >= projectile_chance:
 		var fd = dead_body.instantiate()
-		fd.global_position = self.global_position
 		get_tree().root.add_child(fd)
+		fd.global_position = self.global_position
 	
 # Swarm leaving mechanic on hit
 func _try_leave_swarm() -> void:
 	if randf() < fly_leave_swarm_on_hit_chance:
+		print("try leaving swarm ", self)
 		home_swarm.leave_swarm(self)
 		is_ignoring_swarms = true
 		if $SwarmJoinTimer.is_stopped():
@@ -180,4 +192,4 @@ func _try_leave_swarm() -> void:
 # Reenables joining the swarms
 func _on_swarm_join_timer_timeout() -> void:
 	$SwarmJoinTimer.stop()
-	is_ignoring_swarms = true
+	is_ignoring_swarms = false
