@@ -288,3 +288,7 @@ func _on_frog_standing(area: Area3D) -> void:
 func _on_body_standing(body: Node3D) -> void:
 	if body.is_in_group("boulder"):
 		collision_mask |= 1 << 4
+
+
+func _on_area_3d_area_entered(area: Area3D) -> void:
+	pass # Replace with function body.

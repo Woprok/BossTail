@@ -11,7 +11,6 @@ class_name SpawnPoint3D
 var spawned_entities: int = 0
 
 func despawn(entity) -> void:
-	print("spawner no longer counts fly (-1) ", entity)
 	spawned_entities -= 1
 
 func spawn() -> void:
@@ -34,5 +33,4 @@ func _select_spawn_position() -> Vector3:
 
 func _on_spawn_timer_timeout() -> void:
 	if spawned_entities < max_spawned_entities:
-		print("spawned fly")
 		spawn()

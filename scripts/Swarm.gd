@@ -85,8 +85,7 @@ func _split_off_random_fly() -> void:
 	if accumulated_split_off_time < 0.0:
 		accumulated_split_off_time = 0.0
 	var fly = active_swarm_fly.pick_random()
-	leave_swarm(fly)
-	fly.SetState(Fly.FlyState.SACRIFICE)
+	leave_swarm(fly, Fly.FlyState.SACRIFICE)
 					
 func _transition_to_dispersed() -> void:
 	state = SwarmState.DISPERSED
@@ -96,30 +95,23 @@ func can_join_swarm() -> bool:
 	return active_swarm_fly.size() < fly_in_swarm_positions.size()
 
 # Fly is notified of joining the swarm at specific position
-func join_swarm(fly: Fly) -> bool:
+func join_swarm(fly: Fly, to_state: Fly.FlyState = Fly.FlyState.SWARMING) -> bool:
 	if not can_join_swarm():
 		return false
-	print(" joined ", self)
 	var idx = active_swarm_fly.size()
 	fly.swarm_index = idx 
 	fly.swarm_position = fly_in_swarm_positions[idx] 
 	active_swarm_fly.push_back(fly)
 	# fly is informed of joining the swarm
-	fly.SetState(Fly.FlyState.SWARMING)
+	fly.SetState(to_state)
 	return true
 	
 # Fly is removed from swarm and it's position is released
 # Thus all fly move to fill the spot
-func leave_swarm(leaving_fly: Fly) -> void:
-	print("leaving target ", leaving_fly)
-	print(active_swarm_fly.size())
-	print(leaving_fly.swarm_index)
-	var leavidx = active_swarm_fly.find(leaving_fly)
-	print("size pre  remove ", active_swarm_fly.size(), " lidx ", leavidx, " sidx ", leaving_fly.swarm_index)
-	active_swarm_fly.erase(leaving_fly)
-	print("size post remove ", active_swarm_fly.size())
+func leave_swarm(fly: Fly, to_state: Fly.FlyState) -> void:
 	# Set's fly as free
-	leaving_fly.SetState(Fly.FlyState.FLYING)
+	active_swarm_fly.erase(fly)
+	fly.SetState(to_state)
 	# Clean it from array
 	for fly_index in range(active_swarm_fly.size()):
 		var swarm_fly = active_swarm_fly[fly_index]
@@ -130,13 +122,11 @@ func _murder_swarm() -> void:
 	state = SwarmState.DISPERSED
 	while active_swarm_fly.size() > 0:
 		var next_fly = active_swarm_fly.pop_back()
-		print("murder_swarm ", self)
 		next_fly.destroy()
 	
 func _murder_swarm_member() -> bool:
 	if active_swarm_fly.size() > 0:
 		var next_fly = active_swarm_fly.pick_random()
-		print("murder ", self)
 		next_fly.destroy()
 		return true
 	return false
@@ -204,7 +194,6 @@ func _on_body_exited(body: Node3D) -> void:
 		_player_stop_taking_damage(body)
 
 func _on_disperse_timer_timeout() -> void:
-	print("disperse ended")
 	%DisperseTimer.stop()
 	# Always moved to idle state
 	state = SwarmState.BUZZING

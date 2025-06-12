@@ -4,6 +4,9 @@ class_name Fly
 # It does not collide or do anything
 # It does collide with player attacks, as it can be killed
 
+# TODO better dead and hit management, so Destroy is called only once on fly
+# most issues are fixed, but it blocks some additional improvements to post death
+
 enum FlyState { 
 	FLYING, # Idle fly
 	NAVIGATING, # Moves toward the swarn
@@ -24,7 +27,7 @@ var MovementComponent: FlyMovement = FlyMovement.new(fly_idle_speed, fly_chase_s
 
 @export_category("Positioning and Swarm")
 @export var home_spawner: Node3D
-@export var home_swarm: Node3D
+@export var home_swarm: Swarm #Node3D
 @export var fly_buzz_radius: float = 10.0
 @export var fly_leave_swarm_on_hit_chance: float = 0.1
 # Required for Swarm
@@ -57,7 +60,7 @@ func SetSpawner(spawner) -> void:
 
 func SetState(desired_state: FlyState) -> void:
 	# this is called from outside, so we need to check that we understand the transition
-	if state == FlyState.DEAD: # point of no return
+	if state == FlyState.DEAD: # point of no return and this is kind of expected to be called
 		return
 	# Flying -> Navigating
 	if desired_state == FlyState.NAVIGATING and state == FlyState.FLYING:
@@ -76,8 +79,8 @@ func SetState(desired_state: FlyState) -> void:
 	elif desired_state == FlyState.DEAD:
 		state = desired_state
 	else:
-		print("WHY IS THIS TRANSITION ATTEMPTED")
-		print(desired_state)
+		Global.LogError("Attempt to transition to not supported state on Fly")
+		Global.LogError(desired_state)		
 
 func _physics_process(delta: float) -> void:
 	# Fly is simple as it can get
@@ -148,30 +151,22 @@ func hit(source, damage) -> bool:
 		_try_leave_swarm()
 		return false
 	else:
-		print("HIT TO DEAD ", self)
 		destroy()
 		return true
 
 # Fly is dead
 func destroy() -> void:
-	Global.LogError("DESTROY")
-	print("Destroy called on ", self)
 	if state == FlyState.DEAD:
-		print("Somehow I called Destroy on Destroyed", self)
 		return
 	# spawn projectile body
 	# leave swarm
 	# leave spawner
 	_try_spawn_body()
 	if home_swarm and state == FlyState.SWARMING:
-		print("dead leaving swarm ", self)
-		home_swarm.leave_swarm(self)
+		home_swarm.leave_swarm(self, FlyState.DEAD)
 	if home_spawner:
 		home_spawner.despawn(self)
-	print("This fly was marked dead ", self)
-	SetState(FlyState.DEAD)
 	# free self as there is nothing to do as dead fly
-	print("now destroyed ", self)
 	queue_free()
 	
 # This is random as we now have too many fly
@@ -184,8 +179,7 @@ func _try_spawn_body() -> void:
 # Swarm leaving mechanic on hit
 func _try_leave_swarm() -> void:
 	if randf() < fly_leave_swarm_on_hit_chance:
-		print("try leaving swarm ", self)
-		home_swarm.leave_swarm(self)
+		home_swarm.leave_swarm(self, FlyState.FLYING)
 		is_ignoring_swarms = true
 		if $SwarmJoinTimer.is_stopped():
 			$SwarmJoinTimer.start()
