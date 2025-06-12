@@ -19,10 +19,12 @@ var state: FlyState = FlyState.FLYING
 
 @export var KILL_OFF_ZONE: int = -10
 
+@export_category("Fly Speed")
 var gravity: int = -10
-@export var fly_speed: float = 15.0
-@export var fly_idle_speed: float = 3.5
-@export var fly_chase_speed: float = 5.0
+@export var fly_sacrifice_speed: float = 4.0
+@export var fly_catch_speed: float = 10.0
+@export var fly_idle_speed: float = 2.5
+@export var fly_chase_speed: float = 5.5
 var MovementComponent: FlyMovement = FlyMovement.new(fly_idle_speed, fly_chase_speed)
 
 @export_category("Positioning and Swarm")
@@ -106,9 +108,23 @@ func _physics_process(delta: float) -> void:
 		
 	# Move with physics
 	var direction = (last_target_position - global_position).normalized()
-	velocity = direction * fly_speed
+	velocity = direction * _state_to_speed()
 	velocity.y += gravity * delta
 	move_and_slide()
+
+func _state_to_speed() -> float:
+	match state:
+		FlyState.FLYING:
+			return fly_idle_speed
+		FlyState.NAVIGATING:
+			return fly_catch_speed
+		FlyState.SWARMING:
+			return fly_chase_speed
+		FlyState.SACRIFICE:
+			return fly_sacrifice_speed
+	# otherwise, we don't need to care
+	return 0.0
+	
 
 func _select_and_navigate_to_target(delta: float) -> void:
 	# Fly moves based on state
