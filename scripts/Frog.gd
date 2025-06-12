@@ -627,7 +627,7 @@ func bubble_spit(water_bubble_instance = null):
 		if not swimming:
 			bubble.position = position-transform.basis.z*2
 			bubble.position.y+=0.5
-	bubble.shoot(player.position)
+	bubble.shoot(player.position+Vector3(0,0.5,0))
 	time_bubble = 0
 	doing = false
 

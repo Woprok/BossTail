@@ -30,6 +30,7 @@ var mouse_sensitivity: float = MOUSE_HORIZONTAL_SENS
 # Common Movement
 var speed:int = 15
 var jump_speed:int = 30
+var controls:bool = false
 
 var fall_acceleration:int = 75
 var DASH_SPEED:int = 25
@@ -77,7 +78,7 @@ func _load_preferences() -> void:
 	USER_MOUSE_SENS = settings.mouse_camera_sensititivy
 
 func _unhandled_input(event):
-	if event is InputEventMouseMotion:
+	if event is InputEventMouseMotion and controls:
 		rotate_y(-event.relative.x * mouse_sensitivity)
 		if Input.is_action_pressed("aim"):
 			Camera.rotation.x -= event.relative.y * mouse_sensitivity
@@ -101,14 +102,14 @@ func _start_dash() -> void:
 	AudioClipManager.play("res://assets/audio/sfx/Dash.wav")
 	
 func _handle_camera() -> void:
-	if Input.is_action_pressed("camera_right"):
+	if Input.is_action_pressed("camera_right") and controls:
 		rotate_y(-0.05)
-	if Input.is_action_pressed("camera_left"):
+	if Input.is_action_pressed("camera_left") and controls:
 		rotate_y(0.05)
-	if Input.is_action_pressed("camera_up"):
+	if Input.is_action_pressed("camera_up") and controls:
 		Camera.rotation.x += deg_to_rad(0.8)
 		Camera.rotation.x = clamp(Camera.rotation.x, deg_to_rad(CAMERA_MIN_X), deg_to_rad(CAMERA_MAX_X))
-	if Input.is_action_pressed("camera_down"):
+	if Input.is_action_pressed("camera_down") and controls:
 		Camera.rotation.x -= deg_to_rad(0.8)
 		Camera.rotation.x = clamp(Camera.rotation.x, deg_to_rad(CAMERA_MIN_X), deg_to_rad(CAMERA_MAX_X))
 	
@@ -203,3 +204,9 @@ func reset_player_respawn():
 	respawning = true
 	$PlayerHitVFX.play_effect()
 	AudioClipManager.play("res://assets/audio/sfx/HitImpact.wav")
+
+func disable_controls():
+	controls = false
+	
+func enable_controls():
+	controls = true

@@ -55,16 +55,16 @@ func _physics_process(delta):
 	
 	if not launched:
 		direction = Vector3.ZERO
-	if Input.is_action_pressed("move_back") and not launched and not freeze:
+	if Input.is_action_pressed("move_back") and controls and not launched and not freeze:
 		direction.z += 1
-	if Input.is_action_pressed("move_forward") and not launched and not freeze:
+	if Input.is_action_pressed("move_forward") and controls and not launched and not freeze:
 		direction.z -= 1
-	if Input.is_action_pressed("strafe_left") and not launched and not freeze:
+	if Input.is_action_pressed("strafe_left") and controls and not launched and not freeze:
 		direction.x -= 1
-	if Input.is_action_pressed("strafe_right") and not launched and not freeze:
+	if Input.is_action_pressed("strafe_right") and controls and not launched and not freeze:
 		direction.x += 1
 		
-	if Input.is_action_just_pressed("dash") and can_dash and not fighting and not freeze:
+	if Input.is_action_just_pressed("dash") and controls and can_dash and not fighting and not freeze:
 		_start_dash()
 		
 	if dashing:
@@ -78,7 +78,7 @@ func _physics_process(delta):
 	else:
 		speed = SPEED
 		
-	if Input.is_action_just_pressed("jump") and aciding_liquid == 0 and not freeze:
+	if Input.is_action_just_pressed("jump") and controls and aciding_liquid == 0 and not freeze:
 		jump_time = 0
 		player_data.change_jump_height(delta)
 		direction.y += 1
@@ -86,10 +86,10 @@ func _physics_process(delta):
 		#jump audio sfx
 		AudioClipManager.play("res://assets/audio/sfx/Jump.wav")
 		
-	if Input.is_action_pressed("jump") and aciding_liquid == 0 and not freeze:
+	if Input.is_action_pressed("jump") and controls and aciding_liquid == 0 and not freeze:
 		jump_time += delta
 		player_data.change_jump_height(delta*333)
-	if Input.is_action_just_released("jump") and not freeze:
+	if Input.is_action_just_released("jump") and controls and not freeze:
 		player_data.change_jump_height(0)
 		
 		if jump_time>=0.7:
@@ -110,14 +110,14 @@ func _physics_process(delta):
 		if not dashing:
 			animation.run()
 		
-	if last_shot > 0.5 and Input.is_action_pressed("aim") and not freeze:
+	if last_shot > 0.5 and Input.is_action_pressed("aim") and controls and not freeze:
 		player_data.change_ranged_indicator(true)
 	elif last_shot > 0.5:
 		player_data.change_melee_indicator(true)
 	else:
 		player_data.change_ranged_indicator(false)
 
-	if Input.is_action_pressed("fight") and is_on_floor() and direction == Vector3.ZERO and not freeze:
+	if Input.is_action_pressed("fight") and is_on_floor() and controls and direction == Vector3.ZERO and not freeze:
 		if not aiming:
 			if last_shot > 0.75:
 				last_shot = 0
@@ -125,10 +125,10 @@ func _physics_process(delta):
 		elif last_shot > 0.75:
 			shoot()
 			last_shot = 0
-	elif Input.is_action_just_pressed("aim") and not freeze:
+	elif Input.is_action_just_pressed("aim") and controls and not freeze:
 		_aim_started()
 
-	elif Input.is_action_just_released("aim") and not freeze:
+	elif Input.is_action_just_released("aim") and controls and not freeze:
 		_aim_finished()
 	
 	var movement_dir = null

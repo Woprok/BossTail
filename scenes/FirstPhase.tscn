@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bs2wo0hd3wnmr"]
+[gd_scene load_steps=28 format=3 uid="uid://bs2wo0hd3wnmr"]
 
 [ext_resource type="PackedScene" uid="uid://cs51pokcyuwhd" path="res://scenes/characters/Mouseketeer.tscn" id="1_gltnc"]
 [ext_resource type="PackedScene" uid="uid://m3d44565ohak" path="res://scenes/characters/ToadBoss.tscn" id="2_8ot16"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://c7c6whce0i7ta" path="res://scenes/environment/LeafBoat.tscn" id="13_5ylab"]
 [ext_resource type="PackedScene" uid="uid://ni4i18ne3rtb" path="res://scenes/environment/PondShore.tscn" id="13_sqrg6"]
 [ext_resource type="PackedScene" uid="uid://cv7b86x78oqj2" path="res://scenes/other/pond_audio.tscn" id="14_sqrg6"]
+[ext_resource type="Script" uid="uid://c3vd0gass4bgg" path="res://scripts/CinematicIntro.gd" id="15_4lci5"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_wjuqv"]
 
@@ -70,6 +71,163 @@ fog_density = 1.0
 fog_depth_begin = 100.0
 fog_depth_end = 300.0
 
+[sub_resource type="Animation" id="Animation_4lci5"]
+resource_name = "intro"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-92.9183, 0.888278, -11.5367), Vector3(-44.4177, 0.888278, -15.2129)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LeafBoat:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-92.8387, 0.798741, -11.6596), Vector3(-44.534, 0.798741, -15.3019)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Player/Camera3D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(4, 9, 9.01),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 2.5, 6), Vector3(0, 15, -30), Vector3(0, 2.5, 5)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Player/Camera3D:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(4, 9, 9.01),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0.0645772, 0), Vector3(-0.523599, 0.174533, 0), Vector3(0, 0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("LeafBoat:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(9.5, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 1.5708, 0), Vector3(0, 2.96706, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Player:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(9.5, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, -1.5708, 0), Vector3(0, -0.879576, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_lhni0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-92.9183, 0.888278, -11.5367)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LeafBoat:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-92.8387, 0.798741, -11.6596)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Player/Camera3D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 2.5, 6)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Player/Camera3D:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.0645772, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("LeafBoat:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.5708, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Player:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -1.5708, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lrt2e"]
+_data = {
+&"RESET": SubResource("Animation_lhni0"),
+&"intro": SubResource("Animation_4lci5")
+}
+
 [node name="FirstPhase" type="Node3D"]
 
 [node name="water" type="MeshInstance3D" parent="."]
@@ -91,9 +249,12 @@ collision_mask = 0
 transform = Transform3D(1, -3.39674e-09, 1.74623e-09, 3.41561e-09, 1, -1.74623e-09, -1.74623e-09, -1.74623e-09, 1, -0.003, -0.75, 0.002)
 shape = SubResource("BoxShape3D_cb7lw")
 
-[node name="Player" parent="." node_paths=PackedStringArray("platform") instance=ExtResource("1_gltnc")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -41, 2.27634, -25)
-platform = NodePath("../stonePlatforms/stonePlatform_Spawn")
+[node name="Player" parent="." instance=ExtResource("1_gltnc")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -92.9183, 0.888278, -11.5367)
+
+[node name="Camera3D" type="Camera3D" parent="Player"]
+transform = Transform3D(0.997915, 0, 0.0645323, 0, 1, 0, -0.0645323, 0, 0.997916, 0, 2.5, 6)
+current = true
 
 [node name="frog" parent="." instance=ExtResource("2_8ot16")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 26, 2.43064, -23)
@@ -303,9 +464,15 @@ transform = Transform3D(-0.54017, 0, -4.97074, 0, 5, 0, 4.97074, 0, -0.54017, 73
 transform = Transform3D(1.47571, 0, -4.77727, 0, 5, 0, 4.77727, 0, 1.47571, 25.8021, -0.647892, -64.7794)
 
 [node name="LeafBoat" parent="." instance=ExtResource("13_5ylab")]
-transform = Transform3D(0.59017, 0, 1.21417, 0, 1.35, 0, -1.21417, 0, 0.59017, -50.5833, 0.798741, -25.3685)
+transform = Transform3D(-5.90105e-08, 0, 1.35, 0, 1.35, 0, -1.35, 0, -5.90105e-08, -92.8387, 0.798741, -11.6596)
 
 [node name="PondShore" parent="." instance=ExtResource("13_sqrg6")]
 transform = Transform3D(0.218177, 0, -0.975909, 0, 1, 0, 0.975909, 0, 0.218177, 158.346, -7.96893, -63.8108)
 
 [node name="PondAudio" parent="." instance=ExtResource("14_sqrg6")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_lrt2e")
+}
+script = ExtResource("15_4lci5")
