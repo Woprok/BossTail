@@ -116,6 +116,7 @@ var sluggish = false
 var swipe_grab_switch = true
 var bubble_num = 0
 var boulderHit = 0
+var cinematic = false
 # num of tongue hits for one grab
 var tongueHit = 0
 # HP lost from last triggering of swimming
@@ -178,7 +179,9 @@ func _ready() -> void:
 func _physics_process(delta):
 	boulderHit += delta
 	time_stop += delta
-	
+	if cinematic:
+		animationTree.swim_start_swimming()
+		return
 	# is stopped and do nothing
 	if time_stop < STOP_TIME:
 		return
@@ -813,8 +816,6 @@ func hit(area, health):
 			triggered = true
 	if Global.phase > 1:
 		triggered = false
-	if boss_data.get_current_health() <= 0:
-		GameInstance.PlayerVictorious()
 		
 	#hit vfx
 	if hit_impact_VFX != null:
@@ -823,6 +824,15 @@ func hit(area, health):
 		impactVFXObj.global_position = hit_pos
 	if hit_VFX != null:
 		hit_VFX.play_effect()
+		
+	if boss_data.get_current_health() <= 0:
+		triggered = false
+		doing = true
+		if !GameInstance.CanTravelToNextLevel():
+			#play death animation
+			pass
+		await get_tree().create_timer(0.5).timeout
+		GameInstance.PlayerVictorious()
 	
 func _on_ground_entered(area):
 	if Global.phase >= 2:
