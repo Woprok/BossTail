@@ -1,109 +1,201 @@
 extends Area3D
 class_name Swarm
 
+enum SwarmState { 
+	BUZZING, # Can split off and heal the boss
+	CHASING, # Chases player around and harms him
+	DISPERSED, # Does not exists and is transported to swarm home to assemble
+}
+
+# By default this can only chase the player, so we can get it onready
+@onready var player = get_tree().current_scene.get_node("Player")
+# Swarm must move slower than individual fly, so fly can catch up and keep up
+@export var fly_idle_speed: float = 1.0
+@export var fly_chase_speed: float = 4.0
+var MovementComponent: FlyMovement = FlyMovement.new(fly_idle_speed, fly_chase_speed, Vector3(0.0, 3.0, 0.0))
+
+# Swarm configuration
+@export_category("Swarm Behavior")
 @export var swarm_home: Node3D
+@export var swarm_home_offset: Vector3 = Vector3(0.0, 3.0, 0.0)
 @export var swarm_buzz_radius: float = 7.5
 @export var swarm_chase_radius: float = 20.0
 @export var additional_radius_per_fly: float = 1.7
-var is_in_chase_mode: bool = false
-var target_position: Vector3
-var active = 13
+@export var fly_in_swarm_positions: Array[Vector3] = [
+	Vector3(0.0, 	0.0, 	0.0),
+	# Center
+	Vector3(0.35, 	0.0, 	0.0),
+	Vector3(0.0, 	0.0, 	0.35),
+	Vector3(-0.35, 	0.0, 	0.0),
+	Vector3(0.0, 	0.0, 	-0.35),
+	# Top
+	Vector3(0.2, 	0.2, 	0.2),
+	Vector3(-0.2, 	0.2, 	0.2),
+	Vector3(0.2, 	0.2, 	-0.2),
+	Vector3(-0.2, 	0.2, 	-0.2),
+	# Bottom 
+	Vector3(0.2, 	-0.2, 	0.2),
+	Vector3(-0.2, 	-0.2, 	0.2),
+	Vector3(0.2, 	-0.2, 	-0.2),
+	Vector3(-0.2, 	-0.2, 	-0.2),
+]
+var active_swarm_fly: Array[Fly]
+var state: SwarmState = SwarmState.BUZZING
+var last_target_position: Vector3
 
-var player_in_area:bool = false
-var time = 0
-var speed = 5
-@onready var player = get_tree().current_scene.get_node("Player")
-var dispersed = false
-var dispersed_time = 0
-var TIME_OF_DISPERSED = 30
-var split_off_time = 0
-var TIME_SPLIT_OFF = 4
+@export_category("Swarm Damage")
+@export var SWARM_INITIAL_HIT: float = 0.5
+@export var SWARM_CONTINUOUS_HIT: float = 0.5
+@export var SWARM_FINAL_HIT: float = 0.0
+@export var FLY_REQUIRED_FOR_CHASE: int = 5
 
-func _process(delta):
-	if active<=0 and get_children().size()==1:
-		queue_free()
-	if active<=0:
-		$CollisionShape3D.disabled = true
-	else:
-		$CollisionShape3D.disabled = false
-	if is_player_in_area():
-		time += delta
-		if time>1:
-			time=0
-			player.hit(null, 1)
-	else:
-		time = 0
-	if dispersed:
-		$CollisionShape3D.disabled = true
-		dispersed_time += delta
-		if dispersed_time>=TIME_OF_DISPERSED:
-			dispersed = false
-		else:
-			return
-	else:
-		$CollisionShape3D.disabled = false
-		split_off_time+=delta
-		if split_off_time>TIME_SPLIT_OFF:
-			split_off()
-	_navigate(delta)
+@export_category("Swarm Healing")
+@export var FLY_HEALING_VALUE: float = 5.0
+@export var FLY_REQUIRED_FOR_SPLIT_OFF: int = 10
+@export var TIME_BETWEEN_SPLIT_OFF: float = 60.0
+var accumulated_split_off_time: float = 0
 
-func _get_swarm_radius(base) -> float:
-	return base + active * additional_radius_per_fly
+func _physics_process(delta):	
+	# First resolve state change
+	match state:
+		SwarmState.DISPERSED:
+			$CollisionShape3D.debug_color = Color.RED
+		SwarmState.BUZZING:
+			$CollisionShape3D.debug_color = Color.GREEN
+			if _update_split_off_time(delta):
+				_split_off_random_fly()
+			var can_chase: bool = _can_chase_player()
+			if can_chase and active_swarm_fly.size() >= FLY_REQUIRED_FOR_CHASE:
+				state = SwarmState.CHASING
+		SwarmState.CHASING:
+			$CollisionShape3D.debug_color = Color.BLUE
+			# Swarm chases the player and fly follows
+			var can_chase: bool = _can_chase_player() 
+			if not can_chase or active_swarm_fly.size() < FLY_REQUIRED_FOR_CHASE:
+				state = SwarmState.BUZZING
+	# Second resolve navigation
+	_select_and_navigate_to_target(delta)
+			
+func _update_split_off_time(delta: float) -> bool:
+	accumulated_split_off_time += delta
+	return accumulated_split_off_time >= TIME_BETWEEN_SPLIT_OFF and active_swarm_fly.size() >= FLY_REQUIRED_FOR_SPLIT_OFF
 
-func _navigate(delta: float) -> void:
-	# Swarm chases player that is close enough
-	if swarm_home.global_position.distance_to(player.global_position) <= _get_swarm_radius(swarm_chase_radius):
-		is_in_chase_mode = true
-		target_position = player.global_position
-	# Swarm navigates around the home
-	else:
-		is_in_chase_mode = false
-		target_position = fly_around(swarm_home.global_position, _get_swarm_radius(swarm_buzz_radius))
-	# Move swarm to position
-	chase_position(target_position, delta)
+func _split_off_random_fly() -> void:
+	accumulated_split_off_time -= TIME_BETWEEN_SPLIT_OFF
+	if accumulated_split_off_time < 0.0:
+		accumulated_split_off_time = 0.0
+	var fly = active_swarm_fly.pick_random()
+	leave_swarm(fly, Fly.FlyState.SACRIFICE)
+					
+func _transition_to_dispersed() -> void:
+	state = SwarmState.DISPERSED
+	%DisperseTimer.start()
 
-func chase_position(swarm_target_position, delta):
-	var dir = swarm_target_position - global_position
-	dir = dir.normalized()
-	global_position += dir * speed * delta
+func can_join_swarm() -> bool:
+	return active_swarm_fly.size() < fly_in_swarm_positions.size()
 
-func fly_around(center, radius):
-	var angle = randf() * TAU
-	var distance = sqrt(randf()) * radius
-	var x = center.x + distance * cos(angle)
-	var z = center.z + distance * sin(angle)
-	return Vector3(x, center.y + 3, z)
-	
-
-func split_off():
-	split_off_time = 0
-	var size = 0
-	for node in get_children():
-		if node.is_in_group("fly") and node.split_off==false:
-			size += 1
-	if size!=0:
-		var fly_num = randi() % size
-		var i = -1
-		for node in get_children():
-			if node.is_in_group("fly") and node.split_off==false:
-				i+=1
-				if i == fly_num:
-					node.split_off = true
-					active-=1
-					return
-
-func is_player_in_area():
-	if dispersed:
+# Fly is notified of joining the swarm at specific position
+func join_swarm(fly: Fly, to_state: Fly.FlyState = Fly.FlyState.SWARMING) -> bool:
+	if not can_join_swarm():
 		return false
-	for fly in get_children():
-		if fly.is_in_group("fly") and fly.split_off == false and fly.player_in_area:
-			return true
+	var idx = active_swarm_fly.size()
+	fly.swarm_index = idx 
+	fly.swarm_position = fly_in_swarm_positions[idx] 
+	active_swarm_fly.push_back(fly)
+	# fly is informed of joining the swarm
+	fly.SetState(to_state)
+	return true
+	
+# Fly is removed from swarm and it's position is released
+# Thus all fly move to fill the spot
+func leave_swarm(fly: Fly, to_state: Fly.FlyState) -> void:
+	# Set's fly as free
+	active_swarm_fly.erase(fly)
+	fly.SetState(to_state)
+	# Clean it from array
+	for fly_index in range(active_swarm_fly.size()):
+		var swarm_fly = active_swarm_fly[fly_index]
+		swarm_fly.swarm_index = fly_index
+		swarm_fly.swarm_position = fly_in_swarm_positions[fly_index]
+	
+func _murder_swarm() -> void:
+	state = SwarmState.DISPERSED
+	while active_swarm_fly.size() > 0:
+		var next_fly = active_swarm_fly.pop_back()
+		next_fly.destroy()
+	
+func _murder_swarm_member() -> bool:
+	if active_swarm_fly.size() > 0:
+		var next_fly = active_swarm_fly.pick_random()
+		next_fly.destroy()
+		return true
 	return false
 
+func _can_chase_player() -> bool:
+	return swarm_home.global_position.distance_to(player.global_position) <= _get_swarm_radius(swarm_chase_radius)
+
+func _get_swarm_radius(base_radius: float) -> float:
+	return base_radius + active_swarm_fly.size() * additional_radius_per_fly
+
+func _select_and_navigate_to_target(delta: float) -> void:
+	# Swarm navigates only in two states
+	match state:
+		# Swarm navigates to the home
+		SwarmState.DISPERSED:
+			last_target_position = swarm_home.global_position + swarm_home_offset
+			self.global_position = MovementComponent.get_target_position_by_idle(self.global_position, last_target_position, delta)
+		# Swarm navigates around the home
+		SwarmState.BUZZING:
+			last_target_position = MovementComponent.fly_around_orbit(swarm_home.global_position, swarm_buzz_radius, delta)
+			self.global_position = MovementComponent.get_target_position_by_idle(self.global_position, last_target_position, delta)
+		# Swarm chases player that is close enough
+		SwarmState.CHASING:
+			last_target_position = player.global_position
+			self.global_position = MovementComponent.get_target_position_by_chase(self.global_position, last_target_position, delta)
+
+func _player_start_taking_damage(_player_body) -> void:
+	if not %TickTimer.is_stopped():
+		%TickTimer.stop()
+	%TickTimer.start()
+	if state == SwarmState.CHASING:
+		player.hit(self, SWARM_INITIAL_HIT)
+
+func _on_tick_timer_timeout() -> void:
+	if state == SwarmState.CHASING:
+		player.hit(self, SWARM_CONTINUOUS_HIT)
+	
+func _player_stop_taking_damage(_player_body) -> void:
+	%TickTimer.stop()
+	if state == SwarmState.CHASING and SWARM_FINAL_HIT != 0.0:
+		player.hit(self, SWARM_FINAL_HIT)
+
+func hit(_source, _damage) -> bool:
+	# Swarm is easy to hit and does take damage
+	# It's just super ineffective
+	# Pebbles solve this
+	return _murder_swarm_member()
+
 func _on_body_entered(body):
+	# swarm is chasing and reached player
+	if state == SwarmState.CHASING and body.is_in_group("player"):
+		_player_start_taking_damage(body)
+	# swarm is dispersed
 	if body.is_in_group("player_projectile") and body.is_in_group("ammo_standard"):
-		dispersed = true
-		dispersed_time = 0
 		body.destroy()
+		_transition_to_dispersed()
+	# swarm is destroyed by Frog or Environment
 	if body.is_in_group("frog_bubble"):
 		body.queue_free()
+		_transition_to_dispersed()
+	# TODO frog can kill swarm
+	#if body.is_in_group("boss"):
+	#	_murder_swarm()
+
+func _on_body_exited(body: Node3D) -> void:
+	if body.is_in_group("player"):
+		_player_stop_taking_damage(body)
+
+func _on_disperse_timer_timeout() -> void:
+	%DisperseTimer.stop()
+	# Always moved to idle state
+	state = SwarmState.BUZZING

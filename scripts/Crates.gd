@@ -58,5 +58,5 @@ func _on_hit_area_entered(area: Area3D) -> void:
 
 func _spawn_rock() -> void:
 	var np = projectile_drop.instantiate()	
-	get_tree().root.add_child(np)
+	get_tree().current_scene.add_child(np)
 	np.global_position = position

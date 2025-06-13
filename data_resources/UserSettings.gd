@@ -28,7 +28,7 @@ func GetUserSettingsFullPath() -> String:
 func ApplyLocalSettings() -> void:
 	var settings = GetUserSettings()
 	_apply_keybinds(settings)
-	_apply_sensitivity(settings)
+#	_apply_sensitivity(settings)
 	_apply_window(settings)
 
 func _apply_window(settings: LocalUserSettings) -> void:
@@ -40,8 +40,9 @@ func ToggleFullScreen(is_full_screen: bool) -> void:
 	elif not is_full_screen and DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 
-func _apply_sensitivity(settings: LocalUserSettings) -> void:
-	pass
+#func _apply_sensitivity(_settings: LocalUserSettings) -> void:
+#	Global.LogInfo("Sensitivity is applied directly on the character.")
+#	pass
 
 func _apply_keybinds(settings: LocalUserSettings) -> void:
 	for keybind in customizable_keybinds.keys():

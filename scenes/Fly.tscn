@@ -32,8 +32,8 @@ radius = 0.1
 radius = 0.12
 
 [node name="fly" type="CharacterBody3D" groups=["fly"]]
-collision_layer = 9
-collision_mask = 3
+collision_layer = 8
+collision_mask = 9
 script = ExtResource("1_xccur")
 
 [node name="CSGBakedMeshInstance3D" type="MeshInstance3D" parent="."]
@@ -44,10 +44,15 @@ shape = SubResource("SphereShape3D_pwoqt")
 disabled = true
 
 [node name="Area3D" type="Area3D" parent="."]
-collision_mask = 9
+collision_layer = 8
+collision_mask = 256
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("SphereShape3D_ooyci")
 
+[node name="SwarmJoinTimer" type="Timer" parent="."]
+wait_time = 15.0
+
 [connection signal="body_entered" from="Area3D" to="." method="_on_body_entered"]
 [connection signal="body_exited" from="Area3D" to="." method="_on_body_exited"]
+[connection signal="timeout" from="SwarmJoinTimer" to="." method="_on_swarm_join_timer_timeout"]

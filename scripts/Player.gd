@@ -1,10 +1,7 @@
 extends PlayerBase
 
-var Fly = preload("res://scenes/Fly.tscn")
-
 @export var platform: Node
 @export var animation: AnimationTree
-@onready var flies = get_parent().get_node("flies")
 
 var start_position:Vector3 = Vector3(0,-1.8,0)
 
@@ -248,12 +245,14 @@ func _on_area_entered(area):
 		area.get_parent().hit(area, 0)
 		#melee hit sfx
 		AudioClipManager.play("res://assets/audio/sfx/StabHit.mp3")
-	
-	if area.get_parent()!=null and area.get_parent().is_in_group("fly"):
-		area.get_parent().call_deferred("enable_collision")
-		area.get_parent().velocity.y = 1
-		area.get_parent().flying = false
-
+	# melee attack against fly
+	if area.get_parent() != null and area.get_parent().is_in_group("fly"):
+		area.get_parent().hit(self, 5)
+		AudioClipManager.play("res://assets/audio/sfx/StabHit.mp3")
+	# melee attack against swarm
+	if area != null and area.is_in_group("swarm"):
+		area.hit(self, 5)
+		AudioClipManager.play("res://assets/audio/sfx/StabHit.mp3")
 
 func _on_dash_timer_timeout():
 	dashing = false
@@ -265,14 +264,6 @@ func _on_next_dash_timer_timeout():
 	can_dash = true
 	player_data.change_dash_indicator(true)	
 	$next_dash_timer.stop()
-
-
-func _on_pickup_entered(body):
-	if body.is_in_group("fly") and body.dead and player_data.ammo_special.can_pick():
-		player_data.player_ammo_picked(true)
-		body.queue_free()
-	super._on_pickup_entered(body)
-
 
 func _on_standing(area):
 	if area.is_in_group("spike"):
@@ -309,3 +300,7 @@ func _on_frog_standing(area: Area3D) -> void:
 func _on_body_standing(body: Node3D) -> void:
 	if body.is_in_group("boulder"):
 		collision_mask |= 1 << 4
+
+
+func _on_area_3d_area_entered(area: Area3D) -> void:
+	pass # Replace with function body.

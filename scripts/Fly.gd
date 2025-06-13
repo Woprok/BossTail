@@ -1,100 +1,208 @@
 extends CharacterBody3D
 class_name Fly
-#enum FlyState { FLYING, NAVIGATING, SWARMING }
+# Fly is harmless on its own
+# It does not collide or do anything
+# It does collide with player attacks, as it can be killed
 
-@export var fly_speed: float = 1.5
+# TODO better dead and hit management, so Destroy is called only once on fly
+# most issues are fixed, but it blocks some additional improvements to post death
+
+enum FlyState { 
+	FLYING, # Idle fly
+	NAVIGATING, # Moves toward the swarn
+	SWARMING, # Is moving as swarm
+	SACRIFICE, # Moving to the boss
+	DEAD
+}
+
+var state: FlyState = FlyState.FLYING
+
+@export var KILL_OFF_ZONE: int = -10
+
+@export_category("Fly Speed")
 var gravity: int = -10
-var time:int = 0
-@export var flying = false
-@export var swarm = false
-@export var position_in_swarm = Vector3(0,0,0)
-var dead = false
-var angle = 0
-var target_position
-var split_off = false
-var split_off_time = 0
-var TIME_SPLIT_OFF = 10
-var player_in_area = false
+@export var fly_sacrifice_speed: float = 4.0
+@export var fly_catch_speed: float = 10.0
+@export var fly_idle_speed: float = 2.5
+@export var fly_chase_speed: float = 5.5
+var MovementComponent: FlyMovement = FlyMovement.new(fly_idle_speed, fly_chase_speed)
 
+@export_category("Positioning and Swarm")
+@export var home_spawner: Node3D
+@export var home_swarm: Swarm #Node3D
+@export var fly_buzz_radius: float = 10.0
+@export var fly_leave_swarm_on_hit_chance: float = 0.7
+# Required for Swarm
+var swarm_index: int = -1
+var swarm_position: Vector3 = Vector3.ZERO
+var last_target_position: Vector3
+var is_ignoring_swarms: bool = false
 
-func _physics_process(delta):
-	if flying and not swarm:
-		angle += delta
-		var center_position = get_parent().position
-		angle = fmod(angle,TAU)
-		var x = center_position.x + cos(angle) * 4
-		var z = center_position.z + sin(angle) * 4
-		position = Vector3(x,position.y,z) 
-		return
-	if flying and swarm:
-		if split_off:
-			split_off_time += delta
-			if split_off_time>TIME_SPLIT_OFF:
-				split_off_time = 0
-				get_parent().active+=1
-				split_off = false
-		if get_parent().dispersed or split_off:
-			if target_position!= null and target_position.distance_to(global_position)>=0.5:
-				chase_position(delta, target_position, true)
-			else:
-				target_position = fly_around(get_parent().position,10)
-				chase_position(delta, target_position, true)
-		else:
-			chase_position(delta, position_in_swarm, false)
-		return
-	if $Body.disabled:
-		call_deferred("enable_collision")
-	velocity.y += fly_speed * gravity * delta
-	var collision = move_and_collide(fly_speed * velocity * delta)
-	if collision:
-		dead = true
-		if not swarm:
-			scale=Vector3(1,1,1)
-		if swarm and not split_off:
-			get_parent().active -= 1 
-		var root = get_tree().root.get_node("SecondPhase")
-		var gl_position = self.global_position
-		get_parent().remove_child(self)
-		root.get_node("flies").add_child(self)
-		self.position = gl_position
-		swarm = false
+@export_category("Death")
+@export var dead_body: PackedScene = preload("res://scenes/player/FlyProjectile.tscn")
+@export var projectile_chance: float = 0.5 # randf is from 0.0 to 1.0
+
+func _ready() -> void:
+	# handle finding closest swarm
+	# funny thing this is bad idea as it can sometimes find closest that is not intended
+	if home_swarm == null:
+		var swarms = get_tree().get_nodes_in_group("swarm")
+		var closest: Node3D
+		var closest_distance: float = 1.79769e308
+		for si in swarms:
+			var dist = self.global_position.distance_to(si.global_position)
+			if dist < closest_distance:
+				closest = si
+				closest_distance = dist
+		home_swarm = closest
 		
-	if position.y<-10:
-		queue_free()
-		
-#func _destroy() -> void:
-#	if not dead:
-#		dead = true
-	
-			
-func chase_position(delta, target_pos,global):
-	if global:
-		var dir = target_pos - global_position
-		dir = dir.normalized()
-		global_position += dir * fly_speed * delta
+
+func SetSpawner(spawner) -> void:
+	home_spawner = spawner
+
+func SetState(desired_state: FlyState) -> void:
+	# this is called from outside, so we need to check that we understand the transition
+	if state == FlyState.DEAD: # point of no return and this is kind of expected to be called
+		return
+	# Flying -> Navigating
+	if desired_state == FlyState.NAVIGATING and state == FlyState.FLYING:
+		state = desired_state
+	# Navigating -> Swarming, Flying
+	elif desired_state == FlyState.FLYING and state == FlyState.NAVIGATING:
+		state = desired_state
+	elif desired_state == FlyState.SWARMING and state == FlyState.NAVIGATING:
+		state = desired_state
+	# Swarming -> Sacrifice, Flying
+	elif desired_state == FlyState.FLYING and state == FlyState.SWARMING:
+		state = desired_state
+	elif desired_state == FlyState.SACRIFICE and state == FlyState.SWARMING:
+		state = desired_state
+	# -> Dead
+	elif desired_state == FlyState.DEAD:
+		state = desired_state
 	else:
-		var dir = target_pos - position
-		dir = dir.normalized()
-		position += dir * fly_speed * delta
+		Global.LogError("Attempt to transition to not supported state on Fly")
+		Global.LogError(desired_state)		
+
+func _physics_process(delta: float) -> void:
+	# Fly is simple as it can get
+	# State determines target to move toward
+	# Handle additional state transition per tick
+	match state:
+		FlyState.FLYING:
+			if home_swarm != null and home_swarm.can_join_swarm() and not is_ignoring_swarms:
+				SetState(FlyState.NAVIGATING)
+		FlyState.NAVIGATING:
+			if home_swarm == null or not home_swarm.can_join_swarm():
+				SetState(FlyState.FLYING)
+			if _reached_target_position():
+				home_swarm.join_swarm(self)
+		FlyState.SWARMING:
+			pass				
+		FlyState.SACRIFICE:
+			pass
+		FlyState.DEAD:
+			return
+			
+	_select_and_navigate_to_target(delta)
+		
+	# Move with physics
+	var direction = (last_target_position - global_position).normalized()
+	velocity = direction * _state_to_speed()
+	velocity.y += gravity * delta
+	move_and_slide()
+
+func _state_to_speed() -> float:
+	match state:
+		FlyState.FLYING:
+			return fly_idle_speed
+		FlyState.NAVIGATING:
+			return fly_catch_speed
+		FlyState.SWARMING:
+			return fly_chase_speed
+		FlyState.SACRIFICE:
+			return fly_sacrifice_speed
+	# otherwise, we don't need to care
+	return 0.0
 	
 
-func fly_around(center, radius):
-	var fly_angle = randf() * TAU
-	var distance = sqrt(randf()) * radius
-	var x = center.x + distance * cos(fly_angle)
-	var z = center.z + distance * sin(fly_angle)
-	return Vector3(x,center.y, z)
+func _select_and_navigate_to_target(delta: float) -> void:
+	# Fly moves based on state
+	match state:
+		FlyState.FLYING:
+			if home_spawner:
+				last_target_position = MovementComponent.fly_around_orbit(home_spawner.global_position, fly_buzz_radius, delta)
+		FlyState.NAVIGATING:
+			if home_swarm:
+				last_target_position = home_swarm.global_position
+		FlyState.SWARMING:
+			if home_swarm:
+				last_target_position = home_swarm.global_position + swarm_position #* randf()
+		FlyState.SACRIFICE:
+			# Defines target as boss global position
+			var boss = get_tree().get_first_node_in_group("boss")
+			if boss:
+				last_target_position = boss.global_position
+		FlyState.DEAD:
+			return
 
+func _navigate_to_last_target(delta: float) -> void:
+	self.global_position = MovementComponent.get_target_position_by_chase(self.global_position, last_target_position, delta)
 
-func enable_collision():
-	$Body.disabled = false
+func _reached_target_position(max_distance: float = 0.5) -> bool:
+	return self.global_position.distance_to(last_target_position) <= max_distance
 
-
+	
 func _on_body_entered(body):
+	if body.is_in_group("boss"):
+		body.special_fly_arrived(self)
 	if body.is_in_group("player"):
-		player_in_area = true
-
+		pass
 
 func _on_body_exited(body):
+	if body.is_in_group("boss"):
+		pass
 	if body.is_in_group("player"):
-		player_in_area = false
+		pass
+
+func hit(_source, _damage) -> bool:
+	if state == FlyState.SWARMING:
+		_try_leave_swarm()
+		return false
+	else:
+		destroy()
+		return true
+
+# Fly is dead
+func destroy() -> void:
+	if state == FlyState.DEAD:
+		return
+	# spawn projectile body
+	# leave swarm
+	# leave spawner
+	_try_spawn_body()
+	if home_swarm and state == FlyState.SWARMING:
+		home_swarm.leave_swarm(self, FlyState.DEAD)
+	if home_spawner:
+		home_spawner.despawn(self)
+	# free self as there is nothing to do as dead fly
+	queue_free()
+	
+# This is random as we now have too many fly
+func _try_spawn_body() -> void:
+	if randf() >= projectile_chance:
+		var fd = dead_body.instantiate()
+		get_tree().current_scene.add_child(fd)
+		fd.global_position = self.global_position
+	
+# Swarm leaving mechanic on hit
+func _try_leave_swarm() -> void:
+	if randf() < fly_leave_swarm_on_hit_chance:
+		home_swarm.leave_swarm(self, FlyState.FLYING)
+		is_ignoring_swarms = true
+		if $SwarmJoinTimer.is_stopped():
+			$SwarmJoinTimer.start()
+# Reenables joining the swarms
+func _on_swarm_join_timer_timeout() -> void:
+	$SwarmJoinTimer.stop()
+	is_ignoring_swarms = false

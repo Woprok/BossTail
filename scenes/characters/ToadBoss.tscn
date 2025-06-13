@@ -23320,7 +23320,7 @@ radius = 1.14355
 [sub_resource type="SphereShape3D" id="SphereShape3D_ljifa"]
 radius = 0.35
 
-[node name="ToadBoss" type="CharacterBody3D" node_paths=PackedStringArray("animationPlayer", "bubble_chargeup", "bubble_appear_pos", "hit_VFX", "stun_VFX", "hit_body_pos", "hit_head_pos") groups=["enemy"]]
+[node name="ToadBoss" type="CharacterBody3D" node_paths=PackedStringArray("animationPlayer", "bubble_chargeup", "bubble_appear_pos", "hit_VFX", "stun_VFX", "hit_body_pos", "hit_head_pos") groups=["boss", "enemy"]]
 collision_mask = 65
 script = ExtResource("1_5bebj")
 animationPlayer = NodePath("Char_ToadBoss/AnimationPlayer")

@@ -908,6 +908,12 @@ func _on_tongue_body_entered(body):
 	if body.is_in_group("minion"):
 		_eat_fly(body)
 
+# TODO some cool effect for this
+# This is called when Swarm heals with special fly the boss
+func special_fly_arrived(fly: Fly) -> void:
+	boss_data.boss_heal(EAT_HP_RESTORE)
+	fly.destroy()
+
 func _eat_fly(fly_body) -> void:
 	boss_data.boss_heal(EAT_HP_RESTORE)
 	fly_body.destroy()
