@@ -248,7 +248,7 @@ func _on_area_entered(area):
 	# melee attack against fly
 	if area.get_parent() != null and area.get_parent().is_in_group("fly"):
 		area.get_parent().hit(self, 5)
-		AudioClipManager.play("res://assets/audio/sfx/StabHit.mp3")
+		#AudioClipManager.play("res://assets/audio/sfx/StabHit.mp3")
 	# melee attack against swarm
 	if area != null and area.is_in_group("swarm"):
 		area.hit(self, 5)

@@ -1,12 +1,26 @@
-[gd_scene load_steps=3 format=3 uid="uid://catdqfnxrr054"]
+[gd_scene load_steps=5 format=3 uid="uid://catdqfnxrr054"]
 
+[ext_resource type="Script" uid="uid://ctp7rqh7neu7b" path="res://scenes/fly/FlyLilyFlower.gd" id="1_pk8at"]
 [ext_resource type="PackedScene" uid="uid://ddrfp8or8dish" path="res://scenes/fly/FlySpawnPoint3D.tscn" id="2_pk8at"]
 [ext_resource type="PackedScene" uid="uid://cy0xtlleeu1q" path="res://scenes/environment/LilyFlower.tscn" id="2_sae6b"]
 
-[node name="Flower" type="Node3D"]
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_cu84a"]
+height = 3.5
+radius = 5.0
+
+[node name="Flower" type="Area3D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_pk8at")
 
 [node name="LilyFlower" parent="." instance=ExtResource("2_sae6b")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 
 [node name="FlySpawnPoint3D" parent="." instance=ExtResource("2_pk8at")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, 0)
+shape = SubResource("CylinderShape3D_cu84a")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
