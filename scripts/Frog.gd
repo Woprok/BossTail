@@ -930,6 +930,8 @@ func special_fly_arrived(fly: Fly) -> void:
 func _eat_fly(fly_body: FlyProjectile) -> void:
 	boss_data.boss_heal(EAT_HP_BASE_RESTORE_PER_EATING + fly_body.projectile_healing)
 	fly_body.destroy()
+	if platform.is_in_group("small_platform"):
+		plan_path(get_parent().get_node("lilyPlatforms/largeLily"))
 	
 
 func _on_animation_finished(anim_name):
