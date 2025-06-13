@@ -3,6 +3,8 @@ class_name Frog
 
 @export var animationPlayer : AnimationPlayer
 @onready var animationTree : ToadAnimationController = $AnimationTree
+@onready var special_material = preload("res://assets/materials/toad_unlit_overlay_body_special.tres")
+@onready var body_mesh = $Char_ToadBoss/rig_deform/Skeleton3D/Toad
 
 # speed on ground
 @export var speed:int = 2
@@ -670,11 +672,18 @@ func ground_slam():
 		newShards.get_node("stone4").neighbors.append_array(platform.neighbors)
 		if player.platform == platform:
 			player.platform = newShards.get_node("stone2")
-		boss_data.start_health_special()
+		transform_to_frozen()
 		platform.queue_free()
 		newShards.get_node("BubblesSpawner").active = true
 		platform = newShards.get_node("stone1")
 		newShards.get_node("AnimationPlayer").play("break")
+	
+func transform_to_frozen() -> void:
+	body_mesh.set_surface_override_material(0, special_material)
+	boss_data.start_health_special()
+	
+func transform_to_normal() -> void:
+	body_mesh.set_surface_override_material(0, null)	
 	
 func find_point_on_platform(platform_position, player_position, min_distance, max_distance):
 	var nav_distance = 2.5 # todo split this between large and small platforms, larger could use larger area
@@ -790,7 +799,7 @@ func hit(area, health):
 			# just in case, I do not understand this mess
 			if HPHit >= TRIGGER_SWIMMING:
 				triggered = true
-			return
+			return #TODO this might be breaking transform stuff
 						
 		if area.is_in_group("tongue"):
 			tongueHit += 1
@@ -817,6 +826,9 @@ func hit(area, health):
 	if Global.phase > 1:
 		triggered = false
 		
+	if not boss_data.health_special.has_any_health_left() and body_mesh.get_surface_override_material_count() > 0:
+		transform_to_normal()
+	
 	#hit vfx
 	if hit_impact_VFX != null:
 		var impactVFXObj = hit_impact_VFX.instantiate()
