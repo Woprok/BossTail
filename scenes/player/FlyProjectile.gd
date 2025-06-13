@@ -1,6 +1,9 @@
 extends ProjectileBase
 class_name FlyProjectile
 
+@export_category("Death")
+@export var projectile_healing: float = 1.0
+
 var platform = null
 
 func _on_area_entered(area):

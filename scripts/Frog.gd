@@ -73,8 +73,8 @@ var time_big_lily = 0
 @export var SLAM_TIME = 5
 # time between two eatings
 @export var EAT_TIME = 10
-# health restored per eating
-@export var EAT_HP_RESTORE = 20
+# health restored per eating as minimum, fly and flyProjectile define their own values
+@export var EAT_HP_BASE_RESTORE_PER_EATING = 0
 
 # Player's HP lost by slam 
 @export var SLAM_HP = 10
@@ -911,11 +911,12 @@ func _on_tongue_body_entered(body):
 # TODO some cool effect for this
 # This is called when Swarm heals with special fly the boss
 func special_fly_arrived(fly: Fly) -> void:
-	boss_data.boss_heal(EAT_HP_RESTORE)
+	boss_data.boss_heal(EAT_HP_BASE_RESTORE_PER_EATING + fly.eat_healing_value)
 	fly.destroy()
 
-func _eat_fly(fly_body) -> void:
-	boss_data.boss_heal(EAT_HP_RESTORE)
+# Frog eats Fly that is projectile, e.g. was thrown
+func _eat_fly(fly_body: FlyProjectile) -> void:
+	boss_data.boss_heal(EAT_HP_BASE_RESTORE_PER_EATING + fly_body.projectile_healing)
 	fly_body.destroy()
 	
 

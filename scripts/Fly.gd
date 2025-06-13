@@ -41,6 +41,7 @@ var is_ignoring_swarms: bool = false
 @export_category("Death")
 @export var dead_body: PackedScene = preload("res://scenes/player/FlyProjectile.tscn")
 @export var projectile_chance: float = 0.5 # randf is from 0.0 to 1.0
+@export var eat_healing_value: float = 10.0
 
 func _ready() -> void:
 	# handle finding closest swarm

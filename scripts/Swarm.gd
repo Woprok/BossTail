@@ -50,7 +50,6 @@ var last_target_position: Vector3
 @export var FLY_REQUIRED_FOR_CHASE: int = 5
 
 @export_category("Swarm Healing")
-@export var FLY_HEALING_VALUE: float = 5.0
 @export var FLY_REQUIRED_FOR_SPLIT_OFF: int = 10
 @export var TIME_BETWEEN_SPLIT_OFF: float = 60.0
 var accumulated_split_off_time: float = 0
