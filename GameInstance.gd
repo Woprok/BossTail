@@ -76,7 +76,9 @@ func _try_handle_debug(event: InputEvent) -> bool:
 	if not event.is_action_pressed("debug") or not enable_debug:
 		return false
 	# Swift debug tricks here
-	PlayerVictorious()
+	var res = load("res://data_resources/PlayerDataModelInstance.tres")
+	res.player_increase_health(100)
+	# PlayerVictorious()
 	
 	return true
 		
