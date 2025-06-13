@@ -1,6 +1,7 @@
 extends Node
 # Manages transitions between levels & screens
 # class_name GameInstance #Defined as autoloaded Global
+signal level_end
 
 @export var enable_debug: bool = true
 
@@ -32,7 +33,10 @@ enum GameLevels {
 	GameLevels.TUTORIAL_PHASE_1: GameLevels.FROG_PHASE_1,
 	GameLevels.FROG_PHASE_1: GameLevels.FROG_PHASE_2
 }
-
+@export var CinematicTransitions: Dictionary[GameLevels, bool] = {
+	GameLevels.FROG_PHASE_1: true,
+}
+var preloaded_next_level = null
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	get_window().min_size = Vector2i(1152, 648)
@@ -94,8 +98,17 @@ func PlayerDefeated():
 	_pause()
 	
 func PlayerVictorious():
-	UIManager.SwitchToMode(UI.Mode.VICTORY)
+	if CanTravelToNextLevel() and CanCinematic():
+		PreloadNextLevel()
+		emit_signal("level_end")
+		return
+	else:
+		UIManager.SwitchToMode(UI.Mode.VICTORY)
 	_pause()
+	return
+
+func PreloadNextLevel():
+	preloaded_next_level = ResourceLoader.load(Levels[LevelTransitions[CurrentLevel]])
 
 # Level transition should move player to menu level and set UI as MENU
 func TravelToMenu(new_level: GameLevels = GameLevels.MENU) -> void:
@@ -106,14 +119,21 @@ func TravelToMenu(new_level: GameLevels = GameLevels.MENU) -> void:
 	
 # Level transition should move player to new level and set UI as HUD
 func TravelToLevel(new_level: GameLevels) -> void:
+	if preloaded_next_level:
+		get_tree().change_scene_to_packed(preloaded_next_level)
+		preloaded_next_level = null
+	else:
+		get_tree().change_scene_to_file(Levels[new_level])
 	CurrentLevel = new_level
-	get_tree().change_scene_to_file(Levels[new_level])
 	UIManager.SwitchToMode(UI.Mode.HUD)
 	_resume()
 
 # This returns value based on CurrentLevel being in LevelTransitions
 func CanTravelToNextLevel() -> bool:
 	return LevelTransitions.has(CurrentLevel)
+
+func CanCinematic() -> bool:
+	return CinematicTransitions.get(CurrentLevel, false)
 
 # This requires some basic setup, see LevelTransitions
 func TravelToNextLevel() -> void:
