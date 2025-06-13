@@ -10,6 +10,7 @@ min_spawn_offset = Vector3(-0.5, 0, -0.5)
 max_spawn_offset = Vector3(0.5, 0.5, 0.5)
 
 [node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 5.0
 autostart = true
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
