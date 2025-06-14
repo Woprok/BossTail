@@ -629,8 +629,8 @@ current = true
 [node name="CanvasLayer" type="CanvasLayer" parent="Camera3D"]
 
 [node name="ColorRect" type="ColorRect" parent="Camera3D/CanvasLayer"]
-offset_right = 1163.0
-offset_bottom = 654.0
+offset_right = 2533.0
+offset_bottom = 1650.0
 mouse_filter = 2
 color = Color(0, 0, 0, 0)
 
