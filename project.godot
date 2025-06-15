@@ -136,3 +136,6 @@ debug={
 3d_physics/layer_6="Bubble"
 3d_physics/layer_7="SwimmingGround"
 3d_physics/layer_9="PlayerMeleeAttack"
+3d_physics/layer_10="PlayerRangedAttack"
+3d_physics/layer_11="EnemyMeleeAttack"
+3d_physics/layer_12="EnemyRangedAttack"

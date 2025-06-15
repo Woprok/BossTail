@@ -94,11 +94,14 @@ var time_big_lily = 0
 @export var BOULDER_HP = 20
 # HP lost by spike hit
 @export var SPIKE_HP = 20
+# HP lost by spike hit
+@export var SPIKE_SPECIAL_HP = 35
 # HP lost by pebble hit
 @export var PEBBLE_HP = 2.5
 # HP lost to trigger swimming
 @export var TRIGGER_SWIMMING = 10
 @export var TRIGGER_SWIMMING_END: float = 7.5
+@export var WEAK_DAMAGE_ARMOR_PROTECTION: float = 20.0
 
 @export var SWIMMING_ACCELERATION_TIME:float = 0.7
 @export var SWIMMING_DECELERATION_TIME:float = 0.7
@@ -776,6 +779,15 @@ func _on_swimming_critical_damage() -> void:
 	
 func hit(area, health):
 	var hit_pos: Vector3 = hit_body_pos.global_position
+	
+	# halves the damage taken from weak sources
+	# TODO this whole method needs rework so we can modify final value
+	if boss_data.health_special.has_any_health_left():
+		if typeof(area) == TYPE_INT:
+			area = area / 2
+		if health <= WEAK_DAMAGE_ARMOR_PROTECTION:
+			health = health / 2 
+	
 	if boss_data.get_current_health() == 100:
 		time_bubble = 0
 	if swimming:
@@ -916,7 +928,10 @@ func _on_tongue_body_entered(body):
 		#	player.velocity = velocity_y+velocity_xz
 		#	player.grabbed = true
 	if body.is_in_group("spike"):
-		hit(null, SPIKE_HP)
+		if boss_data.health_special.has_any_health_left():
+			hit(null, SPIKE_SPECIAL_HP)
+		else:
+			hit(null, SPIKE_HP)
 	if body.is_in_group("minion"):
 		_eat_fly(body)
 
