@@ -158,6 +158,10 @@ func hit(_collision, health):
 	#sfx
 	AudioClipManager.play("res://assets/audio/sfx/HitImpact.wav")
 
+func reset_player() -> void:
+	player_data.player_increase_health(100)
+	respawn()
+
 func respawn():
 	reset_player_respawn()
 	
@@ -217,11 +221,12 @@ func _on_melee_body_entered(body):
 func _on_standing(area):
 	if area.is_in_group("spike"):
 		hit(null, 20)
-		get_parent().respawn_player()
+		reset_player()
 	else:
 		#land sfx
 		AudioClipManager.play("res://assets/audio/sfx/Land.wav")
 	if area.is_in_group("part2"):
+		player_data.player_increase_health(100)
 		part = 3
 		
 		
