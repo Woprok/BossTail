@@ -43,6 +43,10 @@ var is_ignoring_swarms: bool = false
 @export var projectile_chance: float = 0.5 # randf is from 0.0 to 1.0
 @export var eat_healing_value: float = 10.0
 
+@export_category("Visual Transform")
+@onready var special_material = preload("res://assets/godot_csg/fly_green.tres")
+@onready var body_mesh = $CSGBakedMeshInstance3D
+
 func _ready() -> void:
 	# handle finding closest swarm
 	# funny thing this is bad idea as it can sometimes find closest that is not intended
@@ -101,7 +105,7 @@ func _physics_process(delta: float) -> void:
 		FlyState.SWARMING:
 			pass				
 		FlyState.SACRIFICE:
-			pass
+			_transform_to_big()
 		FlyState.DEAD:
 			return
 			
@@ -112,6 +116,11 @@ func _physics_process(delta: float) -> void:
 	velocity = direction * _state_to_speed()
 	velocity.y += gravity * delta
 	move_and_slide()
+
+func _transform_to_big():
+	#if body_mesh.get_surface_override_material_count() == 0:
+		body_mesh.set_surface_override_material(0, special_material)
+		self.scale = Vector3(3.0, 3.0, 3.0)
 
 func _state_to_speed() -> float:
 	match state:
@@ -157,16 +166,19 @@ func _reached_target_position(max_distance: float = 0.5) -> bool:
 func _on_body_entered(body):
 	if body.is_in_group("boss"):
 		body.special_fly_arrived(self)
-	if body.is_in_group("player"):
-		pass
 
 func _on_body_exited(body):
 	if body.is_in_group("boss"):
 		pass
-	if body.is_in_group("player"):
-		pass
 
 func hit(_source, _damage) -> bool:
+	
+	# can be ended by pebble
+	#if state == FlyState.SACRIFICE and _source.is_in_group("player_projectile") and _source.is_in_group("ammo_standard"):
+	#	_source.destroy()
+	#	destroy()
+	#	return true
+	
 	if state == FlyState.SWARMING:
 		_try_leave_swarm()
 		return false

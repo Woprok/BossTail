@@ -54,6 +54,9 @@ func on_pick_up():
 	destroy()
 
 func _on_hit(collision):
+	#if collision.get_collider().is_in_group("minion"):
+	#	collision.get_collider().hit(self, projectile_damage)
+	
 	if collision.get_collider().is_in_group("enemy"):
 		collision.get_collider().hit(collision.get_collider_shape(), projectile_damage)
 		destroy()
