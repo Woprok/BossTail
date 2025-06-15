@@ -18,6 +18,7 @@ var box_hit = true
 var poleRotTime: float = 0
 var poleRotAngle: float = 2
 
+var DeadInstance = preload("res://scenes/tutorial/TutorialDummyDead.tscn")
 var Box = preload("res://scenes/Crates.tscn")
 var stop_time = 10
 
@@ -59,7 +60,14 @@ func death():
 		return
 	get_parent().get_node("AnimationPlayer").play("last_wall")
 	GameEvents.tutorial_phase.emit(3)
+	_spawn_corpse()
 	queue_free()
+	
+func _spawn_corpse() -> void:
+	var dead = DeadInstance.instantiate()
+	get_tree().current_scene.add_child(dead)
+	dead.global_position = Vector3(self.global_position.x, self.global_position.y - 1, self.global_position.z)
+	#dead.global_position.y -= 1 # 1.19100 # meassured diff in height
 	
 func whirlwind():
 	if box_hit:
