@@ -2,6 +2,7 @@ extends SequenceAnimationController
 class_name BigDummyAnimController
 
 @export var AnimSeqPrefixes: Dictionary[SEQ_ANIM, String] = {}
+signal animation_end(name)
 
 func idle():
 	state_machine.travel("Idle")
@@ -56,13 +57,23 @@ enum SEQ_ANIM {
 	WHIRLWIND,
 }
 
+func get_seq_anim_antic_name(seq_type: SEQ_ANIM) -> String:
+	return AnimSeqPrefixes.get(seq_type) + "-antic"
+
 func get_seq_anim_start_name(seq_type: SEQ_ANIM) -> String:
 	return AnimSeqPrefixes.get(seq_type) + "-start"
 
 func _on_animation_finished(anim_name: StringName) -> void:
 	if anim_name == get_seq_anim_start_name(SEQ_ANIM.BARRAGE):
+		emit_signal("animation_end",anim_name)
 		barrage_end()
+	elif anim_name == get_seq_anim_antic_name(SEQ_ANIM.BARRAGE):
+		emit_signal("animation_end",anim_name)
+	elif anim_name == get_seq_anim_antic_name(SEQ_ANIM.SLASH):
+		emit_signal("animation_end",anim_name)
 	elif anim_name == get_seq_anim_start_name(SEQ_ANIM.SLASH):
+		emit_signal("animation_end",anim_name)
 		great_slash_end()
 	elif anim_name == get_seq_anim_start_name(SEQ_ANIM.WHIRLWIND):
+		emit_signal("animation_end",anim_name)
 		whirlwind_end()

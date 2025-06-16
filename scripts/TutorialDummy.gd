@@ -77,6 +77,8 @@ func _ready() -> void:
 	boss_data.boss_restart()
 	GameEvents.boss_changed.emit(boss_data)
 	
+	$Char_BigDummy/AnimationTree.connect("animation_end",_on_animation_finished)
+	
 	WHIRLWIND_TIME = WHIRLWIND_TIME_MAX
 	SLASH_TIME = SLASH_TIME_MAX
 	BARRAGE_TIME = BARRAGE_TIME_MAX
@@ -138,14 +140,14 @@ func _physics_process(delta):
 	slash_time+=delta
 	if slash_time>=SLASH_TIME:
 		slash_time = 0
-		barrage_time -= 1
-		slash()
+		barrage_time -= 1.5
+		slash_indicator()
 		doing = true
 		return
 	barrage_time += delta
 	if barrage_time>=BARRAGE_TIME:
 		barrage_time = 0
-		slash_time -= 1
+		slash_time -= 1.5
 		actual_volley = 0
 		throw()
 
@@ -193,9 +195,7 @@ func hit(_collision, hp):
 		last_whirlwind = 0
 		whirlwind()
 
-func slash():
-	$AnimationPlayer.play("slash",-1,3)
-	
+func slash_indicator():
 	#spawn slash indicator
 	var indicCtrlr = instantiate_indicator_object(SlashAttackIndicator)
 	#indicCtrlr.look_at(indicCtrlr.global_position + flat(DummyEntity.global_basis.z), Vector3.UP)
@@ -205,8 +205,10 @@ func slash():
 	eyes_flash(SLASH_ANTIC_TIME/2.0)
 	get_tree().create_tween().tween_callback(eyes_fade.bind(0.15)).set_delay(SLASH_ANTIC_TIME)
 	
-	#start slash anim sequence
 	DummyAnimationController.great_slash_start(-1)
+
+func slash():
+	#start slash anim sequence
 	if attack_seq_timer != null and attack_seq_timer.is_running():
 		print("Different attack sequence has been interrupted. This shouldn't happen")
 		attack_seq_timer.kill()
@@ -284,8 +286,6 @@ func throw():
 	if attack_seq_timer != null and attack_seq_timer.is_running():
 		print("Different attack sequence has been interrupted. This shouldn't happen")
 		attack_seq_timer.kill()
-	attack_seq_timer = get_tree().create_tween()
-	attack_seq_timer.tween_callback(DummyAnimationController.barrage_play_start).set_delay(BARRAGE_ANTIC_TIME)
 	
 	eyes_flash(BARRAGE_ANTIC_TIME)
 	get_tree().create_tween().tween_callback(eyes_fade.bind(0.15)).set_delay(BARRAGE_ANTIC_TIME)
@@ -304,8 +304,13 @@ func throw():
 		indicCtrlr.appear(BARRAGE_ANTIC_TIME * 2)
 		get_tree().create_tween().tween_callback(indicCtrlr.fade.bind(0.5)).set_delay(BARRAGE_ANTIC_TIME + 1.15)
 		
-	# Barrage release phase --------------------
 	
+func barrage():
+	attack_seq_timer = get_tree().create_tween()
+	attack_seq_timer.tween_callback(DummyAnimationController.barrage_play_start).set_delay(BARRAGE_ANTIC_TIME)
+	
+	# Barrage release phase --------------------
+
 	#Barrage summon vfx
 	var summonVFX: Node3D = BarrageSummonVFX.instantiate()
 	self.add_child(summonVFX)
@@ -334,8 +339,6 @@ func throw():
 		doing = false
 		
 	
-
-
 func _on_body_entered(body):
 	if body.is_in_group("player") and body.pushed == false:
 		body.velocity=body.global_position-global_position
@@ -379,9 +382,16 @@ func _on_ground_body_entered(_body: Node3D) -> void:
 
 
 func _on_animation_finished(anim_name):
-	if anim_name == "slash":
+	if anim_name == "GAME_01_great_slash-antic":
+		slash()
+	if anim_name == "GAME_01_great_slash-start":
+		$AnimationPlayer.play("slash")
 		doing = false
-		
+		slash_time = 0
+	if anim_name == "GAME_02_barrage-antic":
+		barrage()
+	if anim_name == "GAME_02_barrage-start":
+		barrage_time = 0
 		
 func flat(in_vec: Vector3) -> Vector3:
 	return Vector3(in_vec.x, 0.0, in_vec.z)
