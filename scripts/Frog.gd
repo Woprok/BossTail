@@ -673,6 +673,11 @@ func ground_slam():
 		newShards.get_node("stone2").neighbors.append_array(platform.neighbors)
 		newShards.get_node("stone3").neighbors.append_array(platform.neighbors)
 		newShards.get_node("stone4").neighbors.append_array(platform.neighbors)
+		for plt in platform.neighbors:
+			plt.neighbors.append(newShards.get_node("stone1"))
+			plt.neighbors.append(newShards.get_node("stone2"))
+			plt.neighbors.append(newShards.get_node("stone3"))
+			plt.neighbors.append(newShards.get_node("stone4"))
 		if player.platform == platform:
 			player.platform = newShards.get_node("stone2")
 		transform_to_frozen()
