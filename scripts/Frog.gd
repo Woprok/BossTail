@@ -52,10 +52,10 @@ var time_big_lily = 0
 # time between two swipes, player and enemy on same platform
 @export var SWIPE_SAME_PLATFORM_TIME = 2
 # time between two swipes, player and enemy on different platform
-@export var SWIPE_DIFF_PLATFORM_TIME = 10
+@export var SWIPE_DIFF_PLATFORM_TIME = 6
 @export var SLAM_TIME_CONST = 5
-@export var SWIPE_SAME_PLATFORM_TIME_CONST = 3
-@export var SWIPE_DIFF_PLATFORM_TIME_CONST = 10
+@export var SWIPE_SAME_PLATFORM_TIME_CONST = 2
+@export var SWIPE_DIFF_PLATFORM_TIME_CONST = 6
 @export var SPIT_BUBBLE_TIME_CONST = 5
 @export var BIG_LILY_BEHAVIOR_TIME = 1.5
 
