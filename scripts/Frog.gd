@@ -643,7 +643,12 @@ func tongue_swipe():
 	grab = false
 	look_at(Vector3(player.position.x,position.y,player.position.z))
 	animationTree.swipe_start(TONGUE_SWIPE_ANTIC_DUR)
-	
+	#play antic sfx
+	AudioClipManager.play("res://assets/audio/sfx/ToadAttackAntic.wav")
+	#play swipe sfx after antic delay
+	get_tree().create_tween(). \
+		tween_callback(AudioClipManager.play.bind("res://assets/audio/sfx/ToadTongueAttack.wav")). \
+		set_delay(TONGUE_SWIPE_ANTIC_DUR)
 	var indicCtrlr = instantiate_indicator_object(swipe_indicator,global_position)
 	indicCtrlr.appear(TONGUE_SWIPE_ANTIC_DUR * 0.75,1.02)
 	get_tree().create_tween().tween_callback(indicCtrlr.fade.bind(0.5)).set_delay(TONGUE_SWIPE_ANTIC_DUR)
@@ -651,6 +656,9 @@ func tongue_swipe():
 	
 func ground_slam():
 	slam = false
+	#play slam sfx
+	AudioClipManager.play("res://assets/audio/sfx/ToadSlam.wav")
+	
 	if !platform.is_in_group("big_lily"):
 		platform.health -= 1
 	else:
@@ -723,7 +731,13 @@ func extend():
 	if extended:
 		return
 	animationTree.tongue_grab_start(TONGUE_GRAB_ANTIC_DUR)
-	
+	#play antic sfx
+	AudioClipManager.play("res://assets/audio/sfx/ToadAttackAntic.wav")
+	# delayed extend sfx play call
+	get_tree().create_tween(). \
+		tween_callback(AudioClipManager.play.bind("res://assets/audio/sfx/ToadTongueAttack.wav")). \
+		set_delay(TONGUE_GRAB_ANTIC_DUR)
+		
 	var indicCtrlr = instantiate_indicator_object(grab_indicator,global_position)
 	indicCtrlr.appear(TONGUE_GRAB_ANTIC_DUR * 0.75,1.02)
 	get_tree().create_tween().tween_callback(indicCtrlr.fade.bind(0.5)).set_delay(TONGUE_GRAB_ANTIC_DUR)
@@ -780,7 +794,7 @@ func _on_swimming_critical_damage() -> void:
 	triggered = true
 	swimming_accumulated_damage = 0
 	#sfx
-	AudioClipManager.play("res://assets/audio/sfx/HitImpact.wav", 1.5)
+	AudioClipManager.play("res://assets/audio/sfx/ToadBoulderHit.wav", 1.5)
 	
 func hit(area, health):
 	var hit_pos: Vector3 = hit_body_pos.global_position

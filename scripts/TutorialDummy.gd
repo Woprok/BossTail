@@ -69,6 +69,10 @@ var channelling_whirlwind: bool
 var eyes_overlay_mat: StandardMaterial3D
 var eyes_tween: Tween
 
+@export_group("SFX")
+@export var WhirlwindChargeupPlayer: AudioStreamPlayer3D
+var whirlwindTweener: Tween
+
 func _ready() -> void:
 	boss_data.boss_restart()
 	GameEvents.boss_changed.emit(boss_data)
@@ -211,7 +215,7 @@ func slash():
 	create_tween().tween_callback(spawn_slash_vfx).set_delay(SLASH_ANTIC_TIME)
 	
 	#sfx
-	AudioClipManager.play("res://assets/audio/sfx/Attack.wav")
+	AudioClipManager.play("res://assets/audio/sfx/DummyGreatSlash.mp3")
 	
 func spawn_slash_vfx():
 	var slash_vfx_node: Node3D = SlashVFX.instantiate()
@@ -230,6 +234,11 @@ func whirlwind():
 	DummyAnimationController.whirlwind_start(-1)
 	WhirlwindVFX.appear_whirlwind(1.5)
 	channelling_whirlwind = true
+	#channelling sfx
+	WhirlwindChargeupPlayer.play()
+	WhirlwindChargeupPlayer.volume_linear = 0.3
+	whirlwindTweener = create_tween()
+	whirlwindTweener.tween_property(WhirlwindChargeupPlayer, "volume_linear", 1.0, WHIRLWIND_TIME)
 	
 
 func show_box():
@@ -257,6 +266,12 @@ func push():
 	
 	#whirlwind release sfx
 	AudioClipManager.play("res://assets/audio/sfx/WhirlwindRelease.wav")
+	#whirlwind tornado sfx fade
+	if whirlwindTweener != null and whirlwindTweener.is_running():
+		whirlwindTweener.kill()
+	whirlwindTweener = create_tween()
+	whirlwindTweener.tween_property(WhirlwindChargeupPlayer, "volume_linear", 0.0, 0.3)
+	whirlwindTweener.tween_callback(WhirlwindChargeupPlayer.stop)
 	
 	eyes_flash(0.1)
 	get_tree().create_tween().tween_callback(eyes_fade.bind(0.25)).set_delay(0.2)
@@ -349,6 +364,12 @@ func _on_box_hit(body: Node3D) -> void:
 			channelling_whirlwind = false
 			#revert to idle
 			DummyAnimationController.idle()
+			#whirlwind tornado sfx fade
+			if whirlwindTweener != null and whirlwindTweener.is_running():
+				whirlwindTweener.kill()
+				whirlwindTweener = create_tween()
+				whirlwindTweener.tween_property(WhirlwindChargeupPlayer, "volume_linear", 0.0, 0.3)
+				whirlwindTweener.tween_callback(WhirlwindChargeupPlayer.stop)
 			
 		StunVFXController.play_stun_effect(STUNNED_TIME)
 

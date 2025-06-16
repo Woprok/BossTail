@@ -183,7 +183,6 @@ func _on_animation_finished(anim_name):
 		$AnimationTree.idle()
 		fighting = false
 			
-			
 	if anim_name == "GAME_05_lunge_right_settle":
 		melee = false
 		$melee/target.disabled = true

@@ -16,4 +16,6 @@ func _on_body_entered(body):
 	if body.is_in_group("player"):
 		body.hit(null, 20)
 		body.reset_player()
+		#boulder hit sfx
+		AudioClipManager.play("res://assets/audio/sfx/ToadBoulderHit.wav")
 		queue_free()

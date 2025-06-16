@@ -1,9 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://8533bk0osnnf"]
+[gd_scene load_steps=5 format=3 uid="uid://8533bk0osnnf"]
 
 [ext_resource type="Script" uid="uid://btwoxsbdy32ke" path="res://scripts/TutorialBoulder.gd" id="1_od42d"]
+[ext_resource type="Texture2D" uid="uid://ccsh5o075tbrl" path="res://assets/textures/BoulderAlbedo.png" id="2_y4gkb"]
 
 [sub_resource type="ORMMaterial3D" id="ORMMaterial3D_yibxn"]
-albedo_color = Color(0.117647, 0.117647, 0.117647, 1)
+albedo_color = Color(0.411673, 0.542851, 0.580399, 1)
+albedo_texture = ExtResource("2_y4gkb")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_54ri4"]
 radius = 3.0

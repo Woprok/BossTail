@@ -182,6 +182,8 @@ func _shoot(projectile) -> void:
 	var result = space_state.intersect_ray(query)
 	
 	projectile.shoot(origin, end, result)
+	#player throw sfx
+	AudioClipManager.play("res://assets/audio/sfx/PlayerThrow.wav")
 
 
 func respawn_freeze(delta) -> bool:

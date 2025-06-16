@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://5w1iti7arvc5"]
+[gd_scene load_steps=8 format=3 uid="uid://5w1iti7arvc5"]
 
 [ext_resource type="PackedScene" uid="uid://dlrq4knk1gqi7" path="res://scenes/StonePlatform.tscn" id="1_dx7ke"]
 [ext_resource type="Shader" uid="uid://ckk3b6a4w762f" path="res://scenes/MenuSceneSkyShader.gdshader" id="3_ts21g"]
 [ext_resource type="PackedScene" uid="uid://dp3ikh08njxoy" path="res://scenes/characters/MouseketeerStaticModel.tscn" id="4_kek1a"]
+[ext_resource type="AudioStream" uid="uid://b0740tkyrrfv2" path="res://assets/audio/music/MenuMusic.wav" id="4_rsudn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_44y4w"]
 shader = ExtResource("3_ts21g")
@@ -35,3 +36,8 @@ environment = SubResource("Environment_7qvtj")
 
 [node name="Char_Mouseketeer" parent="." instance=ExtResource("4_kek1a")]
 transform = Transform3D(-0.989198, 0, 0.146584, 0, 1, 0, -0.146584, 0, -0.989198, 4.55726, 1.36145, 2.86208)
+
+[node name="MenuMusicPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_rsudn")
+volume_db = -5.83
+autoplay = true
