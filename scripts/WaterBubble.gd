@@ -24,7 +24,7 @@ func _physics_process(delta):
 	velocity.y += speed*gravity*delta
 	var collision: KinematicCollision3D = move_and_collide(speed*velocity*delta)
 	
-	if collision:
+	if collision and collision_num == 0:
 		#play sfx
 		AudioClipManager.play("res://assets/audio/sfx/WaterBubbleSplash.mp3", 0.5)
 		
@@ -41,9 +41,10 @@ func _physics_process(delta):
 		elif collision.get_collider().is_in_group("enemy") and collision_num==0 and spawner:
 			collision_num += 1
 			pop(collision.get_position(), true)
-			collision.get_collider().hit(null, 20)
 			if collision.get_collider().boss_data.health_special.has_any_health_left():
-				collision.get_collider().hit(null, 30)
+				collision.get_collider().hit(null, 50)
+			else:
+				collision.get_collider().hit(null, 20)
 		elif collision.get_collider().is_in_group("stone_platform") or collision.get_collider().is_in_group("lily_platform"):
 			collision_num += 1
 			pop(collision.get_position(), true)

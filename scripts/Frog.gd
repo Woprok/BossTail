@@ -812,13 +812,10 @@ func hit(area, health):
 		if typeof(area) == TYPE_INT:
 			boss_data.boss_take_damage(area)
 		elif area == null:
-			boss_data.boss_take_damage(health)		
-			# just in case, I do not understand this mess
-			if HPHit >= TRIGGER_SWIMMING:
-				triggered = true
-			return #TODO this might be breaking transform stuff
+			boss_data.boss_take_damage(health)
+			#return #TODO this might be breaking transform stuff
 						
-		if area.is_in_group("tongue"):
+		elif area.is_in_group("tongue"):
 			tongueHit += 1
 			if tongueHit>=5:
 				boss_data.boss_take_damage(5)
@@ -829,11 +826,11 @@ func hit(area, health):
 					time_stop = 5
 			elif tongueHit==3:
 				boss_data.boss_take_damage(5)
-		if area.is_in_group("body"):
+		elif area.is_in_group("body"):
 			HPHit += LEG_HP
 			time_stop = 5
 			boss_data.boss_take_damage(LEG_HP)
-		if area.is_in_group("head"):
+		elif area.is_in_group("head"):
 			HPHit += HEAD_HP
 			boss_data.boss_take_damage(HEAD_HP)
 			time_stop = 5
@@ -842,7 +839,7 @@ func hit(area, health):
 			triggered = true
 	if Global.phase > 1:
 		triggered = false
-		
+	
 	if not boss_data.health_special.has_any_health_left() and body_mesh.get_surface_override_material_count() > 0:
 		transform_to_normal()
 	
@@ -853,7 +850,7 @@ func hit(area, health):
 		impactVFXObj.global_position = hit_pos
 	if hit_VFX != null:
 		hit_VFX.play_effect()
-		
+	
 	if boss_data.get_current_health() <= 0:
 		triggered = false
 		doing = true
