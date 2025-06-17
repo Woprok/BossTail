@@ -225,8 +225,8 @@ func slash():
 	attack_seq_timer.tween_callback(DummyAnimationController.great_slash_play_start).set_delay(SLASH_ANTIC_TIME)
 	create_tween().tween_callback(spawn_slash_vfx).set_delay(SLASH_ANTIC_TIME)
 	
-	#sfx
-	AudioClipManager.play("res://assets/audio/sfx/DummyGreatSlash.mp3")
+	#sfx - delayed for antic duration
+	create_tween().tween_callback(AudioClipManager.play.bind("res://assets/audio/sfx/DummyGreatSlash.mp3")).set_delay(SLASH_ANTIC_TIME)
 	
 func spawn_slash_vfx():
 	var slash_vfx_node: Node3D = SlashVFX.instantiate()

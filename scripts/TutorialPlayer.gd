@@ -58,7 +58,12 @@ func _physics_process(delta):
 		speed = AIM_SPEED
 	else:
 		speed = SPEED
-		
+	
+	#set char target facing
+	if direction != Vector3.ZERO:
+		var dirInput: Vector2 = Vector2(direction.x, direction.z)
+		character_target_facing = get_facing_dir_from_input(dirInput)
+	
 	if Input.is_action_just_pressed("jump") and not freeze:
 		jump_time = 0
 		player_data.change_jump_height(delta)

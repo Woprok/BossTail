@@ -9,6 +9,7 @@ class_name PlayerBase
 # Level Specific Projectile generated on throw.
 @export var special_projectile: PackedScene
 
+
 # Common Mouse & Camera
 @onready var Camera = $CameraPivot/SpringArm3D/Camera3D
 @export var BASE_AIM_MOUSE_SENS: float = 0.004
@@ -60,6 +61,11 @@ var aiming:bool = false
 var last_shot:float = 0
 var direction = Vector3.ZERO
 
+@export var CharacterNode: Node3D
+var character_facing: Vector3 
+var character_target_facing: Vector3
+@export var CharacterRotationSpeed: float = 30
+
 # rotation for camera
 @export var CAMERA_MIN_X: float = -30
 @export var CAMERA_MAX_X: float = 00
@@ -70,8 +76,14 @@ var direction = Vector3.ZERO
 func _ready():
 	player_data.player_restart()
 	_load_preferences()
-	$CameraPivot.rotation.x = deg_to_rad(-8)	
-
+	$CameraPivot.rotation.x = deg_to_rad(-8)
+	
+	character_target_facing = -self.transform.basis.z
+	
+func _process(delta: float) -> void:
+	character_facing = character_facing.lerp(character_target_facing, delta * CharacterRotationSpeed)
+	set_character_facing(character_facing)
+	
 func _load_preferences() -> void:
 	var settings: LocalUserSettings = user_settings.GetUserSettings()
 	USER_AIM_MOUSE_SENS = settings.mouse_aim_sensititivy
@@ -117,6 +129,9 @@ func _stab_started() -> void:
 	$AnimationTree.lunge_r()
 	fighting=true
 	player_data.change_melee_indicator(false)
+	
+	#set char target facing
+	character_target_facing = get_facing_dir_from_input(Vector2(0,-1))
 	
 	AudioClipManager.play("res://assets/audio/sfx/Attack.wav")
 	
@@ -195,6 +210,22 @@ func respawn_freeze(delta) -> bool:
 		return true
 	return false
 
+func set_character_facing(direction: Vector3) -> void:
+	CharacterNode.look_at(self.global_position + flat(direction))
+	pass
+	
+func get_facing_dir_from_input(input: Vector2) -> Vector3:
+	var cam_facing = -self.transform.basis.z
+	var fx = cam_facing.x
+	var fz = cam_facing.z
+	var ix = input.x
+	var iz = -input.y
+	var f_perp: Vector3 = Vector3(-fz, 0.0, fx)
+	
+	var dx = ix * f_perp.x + iz * fx
+	var dz = ix * f_perp.z + iz * fz
+	return Vector3(dx, 0.0, dz)
+
 func reset_player_respawn():
 	player_data.change_melee_indicator(true)
 	player_data.change_ranged_indicator(false)
@@ -212,3 +243,6 @@ func disable_controls():
 	
 func enable_controls():
 	controls = true
+	
+func flat(in_vec: Vector3) -> Vector3:
+	return Vector3(in_vec.x, 0.0, in_vec.z)
