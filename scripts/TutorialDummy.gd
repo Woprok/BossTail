@@ -1,6 +1,8 @@
 extends CharacterBody3D
 
 var stopped = true
+var do_whirlwind = false
+var indicator_shown = false
 var active = false
 var doing = false
 var last_cd_change = 0
@@ -93,6 +95,10 @@ func _physics_process(delta):
 	velocity.x=0
 	velocity.z=0
 	
+	if not doing and do_whirlwind:
+		do_whirlwind = false
+		whirlwind()
+	
 	if stopped and whirlwind_box!=null:
 		stop_time += delta
 		if stop_time>=STUNNED_TIME:
@@ -110,11 +116,13 @@ func _physics_process(delta):
 		$Area3D/CollisionShape3D.disabled = true
 	else:
 		$Area3D/CollisionShape3D.disabled = false
-			
+	
 	if not stopped:
 		doing = true
 		#DummyEntity.rotate_y(-delta*10)
 		whirlwind_time += delta
+		barrage_time = 0
+		slash_time = 0
 		
 	if whirlwind_time>=WHIRLWIND_TIME:
 		whirlwind_time = 0
@@ -127,12 +135,12 @@ func _physics_process(delta):
 		box_hit = true
 		push()
 		return
-	if doing:
+	if doing and stopped and not indicator_shown:
 		if actual_volley<num_of_volley:
 			if volley_time<VOLLEY_TIME:
 				volley_time+=delta
 			else:
-				throw()
+				barrage_indicator()
 				volley_time = 0
 		return
 	var look_at_vec = Vector3(get_parent().get_node("Player").position.x, DummyEntity.global_position.y ,get_parent().get_node("Player").position.z)
@@ -149,7 +157,8 @@ func _physics_process(delta):
 		barrage_time = 0
 		slash_time -= 1.5
 		actual_volley = 0
-		throw()
+		doing = true
+		barrage_indicator()
 
 func hit(_collision, hp):
 	if (not typeof(hp) == TYPE_INT and not typeof(hp) == TYPE_FLOAT) or hp<=0:
@@ -193,7 +202,7 @@ func hit(_collision, hp):
 		last_cd_change = 0 
 	if last_whirlwind>=10:
 		last_whirlwind = 0
-		whirlwind()
+		do_whirlwind = true
 
 func slash_indicator():
 	#spawn slash indicator
@@ -226,6 +235,7 @@ func spawn_slash_vfx():
 
 func whirlwind():
 	barrage_time = 0
+	actual_volley = num_of_volley
 	slash_time = 0 
 	stopped = false
 	doing = true
@@ -280,7 +290,7 @@ func push():
 	
 	channelling_whirlwind = false
 	
-func throw():
+func barrage_indicator():
 	# Anticipation Phase --------------------
 	DummyAnimationController.barrage_start(-1)
 	if attack_seq_timer != null and attack_seq_timer.is_running():
@@ -303,7 +313,7 @@ func throw():
 		indicCtrlr.look_at(look_pos, Vector3.UP)
 		indicCtrlr.appear(BARRAGE_ANTIC_TIME * 2)
 		get_tree().create_tween().tween_callback(indicCtrlr.fade.bind(0.5)).set_delay(BARRAGE_ANTIC_TIME + 1.15)
-		
+	indicator_shown = true
 	
 func barrage():
 	attack_seq_timer = get_tree().create_tween()
@@ -337,6 +347,7 @@ func barrage():
 		doing = true
 	else:
 		doing = false
+	indicator_shown = false
 		
 	
 func _on_body_entered(body):
@@ -379,7 +390,6 @@ func _on_box_hit(body: Node3D) -> void:
 func _on_ground_body_entered(_body: Node3D) -> void:
 	if velocity.y<0:
 		jump = false
-
 
 func _on_animation_finished(anim_name):
 	if anim_name == "GAME_01_great_slash-antic":
