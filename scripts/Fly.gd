@@ -207,6 +207,7 @@ func _try_spawn_body() -> void:
 		var fd = dead_body.instantiate()
 		get_tree().current_scene.add_child(fd)
 		fd.global_position = self.global_position
+		fd.start_decay_timer()
 	
 # Swarm leaving mechanic on hit
 func _try_leave_swarm() -> void:

@@ -16,3 +16,9 @@ func _on_area_exited(area):
 
 func is_pickable() -> bool:
 	return platform != null and super.is_pickable()
+
+func start_decay_timer() -> void:
+	$DecayTimer.start()
+
+func _on_decay_timer_timeout() -> void:
+	destroy()
