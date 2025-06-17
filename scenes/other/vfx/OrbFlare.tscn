@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://3kwhftjwr4ni"]
+[gd_scene load_steps=5 format=3 uid="uid://3kwhftjwr4ni"]
 
 [ext_resource type="Texture2D" uid="uid://dwlydon653q3j" path="res://assets/textures/flare_base_transparent.PNG" id="1_ioom4"]
+[ext_resource type="Material" uid="uid://yfwf8tf6f578" path="res://assets/particle_process_materials/OrbFlare.tres" id="2_dkm4b"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dkm4b"]
 transparency = 1
@@ -12,27 +13,6 @@ albedo_texture = ExtResource("1_ioom4")
 billboard_mode = 1
 billboard_keep_scale = true
 
-[sub_resource type="Curve" id="Curve_ioom4"]
-_data = [Vector2(0.00716846, 0.634615), 0.0, 1.55769, 0, 0, Vector2(0.516129, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.576923), -1.70717, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="CurveTexture" id="CurveTexture_dkm4b"]
-curve = SubResource("Curve_ioom4")
-
-[sub_resource type="Curve" id="Curve_83nos"]
-_data = [Vector2(0, 0.211538), 0.0, 1.92819, 0, 0, Vector2(0.501792, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.201923), -0.894231, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="CurveTexture" id="CurveTexture_ioom4"]
-curve = SubResource("Curve_83nos")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_83nos"]
-gravity = Vector3(0, 0, 0)
-scale_max = 1.5
-scale_curve = SubResource("CurveTexture_ioom4")
-color = Color(0.731, 0.226, 0.173, 1)
-alpha_curve = SubResource("CurveTexture_dkm4b")
-
 [sub_resource type="QuadMesh" id="QuadMesh_ioom4"]
 
 [node name="OrbFlare" type="Node3D"]
@@ -41,5 +21,5 @@ alpha_curve = SubResource("CurveTexture_dkm4b")
 material_override = SubResource("StandardMaterial3D_dkm4b")
 amount = 4
 transform_align = 1
-process_material = SubResource("ParticleProcessMaterial_83nos")
+process_material = ExtResource("2_dkm4b")
 draw_pass_1 = SubResource("QuadMesh_ioom4")

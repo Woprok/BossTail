@@ -1,0 +1,50 @@
+[gd_resource type="ParticleProcessMaterial" load_steps=7 format=3 uid="uid://txtk6tae7tex"]
+
+[sub_resource type="Curve" id="Curve_k5bxy"]
+_data = [Vector2(0.00763359, 0.00160015), 0.0, 31.6077, 0, 0, Vector2(0.110687, 1), 0.0, 0.0, 0, 0, Vector2(0.992366, 0), -1.25125, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_yi0jx"]
+curve = SubResource("Curve_k5bxy")
+
+[sub_resource type="Gradient" id="Gradient_srmas"]
+colors = PackedColorArray(0.17034, 0.229439, 0.052747, 1, 0.00109626, 0.0166066, 1.50409e-09, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_30xcd"]
+gradient = SubResource("Gradient_srmas")
+use_hdr = true
+
+[sub_resource type="Curve" id="Curve_3r6ex"]
+_data = [Vector2(0, 1), 0.0, -0.133181, 0, 0, Vector2(1, 0.00160015), -1.86029, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_xkjfw"]
+curve = SubResource("Curve_3r6ex")
+
+[resource]
+lifetime_randomness = 0.1
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 0.5
+emission_ring_radius = 0.45
+emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
+inherit_velocity_ratio = 1.0
+direction = Vector3(0, 0, 0)
+spread = 15.0
+initial_velocity_min = 5.0
+initial_velocity_max = 15.0
+gravity = Vector3(0, -5, 0)
+linear_accel_min = -2.23517e-06
+linear_accel_max = -2.23517e-06
+radial_accel_min = -2.23517e-06
+radial_accel_max = -2.23517e-06
+tangential_accel_min = -2.23517e-06
+tangential_accel_max = -2.23517e-06
+damping_min = 0.25
+damping_max = 2.0
+scale_min = 0.25
+scale_curve = SubResource("CurveTexture_xkjfw")
+color = Color(0.796243, 0.796243, 0.796243, 1)
+color_ramp = SubResource("GradientTexture1D_30xcd")
+alpha_curve = SubResource("CurveTexture_yi0jx")

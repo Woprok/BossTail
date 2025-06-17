@@ -1,45 +1,13 @@
-[gd_scene load_steps=27 format=3 uid="uid://cwj3shlceff7f"]
+[gd_scene load_steps=17 format=3 uid="uid://cwj3shlceff7f"]
 
 [ext_resource type="Script" uid="uid://bmj24ruy4xs82" path="res://scripts/VFX/PlayBubbleSplashOnStart.gd" id="1_wkxvf"]
 [ext_resource type="Shader" uid="uid://ca1whfj0cg75e" path="res://assets/shaders/water_splash_sphere.tres" id="2_0hjhn"]
+[ext_resource type="Material" uid="uid://ddijkce60waj7" path="res://assets/particle_process_materials/acid_splash_droplets.tres" id="2_sosla"]
 [ext_resource type="Shader" uid="uid://biqy6knk8hy8o" path="res://assets/shaders/alpha_clip_material.tres" id="3_sosla"]
+[ext_resource type="Material" uid="uid://bw2hmvmulj124" path="res://assets/particle_process_materials/acid_splash_mist.tres" id="4_dy46s"]
 [ext_resource type="Texture2D" uid="uid://dk2hxcjphtx8h" path="res://assets/textures/acid_puddle.png" id="4_wkxvf"]
 [ext_resource type="Texture2D" uid="uid://mvb5n2ad1wwv" path="res://assets/textures/seamless-noise.png" id="5_w2s1w"]
 [ext_resource type="Script" uid="uid://cjbwlsyhp5kji" path="res://scripts/VFX/splash_puddle_control.gd" id="6_ivo5k"]
-
-[sub_resource type="Curve" id="Curve_uxxnq"]
-_data = [Vector2(0, 0.848006), 0.0, 1.6068, 0, 0, Vector2(0.226351, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.73937, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="CurveTexture" id="CurveTexture_l75kt"]
-curve = SubResource("Curve_uxxnq")
-
-[sub_resource type="Gradient" id="Gradient_wkxvf"]
-colors = PackedColorArray(0.577307, 0.65595, 0.158071, 1, 0.0533784, 0.158156, 0.0182897, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_0hjhn"]
-gradient = SubResource("Gradient_wkxvf")
-
-[sub_resource type="Curve" id="Curve_222lv"]
-_data = [Vector2(0, 1), 0.0, -0.242204, 0, 0, Vector2(1, 0.00160015), -2.17984, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_lst5o"]
-curve = SubResource("Curve_222lv")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0hjhn"]
-lifetime_randomness = 0.3
-direction = Vector3(0, 1, 0)
-spread = 70.0
-initial_velocity_min = 2.0
-initial_velocity_max = 6.0
-gravity = Vector3(0, -0.5, 0)
-damping_max = 0.2
-scale_min = 0.1
-scale_max = 0.2
-scale_curve = SubResource("CurveTexture_lst5o")
-color_ramp = SubResource("GradientTexture1D_0hjhn")
-alpha_curve = SubResource("CurveTexture_l75kt")
 
 [sub_resource type="Curve" id="Curve_cshuj"]
 _data = [Vector2(0, 0), 0.0, 19.5728, 0, 0, Vector2(0.0918367, 0.765603), 2.65049, 2.65049, 0, 0, Vector2(0.231293, 0.98197), 0.0, 0.0, 0, 0, Vector2(0.996599, 0), -1.75944, 0.0, 0, 0]
@@ -66,28 +34,6 @@ curve = SubResource("Curve_cshuj")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pkoxv"]
 render_priority = 0
 shader = ExtResource("2_0hjhn")
-
-[sub_resource type="Curve" id="Curve_nn642"]
-_data = [Vector2(0, 1), 0.0, -1.28315, 0, 0, Vector2(0.586826, 0.281213), -1.04487, -1.04487, 0, 0, Vector2(1, 0), -0.135718, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="CurveTexture" id="CurveTexture_pkoxv"]
-curve = SubResource("Curve_nn642")
-
-[sub_resource type="Curve" id="Curve_pkoxv"]
-_data = [Vector2(0, 0.508253), 0.0, 2.25442, 0, 0, Vector2(0.300676, 0.874828), 0.453685, 0.453685, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="CurveTexture" id="CurveTexture_u8jbt"]
-curve = SubResource("Curve_pkoxv")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wkxvf"]
-gravity = Vector3(0, 0, 0)
-scale_min = 3.5
-scale_max = 3.5
-scale_curve = SubResource("CurveTexture_u8jbt")
-color = Color(0.324543, 0.592807, 0.288887, 1)
-alpha_curve = SubResource("CurveTexture_pkoxv")
 
 [sub_resource type="SphereMesh" id="SphereMesh_nn642"]
 
@@ -124,7 +70,7 @@ explosiveness = 0.95
 fixed_fps = 60
 trail_enabled = true
 trail_lifetime = 0.2
-process_material = SubResource("ParticleProcessMaterial_0hjhn")
+process_material = ExtResource("2_sosla")
 draw_pass_1 = SubResource("RibbonTrailMesh_0hjhn")
 
 [node name="SplashMistSphere" type="GPUParticles3D" parent="."]
@@ -134,7 +80,7 @@ emitting = false
 amount = 1
 lifetime = 0.6
 one_shot = true
-process_material = SubResource("ParticleProcessMaterial_wkxvf")
+process_material = ExtResource("4_dy46s")
 draw_pass_1 = SubResource("SphereMesh_nn642")
 
 [node name="Puddle" type="MeshInstance3D" parent="."]

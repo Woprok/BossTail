@@ -1,8 +1,9 @@
-[gd_scene load_steps=22 format=4 uid="uid://b8ccdcd8q3lxw"]
+[gd_scene load_steps=16 format=4 uid="uid://b8ccdcd8q3lxw"]
 
 [ext_resource type="Shader" uid="uid://c2xq1cm1w53ek" path="res://assets/shaders/SpitProjectile.tres" id="1_vwnx6"]
 [ext_resource type="Texture2D" uid="uid://d11x3x2pw7qra" path="res://assets/textures/seamless-voronoi.png" id="2_ika5p"]
 [ext_resource type="Texture2D" uid="uid://dwlydon653q3j" path="res://assets/textures/flare_base_transparent.PNG" id="3_ika5p"]
+[ext_resource type="Material" uid="uid://txtk6tae7tex" path="res://assets/particle_process_materials/spit_projectile.tres" id="4_xb0t3"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bakpc"]
 
@@ -92,7 +93,6 @@ void fragment() {
 
 }
 "
-graph_offset = Vector2(-587.683, -101.366)
 modes/cull = 2
 flags/unshaded = true
 flags/fog_disabled = true
@@ -111,55 +111,6 @@ nodes/fragment/connections = PackedInt32Array(2, 0, 3, 2, 4, 4, 5, 0, 3, 1, 5, 1
 render_priority = 0
 shader = SubResource("VisualShader_30xcd")
 shader_parameter/Mask = ExtResource("3_ika5p")
-
-[sub_resource type="Curve" id="Curve_k5bxy"]
-_data = [Vector2(0.00763359, 0.00160015), 0.0, 31.6077, 0, 0, Vector2(0.110687, 1), 0.0, 0.0, 0, 0, Vector2(0.992366, 0), -1.25125, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="CurveTexture" id="CurveTexture_yi0jx"]
-curve = SubResource("Curve_k5bxy")
-
-[sub_resource type="Gradient" id="Gradient_srmas"]
-colors = PackedColorArray(0.17034, 0.229439, 0.052747, 1, 0.00109626, 0.0166066, 1.50409e-09, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_30xcd"]
-gradient = SubResource("Gradient_srmas")
-use_hdr = true
-
-[sub_resource type="Curve" id="Curve_3r6ex"]
-_data = [Vector2(0, 1), 0.0, -0.133181, 0, 0, Vector2(1, 0.00160015), -1.86029, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_xkjfw"]
-curve = SubResource("Curve_3r6ex")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mnswt"]
-lifetime_randomness = 0.1
-emission_shape = 6
-emission_ring_axis = Vector3(0, 0, 1)
-emission_ring_height = 0.5
-emission_ring_radius = 0.45
-emission_ring_inner_radius = 0.0
-emission_ring_cone_angle = 90.0
-inherit_velocity_ratio = 1.0
-direction = Vector3(0, 0, 0)
-spread = 15.0
-initial_velocity_min = 5.0
-initial_velocity_max = 15.0
-gravity = Vector3(0, -5, 0)
-linear_accel_min = -2.23517e-06
-linear_accel_max = -2.23517e-06
-radial_accel_min = -2.23517e-06
-radial_accel_max = -2.23517e-06
-tangential_accel_min = -2.23517e-06
-tangential_accel_max = -2.23517e-06
-damping_min = 0.25
-damping_max = 2.0
-scale_min = 0.25
-scale_curve = SubResource("CurveTexture_xkjfw")
-color = Color(0.796243, 0.796243, 0.796243, 1)
-color_ramp = SubResource("GradientTexture1D_30xcd")
-alpha_curve = SubResource("CurveTexture_yi0jx")
 
 [sub_resource type="QuadMesh" id="QuadMesh_k5bxy"]
 
@@ -180,5 +131,5 @@ amount = 20
 lifetime = 0.5
 transform_align = 3
 trail_lifetime = 0.5
-process_material = SubResource("ParticleProcessMaterial_mnswt")
+process_material = ExtResource("4_xb0t3")
 draw_pass_1 = SubResource("QuadMesh_k5bxy")

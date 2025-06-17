@@ -18,7 +18,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
 theme = ExtResource("1_alm15")
-text = "Tales of Mouseketeer"
+text = "Tales of the Mouseketeer"
 horizontal_alignment = 1
 vertical_alignment = 1
 

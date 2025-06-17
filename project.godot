@@ -25,6 +25,7 @@ GameEvents="*res://GameEvents.gd"
 Global="*res://scripts/Global.gd"
 UIManager="*res://user_interface/UIManager.tscn"
 AudioClipManager="*res://scripts/AudioClipManager.gd"
+ParticlesPreload="*res://scripts/ParticlesPreload.gd"
 
 [debug]
 
