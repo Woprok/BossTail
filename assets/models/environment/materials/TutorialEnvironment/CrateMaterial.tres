@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://cpoti0efl1pwm"]
+
+[ext_resource type="Texture2D" uid="uid://q460pip5pkaf" path="res://assets/models/environment/Crate_CrateAlbedo.png" id="1_nah2h"]
+
+[resource]
+resource_name = "CrateMaterial"
+cull_mode = 2
+diffuse_mode = 3
+albedo_texture = ExtResource("1_nah2h")

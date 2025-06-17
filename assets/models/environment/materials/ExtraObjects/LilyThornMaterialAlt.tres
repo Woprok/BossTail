@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://c4n1gh0jgch8r"]
+
+[ext_resource type="Texture2D" uid="uid://bhecdhqq56drm" path="res://assets/models/environment/PondExtraObjects_ThornAlbedo.png" id="1_pbf8l"]
+
+[resource]
+resource_name = "LilyThornMaterial"
+cull_mode = 2
+diffuse_mode = 3
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_pbf8l")

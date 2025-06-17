@@ -74,7 +74,8 @@ func _physics_process(delta):
 		speed = STICKY_SPEED
 	else:
 		speed = SPEED
-	
+		
+	direction = direction.normalized()
 	#set char target facing
 	if direction != Vector3.ZERO:
 		var dirInput: Vector2 = Vector2(direction.x, direction.z)
