@@ -1,6 +1,6 @@
 [gd_scene load_steps=18 format=3 uid="uid://cexu8vsrt1jho"]
 
-[ext_resource type="Script" uid="uid://1cnns3u8bcol" path="res://scripts/TutorialDummy.gd" id="1_lu3ac"]
+[ext_resource type="Script" uid="uid://c3hv7v2dtx7h0" path="res://scripts/TutorialDummy.gd" id="1_lu3ac"]
 [ext_resource type="PackedScene" uid="uid://dlrb2m6f8fadf" path="res://scenes/other/vfx/ImpactVFX.tscn" id="2_5rkcl"]
 [ext_resource type="PackedScene" uid="uid://ds2km4lw3xrqp" path="res://scenes/BarrageBoulder.tscn" id="2_7ch85"]
 [ext_resource type="PackedScene" uid="uid://c7e35pnktddno" path="res://scenes/characters/BigDummy.tscn" id="2_f2h6d"]
@@ -140,6 +140,9 @@ bones/14/rotation = Quaternion(-0.00248809, 0.675566, -0.0139195, 0.737164)
 
 [node name="JawPos" parent="Char_BigDummy/DummyBase/GAMERIG_BigDummy/Skeleton3D" index="3"]
 transform = Transform3D(-8.89549e-05, 6.5701e-07, -1, -0.999911, 0.0133726, 8.90195e-05, 0.0133727, 0.999911, -4.45048e-07, -0.00245756, 1.91921, -0.0161201)
+
+[node name="BoulderSpawnPos" parent="Char_BigDummy/DummyBase/GAMERIG_BigDummy/Skeleton3D/JawPos" index="2"]
+transform = Transform3D(1, 0, -2.07523e-12, 0, 1, -2.84217e-14, 1.29963e-11, 1.98952e-13, 1, -1.20795, 1.73393, -2.9942e-07)
 
 [node name="OrbHandPos" parent="Char_BigDummy/DummyBase/GAMERIG_BigDummy/Skeleton3D" index="4"]
 transform = Transform3D(-0.098817, 0.0467056, -0.994009, -0.665429, 0.73961, 0.100904, 0.739891, 0.671413, -0.0420067, 0.546075, 1.40744, 0.433252)
