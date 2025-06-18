@@ -323,8 +323,8 @@ func handle_bubble_spit(delta:float):
 		time_doing = 0
 		time_swipe_diff -= 1
 		time_swipe_same = 0
+		look_at(Vector3(player.position.x,position.y, player.position.z))
 		animationTree.spit_start(SPIT_ANTIC_DUR, SPIT_WOO_DUR)
-		bubble_spit()
 	
 func handle_big_lily(delta):
 	time_big_lily+=delta
@@ -966,6 +966,8 @@ func _eat_fly(fly_body: FlyProjectile) -> void:
 	
 
 func _on_animation_finished(anim_name):
+	if anim_name == "G_04-spit-antic":
+		bubble_spit()
 	if anim_name=="G_03-tongue_grab-end":
 		extended = false
 		doing = false

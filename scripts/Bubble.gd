@@ -14,7 +14,7 @@ func _physics_process(delta):
 		
 		if collision.get_collider().is_in_group("player"):
 			if collision.get_collider().platform and (collision.get_collider().platform.is_in_group("stone_platform") or collision.get_collider().platform.is_in_group("big_lily")):
-				instantiate_splash(collision.get_position()-Vector3(0,0.5,0))
+				find_ground_position(collision.get_position(),collision.get_collider())
 			collision.get_collider().hit(collision.get_collider_shape(), 5)
 			queue_free()
 			return
@@ -54,6 +54,20 @@ func instantiate_splash(splash_pos: Vector3, create_puddle: bool = false):
 	splash.global_position = splash_pos
 	if create_puddle:
 		splash.create_puddle = true
+
+func find_ground_position(hit_position,collider):
+	var space_state = get_world_3d().direct_space_state
+	var ray_params = PhysicsRayQueryParameters3D.new()
+	ray_params.from = hit_position
+	ray_params.to = hit_position + Vector3.DOWN * 100.0
+	ray_params.collision_mask = 1
+	ray_params.exclude = [self,collider]
+	
+	var result = space_state.intersect_ray(ray_params)
+
+	if result:
+		var ground_position = result.position
+		instantiate_splash(ground_position)
 
 func shoot(end):
 	var height = end.y - global_position.y + HEIGHT_OF_ARC

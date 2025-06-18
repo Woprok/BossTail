@@ -31,7 +31,9 @@ func _physics_process(delta):
 		if collision.get_collider().is_in_group("player") and not collision_with_player:
 			collision_with_player = true
 			collision_num += 1
-			pop(collision.get_position(), true)
+			var splash_position = find_ground_position(collision.get_position(),collision.get_collider())
+			if splash_position:
+				pop(splash_position, true)
 			collision.get_collider().push(collision.get_collider().position-position,3)
 			if spawner:
 				collision.get_collider().hit(null, 20)
@@ -59,8 +61,7 @@ func _physics_process(delta):
 		ignore_collisions_time -= delta
 		if ignore_collisions_time <= 0:
 			$CollisionShape3D.disabled = false
-	
-		
+
 
 func pop(collision_pos: Vector3, create_puddle: bool = false):
 	if collision_num == 1:
@@ -73,6 +74,19 @@ func pop(collision_pos: Vector3, create_puddle: bool = false):
 		scale_tweener.tween_callback(instantiate_splash_vfx.bind(create_puddle, collision_pos))
 		
 	pass
+
+func find_ground_position(hit_position,collider):
+	var space_state = get_world_3d().direct_space_state
+	var ray_params = PhysicsRayQueryParameters3D.new()
+	ray_params.from = hit_position
+	ray_params.to = hit_position + Vector3.DOWN * 100.0
+	ray_params.collision_mask = 1
+	ray_params.exclude = [self,collider]
+	
+	var result = space_state.intersect_ray(ray_params)
+
+	if result:
+		return result.position
 
 func instantiate_splash_vfx(create_puddle: bool, pos: Vector3):
 	if SplashVFX != null:
