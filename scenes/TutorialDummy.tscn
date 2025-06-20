@@ -157,9 +157,10 @@ transform = Transform3D(0.785964, 0.618272, 0, -0.618272, 0.785964, 0, 0, 0, 1, 
 shape = SubResource("SphereShape3D_dwgjd")
 disabled = true
 
-[node name="HitFlashVFX" parent="Char_BigDummy/VFX" index="1"]
+[node name="HitFlashVFX" parent="Char_BigDummy/VFX" index="1" node_paths=PackedStringArray("OverlayMatMeshes")]
 HitFlashDuration = 0.2
 HitFlashPeakBlendValue = 0.8
+OverlayMatMeshes = [NodePath("../../DummyBase/BaseOutline"), NodePath("../../DummyBase/GAMERIG_BigDummy/Skeleton3D/Eyes"), NodePath("../../DummyBase/GAMERIG_BigDummy/Skeleton3D/DummyOutline"), NodePath("../../DummyBase/GAMERIG_BigDummy/Skeleton3D/BigDummyMesh"), NodePath("../../DummyBase")]
 
 [node name="SFX" type="Node3D" parent="."]
 

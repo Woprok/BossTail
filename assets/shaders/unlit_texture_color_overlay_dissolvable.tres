@@ -1,0 +1,173 @@
+[gd_resource type="VisualShader" load_steps=15 format=3 uid="uid://bw5oi20n53xnr"]
+
+[sub_resource type="VisualShaderNodeVectorCompose" id="VisualShaderNodeVectorCompose_rrf7j"]
+output_port_for_preview = 0
+
+[sub_resource type="VisualShaderNodeVectorCompose" id="VisualShaderNodeVectorCompose_i8ae6"]
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_rrf7j"]
+output_port_for_preview = 0
+parameter_name = "BlendWeight"
+hint = 1
+default_value_enabled = true
+
+[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_0axx1"]
+parameter_name = "DissolveTexture"
+
+[sub_resource type="VisualShaderNodeFloatFunc" id="VisualShaderNodeFloatFunc_7xnrm"]
+function = 31
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_p6bin"]
+output_port_for_preview = 1
+expanded_output_ports = [0]
+source = 5
+
+[sub_resource type="VisualShaderNodeStep" id="VisualShaderNodeStep_t3dsn"]
+output_port_for_preview = 0
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_xkat2"]
+parameter_name = "Dissolve"
+default_value_enabled = true
+
+[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_rrf7j"]
+parameter_name = "AlbedoTexture"
+texture_type = 1
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_i8ae6"]
+output_port_for_preview = 0
+source = 5
+
+[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_r7tje"]
+output_port_for_preview = 0
+parameter_name = "OverlayColor"
+default_value_enabled = true
+default_value = Color(1, 1, 1, 0)
+
+[sub_resource type="VisualShaderNodeVectorDecompose" id="VisualShaderNodeVectorDecompose_i8ae6"]
+output_port_for_preview = 3
+default_input_values = [0, Quaternion(0, 0, 0, 0)]
+op_type = 2
+
+[sub_resource type="VisualShaderNodeMix" id="VisualShaderNodeMix_rrf7j"]
+output_port_for_preview = 0
+default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(1, 1, 1), 2, 0.5]
+op_type = 4
+
+[sub_resource type="VisualShaderNodeVectorDecompose" id="VisualShaderNodeVectorDecompose_r7tje"]
+default_input_values = [0, Quaternion(0, 0, 0, 0)]
+op_type = 2
+
+[resource]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx, depth_prepass_alpha, unshaded;
+
+uniform sampler2D AlbedoTexture : source_color;
+uniform vec4 OverlayColor : source_color = vec4(1.000000, 1.000000, 1.000000, 0.000000);
+uniform float BlendWeight : hint_range(0.0, 1.0) = 0.0;
+uniform sampler2D DissolveTexture;
+uniform float Dissolve = 0.0;
+
+
+
+void fragment() {
+	vec4 n_out3p0;
+// Texture2D:3
+	n_out3p0 = texture(AlbedoTexture, UV);
+
+
+// VectorDecompose:9
+	float n_out9p0 = n_out3p0.x;
+	float n_out9p1 = n_out3p0.y;
+	float n_out9p2 = n_out3p0.z;
+	float n_out9p3 = n_out3p0.w;
+
+
+// VectorCompose:10
+	vec3 n_out10p0 = vec3(n_out9p0, n_out9p1, n_out9p2);
+
+
+// ColorParameter:4
+	vec4 n_out4p0 = OverlayColor;
+
+
+// VectorDecompose:7
+	float n_out7p0 = n_out4p0.x;
+	float n_out7p1 = n_out4p0.y;
+	float n_out7p2 = n_out4p0.z;
+	float n_out7p3 = n_out4p0.w;
+
+
+// VectorCompose:11
+	vec3 n_out11p0 = vec3(n_out7p0, n_out7p1, n_out7p2);
+
+
+// FloatParameter:12
+	float n_out12p0 = BlendWeight;
+
+
+// Mix:8
+	vec3 n_out8p0 = mix(n_out10p0, n_out11p0, n_out12p0);
+
+
+	vec4 n_out15p0;
+// Texture2D:15
+	n_out15p0 = texture(DissolveTexture, UV);
+	float n_out15p1 = n_out15p0.r;
+
+
+// FloatParameter:17
+	float n_out17p0 = Dissolve;
+
+
+// FloatFunc:14
+	float n_out14p0 = 1.0 - n_out17p0;
+
+
+// Step:16
+	float n_out16p0 = step(n_out15p1, n_out14p0);
+
+
+// Output:0
+	ALBEDO = n_out8p0;
+	ALPHA = n_out16p0;
+
+
+}
+"
+graph_offset = Vector2(32.4859, -21.3949)
+flags/depth_prepass_alpha = true
+flags/unshaded = true
+preview_params/AlbedoTexture = "null"
+preview_params/OverlayColor = "Color(1, 1, 1, 1)"
+preview_params/DissolveTexture = "Resource(\"res://assets/textures/seamless-noise.png\")"
+preview_params/Dissolve = "0.0"
+nodes/fragment/0/position = Vector2(700, 320)
+nodes/fragment/2/node = SubResource("VisualShaderNodeTexture2DParameter_rrf7j")
+nodes/fragment/2/position = Vector2(-780, 20)
+nodes/fragment/3/node = SubResource("VisualShaderNodeTexture_i8ae6")
+nodes/fragment/3/position = Vector2(-400, 100)
+nodes/fragment/4/node = SubResource("VisualShaderNodeColorParameter_r7tje")
+nodes/fragment/4/position = Vector2(-680, 480)
+nodes/fragment/7/node = SubResource("VisualShaderNodeVectorDecompose_i8ae6")
+nodes/fragment/7/position = Vector2(-360, 580)
+nodes/fragment/8/node = SubResource("VisualShaderNodeMix_rrf7j")
+nodes/fragment/8/position = Vector2(320, 420)
+nodes/fragment/9/node = SubResource("VisualShaderNodeVectorDecompose_r7tje")
+nodes/fragment/9/position = Vector2(-140, 100)
+nodes/fragment/10/node = SubResource("VisualShaderNodeVectorCompose_rrf7j")
+nodes/fragment/10/position = Vector2(80, 100)
+nodes/fragment/11/node = SubResource("VisualShaderNodeVectorCompose_i8ae6")
+nodes/fragment/11/position = Vector2(-140, 500)
+nodes/fragment/12/node = SubResource("VisualShaderNodeFloatParameter_rrf7j")
+nodes/fragment/12/position = Vector2(-620, 1020)
+nodes/fragment/13/node = SubResource("VisualShaderNodeTexture2DParameter_0axx1")
+nodes/fragment/13/position = Vector2(-340, 1520)
+nodes/fragment/14/node = SubResource("VisualShaderNodeFloatFunc_7xnrm")
+nodes/fragment/14/position = Vector2(220, 1900)
+nodes/fragment/15/node = SubResource("VisualShaderNodeTexture_p6bin")
+nodes/fragment/15/position = Vector2(20, 1440)
+nodes/fragment/16/node = SubResource("VisualShaderNodeStep_t3dsn")
+nodes/fragment/16/position = Vector2(440, 1560)
+nodes/fragment/17/node = SubResource("VisualShaderNodeFloatParameter_xkat2")
+nodes/fragment/17/position = Vector2(-100, 1920)
+nodes/fragment/connections = PackedInt32Array(2, 0, 3, 2, 4, 0, 7, 0, 3, 0, 9, 0, 11, 0, 8, 1, 7, 0, 11, 0, 7, 1, 11, 1, 7, 2, 11, 2, 9, 0, 10, 0, 9, 1, 10, 1, 9, 2, 10, 2, 10, 0, 8, 0, 8, 0, 0, 0, 12, 0, 8, 2, 13, 0, 15, 2, 17, 0, 14, 0, 14, 0, 16, 1, 15, 1, 16, 0, 16, 0, 0, 1)

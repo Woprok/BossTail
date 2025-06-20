@@ -1,6 +1,7 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://djacdjciv0o5i"]
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://djacdjciv0o5i"]
 
-[ext_resource type="Shader" uid="uid://dhb630iow5yw5" path="res://assets/shaders/unlit_albedo_color_overlay.tres" id="1_mjdhp"]
+[ext_resource type="Shader" uid="uid://cim4tjshstyd3" path="res://assets/shaders/unlit_albedo_color_overlay_dissolvable.tres" id="1_mjdhp"]
+[ext_resource type="Texture2D" uid="uid://mvb5n2ad1wwv" path="res://assets/textures/seamless-noise.png" id="2_xcorc"]
 
 [resource]
 render_priority = 0
@@ -8,3 +9,5 @@ shader = ExtResource("1_mjdhp")
 shader_parameter/SurfaceAlbedo = Color(0, 0, 0, 1)
 shader_parameter/OverlayColor = Color(1, 1, 1, 1)
 shader_parameter/BlendWeight = 0.0
+shader_parameter/DissolveTexture = ExtResource("2_xcorc")
+shader_parameter/Dissolve = 0.0

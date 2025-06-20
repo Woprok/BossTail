@@ -81,7 +81,7 @@ func _ready():
 	character_target_facing = -self.transform.basis.z
 	
 func _process(delta: float) -> void:
-	character_facing = character_facing.lerp(character_target_facing, delta * CharacterRotationSpeed)
+	character_facing = character_facing.slerp(character_target_facing, delta * CharacterRotationSpeed)
 	set_character_facing(character_facing)
 	
 func _load_preferences() -> void:
