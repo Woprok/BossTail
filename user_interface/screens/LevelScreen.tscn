@@ -30,13 +30,29 @@ size_flags_vertical = 3
 
 [node name="Level1Button" type="Button" parent="LEVEL_ACTIONS"]
 layout_mode = 2
+tooltip_text = "Challenge The Dummy
+My favorite punching bag. 
+It sulks in a pointless labyrinth, pretending to test me. 
+I humor it, then smack it around anyway."
 theme = ExtResource("1_alm15")
 text = "TUTORIAL"
 
 [node name="Level2Button" type="Button" parent="LEVEL_ACTIONS"]
 layout_mode = 2
+tooltip_text = "Challenge the Croaker
+The big, slimy brute who spits at me just to remind me who’s boss. 
+I’d rather skip his warm-up nonsense and get to the good part."
 theme = ExtResource("1_alm15")
 text = "CROAKER"
+
+[node name="Level2BButton" type="Button" parent="LEVEL_ACTIONS"]
+layout_mode = 2
+tooltip_text = "Challenge the Croaker (DEV-ONLY OPTION)
+I’m skipping the first phase. 
+For glory. 
+Don’t judge me."
+theme = ExtResource("1_alm15")
+text = "CROAKER PART 2"
 
 [node name="BackButton" type="Button" parent="LEVEL_ACTIONS"]
 layout_mode = 2
@@ -46,11 +62,6 @@ text = "BACK"
 [node name="DebugLevels" type="VBoxContainer" parent="LEVEL_ACTIONS"]
 unique_name_in_owner = true
 layout_mode = 2
-
-[node name="Level2BButton" type="Button" parent="LEVEL_ACTIONS/DebugLevels"]
-layout_mode = 2
-theme = ExtResource("1_alm15")
-text = "TEST 2B"
 
 [node name="DebugButton" type="Button" parent="LEVEL_ACTIONS/DebugLevels"]
 layout_mode = 2
@@ -64,7 +75,7 @@ text = "CHAR TEST"
 
 [connection signal="pressed" from="LEVEL_ACTIONS/Level1Button" to="." method="_on_level_1_button_pressed"]
 [connection signal="pressed" from="LEVEL_ACTIONS/Level2Button" to="." method="_on_level_2_button_pressed"]
+[connection signal="pressed" from="LEVEL_ACTIONS/Level2BButton" to="." method="_on_level_2b_button_pressed"]
 [connection signal="pressed" from="LEVEL_ACTIONS/BackButton" to="." method="_on_back_button_pressed"]
-[connection signal="pressed" from="LEVEL_ACTIONS/DebugLevels/Level2BButton" to="." method="_on_level_2b_button_pressed"]
 [connection signal="pressed" from="LEVEL_ACTIONS/DebugLevels/DebugButton" to="." method="_on_debug_button_pressed"]
 [connection signal="pressed" from="LEVEL_ACTIONS/DebugLevels/DebugCharButton" to="." method="_on_debug_char_button_pressed"]
