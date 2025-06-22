@@ -166,6 +166,7 @@ var grab_len_min = 1
 @export var swipe_indicator: PackedScene
 @export var grab_indicator: PackedScene
 @export var ground_slam_indicator: PackedScene
+@export var death_VFX: DeathVFX
 
 @export var hit_body_pos: Node3D
 @export var hit_head_pos: Node3D
@@ -870,8 +871,9 @@ func hit(area, health):
 		doing = true
 		if !GameInstance.CanTravelToNextLevel():
 			#play death animation
+			death_VFX.play_effect()
 			pass
-		await get_tree().create_timer(0.5).timeout
+		await get_tree().create_timer(2.0).timeout
 		GameInstance.PlayerVictorious()
 	
 func _on_ground_entered(area):

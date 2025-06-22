@@ -148,7 +148,7 @@ func _physics_process(delta):
 		else:
 			$AnimationTree.falling()
 	elif velocity.y>0:
-		$AnimationTree.jump_start()
+		$AnimationTree.jump_start(true)
 	move_and_slide()
 	
 	

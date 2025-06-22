@@ -1,0 +1,96 @@
+[gd_scene load_steps=17 format=3 uid="uid://euwxbyrpjv76"]
+
+[ext_resource type="Texture2D" uid="uid://dwlydon653q3j" path="res://assets/textures/flare_base_transparent.PNG" id="1_ottr8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6hylc"]
+transparency = 1
+shading_mode = 0
+disable_ambient_light = true
+disable_fog = true
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_texture = ExtResource("1_ottr8")
+albedo_texture_force_srgb = true
+billboard_mode = 2
+billboard_keep_scale = true
+
+[sub_resource type="Curve" id="Curve_2fbw6"]
+_data = [Vector2(0, 0), 0.0, 5.20625, 0, 0, Vector2(0.501458, 1), 0.0, 0.0, 0, 0, Vector2(0.746356, 0.940092), -0.878714, -0.878714, 0, 0, Vector2(1, 0), -7.84396, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_ottr8"]
+curve = SubResource("Curve_2fbw6")
+
+[sub_resource type="Gradient" id="Gradient_ottr8"]
+colors = PackedColorArray(1, 1, 1, 1, 0.158472, 0.158472, 0.158472, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_6hylc"]
+gradient = SubResource("Gradient_ottr8")
+
+[sub_resource type="Curve" id="Curve_ottr8"]
+_limits = [0.0, 200.0, 0.0, 1.0]
+_data = [Vector2(0, 200), 0.0, -1782.44, 0, 0, Vector2(0.244898, 0), 0.0, 0.0, 0, 0, Vector2(0.74344, 0), 0.0, 0.0, 0, 0, Vector2(1, 99.2511), 796.248, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_6hylc"]
+curve = SubResource("Curve_ottr8")
+
+[sub_resource type="Curve" id="Curve_4fpp4"]
+_data = [Vector2(0, 0), 0.0, 3.44581, 0, 0, Vector2(0.495627, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -5.52064, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_xmma4"]
+curve_y = SubResource("Curve_4fpp4")
+
+[sub_resource type="Curve" id="Curve_6hylc"]
+_data = [Vector2(0, 0.925115), -2.47712, -2.47712, 0, 0, Vector2(0.379009, 0.40841), -0.856183, -0.856183, 0, 0, Vector2(1, 0.0339862), -0.220162, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_mt6ym"]
+_limits = [0.0, 5.0, 0.0, 1.0]
+_data = [Vector2(0, 0.345622), 0.0, 18.1309, 0, 0, Vector2(0.157434, 2.95161), 10.2742, 10.2742, 0, 0, Vector2(0.495627, 5), 0.0, 0.0, 0, 0, Vector2(1, 3.31509), -7.28514, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Curve" id="Curve_u7t6t"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_2fbw6"]
+curve_x = SubResource("Curve_6hylc")
+curve_y = SubResource("Curve_mt6ym")
+curve_z = SubResource("Curve_u7t6t")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pfaml"]
+emission_shape = 3
+emission_box_extents = Vector3(0.72, 0.725, 1)
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_min = 16.0
+initial_velocity_max = 18.0
+directional_velocity_min = 1.0
+directional_velocity_max = 1.0
+directional_velocity_curve = SubResource("CurveXYZTexture_xmma4")
+gravity = Vector3(0, 0, 0)
+linear_accel_min = -2.23517e-06
+linear_accel_max = -2.23517e-06
+damping_min = 1.5
+damping_max = 3.0
+damping_curve = SubResource("CurveTexture_6hylc")
+scale_min = 0.2
+scale_max = 0.5
+scale_curve = SubResource("CurveXYZTexture_2fbw6")
+color = Color(0.617783, 0.164792, 0.60075, 1)
+color_ramp = SubResource("GradientTexture1D_6hylc")
+alpha_curve = SubResource("CurveTexture_ottr8")
+
+[sub_resource type="QuadMesh" id="QuadMesh_ottr8"]
+
+[node name="DisintegrateParticles" type="Node3D"]
+
+[node name="ParticleSystem" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.271119)
+material_override = SubResource("StandardMaterial3D_6hylc")
+amount = 20
+lifetime = 0.5
+process_material = SubResource("ParticleProcessMaterial_pfaml")
+draw_pass_1 = SubResource("QuadMesh_ottr8")

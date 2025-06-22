@@ -134,7 +134,6 @@ void fragment() {
 
 }
 "
-graph_offset = Vector2(32.4859, -21.3949)
 flags/depth_prepass_alpha = true
 flags/unshaded = true
 preview_params/AlbedoTexture = "null"

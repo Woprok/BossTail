@@ -167,7 +167,7 @@ func _physics_process(delta):
 		else:
 			animation.falling()
 	elif velocity.y>0:
-		animation.jump_start()
+		animation.jump_start(true)
 	move_and_slide()
 		
 

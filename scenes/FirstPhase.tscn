@@ -656,7 +656,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.2152, 7.62939e-06, 24.738
 
 [node name="lily2" parent="SecondPhaseEnvironment/lilyPlatforms2" node_paths=PackedStringArray("neighbors") groups=["small_platform"] instance=ExtResource("3_bodam")]
 transform = Transform3D(0.196733, 0, 0.980457, 0, 1, 0, -0.980457, 0, 0.196733, -6.69616, 0, -18.3466)
-neighbors = [NodePath(""), NodePath(""), NodePath("")]
+neighbors = [null, null, null]
 radius = 6
 
 [node name="spike1" parent="SecondPhaseEnvironment/lilyPlatforms2/lily2" instance=ExtResource("16_hu61m")]
@@ -673,7 +673,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.68757, -2)
 
 [node name="lily3" parent="SecondPhaseEnvironment/lilyPlatforms2" node_paths=PackedStringArray("neighbors") groups=["small_platform"] instance=ExtResource("3_bodam")]
 transform = Transform3D(0.719594, 0, 0.694395, 0, 1, 0, -0.694395, 0, 0.719594, 18.438, 0, 7)
-neighbors = [NodePath(""), NodePath(""), NodePath("")]
+neighbors = [null, null, null]
 radius = 6
 
 [node name="spike1" parent="SecondPhaseEnvironment/lilyPlatforms2/lily3" instance=ExtResource("16_hu61m")]
@@ -690,7 +690,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.68757, -2)
 
 [node name="largeLily" parent="SecondPhaseEnvironment/lilyPlatforms2" node_paths=PackedStringArray("neighbors") groups=["big_lily"] instance=ExtResource("3_bodam")]
 transform = Transform3D(2.11718, 0, 1.32949, 0, 2.5, 0, -1.32949, 0, 2.11718, 25, 0, -25)
-neighbors = [NodePath(""), NodePath(""), NodePath(""), NodePath("")]
+neighbors = [null, null, null, null]
 radius = 12
 
 [node name="bubbles" type="Node3D" parent="SecondPhaseEnvironment/lilyPlatforms2/largeLily" node_paths=PackedStringArray("platform")]
@@ -700,7 +700,7 @@ platform = NodePath("..")
 
 [node name="lily8_alt" parent="SecondPhaseEnvironment/lilyPlatforms2" node_paths=PackedStringArray("neighbors") groups=["small_platform"] instance=ExtResource("4_irumq")]
 transform = Transform3D(-0.0254093, 0, 0.999677, 0, 1, 0, -0.999677, 0, -0.0254093, 17.9347, 0, -55.451)
-neighbors = [NodePath(""), NodePath(""), NodePath("")]
+neighbors = [null, null, null]
 
 [node name="spike1" parent="SecondPhaseEnvironment/lilyPlatforms2/lily8_alt" instance=ExtResource("16_hu61m")]
 transform = Transform3D(-0.0254093, 0, -0.999677, 0, 1, 0, 0.999677, 0, -0.0254093, -1.0505, 0.688, 1.97394)
@@ -716,7 +716,7 @@ transform = Transform3D(-0.0254093, 0, -0.999677, 0, 1, 0, 0.999677, 0, -0.02540
 
 [node name="lily6_alt" parent="SecondPhaseEnvironment/lilyPlatforms2" node_paths=PackedStringArray("neighbors") groups=["small_platform"] instance=ExtResource("4_irumq")]
 transform = Transform3D(-0.51607, 0, -0.856546, 0, 1, 0, 0.856546, 0, -0.51607, 54.9129, 0, -33.0855)
-neighbors = [NodePath(""), NodePath(""), NodePath("")]
+neighbors = [null, null, null]
 
 [node name="spike1" parent="SecondPhaseEnvironment/lilyPlatforms2/lily6_alt" instance=ExtResource("16_hu61m")]
 transform = Transform3D(-0.51607, 0, 0.856546, 0, 1, 0, -0.856546, 0, -0.51607, 1.58111, 0.68757, -2.44479)
@@ -739,25 +739,25 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.2152, 7.62939e-06, 24.738
 
 [node name="stonePlatform2" parent="SecondPhaseEnvironment/stonePlatforms2" node_paths=PackedStringArray("neighbors", "neighborStonePlatform") instance=ExtResource("4_db8eq")]
 transform = Transform3D(0.406258, 0, 0.913758, 0, 1, 0, -0.913758, 0, 0.406258, 50, 1.896, 0)
-neighbors = [NodePath(""), NodePath("")]
+neighbors = [null, null]
 neighborStonePlatform = [NodePath("../stonePlatformV3_2"), NodePath("../stonePlatformV2")]
 num = 2
 
 [node name="stonePlatformV2" parent="SecondPhaseEnvironment/stonePlatforms2" node_paths=PackedStringArray("neighbors", "neighborStonePlatform") instance=ExtResource("4_db8eq")]
 transform = Transform3D(0.406258, 0, 0.913758, 0, 1, 0, -0.913758, 0, 0.406258, 49.6836, 1.896, -50.3196)
-neighbors = [NodePath(""), NodePath("")]
+neighbors = [null, null]
 neighborStonePlatform = [NodePath("../stonePlatform2"), NodePath("../stonePlatformV3_1")]
 num = 4
 
 [node name="stonePlatformV3_1" parent="SecondPhaseEnvironment/stonePlatforms2" node_paths=PackedStringArray("neighbors", "neighborStonePlatform") instance=ExtResource("7_gqr2y")]
 transform = Transform3D(0.592618, 0, 0.805484, 0, 1, 0, -0.805484, 0, 0.592618, 0, 2.37197, -49.7)
-neighbors = [NodePath(""), NodePath("")]
+neighbors = [null, null]
 neighborStonePlatform = [NodePath("../stonePlatformV3_2"), NodePath("../stonePlatformV2")]
 num = 3
 
 [node name="stonePlatformV3_2" parent="SecondPhaseEnvironment/stonePlatforms2" node_paths=PackedStringArray("neighbors", "neighborStonePlatform") instance=ExtResource("7_gqr2y")]
 transform = Transform3D(0.226634, 0, -0.97398, 0, 1, 0, 0.97398, 0, 0.226634, 0, 1.896, 0)
-neighbors = [NodePath(""), NodePath("")]
+neighbors = [null, null]
 neighborStonePlatform = [NodePath("../stonePlatform2"), NodePath("../stonePlatformV3_1")]
 num = 1
 
@@ -766,8 +766,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.2152, 7.62939e-06, 24.738
 
 [node name="shard1" parent="SecondPhaseEnvironment/shards" node_paths=PackedStringArray("neighbors", "neighborStonePlatform") groups=["shard", "small_platform"] instance=ExtResource("4_db8eq")]
 transform = Transform3D(0.469304, 0, -0.172493, 0, 2, 0, 0.172493, 0, 0.469304, 25, 1.25166, -6)
-neighbors = [NodePath(""), NodePath(""), NodePath("")]
-neighborStonePlatform = [NodePath(""), NodePath("")]
+neighbors = [null, null, null]
+neighborStonePlatform = [null, null]
 radius = 5
 health = 0
 
@@ -785,8 +785,8 @@ transform = Transform3D(2.5, 0, 0, 0, 0.5, 0, 0, 0, 2.5, 3.41998, 0.96418, -3.29
 
 [node name="shard2" parent="SecondPhaseEnvironment/shards" node_paths=PackedStringArray("neighbors", "neighborStonePlatform") groups=["shard", "small_platform"] instance=ExtResource("4_db8eq")]
 transform = Transform3D(0.459054, 0, -0.198165, 0, 1.25, 0, 0.198165, 0, 0.459054, 43.5698, 0.145111, -24.7295)
-neighbors = [NodePath(""), NodePath(""), NodePath("")]
-neighborStonePlatform = [NodePath(""), NodePath("")]
+neighbors = [null, null, null]
+neighborStonePlatform = [null, null]
 radius = 5
 health = 0
 
@@ -804,8 +804,8 @@ transform = Transform3D(2.5, 0, -5.96046e-08, 0, 1, 0, 5.96046e-08, 0, 2.5, 3.41
 
 [node name="shard3" parent="SecondPhaseEnvironment/shards" node_paths=PackedStringArray("neighbors", "neighborStonePlatform") groups=["shard", "small_platform"] instance=ExtResource("4_db8eq")]
 transform = Transform3D(0.41331, 0, -0.281381, 0, 1.25, 0, 0.281381, 0, 0.41331, 25, 1.43808, -44)
-neighbors = [NodePath(""), NodePath(""), NodePath("")]
-neighborStonePlatform = [NodePath(""), NodePath("")]
+neighbors = [null, null, null]
+neighborStonePlatform = [null, null]
 radius = 5
 health = 0
 
@@ -823,8 +823,8 @@ transform = Transform3D(2.5, 0, 0, 0, 1, 0, 0, 0, 2.5, 3.42104, 1.10263, -3.2838
 
 [node name="shard4" parent="SecondPhaseEnvironment/shards" node_paths=PackedStringArray("neighbors", "neighborStonePlatform") groups=["shard", "small_platform"] instance=ExtResource("4_db8eq")]
 transform = Transform3D(0.405578, 0, 0.292415, 0, 1.25, 0, -0.292415, 0, 0.405578, 6, 0.145111, -25)
-neighbors = [NodePath(""), NodePath(""), NodePath("")]
-neighborStonePlatform = [NodePath(""), NodePath("")]
+neighbors = [null, null, null]
+neighborStonePlatform = [null, null]
 radius = 5
 health = 0
 
@@ -941,7 +941,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.2152, 7.62939e-06, 24.738
 
 [node name="LilyFlowerA" parent="SecondPhaseEnvironment/LilyFlowerPlatforms" node_paths=PackedStringArray("neighbors") groups=["flower_lily", "small_platform"] instance=ExtResource("3_bodam")]
 transform = Transform3D(0.96733, 0, -0.253522, 0, 1, 0, 0.253522, 0, 0.96733, 32, 0, 5)
-neighbors = [NodePath(""), NodePath(""), NodePath("")]
+neighbors = [null, null, null]
 radius = 6
 
 [node name="Flower" parent="SecondPhaseEnvironment/LilyFlowerPlatforms/LilyFlowerA" instance=ExtResource("18_4eivf")]
@@ -949,7 +949,7 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.65, 0)
 
 [node name="LilyFlowerB" parent="SecondPhaseEnvironment/LilyFlowerPlatforms" node_paths=PackedStringArray("neighbors") groups=["flower_lily", "small_platform"] instance=ExtResource("3_bodam")]
 transform = Transform3D(0.852175, 0, 0.523257, 0, 1, 0, -0.523257, 0, 0.852175, 54.5961, 0, -16.6163)
-neighbors = [NodePath(""), NodePath(""), NodePath("")]
+neighbors = [null, null, null]
 radius = 6
 
 [node name="Flower" parent="SecondPhaseEnvironment/LilyFlowerPlatforms/LilyFlowerB" instance=ExtResource("18_4eivf")]
@@ -957,7 +957,7 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.65, 0)
 
 [node name="LilyFlowerC" parent="SecondPhaseEnvironment/LilyFlowerPlatforms" node_paths=PackedStringArray("neighbors") groups=["flower_lily", "small_platform"] instance=ExtResource("3_bodam")]
 transform = Transform3D(0.611541, 0, -0.791213, 0, 1, 0, 0.791213, 0, 0.611541, 32.2208, 0, -55.0926)
-neighbors = [NodePath(""), NodePath(""), NodePath("")]
+neighbors = [null, null, null]
 radius = 6
 
 [node name="Flower" parent="SecondPhaseEnvironment/LilyFlowerPlatforms/LilyFlowerC" instance=ExtResource("18_4eivf")]
@@ -965,7 +965,7 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.65, 0)
 
 [node name="LilyFlowerD" parent="SecondPhaseEnvironment/LilyFlowerPlatforms" node_paths=PackedStringArray("neighbors") groups=["flower_lily", "small_platform"] instance=ExtResource("4_irumq")]
 transform = Transform3D(0.886664, 0, 0.462414, 0, 1, 0, -0.462414, 0, 0.886664, -6.84699, 0, -33.9463)
-neighbors = [NodePath(""), NodePath(""), NodePath("")]
+neighbors = [null, null, null]
 radius = 6
 
 [node name="Flower" parent="SecondPhaseEnvironment/LilyFlowerPlatforms/LilyFlowerD" instance=ExtResource("18_4eivf")]

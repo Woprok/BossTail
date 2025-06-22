@@ -20,7 +20,7 @@ func _on_back_button_pressed() -> void:
 	UIManager.SwitchToPrevious()
 
 func _on_debug_button_pressed() -> void:
-	GameInstance.TravelToLevel(GameInstance.GameLevels.DUMMY_TEST)
+	GameInstance.TravelToLevel(GameInstance.GameLevels.TOAD_ANIMS_TEST)
 
 func _on_debug_char_button_pressed() -> void:
 	GameInstance.TravelToLevel(GameInstance.GameLevels.CHAR_TEST)

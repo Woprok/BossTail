@@ -16,8 +16,11 @@ func dash_end():
 func falling():
 	state_machine.travel("Falling")
 
-func jump_start():
-	state_machine.travel("Jump_start")
+func jump_start(force_start: bool):
+	if force_start:
+		state_machine.start("Jump_start", false)
+	else:
+		state_machine.travel("Jump_start")
 	
 func jump_descending():
 	state_machine.travel("Jump_looping")

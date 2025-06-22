@@ -343,5 +343,7 @@ HelixStartPos = NodePath(".")
 
 [editable path="ToadBoss"]
 [editable path="ToadBoss/VFX/BubbleChargeup"]
+[editable path="ToadBoss/VFX/ToadDeathVFX/BodyDisintegrateParticles"]
+[editable path="ToadBoss/VFX/ToadDeathVFX/EyesDisintegrateParticles"]
 [editable path="Platofrm"]
 [editable path="HitImpactVFX"]
