@@ -1,0 +1,22 @@
+--> 3rd Party Assets Attribution:
+
+Some of these are used under the Creative Commons Attribution 4.0 license (http://creativecommons.org/licenses/by/4.0) :
+The rest don't require attribution but deserve it nonetheless
+
+Combat Music: Wilderness Battle by Dream-Protocol (pixabay.com)
+Toad Environment Ambience: Pond Morning Ambience by TheWandermiles (freesound.org)
+Tutorial Music: Epic Dungeon Beat by Kaden_Cook (pixabay.com)
+Sound Effect: Thin stick swing by ZapSplat (zapsplat.com)
+Sound Effect: Leather briefcase set down by ZapSplat (zapsplat.com)
+Sound Effect: Leather briefcase drop by ZapSplat (zapsplat.com)
+Sound Effect: Inside Tornado, Strong Wind by PMSFX (zapsplat.com)
+Sound Effect: Dark magic whoosh by ZapSplat (zapsplat.com)
+Sound Effect: Dark magic spell cast by ZapSplat (zapsplat.com)
+Sound Effect: Dark magic spell wind gust by ZapSplat (zapsplat.com)
+Sound Effect: Designed fire whoosh by ZapSplat (zapsplat.com)
+Sound Effect: Cartoon wet squelch by ZapSplat (zapsplat.com)
+Sound Effect: Cartoon liquid squelch by ZapSplat (zapsplat.com)
+Sound Effect: 12 Player Movement SFX by leohpaz (opengameart.org)
+
+
+Note : Most of the assets used have been modified to better fit into the game
