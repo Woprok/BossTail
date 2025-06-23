@@ -61,7 +61,63 @@ text = "Full Screen"
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="MouseTitleLabel" type="Label" parent="PanelContainer/ScrollContainer/OptionVBoxContainer/VBoxContainer"]
+[node name="AudioTitleLabel" type="Label" parent="PanelContainer/ScrollContainer/OptionVBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"TitleMediumLabel"
+text = "Audio"
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="PanelContainer/ScrollContainer/OptionVBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/ScrollContainer/OptionVBoxContainer/VBoxContainer/HBoxContainer6"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_type_variation = &"TextLabel"
+text = "Master Volume"
+
+[node name="MasterVolumeSlider" type="HSlider" parent="PanelContainer/ScrollContainer/OptionVBoxContainer/VBoxContainer/HBoxContainer6"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="PanelContainer/ScrollContainer/OptionVBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/ScrollContainer/OptionVBoxContainer/VBoxContainer/HBoxContainer5"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_type_variation = &"TextLabel"
+text = "Music Volume"
+
+[node name="MusicVolumeSlider" type="HSlider" parent="PanelContainer/ScrollContainer/OptionVBoxContainer/VBoxContainer/HBoxContainer5"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="PanelContainer/ScrollContainer/OptionVBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/ScrollContainer/OptionVBoxContainer/VBoxContainer/HBoxContainer4"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_type_variation = &"TextLabel"
+text = "Sound Volume"
+
+[node name="SoundVolumeSlider" type="HSlider" parent="PanelContainer/ScrollContainer/OptionVBoxContainer/VBoxContainer/HBoxContainer4"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="MouseTitleLabel2" type="Label" parent="PanelContainer/ScrollContainer/OptionVBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"TitleMediumLabel"
 text = "Mouse"

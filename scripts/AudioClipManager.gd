@@ -23,6 +23,9 @@ func _on_stream_finished(stream: AudioStreamPlayer, base_volume: float):
 func play(sound_path: String, volumeMultiplier: float = 1.0):
 	queue.append([sound_path, volumeMultiplier])
 	
+func set_volume_multipliers(master: float, music: float, sound: float) -> void:
+	pass
+	
 func _process(delta):
 	if not queue.is_empty() and not available.is_empty():
 		var q_element = queue.pop_front()

@@ -27,6 +27,7 @@ func GetUserSettingsFullPath() -> String:
 
 func ApplyLocalSettings() -> void:
 	var settings = GetUserSettings()
+	_apply_audio(settings)
 	_apply_keybinds(settings)
 #	_apply_sensitivity(settings)
 	_apply_window(settings)
@@ -39,6 +40,13 @@ func ToggleFullScreen(is_full_screen: bool) -> void:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 	elif not is_full_screen and DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+
+func _apply_audio(settings: LocalUserSettings) -> void:
+	AudioClipManager.set_volume_multipliers(
+		settings.audio_master_volume, 
+		settings.audio_music_volume, 
+		settings.audio_sound_volume
+	)
 
 #func _apply_sensitivity(_settings: LocalUserSettings) -> void:
 #	Global.LogInfo("Sensitivity is applied directly on the character.")

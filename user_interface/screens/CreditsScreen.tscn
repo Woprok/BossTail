@@ -1,0 +1,107 @@
+[gd_scene load_steps=4 format=3 uid="uid://10v6wywtuda0"]
+
+[ext_resource type="Script" uid="uid://cu8i042i3lta3" path="res://user_interface/screens/CreditsScreen.gd" id="1_t5u0o"]
+[ext_resource type="Theme" uid="uid://d2mah8qfufk0b" path="res://user_interface/assets/UIMainTheme.tres" id="2_hqtp4"]
+[ext_resource type="StyleBox" uid="uid://erii3upkvymj" path="res://user_interface/controls/Settings/OptionBackground.tres" id="3_hqtp4"]
+
+[node name="CreditsScreen" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_t5u0o")
+
+[node name="TitleLabel" type="Label" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+theme = ExtResource("2_hqtp4")
+text = "Tales of the Mouseketeer"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("3_hqtp4")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 4
+
+[node name="CreditsVBoxContainer" type="VBoxContainer" parent="PanelContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 3
+
+[node name="WindowTitleLabel" type="Label" parent="PanelContainer/ScrollContainer/CreditsVBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"TitleMediumLabel"
+text = "Project Management, Design, UI"
+
+[node name="Label" type="Label" parent="PanelContainer/ScrollContainer/CreditsVBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_type_variation = &"TextLabel"
+text = "Miroslav Valach"
+
+[node name="WindowTitleLabel2" type="Label" parent="PanelContainer/ScrollContainer/CreditsVBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"TitleMediumLabel"
+text = "Programming"
+
+[node name="Label2" type="Label" parent="PanelContainer/ScrollContainer/CreditsVBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_type_variation = &"TextLabel"
+text = "Klára Cihlářová"
+
+[node name="WindowTitleLabel3" type="Label" parent="PanelContainer/ScrollContainer/CreditsVBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"TitleMediumLabel"
+text = "Art"
+
+[node name="Label3" type="Label" parent="PanelContainer/ScrollContainer/CreditsVBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_type_variation = &"TextLabel"
+text = "Šimon Jajko"
+
+[node name="WindowTitleLabel4" type="Label" parent="PanelContainer/ScrollContainer/CreditsVBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"TitleMediumLabel"
+text = "Consultants"
+
+[node name="Label4" type="Label" parent="PanelContainer/ScrollContainer/CreditsVBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_type_variation = &"TextLabel"
+text = "Otakar Nieder, Vojtěch Černý"
+
+[node name="WindowTitleLabel5" type="Label" parent="PanelContainer/ScrollContainer/CreditsVBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"TitleMediumLabel"
+text = "Testers"
+
+[node name="Label5" type="Label" parent="PanelContainer/ScrollContainer/CreditsVBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_type_variation = &"TextLabel"
+text = "Filip Sedlak, Pavel Madaj"
+
+[node name="CREDITS_ACTIONS" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="BackButton" type="Button" parent="CREDITS_ACTIONS"]
+layout_mode = 2
+theme = ExtResource("2_hqtp4")
+text = "BACK"
+
+[connection signal="pressed" from="CREDITS_ACTIONS/BackButton" to="." method="_on_back_button_pressed"]

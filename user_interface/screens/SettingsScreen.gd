@@ -47,7 +47,9 @@ func LoadValues(local_user_settings: LocalUserSettings) -> void:
 	%FullScreenCheckButton.button_pressed = DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN
 	%CameraSensitivitySlider.value = local_user_settings.mouse_camera_sensititivy
 	%AimSensitivitySlider.value = local_user_settings.mouse_aim_sensititivy
-	
+	%MasterVolumeSlider.value = local_user_settings.audio_master_volume
+	%MusicVolumeSlider.value = local_user_settings.audio_music_volume
+	%SoundVolumeSlider.value = local_user_settings.audio_sound_volume
 
 func OnFullScreenToggle(button_pressed: bool) -> void:
 	if button_pressed:
@@ -59,3 +61,6 @@ func SaveValuesTo(local_user_settings: LocalUserSettings) -> void:
 	local_user_settings.is_full_screen = %FullScreenCheckButton.button_pressed
 	local_user_settings.mouse_camera_sensititivy = %CameraSensitivitySlider.value
 	local_user_settings.mouse_aim_sensititivy = %AimSensitivitySlider.value
+	local_user_settings.audio_master_volume = %MasterVolumeSlider.value
+	local_user_settings.audio_music_volume = %MusicVolumeSlider.value
+	local_user_settings.audio_sound_volume = %SoundVolumeSlider.value

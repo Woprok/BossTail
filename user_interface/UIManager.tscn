@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ffifrkk008jr"]
+[gd_scene load_steps=11 format=3 uid="uid://ffifrkk008jr"]
 
 [ext_resource type="Script" uid="uid://bviots3lh3wsu" path="res://user_interface/UIManager.gd" id="1_cdxc8"]
 [ext_resource type="PackedScene" uid="uid://dd1t8e65ub5g5" path="res://user_interface/screens/MenuScreen.tscn" id="2_n0w8r"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bd46k2s343rar" path="res://user_interface/screens/HUDScreen.tscn" id="7_65gy8"]
 [ext_resource type="PackedScene" uid="uid://dvux5bnnygjk1" path="res://user_interface/screens/VictoryScreen.tscn" id="8_h454g"]
 [ext_resource type="PackedScene" uid="uid://fk5q3y2ac7sy" path="res://user_interface/screens/DefeatScreen.tscn" id="9_gsuk6"]
+[ext_resource type="PackedScene" uid="uid://10v6wywtuda0" path="res://user_interface/screens/CreditsScreen.tscn" id="10_gsuk6"]
 
 [node name="UiManager" type="CanvasLayer"]
 script = ExtResource("1_cdxc8")
@@ -20,5 +21,6 @@ Screens = Dictionary[int, PackedScene]({
 4: ExtResource("5_ib6oj"),
 5: ExtResource("7_65gy8"),
 6: ExtResource("8_h454g"),
-7: ExtResource("9_gsuk6")
+7: ExtResource("9_gsuk6"),
+8: ExtResource("10_gsuk6")
 })

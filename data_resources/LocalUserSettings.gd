@@ -1,6 +1,13 @@
 extends Resource
 class_name LocalUserSettings
 
+# Audio
+const default_audio_sound_volume: float = 1.0
+const default_audio_music_volume: float = 1.0
+const default_audio_master_volume: float = 1.0
+@export var audio_sound_volume: float = 1.0
+@export var audio_music_volume: float = 1.0
+@export var audio_master_volume: float = 1.0
 # Mouse with some clamping to be sure its valid value
 const default_mouse_aim_sensititivy: float = 1.0
 const default_mouse_camera_sensititivy: float = 1.0
@@ -23,6 +30,10 @@ const default_is_full_screen: bool = false
 @export var custom_keybinds: Dictionary[StringName, KeybindSetting] = {}
 
 func ResetValues() -> void:
+	# Audio
+	audio_master_volume = default_audio_master_volume
+	audio_music_volume = default_audio_music_volume
+	audio_sound_volume = default_audio_sound_volume
 	# Mouse
 	mouse_aim_sensititivy = default_mouse_aim_sensititivy
 	mouse_camera_sensititivy = default_mouse_camera_sensititivy

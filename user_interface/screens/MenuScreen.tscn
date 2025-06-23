@@ -38,6 +38,11 @@ layout_mode = 2
 theme = ExtResource("1_cfngp")
 text = "SETTINGS"
 
+[node name="CreditsButton" type="Button" parent="MENU_ACTIONS"]
+layout_mode = 2
+theme = ExtResource("1_cfngp")
+text = "CREDITS"
+
 [node name="QuitButton" type="Button" parent="MENU_ACTIONS"]
 layout_mode = 2
 theme = ExtResource("1_cfngp")
@@ -45,4 +50,5 @@ text = "QUIT"
 
 [connection signal="pressed" from="MENU_ACTIONS/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="MENU_ACTIONS/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="MENU_ACTIONS/CreditsButton" to="." method="_on_credits_button_pressed"]
 [connection signal="pressed" from="MENU_ACTIONS/QuitButton" to="." method="_on_quit_button_pressed"]

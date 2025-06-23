@@ -7,5 +7,6 @@ enum Mode {
 	LEVEL,
 	HUD,
 	VICTORY,
-	DEFEAT
+	DEFEAT,
+	CREDITS
 }
