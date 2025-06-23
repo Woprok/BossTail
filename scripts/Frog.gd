@@ -670,7 +670,7 @@ func ground_slam():
 	doing = false
 	if platform.health == 0:
 		if player.is_on_floor():
-			player.launch((player.position - platform.position-Vector3(0,1,0)).normalized()*1.2)
+			player.launch((player.position - platform.position-Vector3(0,1,0)).normalized()*1.5)
 		for s in get_parent().get_node("stonePlatforms").get_children():
 			if s.health>0:
 				plan_path(s)
@@ -678,22 +678,10 @@ func ground_slam():
 			plan_path(get_parent().get_node("lilyPlatforms/largeLily"))
 		var num = platform.num
 		var newShards = get_parent().get_node("breakable").get_child(num-1)
-		newShards.get_node("stone1").neighbors.append_array(platform.neighbors)
-		newShards.get_node("stone2").neighbors.append_array(platform.neighbors)
-		newShards.get_node("stone3").neighbors.append_array(platform.neighbors)
-		newShards.get_node("stone4").neighbors.append_array(platform.neighbors)
-		for plt in platform.neighbors:
-			plt.neighbors.append(newShards.get_node("stone1"))
-			plt.neighbors.append(newShards.get_node("stone2"))
-			plt.neighbors.append(newShards.get_node("stone3"))
-			plt.neighbors.append(newShards.get_node("stone4"))
+		newShards.break_platform(platform)
 		if player.platform == platform:
 			player.platform = newShards.get_node("stone2")
 		transform_to_frozen()
-		platform.queue_free()
-		newShards.get_node("BubblesSpawner").active = true
-		platform = newShards.get_node("stone1")
-		newShards.get_node("AnimationPlayer").play("break")
 	
 func transform_to_frozen() -> void:
 	body_mesh.set_surface_override_material(0, special_material)
