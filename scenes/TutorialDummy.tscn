@@ -118,34 +118,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="Skeleton3D" parent="Char_BigDummy/DummyBase/GAMERIG_BigDummy" index="0"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
-bones/0/rotation = Quaternion(1.54543e-08, -0.707107, 1.54543e-08, 0.707107)
-bones/1/rotation = Quaternion(3.55271e-15, 0.707107, -3.09086e-08, 0.707107)
-bones/2/position = Vector3(-4.1051e-11, 0.691973, -3.03738e-08)
-bones/2/rotation = Quaternion(2.71051e-20, 1, -4.37114e-08, -3.53257e-06)
-bones/3/rotation = Quaternion(-0.496666, 0.503308, -0.496625, 0.503356)
-bones/4/rotation = Quaternion(0.965916, -0.214722, 0.137344, -0.0451308)
-bones/5/rotation = Quaternion(7.10349e-08, -0.0911459, 1.3743e-07, 0.995838)
-bones/6/position = Vector3(8.26809e-08, 0.263415, 1.97906e-09)
-bones/6/rotation = Quaternion(0.865606, -0.0911458, 0.170859, 0.461764)
-bones/7/rotation = Quaternion(1.02905e-07, 0.244658, -8.98357e-08, 0.969609)
-bones/8/rotation = Quaternion(-0.0306148, 0.244779, 0.0303748, 0.968619)
-bones/9/rotation = Quaternion(0.953091, 0.245245, -0.162397, -0.0714109)
-bones/10/rotation = Quaternion(-3.44976e-08, 0.12618, 1.3402e-07, 0.992007)
-bones/11/rotation = Quaternion(0.804882, 0.126179, -0.184776, 0.549637)
-bones/12/position = Vector3(6.87211e-08, 0.266345, 5.6035e-08)
-bones/12/rotation = Quaternion(9.71803e-08, -0.398241, -7.87915e-08, 0.917281)
-bones/13/position = Vector3(8.84402e-09, 0.266345, 4.81996e-08)
-bones/13/rotation = Quaternion(-0.28633, -0.785877, -0.29162, 0.464081)
-bones/14/rotation = Quaternion(-0.00248809, 0.675566, -0.0139195, 0.737164)
-
-[node name="JawPos" parent="Char_BigDummy/DummyBase/GAMERIG_BigDummy/Skeleton3D" index="3"]
-transform = Transform3D(-8.89549e-05, 6.5701e-07, -1, -0.999911, 0.0133726, 8.90195e-05, 0.0133727, 0.999911, -4.45048e-07, -0.00245756, 1.91921, -0.0161201)
 
 [node name="BoulderSpawnPos" parent="Char_BigDummy/DummyBase/GAMERIG_BigDummy/Skeleton3D/JawPos" index="2"]
 transform = Transform3D(1, 0, -2.07523e-12, 0, 1, -2.84217e-14, 1.29963e-11, 1.98952e-13, 1, -1.20795, 1.73393, -2.9942e-07)
-
-[node name="OrbHandPos" parent="Char_BigDummy/DummyBase/GAMERIG_BigDummy/Skeleton3D" index="4"]
-transform = Transform3D(-0.098817, 0.0467056, -0.994009, -0.665429, 0.73961, 0.100904, 0.739891, 0.671413, -0.0420067, 0.546075, 1.40744, 0.433252)
 
 [node name="SlashHitArea" type="Area3D" parent="Char_BigDummy/DummyBase/GAMERIG_BigDummy" index="1"]
 transform = Transform3D(-0.0331503, -0.99945, 2.53518e-06, -0.99945, 0.0331503, 0, -8.4042e-08, -2.53379e-06, -1, 0.142183, 1.30306, -0.836582)
