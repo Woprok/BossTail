@@ -17,16 +17,46 @@ func _exit_tree() -> void:
 	
 func _physics_process(delta):
 	var freeze = respawn_freeze(delta)
-	#print(global_position)
+	
 	if position.y < -10:
 		respawn()
 		
-	#time = time+ delta
-	lastHit += delta
-	last_shot += delta
+	update_timers(delta)
 	
 	_handle_camera()
 	
+	if handle_push(delta): return
+	handle_movement()
+	update_speed()
+	
+	update_character_facing()
+	handle_jump_input(delta)
+		
+	update_attack_indicators()
+	handle_attack_input()
+	handle_animations()
+		
+	move(delta)
+	
+
+func can_move():
+	return not freeze and not fighting and not pushed
+	
+func move(delta):
+	var movement_dir = transform.basis * Vector3(direction.x, 0, direction.z)
+	# floor movement
+	target_velocity.x = movement_dir.x * speed
+	target_velocity.z = movement_dir.z * speed
+	update_position(delta)
+	
+	
+func handle_movement():
+	direction = Vector3.ZERO
+	if can_move():
+		movement_input()
+	direction = direction.normalized()
+
+func handle_push(delta):
 	if pushed:
 		velocity.y = 0
 		time_of_push += delta
@@ -35,127 +65,14 @@ func _physics_process(delta):
 			pushed = false
 		else:
 			move_and_slide()
-			return
-	else:
-		direction = Vector3.ZERO
-		if Input.is_action_pressed("move_back") and not freeze:
-			direction.z += 1
-		if Input.is_action_pressed("move_forward") and not freeze:
-			direction.z -= 1
-		if Input.is_action_pressed("strafe_left") and not freeze:
-			direction.x -= 1
-		if Input.is_action_pressed("strafe_right") and not freeze:
-			direction.x += 1
-		
-	if Input.is_action_just_pressed("dash") and can_dash and not fighting and not freeze:
-		_start_dash()
-		
-	if dashing:
-		$AnimationTree.dash_start()
-		direction.z = -1
-		speed = DASH_SPEED
-	elif aiming:
-		speed = AIM_SPEED
-	else:
-		speed = SPEED
-	
-	direction = direction.normalized()
-	#set char target facing
-	if direction != Vector3.ZERO:
-		var dirInput: Vector2 = Vector2(direction.x, direction.z)
-		character_target_facing = get_facing_dir_from_input(dirInput)
-	
-	if Input.is_action_just_pressed("jump") and not freeze:
-		jump_time = 0
-		player_data.change_jump_height(delta)
-		direction.y += 1
-		
-		#jump audio sfx
-		AudioClipManager.play("res://assets/audio/sfx/Jump.wav")
-		
-	if Input.is_action_pressed("jump") and not freeze:
-		player_data.change_jump_height(delta*333)
-		jump_time += delta
-	if Input.is_action_just_released("jump") and not freeze:
-		player_data.change_jump_height(0)		
-		
-		if jump_time>=0.7:
-			target_velocity.y *= 0.1
-			jump_time = 0
-		else:
-			target_velocity.y *= 0.7
-			
-	if not Input.is_action_pressed("jump") and jump_time != 0 and not freeze:
-		if jump_time>=0.7:
-			jump_time = 0
-			target_velocity.y *= 1
-		else:
-			jump_time+=delta 
-		
-	if direction != Vector3.ZERO:
-		$melee/target.disabled = true
-		if not dashing:
-			$AnimationTree.run()
-		
-	if last_shot > 0.5 and Input.is_action_pressed("aim") and not freeze:
-		player_data.change_ranged_indicator(true)
-	elif last_shot > 0.5:
-		player_data.change_melee_indicator(true)
-	else:
-		player_data.change_ranged_indicator(false)
-	
-	if Input.is_action_pressed("fight") and is_on_floor() and direction == Vector3.ZERO and not freeze:
-		if not aiming:
-			if last_shot > 0.75:
-				last_shot = 0
-				_stab_started()
-		elif last_shot > 0.75:
-			shoot()
-			last_shot = 0
-			
-	elif Input.is_action_just_pressed("aim") and not freeze:
-		_aim_started()
-		
-	elif Input.is_action_just_released("aim") and not freeze:
-		_aim_finished()
-		
-	var movement_dir = transform.basis * Vector3(direction.x, 0, direction.z)
-	
-	# pohyb po zemi
-	target_velocity.x = movement_dir.x * speed
-	target_velocity.z = movement_dir.z * speed
-	
-	if is_on_floor():
-		jump = false
-		target_velocity.y = 0
-		
-	# skok
-	if direction.y>0 and jump==false:
-		target_velocity.y = direction.y * jump_speed
-		jump = true
-	
-	# pokud je ve vzduchu, spadne
-	if not is_on_floor():
-		target_velocity.y = target_velocity.y - (fall_acceleration * delta)
+			return true
+	return false
 
-	velocity = target_velocity
-	if not fighting and is_on_floor() and direction==Vector3.ZERO:
-		$AnimationTree.idle()
-		$melee/target.disabled = true
-	if velocity.y<0:
-		if jump:
-			$AnimationTree.jump_descending()
-		else:
-			$AnimationTree.falling()
-	elif velocity.y>0:
-		$AnimationTree.jump_start(true)
-	move_and_slide()
-	
-	
+
 func hit(_collision, health):
-	if lastHit<1:
+	if last_hit<1:
 		return
-	lastHit = 0
+	last_hit = 0
 	player_data.player_decrease_health(health)
 	$PlayerHitVFX.play_effect()
 	if player_data.is_player_dead():
@@ -201,19 +118,6 @@ func _on_area_entered(area):
 	if area.get_parent().is_in_group("enemy") and not melee:
 		melee = true
 		area.get_parent().hit(area, 0)
-
-
-func _on_dash_timer_timeout():
-	dashing = false
-	$dash_timer.stop()
-	$next_dash_timer.start(1.5)
-
-
-func _on_next_dash_timer_timeout():
-	can_dash = true
-	player_data.change_dash_indicator(true)	
-	$next_dash_timer.stop()
-
 
 func _on_melee_body_entered(body):
 	if body.is_in_group("mini_dummy"):

@@ -8,7 +8,6 @@ var start_position:Vector3 = Vector3(0,-1.8,0)
 var STICKY_SPEED:int = 2
 
 var aciding_liquid:int = 0
-var grabbed: bool = false
 var launched:bool = false
 var push_start_position = Vector3.ZERO
 var push_length = 0
@@ -18,69 +17,74 @@ var grab_target_position = Vector3.ZERO
 @export var PlayerHitVFX: EntityHitVFX
 	
 func _physics_process(delta):
-#	time = time+ delta
 	var freeze = respawn_freeze(delta)
 	
-	lastHit += delta
+	update_timers(delta)
+	handle_spike_hit()
+	
+	if launched:
+		handle_launch()
+	
+	check_respawn_conditions()
+	_handle_camera()
+	handle_movement()
+		
+	update_speed()
+	
+	update_character_facing()
+	handle_jump_input(delta)
+	
+	update_attack_indicators()
+	handle_attack_input()
+	
+	handle_animations()
+	move(delta)
+	
+
+func hit(_collision, health):
+	if last_hit<1 and health==1:
+		return
+	last_hit = 0
+	player_data.player_decrease_health(health)
+	if player_data.is_player_dead():
+		animation.death()
+		GameInstance.PlayerDefeated()
+	if PlayerHitVFX != null:
+		PlayerHitVFX.play_effect()
+		
+	#hit impact sfx
+	AudioClipManager.play("res://assets/audio/sfx/HitImpact.wav")
+
+func handle_spike_hit():
 	if spike_hit:
 		hit(null, 1)
-	
-	if launched and push_length!=0 and push_start_position.distance_to(position) >= push_length:
+		
+func handle_launch():
+	if push_length!=0 and push_start_position.distance_to(position) >= push_length:
 		launched = false
 		direction = Vector3.ZERO
 		push_length = 0
 	
-	if launched and grab_target_position!=Vector3.ZERO and grab_target_position.distance_to(position)<3:
+	if grab_target_position!=Vector3.ZERO and grab_target_position.distance_to(position)<3:
 		animation.idle()
 		launched = false
 		direction = Vector3.ZERO
 		grab_target_position = Vector3.ZERO
+
 	
-	if position.y<-3 or (is_on_floor() and position.y<-0.6):
-		respawn()
-		
-	if grabbed:
-		velocity.y += 2.5*-9*delta
-		var _collision = move_and_collide(2.5*velocity*delta)
-		if velocity.y<0 and position.y<3:
-			grabbed = false
-		return
+func can_move():
+	return controls and not launched and not fighting and not freeze
+
 	
-	last_shot += delta
-	
-	_handle_camera()
-	
+func handle_movement():
 	if not launched:
 		direction = Vector3.ZERO
-	if Input.is_action_pressed("move_back") and controls and not launched and not freeze:
-		direction.z += 1
-	if Input.is_action_pressed("move_forward") and controls and not launched and not freeze:
-		direction.z -= 1
-	if Input.is_action_pressed("strafe_left") and controls and not launched and not freeze:
-		direction.x -= 1
-	if Input.is_action_pressed("strafe_right") and controls and not launched and not freeze:
-		direction.x += 1
-		
-	if Input.is_action_just_pressed("dash") and controls and can_dash and not fighting and not freeze:
-		_start_dash()
-		
-	if dashing:
-		#animation.dash_start()
-		direction.z = -1
-		speed = DASH_SPEED
-	elif aiming:
-		speed = AIM_SPEED
-	elif aciding_liquid>0:
-		speed = STICKY_SPEED
-	else:
-		speed = SPEED
-		
+	if can_move():
+		movement_input()
 	direction = direction.normalized()
-	#set char target facing
-	if direction != Vector3.ZERO:
-		var dirInput: Vector2 = Vector2(direction.x, direction.z)
-		character_target_facing = get_facing_dir_from_input(dirInput)
-	
+
+
+func handle_jump_input(delta):
 	if Input.is_action_just_pressed("jump") and controls and aciding_liquid == 0 and not freeze:
 		jump_time = 0
 		player_data.change_jump_height(delta)
@@ -107,83 +111,35 @@ func _physics_process(delta):
 			target_velocity.y *= 0.1
 		else:
 			jump_time+=delta 
-			
-	if direction != Vector3.ZERO:
-		$melee/target.disabled = true
-		if not dashing:
-			animation.run()
+
+
+func check_respawn_conditions():
+	if position.y<-3 or (is_on_floor() and position.y<-0.6):
+		respawn()
 		
-	if last_shot > 0.5 and Input.is_action_pressed("aim") and controls and not freeze:
-		player_data.change_ranged_indicator(true)
-	elif last_shot > 0.5:
-		player_data.change_melee_indicator(true)
+		
+func update_speed():
+	if dashing:
+		direction = - $Char_Mouseketeer_Rig.transform.basis.z.normalized()
+		speed = DASH_SPEED
+	elif aiming:
+		speed = AIM_SPEED
+	elif aciding_liquid>0:
+		speed = STICKY_SPEED
 	else:
-		player_data.change_ranged_indicator(false)
+		speed = SPEED
 
-	if Input.is_action_pressed("fight") and is_on_floor() and controls and direction == Vector3.ZERO and not freeze:
-		if not aiming:
-			if last_shot > 0.75:
-				last_shot = 0
-				_stab_started()
-		elif last_shot > 0.75:
-			shoot()
-			last_shot = 0
-	elif Input.is_action_just_pressed("aim") and controls and not freeze:
-		_aim_started()
-
-	elif Input.is_action_just_released("aim") and controls and not freeze:
-		_aim_finished()
-	
+func move(delta):
 	var movement_dir = null
 	if launched:
 		movement_dir = Vector3(direction.x, 0, direction.z)
 	else:
 		movement_dir = transform.basis * Vector3(direction.x, 0, direction.z)
-	
-	# pohyb po zemi
+	# floor movement
 	target_velocity.x = movement_dir.x * speed
 	target_velocity.z = movement_dir.z * speed
-	
-	if is_on_floor():
-		jump = false
-		target_velocity.y = 0
-		
-	# skok
-	if direction.y>0 and jump==false:
-		target_velocity.y = direction.y * jump_speed
-		jump = true
-	
-	# pokud je ve vzduchu, spadne
-	if not is_on_floor():
-		target_velocity.y = target_velocity.y - (fall_acceleration * delta)
+	update_position(delta)
 
-	velocity = target_velocity
-	if not fighting and is_on_floor() and direction==Vector3.ZERO:
-		animation.idle()
-		
-	if velocity.y<0:
-		if jump:
-			animation.jump_descending()
-		else:
-			animation.falling()
-	elif velocity.y>0:
-		animation.jump_start(true)
-	move_and_slide()
-		
-
-func hit(_collision, health):
-	if lastHit<1 and health==1:
-		return
-	lastHit = 0
-	player_data.player_decrease_health(health)
-	if player_data.is_player_dead():
-		animation.death()
-		GameInstance.PlayerDefeated()
-	if PlayerHitVFX != null:
-		PlayerHitVFX.play_effect()
-		
-	#hit impact sfx
-	AudioClipManager.play("res://assets/audio/sfx/HitImpact.wav")
 
 func respawn():
 	reset_player_respawn()
@@ -218,6 +174,7 @@ func launch(pos):
 	direction = pos+Vector3(0,1,0)
 	direction *= 1.8
 
+
 func push(dir:Vector3, push_len:float):
 	dir.y = 0
 	launched = true
@@ -225,11 +182,13 @@ func push(dir:Vector3, push_len:float):
 	push_length = push_len
 	direction = dir.normalized()
 
+
 func grab(dir, target_position):
 	dir.y = 0
 	launched = true
 	grab_target_position = target_position
 	direction = dir.normalized()
+
 
 func _on_animation_finished(anim_name):
 	if anim_name == "GAME_05_lunge_right" or anim_name == "GAME_05_lunge_left_combo":
@@ -243,6 +202,7 @@ func _on_animation_finished(anim_name):
 		$melee/target.disabled = true
 		fighting=false
 		player_data.change_melee_indicator(true)
+		
 		
 # melee
 func _on_area_entered(area):
@@ -260,24 +220,12 @@ func _on_area_entered(area):
 		area.hit(self, 5)
 		AudioClipManager.play("res://assets/audio/sfx/StabHit.mp3")
 
-func _on_dash_timer_timeout():
-	dashing = false
-	$dash_timer.stop()
-	$next_dash_timer.start(1.5)
-
-
-func _on_next_dash_timer_timeout():
-	can_dash = true
-	player_data.change_dash_indicator(true)	
-	$next_dash_timer.stop()
-
 func _on_standing(area):
 	if area.is_in_group("spike"):
 		hit(null, 5)
 		spike_hit = true
 	if area.is_in_group("aciding_liquid"):
 		launched = false
-		grabbed = false
 		aciding_liquid += 1
 	if area.is_in_group("stone_platform") or area.is_in_group("lily_platform"):
 		animation.jump_land()
@@ -286,7 +234,7 @@ func _on_standing(area):
 		
 		platform = area
 		launched = false
-		grabbed = false
+		
 		
 func _on_leaving(area):
 	if area.is_in_group("aciding_liquid"):
@@ -296,6 +244,7 @@ func _on_leaving(area):
 	if area.is_in_group("boulder"):
 		collision_mask &= ~(1 << 4)
 
+
 func _on_frog_standing(area: Area3D) -> void:
 	if area.is_in_group("body") and area.get_parent().is_in_group("enemy"):
 		var away = (global_position - area.get_parent().global_position).normalized()
@@ -303,10 +252,7 @@ func _on_frog_standing(area: Area3D) -> void:
 		direction = away
 		direction.y = 0.2
 
+
 func _on_body_standing(body: Node3D) -> void:
 	if body.is_in_group("boulder"):
 		collision_mask |= 1 << 4
-
-
-func _on_area_3d_area_entered(area: Area3D) -> void:
-	pass # Replace with function body.

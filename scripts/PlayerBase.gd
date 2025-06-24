@@ -12,6 +12,8 @@ class_name PlayerBase
 
 # Common Mouse & Camera
 @onready var Camera = $CameraPivot/SpringArm3D/Camera3D
+@onready var playback = $AnimationTree.get("parameters/playback")
+
 @export var BASE_AIM_MOUSE_SENS: float = 0.004
 @export var BASE_VERTICAL_MOUSE_SENS: float = 0.004
 @export var BASE_HORIZONTAL_MOUSE_SENS: float = 0.008
@@ -28,10 +30,12 @@ var MOUSE_HORIZONTAL_SENS: float:
 	get:
 		return BASE_HORIZONTAL_MOUSE_SENS * USER_MOUSE_SENS
 var mouse_sensitivity: float = MOUSE_HORIZONTAL_SENS
+
 # Common Movement
 var speed:int = 15
 var jump_speed:int = 30
 var controls:bool = true
+const GRAVITY = 9.0
 
 var fall_acceleration:int = 75
 var DASH_SPEED:int = 25
@@ -41,8 +45,9 @@ var AIM_SPEED:int = 5
 var SPEED:int = 15
 
 var spike_hit = false
+var freeze = false
 var back = -1
-var lastHit = 100
+var last_hit = 100
 
 #var time:float = 0
 var jump_time:float = 0
@@ -98,7 +103,11 @@ func _unhandled_input(event):
 		else:
 			Camera.rotation.x -= event.relative.y * MOUSE_VERTICAL_SENS
 			Camera.rotation.x = clamp(Camera.rotation.x, deg_to_rad(CAMERA_MIN_X), deg_to_rad(CAMERA_MAX_X))
-			
+
+func update_timers(delta):
+	last_hit += delta
+	last_shot += delta
+	
 			
 func _start_dash() -> void:
 	dashing = true
@@ -112,6 +121,18 @@ func _start_dash() -> void:
 	dash_timing.parallel().tween_callback($AnimationTree.dash_end).set_delay(DASH_TIME - 0.1)
 	
 	AudioClipManager.play("res://assets/audio/sfx/Dash.wav")
+	
+func _on_dash_timer_timeout():
+	dashing = false
+	$dash_timer.stop()
+	$next_dash_timer.start(1.5)
+
+
+func _on_next_dash_timer_timeout():
+	can_dash = true
+	player_data.change_dash_indicator(true)	
+	$next_dash_timer.stop()
+
 	
 func _handle_camera() -> void:
 	if Input.is_action_pressed("camera_right") and controls:
@@ -246,3 +267,122 @@ func enable_controls():
 	
 func flat(in_vec: Vector3) -> Vector3:
 	return Vector3(in_vec.x, 0.0, in_vec.z)
+
+func update_character_facing():
+	#set char target facing
+	if direction != Vector3.ZERO:
+		var dirInput: Vector2 = Vector2(direction.x, direction.z)
+		character_target_facing = get_facing_dir_from_input(dirInput)
+
+func update_attack_indicators():
+	if last_shot > 0.5 and Input.is_action_pressed("aim") and controls and not freeze:
+		player_data.change_ranged_indicator(true)
+	elif last_shot > 0.5:
+		player_data.change_melee_indicator(true)
+	else:
+		player_data.change_ranged_indicator(false)
+		
+func handle_attack_input():
+	if Input.is_action_pressed("fight") and is_on_floor() and controls and direction == Vector3.ZERO and not freeze:
+		if not aiming:
+			if last_shot > 0.75:
+				last_shot = 0
+				_stab_started()
+		elif last_shot > 0.75:
+			shoot()
+			last_shot = 0
+	elif Input.is_action_just_pressed("aim") and controls and not freeze:
+		_aim_started()
+
+	elif Input.is_action_just_released("aim") and controls and not freeze:
+		_aim_finished()
+
+func update_speed():
+	if dashing:
+		direction = - $Char_Mouseketeer_Rig.transform.basis.z.normalized()
+		speed = DASH_SPEED
+	elif aiming:
+		speed = AIM_SPEED
+	else:
+		speed = SPEED
+
+func movement_input():
+	if Input.is_action_pressed("move_back") :
+		direction.z += 1
+	if Input.is_action_pressed("move_forward"):
+		direction.z -= 1
+	if Input.is_action_pressed("strafe_left"):
+			direction.x -= 1
+	if Input.is_action_pressed("strafe_right"):
+		direction.x += 1
+	if Input.is_action_just_pressed("dash") and can_dash:
+		_start_dash()
+
+func handle_jump_input(delta):
+	if Input.is_action_just_pressed("jump") and not freeze:
+		jump_time = 0
+		player_data.change_jump_height(delta)
+		direction.y += 1
+		
+		#jump audio sfx
+		AudioClipManager.play("res://assets/audio/sfx/Jump.wav")
+		
+	if Input.is_action_pressed("jump") and not freeze:
+		player_data.change_jump_height(delta*333)
+		jump_time += delta
+	if Input.is_action_just_released("jump") and not freeze:
+		player_data.change_jump_height(0)
+		
+		if jump_time>=0.7:
+			target_velocity.y *= 0.1
+			jump_time = 0
+		else:
+			target_velocity.y *= 0.7
+			
+	if not Input.is_action_pressed("jump") and jump_time != 0 and not freeze:
+		if jump_time>=0.7:
+			jump_time = 0
+			target_velocity.y *= 1
+		else:
+			jump_time+=delta 
+
+func update_position(delta):
+		
+	if is_on_floor():
+		jump = false
+		target_velocity.y = 0
+		
+	# jump
+	if direction.y>0 and jump==false:
+		target_velocity.y = direction.y * jump_speed
+		jump = true
+	
+	# in air -> falling
+	if not is_on_floor():
+		target_velocity.y = target_velocity.y - (fall_acceleration * delta)
+
+	velocity = target_velocity
+	
+	move_and_slide()
+
+
+func handle_animations():
+	if dashing:
+		return
+	elif velocity.y<0:
+		fighting = false
+		if jump:
+			$AnimationTree.jump_descending()
+		else:
+			$AnimationTree.falling()
+	elif velocity.y>0:
+		fighting = false
+		$AnimationTree.jump_start(true)
+		
+	elif direction != Vector3.ZERO:
+		$melee/target.disabled = true
+		if not dashing:
+			$AnimationTree.run()
+	elif not fighting and is_on_floor() and direction==Vector3.ZERO:
+		$AnimationTree.idle()
+		$melee/target.disabled = true
