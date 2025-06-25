@@ -70,6 +70,8 @@ func handle_launch():
 		launched = false
 		direction = Vector3.ZERO
 		grab_target_position = Vector3.ZERO
+	if aiming:
+		_aim_finished()
 
 	
 func can_move():

@@ -316,6 +316,7 @@ func movement_input():
 	if Input.is_action_pressed("strafe_right"):
 		direction.x += 1
 	if Input.is_action_just_pressed("dash") and can_dash:
+		direction.y = 0
 		_start_dash()
 
 func handle_jump_input(delta):
@@ -337,17 +338,9 @@ func handle_jump_input(delta):
 			target_velocity.y *= 0.1
 			jump_time = 0
 		else:
-			target_velocity.y *= 0.7
-			
-	if not Input.is_action_pressed("jump") and jump_time != 0 and not freeze:
-		if jump_time>=0.7:
-			jump_time = 0
-			target_velocity.y *= 1
-		else:
-			jump_time+=delta 
+			target_velocity.y *= 0.75
 
 func update_position(delta):
-		
 	if is_on_floor():
 		jump = false
 		target_velocity.y = 0
@@ -359,7 +352,10 @@ func update_position(delta):
 	
 	# in air -> falling
 	if not is_on_floor():
-		target_velocity.y = target_velocity.y - (fall_acceleration * delta)
+		if dashing:
+			target_velocity.y = -fall_acceleration/20
+		else:
+			target_velocity.y = target_velocity.y - (fall_acceleration * delta)
 
 	velocity = target_velocity
 	
@@ -371,15 +367,16 @@ func handle_animations():
 		return
 	elif velocity.y<0:
 		fighting = false
-		if jump:
+		if jump and not playback.get_current_node()=="Jump_looping":
 			$AnimationTree.jump_descending()
-		else:
+		elif not playback.get_current_node()=="Jump_looping":
 			$AnimationTree.falling()
 	elif velocity.y>0:
-		fighting = false
-		$AnimationTree.jump_start(true)
+		if not playback.get_current_node()=="Jump_start":
+			fighting = false
+			$AnimationTree.jump_start(true)
 		
-	elif direction != Vector3.ZERO:
+	elif direction != Vector3.ZERO and is_on_floor():
 		$melee/target.disabled = true
 		if not dashing:
 			$AnimationTree.run()
