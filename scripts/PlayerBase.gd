@@ -93,6 +93,7 @@ func _load_preferences() -> void:
 	var settings: LocalUserSettings = user_settings.GetUserSettings()
 	USER_AIM_MOUSE_SENS = settings.mouse_aim_sensititivy
 	USER_MOUSE_SENS = settings.mouse_camera_sensititivy
+	mouse_sensitivity = MOUSE_HORIZONTAL_SENS
 
 func _unhandled_input(event):
 	if event is InputEventMouseMotion and controls:
