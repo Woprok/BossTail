@@ -88,6 +88,8 @@ var time_big_lily = 0
 @export var JUMP_DAMAGE_HP = 10
 # HP lost by leg hit
 @export var LEG_HP = 5
+# HP lost by tongue hit
+@export var TONGUE_HP = 6
 # HP lost by head hit
 @export var HEAD_HP = 10
 # HP lost by boulder hit
@@ -820,15 +822,10 @@ func hit(area, health):
 						
 		elif area.is_in_group("tongue"):
 			tongueHit += 1
-			if tongueHit>=5:
-				boss_data.boss_take_damage(5)
+			boss_data.boss_take_damage(TONGUE_HP)
+			if tongueHit>=2:
 				tongueHit = 0
-				if time_stop>=STOP_TIME:
-					time_stop = 0
-				else:
-					time_stop = 5
-			elif tongueHit==3:
-				boss_data.boss_take_damage(5)
+				time_of_extend = TONGUE_EXTEND_TIME
 		elif area.is_in_group("body"):
 			HPHit += LEG_HP
 			time_stop = 5

@@ -8,7 +8,7 @@ class_name PlayerBase
 @export var standard_projectile: PackedScene
 # Level Specific Projectile generated on throw.
 @export var special_projectile: PackedScene
-
+@export var aim_target:PackedScene
 
 # Common Mouse & Camera
 @onready var Camera = $CameraPivot/SpringArm3D/Camera3D
@@ -64,6 +64,7 @@ var respawning:bool = false
 @export var RESPAWN_TIME:float = 1
 var aiming:bool = false
 var last_shot:float = 0
+var target_sphere = null
 var direction = Vector3.ZERO
 
 @export var CharacterNode: Node3D
@@ -84,6 +85,12 @@ func _ready():
 	$CameraPivot.rotation.x = deg_to_rad(-8)
 	
 	character_target_facing = -self.transform.basis.z
+	
+	if target_sphere==null:
+		target_sphere = aim_target.instantiate()
+		get_tree().get_root().add_child(target_sphere)
+	target_sphere.set_camera(Camera)
+	target_sphere.visible = false
 	
 func _process(delta: float) -> void:
 	character_facing = character_facing.slerp(character_target_facing, delta * CharacterRotationSpeed)
@@ -166,6 +173,7 @@ func _aim_started() -> void:
 	$CameraPivot/zoom.speed_scale = 3
 	Camera.get_node("target").show()
 	$CameraPivot/zoom.play("zoom")
+
 	
 func _aim_finished() -> void:
 	player_data.change_melee_indicator(true)
@@ -209,16 +217,7 @@ func _shoot(projectile) -> void:
 	projectile.global_position = position - transform.basis.z * 2
 	projectile.velocity = - transform.basis.z
 	
-	var space_state = Camera.get_world_3d().direct_space_state
-	var screen_center = get_viewport().size / 2
-	var origin = Camera.project_ray_origin(screen_center)
-	var end = origin + Camera.project_ray_normal(screen_center) * 1000
-	
-	var query = PhysicsRayQueryParameters3D.create(origin,end)
-	query.collide_with_bodies = true
-	var result = space_state.intersect_ray(query)
-	
-	projectile.shoot(origin, end, result)
+	projectile.shoot(target_sphere.compute_velocity(target_sphere.global_position, projectile.global_position))
 	#player throw sfx
 	AudioClipManager.play("res://assets/audio/sfx/PlayerThrow.wav")
 
@@ -297,7 +296,13 @@ func handle_attack_input():
 
 	elif Input.is_action_just_released("aim") and controls and not freeze:
 		_aim_finished()
-
+	if Input.is_action_pressed("aim"):
+		target_sphere.visible = true
+		target_sphere.update_target_marker(position)
+	else:
+		target_sphere.visible = false
+	
+	
 func update_speed():
 	if dashing:
 		direction = - $Char_Mouseketeer_Rig.transform.basis.z.normalized()

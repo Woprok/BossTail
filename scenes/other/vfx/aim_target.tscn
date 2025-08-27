@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://csmps6pqkfjwt"]
+
+[ext_resource type="Script" uid="uid://b8yc7lwe33d20" path="res://scripts/VFX/aim_target.gd" id="1_fvyj4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qtguo"]
+albedo_color = Color(1, 1, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_fvyj4"]
+material = SubResource("StandardMaterial3D_qtguo")
+
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_fvyj4"]
+
+[node name="AimTarget" type="Node3D"]
+script = ExtResource("1_fvyj4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_fvyj4")
+
+[node name="mesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("ImmediateMesh_fvyj4")
