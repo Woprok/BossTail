@@ -6,6 +6,7 @@ var gravity: int = -10
 @export var destroy_on_hit: bool = true
 @export var destroy_on_miss: bool = false
 @export var projectile_damage: float = 5.0
+@export var projectile_tutorial_damage: float = 4.0
 
 var spawner = null
 var KILL_ZONE: float = -50.0
@@ -42,7 +43,11 @@ func on_pick_up():
 func _on_hit(collision):
 	#if collision.get_collider().is_in_group("minion"):
 	#	collision.get_collider().hit(self, projectile_damage)
-	
+	if collision.get_collider().is_in_group("enemy") and collision.get_collider().is_in_group("tutorial"):
+		collision.get_collider().hit(collision.get_collider_shape(), projectile_tutorial_damage)
+		AudioClipManager.play("res://assets/audio/sfx/HitImpact.wav")
+		destroy()
+		return
 	if collision.get_collider().is_in_group("enemy"):
 		collision.get_collider().hit(collision.get_collider_shape(), projectile_damage)
 		AudioClipManager.play("res://assets/audio/sfx/HitImpact.wav")

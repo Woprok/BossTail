@@ -31,8 +31,9 @@ var whirlwind_box = null
 @export var WHIRLWIND_STRENGTH = 15
 @export var WHIRLWIND_TIME_MAX = 9
 @export var WHIRLWIND_TIME_MIN = 3
+var WHIRLWIND_THRESHOLD = 10
 var WHIRLWIND_TIME = 0
-@export var SLASH_TIME_MAX = 10
+@export var SLASH_TIME_MAX = 6.5
 @export var SLASH_TIME_MIN = 2
 var SLASH_TIME = 0
 @export var BARRAGE_TIME_MAX = 10 
@@ -48,6 +49,7 @@ var volley_time = 0
 var box_size_div = 2
 @export var boss_data: BossDataModel = preload("res://data_resources/DummyBossDataModel.tres")
 var BOX = preload("res://scenes/Crates.tscn")
+@export var BOX_HIT_DAMAGE = 20
 @export var BarrageBoulder: PackedScene
 
 @export_group("AttackTimings")
@@ -87,6 +89,15 @@ func _ready() -> void:
 	
 	DummyAnimationController.idle()
 	eyes_overlay_mat = EyesMesh.material_overlay
+
+func restart():
+	boss_data.boss_restart()
+	
+	WHIRLWIND_TIME = WHIRLWIND_TIME_MAX
+	SLASH_TIME = SLASH_TIME_MAX
+	BARRAGE_TIME = BARRAGE_TIME_MAX
+	
+	DummyAnimationController.idle()
 
 func _physics_process(delta):
 	if not active:
@@ -200,7 +211,8 @@ func hit(_collision, hp):
 		WHIRLWIND_TIME = max(WHIRLWIND_TIME_MIN, WHIRLWIND_TIME-2.5)
 		num_of_volley+=1
 		last_cd_change = 0 
-	if last_whirlwind>=10:
+	if last_whirlwind>=WHIRLWIND_THRESHOLD:
+		WHIRLWIND_THRESHOLD = 40
 		last_whirlwind = 0
 		do_whirlwind = true
 
@@ -223,6 +235,7 @@ func slash():
 		attack_seq_timer.kill()
 	attack_seq_timer = get_tree().create_tween()
 	attack_seq_timer.tween_callback(DummyAnimationController.great_slash_play_start).set_delay(SLASH_ANTIC_TIME)
+	$AnimationPlayer.play("slash")
 	create_tween().tween_callback(spawn_slash_vfx).set_delay(SLASH_ANTIC_TIME)
 	
 	#sfx - delayed for antic duration
@@ -369,9 +382,11 @@ func _on_box_hit(body: Node3D) -> void:
 		whirlwind_time = 0
 		whirlwind_box = null
 		stopped = true
+		stop_time = STUNNED_TIME
 		doing = false
 		jump = true
 		box_hit = true
+		hit(null, BOX_HIT_DAMAGE)
 		
 		if channelling_whirlwind:
 			WhirlwindVFX.fade_whirlwind(1.0)
@@ -385,7 +400,7 @@ func _on_box_hit(body: Node3D) -> void:
 				whirlwindTweener.tween_property(WhirlwindChargeupPlayer, "volume_linear", 0.0, 0.3)
 				whirlwindTweener.tween_callback(WhirlwindChargeupPlayer.stop)
 			
-		StunVFXController.play_stun_effect(STUNNED_TIME)
+		#StunVFXController.play_stun_effect(STUNNED_TIME)
 
 func _on_ground_body_entered(_body: Node3D) -> void:
 	if velocity.y<0:
@@ -395,7 +410,6 @@ func _on_animation_finished(anim_name):
 	if anim_name == "GAME_01_great_slash-antic":
 		slash()
 	if anim_name == "GAME_01_great_slash-start":
-		$AnimationPlayer.play("slash")
 		doing = false
 		slash_time = 0
 	if anim_name == "GAME_02_barrage-antic":

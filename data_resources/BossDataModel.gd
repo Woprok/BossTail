@@ -14,6 +14,7 @@ signal OnHealthChanged
 func boss_restart() -> void:
 	health_standard.reset()
 	health_special.reset()
+	OnHealthChanged.emit()
 
 func get_current_health() -> int:
 	return health_standard.current

@@ -7,7 +7,7 @@ var part = 1
 var reset_position_part2 = Vector3(-25, 1, 35)
 var reset_position_part3 = Vector3(66.5, 1.82, 0.26)
 var reset_position_part4 = Vector3(-26,1,-37)
-	
+
 func _ready() -> void:
 	super._ready()
 	$melee.connect("body_entered", _on_melee_body_entered)
@@ -80,6 +80,7 @@ func hit(_collision, health):
 	if player_data.is_player_dead():
 		respawn()
 		player_data.player_restart()
+		get_parent().get_node("Enemy").restart()
 	#sfx
 	AudioClipManager.play("res://assets/audio/sfx/HitImpact.wav")
 

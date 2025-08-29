@@ -21,10 +21,6 @@ radius = 3.0
 
 [sub_resource type="Animation" id="Animation_cuxop"]
 length = 0.001
-
-[sub_resource type="Animation" id="Animation_ht2tr"]
-resource_name = "slash"
-length = 0.15
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -32,10 +28,26 @@ tracks/0/path = NodePath("Char_BigDummy/DummyBase/GAMERIG_BigDummy/SlashHitArea/
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true, true, false, false, true]
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_ht2tr"]
+resource_name = "slash"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Char_BigDummy/DummyBase/GAMERIG_BigDummy/SlashHitArea/SlashHitboxShape:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.533333, 0.533433, 0.533533, 0.69, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, true, true, false, false, true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rujn5"]
@@ -48,7 +60,7 @@ _data = {
 height = 0.5
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_dwgjd"]
-radius = 0.7
+radius = 1.0
 
 [node name="TutorialDummy" type="CharacterBody3D" node_paths=PackedStringArray("DummyAnimationController", "DummyEntity", "DummyBase", "BoulderSpawnPos", "StunVFXController", "HitFlashVFX", "WhirlwindVFX", "HitImpactPos", "EyesMesh", "WhirlwindChargeupPlayer") groups=["enemy"]]
 script = ExtResource("1_lu3ac")
@@ -118,9 +130,46 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="Skeleton3D" parent="Char_BigDummy/DummyBase/GAMERIG_BigDummy" index="0"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+bones/0/rotation = Quaternion(1.54543e-08, -0.707107, 1.54543e-08, 0.707107)
+bones/1/rotation = Quaternion(3.55271e-15, 0.707107, -3.09086e-08, 0.707107)
+bones/2/position = Vector3(-4.1051e-11, 0.691973, -3.03738e-08)
+bones/2/rotation = Quaternion(1.0524e-07, 1, 2.68221e-07, -3.58752e-06)
+bones/3/position = Vector3(0.00491553, 0.501931, 0.0187496)
+bones/3/rotation = Quaternion(-0.496351, 0.503599, -0.496334, 0.503663)
+bones/4/position = Vector3(-0.347611, 0.103498, 0.000565965)
+bones/4/rotation = Quaternion(0.965916, -0.214722, 0.137344, -0.0451308)
+bones/5/position = Vector3(-1.08366e-07, 0.263374, 2.35485e-08)
+bones/5/rotation = Quaternion(7.00997e-08, -0.0911459, 1.6198e-07, 0.995838)
+bones/6/position = Vector3(3.75112e-08, 0.263374, 3.96976e-08)
+bones/6/rotation = Quaternion(0.865606, -0.0911458, 0.170859, 0.461764)
+bones/7/position = Vector3(-3.79946e-08, 0.253176, 8.28445e-08)
+bones/7/rotation = Quaternion(6.56854e-08, 0.244658, -1.01362e-07, 0.969609)
+bones/8/position = Vector3(7.18208e-08, 0.253176, 1.17533e-08)
+bones/8/rotation = Quaternion(-0.0306148, 0.244779, 0.0303748, 0.968619)
+bones/9/position = Vector3(0.350444, 0.103498, 0.000571094)
+bones/9/rotation = Quaternion(0.953091, 0.245245, -0.162397, -0.0714109)
+bones/10/position = Vector3(-9.28052e-08, 0.262927, 4.69705e-08)
+bones/10/rotation = Quaternion(5.28133e-08, 0.12618, 1.55379e-07, 0.992007)
+bones/11/position = Vector3(1.39004e-07, 0.262927, -2.50292e-09)
+bones/11/rotation = Quaternion(0.804882, 0.12618, -0.184776, 0.549637)
+bones/12/position = Vector3(-3.5587e-08, 0.266345, -1.84708e-08)
+bones/12/rotation = Quaternion(2.22063e-07, -0.398241, -1.01636e-07, 0.917281)
+bones/13/position = Vector3(-1.68835e-07, 0.266345, -1.31186e-08)
+bones/13/rotation = Quaternion(-0.28633, -0.785877, -0.29162, 0.464081)
+bones/14/rotation = Quaternion(-0.00248808, 0.675566, -0.0139194, 0.737164)
+bones/15/position = Vector3(-1.71363e-07, 0.3333, 1.58325e-08)
+bones/15/rotation = Quaternion(-2.29338e-08, -2.56113e-09, -1.83471e-07, 1)
+bones/16/position = Vector3(-5.21541e-08, 0.3334, -3.63216e-08)
+bones/16/rotation = Quaternion(4.42378e-08, -1.16415e-09, 8.84757e-09, 1)
+
+[node name="JawPos" parent="Char_BigDummy/DummyBase/GAMERIG_BigDummy/Skeleton3D" index="3"]
+transform = Transform3D(-8.15854e-05, -3.93143e-05, -1, -0.999894, 0.014576, 8.10344e-05, 0.014576, 0.999894, -4.0449e-05, -0.00245746, 1.91921, -0.0161198)
 
 [node name="BoulderSpawnPos" parent="Char_BigDummy/DummyBase/GAMERIG_BigDummy/Skeleton3D/JawPos" index="2"]
 transform = Transform3D(1, 0, -2.07523e-12, 0, 1, -2.84217e-14, 1.29963e-11, 1.98952e-13, 1, -1.20795, 1.73393, -2.9942e-07)
+
+[node name="OrbHandPos" parent="Char_BigDummy/DummyBase/GAMERIG_BigDummy/Skeleton3D" index="4"]
+transform = Transform3D(-0.0988171, 0.0467058, -0.994009, -0.665429, 0.739609, 0.100904, 0.739891, 0.671414, -0.0420066, 0.54607, 1.40687, 0.432612)
 
 [node name="SlashHitArea" type="Area3D" parent="Char_BigDummy/DummyBase/GAMERIG_BigDummy" index="1"]
 transform = Transform3D(-0.0331503, -0.99945, 2.53518e-06, -0.99945, 0.0331503, 0, -8.4042e-08, -2.53379e-06, -1, 0.142183, 1.30306, -0.836582)
