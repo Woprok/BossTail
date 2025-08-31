@@ -167,6 +167,8 @@ func respawn():
 				if i != null and i.is_in_group("lily_platform") and i.sinked == false:
 					platform = i
 					break
+		if platform == null:
+			platform = get_parent().find_child("LeafBoat")
 		position = platform.global_position
 		position.y += 5
 	
