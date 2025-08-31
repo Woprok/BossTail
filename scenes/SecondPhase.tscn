@@ -561,17 +561,9 @@ transform = Transform3D(4.11747, 0, -2.83663, 0, 5, 0, 2.83663, 0, 4.11747, 24.3
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.8795, 2.971, 4.00761)
 swarm_home = NodePath("../../LilyFlowerPlatforms/LilyFlowerA")
 
-[node name="SwarmB" parent="Swarms" node_paths=PackedStringArray("swarm_home") instance=ExtResource("10_663fb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 54.4615, 2.971, -17.0831)
-swarm_home = NodePath("../../LilyFlowerPlatforms/LilyFlowerB")
-
 [node name="SwarmC" parent="Swarms" node_paths=PackedStringArray("swarm_home") instance=ExtResource("10_663fb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.5186, 2.971, -55.2169)
 swarm_home = NodePath("../../LilyFlowerPlatforms/LilyFlowerC")
-
-[node name="SwarmD" parent="Swarms" node_paths=PackedStringArray("swarm_home") instance=ExtResource("10_663fb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.89332, 2.971, -34.1261)
-swarm_home = NodePath("../../LilyFlowerPlatforms/LilyFlowerD")
 
 [node name="LilyFlowerPlatforms" type="Node3D" parent="."]
 
@@ -583,13 +575,10 @@ radius = 6
 [node name="Flower" parent="LilyFlowerPlatforms/LilyFlowerA" instance=ExtResource("5_xj70a")]
 transform = Transform3D(0.5, 0, 7.45058e-09, 0, 0.5, 0, -7.45058e-09, 0, 0.5, 0, 0.136033, 0)
 
-[node name="LilyFlowerB" parent="LilyFlowerPlatforms" node_paths=PackedStringArray("neighbors") groups=["flower_lily", "small_platform"] instance=ExtResource("4_hj8bh")]
+[node name="LilyFlowerB" parent="LilyFlowerPlatforms" node_paths=PackedStringArray("neighbors") groups=["small_platform"] instance=ExtResource("4_hj8bh")]
 transform = Transform3D(0.852175, 0, 0.523257, 0, 1, 0, -0.523257, 0, 0.852175, 54.5961, 0, -16.6163)
 neighbors = [NodePath("../../stonePlatforms/stonePlatform2"), NodePath("../../shards/shard2"), NodePath("../../lilyPlatforms/lily6_alt")]
 radius = 6
-
-[node name="Flower" parent="LilyFlowerPlatforms/LilyFlowerB" instance=ExtResource("5_xj70a")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.108277, 0)
 
 [node name="LilyFlowerC" parent="LilyFlowerPlatforms" node_paths=PackedStringArray("neighbors") groups=["flower_lily", "small_platform"] instance=ExtResource("4_hj8bh")]
 transform = Transform3D(0.611541, 0, -0.791213, 0, 1, 0, 0.791213, 0, 0.611541, 32.2208, 0, -55.0926)
@@ -599,13 +588,10 @@ radius = 6
 [node name="Flower" parent="LilyFlowerPlatforms/LilyFlowerC" instance=ExtResource("5_xj70a")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.149397, 0)
 
-[node name="LilyFlowerD" parent="LilyFlowerPlatforms" node_paths=PackedStringArray("neighbors") groups=["flower_lily", "small_platform"] instance=ExtResource("7_m8ndt")]
+[node name="LilyFlowerD" parent="LilyFlowerPlatforms" node_paths=PackedStringArray("neighbors") groups=["small_platform"] instance=ExtResource("7_m8ndt")]
 transform = Transform3D(0.886664, 0, 0.462414, 0, 1, 0, -0.462414, 0, 0.886664, -6.84699, 0, -33.9463)
 neighbors = [NodePath("../../stonePlatforms/stonePlatformV3_1"), NodePath("../../lilyPlatforms/lily2"), NodePath("../../shards/shard4")]
 radius = 6
-
-[node name="Flower" parent="LilyFlowerPlatforms/LilyFlowerD" instance=ExtResource("5_xj70a")]
-transform = Transform3D(0.5, 0, -1.49012e-08, 0, 0.5, 0, 1.49012e-08, 0, 0.5, 0, 0.171801, 0)
 
 [node name="PondAudio" parent="." instance=ExtResource("18_2qjty")]
 transform = Transform3D(0.886664, 0, 0.462414, 0, 1, 0, -0.462414, 0, 0.886664, 0, 0, 0)
