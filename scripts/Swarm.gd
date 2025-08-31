@@ -61,8 +61,11 @@ func _physics_process(delta):
 			$CollisionShape3D.debug_color = Color.RED
 		SwarmState.BUZZING:
 			$CollisionShape3D.debug_color = Color.GREEN
-			if _update_split_off_time(delta):
-				_split_off_random_fly()
+			# disabled big fly due to noise on the scene and wrong collision setup
+			# basically from design this does not work as desired
+			# and from code, it's buggy and we would have to rewrite the collision setup for frog, player and projectiles first
+			#if _update_split_off_time(delta):
+			#	_split_off_random_fly()
 			var can_chase: bool = _can_chase_player()
 			if can_chase and active_swarm_fly.size() >= FLY_REQUIRED_FOR_CHASE:
 				state = SwarmState.CHASING
