@@ -43,6 +43,8 @@ var DASH_TIME:float = 0.5
 @export var CamSpeedLines: CamSpeedLinesController
 var AIM_SPEED:int = 5
 var SPEED:int = 15
+var ACCELERATION:int = 50
+var DECELERATION:int = 70
 
 var spike_hit = false
 var freeze = false
@@ -236,16 +238,21 @@ func set_character_facing(direction: Vector3) -> void:
 	pass
 	
 func get_facing_dir_from_input(input: Vector2) -> Vector3:
+	var v = velocity
+	v.y = 0.0 
+	if v.length() > 0:
+		return v.normalized()
 	var cam_facing = -self.transform.basis.z
 	var fx = cam_facing.x
 	var fz = cam_facing.z
 	var ix = input.x
 	var iz = -input.y
 	var f_perp: Vector3 = Vector3(-fz, 0.0, fx)
-	
+
 	var dx = ix * f_perp.x + iz * fx
 	var dz = ix * f_perp.z + iz * fz
 	return Vector3(dx, 0.0, dz)
+
 
 func reset_player_respawn():
 	player_data.change_melee_indicator(true)
@@ -283,7 +290,7 @@ func update_attack_indicators():
 		player_data.change_ranged_indicator(false)
 		
 func handle_attack_input():
-	if Input.is_action_pressed("fight") and is_on_floor() and controls and direction == Vector3.ZERO and not freeze:
+	if Input.is_action_pressed("fight") and is_on_floor() and controls and velocity == Vector3.ZERO and not freeze:
 		if not aiming:
 			if last_shot > 0.75:
 				last_shot = 0
@@ -294,9 +301,9 @@ func handle_attack_input():
 	elif Input.is_action_just_pressed("aim") and controls and not freeze:
 		_aim_started()
 
-	elif Input.is_action_just_released("aim") and controls and not freeze:
+	elif Input.is_action_just_released("aim") and aiming and controls and not freeze:
 		_aim_finished()
-	if Input.is_action_pressed("aim"):
+	if aiming:
 		target_sphere.visible = true
 		target_sphere.update_target_marker(position)
 	else:
@@ -363,7 +370,14 @@ func update_position(delta):
 		else:
 			target_velocity.y = target_velocity.y - (fall_acceleration * delta)
 
-	velocity = target_velocity
+	if target_velocity.x==0 and target_velocity.z==0:
+		velocity.x = move_toward(velocity.x, target_velocity.x, DECELERATION * delta)
+		velocity.z = move_toward(velocity.z, target_velocity.z, DECELERATION * delta)
+	else:
+		velocity.x = move_toward(velocity.x, target_velocity.x, ACCELERATION * delta)
+		velocity.z = move_toward(velocity.z, target_velocity.z, ACCELERATION * delta)
+		
+	velocity.y = target_velocity.y
 	
 	move_and_slide()
 
@@ -382,7 +396,7 @@ func handle_animations():
 			fighting = false
 			$AnimationTree.jump_start(true)
 		
-	elif direction != Vector3.ZERO and is_on_floor():
+	elif velocity != Vector3.ZERO and is_on_floor():
 		$melee/target.disabled = true
 		if not dashing:
 			$AnimationTree.run()

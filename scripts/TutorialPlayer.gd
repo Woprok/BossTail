@@ -60,6 +60,7 @@ func handle_push(delta):
 	if pushed:
 		if aiming:
 			_aim_finished()
+			target_sphere.visible = false
 		velocity.y = 0
 		time_of_push += delta
 		if time_of_push >= 1:
@@ -75,6 +76,8 @@ func hit(_collision, health):
 	if last_hit<1:
 		return
 	last_hit = 0
+	if aiming:
+		_aim_finished()
 	player_data.player_decrease_health(health)
 	$PlayerHitVFX.play_effect()
 	if player_data.is_player_dead():
