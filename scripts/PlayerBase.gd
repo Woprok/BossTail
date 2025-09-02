@@ -43,8 +43,10 @@ var DASH_TIME:float = 0.5
 @export var CamSpeedLines: CamSpeedLinesController
 var AIM_SPEED:int = 5
 var SPEED:int = 15
-var ACCELERATION:int = 50
-var DECELERATION:int = 70
+@export var ACCELERATION_GROUND:int = 80
+@export var DECELERATION_GROUND:int = 100
+@export var ACCELERATION_AIR:int = 30
+@export var DECELERATION_AIR:int = 40
 
 var spike_hit = false
 var freeze = false
@@ -370,12 +372,20 @@ func update_position(delta):
 		else:
 			target_velocity.y = target_velocity.y - (fall_acceleration * delta)
 
-	if target_velocity.x==0 and target_velocity.z==0:
-		velocity.x = move_toward(velocity.x, target_velocity.x, DECELERATION * delta)
-		velocity.z = move_toward(velocity.z, target_velocity.z, DECELERATION * delta)
+	if is_on_floor():
+		if target_velocity.x==0 and target_velocity.z==0:
+			velocity.x = move_toward(velocity.x, target_velocity.x, DECELERATION_GROUND * delta)
+			velocity.z = move_toward(velocity.z, target_velocity.z, DECELERATION_GROUND * delta)
+		else:
+			velocity.x = move_toward(velocity.x, target_velocity.x, ACCELERATION_GROUND * delta)
+			velocity.z = move_toward(velocity.z, target_velocity.z, ACCELERATION_GROUND * delta)
 	else:
-		velocity.x = move_toward(velocity.x, target_velocity.x, ACCELERATION * delta)
-		velocity.z = move_toward(velocity.z, target_velocity.z, ACCELERATION * delta)
+		if target_velocity.x==0 and target_velocity.z==0:
+			velocity.x = move_toward(velocity.x, target_velocity.x, DECELERATION_AIR * delta)
+			velocity.z = move_toward(velocity.z, target_velocity.z, DECELERATION_AIR * delta)
+		else:
+			velocity.x = move_toward(velocity.x, target_velocity.x, ACCELERATION_AIR * delta)
+			velocity.z = move_toward(velocity.z, target_velocity.z, ACCELERATION_AIR * delta)
 		
 	velocity.y = target_velocity.y
 	
