@@ -314,7 +314,7 @@ func handle_attack_input():
 	
 func update_speed():
 	if dashing:
-		direction = - $Char_Mouseketeer_Rig.transform.basis.z.normalized()
+		direction = -CharacterNode.transform.basis.z
 		speed = DASH_SPEED
 	elif aiming:
 		speed = AIM_SPEED
@@ -405,7 +405,6 @@ func handle_animations():
 		if not playback.get_current_node()=="Jump_start":
 			fighting = false
 			$AnimationTree.jump_start(true)
-		
 	elif velocity != Vector3.ZERO and is_on_floor():
 		$melee/target.disabled = true
 		if not dashing:
