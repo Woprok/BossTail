@@ -3,7 +3,7 @@ extends Node
 # class_name GameInstance #Defined as autoloaded Global
 signal level_end
 
-@export var enable_debug: bool = true
+@export var enable_debug: bool = false
 
 # Opted for enum, this makes it less likely to miss-spell 
 enum GameLevels {
