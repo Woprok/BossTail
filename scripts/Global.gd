@@ -10,3 +10,6 @@ func LogInfo(log_content) -> void:
 	
 func LogError(log_content) -> void:
 	print_rich("[color=red][ERROR] ", log_content)
+
+func LogMetrics(log_content) -> void:
+	print_rich("[color=orange][METRICS] ", log_content)

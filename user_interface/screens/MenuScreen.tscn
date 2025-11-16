@@ -22,33 +22,54 @@ text = "Tales of the Mouseketeer"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MENU_ACTIONS" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="MENU_ACTIONS" type="VBoxContainer" parent="VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
 
-[node name="PlayButton" type="Button" parent="MENU_ACTIONS"]
+[node name="PlayButton" type="Button" parent="VBoxContainer/MENU_ACTIONS"]
 layout_mode = 2
 theme = ExtResource("1_cfngp")
 text = "PLAY"
 
-[node name="SettingsButton" type="Button" parent="MENU_ACTIONS"]
+[node name="SettingsButton" type="Button" parent="VBoxContainer/MENU_ACTIONS"]
 layout_mode = 2
 theme = ExtResource("1_cfngp")
 text = "SETTINGS"
 
-[node name="CreditsButton" type="Button" parent="MENU_ACTIONS"]
+[node name="CreditsButton" type="Button" parent="VBoxContainer/MENU_ACTIONS"]
 layout_mode = 2
 theme = ExtResource("1_cfngp")
 text = "CREDITS"
 
-[node name="QuitButton" type="Button" parent="MENU_ACTIONS"]
+[node name="QuitButton" type="Button" parent="VBoxContainer/MENU_ACTIONS"]
 layout_mode = 2
 theme = ExtResource("1_cfngp")
 text = "QUIT"
 
-[connection signal="pressed" from="MENU_ACTIONS/PlayButton" to="." method="_on_play_button_pressed"]
-[connection signal="pressed" from="MENU_ACTIONS/SettingsButton" to="." method="_on_settings_button_pressed"]
-[connection signal="pressed" from="MENU_ACTIONS/CreditsButton" to="." method="_on_credits_button_pressed"]
-[connection signal="pressed" from="MENU_ACTIONS/QuitButton" to="." method="_on_quit_button_pressed"]
+[node name="MENU_ACTIONS2" type="VBoxContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+
+[node name="Control" type="Control" parent="VBoxContainer/MENU_ACTIONS2"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="LogsButton" type="Button" parent="VBoxContainer/MENU_ACTIONS2"]
+layout_mode = 2
+theme = ExtResource("1_cfngp")
+theme_type_variation = &"BlueButton"
+text = "OPEN LOGS FOLDER"
+
+[connection signal="pressed" from="VBoxContainer/MENU_ACTIONS/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/MENU_ACTIONS/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/MENU_ACTIONS/CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/MENU_ACTIONS/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/MENU_ACTIONS2/LogsButton" to="." method="_on_logs_button_pressed"]

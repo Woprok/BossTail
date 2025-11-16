@@ -26,7 +26,9 @@ text = "KEYNAME"
 
 [node name="ChangeButton" type="Button" parent="HorizontalBox"]
 unique_name_in_owner = true
+process_mode = 4
 layout_mode = 2
+mouse_default_cursor_shape = 8
 theme = ExtResource("2_ksikw")
 theme_override_font_sizes/font_size = 16
 text = "Change"

@@ -12,3 +12,7 @@ func _on_credits_button_pressed() -> void:
 	
 func _on_quit_button_pressed() -> void:
 	GameInstance.Quit()
+
+func _on_logs_button_pressed() -> void:	
+	var log_path := ProjectSettings.globalize_path("user://logs")
+	OS.shell_open(log_path)

@@ -47,6 +47,8 @@ func _load_and_apply_local_user_settings() -> void:
 
 func _notification(what):
 	match what:
+		NOTIFICATION_WM_CLOSE_REQUEST:
+			Global.LogMetrics("CLOSE REQUEST")
 		#NOTIFICATION_APPLICATION_FOCUS_IN:
 		#	ResumeGame()
 		# This handles special case, where user can bug the game window out of screenscape
@@ -54,6 +56,7 @@ func _notification(what):
 		NOTIFICATION_APPLICATION_FOCUS_OUT:
 			if UIManager.IsGame():
 				PauseGame()
+			Global.LogMetrics("LOST FOCUS")
 
 func _unhandled_input(event: InputEvent) -> void:
 	if _try_handle_pause(event):
@@ -96,10 +99,12 @@ func _pause() -> void:
 	get_tree().paused = true
 
 func PlayerDefeated():
+	GameEvents.boss_defeat.emit(false)
 	UIManager.SwitchToMode(UI.Mode.DEFEAT)
 	_pause()
 	
 func PlayerVictorious():
+	GameEvents.boss_defeat.emit(true)
 	if CanTravelToNextLevel() and CanCinematic():
 		PreloadNextLevel()
 		emit_signal("level_end")
@@ -118,6 +123,7 @@ func TravelToMenu(new_level: GameLevels = GameLevels.MENU) -> void:
 	get_tree().change_scene_to_file(Levels[new_level])
 	UIManager.SwitchToMode(UI.Mode.MENU)
 	_resume()
+	GameEvents.boss_menu_end.emit(str(CurrentLevel))
 	
 # Level transition should move player to new level and set UI as HUD
 func TravelToLevel(new_level: GameLevels) -> void:
@@ -129,6 +135,7 @@ func TravelToLevel(new_level: GameLevels) -> void:
 	CurrentLevel = new_level
 	UIManager.SwitchToMode(UI.Mode.HUD)
 	_resume()
+	GameEvents.boss_started.emit(str(CurrentLevel))
 
 # This returns value based on CurrentLevel being in LevelTransitions
 func CanTravelToNextLevel() -> bool:
@@ -150,6 +157,7 @@ func RestartCurrentLevel() -> void:
 	get_tree().reload_current_scene()
 	UIManager.SwitchToMode(UI.Mode.HUD)
 	_resume()
+	GameEvents.boss_restarted.emit(str(CurrentLevel))
 
 func Quit() -> void:
 	UIManager.SwitchToMode(UI.Mode.NONE)
