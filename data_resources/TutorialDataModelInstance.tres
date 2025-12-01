@@ -48,11 +48,11 @@ ControlHintTitles = Dictionary[int, String]({
 3: "Boss Fight"
 })
 ControlHints = Dictionary[int, String]({
-0: "Use TUTORIAL_MOVE_UP TUTORIAL_MOVE_DOWN TUTORIAL_MOVE_LEFT TUTORIAL_MOVE_RIGHT to move, and TUTORIAL_CAMERA_UP TUTORIAL_CAMERA_DOWN TUTORIAL_CAMERA_LEFT TUTORIAL_CAMERA_RIGHT or Mouse to look around.",
+0: "Use TUTORIAL_MOVE_UP TUTORIAL_MOVE_DOWN TUTORIAL_MOVE_LEFT TUTORIAL_MOVE_RIGHT to move, and Mouse to look around.",
 1: "Jump with TUTORIAL_JUMP. Hold to jump higher.
 Dash with TUTORIAL_DASH to clear gaps or dodge.
 The current state of all abilities is shown in the bottom-right corner (Stab, Throw, Dash, Jump).",
-2: "You can’t reach a spinning dummy up close — throw small objects, like pebbles.
+2: "You can’t reach a spinning dummy up close — throw small objects, like pebbles. Jump on top of the barrel to find some.
 Aim with TUTORIAL_AIM, shoot with TUTORIAL_STAB.
 Pick up pebbles and shoot the box to break it.
 After breaking the box, the dummy will be stunned — use that chance to finish it with a stab TUTORIAL_STAB.",

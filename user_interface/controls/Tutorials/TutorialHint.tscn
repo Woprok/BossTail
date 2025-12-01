@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bs0p4rf5mraew" path="res://user_interface/controls/Tutorials/TutorialHint.gd" id="1_6cg5n"]
 [ext_resource type="StyleBox" uid="uid://cwi3586klkctu" path="res://user_interface/controls/Tutorials/TutorialStyleBox.tres" id="1_hafd2"]
-[ext_resource type="Texture2D" uid="uid://braap3dkpt2ql" path="res://user_interface/assets/tutorial_icons/GUX_KeteerJumpe.png" id="3_hafd2"]
+[ext_resource type="Texture2D" uid="uid://ch5extviiykt" path="res://user_interface/assets/tutorial_icons/WorkingImage_white_boss.png" id="3_hafd2"]
 
 [node name="TutorialHint" type="PanelContainer"]
 custom_minimum_size = Vector2(400, 0)
@@ -67,5 +67,5 @@ size_flags_horizontal = 4
 size_flags_vertical = 3
 mouse_filter = 2
 texture = ExtResource("3_hafd2")
-expand_mode = 2
+expand_mode = 4
 stretch_mode = 5

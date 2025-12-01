@@ -16,8 +16,9 @@ func _update_shape() -> void:
 
 func _ready() -> void:
 	_update_shape()
-	if tutorial_point_id == -1:
-		Global.LogError("TutorialPoint: Id was not set.")
+	#is_tool
+	#if tutorial_point_id == -1:
+	#	Global.LogError("TutorialPoint: Id was not set.")
 
 func _on_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):	

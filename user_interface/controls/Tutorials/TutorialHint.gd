@@ -26,9 +26,9 @@ func SetData(tutorial_data: TutorialDataModel, phase: int) -> void:
 			1:
 				$%HintDescription2.texture = load("res://user_interface/assets/tutorial_icons/GUX_KeteerJumpeSmallImprove.png")
 			2:
-				$%HintDescription2.texture = load("res://user_interface/assets/tutorial_icons/WorkingImage_white.png")
+				$%HintDescription2.texture = load("res://user_interface/assets/tutorial_icons/WorkingImageWhite.png")
 			3:
-				$%HintDescription2.visible = false
+				$%HintDescription2.texture = load("res://user_interface/assets/tutorial_icons/WorkingImage_white_boss.png")
 
 func _set_objective(context: String) -> void:
 	%ObjectiveLabel.text = context
