@@ -19,12 +19,16 @@ var stunHelixDefaultColor: Color
 var helixTweener: Tween
 
 func _ready() -> void:
+	#create_tween().tween_callback(startVFX).set_delay(1)
+	startVFX()
+	
+func startVFX():
 	self.init()
 	stunHelixMaterial = HelixMesh.get_active_material(0)
 	stunHelixDefaultColor = stunHelixMaterial.albedo_color
 	
 	_fadeInScaleHelix()
-	
+
 func _fadeInScaleHelix():
 	if helixTweener != null and helixTweener.is_running():
 		helixTweener.kill()

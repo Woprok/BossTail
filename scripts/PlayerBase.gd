@@ -130,7 +130,7 @@ func _start_dash() -> void:
 	CamSpeedLines.appear(0.1)
 	var dash_timing = create_tween()
 	dash_timing.tween_callback(CamSpeedLines.fade.bind(0.15)).set_delay(DASH_TIME - 0.1)
-	dash_timing.parallel().tween_callback($AnimationTree.dash_end).set_delay(DASH_TIME - 0.1)
+	 #dash_timing.parallel().tween_callback($AnimationTree.dash_end).set_delay(DASH_TIME - 0.1)
 	
 	AudioClipManager.play("res://assets/audio/sfx/Dash.wav")
 	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://b7qeqaium4nae"]
+[gd_scene load_steps=34 format=3 uid="uid://b7qeqaium4nae"]
 
 [ext_resource type="PackedScene" uid="uid://cs51pokcyuwhd" path="res://scenes/characters/Mouseketeer.tscn" id="2_k20qr"]
 [ext_resource type="PackedScene" uid="uid://m3d44565ohak" path="res://scenes/characters/ToadBoss.tscn" id="3_8kwl6"]
@@ -220,6 +220,11 @@ _data = {
 &"RESET": SubResource("Animation_0gfxg"),
 &"intro": SubResource("Animation_8p1ou")
 }
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0gfxg"]
+diffuse_mode = 3
+specular_mode = 2
+albedo_color = Color(0.204946, 0.217829, 0.191771, 1)
 
 [node name="SecondPhase" type="Node3D"]
 
@@ -811,5 +816,10 @@ transform = Transform3D(-0.54017, 0, -4.97074, 0, 5, 0, 4.97074, 0, -0.54017, 73
 
 [node name="ReedClump_10" parent="FirstPhaseEnvironment/clumps2" instance=ExtResource("8_i4gxl")]
 transform = Transform3D(1.47571, 0, -4.77727, 0, 5, 0, 4.77727, 0, 1.47571, 25.8021, -0.647892, -64.7794)
+
+[node name="PondFloor" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.3791, -6.21542, -36.3668)
+size = Vector3(600, 1, 500)
+material = SubResource("StandardMaterial3D_0gfxg")
 
 [editable path="PondShore"]

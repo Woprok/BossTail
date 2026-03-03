@@ -400,7 +400,7 @@ func _on_box_hit(body: Node3D) -> void:
 				whirlwindTweener.tween_property(WhirlwindChargeupPlayer, "volume_linear", 0.0, 0.3)
 				whirlwindTweener.tween_callback(WhirlwindChargeupPlayer.stop)
 			
-		#StunVFXController.play_stun_effect(STUNNED_TIME)
+		StunVFXController.play_stun_effect(STUNNED_TIME)
 
 func _on_ground_body_entered(_body: Node3D) -> void:
 	if velocity.y<0:

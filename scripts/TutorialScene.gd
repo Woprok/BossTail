@@ -1,6 +1,7 @@
 extends Node3D
 
 var walls_down = false
+@export var start_walls_down = true
 @export var positions_for_crates:Array[Vector3]
 @export var num_of_crates:Array[int]
 var Crates = preload("res://scenes/Crates.tscn")
@@ -13,10 +14,17 @@ var time_boulder = 0
 var TIME_CRATES = 1
 var TIME_BOULDER = 1.7
 
+func _ready():
+	if start_walls_down:
+		$walls.show()
+		$AnimationPlayer.play("walls")
+		$AnimationPlayer.seek(1.0)
+		enable_obstacles()
 func _process(delta):
 	if not walls_down and $Player.position.distance_to($Enemy.position)<=115:
-		$walls.show()
-		$AnimationPlayer.play("walls",2)
+		if not start_walls_down:
+			$walls.show()
+			$AnimationPlayer.play("walls",2)
 		$Player.part=2
 		walls_down=true
 	time_crates += delta
@@ -53,12 +61,15 @@ func _process(delta):
 func respawn_player():
 	$Player.respawn()
 
+func enable_obstacles():
+	$obstacles.show()
+	$walls2.show()
+	$MiniDummy.show()
+	$arena/spikes.show()
+
 func _on_animation_finished(anim_name):
 	if anim_name=="walls":
-		$obstacles.show()
-		$walls2.show()
-		$MiniDummy.show()
-		$arena/spikes.show()
+		enable_obstacles()
 
 
 func _on_last_part_entered(body: Node3D) -> void:

@@ -382,7 +382,7 @@ mesh = SubResource("ArrayMesh_tttwc")
 script = ExtResource("7_u0wjw")
 StunVFXPrefab = ExtResource("8_a6iu1")
 ImpactPos = NodePath("../SmallTrainingDummy/DummyLog/Face")
-HelixStartOffset = Vector3(0, 0.4, 0)
+HelixStartOffset = Vector3(0, 0.8, 0)
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_body_entered"]
 [connection signal="body_entered" from="ground" to="." method="_on_ground_body_entered"]

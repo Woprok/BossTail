@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://bs2wo0hd3wnmr"]
+[gd_scene load_steps=33 format=3 uid="uid://bs2wo0hd3wnmr"]
 
 [ext_resource type="PackedScene" uid="uid://cs51pokcyuwhd" path="res://scenes/characters/Mouseketeer.tscn" id="1_gltnc"]
 [ext_resource type="PackedScene" uid="uid://m3d44565ohak" path="res://scenes/characters/ToadBoss.tscn" id="2_8ot16"]
@@ -379,6 +379,11 @@ _data = {
 &"end": SubResource("Animation_lrt2e"),
 &"intro": SubResource("Animation_4lci5")
 }
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hu61m"]
+diffuse_mode = 3
+specular_mode = 2
+albedo_color = Color(0.204946, 0.217829, 0.191771, 1)
 
 [node name="FirstPhase" type="Node3D"]
 
@@ -970,3 +975,8 @@ radius = 6
 
 [node name="Flower" parent="SecondPhaseEnvironment/LilyFlowerPlatforms/LilyFlowerD" instance=ExtResource("18_4eivf")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.65, 0)
+
+[node name="PondFloor" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 69.4818, -6.21542, -37.5779)
+size = Vector3(600, 1, 500)
+material = SubResource("StandardMaterial3D_hu61m")

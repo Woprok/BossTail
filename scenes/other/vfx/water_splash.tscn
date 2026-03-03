@@ -100,7 +100,7 @@ shader = ExtResource("1_l75kt")
 shader_parameter/ColorParameter = Color(0.275495, 0.512384, 0.7783, 1)
 shader_parameter/AlphaValue = 0.5
 shader_parameter/AlphaMask = ExtResource("3_nn642")
-shader_parameter/Dissolve = 0.0
+shader_parameter/Dissolve = -0.025
 shader_parameter/DissolveTexture = ExtResource("2_ckhv4")
 
 [sub_resource type="QuadMesh" id="QuadMesh_5p2cg"]
@@ -139,11 +139,13 @@ draw_pass_1 = SubResource("SphereMesh_nn642")
 
 [node name="Puddle" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -3.12328e-05, -0.00460404, 0.0011009)
+visible = false
 material_override = SubResource("ShaderMaterial_ckhv4")
 mesh = SubResource("QuadMesh_5p2cg")
 script = ExtResource("5_pkoxv")
 
 [node name="Area3D" type="Area3D" parent="."]
+visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("CylinderShape3D_wdb8g")

@@ -33,14 +33,17 @@ shader_parameter/GlowColor = Color(0.3, 1.2, 3, 1)
 [node name="Bubble" type="Node3D"]
 
 [node name="Scroll" type="MeshInstance3D" parent="."]
+visible = false
 material_override = SubResource("ShaderMaterial_vy7q3")
 mesh = SubResource("SphereMesh_imbi0")
 
 [node name="Halo" type="MeshInstance3D" parent="."]
 transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0)
+visible = false
 material_override = SubResource("ShaderMaterial_imbi0")
 mesh = SubResource("QuadMesh_pvjwk")
 
 [node name="Glow" type="MeshInstance3D" parent="."]
+visible = false
 mesh = SubResource("SphereMesh_vy7q3")
 surface_material_override/0 = SubResource("ShaderMaterial_rbsqb")
